@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct OnboardingRouter : MVVM_Router {
+struct OnboardingRouter: MVVM_Router {
     
     var owner: UIViewController {
         return _owner!

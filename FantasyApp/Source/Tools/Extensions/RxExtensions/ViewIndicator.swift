@@ -10,7 +10,7 @@
 import RxSwift
 import RxCocoa
 
-struct ViewToken<E> : ObservableConvertibleType, Disposable {
+struct ViewToken<E>: ObservableConvertibleType, Disposable {
     private let _source: Observable<E>
     private let _dispose: Disposable
     

@@ -9,10 +9,6 @@
 import Foundation
 import RxSwift
 
-///NPLUser.user.rx.query(predicate)
-///  .map { $0.name }
-///  .bind(to: userNameLabel.rx.text)
-
 extension Reactive where Base: PFObject {
     
     func query<T: PFObject>(with predicate: NSPredicate) -> Maybe<[T]> {
@@ -38,15 +34,6 @@ extension Reactive where Base: PFObject {
         })
         .asMaybe()
         
-    }
-    
-}
-
-
-extension PFObject {
-    
-    var rx: Reactive<PFObject> {
-        return Reactive(self)
     }
     
 }

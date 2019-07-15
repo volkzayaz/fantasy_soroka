@@ -27,21 +27,21 @@ protocol MVVM_ViewModel {
 
 protocol MVVM_Router {
     
-    associatedtype T: NSObjectProtocol
+    associatedtype T
     
-    /*weak*/ var owner: T { get }
+    var owner: T { get }
     
-    var animatable: CanChangeAnimationStatus { get }
-    var messagePresentable: CanPresentMessage { get }
+    var animatable: ProgressAnimatable { get }
+    var messagePresentable: MessagePresentable { get }
 }
 
 extension MVVM_Router where T : UIViewController {
     
-    var animatable: CanChangeAnimationStatus {
+    var animatable: ProgressAnimatable {
         return owner
     }
     
-    var messagePresentable: CanPresentMessage {
+    var messagePresentable: MessagePresentable {
         return owner
     }
     

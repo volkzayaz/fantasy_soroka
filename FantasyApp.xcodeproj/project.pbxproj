@@ -22,9 +22,9 @@
 		7312B09C22D7422100DB0F36 /* NWise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08422D7422100DB0F36 /* NWise.swift */; };
 		7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08922D7422100DB0F36 /* SpinnerView.swift */; };
 		7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08A22D7422100DB0F36 /* UIView+ProgressIndicator.swift */; };
-		7312B0A022D7422100DB0F36 /* AnimationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08B22D7422100DB0F36 /* AnimationStatus.swift */; };
+		7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08B22D7422100DB0F36 /* ProgressAnimatable.swift */; };
 		7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08D22D7422100DB0F36 /* ViewController+ErrorMessage.swift */; };
-		7312B0A222D7422100DB0F36 /* PresentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08E22D7422100DB0F36 /* PresentMessage.swift */; };
+		7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08E22D7422100DB0F36 /* MessagePresentable.swift */; };
 		7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08F22D7422100DB0F36 /* MVVM.swift */; };
 		7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B09022D7422100DB0F36 /* CatchError.swift */; };
 		7312B0A622D7422100DB0F36 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B09222D7422100DB0F36 /* UIColor+Extention.swift */; };
@@ -37,6 +37,14 @@
 		7312B0D322D74FB200DB0F36 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 7312B0D022D74FB200DB0F36 /* Fastfile */; };
 		7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B0D422D7506B00DB0F36 /* Configuration.swift */; };
 		7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B0DC22D7536300DB0F36 /* PFObject+Rx.swift */; };
+		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
+		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
+		84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */; };
+		84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF722DCCC650026862E /* APIEnpdoint.swift */; };
+		84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */; };
+		84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD0D22DCCD200026862E /* Avatar.swift */; };
+		84B8AD1022DCD5600026862E /* APIProvider+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD0F22DCD5600026862E /* APIProvider+RxSwift.swift */; };
+		84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD1122DCD5800026862E /* ResponseProgress.swift */; };
 		9E8D2293C7DC338DE9E43BBC /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F46F74DE91D1CD3DDD44C9 /* Pods_FantasyAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,9 +78,9 @@
 		7312B08422D7422100DB0F36 /* NWise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NWise.swift; sourceTree = "<group>"; };
 		7312B08922D7422100DB0F36 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		7312B08A22D7422100DB0F36 /* UIView+ProgressIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressIndicator.swift"; sourceTree = "<group>"; };
-		7312B08B22D7422100DB0F36 /* AnimationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationStatus.swift; sourceTree = "<group>"; };
+		7312B08B22D7422100DB0F36 /* ProgressAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressAnimatable.swift; sourceTree = "<group>"; };
 		7312B08D22D7422100DB0F36 /* ViewController+ErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+ErrorMessage.swift"; sourceTree = "<group>"; };
-		7312B08E22D7422100DB0F36 /* PresentMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMessage.swift; sourceTree = "<group>"; };
+		7312B08E22D7422100DB0F36 /* MessagePresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePresentable.swift; sourceTree = "<group>"; };
 		7312B08F22D7422100DB0F36 /* MVVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVVM.swift; sourceTree = "<group>"; };
 		7312B09022D7422100DB0F36 /* CatchError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchError.swift; sourceTree = "<group>"; };
 		7312B09222D7422100DB0F36 /* UIColor+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
@@ -89,6 +97,14 @@
 		7312B0D622D7516900DB0F36 /* FantasyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FantasyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		7312B0DC22D7536300DB0F36 /* PFObject+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFObject+Rx.swift"; sourceTree = "<group>"; };
 		7BF618421ED97ABB76DC2AD9 /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
+		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
+		84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizedAPIResource.swift; sourceTree = "<group>"; };
+		84B8ACF722DCCC650026862E /* APIEnpdoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEnpdoint.swift; sourceTree = "<group>"; };
+		84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUserAvatarResource.swift; sourceTree = "<group>"; };
+		84B8AD0D22DCCD200026862E /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		84B8AD0F22DCD5600026862E /* APIProvider+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIProvider+RxSwift.swift"; sourceTree = "<group>"; };
+		84B8AD1122DCD5800026862E /* ResponseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProgress.swift; sourceTree = "<group>"; };
 		858033AD59A0E95FCF53FA2A /* Pods-FantasyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.release.xcconfig"; path = "Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		9AFEBA6BA192F02E1AD76499 /* Pods_FantasyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E1F751FD973A8DF51B5BD0C /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +200,7 @@
 				7312B07522D741D500DB0F36 /* UIBricks */,
 				7312B0B722D745DF00DB0F36 /* Managers */,
 				7312B0AB22D7440800DB0F36 /* Models */,
-				7312B0B622D745D200DB0F36 /* Networking */,
+				7312B0B622D745D200DB0F36 /* Data */,
 				7312B06F22D740AC00DB0F36 /* Tools */,
 				7312B06022D7403300DB0F36 /* AppDelegate.swift */,
 			);
@@ -204,6 +220,7 @@
 		7312B06F22D740AC00DB0F36 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				7312B08722D7422100DB0F36 /* Traits */,
 				7312B07D22D7422100DB0F36 /* Extensions */,
 				7312B07022D740AC00DB0F36 /* UI */,
 				7312B0D422D7506B00DB0F36 /* Configuration.swift */,
@@ -261,7 +278,6 @@
 		7312B08622D7422100DB0F36 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				7312B08722D7422100DB0F36 /* Traits */,
 				7312B08F22D7422100DB0F36 /* MVVM.swift */,
 				7312B09022D7422100DB0F36 /* CatchError.swift */,
 			);
@@ -282,7 +298,7 @@
 			children = (
 				7312B08922D7422100DB0F36 /* SpinnerView.swift */,
 				7312B08A22D7422100DB0F36 /* UIView+ProgressIndicator.swift */,
-				7312B08B22D7422100DB0F36 /* AnimationStatus.swift */,
+				7312B08B22D7422100DB0F36 /* ProgressAnimatable.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -291,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				7312B08D22D7422100DB0F36 /* ViewController+ErrorMessage.swift */,
-				7312B08E22D7422100DB0F36 /* PresentMessage.swift */,
+				7312B08E22D7422100DB0F36 /* MessagePresentable.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -299,6 +315,7 @@
 		7312B0AB22D7440800DB0F36 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84B8AD0C22DCCD0F0026862E /* Avatar */,
 				7312B0AC22D7441000DB0F36 /* Error */,
 				7312B0BA22D7472500DB0F36 /* Enivironment.swift */,
 			);
@@ -330,12 +347,13 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
-		7312B0B622D745D200DB0F36 /* Networking */ = {
+		7312B0B622D745D200DB0F36 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				7312B0DC22D7536300DB0F36 /* PFObject+Rx.swift */,
+				84B8ACF222DCCC650026862E /* Networking */,
+				84B8AD0B22DCCC680026862E /* Parse */,
 			);
-			path = Networking;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
@@ -362,6 +380,52 @@
 				7312B0D022D74FB200DB0F36 /* Fastfile */,
 			);
 			path = fastlane;
+			sourceTree = "<group>";
+		};
+		84B8ACF222DCCC650026862E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				84B8ACF322DCCC650026862E /* Core */,
+				84B8ACF922DCCC650026862E /* Resources */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		84B8ACF322DCCC650026862E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				84B8ACF422DCCC650026862E /* APIResource.swift */,
+				84B8ACF522DCCC650026862E /* APIProvider.swift */,
+				84B8AD0F22DCD5600026862E /* APIProvider+RxSwift.swift */,
+				84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */,
+				84B8ACF722DCCC650026862E /* APIEnpdoint.swift */,
+				84B8AD1122DCD5800026862E /* ResponseProgress.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		84B8ACF922DCCC650026862E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84B8AD0B22DCCC680026862E /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				7312B0DC22D7536300DB0F36 /* PFObject+Rx.swift */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		84B8AD0C22DCCD0F0026862E /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				84B8AD0D22DCCD200026862E /* Avatar.swift */,
+			);
+			path = Avatar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,12 +622,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
+				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
+				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
-				7312B0A022D7422100DB0F36 /* AnimationStatus.swift in Sources */,
+				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
+				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extention.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
@@ -573,12 +641,16 @@
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
-				7312B0A222D7422100DB0F36 /* PresentMessage.swift in Sources */,
+				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
+				84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */,
+				84B8AD1022DCD5600026862E /* APIProvider+RxSwift.swift in Sources */,
+				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,
+				84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
