@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		607BD7185DA385BDE832D5B1 /* Pods_FantasyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFEBA6BA192F02E1AD76499 /* Pods_FantasyApp.framework */; };
+		7310036422DDEFCD0057CC6A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7310036322DDEFCD0057CC6A /* AppState.swift */; };
 		7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B06022D7403300DB0F36 /* AppDelegate.swift */; };
 		7312B06A22D7403300DB0F36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7312B06222D7403300DB0F36 /* Assets.xcassets */; };
 		7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B07122D740AC00DB0F36 /* R.generated.swift */; };
@@ -62,6 +63,7 @@
 		027DACCE5133E2D14E126A9B /* Pods-FantasyAppTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.adhoc.xcconfig"; path = "Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		17D8A7EDA4BA94E6D1535B2E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		59F46F74DE91D1CD3DDD44C9 /* Pods_FantasyAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7310036322DDEFCD0057CC6A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7312B04022D73AD100DB0F36 /* FantasyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FantasyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7312B05D22D7403300DB0F36 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7312B06022D7403300DB0F36 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				7312B0B622D745D200DB0F36 /* Data */,
 				7312B06F22D740AC00DB0F36 /* Tools */,
 				7312B06022D7403300DB0F36 /* AppDelegate.swift */,
+				7310036322DDEFCD0057CC6A /* AppState.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
+				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */,
