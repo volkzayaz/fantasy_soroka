@@ -28,7 +28,8 @@ protocol MVVM_ViewModel {
 protocol MVVM_Router {
     
     associatedtype T
-    
+
+    // In protocol implementation router should always have just a weak reference to its owner to avoid retain cycles.
     var owner: T { get }
     
     var animatable: ProgressAnimatable { get }

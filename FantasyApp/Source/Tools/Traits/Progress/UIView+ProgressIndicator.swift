@@ -17,18 +17,14 @@ import SnapKit
 extension UIView {
     
     /**
-     *  @discussion - setOnly property for binding Driver to indicateProgress property.
+     *  @discussion - funtion for binding Driver to indicateProgress property.
      */
-    var progressDriver: Driver<Bool> {
-        get { fatalError("bindIndicatorProgresTo is setOnly property") }
-        set {
-            newValue.drive (onNext: { [unowned self] indicator in
-                self.indicateProgress = indicator
-            })
-            .disposed(by: self.rx.disposeBag)
-        }
+    func bindProgresIndicatorTo(driver: Driver<Bool>) {
+        driver.drive (onNext: { [unowned self] indicator in
+            self.indicateProgress = indicator
+        }).disposed(by: self.rx.disposeBag)
     }
-    
+
     /**
      * @discussion - you can also enable/disable animation manually
      */
