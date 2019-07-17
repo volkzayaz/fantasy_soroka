@@ -11,57 +11,47 @@ import RxCocoa
 import SnapKit
 
 /**
- *  Usage -- myView.bindIndicatorProgresTo = driverForLongOperation
+ *  Usage -- myView.progressDriver = driverForLongOperation
  */
 
 extension UIView {
     
     /**
-     *  @discussion - setOnly property for binding Driver to indicateProgress property.
+     *  @discussion - funtion for binding Driver to indicateProgress property.
      */
-    var bindIndicatorProgresTo: Driver<Bool> {
-        get { fatalError("bindIndicatorProgresTo is setOnly property") }
-        set {
-            
-            newValue.drive (onNext: { [unowned self] indicator in
-                self.indicateProgress = indicator
-            })
-            .disposed(by: self.rx.disposeBag)
-            
-        }
+    func bindProgresIndicatorTo(driver: Driver<Bool>) {
+        driver.drive (onNext: { [unowned self] indicator in
+            self.indicateProgress = indicator
+        }).disposed(by: self.rx.disposeBag)
     }
-    
+
     /**
      * @discussion - you can also enable/disable animation manually
      */
-    var indicateProgress : Bool {
+    var indicateProgress: Bool {
         get {
             return self.progressView.isHidden
         }
         set {
-            let pv = self.progressView
-            
-            UIView.animate(withDuration: 0.3) {
-                pv.alpha = newValue ? 1 : 0
+            UIView.animate(withDuration: 0.3, animations: { [weak view = self.progressView] in
+                view?.alpha = newValue ? 1 : 0
+            }) { [weak view = self.progressView] _ in
+                view?.isHidden = newValue
             }
-            
         }
     }
     
-    var indicateProgressPercent : Int? {
+    var indicateProgressPercent: Int? {
         get { fatalError("indicateProgressPercent is setOnly property") }
         set {
-            let pv = self.progressView
-            
-            guard let x = newValue else {
+            guard let value = newValue else {
                 indicateProgress = false
                 return
             }
             
             indicateProgress = true
             
-            pv.progressLabel.text = "Loaded \(x) / 100%"
-            
+            progressView.progressLabel.text = R.string.localizable.loadedX100(value)
         }
     }
 }
@@ -75,12 +65,14 @@ extension UIView {
         return "com.progressHash".hash
     }
     
-    class ProgressContainer: UIView {
+    fileprivate class ProgressContainer: UIView {
         
         var progressLabel: UILabel!
         
-    }; fileprivate var progressView: ProgressContainer {
-    
+    }
+
+    fileprivate var progressView: ProgressContainer {
+
         if let pv = self.subviews.filter({ $0.tag == self.progressViewHash }).first as? ProgressContainer {
             return pv
         }
@@ -108,25 +100,25 @@ extension UIView {
         container.progressLabel = label
         
         if self is UIScrollView {
-            self.positionOnScrollView(container: container,
-                                      dimmedView: dimmedView,
-                                      spinner: spinner,
-                                      label: label)
+            positionOnScrollView(container: container,
+                                 dimmedView: dimmedView,
+                                 spinner: spinner,
+                                 label: label)
         }
         else {
-            self.positionOnStaticView(container: container,
-                                      dimmedView: dimmedView,
-                                      spinner: spinner,
-                                      label: label)
+            positionOnStaticView(container: container,
+                                 dimmedView: dimmedView,
+                                 spinner: spinner,
+                                 label: label)
         }
         
         return container
     }
  
-    func positionOnScrollView(container: UIView,
-                              dimmedView: UIView,
-                              spinner: SpinnerView,
-                              label: UILabel) {
+    private func positionOnScrollView(container: UIView,
+                                      dimmedView: UIView,
+                                      spinner: SpinnerView,
+                                      label: UILabel) {
         
         guard let scrollView = self as? UIScrollView else {
             fatalError("self is not a scrollView subclass")
@@ -151,10 +143,10 @@ extension UIView {
         
     }
     
-    func positionOnStaticView(container: UIView,
-                              dimmedView: UIView,
-                              spinner: SpinnerView,
-                              label: UILabel) {
+    private func positionOnStaticView(container: UIView,
+                                      dimmedView: UIView,
+                                      spinner: SpinnerView,
+                                      label: UILabel) {
         spinner.snp.makeConstraints { make in
             make.center.equalTo(container)
         }
@@ -171,9 +163,5 @@ extension UIView {
         container.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
-
     }
-    
-
-    
 }

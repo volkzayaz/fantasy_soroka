@@ -10,9 +10,9 @@ import RxSwift
 
 extension ObservableConvertibleType {
 
-    private var identifier : String { return "com.rx.extensions.erroridentifier" }
+    private var identifier: String { return "com.rx.extensions.erroridentifier" }
     
-    func silentCatch<T: CanPresentMessage>
+    func silentCatch<T: MessagePresentable>
         (handler: T?) -> Observable<Element> where T: AnyObject {
         
         return self.asObservable()
@@ -41,12 +41,12 @@ extension ObservableConvertibleType {
     }
 
     func silentCatch() -> Observable<Element> {
-        return self.silentCatch(handler: nil as MockCanPresentMessage?)
+        return silentCatch(handler: nil as MokcMessagePresentable?)
     }
     
 }
 
-private class MockCanPresentMessage : NSObject, CanPresentMessage {
+private class MokcMessagePresentable: NSObject, MessagePresentable {
     func presentMessage(message: DisplayMessage) {}
 }
 

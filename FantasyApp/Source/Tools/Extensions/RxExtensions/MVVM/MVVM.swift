@@ -27,21 +27,22 @@ protocol MVVM_ViewModel {
 
 protocol MVVM_Router {
     
-    associatedtype T: NSObjectProtocol
+    associatedtype T
+
+    // In protocol implementation router should always have just a weak reference to its owner to avoid retain cycles.
+    var owner: T { get }
     
-    /*weak*/ var owner: T { get }
-    
-    var animatable: CanChangeAnimationStatus { get }
-    var messagePresentable: CanPresentMessage { get }
+    var animatable: ProgressAnimatable { get }
+    var messagePresentable: MessagePresentable { get }
 }
 
 extension MVVM_Router where T : UIViewController {
     
-    var animatable: CanChangeAnimationStatus {
+    var animatable: ProgressAnimatable {
         return owner
     }
     
-    var messagePresentable: CanPresentMessage {
+    var messagePresentable: MessagePresentable {
         return owner
     }
     

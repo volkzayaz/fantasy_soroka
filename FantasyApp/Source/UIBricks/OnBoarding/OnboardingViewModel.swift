@@ -45,8 +45,8 @@ struct OnboardingViewModel : MVVM_ViewModel {
         /////progress indicator
         
         indicator.asDriver()
-            .drive(onNext: { [weak h = router.owner] (loading) in
-                h?.changedAnimationStatusTo(status: loading)
+            .drive(onNext: { [weak viewController = router.owner] (loading) in
+                viewController?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
     }

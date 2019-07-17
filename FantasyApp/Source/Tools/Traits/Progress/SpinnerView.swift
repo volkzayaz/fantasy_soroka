@@ -11,25 +11,23 @@ import UIKit
 class SpinnerView : UIImageView {
     
     convenience init() {
-        
         self.init(image: R.image.loader())
         
-        let animationDuration: CFTimeInterval = 0.8;
+        let animationDuration: CFTimeInterval = 0.8
         let linearCurve = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         
         let animation = CABasicAnimation(keyPath: "transform.rotation")
-        animation.fromValue = 0;
+        animation.fromValue = 0
         animation.toValue = Double.pi * 2
-        animation.duration = animationDuration;
-        animation.timingFunction = linearCurve;
+        animation.duration = animationDuration
+        animation.timingFunction = linearCurve
         animation.isRemovedOnCompletion = false
-        animation.repeatCount = Float.greatestFiniteMagnitude;
-        animation.fillMode = CAMediaTimingFillMode.forwards;
-        animation.autoreverses = false;
-        self.layer.add(animation, forKey:"rotate")
+        animation.repeatCount = Float.greatestFiniteMagnitude
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.autoreverses = false
+        layer.add(animation, forKey: "rotate")
         
-        self.backgroundColor = UIColor.clear
-        
+        backgroundColor = UIColor.clear
     }
     
 }
