@@ -9,63 +9,44 @@
 import Foundation
 import RxSwift
 
-public extension Reactive where Base: APIProviderType {
+///Usage: MyCustomApiResource().rx.request
+public extension Reactive where Base: APIResource {
 
-    /// Designated request-making method.
-    ///
-    /// - Parameters:
-    ///   - token: Entity, which provides specifications necessary for a `MoyaProvider`.
-    ///   - callbackQueue: Callback queue. If nil - queue from provider initializer will be used.
-    /// - Returns: Single response object.
-    func request<T: APIResource>(_ resource: T, callbackQueue: DispatchQueue? = nil) -> Single<T.responseType> {
-        return Single.create { [weak base] single in
-            let cancellableToken = base?.request(resource, callbackQueue: callbackQueue, progress: nil) { result in
-                switch result {
-                case let .success(response):
-                    single(.success(response))
-                case let .failure(error):
-                    single(.error(error))
+    var request: Single<Base.responseType> {
+        
+        return requestWithProgress
+            .map { x -> Base.responseType? in
+                switch x {
+                case .value(let t): return t
+                case .progress(_): return nil
                 }
             }
-
-            return Disposables.create {
-                cancellableToken?.cancel()
-            }
-        }
+            .notNil()
+            .asSingle()
+        
     }
 
-    /// Designated request-making method with progress.
-    ///
-    /// - Parameters:
-    ///   - token: Entity, which provides specifications necessary for a `MoyaProvider`.
-    ///   - callbackQueue: Callback queue. If nil - queue from provider initializer will be used.
-    /// - Returns: Progress response object observable.
-    func requestWithProgress<T: APIResource>(_ resource: T, callbackQueue: DispatchQueue? = nil)
-        -> Observable<ResponseProgress<T.responseType>> {
-            let response: Observable<ResponseProgress<T.responseType>> = Observable.create { [weak base] observer in
-                let cancellableToken = base?.request(resource,
-                                                     callbackQueue: callbackQueue,
-                                                     progress: { progress in
-                    observer.onNext(progress)
-                }) { result in
+    var requestWithProgress: Observable<ResponseProgress<Base.responseType>> {
+    
+            return Observable.create { observer in
+                
+                ///if needed APIProvider can be injected using parameters of this function
+                let token = APIProvider.default.request(self.base,
+                                                        callbackQueue: nil,
+                                                        progress: { progress in
+                                                            observer.onNext(progress)
+                }, completion: { result in
                     switch result {
-                    case .success:
-                        observer.onCompleted()
-                    case let .failure(error):
-                        observer.onError(error)
+                    case .success       : observer.onCompleted()
+                    case .failure(let e): observer.onError(e)
                     }
-                }
+                })
 
                 return Disposables.create {
-                    cancellableToken?.cancel()
+                    token.cancel()
                 }
             }
 
-            // Accumulate all progress and combine them when the result comes
-            return response.scan(ResponseProgress<T.responseType>()) { last, progress in
-                let progressObject = progress.progressObject ?? last.progressObject
-                let response = progress.response ?? last.response
-                return ResponseProgress(progress: progressObject, response: response)
-            }
     }
 }
+

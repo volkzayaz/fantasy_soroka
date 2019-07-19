@@ -9,31 +9,55 @@
 import Foundation
 import RxSwift
 
-extension Reactive where Base: PFObject {
+extension Reactive where Base: PFQuery<PFObject> {
     
-    func query<T: PFObject>(with predicate: NSPredicate) -> Maybe<[T]> {
+    func fetchAll<T: Codable>() -> Maybe<[T]> {
         
         return Observable.create({ (subscriber) -> Disposable in
         
-            let q = T.query(with: predicate)!
-                
-            q.findObjectsInBackground(block: { (values, error) in
+            self.base.findObjectsInBackground(block: { (maybeValues, error) in
                 
                 if let e = error {
                     subscriber.onError(e)
                     return
                 }
                 
-                subscriber.onNext( values as! [T] )
+                guard let v = maybeValues else {
+                    fatalError("Parse result is neither error nor value")
+                }
+                
+                var jsons: [[String: Any]] = []
+                
+                v.forEach { (pfObject) in
+                    
+                    var json: [String: Any] = [:]
+                    
+                    for key in pfObject.allKeys + ["objectId"] {
+                        json[key] = pfObject[key]
+                    }
+                    
+                    jsons.append(json)
+                }
+                
+                guard let data   = try? JSONSerialization.data(withJSONObject: jsons, options: []),
+                      let result = try? JSONDecoder().decode([T].self, from: data) else {
+                    fatalError("Incorrect parsing of PFObjects")
+                }
+                
+                subscriber.onNext( result )
                 subscriber.onCompleted()
             })
             
             return Disposables.create {
-                q.cancel()
+                self.base.cancel()
             }
         })
         .asMaybe()
         
+    }
+    
+    func fetchFirst<T: Codable>() -> Maybe<T?> {
+        return fetchAll().map { $0.first }
     }
     
 }

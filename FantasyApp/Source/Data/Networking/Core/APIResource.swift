@@ -8,8 +8,9 @@
 
 import Foundation
 import Moya
+import RxSwift
 
-public protocol APIResource: TargetType, Encodable {
+public protocol APIResource: TargetType, Encodable, ReactiveCompatible {
     var endpoint: APIEnpdoint { get }
 
     associatedtype responseType: Decodable
