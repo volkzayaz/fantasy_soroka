@@ -7,8 +7,42 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-struct User {
+////Why not ReSwift:
+///1. AppState should not be nil. It makes little sence having App without any State at all
+///2. No Reactive subscriptions available
+///3. Absence of Asyncronous Actions
+///4. Separation between Actions and Reducers. IMHO they are the same thing.
+///  If you use 10 different reducers to handle 1 action, you might as well create single piece of code,
+///  that handles this state transform.
+///  If you have a state, that is accessed and mutated in the single place, you might as well extract this state into ViewModel
+
+fileprivate let _appState = BehaviorRelay<AppState?>(value: nil)
+
+func initAppState() -> Maybe<Void> {
+    
+    ///we can use network requests here as well if we want to delay application initialization
+    
+    _appState.accept(AppState(currentUser: nil))
+    
+    return .just( () )
+}
+
+var appStateSlice: AppState {
+    return _appState.value!
+}
+
+var appState: Driver<AppState> {
+    return _appState.asDriver().notNil()
+}
+
+struct AppState: Equatable {
+    var currentUser: User?
+}
+
+struct User: Equatable {
     
     var auth: AuthData
     var bio: Bio
@@ -108,5 +142,14 @@ struct UserSlice: Hashable {
     ///just enough data to display peer and fetch full data if needed
     
     ///for example show him near chat bubble or in like requests
+    
+}
+
+
+extension Dispatcher {
+    
+    static var state: BehaviorRelay<AppState?> {
+        return _appState
+    }
     
 }
