@@ -40,7 +40,7 @@ import RxCocoa
         preState.user.connections.rooms = Room.fakes( 10 )
  
         return PFQuery.fetchSomeRooms(order: order)
-                    .rx.fetchAll<[Room].self>()
+                    .rx.fetchAll<[Room]>()
                     .map {  rooms in
                         var newState = state
                         newState.user.connections.rooms = rooms
@@ -48,6 +48,9 @@ import RxCocoa
                     }
                     .startWith(preState) ///It's fine to push multiple values downstream. Just make sure
                                             to complete eveything within 10 seconds timeframe
+ 
+        ///actually a bad idea to use PFQuery here, as it can produce error
+        ///which makes no sence
     }
 
  }
