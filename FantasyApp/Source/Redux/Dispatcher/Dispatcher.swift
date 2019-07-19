@@ -86,15 +86,8 @@ enum Dispatcher {
                 })
             
             return Observable.deferred { () -> Observable<AppState> in
-                print("Dispatching \(actionCreator.description)")
-                return actionCreator.perform(initialState: state.value!)
-                    .map { state in
-                        
-                        ////signing action with it's signature
-                        var x = state
-                        x.player.lastChangeSignatureHash = actionCreator.signature
-                        return x
-                }
+                    print("Dispatching \(actionCreator.description)")
+                    return actionCreator.perform(initialState: state.value!)
                 }
                 .takeUntil(forceCompleteTrigger)
                 .catchError { (error) -> Observable<AppState> in
