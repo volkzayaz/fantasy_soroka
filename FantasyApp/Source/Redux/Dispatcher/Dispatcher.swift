@@ -13,8 +13,10 @@ import RxCocoa
  
  1) Subscribe to changes: appState.drive { state in }
  2) Subscribe to partial changes: appState.changesOf { $0.currentUser.preferences.kinks }
- 3) Change appState: Dispatcher.dispatch( UpdateKinks( newKinks ) )
- 4) Create Actions:
+ 3) Get current AppState: appStateSlice.currentUser.preferences. ///Please never use it, chances are it can be reimplemented
+                                                                    declarativelly using `appState: Driver<AppState>`
+ 4) Change appState: Dispatcher.dispatch( UpdateKinks( newKinks ) )
+ 5) Create Actions:
  struct UpdateKinks: Action {
  
     let newKinks: Set<Kink>
@@ -26,7 +28,7 @@ import RxCocoa
     }
  
  }
- 5) Create Async Actions:
+ 6) Create Async Actions:
  struct LoadRooms: Action {
  
     let order: String
