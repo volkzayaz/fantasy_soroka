@@ -9,26 +9,38 @@
 import Foundation
 import RxSwift
 
+/*
+  1. Make model conform to ParsePresentable
+  2. Fetch Model with PFQuery(predicate).rx.fetchAll<MyModel>()
+                   or PFQuery(predicate).rx.fetchFirst<MyModel>()
+  3. Create and Save Model to Parse with MyModel(data).rxCreate()
+  4. Edit existing Models and save to Parse in one go with Array<MyModel>().rxSave()
+*/
+protocol ParsePresentable: Codable {
+    static var className: String { get }
+    var pfObjectId: String { get }
+}
+
 extension Reactive where Base: PFQuery<PFObject> {
     
-    func fetchAll<T: Codable>() -> Maybe<[T]> {
+    func fetchAll<T: ParsePresentable>() -> Maybe<[T]> {
         
         return Observable.create({ (subscriber) -> Disposable in
         
             self.base.findObjectsInBackground(block: { (maybeValues, error) in
                 
-                if let e = error {
-                    subscriber.onError(e)
+                if let x = error {
+                    subscriber.onError(x)
                     return
                 }
                 
-                guard let v = maybeValues else {
+                guard let parseObjects = maybeValues else {
                     fatalError("Parse result is neither error nor value")
                 }
                 
                 var jsons: [[String: Any]] = []
                 
-                v.forEach { (pfObject) in
+                parseObjects.forEach { (pfObject) in
                     
                     var json: [String: Any] = [:]
                     
@@ -56,8 +68,86 @@ extension Reactive where Base: PFQuery<PFObject> {
         
     }
     
-    func fetchFirst<T: Codable>() -> Maybe<T?> {
+    func fetchFirst<T: ParsePresentable>() -> Maybe<T?> {
         return fetchAll().map { $0.first }
+    }
+    
+}
+
+extension ParsePresentable {
+    
+    ///Suitable for creating PFObjects
+    func rxCreate() -> Maybe<Void> {
+        
+        return Observable.create { (subscriber) -> Disposable in
+            
+            guard let data = try? JSONEncoder().encode(self),
+                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                fatalError("Incorrect representation of Codable \(self)")
+            }
+            
+            let pfObject = PFObject(className: type(of: self).className,
+                                    dictionary: json)
+            
+            pfObject.saveInBackground(block: { (didSave, maybeError) in
+                
+                if let e = maybeError {
+                    subscriber.onError(e)
+                    return
+                }
+                
+                subscriber.onNext( () )
+                subscriber.onCompleted()
+            })
+            
+            return Disposables.create()
+        }
+        .asMaybe()
+        
+    }
+    
+    ///Suitable for editing PFObject
+    func rxSave() -> Maybe<Void> {
+        return [self].rxSave()
+    }
+    
+}
+
+extension Array where Element: ParsePresentable {
+    
+    ///Suitable for editing PFObjects
+    func rxSave() -> Maybe<Void> {
+        return Observable.create { (subscriber) -> Disposable in
+            
+            let pfObjects: [PFObject] = self.map { parsePresentable in
+                
+                guard let data = try? JSONEncoder().encode(parsePresentable),
+                    let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                        fatalError("Incorrect representation of Codable \(parsePresentable)")
+                }
+                
+                let object = PFObject(withoutDataWithClassName: type(of: parsePresentable).className,
+                                      objectId: parsePresentable.pfObjectId)
+                
+                object.setValuesForKeys(json)
+                
+                return object
+            }
+            
+            PFObject.saveAll(inBackground: pfObjects) { (didSave, maybeError) in
+                
+                if let e = maybeError {
+                    subscriber.onError(e)
+                    return
+                }
+                
+                subscriber.onNext( () )
+                subscriber.onCompleted()
+            }
+            
+            return Disposables.create()
+            }
+            .asMaybe()
     }
     
 }

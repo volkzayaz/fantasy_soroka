@@ -45,15 +45,18 @@ struct AppState: Equatable {
 struct User: Equatable {
     
     var auth: AuthData
-    var bio: Bio
-    var preferences: SexPreference
-    var fantasies: [Fantasy]
-    var community: Community
-    var connections: Connections
-    var premiumFeatures: Set<PremiumFeature>
-    var privacy: Privacy
+//    var bio: Bio
+//    var preferences: SexPreference
+//    var fantasies: [Fantasy]
+//    var community: Community
+//    var connections: Connections
+//    var privacy: Privacy
+//
+//    ////Extract into Application property rather than User property
+//    var premiumFeatures: Set<PremiumFeature>
     
-    struct AuthData {
+    
+    struct AuthData: Equatable {
         let email: String?
         let fbData: String?
     };
@@ -62,7 +65,7 @@ struct User: Equatable {
         var name: String
         var birthday: Date
         var gender: Gender
-        var photos: Photos
+        var photos: Photos<String>
         
         enum Gender {
             case male, female
@@ -71,10 +74,11 @@ struct User: Equatable {
             case other
         };
       
-        struct Photos {
-            var `public`: [String]
-            var `private`: [String]
+        struct Photos<T> {
+            var `public`: [T]
+            var `private`: [T]
         };
+        
     };
 
     struct SexPreference {
@@ -135,7 +139,7 @@ struct Community {
     
 }
 
-struct UserSlice: Hashable {
+struct UserSlice: Hashable, Codable {
     let name: String
     let avatar: String?
     
