@@ -20,6 +20,7 @@ target 'FantasyApp' do
     
     #ui
     pod 'SnapKit', '~> 5.0'
+    pod 'Kingfisher', '~> 4.8'
 end
 
 target 'FantasyAppTests' do

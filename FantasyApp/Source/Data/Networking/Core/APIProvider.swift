@@ -27,8 +27,12 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
 
         return super.request(.target(resource), callbackQueue: callbackQueue, progress: { responseProgress in
             do {
-                let entity = try responseProgress.response?.map(T.responseType.self)
-                progress?(ResponseProgress(progress: responseProgress.progressObject, response: entity))
+                if let entity = try responseProgress.response?.map(T.responseType.self) {
+                    progress?(.value(entity))
+                }
+                else if let p = responseProgress.progressObject {
+                    progress?(.progress(p))
+                }
             } catch {
                 // TODO: error handling for progress response mapping?
                 debugPrint(error.localizedDescription)
@@ -49,7 +53,7 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
     }
 }
 
-extension APIProvider: ReactiveCompatible {
-    public static let `default` = APIProvider(plugins: [NetworkLoggerPlugin(verbose: true)]).rx
+extension APIProvider {
+    public static let `default` = APIProvider(plugins: [NetworkLoggerPlugin(verbose: true)])
 }
 
