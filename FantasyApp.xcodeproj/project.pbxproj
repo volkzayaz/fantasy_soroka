@@ -28,7 +28,7 @@
 		7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08E22D7422100DB0F36 /* MessagePresentable.swift */; };
 		7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B08F22D7422100DB0F36 /* MVVM.swift */; };
 		7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B09022D7422100DB0F36 /* CatchError.swift */; };
-		7312B0A622D7422100DB0F36 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B09222D7422100DB0F36 /* UIColor+Extention.swift */; };
+		7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B09222D7422100DB0F36 /* UIColor+Extension.swift */; };
 		7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B0AD22D7441C00DB0F36 /* FantasyError.swift */; };
 		7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7312B0B522D7450B00DB0F36 /* Localizable.strings */; };
 		7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312B0BA22D7472500DB0F36 /* Enivironment.swift */; };
@@ -43,6 +43,28 @@
 		7390015122E1B8D000260198 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014F22E1B8D000260198 /* SettingsStore.swift */; };
 		7390015622E1E78B00260198 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390015522E1E78A00260198 /* Dispatcher.swift */; };
 		7390015922E1ED8B00260198 /* BaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390015822E1ED8B00260198 /* BaseActions.swift */; };
+		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
+		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
+		841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */; };
+		841681DE22E9AE6E00FA9455 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CC22E9AE6B00FA9455 /* SF-Pro-Text-Semibold.otf */; };
+		841681DF22E9AE6E00FA9455 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CD22E9AE6C00FA9455 /* SF-Pro-Text-Regular.otf */; };
+		841681E022E9AE6E00FA9455 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CE22E9AE6C00FA9455 /* SF-Pro-Text-Medium.otf */; };
+		841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CF22E9AE6C00FA9455 /* SF-Pro-Text-MediumItalic.otf */; };
+		841681E222E9AE6E00FA9455 /* SF-Pro-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D022E9AE6C00FA9455 /* SF-Pro-Text-RegularItalic.otf */; };
+		841681E322E9AE6E00FA9455 /* SF-Pro-Text-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D122E9AE6C00FA9455 /* SF-Pro-Text-BoldItalic.otf */; };
+		841681E422E9AE6E00FA9455 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D222E9AE6C00FA9455 /* SF-Pro-Text-Light.otf */; };
+		841681E522E9AE6E00FA9455 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D322E9AE6C00FA9455 /* SF-Pro-Text-HeavyItalic.otf */; };
+		841681E622E9AE6E00FA9455 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D422E9AE6D00FA9455 /* SF-Pro-Text-Bold.otf */; };
+		841681E722E9AE6E00FA9455 /* SF-Pro-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D522E9AE6D00FA9455 /* SF-Pro-Text-LightItalic.otf */; };
+		841681E822E9AE6E00FA9455 /* SF-Pro-Text-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D622E9AE6D00FA9455 /* SF-Pro-Text-Ultralight.otf */; };
+		841681E922E9AE6E00FA9455 /* SF-Pro-Text-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D722E9AE6D00FA9455 /* SF-Pro-Text-ThinItalic.otf */; };
+		841681EA22E9AE6E00FA9455 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D822E9AE6D00FA9455 /* SF-Pro-Text-Black.otf */; };
+		841681EB22E9AE6E00FA9455 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681D922E9AE6D00FA9455 /* SF-Pro-Text-BlackItalic.otf */; };
+		841681EC22E9AE6E00FA9455 /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681DA22E9AE6D00FA9455 /* SF-Pro-Text-SemiboldItalic.otf */; };
+		841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681DB22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf */; };
+		841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */; };
+		841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681EF22E9B36C00FA9455 /* UIColor+Style.swift */; };
+		841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681F122E9B37E00FA9455 /* UIFont+Style.swift */; };
 		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
 		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
 		84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */; };
@@ -90,7 +112,7 @@
 		7312B08E22D7422100DB0F36 /* MessagePresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePresentable.swift; sourceTree = "<group>"; };
 		7312B08F22D7422100DB0F36 /* MVVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVVM.swift; sourceTree = "<group>"; };
 		7312B09022D7422100DB0F36 /* CatchError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchError.swift; sourceTree = "<group>"; };
-		7312B09222D7422100DB0F36 /* UIColor+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
+		7312B09222D7422100DB0F36 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7312B0AD22D7441C00DB0F36 /* FantasyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyError.swift; sourceTree = "<group>"; };
 		7312B0B422D7450B00DB0F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7312B0BA22D7472500DB0F36 /* Enivironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enivironment.swift; sourceTree = "<group>"; };
@@ -109,6 +131,28 @@
 		7390015522E1E78A00260198 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		7390015822E1ED8B00260198 /* BaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseActions.swift; sourceTree = "<group>"; };
 		7BF618421ED97ABB76DC2AD9 /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
+		841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
+		841681CC22E9AE6B00FA9455 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		841681CD22E9AE6C00FA9455 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		841681CE22E9AE6C00FA9455 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		841681CF22E9AE6C00FA9455 /* SF-Pro-Text-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-MediumItalic.otf"; sourceTree = "<group>"; };
+		841681D022E9AE6C00FA9455 /* SF-Pro-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-RegularItalic.otf"; sourceTree = "<group>"; };
+		841681D122E9AE6C00FA9455 /* SF-Pro-Text-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BoldItalic.otf"; sourceTree = "<group>"; };
+		841681D222E9AE6C00FA9455 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
+		841681D322E9AE6C00FA9455 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
+		841681D422E9AE6D00FA9455 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		841681D522E9AE6D00FA9455 /* SF-Pro-Text-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-LightItalic.otf"; sourceTree = "<group>"; };
+		841681D622E9AE6D00FA9455 /* SF-Pro-Text-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Ultralight.otf"; sourceTree = "<group>"; };
+		841681D722E9AE6D00FA9455 /* SF-Pro-Text-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-ThinItalic.otf"; sourceTree = "<group>"; };
+		841681D822E9AE6D00FA9455 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
+		841681D922E9AE6D00FA9455 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
+		841681DA22E9AE6D00FA9455 /* SF-Pro-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		841681DB22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
+		841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-UltralightItalic.otf"; sourceTree = "<group>"; };
+		841681EF22E9B36C00FA9455 /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
+		841681F122E9B37E00FA9455 /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
 		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizedAPIResource.swift; sourceTree = "<group>"; };
@@ -192,18 +236,18 @@
 			children = (
 				7312B05E22D7403300DB0F36 /* Source */,
 				7312B06122D7403300DB0F36 /* Resources */,
-				7312B05C22D7403300DB0F36 /* support_files */,
+				7312B05C22D7403300DB0F36 /* Support Files */,
 			);
 			path = FantasyApp;
 			sourceTree = "<group>";
 		};
-		7312B05C22D7403300DB0F36 /* support_files */ = {
+		7312B05C22D7403300DB0F36 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				7312B0D622D7516900DB0F36 /* FantasyApp-Bridging-Header.h */,
 				7312B05D22D7403300DB0F36 /* Info.plist */,
 			);
-			path = support_files;
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 		7312B05E22D7403300DB0F36 /* Source */ = {
@@ -223,6 +267,7 @@
 		7312B06122D7403300DB0F36 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				841681CA22E9AD9600FA9455 /* Font */,
 				7312B0B022D744EA00DB0F36 /* Strings */,
 				7312B0AF22D744DF00DB0F36 /* Storyboards */,
 				7312B06222D7403300DB0F36 /* Assets.xcassets */,
@@ -244,6 +289,7 @@
 		7312B07022D740AC00DB0F36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8416816522E96CD900FA9455 /* Components */,
 				7390014B22E1B84D00260198 /* ImageRetreiver.swift */,
 				7312B07122D740AC00DB0F36 /* R.generated.swift */,
 			);
@@ -272,7 +318,9 @@
 			isa = PBXGroup;
 			children = (
 				7312B07F22D7422100DB0F36 /* RxExtensions */,
-				7312B09222D7422100DB0F36 /* UIColor+Extention.swift */,
+				7312B09222D7422100DB0F36 /* UIColor+Extension.swift */,
+				841681EF22E9B36C00FA9455 /* UIColor+Style.swift */,
+				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -440,6 +488,40 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		8416816522E96CD900FA9455 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8416816622E96CF700FA9455 /* PrimaryButton.swift */,
+				841681C822E999CA00FA9455 /* SecondaryButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		841681CA22E9AD9600FA9455 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				841681D822E9AE6D00FA9455 /* SF-Pro-Text-Black.otf */,
+				841681D922E9AE6D00FA9455 /* SF-Pro-Text-BlackItalic.otf */,
+				841681D422E9AE6D00FA9455 /* SF-Pro-Text-Bold.otf */,
+				841681D122E9AE6C00FA9455 /* SF-Pro-Text-BoldItalic.otf */,
+				841681DB22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf */,
+				841681D322E9AE6C00FA9455 /* SF-Pro-Text-HeavyItalic.otf */,
+				841681D222E9AE6C00FA9455 /* SF-Pro-Text-Light.otf */,
+				841681D522E9AE6D00FA9455 /* SF-Pro-Text-LightItalic.otf */,
+				841681CE22E9AE6C00FA9455 /* SF-Pro-Text-Medium.otf */,
+				841681CF22E9AE6C00FA9455 /* SF-Pro-Text-MediumItalic.otf */,
+				841681CD22E9AE6C00FA9455 /* SF-Pro-Text-Regular.otf */,
+				841681D022E9AE6C00FA9455 /* SF-Pro-Text-RegularItalic.otf */,
+				841681CC22E9AE6B00FA9455 /* SF-Pro-Text-Semibold.otf */,
+				841681DA22E9AE6D00FA9455 /* SF-Pro-Text-SemiboldItalic.otf */,
+				841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */,
+				841681D722E9AE6D00FA9455 /* SF-Pro-Text-ThinItalic.otf */,
+				841681D622E9AE6D00FA9455 /* SF-Pro-Text-Ultralight.otf */,
+				841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		84B8ACF222DCCC650026862E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,13 +654,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				7312B0D222D74FB200DB0F36 /* Appfile in Resources */,
+				841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */,
+				841681E222E9AE6E00FA9455 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				7312B0D322D74FB200DB0F36 /* Fastfile in Resources */,
+				841681E922E9AE6E00FA9455 /* SF-Pro-Text-ThinItalic.otf in Resources */,
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
+				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
+				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
+				841681E022E9AE6E00FA9455 /* SF-Pro-Text-Medium.otf in Resources */,
+				841681E322E9AE6E00FA9455 /* SF-Pro-Text-BoldItalic.otf in Resources */,
+				841681E622E9AE6E00FA9455 /* SF-Pro-Text-Bold.otf in Resources */,
+				841681E722E9AE6E00FA9455 /* SF-Pro-Text-LightItalic.otf in Resources */,
 				7312B07422D7413C00DB0F36 /* Main.storyboard in Resources */,
+				841681DF22E9AE6E00FA9455 /* SF-Pro-Text-Regular.otf in Resources */,
+				841681E522E9AE6E00FA9455 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
+				841681DE22E9AE6E00FA9455 /* SF-Pro-Text-Semibold.otf in Resources */,
 				7312B0D122D74FB200DB0F36 /* deploy_patch_FantasyApp.command in Resources */,
 				7312B06A22D7403300DB0F36 /* Assets.xcassets in Resources */,
+				841681E422E9AE6E00FA9455 /* SF-Pro-Text-Light.otf in Resources */,
+				841681EB22E9AE6E00FA9455 /* SF-Pro-Text-BlackItalic.otf in Resources */,
+				841681EA22E9AE6E00FA9455 /* SF-Pro-Text-Black.otf in Resources */,
+				841681EC22E9AE6E00FA9455 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
+				841681E822E9AE6E00FA9455 /* SF-Pro-Text-Ultralight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,8 +783,10 @@
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
+				841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
+				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
 				7390015022E1B8D000260198 /* Setting.swift in Sources */,
 				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,
@@ -694,16 +796,18 @@
 				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
-				7312B0A622D7422100DB0F36 /* UIColor+Extention.swift in Sources */,
+				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
+				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
+				841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
@@ -888,7 +992,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CB48395Y6T;
-				INFOPLIST_FILE = "$(SRCROOT)/FantasyApp/support_files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FantasyApp/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -896,7 +1000,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/Support Files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -911,7 +1015,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CB48395Y6T;
-				INFOPLIST_FILE = "$(SRCROOT)/FantasyApp/support_files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FantasyApp/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -919,7 +1023,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/Support Files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -988,7 +1092,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CB48395Y6T;
-				INFOPLIST_FILE = "$(SRCROOT)/FantasyApp/support_files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FantasyApp/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -997,7 +1101,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = AdHoc;
-				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/Support Files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
