@@ -10,10 +10,14 @@ import UIKit
 
 extension UIFont {
     static func boldFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "SFProText-Bold", size: size)!
+        return R.font.sfProTextBold(size: size)!
     }
 
     static func regularFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "SFProText-Regular", size: size)!
+        return R.font.sfProTextRegular(size: size)!
+    }
+
+    static func mediumFont(ofSize size: CGFloat) -> UIFont {
+        return R.font.sfProTextMedium(size: size)!
     }
 }

@@ -49,10 +49,9 @@ public class SecondaryButton: UIButton {
 
 private extension SecondaryButton {
     func setup() {
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.title, for: .normal)
         titleLabel?.backgroundColor = .clear
         titleLabel?.font = titleFont
-        //isEnabled = false
     }
 
     func setupLayers() {
@@ -65,18 +64,9 @@ private extension SecondaryButton {
             layer.removeFromSuperlayer()
         }
 
-        let colors: [UIColor]
-
-        if isEnabled {
-            if isHighlighted {
-                colors = gradientColors.map { $0.darker() }
-            } else {
-                colors = gradientColors
-            }
-        } else {
-            colors = gradientColors.map { $0.withAlphaComponent(0.3) }
-        }
-
+        let colors: [UIColor] = gradientColors.map(
+            isEnabled ? (isHighlighted ? { $0.darker() } : { $0 }) : { $0.withAlphaComponent(0.3) }
+        )
 
         gradientLayer = CAGradientLayer()
         gradientLayer!.frame = bounds
@@ -95,7 +85,7 @@ private extension SecondaryButton {
         shadowLayer!.fillColor = UIColor.white.cgColor
         shadowLayer!.shadowRadius = isHighlighted ? highlightedShadowRadius : normalShadowRadius
         shadowLayer!.shadowOpacity = 0.5
-        shadowLayer!.shadowColor = UIColor.secondaryButtonShadow.cgColor
+        shadowLayer!.shadowColor = UIColor.shadow.cgColor
         shadowLayer!.shadowOffset = CGSize(width: 0.0, height: 6.0)
         layer.insertSublayer(shadowLayer!, at: 0)
         setupGradient()

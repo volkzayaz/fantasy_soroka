@@ -6,9 +6,12 @@
   Copyright © 2019 Fantasy App. All rights reserved.
 */
 
-"Yes" = "Yes";
-"No" = "No";
-"Ok" = "Ok";
-"Cancel" = "Cancel";
-"Loaded \(x) / 100%" = "Loaded \(%d) / 100%";
-"Error" = "Error";
+"general.yes" = "Yes";
+"general.no" = "No";
+"general.ok" = "Ok";
+"general.cancel" = "Cancel";
+"general.progress" = "Loaded \(%d) / 100%";
+"general.error" = "Error";
+
+"general.text.field.show" = "SHOW";
+"general.text.field.hide" = "HIDE";
