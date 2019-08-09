@@ -25,7 +25,7 @@ protocol MessagePresentable {
 extension MessagePresentable {
     
     func presentMessage(_ message: String) {
-        presentMessage(message: DisplayMessage(title: R.string.localizable.error(), description: message))
+        presentMessage(message: DisplayMessage(title: R.string.localizable.generalError(), description: message))
     }
     
     func present(error: Error) {

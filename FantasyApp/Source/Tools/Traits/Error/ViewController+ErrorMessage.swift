@@ -15,7 +15,7 @@ extension UIViewController {
     func showMessage(title: String,
                      text: String,
                      style: UIAlertController.Style = .alert,
-                     buttonText: String = R.string.localizable.ok(),
+                     buttonText: String = R.string.localizable.generalOk(),
                      callback: MessageCallback? = nil) {
         let alertController = UIAlertController(title: title, message: text, preferredStyle: style)
         
@@ -29,9 +29,9 @@ extension UIViewController {
     func showDialog(title: String,
                     text: String,
                     style: UIAlertController.Style = .alert,
-                    negativeText: String = R.string.localizable.no(),
+                    negativeText: String = R.string.localizable.generalNo(),
                     negativeCallback: MessageCallback? = nil,
-                    positiveText: String = R.string.localizable.yes(),
+                    positiveText: String = R.string.localizable.generalYes(),
                     positiveCallback: MessageCallback? = nil) {
         let alertController = UIAlertController(title: title, message: text, preferredStyle: style)
         

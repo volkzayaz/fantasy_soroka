@@ -51,7 +51,7 @@ extension UIView {
             
             indicateProgress = true
             
-            progressView.progressLabel.text = R.string.localizable.loadedX100(value)
+            progressView.progressLabel.text = R.string.localizable.generalProgress(value)
         }
     }
 }

@@ -36,13 +36,13 @@ public class PrimaryButton: UIButton {
 
     override public func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = frame.height / 2
+        layer.cornerRadius = bounds.height / 2
         setupTransparencyMask()
     }
 
-    private let normalBackgroundColor = UIColor.white
-    private let disabledBackgroundColor = UIColor.white.withAlphaComponent(0.3)
-    private let highlightedBackgroundColor = UIColor.white.withAlphaComponent(0.8)
+    private let normalBackgroundColor = UIColor.primary
+    private let disabledBackgroundColor = UIColor.primaryDisabled
+    private let highlightedBackgroundColor = UIColor.primaryHighlighted
 
     override init(frame: CGRect) {
         super.init(frame: frame)
