@@ -1,6 +1,3 @@
-workspace '../FantasyApp.xcworkspace'
-project '../FantasyApp.xcodeproj'
-
 platform :ios, '11.0'
 use_frameworks!
 inhibit_all_warnings!
@@ -25,7 +22,7 @@ target 'FantasyApp' do
     
     #ui
     pod 'SnapKit', '~> 5.0'
-    pod 'Kingfisher', '~> 4.8'
+    pod 'Kingfisher', '~> 5.7'
     pod 'FDTake'
 end
 
