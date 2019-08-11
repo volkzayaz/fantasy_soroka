@@ -18,7 +18,7 @@ platform :ios do
         configuration = ""
         environmentName = ""
         
-        ##parsing options
+        #parsing options
         if options[:patch]
             version_number = increment_version_number(bump_type: "patch")
             else
@@ -43,10 +43,10 @@ platform :ios do
     )
         
     ###uploading to crashlytics
-#    crashlytics(api_token: "",
-#                build_secret: "",
-#                notes: changelog_from_git_commits,
-#                groups: "Basic")
+    crashlytics(api_token: "e84ce1420f7f93176fb81a16a43f00b1cdbc00ff",
+                build_secret: "23e218800f398f44a1b99535f0a9e70571f31c508860c4e4be496e02abcf6b7c",
+                notes: changelog_from_git_commits,
+                groups: "Basic")
 #    upload_symbols_to_crashlytics                    
 
     ##cleaning up
@@ -92,8 +92,8 @@ platform :ios do
   
   lane :refresh_dsym do |options|
 
-#    download_dsyms(version: "latest")
-#    upload_symbols_to_crashlytics(api_token: "a300d57f1f210d6200c91280eb4fe528696acb4d")
+    download_dsyms(version: "latest")
+    upload_symbols_to_crashlytics(api_token: "e84ce1420f7f93176fb81a16a43f00b1cdbc00ff")
     clean_build_artifacts
      
   end

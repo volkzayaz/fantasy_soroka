@@ -39,6 +39,11 @@ extension MessagePresentable {
             return
         }
         
+        if case .dataCorrupted? = error as? ParseMigrationError {
+            presentMessage( R.string.localizable.authorizationMigrationDataCorrupted() )
+            return
+        }
+        
         presentMessage(error.localizedDescription)
     }
 }

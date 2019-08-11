@@ -10,13 +10,9 @@ import UIKit
 
 struct OnboardingRouter: MVVM_Router {
     
-    var owner: UIViewController {
-        return _owner!
-    }
-    
-    weak private var _owner: OnboardingRouter.T?
-    init(owner: OnboardingRouter.T) {
-        self._owner = owner
+    unowned private(set) var owner: UIViewController
+    init(owner: UIViewController) {
+        self.owner = owner
     }
     
     /**

@@ -17,7 +17,7 @@ class OnboardingViewController: UIViewController, MVVM_View {
     
     /**
      *  Connect any IBOutlets here
-     *  @IBOutlet weak var label: UILabel!
+     *  @IBOutlet private weak var label: UILabel!
      */
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class OnboardingViewController: UIViewController, MVVM_View {
     
 }
 
-extension OnboardingViewController {
+private extension OnboardingViewController {
     
     /**
      *  Describe any IBActions here
