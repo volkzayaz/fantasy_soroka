@@ -24,8 +24,8 @@ fileprivate let _appState = BehaviorRelay<AppState?>(value: nil)
 func initAppState() -> Maybe<Void> {
     
     ///we can use network requests here as well if we want to delay application initialization
-    
-    _appState.accept(AppState(currentUser: nil))
+    _appState.accept(AppState(currentUser: AuthenticationManager.currentUser(),
+                              lastKnownLocation: nil))
     
     return .just( () )
 }
@@ -40,115 +40,8 @@ var appState: Driver<AppState> {
 
 struct AppState: Equatable {
     var currentUser: User?
+    var lastKnownLocation: CLLocation?
 }
-
-struct User: Equatable {
-    
-    var auth: AuthData
-//    var bio: Bio
-//    var preferences: SexPreference
-//    var fantasies: [Fantasy]
-//    var community: Community
-//    var connections: Connections
-//    var privacy: Privacy
-//
-//    ////Extract into Application property rather than User property
-//    var premiumFeatures: Set<PremiumFeature>
-    
-    
-    struct AuthData: Equatable {
-        let email: String?
-        let fbData: String?
-    };
-    
-    struct Bio {
-        var name: String
-        var birthday: Date
-        var gender: Gender
-        var photos: Photos<String>
-        
-        enum Gender {
-            case male, female
-            case transexual
-            case apacheHelicopter
-            case other
-        };
-      
-        struct Photos<T> {
-            var `public`: [T]
-            var `private`: [T]
-        };
-        
-    };
-
-    struct SexPreference {
-        
-        var lookingFor: [Bio.Gender]
-        var kinks: Set<Kink>
-        
-        enum Kink {
-            case bj, bdsm, MILF
-        };
-        
-    };
-    
-    struct Connections {
-        
-        var likeRequests: [UserSlice]
-        var chatRequests: [UserSlice] ///message or sticker...
-        
-        var rooms: [Room]
-        
-    }
-
-    enum PremiumFeature {
-        case teleport
-        case privateMode
-        case matchSettings
-        case unlimitedSwipes
-        case screenShield
-    }
-    
-    struct Privacy {
-        let privateMode: Bool
-        let disabledMode: Bool
-        let blockedList: Set<UserSlice>
-    }
-    
-}
-
-struct Fantasy {
-    let name: String
-    let descriptiveData: Any
-}
-
-struct Room {
-    
-    let chatRef: Any ///data to identify chatting entity
-    let peer: UserSlice
-    
-    var fantasies: [Fantasy]
-    
-}
-
-struct Community {
-    
-    let region: CLRegion
-    
-    ///or define Community by any other geographical attribute
-    
-}
-
-struct UserSlice: Hashable, Codable {
-    let name: String
-    let avatar: String?
-    
-    ///just enough data to display peer and fetch full data if needed
-    
-    ///for example show him near chat bubble or in like requests
-    
-}
-
 
 extension Dispatcher {
     

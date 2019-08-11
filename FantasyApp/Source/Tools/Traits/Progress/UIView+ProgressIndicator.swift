@@ -33,10 +33,10 @@ extension UIView {
             return self.progressView.isHidden
         }
         set {
-            UIView.animate(withDuration: 0.3, animations: { [weak view = self.progressView] in
-                view?.alpha = newValue ? 1 : 0
-            }) { [weak view = self.progressView] _ in
-                view?.isHidden = newValue
+            let pv = self.progressView
+            
+            UIView.animate(withDuration: 0.3) {
+                pv.alpha = newValue ? 1 : 0
             }
         }
     }
@@ -66,7 +66,7 @@ extension UIView {
     }
     
     fileprivate class ProgressContainer: UIView {
-        
+
         var progressLabel: UILabel!
         
     }

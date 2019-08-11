@@ -38,25 +38,7 @@ extension Reactive where Base: PFQuery<PFObject> {
                     fatalError("Parse result is neither error nor value")
                 }
                 
-                var jsons: [[String: Any]] = []
-                
-                parseObjects.forEach { (pfObject) in
-                    
-                    var json: [String: Any] = [:]
-                    
-                    for key in pfObject.allKeys + ["objectId"] {
-                        json[key] = pfObject[key]
-                    }
-                    
-                    jsons.append(json)
-                }
-                
-                guard let data   = try? JSONSerialization.data(withJSONObject: jsons, options: []),
-                      let result = try? JSONDecoder().decode([T].self, from: data) else {
-                    fatalError("Incorrect parsing of PFObjects")
-                }
-                
-                subscriber.onNext( result )
+                subscriber.onNext( parseObjects.toCodable() )
                 subscriber.onCompleted()
             })
             
@@ -148,6 +130,33 @@ extension Array where Element: ParsePresentable {
             return Disposables.create()
             }
             .asMaybe()
+    }
+    
+}
+
+extension Array where Element: PFObject {
+    
+    func toCodable<T: Codable>() -> [T] {
+        
+        var jsons: [[String: Any]] = []
+        
+        self.forEach { (pfObject) in
+            
+            var json: [String: Any] = [:]
+            
+            for key in pfObject.allKeys + ["objectId"] {
+                json[key] = pfObject[key]
+            }
+            
+            jsons.append(json)
+        }
+        
+        guard let data = try? JSONSerialization.data(withJSONObject: jsons, options: []),
+            let result = try? JSONDecoder().decode([T].self, from: data) else {
+                fatalError("Incorrect parsing of PFObjects")
+        }
+        
+        return result
     }
     
 }

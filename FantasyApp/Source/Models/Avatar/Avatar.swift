@@ -3,7 +3,7 @@
 //  newpl
 //
 //  Created by Admin on 08.07.2019.
-//  Copyright © 2019 itomych studio. All rights reserved.
+//  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
 import Foundation
