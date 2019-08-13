@@ -19,7 +19,7 @@ public protocol AnalyticsService {
 
     func report(event: String, withProperties properties: [String: Any])
     func report(view screen: AnalyticsScreen)
-    func setUserProperty(_: Any, forKey: String)
+    func setValue(_: Any, forProperty property: AnalyticsUserProperty)
 }
 
 protocol AnalyticsEvent {
@@ -44,8 +44,8 @@ class AnalyticsReporter {
                                  withProperties: event.properties[$0.provider]!) }
     }
 
-    func setUserProperty(_ value: Any, forKey key: String) {
-        services.forEach { $0.setUserProperty(value, forKey: key) }
+    func setValue(_ value: Any, forProperty property: AnalyticsUserProperty) {
+        services.forEach { $0.setValue(value, forProperty: property) }
     }
 
     func report(view screen: AnalyticsScreen) {

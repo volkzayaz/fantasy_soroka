@@ -68,6 +68,8 @@
 		73E6012822EC513700F767BF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012522EC513700F767BF /* RootViewController.swift */; };
 		73E6012922EC513700F767BF /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012622EC513700F767BF /* RootViewModel.swift */; };
 		73E6012B22EC5CFE00F767BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012A22EC5CFE00F767BF /* User.swift */; };
+		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
+		840AC30023028F96009270C4 /* AnalyticsUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FF23028F96009270C4 /* AnalyticsUserProperty.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
 		841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */; };
@@ -188,6 +190,8 @@
 		73E6012522EC513700F767BF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		73E6012622EC513700F767BF /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		73E6012A22EC5CFE00F767BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPropertyAnalyticsActor.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Redux/Actors/UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
+		840AC2FF23028F96009270C4 /* AnalyticsUserProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsUserProperty.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/AnalyticsUserProperty.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
@@ -599,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				73E4C39F22F088F300BB71B4 /* LocationActor.swift */,
+				840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */,
 			);
 			path = Actors;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 			children = (
 				845BA78A23006CD100523C7D /* Analytics.swift */,
 				845BA7942300A04000523C7D /* AnalyticsScreen.swift */,
+				840AC2FF23028F96009270C4 /* AnalyticsUserProperty.swift */,
 				845BA7902300941600523C7D /* Amplitude */,
 			);
 			path = Analytics;
@@ -1033,6 +1039,7 @@
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
+				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				845BA78B23006CD100523C7D /* Analytics.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserProfileViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
@@ -1060,6 +1067,7 @@
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,
 				73E6011F22EC3A4000F767BF /* LoginViewController.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
+				840AC30023028F96009270C4 /* AnalyticsUserProperty.swift in Sources */,
 				73E4C3A022F088F300BB71B4 /* LocationActor.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,

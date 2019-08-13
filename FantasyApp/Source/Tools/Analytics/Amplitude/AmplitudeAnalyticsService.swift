@@ -16,11 +16,11 @@ class AmplitudeAnalyticsService: AnalyticsService {
         Amplitude.instance()?.logEvent(event, withEventProperties: properties)
     }
 
-    func setUserProperty(_ value: Any, forKey key: String) {
+    func setValue(_ value: Any, forProperty property: AnalyticsUserProperty) {
         guard let value = value as? NSObject else {
             fatalError("Amplitude user properties should always inherit from NSObject")
         }
-        let identify = AMPIdentify().set(key, value: value)
+        let identify = AMPIdentify().set(property.rawValue, value: value)
         Amplitude.instance()?.identify(identify)
     }
 
