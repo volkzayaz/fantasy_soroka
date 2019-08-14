@@ -49,5 +49,13 @@ extension Configuration {
         let _ = Dispatcher.kickOff().subscribe()
         
     }
+
+    static func registerActors() {
+        let actors: [Any] = [
+            LocationActor(),
+            UserPropertyAnalyticsActor()
+        ]
+        actors.forEach { ActorLocator.shared.register($0) }
+    }
     
 }

@@ -99,6 +99,7 @@
 		845BA7952300A04000523C7D /* AnalyticsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BA7942300A04000523C7D /* AnalyticsScreen.swift */; };
 		845BA7972300A93400523C7D /* LikeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BA7962300A93400523C7D /* LikeEvent.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
+		84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB83C92303E3BC004CC171 /* ActorsLocator.swift */; };
 		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
 		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
 		84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */; };
@@ -221,6 +222,7 @@
 		845BA7942300A04000523C7D /* AnalyticsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsScreen.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/AnalyticsScreen.swift; sourceTree = "<group>"; };
 		845BA7962300A93400523C7D /* LikeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LikeEvent.swift; path = ../../../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/Amplitude/Events/LikeEvent.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
+		84AB83C92303E3BC004CC171 /* ActorsLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActorsLocator.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Redux/Actors/ActorsLocator.swift; sourceTree = "<group>"; };
 		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizedAPIResource.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 			children = (
 				73E4C39F22F088F300BB71B4 /* LocationActor.swift */,
 				840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */,
+				84AB83C92303E3BC004CC171 /* ActorsLocator.swift */,
 			);
 			path = Actors;
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
+				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
