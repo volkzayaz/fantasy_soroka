@@ -64,6 +64,15 @@ public class TextField: UIView {
         }
     }
 
+    public var input: UIView? {
+        set {
+            textField.inputView = inputView
+        }
+        get {
+            return textField.inputView
+        }
+    }
+
     public var placeholder: String? {
         didSet {
             updatePlaceholder()

@@ -19,6 +19,9 @@ target 'FantasyApp' do
     pod 'RxCocoa', '~> 5.0'
     pod 'RxDataSources', '~> 4.0.1'
     pod 'RxCoreLocation'
+
+    #analytics
+    pod 'Amplitude-iOS', '~> 4.6'
     
     #ui
     pod 'SnapKit', '~> 5.0'

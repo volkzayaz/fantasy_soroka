@@ -68,6 +68,8 @@
 		73E6012822EC513700F767BF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012522EC513700F767BF /* RootViewController.swift */; };
 		73E6012922EC513700F767BF /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012622EC513700F767BF /* RootViewModel.swift */; };
 		73E6012B22EC5CFE00F767BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012A22EC5CFE00F767BF /* User.swift */; };
+		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
+		840AC30023028F96009270C4 /* AnalyticsUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FF23028F96009270C4 /* AnalyticsUserProperty.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
 		841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */; };
@@ -92,7 +94,12 @@
 		841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681F122E9B37E00FA9455 /* UIFont+Style.swift */; };
 		844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED422EE9C9B00E06665 /* TextField.swift */; };
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
+		845BA78B23006CD100523C7D /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BA78A23006CD100523C7D /* Analytics.swift */; };
+		845BA79323009C9D00523C7D /* AmplitudeAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BA7912300941600523C7D /* AmplitudeAnalyticsService.swift */; };
+		845BA7952300A04000523C7D /* AnalyticsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BA7942300A04000523C7D /* AnalyticsScreen.swift */; };
+		845BA7972300A93400523C7D /* LikeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845BA7962300A93400523C7D /* LikeEvent.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
+		84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB83C92303E3BC004CC171 /* ActorsLocator.swift */; };
 		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
 		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
 		84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */; };
@@ -184,6 +191,8 @@
 		73E6012522EC513700F767BF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		73E6012622EC513700F767BF /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		73E6012A22EC5CFE00F767BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPropertyAnalyticsActor.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Redux/Actors/UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
+		840AC2FF23028F96009270C4 /* AnalyticsUserProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsUserProperty.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/AnalyticsUserProperty.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
@@ -208,7 +217,12 @@
 		841681F122E9B37E00FA9455 /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
 		844A3ED422EE9C9B00E06665 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		845BA78A23006CD100523C7D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Analytics.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/Analytics.swift; sourceTree = "<group>"; };
+		845BA7912300941600523C7D /* AmplitudeAnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalyticsService.swift; sourceTree = "<group>"; };
+		845BA7942300A04000523C7D /* AnalyticsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsScreen.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/AnalyticsScreen.swift; sourceTree = "<group>"; };
+		845BA7962300A93400523C7D /* LikeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LikeEvent.swift; path = ../../../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Tools/Analytics/Amplitude/Events/LikeEvent.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
+		84AB83C92303E3BC004CC171 /* ActorsLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActorsLocator.swift; path = ../../../../../../../System/Volumes/Data/Users/admin/fantasy/FantasyApp/Source/Redux/Actors/ActorsLocator.swift; sourceTree = "<group>"; };
 		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		84B8ACF622DCCC650026862E /* AuthorizedAPIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizedAPIResource.swift; sourceTree = "<group>"; };
@@ -318,6 +332,7 @@
 		7312B06F22D740AC00DB0F36 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				845BA78923006CB600523C7D /* Analytics */,
 				7334CC8722EDE75D00495843 /* Image */,
 				7312B08722D7422100DB0F36 /* Traits */,
 				7312B07D22D7422100DB0F36 /* Extensions */,
@@ -590,6 +605,8 @@
 			isa = PBXGroup;
 			children = (
 				73E4C39F22F088F300BB71B4 /* LocationActor.swift */,
+				840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */,
+				84AB83C92303E3BC004CC171 /* ActorsLocator.swift */,
 			);
 			path = Actors;
 			sourceTree = "<group>";
@@ -677,6 +694,34 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		845BA78923006CB600523C7D /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				845BA78A23006CD100523C7D /* Analytics.swift */,
+				845BA7942300A04000523C7D /* AnalyticsScreen.swift */,
+				840AC2FF23028F96009270C4 /* AnalyticsUserProperty.swift */,
+				845BA7902300941600523C7D /* Amplitude */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		845BA7902300941600523C7D /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				845BA7912300941600523C7D /* AmplitudeAnalyticsService.swift */,
+				845BA7922300943E00523C7D /* Events */,
+			);
+			path = Amplitude;
+			sourceTree = "<group>";
+		};
+		845BA7922300943E00523C7D /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				845BA7962300A93400523C7D /* LikeEvent.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		84B8ACF222DCCC650026862E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,7 +778,6 @@
 				4559FC91EADCC95F3A7F9A00 /* Pods-FantasyAppTests.release.xcconfig */,
 				1A400FB58FDC75C2F147C565 /* Pods-FantasyAppTests.adhoc.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -921,7 +965,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift",
+				$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -980,6 +1024,7 @@
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
+				845BA7972300A93400523C7D /* LikeEvent.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
@@ -990,12 +1035,15 @@
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
+				845BA7952300A04000523C7D /* AnalyticsScreen.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
 				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
+				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
+				845BA78B23006CD100523C7D /* Analytics.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserProfileViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
 				73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */,
@@ -1006,11 +1054,13 @@
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
+				845BA79323009C9D00523C7D /* AmplitudeAnalyticsService.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
+				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
@@ -1021,6 +1071,7 @@
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,
 				73E6011F22EC3A4000F767BF /* LoginViewController.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
+				840AC30023028F96009270C4 /* AnalyticsUserProperty.swift in Sources */,
 				73E4C3A022F088F300BB71B4 /* LocationActor.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
