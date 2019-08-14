@@ -31,7 +31,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
      fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
      
      */
-    private let locationActor: LocationActor = LocationActor()
+    private let locationActor = LocationActor()
     
     init(router: MainTabBarRouter) {
         self.router = router
