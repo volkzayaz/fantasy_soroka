@@ -23,7 +23,7 @@ public protocol AnalyticsService {
 }
 
 protocol AnalyticsEvent {
-    var providers: [AnalyticsProvider] { get }
+    var providers: Set<AnalyticsProvider> { get }
     var name: [AnalyticsProvider: String] { get }
     var properties: [AnalyticsProvider: [String: Any]] { get }
 }

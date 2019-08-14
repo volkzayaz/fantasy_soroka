@@ -10,7 +10,7 @@ import Foundation
 
 // AnalyticsReporter.default.report(event: LikeEvent(accountId: "ACCOUNT_ID"))
 struct LikeEvent: AnalyticsEvent {
-    var providers: [AnalyticsProvider] {
+    var providers: Set<AnalyticsProvider> {
         return [.amplitude]
     }
 

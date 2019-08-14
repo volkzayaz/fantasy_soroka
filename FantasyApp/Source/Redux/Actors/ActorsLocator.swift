@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol ActorLocating {
-    func resolve<T>() -> T?
     func register<T>(_ actor: T)
 }
 
@@ -23,11 +22,6 @@ public class ActorLocator: ActorLocating {
     public func register<T>(_ actor: T) {
         let key = typeName(T.self)
         actors[key] = actor
-    }
-
-    public func resolve<T>() -> T? {
-        let key = typeName(T.self)
-        return actors[key] as? T
     }
 
     public static let shared = ActorLocator()

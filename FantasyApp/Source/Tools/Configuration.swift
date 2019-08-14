@@ -14,8 +14,13 @@ import Parse
 
 enum Configuration {}
 extension Configuration {
+
+    static func setup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        setupServices(launchOptions: launchOptions)
+        registerActors()
+    }
     
-    static func setUpServices(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    private static func setupServices(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
     
         /**
          * Place to set up everything you would normally do in AppDelegate
@@ -50,10 +55,10 @@ extension Configuration {
         
     }
 
-    static func registerActors() {
+    private static func registerActors() {
         let actors: [Any] = [
             LocationActor(),
-            UserPropertyAnalyticsActor()
+            UserPropertyActor()
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }
