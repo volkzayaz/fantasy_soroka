@@ -15,18 +15,12 @@ struct UserProfileRouter : MVVM_Router {
         self.owner = owner
     }
     
-    /**
-     
-     func showNextModule(with data: String) {
-     
-        let nextViewController = owner.storyboard.instantiate()
-        let nextRouter = NextRouter(owner: nextViewController)
-        let nextViewModel = NextViewModel(router: nextRuter, data: data)
+    func showCards(cards: [Fantasy.Card]) {
         
-        nextViewController.viewModel = nextViewModel
-        owner.present(nextViewController)
-     }
-     
-     */
+        let vc = R.storyboard.fantasyCard.fantasyListViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), cards: cards)
+        owner.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
 }

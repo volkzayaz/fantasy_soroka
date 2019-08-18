@@ -13,7 +13,7 @@ struct User: Equatable {
     var auth: AuthData
     var bio: Bio
     var preferences: SexPreference
-    var fantasies: [Fantasy]
+    var fantasies: Fantasies
     var community: Community
     var connections: Connections
     var privacy: Privacy
@@ -76,15 +76,15 @@ struct User: Equatable {
         let blockedList: Set<UserSlice>
     }
     
+    struct Fantasies: Equatable {
+        var liked: [Fantasy.Card]
+        var disliked: [Fantasy.Card]
+    }
+    
     static var current: User? {
         return AuthenticationManager.currentUser()
     }
     
-}
-
-struct Fantasy: Equatable {
-    let name: String
-    //let descriptiveData: Any
 }
 
 struct Room: Equatable {
@@ -92,7 +92,7 @@ struct Room: Equatable {
     //let chatRef: Any ///data to identify chatting entity
     let peer: UserSlice
     
-    var fantasies: [Fantasy]
+    var fantasies: [Fantasy.Card]
     
 }
 

@@ -15,7 +15,9 @@ extension RootViewModel {
     
     var state: Driver<State> {
         return appState.changesOf { $0.currentUser }
-            .map { return $0 == nil ? .authentication : .mainApp }
+            .map { $0 == nil }
+            .distinctUntilChanged()
+            .map { return $0 ? .authentication : .mainApp }
     }
     
 }

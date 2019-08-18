@@ -25,7 +25,9 @@ func initAppState() -> Maybe<Void> {
     
     ///we can use network requests here as well if we want to delay application initialization
     _appState.accept(AppState(currentUser: AuthenticationManager.currentUser(),
-                              lastKnownLocation: nil))
+                              lastKnownLocation: nil,
+                              fantasies: .init(cards: [],
+                                               restriction: .swipeCount(0))))
     
     return .just( () )
 }
@@ -41,6 +43,19 @@ var appState: Driver<AppState> {
 struct AppState: Equatable {
     var currentUser: User?
     var lastKnownLocation: CLLocation?
+    
+    var fantasies: SwipeState
+    
+    struct SwipeState: Equatable {
+        var cards: [Fantasy.Card]
+        
+        enum Restriction: Equatable {
+            case swipeCount(Int)
+            case waiting(till: Date)
+        }; var restriction: Restriction
+        
+    };
+    
 }
 
 extension Dispatcher {

@@ -23,18 +23,29 @@ extension MainTabBarViewModel {
 }
 
 struct MainTabBarViewModel : MVVM_ViewModel {
-    
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
+
     private let locationActor = LocationActor()
     
     init(router: MainTabBarRouter) {
         self.router = router
+        
+        ///Refrech on app start happens here:
+        ///Alternativelly we can encode appState to disk and just restore it from there
+        ///To keep syncing problems at min for now we'll fetch most info from server
+        ///But for v2 we want to implement disk-first retoration policy
+        Fantasy.Manager.fetchSwipeState()
+            .trackView(viewIndicator: indicator)
+            .subscribe(onNext: { x in
+                Dispatcher.dispatch(action: ResetSwipeRestriction(restriction: x))
+            })
+            .disposed(by: bag)
+        
+        Fantasy.Manager.fetchMainCards(localLimit: 20)
+            .trackView(viewIndicator: indicator)
+            .subscribe(onNext: { x in
+                Dispatcher.dispatch(action: StoreMainCards(cards: x))
+            })
+            .disposed(by: bag)
         
         /**
          
