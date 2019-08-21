@@ -34,7 +34,11 @@ extension Fantasy.Manager {
         
         //fatalError("Implement me")
         
-        return .just( Array(Fantasy.Card.fakes.prefix(localLimit)) )
+        let freeCards = Array(Fantasy.Card.fakes.prefix(localLimit))
+        
+        let payedCards = appStateSlice.currentUser?.fantasies.purchasedCollections.flatMap { $0.cards } ?? []
+        
+        return .just( (freeCards + payedCards).shuffled() )
         
     }
     
@@ -49,6 +53,14 @@ extension Fantasy.Manager {
         }
         
         return .just( allCards.filter { $0.name.lowercased().contains(query.lowercased()) } )
+        
+    }
+    
+    static func fetchCollections() -> Single< [Fantasy.Collection] > {
+        
+        //fatalError("Implement me")
+        
+        return .just( Fantasy.Collection.fakes )
         
     }
     

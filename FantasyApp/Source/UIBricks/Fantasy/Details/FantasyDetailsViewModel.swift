@@ -46,11 +46,13 @@ extension FantasyDetailsViewModel {
 struct FantasyDetailsViewModel : MVVM_ViewModel {
 
     private let card: Fantasy.Card
+    private let shouldDecrement: Bool
     private let positiveAction: FantasyCardInteraction.InteractionType
     
-    init(router: FantasyDetailsRouter, card: Fantasy.Card) {
+    init(router: FantasyDetailsRouter, card: Fantasy.Card, shouldDecrement: Bool) {
         self.router = router
         self.card = card
+        self.shouldDecrement = shouldDecrement
         
         if appStateSlice.currentUser?.fantasies.disliked.contains(card) ?? false {
             self.positiveAction = .dislike
@@ -86,7 +88,7 @@ extension FantasyDetailsViewModel {
                 Dispatcher.dispatch(action: NeutralFantasy(card: card))
             }
             else {
-                Dispatcher.dispatch(action: LikeFantasy(card: card))
+                Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: shouldDecrement))
             }
             
         }
@@ -96,7 +98,7 @@ extension FantasyDetailsViewModel {
                 Dispatcher.dispatch(action: NeutralFantasy(card: card))
             }
             else {
-                Dispatcher.dispatch(action: DislikeFantasy(card: card))
+                Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: shouldDecrement))
             }
             
         }

@@ -11,9 +11,10 @@ import RxSwift
 
 struct LikeFantasy: ActionCreator {
     let card: Fantasy.Card
+    let shouldDecrement: Bool
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .like, card: card)
+        return FantasyCardInteraction(type: .like, shouldDecrement: shouldDecrement, card: card)
             .perform(initialState: initialState)
     }
     
@@ -21,9 +22,10 @@ struct LikeFantasy: ActionCreator {
 
 struct DislikeFantasy: ActionCreator {
     let card: Fantasy.Card
+    let shouldDecrement: Bool
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .dislike, card: card)
+        return FantasyCardInteraction(type: .dislike, shouldDecrement: shouldDecrement, card: card)
             .perform(initialState: initialState)
     }
 }
@@ -32,7 +34,7 @@ struct NeutralFantasy: ActionCreator {
     let card: Fantasy.Card
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .neutral, card: card)
+        return FantasyCardInteraction(type: .neutral, shouldDecrement: false, card: card)
             .perform(initialState: initialState)
     }
 }
@@ -46,6 +48,7 @@ struct FantasyCardInteraction: ActionCreator {
     }
     
     let type: InteractionType
+    let shouldDecrement: Bool
     let card: Fantasy.Card
     
     func perform(initialState: AppState) -> Observable<AppState> {
@@ -65,8 +68,11 @@ struct FantasyCardInteraction: ActionCreator {
             ///Updating Main Deck state
             ///not neccesserily removes card
             ///could be a case that swiping stack does not contain liked\disliked card
-            state.fantasies.cards.removeAll { $0 == self.card }
-            state.fantasies.restriction.decremet()
+            if self.shouldDecrement && self.card.isFree {
+                state.fantasies.cards.removeAll { $0 == self.card }
+                state.fantasies.restriction.decremet()
+            }
+            
             
             ///Updating User preferences
             state.currentUser?.fantasies.liked.removeAll { $0 == self.card }
@@ -84,7 +90,7 @@ struct FantasyCardInteraction: ActionCreator {
             
             ///Performing Smart Refresh of Main Deck
             guard case .swipeCount(let swipesLeft) = state.fantasies.restriction,
-                  swipesLeft != state.fantasies.cards.count else {
+                  swipesLeft != state.fantasies.freeCards.count else {
                 return .just(state)
             }
             

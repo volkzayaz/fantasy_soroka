@@ -79,6 +79,8 @@ struct User: Equatable {
     struct Fantasies: Equatable {
         var liked: [Fantasy.Card]
         var disliked: [Fantasy.Card]
+        
+        var purchasedCollections: [Fantasy.Collection]
     }
     
     static var current: User? {

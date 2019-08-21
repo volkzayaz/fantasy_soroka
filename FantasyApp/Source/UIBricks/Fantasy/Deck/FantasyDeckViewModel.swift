@@ -95,10 +95,10 @@ extension FantasyDeckViewModel {
         
         switch direction {
         case .left:
-            Dispatcher.dispatch(action: DislikeFantasy(card: card))
+            Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: true))
             
         case .right:
-            Dispatcher.dispatch(action: LikeFantasy(card: card))
+            Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: true))
             
         case .down:
             ///don't really know what should happen here for now

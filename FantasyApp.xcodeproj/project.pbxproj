@@ -66,6 +66,11 @@
 		7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED06230975A800E661A7 /* LikeEvent.swift */; };
 		7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */; };
 		7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */; };
+		7379ED19230D3C5000E661A7 /* FantasyCollectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */; };
+		7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED17230D3C5000E661A7 /* FantasyCollectionViewController.swift */; };
+		7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */; };
+		7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */; };
+		7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED20230D54A100E661A7 /* PurchaseManager.swift */; };
 		7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014B22E1B84D00260198 /* ImageRetreiver.swift */; };
 		7390015022E1B8D000260198 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014E22E1B8D000260198 /* Setting.swift */; };
 		7390015122E1B8D000260198 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014F22E1B8D000260198 /* SettingsStore.swift */; };
@@ -207,6 +212,11 @@
 		7379ED06230975A800E661A7 /* LikeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeEvent.swift; sourceTree = "<group>"; };
 		7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalyticsService.swift; sourceTree = "<group>"; };
 		7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUserProperty.swift; sourceTree = "<group>"; };
+		7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionRouter.swift; sourceTree = "<group>"; };
+		7379ED17230D3C5000E661A7 /* FantasyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionViewController.swift; sourceTree = "<group>"; };
+		7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionViewModel.swift; sourceTree = "<group>"; };
+		7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCollection.swift; sourceTree = "<group>"; };
+		7379ED20230D54A100E661A7 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		7390014B22E1B84D00260198 /* ImageRetreiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRetreiver.swift; sourceTree = "<group>"; };
 		7390014E22E1B8D000260198 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		7390014F22E1B8D000260198 /* SettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
@@ -392,7 +402,7 @@
 		7312B07522D741D500DB0F36 /* UIBricks */ = {
 			isa = PBXGroup;
 			children = (
-				7322310D23040DA4009DD37F /* Fantasies */,
+				7322310D23040DA4009DD37F /* Fantasy */,
 				7353BDE522EC98C5001D46A6 /* Profile */,
 				7353BDDE22EC983E001D46A6 /* MainTabBar */,
 				73E6012322EC512900F767BF /* Root */,
@@ -525,6 +535,7 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7379ED1F230D549600E661A7 /* Purchase */,
 				7322311D23055CEE009DD37F /* Fantasy */,
 				7322311C23055CE5009DD37F /* Authentication */,
 			);
@@ -550,15 +561,16 @@
 			path = fastlane;
 			sourceTree = "<group>";
 		};
-		7322310D23040DA4009DD37F /* Fantasies */ = {
+		7322310D23040DA4009DD37F /* Fantasy */ = {
 			isa = PBXGroup;
 			children = (
+				7379ED15230D3C3D00E661A7 /* Collection */,
 				7379ECFA2309713200E661A7 /* List */,
 				739F799423095C730045FCD7 /* Details */,
 				739F798D2309528F0045FCD7 /* Search */,
 				739F798C230952800045FCD7 /* Deck */,
 			);
-			path = Fantasies;
+			path = Fantasy;
 			sourceTree = "<group>";
 		};
 		7322311723055C2A009DD37F /* Fantasy */ = {
@@ -588,6 +600,7 @@
 		732231202305671B009DD37F /* Fantasy */ = {
 			isa = PBXGroup;
 			children = (
+				7379ED1C230D3E7500E661A7 /* Collection */,
 				7322312123056725009DD37F /* Cards */,
 			);
 			path = Fantasy;
@@ -684,6 +697,32 @@
 				7379ED06230975A800E661A7 /* LikeEvent.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		7379ED15230D3C3D00E661A7 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */,
+				7379ED17230D3C5000E661A7 /* FantasyCollectionViewController.swift */,
+				7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		7379ED1C230D3E7500E661A7 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		7379ED1F230D549600E661A7 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				7379ED20230D54A100E661A7 /* PurchaseManager.swift */,
+			);
+			path = Purchase;
 			sourceTree = "<group>";
 		};
 		7390014D22E1B8B500260198 /* KeyValue */ = {
@@ -1163,6 +1202,7 @@
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
+				7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
@@ -1177,13 +1217,17 @@
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
+				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
+				7379ED19230D3C5000E661A7 /* FantasyCollectionRouter.swift in Sources */,
+				7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */,
 				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,
 				739F7993230952A70045FCD7 /* FantasySearchViewModel.swift in Sources */,
 				739F799823095C7E0045FCD7 /* FantasyDetailsRouter.swift in Sources */,
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
+				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,

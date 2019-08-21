@@ -97,6 +97,8 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
         
         let label = UILabel()
         label.text = card.name
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 23)
         label.sizeToFit()
         
         view.addSubview(label)

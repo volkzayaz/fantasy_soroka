@@ -64,7 +64,7 @@ extension User {
         
         preferences = .init(lookingFor: [],
                             kinks: [])
-        fantasies = .init(liked: [], disliked: [])
+        fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = .init()
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
         privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
