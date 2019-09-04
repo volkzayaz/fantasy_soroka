@@ -61,4 +61,15 @@ extension UserProfileViewModel {
         Dispatcher.dispatch(action: SetUser(user: nil))
     }
     
+    func showLikedCards() {
+        let cards = appStateSlice.currentUser?.fantasies.liked ?? []
+        router.showCards(cards: cards)
+    }
+    
+    func showDislikedCards() {
+        let cards = appStateSlice.currentUser?.fantasies.disliked ?? []
+        router.showCards(cards: cards)
+    }
+    
+    
 }

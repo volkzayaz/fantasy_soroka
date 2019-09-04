@@ -51,7 +51,7 @@ struct ImageRetreiver {
     private static var imageCache: ImageCache {
         let cache = KingfisherManager.shared.cache
         
-        cache.maxDiskCacheSize = UInt(50 * 1024 * 1024)
+        cache.diskStorage.config.sizeLimit = UInt(50 * 1024 * 1024)
         
         return cache
     }

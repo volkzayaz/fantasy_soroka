@@ -38,4 +38,12 @@ private extension UserProfileViewController {
         viewModel.logout()
     }
     
+    @IBAction func dislikedCardsTapped(_ sender: Any) {
+        viewModel.showDislikedCards()
+    }
+    
+    @IBAction func likedCardsTapped(_ sender: Any) {
+        viewModel.showLikedCards()
+    }
+    
 }
