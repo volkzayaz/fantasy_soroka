@@ -18,10 +18,10 @@ class UserPropertyActor {
             .notNil()
             .drive(onNext: { user in
                 AnalyticsReporter.default.setValue(user.fantasies.liked.count, forProperty: .fantasiesQuantity)
-                AnalyticsReporter.default.setValue(user.bio.sexuality.rawValue, forProperty: .sexuality)
-                AnalyticsReporter.default.setValue(user.bio.gender.rawValue, forProperty: .gender)
+                AnalyticsReporter.default.setValue(user.profile.bio.sexuality.rawValue, forProperty: .sexuality)
+                AnalyticsReporter.default.setValue(user.profile.bio.gender.rawValue, forProperty: .gender)
                 AnalyticsReporter.default.setValue(user.connections.rooms.count, forProperty: .chatRoomsQuantity)
-                AnalyticsReporter.default.setValue(user.bio.name, forProperty: .name)
+                AnalyticsReporter.default.setValue(user.profile.bio.name, forProperty: .name)
                 // AnalyticsReporter.default.setValue(user.bio.age, forProperty: .age)
                 // AnalyticsReporter.default.setValue(user.community.name, forProperty: .community)
         }).disposed(by: bag)

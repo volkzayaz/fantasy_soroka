@@ -55,12 +55,13 @@ extension User {
         }
         
         
-        bio = Bio(name: name,
-                  birthday: birthday,
-                  gender: gender,
-                  sexuality: sexuality,
-                  relationshipStatus: relationStatus,
-                  photos: .init(public: [], private: []))
+        profile = .init(bio: Bio(name: name,
+                                 birthday: birthday,
+                                 gender: gender,
+                                 sexuality: sexuality,
+                                 relationshipStatus: relationStatus,
+                                 photos: .init(public: [], private: [])),
+                        about: nil)
         
         preferences = .init(lookingFor: [],
                             kinks: [])
@@ -68,6 +69,34 @@ extension User {
         community = .init()
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
         privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
+        
+    }
+    
+}
+
+extension PFUser {
+    
+    func apply(editForm: EditProfileForm) {
+        
+        let setter: (String, Any?) -> () = { key, maybeValue in
+            
+            if let x = maybeValue {
+                self[key] = x
+            }
+            
+        }
+
+        setter("realname", editForm.name)
+        setter("birthday", editForm.brithdate)
+        
+        switch editForm.relationshipStatus {
+        case .single?:                    setter("couple", "single")
+        case .couple(let partnerGender)?: setter("couple", partnerGender.rawValue)
+        case .none: break
+        }
+        
+        setter("gender", editForm.gender?.rawValue)
+        setter("sexuality", editForm.sexuality?.rawValue)
         
     }
     

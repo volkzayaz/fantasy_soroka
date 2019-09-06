@@ -1,5 +1,5 @@
 //
-//  UserProfileViewController.swift
+//  UserGatewayViewController.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 7/27/19.
@@ -11,9 +11,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class UserProfileViewController: UIViewController, MVVM_View {
+class UserGatewayViewController: UIViewController, MVVM_View {
     
-    lazy var viewModel: UserProfileViewModel! = .init(router: .init(owner: self))
+    lazy var viewModel: UserGatewayViewModel! = .init(router: .init(owner: self))
     
     @IBOutlet private weak var tempLocationLabel: UILabel!
     /**
@@ -32,7 +32,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
     
 }
 
-private extension UserProfileViewController {
+private extension UserGatewayViewController {
 
     @IBAction func logout(_ sender: Any) {
         viewModel.logout()
@@ -45,5 +45,8 @@ private extension UserProfileViewController {
     @IBAction func likedCardsTapped(_ sender: Any) {
         viewModel.showLikedCards()
     }
-    
+
+    @IBAction func editProfile(_ sender: Any) {
+        viewModel.showEditProfile()
+    }
 }

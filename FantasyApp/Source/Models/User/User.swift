@@ -11,7 +11,7 @@ import Foundation
 struct User: Equatable {
     
     var auth: AuthData
-    var bio: Bio
+    var profile: Profile
     var preferences: SexPreference
     var fantasies: Fantasies
     var community: Community
@@ -26,6 +26,13 @@ struct User: Equatable {
         case email(String)
         case fbData(String)
     };
+    
+    struct Profile: Equatable {
+        
+        var bio: Bio
+        var about: String?
+        
+    }
     
     struct Bio: Equatable {
         var name: String
@@ -84,7 +91,7 @@ struct User: Equatable {
     }
     
     static var current: User? {
-        return AuthenticationManager.currentUser()
+        return appStateSlice.currentUser
     }
     
 }
@@ -145,6 +152,16 @@ enum RelationshipStatus: Equatable {
     
     case single
     case couple(partnerGender: Gender)
+    
+    var description: String {
+        switch self {
+        case .single:
+            return "single"
+        case .couple(let partnerGender):
+            return "with \(partnerGender.rawValue)"
+        
+        }
+    }
     
 }
 

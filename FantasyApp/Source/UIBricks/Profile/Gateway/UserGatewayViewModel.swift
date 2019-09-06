@@ -1,5 +1,5 @@
 //
-//  UserProfileViewModel.swift
+//  UserGatewayViewModel.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 7/27/19.
@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-extension UserProfileViewModel {
+extension UserGatewayViewModel {
     
     var tempLocation: Driver<String> {
         return appState.changesOf { $0.lastKnownLocation }
@@ -20,7 +20,7 @@ extension UserProfileViewModel {
  
 }
 
-struct UserProfileViewModel : MVVM_ViewModel {
+struct UserGatewayViewModel : MVVM_ViewModel {
     
     /** Reference dependent viewModels, managers, stores, tracking variables...
      
@@ -30,7 +30,7 @@ struct UserProfileViewModel : MVVM_ViewModel {
      
      */
     
-    init(router: UserProfileRouter) {
+    init(router: UserGatewayRouter) {
         self.router = router
         
         /**
@@ -48,17 +48,21 @@ struct UserProfileViewModel : MVVM_ViewModel {
             .disposed(by: bag)
     }
     
-    let router: UserProfileRouter
+    let router: UserGatewayRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     
 }
 
-extension UserProfileViewModel {
+extension UserGatewayViewModel {
     
     func logout() {
         AuthenticationManager.logout()
         Dispatcher.dispatch(action: SetUser(user: nil))
+    }
+    
+    func showEditProfile() {
+        router.showEditProfile()
     }
     
     func showLikedCards() {

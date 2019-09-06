@@ -52,7 +52,7 @@
         <!--Item 2-->
         <scene sceneID="ysp-E6-GTq">
             <objects>
-                <viewController storyboardIdentifier="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ii8-h8-9aR" customClass="UserProfileViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ii8-h8-9aR" customClass="UserGatewayViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a3B-DV-0fc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,16 +84,25 @@
                                     <action selector="dislikedCardsTapped:" destination="ii8-h8-9aR" eventType="touchUpInside" id="6E7-rc-kwE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-5y-m2M">
+                                <rect key="frame" x="320" y="88" width="74" height="30"/>
+                                <state key="normal" title="Edit profile"/>
+                                <connections>
+                                    <action selector="editProfile:" destination="ii8-h8-9aR" eventType="touchUpInside" id="NNC-UI-X9T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qsN-UC-sme" firstAttribute="top" secondItem="HuH-5W-Rad" secondAttribute="bottom" constant="48.5" id="21t-7H-MMT"/>
                             <constraint firstItem="HuH-5W-Rad" firstAttribute="centerX" secondItem="qsN-UC-sme" secondAttribute="centerX" id="27r-BG-L05"/>
                             <constraint firstItem="HuH-5W-Rad" firstAttribute="leading" secondItem="JGv-RE-tE1" secondAttribute="leading" constant="20" id="6II-L6-f0C"/>
+                            <constraint firstItem="kf1-5y-m2M" firstAttribute="top" secondItem="JGv-RE-tE1" secondAttribute="top" id="A74-lF-aEv"/>
                             <constraint firstItem="JGv-RE-tE1" firstAttribute="trailing" secondItem="HuH-5W-Rad" secondAttribute="trailing" constant="20" id="MGK-JK-PAA"/>
                             <constraint firstItem="JGv-RE-tE1" firstAttribute="trailing" secondItem="JYp-lc-b2a" secondAttribute="trailing" constant="76" id="TK4-86-NXa"/>
                             <constraint firstItem="qsN-UC-sme" firstAttribute="centerY" secondItem="JGv-RE-tE1" secondAttribute="centerY" id="U0N-zu-ItM"/>
                             <constraint firstItem="JYp-lc-b2a" firstAttribute="centerY" secondItem="Htg-Ih-0H3" secondAttribute="centerY" id="c2B-vF-RiB"/>
+                            <constraint firstItem="JGv-RE-tE1" firstAttribute="trailing" secondItem="kf1-5y-m2M" secondAttribute="trailing" constant="20" id="dPI-aA-6ad"/>
                             <constraint firstItem="qsN-UC-sme" firstAttribute="centerX" secondItem="JGv-RE-tE1" secondAttribute="centerX" id="eK8-Xi-FYT"/>
                             <constraint firstItem="Htg-Ih-0H3" firstAttribute="top" secondItem="JGv-RE-tE1" secondAttribute="top" constant="94" id="gs5-It-b0h"/>
                             <constraint firstItem="Htg-Ih-0H3" firstAttribute="leading" secondItem="JGv-RE-tE1" secondAttribute="leading" constant="78" id="wI2-KJ-vjY"/>

@@ -1,5 +1,5 @@
 //
-//  UserProfileRouter.swift
+//  UserGatewayRouter.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 7/27/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct UserProfileRouter : MVVM_Router {
+struct UserGatewayRouter : MVVM_Router {
     
     unowned private(set) var owner: UIViewController
     init(owner: UIViewController) {
@@ -19,6 +19,15 @@ struct UserProfileRouter : MVVM_Router {
         
         let vc = R.storyboard.fantasyCard.fantasyListViewController()!
         vc.viewModel = .init(router: .init(owner: vc), cards: cards)
+        owner.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+
+    func showEditProfile() {
+        
+        let vc = R.storyboard.user.editProfileViewController()!
+        vc.viewModel = .init(router: .init(owner: vc))
+
         owner.navigationController?.pushViewController(vc, animated: true)
         
     }
