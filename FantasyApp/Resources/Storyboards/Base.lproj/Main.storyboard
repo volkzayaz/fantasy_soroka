@@ -153,6 +153,33 @@
             </objects>
             <point key="canvasLocation" x="1733" y="-13"/>
         </scene>
+        <!--Discover-->
+        <scene sceneID="xSo-eD-Ten">
+            <objects>
+                <navigationController id="XBn-ky-axQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" id="p9f-Nm-IKM"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8vp-US-9xt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tJV-5l-1HJ" kind="relationship" relationship="rootViewController" id="AXM-TG-3WI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lGc-9H-Udn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="-725"/>
+        </scene>
+        <!--DiscoverProfileViewController-->
+        <scene sceneID="7Uc-bF-RGK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="DiscoverProfileViewController" id="tJV-5l-1HJ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jzA-1D-DRW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UqH-VY-73S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2441" y="-725"/>
+        </scene>
         <!--FantasyCard-->
         <scene sceneID="Oxe-8d-Pxg">
             <objects>
@@ -173,6 +200,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="XBn-ky-axQ" kind="relationship" relationship="viewControllers" id="Vye-b6-AeV"/>
                         <segue destination="sAf-SH-0GH" kind="relationship" relationship="viewControllers" id="aN5-Lf-cbO"/>
                         <segue destination="l0T-vF-a2a" kind="relationship" relationship="viewControllers" id="oUH-Nh-sa2"/>
                     </connections>

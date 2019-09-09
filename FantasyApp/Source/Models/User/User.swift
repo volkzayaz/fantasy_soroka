@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Equatable {
+struct User: Equatable, Hashable {
     
     var auth: AuthData
     var profile: Profile
@@ -92,6 +92,10 @@ struct User: Equatable {
     
     static var current: User? {
         return appStateSlice.currentUser
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(profile.bio.name)
     }
     
 }
