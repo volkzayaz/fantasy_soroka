@@ -34,6 +34,9 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .done,
+                                                            target: self, action: "presentFilter")
+        
         viewModel.profiles
             .map { [SectionModel(model: "", items: $0)] }
             .drive(profilesTableView.rx.items(dataSource: dataSource))
@@ -70,6 +73,10 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     
 }
 
-private extension DiscoverProfileViewController {
+extension DiscoverProfileViewController {
+
+    @objc func presentFilter() {
+        viewModel.presentFilter()
+    }
     
 }

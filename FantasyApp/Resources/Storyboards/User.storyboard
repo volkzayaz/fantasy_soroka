@@ -325,6 +325,30 @@
             </objects>
             <point key="canvasLocation" x="1189.8550724637682" y="34.821428571428569"/>
         </scene>
+        <!--Discovery Filter View Controller-->
+        <scene sceneID="dqb-yr-KYT">
+            <objects>
+                <viewController storyboardIdentifier="DiscoveryFilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GF3-Ws-k4L" customClass="DiscoveryFilterViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ptJ-IU-WnI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change filters on this screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-l6-9Ba">
+                                <rect key="frame" x="98" y="438" width="219" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="C18-b0-cmC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nga-Xd-JCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2151" y="-643"/>
+        </scene>
         <!--Discover Profile View Controller-->
         <scene sceneID="Pf9-Fq-Krn">
             <objects>

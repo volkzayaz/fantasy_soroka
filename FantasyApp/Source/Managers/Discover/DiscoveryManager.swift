@@ -12,7 +12,7 @@ import RxSwift
 enum DiscoveryManager {}
 extension DiscoveryManager {
     
-    static func profilesFor(filter: DiscoverProfileViewModel.DiscoveryFilter?,
+    static func profilesFor(filter: DiscoveryFilter?,
                             limit: Int) -> Single<[Profile]> {
         return .just( [] )
     }

@@ -75,12 +75,6 @@ extension DiscoverProfileViewModel {
         
     }
     
-    struct DiscoveryFilter {
-        let age: Range<Int>
-        let radius: CLLocationDistance
-        let gender: Gender
-    }
-    
     enum SwipeState {
         case limit(Int)
         case tillDate(Date)
@@ -145,6 +139,10 @@ extension DiscoverProfileViewModel {
     
     func profileSelected(_ profile: Profile) {
         router.presentProfile(profile)
+    }
+    
+    func presentFilter() {
+        router.presentFilter( filter )
     }
     
 }

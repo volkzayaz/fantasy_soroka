@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxCocoa
 
 struct DiscoverProfileRouter : MVVM_Router {
     
@@ -19,6 +20,14 @@ struct DiscoverProfileRouter : MVVM_Router {
     
         let x = R.storyboard.user.userProfileViewController()!
         x.viewModel = .init(router: .init(owner: x), user: profile)
+        owner.navigationController?.pushViewController(x, animated: true)
+        
+    }
+    
+    func presentFilter(_ filter: BehaviorRelay<DiscoveryFilter?>) {
+        
+        let x = R.storyboard.user.discoveryFilterViewController()!
+        x.viewModel = .init(router: .init(owner: x), filter: filter)
         owner.navigationController?.pushViewController(x, animated: true)
         
     }

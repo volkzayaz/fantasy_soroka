@@ -64,6 +64,10 @@
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
 		734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */; };
 		734C529323266CE100B54510 /* DiscoveryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529223266CE100B54510 /* DiscoveryManager.swift */; };
+		734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52992326A6FD00B54510 /* DiscoveryFilterRouter.swift */; };
+		734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */; };
+		734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */; };
+		734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A02326A78A00B54510 /* DiscoveryFilter.swift */; };
 		734C70AB2321206800ED2E91 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70AA2321206800ED2E91 /* UserManager.swift */; };
 		734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */; };
 		734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B4232122D200ED2E91 /* ProfilePhotoViewModel.swift */; };
@@ -234,6 +238,10 @@
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
 		734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewModel.swift; sourceTree = "<group>"; };
 		734C529223266CE100B54510 /* DiscoveryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryManager.swift; sourceTree = "<group>"; };
+		734C52992326A6FD00B54510 /* DiscoveryFilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterRouter.swift; sourceTree = "<group>"; };
+		734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewController.swift; sourceTree = "<group>"; };
+		734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewModel.swift; sourceTree = "<group>"; };
+		734C52A02326A78A00B54510 /* DiscoveryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilter.swift; sourceTree = "<group>"; };
 		734C70AA2321206800ED2E91 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoRouter.swift; sourceTree = "<group>"; };
 		734C70B4232122D200ED2E91 /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
@@ -730,6 +738,7 @@
 		7334CC7122ED9A7B00495843 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				734C529F2326A77F00B54510 /* Discover */,
 				73097BF7231D39C100B71053 /* Profile */,
 				73E6012A22EC5CFE00F767BF /* User.swift */,
 				7334CC7222ED9A8C00495843 /* User+Parse.swift */,
@@ -757,9 +766,8 @@
 		734C528A23266ABB00B54510 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */,
-				734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */,
-				734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */,
+				734C52982326A66100B54510 /* Filter */,
+				734C52972326A65700B54510 /* Users */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -768,6 +776,34 @@
 			isa = PBXGroup;
 			children = (
 				734C529223266CE100B54510 /* DiscoveryManager.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		734C52972326A65700B54510 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */,
+				734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */,
+				734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		734C52982326A66100B54510 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				734C52992326A6FD00B54510 /* DiscoveryFilterRouter.swift */,
+				734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */,
+				734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		734C529F2326A77F00B54510 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				734C52A02326A78A00B54510 /* DiscoveryFilter.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -1379,6 +1415,7 @@
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
+				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
@@ -1443,6 +1480,8 @@
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
+				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
+				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
 				734C70C523214C7E00ED2E91 /* UserProfilePhotoCell.swift in Sources */,
 				841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
@@ -1454,6 +1493,7 @@
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
+				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
