@@ -126,6 +126,7 @@ enum Sexuality: String, CaseIterable, Equatable {
     case heteroflexible = "Heteroflexible"
     case homoflexible = "Homoflexible"
     case sapiosexual = "Sapiosexual"
+    case transsexual = "Transsexual"
     
 }
 
