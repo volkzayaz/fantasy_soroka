@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Rooms-->
+        <scene sceneID="e7Z-XL-QiB">
+            <objects>
+                <viewController id="j46-wu-42H" customClass="RoomsViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hLU-XI-nyJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2nB-EF-Vix">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" rowHeight="80" id="TOV-RH-5J6" customClass="RoomTableViewCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TOV-RH-5J6" id="i03-ai-cg4">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rbB-14-5Dn">
+                                                    <rect key="frame" x="16" y="16" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="NPa-GS-HSo"/>
+                                                        <constraint firstAttribute="width" constant="45" id="rj9-XL-pma"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqo-Dv-0CM">
+                                                    <rect key="frame" x="69" y="16" width="290" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-TW-lfO">
+                                                    <rect key="frame" x="367" y="16" width="31" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRo-CG-ZRp">
+                                                    <rect key="frame" x="69" y="42" width="329" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DZg-TW-lfO" firstAttribute="leading" secondItem="cqo-Dv-0CM" secondAttribute="trailing" constant="8" id="Fde-LM-4nx"/>
+                                                <constraint firstAttribute="trailing" secondItem="NRo-CG-ZRp" secondAttribute="trailing" constant="16" id="RDa-Re-4ho"/>
+                                                <constraint firstItem="cqo-Dv-0CM" firstAttribute="leading" secondItem="rbB-14-5Dn" secondAttribute="trailing" constant="8" id="TmZ-KJ-4sw"/>
+                                                <constraint firstItem="DZg-TW-lfO" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="Tte-yJ-bqq"/>
+                                                <constraint firstItem="NRo-CG-ZRp" firstAttribute="leading" secondItem="rbB-14-5Dn" secondAttribute="trailing" constant="8" id="Zyj-7h-Rla"/>
+                                                <constraint firstAttribute="trailing" secondItem="DZg-TW-lfO" secondAttribute="trailing" constant="16" id="gIB-7p-K5W"/>
+                                                <constraint firstItem="NRo-CG-ZRp" firstAttribute="top" secondItem="cqo-Dv-0CM" secondAttribute="bottom" constant="8" id="iUq-OR-xoz"/>
+                                                <constraint firstItem="rbB-14-5Dn" firstAttribute="leading" secondItem="i03-ai-cg4" secondAttribute="leading" constant="16" id="j0i-Mg-qIo"/>
+                                                <constraint firstItem="cqo-Dv-0CM" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="mgF-vB-QeY"/>
+                                                <constraint firstAttribute="bottom" secondItem="NRo-CG-ZRp" secondAttribute="bottom" constant="16" id="ntW-Wc-nml"/>
+                                                <constraint firstItem="rbB-14-5Dn" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="qVe-yQ-5AB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lastMessageLabel" destination="NRo-CG-ZRp" id="QcI-mt-8Kr"/>
+                                            <outlet property="nameLabel" destination="cqo-Dv-0CM" id="CQ4-Ns-tcp"/>
+                                            <outlet property="timeLabel" destination="DZg-TW-lfO" id="L1T-Pv-6mh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQE-n3-llp" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <rect key="frame" x="80" y="794" width="254" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Rp5-18-0Kg"/>
+                                    <constraint firstAttribute="width" constant="254" id="Xme-pn-Rce"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cyz-xa-o0r" firstAttribute="bottom" secondItem="KQE-n3-llp" secondAttribute="bottom" constant="16" id="BLn-fB-yBX"/>
+                            <constraint firstItem="Cyz-xa-o0r" firstAttribute="bottom" secondItem="2nB-EF-Vix" secondAttribute="bottom" id="C6T-gB-YJu"/>
+                            <constraint firstItem="2nB-EF-Vix" firstAttribute="leading" secondItem="Cyz-xa-o0r" secondAttribute="leading" id="Qux-X4-EHy"/>
+                            <constraint firstItem="KQE-n3-llp" firstAttribute="centerX" secondItem="hLU-XI-nyJ" secondAttribute="centerX" id="VuL-LB-qkK"/>
+                            <constraint firstItem="Cyz-xa-o0r" firstAttribute="trailing" secondItem="2nB-EF-Vix" secondAttribute="trailing" id="mai-Co-8qR"/>
+                            <constraint firstItem="2nB-EF-Vix" firstAttribute="top" secondItem="Cyz-xa-o0r" secondAttribute="top" id="znG-XB-RBD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cyz-xa-o0r"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rooms" id="Kff-QS-5XK"/>
+                    <connections>
+                        <outlet property="createRoomButton" destination="KQE-n3-llp" id="b26-s9-Z29"/>
+                        <outlet property="tableView" destination="2nB-EF-Vix" id="aZE-Fg-f97"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oKJ-sK-lkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3033" y="1485"/>
+        </scene>
+    </scenes>
+</document>

@@ -8,11 +8,12 @@ inhibit_all_warnings!
 target 'FantasyApp' do
 
     #infrastructure
-    pod 'Crashlytics', '3.13.2'
+    pod 'Crashlytics', '~> 3.13'
     pod 'R.swift', '5.0.3'
 
     #data layer
     pod 'Parse', '1.17.2'
+    pod 'ParseLiveQuery', '~> 2.6'
     pod 'Parse/FacebookUtils'
     pod 'FBSDKCoreKit', '4.40.0'
     pod 'FBSDKLoginKit', '4.40.0'
@@ -24,7 +25,7 @@ target 'FantasyApp' do
     pod 'RxCoreLocation'
     
     #analytics
-    pod 'Amplitude-iOS', '~> 4.6'
+    pod 'Amplitude-iOS', '~> 4.7'
     
     #ui
     pod 'SnapKit', '~> 5.0'
@@ -38,3 +39,14 @@ target 'FantasyAppTests' do
   
   
 end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if ['ParseLiveQuery', 'Bolts-Swift', 'Starscream'].include? target.name
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '4.2'
+      end
+    end
+  end
+end
+

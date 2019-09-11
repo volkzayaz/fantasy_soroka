@@ -19,7 +19,7 @@ public protocol APIResource: TargetType, Encodable, ReactiveCompatible {
 extension APIResource {
     // TODO: Env properties in .json config or plist?
     var baseURL: URL {
-        return URL(string: "https://apistg.fantasyapp.com/api")!
+        return URL(string: "https://apidev.fantasyapp.com/api")!
     }
 
     var path: String {
