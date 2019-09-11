@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (4.8.2)
-  - Amplitude-iOS (4.6.0)
+  - Alamofire (4.9.0)
+  - Amplitude-iOS (4.8.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -98,8 +98,8 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Amplitude-iOS: ac1715ae68104b7a51723209ad574f60ab22ae5f
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Amplitude-iOS: 2f704f85db0a6ded42cdeadb8aa0918d68019db1
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Crashlytics: 611738c7847f8291a1a51084e35987b86ba6b3ee
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
