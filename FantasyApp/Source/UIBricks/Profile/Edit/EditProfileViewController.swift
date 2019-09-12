@@ -62,8 +62,11 @@ class EditProfileViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Preview", style: .done,
-                                                            target: self, action: "preview")
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Preview", style: .done,
+                                                            target: self, action: "preview"),
+                                              UIBarButtonItem(title: "Save", style: .done,
+                                                              target: self, action: "submitChanges"),
+        ]
         
         viewModel.dataSource
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -77,6 +80,10 @@ extension EditProfileViewController {
 
     @objc func preview() {
         viewModel.preview()
+    }
+    
+    @objc func submitChanges() {
+        viewModel.submitChanges()
     }
     
 }

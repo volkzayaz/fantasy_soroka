@@ -15,6 +15,20 @@ import RxSwift
                    or PFQuery(predicate).rx.fetchFirst<MyModel>()
   3. Create and Save Model to Parse with MyModel(data).rxCreate()
   4. Edit existing Models and save to Parse in one go with Array<MyModel>().rxSave()
+ 
+ !!!Be aware, Encodable does not serialize nil values as null in json!!!
+ struct A {
+    var b: Int? nil
+    var c: String = "abc"
+ }
+ 
+ would be coded into
+ { "c": "abc" }
+ 
+ not into
+ { "c": "abc", "b": null }
+ 
+ You can use custom encoding to work this around. Take a look at SwipeState implementation for custom encoding
 */
 protocol ParsePresentable: Codable {
     static var className: String { get }
@@ -141,35 +155,12 @@ extension ParsePresentable {
     
 }
 
-extension Array where Element: ParsePresentable {
+extension Array where Element: PFObject {
     
-    ///Suitable for editing PFObjects
     func rxSave() -> Single<Void> {
         return Observable.create { (subscriber) -> Disposable in
             
-            let pfObjects: [PFObject] = self.map { parsePresentable in
-                
-                let e = JSONEncoder()
-                e.dateEncodingStrategy = .iso8601
-                
-                guard let data = try? e.encode(parsePresentable),
-                    let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                        fatalError("Incorrect representation of Codable \(parsePresentable)")
-                }
-                
-                guard let objId = parsePresentable.objectId else {
-                    fatalError("Can't save object without objectId. Please use rxCreate() instead")
-                }
-                
-                let object = PFObject(withoutDataWithClassName: type(of: parsePresentable).className,
-                                      objectId: objId)
-                
-                object.setValuesForKeys(json)
-                
-                return object
-            }
-            
-            PFObject.saveAll(inBackground: pfObjects) { (didSave, maybeError) in
+            PFObject.saveAll(inBackground: self) { (didSave, maybeError) in
                 
                 if let e = maybeError {
                     subscriber.onError(e)
@@ -183,6 +174,45 @@ extension Array where Element: ParsePresentable {
             return Disposables.create()
             }
             .asSingle()
+    }
+    
+}
+extension PFObject {
+    
+    func rxSave() -> Single<Void> {
+        return [self].rxSave()
+    }
+    
+}
+
+extension Array where Element: ParsePresentable {
+    
+    ///Suitable for editing PFObjects
+    func rxSave() -> Single<Void> {
+        
+        return map { parsePresentable in
+            
+            let e = JSONEncoder()
+            e.dateEncodingStrategy = .iso8601
+            
+            guard let data = try? e.encode(parsePresentable),
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    fatalError("Incorrect representation of Codable \(parsePresentable)")
+            }
+            
+            guard let objId = parsePresentable.objectId else {
+                fatalError("Can't save object without objectId. Please use rxCreate() instead")
+            }
+            
+            let object = PFObject(withoutDataWithClassName: type(of: parsePresentable).className,
+                                  objectId: objId)
+            
+            object.setValuesForKeys(json)
+            
+            return object
+        }
+        .rxSave()
+        
     }
     
 }

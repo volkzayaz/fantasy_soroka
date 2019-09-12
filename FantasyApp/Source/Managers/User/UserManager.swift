@@ -15,11 +15,10 @@ extension UserManager {
 
     static func submitEdits(form: EditProfileForm) -> Single<User> {
         
-        ///TODO: implement network edit
-        
         let updatedUser = User.current!.applied(editForm: form)
         
-        return .just(updatedUser)
+        return updatedUser.toCurrentPFUser.rxSave()
+            .map { _ in updatedUser }
         
     }
     

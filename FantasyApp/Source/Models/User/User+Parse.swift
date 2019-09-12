@@ -34,6 +34,8 @@ extension User {
             throw ParseMigrationError.dataCorrupted
         }
         
+        let about = pfUser["aboutMe"] as? String
+        
         guard let birthday = pfUser["birthday"] as? Date else {
             throw ParseMigrationError.dataCorrupted
         }
@@ -61,7 +63,7 @@ extension User {
         
         id = objectId
         bio = .init(name: name,
-                    about: nil,
+                    about: about,
                     birthday: birthday,
                     gender: gender,
                     sexuality: sexuality,
@@ -77,6 +79,30 @@ extension User {
         
     }
     
+    ////we can edit only a subset of exisitng user properties to Parse
+    ////we apply reverse transformations from init
+    ////In the future on our backend it is expected that User consists fully from editable properties.
+    var toCurrentPFUser: PFUser {
+        
+        guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
+        
+        var dict = [
+            "realname"  : bio.name,
+            "aboutMe"   : bio.about as Any,
+            "birthady"  : bio.birthday,
+            "gender"    : bio.gender.rawValue,
+            "sexuality" : bio.sexuality.rawValue
+            ] as [String : Any]
+        
+        switch bio.relationshipStatus {
+        case .single:                    dict["couple"] = "single"
+        case .couple(let partnerGender): dict["couple"] = partnerGender
+        }
+        
+        user.setValuesForKeys(dict)
+        
+        return user
+    }
 }
 
 extension PFUser {
