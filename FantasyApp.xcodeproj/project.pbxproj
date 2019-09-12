@@ -69,6 +69,7 @@
 		734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */; };
 		734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A02326A78A00B54510 /* DiscoveryFilter.swift */; };
 		734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A9232A377700B54510 /* ServerBusinessLogic.swift */; };
+		734C52AD232A84C000B54510 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52AC232A84C000B54510 /* Photo.swift */; };
 		734C70AB2321206800ED2E91 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70AA2321206800ED2E91 /* UserManager.swift */; };
 		734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */; };
 		734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B4232122D200ED2E91 /* ProfilePhotoViewModel.swift */; };
@@ -244,6 +245,7 @@
 		734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewModel.swift; sourceTree = "<group>"; };
 		734C52A02326A78A00B54510 /* DiscoveryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilter.swift; sourceTree = "<group>"; };
 		734C52A9232A377700B54510 /* ServerBusinessLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerBusinessLogic.swift; sourceTree = "<group>"; };
+		734C52AC232A84C000B54510 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		734C70AA2321206800ED2E91 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoRouter.swift; sourceTree = "<group>"; };
 		734C70B4232122D200ED2E91 /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 		7334CC7122ED9A7B00495843 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				734C52AB232A84B500B54510 /* Photo */,
 				734C529F2326A77F00B54510 /* Discover */,
 				73097BF7231D39C100B71053 /* Profile */,
 				73E6012A22EC5CFE00F767BF /* User.swift */,
@@ -824,6 +827,14 @@
 				734C52A9232A377700B54510 /* ServerBusinessLogic.swift */,
 			);
 			path = ServerBusinessLogic;
+			sourceTree = "<group>";
+		};
+		734C52AB232A84B500B54510 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				734C52AC232A84C000B54510 /* Photo.swift */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		734C70A92321205C00ED2E91 /* User */ = {
@@ -1415,6 +1426,7 @@
 			files = (
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
+				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
