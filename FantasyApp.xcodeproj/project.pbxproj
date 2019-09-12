@@ -118,6 +118,12 @@
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
 		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
+		84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */; };
+		84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */; };
+		84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */; };
+		84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4903232A2D0000F3609A /* ChatViewModel.swift */; };
+		84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4904232A2D0000F3609A /* ChatViewController.swift */; };
+		84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4905232A2D0000F3609A /* ChatRouter.swift */; };
 		84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB83C92303E3BC004CC171 /* ActorsLocator.swift */; };
 		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
 		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
@@ -286,6 +292,12 @@
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
 		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewController.swift; sourceTree = "<group>"; };
+		84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewModel.swift; sourceTree = "<group>"; };
+		84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsRouter.swift; sourceTree = "<group>"; };
+		84AB4903232A2D0000F3609A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		84AB4904232A2D0000F3609A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		84AB4905232A2D0000F3609A /* ChatRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
 		84AB83C92303E3BC004CC171 /* ActorsLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsLocator.swift; sourceTree = "<group>"; };
 		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
@@ -918,6 +930,37 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		84AB48FA232A16AA00F3609A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */,
+				84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */,
+				84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */,
+				84C1D0582327D30D00648DE1 /* Cell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		84AB48FB232A16B400F3609A /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */,
+				84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */,
+				84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		84AB4902232A2CE300F3609A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				84AB4905232A2D0000F3609A /* ChatRouter.swift */,
+				84AB4904232A2D0000F3609A /* ChatViewController.swift */,
+				84AB4903232A2D0000F3609A /* ChatViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		84B8ACF222DCCC650026862E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,10 +1055,9 @@
 		84C1D0422327BA8200648DE1 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
-				84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */,
-				84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */,
-				84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */,
-				84C1D0582327D30D00648DE1 /* Cell */,
+				84AB4902232A2CE300F3609A /* Chat */,
+				84AB48FB232A16B400F3609A /* Details */,
+				84AB48FA232A16AA00F3609A /* List */,
 			);
 			path = Rooms;
 			sourceTree = "<group>";
@@ -1330,7 +1372,9 @@
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
+				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
+				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
 				84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
@@ -1345,6 +1389,8 @@
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
 				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
+				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
+				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
@@ -1378,6 +1424,7 @@
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
+				84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */,
 				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
@@ -1399,6 +1446,7 @@
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
+				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,

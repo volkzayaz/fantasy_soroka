@@ -32,6 +32,7 @@ target 'FantasyApp' do
     pod 'Kingfisher', '~> 5.7'
     pod 'FDTake'
     pod 'Koloda', '~> 5.0'
+    pod 'MessageKit', '~> 3.0'
 end
 
 target 'FantasyAppTests' do

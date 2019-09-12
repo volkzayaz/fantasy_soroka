@@ -23,6 +23,8 @@ extension UIColor {
 
     // MARK: - Text
     static let title = UIColor.white
+    static let fantasyBlack = UIColor(red: 72, green: 78, blue: 94)
+    static let basicGrey = UIColor(red: 175, green: 180, blue: 193)
 
     // MARK: - ErrorView
     static let errorViewBackground = UIColor.black.withAlphaComponent(0.1)

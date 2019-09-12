@@ -46,3 +46,13 @@ class RoomsViewController: UIViewController, MVVM_View {
     }
 
 }
+
+private extension RoomsViewController {
+    @IBAction private func addNewRoom() {
+
+    }
+
+    func configure() {
+        createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
+    }
+}

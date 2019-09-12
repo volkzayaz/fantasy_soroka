@@ -44,7 +44,7 @@ extension RoomsViewModel {
     }
 }
 
-struct RoomsViewModel : MVVM_ViewModel {
+struct RoomsViewModel: MVVM_ViewModel {
     var rooms: Driver<[Chat.Room]?> {
         return appState.changesOf { $0.currentUser?.connections.rooms }
     }
