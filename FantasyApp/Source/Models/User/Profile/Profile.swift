@@ -62,11 +62,11 @@ extension User {
             lhs = x
         }
         
-        applicator(lhs: &profile.bio.name, rhs: editForm.name)
-        applicator(lhs: &profile.bio.birthday, rhs: editForm.brithdate)
-        applicator(lhs: &profile.bio.relationshipStatus, rhs: editForm.relationshipStatus)
-        applicator(lhs: &profile.bio.gender, rhs: editForm.gender)
-        applicator(lhs: &profile.bio.sexuality, rhs: editForm.sexuality)
+        applicator(lhs: &bio.name, rhs: editForm.name)
+        applicator(lhs: &bio.birthday, rhs: editForm.brithdate)
+        applicator(lhs: &bio.relationshipStatus, rhs: editForm.relationshipStatus)
+        applicator(lhs: &bio.gender, rhs: editForm.gender)
+        applicator(lhs: &bio.sexuality, rhs: editForm.sexuality)
         
     }
     

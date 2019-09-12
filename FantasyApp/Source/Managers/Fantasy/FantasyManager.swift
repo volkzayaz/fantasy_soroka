@@ -38,8 +38,7 @@ extension Fantasy.Manager {
         
         let payedCards = appStateSlice.currentUser?.fantasies.purchasedCollections.flatMap { $0.cards } ?? []
         
-        return .just( (freeCards + payedCards).shuffled() )
-        
+        return .just( (freeCards + payedCards).shuffled() )        
     }
     
     static func searchFor(query: String) -> Single< [Fantasy.Card] > {

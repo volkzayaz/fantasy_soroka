@@ -33,16 +33,23 @@ extension DiscoverProfileViewModel {
     }
     
     var profiles: Driver<[Profile]> {
-        return filter.asDriver()
-            .withLatestFrom(swipeState.asDriver()) { ($0, $1) }
-            .flatMapLatest { (filter, swipeState) in
+
+        return Observable.zip(filter, swipeState.notNil()) { ($0, $1) }
+            .take(1)
+            .flatMap { _ in
+                return self.filter.asDriver()
+            }
+            .asDriver(onErrorJustReturn: nil)
+            .withLatestFrom(swipeState.asDriver().notNil()) { ($0, $1) }
+            .flatMapLatest { [unowned i = indicator] (filter, swipeState) in
                 
-                guard case .limit(let x)? = swipeState else {
+                guard case .limit(let x) = swipeState else {
                     return .just([])
                 }
                 
                 return DiscoveryManager.profilesFor(filter: filter,
                                                     limit: x)
+                    .trackView(viewIndicator: i)
                     .asDriver(onErrorJustReturn: [])
                 
             }
@@ -135,6 +142,9 @@ extension DiscoverProfileViewModel {
         
         viewedProfiles.insert(profile)
         swipeState.accept(swipeState.value?.decrement())
+        
+        ///might want to queue it up and debounce later
+        _ = DiscoveryManager.updateSwipeState(swipeState.value!).subscribe()
     }
     
     func profileSelected(_ profile: Profile) {
@@ -146,3 +156,5 @@ extension DiscoverProfileViewModel {
     }
     
 }
+
+

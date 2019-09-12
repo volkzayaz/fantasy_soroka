@@ -24,7 +24,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.profileSearchCell,
                                                  for: ip)!
         
-        cell.textLabel?.text = x.profile.bio.name
+        cell.textLabel?.text = x.bio.name
         //cell.detailTextLabel?.text = "\(x.cards.count) cards"
         
         return cell

@@ -29,15 +29,15 @@ extension EditProfileViewModel {
                 
                 let account = SectionModel(model: R.string.localizable.editProfileAccount(),
                                            items: [Model.attribute(R.string.localizable.editProfileName(),
-                                                                   value: user.profile.bio.name),
+                                                                   value: user.bio.name),
                                                    .attribute(R.string.localizable.editProfileAge(),
-                                                              value: user.profile.bio.birthday.description),
+                                                              value: user.bio.birthday.description),
                                                    .attribute(R.string.localizable.editProfileBody(),
-                                                              value: user.profile.bio.gender.rawValue),
+                                                              value: user.bio.gender.rawValue),
                                                    .attribute(R.string.localizable.editProfileSexuaity(),
-                                                              value: user.profile.bio.sexuality.rawValue),
+                                                              value: user.bio.sexuality.rawValue),
                                                    .attribute(R.string.localizable.editProfileRelationship(),
-                                                              value: user.profile.bio.relationshipStatus.description)
+                                                              value: user.bio.relationshipStatus.description)
                     ])
                 
                 return [about, account]
@@ -54,7 +54,7 @@ extension EditProfileViewModel {
         return form.asDriver()
             .map { user.applied(editForm: $0) }
             .map { user in
-                return user.profile.bio.photos.public
+                return user.bio.photos.public
             }
     }
     
@@ -64,7 +64,7 @@ extension EditProfileViewModel {
         return form.asDriver()
             .map { user.applied(editForm: $0) }
             .map { user in
-                return user.profile.bio.photos.public
+                return user.bio.photos.public
         }
     }
     

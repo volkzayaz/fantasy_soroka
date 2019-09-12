@@ -68,6 +68,7 @@
 		734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */; };
 		734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */; };
 		734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A02326A78A00B54510 /* DiscoveryFilter.swift */; };
+		734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A9232A377700B54510 /* ServerBusinessLogic.swift */; };
 		734C70AB2321206800ED2E91 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70AA2321206800ED2E91 /* UserManager.swift */; };
 		734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */; };
 		734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B4232122D200ED2E91 /* ProfilePhotoViewModel.swift */; };
@@ -242,6 +243,7 @@
 		734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewController.swift; sourceTree = "<group>"; };
 		734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewModel.swift; sourceTree = "<group>"; };
 		734C52A02326A78A00B54510 /* DiscoveryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilter.swift; sourceTree = "<group>"; };
+		734C52A9232A377700B54510 /* ServerBusinessLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerBusinessLogic.swift; sourceTree = "<group>"; };
 		734C70AA2321206800ED2E91 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoRouter.swift; sourceTree = "<group>"; };
 		734C70B4232122D200ED2E91 /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				734C52A8232A376800B54510 /* ServerBusinessLogic */,
 				734C529123266CD400B54510 /* Discover */,
 				734C70A92321205C00ED2E91 /* User */,
 				7379ED1F230D549600E661A7 /* Purchase */,
@@ -806,6 +809,21 @@
 				734C52A02326A78A00B54510 /* DiscoveryFilter.swift */,
 			);
 			path = Discover;
+			sourceTree = "<group>";
+		};
+		734C52A42327AC1300B54510 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		734C52A8232A376800B54510 /* ServerBusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				734C52A9232A377700B54510 /* ServerBusinessLogic.swift */,
+			);
+			path = ServerBusinessLogic;
 			sourceTree = "<group>";
 		};
 		734C70A92321205C00ED2E91 /* User */ = {
@@ -1124,6 +1142,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				734C52A42327AC1300B54510 /* User */,
 				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
 			);
 			path = Resources;
@@ -1467,6 +1486,7 @@
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
+				734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */,
 				734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya
 
 struct UpdateUserAvatarResource: AuthorizedAPIResource {
     var endpoint: APIEnpdoint {
@@ -15,13 +16,33 @@ struct UpdateUserAvatarResource: AuthorizedAPIResource {
 
     typealias responseType = Avatar
 
-    private let imageData: String
+    private let image: UIImage
 
-    init(imageData: String) {
-        self.imageData = "data:image/png;base64, " + imageData
+    init(image: UIImage) {
+        self.image = image
     }
 
     enum CodingKeys: String, CodingKey {
         case imageData = "image"
     }
+    
+    var validationType: ValidationType {
+        return .none
+    }
+    
+    var task: Task {
+        
+        let data = image.pngData()!.base64EncodedString()
+        
+        let string = """
+        { "image": "data:image/png;base64,\(data)"}
+        """
+        
+        return .requestData(string.data(using: .utf8)!)
+    }
+ 
+    func encode(to encoder: Encoder) throws {
+        
+    }
+    
 }

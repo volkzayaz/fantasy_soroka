@@ -22,7 +22,7 @@ extension ProfilePhotoViewModel {
         let i = photoNumber
         let isPublic = self.isPublic
         
-        return appState.changesOf { $0.currentUser?.profile.bio.photos }
+        return appState.changesOf { $0.currentUser?.bio.photos }
             .map { isPublic ? $0?.public[safe: i] : $0?.private[safe: i] }
             .flatMapLatest { (maybeURL) in
                 

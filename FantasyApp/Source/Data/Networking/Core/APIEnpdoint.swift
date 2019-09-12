@@ -11,6 +11,9 @@ import Moya
 
 public enum APIEnpdoint {
     case updateAvatar
+    
+    
+    
 
     private enum Path: String {
         case users

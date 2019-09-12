@@ -12,10 +12,15 @@ enum ParseMigrationError: Error {
     case dataCorrupted
 }
 
+
 extension User {
     
     ///single migration point from Parse Entity to Fantasy Entity
     init(pfUser: PFUser) throws {
+
+        guard let objectId = pfUser.objectId else {
+            fatalError("Unsaved PFUsers conversion to native User is not supported")
+        }
         
         if let x = pfUser.email {
             auth = .email(x)
@@ -54,14 +59,14 @@ extension User {
             relationStatus = .single
         }
         
-        
-        profile = .init(bio: Bio(name: name,
-                                 birthday: birthday,
-                                 gender: gender,
-                                 sexuality: sexuality,
-                                 relationshipStatus: relationStatus,
-                                 photos: .init(public: [], private: [])),
-                        about: nil)
+        id = objectId
+        bio = .init(name: name,
+                    about: nil,
+                    birthday: birthday,
+                    gender: gender,
+                    sexuality: sexuality,
+                    relationshipStatus: relationStatus,
+                    photos: .init(public: [], private: []))
         
         preferences = .init(lookingFor: [],
                             kinks: [])

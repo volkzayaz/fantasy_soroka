@@ -15,25 +15,25 @@ extension UserProfileViewModel {
     
     var photos: [Photo] {
         
-        guard user.profile.bio.photos.public.count > 0 else {
+        guard user.bio.photos.public.count > 0 else {
             return [.nothing]
         }
         
-        return user.profile.bio.photos.public.map { .url($0) }
+        return user.bio.photos.public.map { .url($0) }
     }
 
     var sections: [Section] {
         
-        var res = [Section.basic(user.profile.bio.name + " \(user.profile.bio.birthday)")]
+        var res = [Section.basic(user.bio.name + " \(user.bio.birthday)")]
         
-        if let x = user.profile.about {
+        if let x = user.bio.about {
             res.append( .about(x) )
         }
         
         res.append( .extended( [
-            "Gender - " + user.profile.bio.gender.rawValue,
-            "Relationship - " + user.profile.bio.relationshipStatus.description,
-            "Sexuality - " + user.profile.bio.sexuality.rawValue
+            "Gender - " + user.bio.gender.rawValue,
+            "Relationship - " + user.bio.relationshipStatus.description,
+            "Sexuality - " + user.bio.sexuality.rawValue
         ]))
         
         if user.fantasies.liked.count > 0 {

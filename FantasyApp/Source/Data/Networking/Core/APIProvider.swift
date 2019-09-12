@@ -41,6 +41,10 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
             switch result {
             case .success(let response):
                 do {
+                    if let maybeError = try? response.map(GenericAPIError.self) {
+                        return completion(.failure( FantasyError.apiError(maybeError) ) )
+                    }
+                    
                     let entity = try response.map(T.responseType.self)
                     completion(.success(entity))
                 } catch {
@@ -57,3 +61,7 @@ extension APIProvider {
     public static let `default` = APIProvider(plugins: [NetworkLoggerPlugin(verbose: true)])
 }
 
+struct GenericAPIError: Decodable {
+    let error: String
+    let message: String
+}

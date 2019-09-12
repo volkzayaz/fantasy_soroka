@@ -18,12 +18,18 @@ import RxSwift
 */
 protocol ParsePresentable: Codable {
     static var className: String { get }
-    var pfObjectId: String { get }
+    var objectId: String? { get set }
+}
+
+extension ParsePresentable {
+    static var query: PFQuery<PFObject> {
+        return PFQuery(className: className)
+    }
 }
 
 extension Reactive where Base: PFQuery<PFObject> {
     
-    func fetchAll<T: ParsePresentable>() -> Maybe<[T]> {
+    func fetchAll<T: ParsePresentable>() -> Single<[T]> {
         
         return Observable.create({ (subscriber) -> Disposable in
         
@@ -46,12 +52,47 @@ extension Reactive where Base: PFQuery<PFObject> {
                 self.base.cancel()
             }
         })
-        .asMaybe()
+        .asSingle()
         
     }
     
-    func fetchFirst<T: ParsePresentable>() -> Maybe<T?> {
+    func fetchFirst<T: ParsePresentable>() -> Single<T?> {
         return fetchAll().map { $0.first }
+    }
+    
+}
+
+extension Reactive where Base: PFQuery<PFObject> {
+    
+    func fetchAllObjects() -> Single<[PFObject]> {
+        
+        return Observable.create({ (subscriber) -> Disposable in
+            
+            self.base.findObjectsInBackground(block: { (maybeValues, error) in
+                
+                if let x = error {
+                    subscriber.onError(x)
+                    return
+                }
+                
+                guard let parseObjects = maybeValues else {
+                    fatalError("Parse result is neither error nor value")
+                }
+                
+                subscriber.onNext( parseObjects )
+                subscriber.onCompleted()
+            })
+            
+            return Disposables.create {
+                self.base.cancel()
+            }
+        })
+            .asSingle()
+        
+    }
+    
+    func fetchFirstObject() -> Single<PFObject?> {
+        return fetchAllObjects().map { $0.first }
     }
     
 }
@@ -59,11 +100,14 @@ extension Reactive where Base: PFQuery<PFObject> {
 extension ParsePresentable {
     
     ///Suitable for creating PFObjects
-    func rxCreate() -> Maybe<Void> {
+    func rxCreate() -> Single<Self> {
         
         return Observable.create { (subscriber) -> Disposable in
             
-            guard let data = try? JSONEncoder().encode(self),
+            let e = JSONEncoder()
+            e.dateEncodingStrategy = .iso8601
+            
+            guard let data = try? e.encode(self),
                   let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                 fatalError("Incorrect representation of Codable \(self)")
             }
@@ -78,18 +122,20 @@ extension ParsePresentable {
                     return
                 }
                 
-                subscriber.onNext( () )
+                var x = self
+                x.objectId = pfObject.objectId!
+                subscriber.onNext( x )
                 subscriber.onCompleted()
             })
             
             return Disposables.create()
         }
-        .asMaybe()
+        .asSingle()
         
     }
     
     ///Suitable for editing PFObject
-    func rxSave() -> Maybe<Void> {
+    func rxSave() -> Single<Void> {
         return [self].rxSave()
     }
     
@@ -98,18 +144,25 @@ extension ParsePresentable {
 extension Array where Element: ParsePresentable {
     
     ///Suitable for editing PFObjects
-    func rxSave() -> Maybe<Void> {
+    func rxSave() -> Single<Void> {
         return Observable.create { (subscriber) -> Disposable in
             
             let pfObjects: [PFObject] = self.map { parsePresentable in
                 
-                guard let data = try? JSONEncoder().encode(parsePresentable),
+                let e = JSONEncoder()
+                e.dateEncodingStrategy = .iso8601
+                
+                guard let data = try? e.encode(parsePresentable),
                     let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                         fatalError("Incorrect representation of Codable \(parsePresentable)")
                 }
                 
+                guard let objId = parsePresentable.objectId else {
+                    fatalError("Can't save object without objectId. Please use rxCreate() instead")
+                }
+                
                 let object = PFObject(withoutDataWithClassName: type(of: parsePresentable).className,
-                                      objectId: parsePresentable.pfObjectId)
+                                      objectId: objId)
                 
                 object.setValuesForKeys(json)
                 
@@ -129,7 +182,7 @@ extension Array where Element: ParsePresentable {
             
             return Disposables.create()
             }
-            .asMaybe()
+            .asSingle()
     }
     
 }
@@ -144,15 +197,19 @@ extension Array where Element: PFObject {
             
             var json: [String: Any] = [:]
             
-            for key in pfObject.allKeys + ["objectId"] {
+            for key in pfObject.allKeys {
                 json[key] = pfObject[key]
             }
+            json["objectId"] = pfObject.objectId
             
             jsons.append(json)
         }
         
+        let e = JSONDecoder()
+        e.dateDecodingStrategy = .iso8601
+        
         guard let data = try? JSONSerialization.data(withJSONObject: jsons, options: []),
-            let result = try? JSONDecoder().decode([T].self, from: data) else {
+            let result = try? e.decode([T].self, from: data) else {
                 fatalError("Incorrect parsing of PFObjects")
         }
         

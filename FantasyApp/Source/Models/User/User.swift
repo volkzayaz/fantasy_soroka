@@ -10,11 +10,15 @@ import Foundation
 
 struct User: Equatable, Hashable {
     
+    let id: String
     var auth: AuthData
-    var profile: Profile
-    var preferences: SexPreference
+    
+    var bio: Bio
     var fantasies: Fantasies
     var community: Community
+    
+    var preferences: SexPreference
+    
     var connections: Connections
     var privacy: Privacy
     
@@ -27,15 +31,9 @@ struct User: Equatable, Hashable {
         case fbData(String)
     };
     
-    struct Profile: Equatable {
-        
-        var bio: Bio
-        var about: String?
-        
-    }
-    
     struct Bio: Equatable {
         var name: String
+        var about: String?
         var birthday: Date
         var gender: Gender
         var sexuality: Sexuality
@@ -95,7 +93,7 @@ struct User: Equatable, Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(profile.bio.name)
+        hasher.combine(bio.name)
     }
     
 }

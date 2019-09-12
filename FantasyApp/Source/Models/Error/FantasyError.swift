@@ -11,6 +11,7 @@ import Foundation
 enum FantasyError: Error {
     
     case generic(description: String)
+    case apiError(GenericAPIError)
     case canceled
     
 }

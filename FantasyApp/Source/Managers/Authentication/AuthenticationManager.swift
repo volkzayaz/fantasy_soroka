@@ -24,7 +24,7 @@ extension AuthenticationManager {
                                 relationshipStatus: .single,
                                 email: "pete1@jackson.com",
                                 password: "1234", confirmPassword: "",
-                                photo: nil)
+                                photo: form.photo)
         
         ///
         
