@@ -28,6 +28,10 @@ extension User {
         guard let name = pfUser["realname"] as? String else {
             throw ParseMigrationError.dataCorrupted
         }
+
+        guard let objectId = pfUser.objectId else {
+            throw ParseMigrationError.dataCorrupted
+        }
         
         guard let birthday = pfUser["birthday"] as? Date else {
             throw ParseMigrationError.dataCorrupted
@@ -61,7 +65,7 @@ extension User {
                   sexuality: sexuality,
                   relationshipStatus: relationStatus,
                   photos: .init(public: [], private: []))
-        
+        id = objectId
         preferences = .init(lookingFor: [],
                             kinks: [])
         fantasies = .init(liked: [], disliked: [])

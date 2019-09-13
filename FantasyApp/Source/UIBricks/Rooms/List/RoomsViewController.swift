@@ -37,18 +37,18 @@ class RoomsViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
 
-        tableView.rx.modelSelected(Chat.Room.self)
-            .subscribe(onNext: { [unowned self] room in
-            self.viewModel.roomTapped(room)
+        tableView.rx.modelSelected(RoomsViewModel.CellModel.self)
+            .subscribe(onNext: { [unowned self] cellModel in
+            self.viewModel.roomTapped(cellModel)
         }).disposed(by: rx.disposeBag)
 
-        //viewModel.fetchRooms()
+        viewModel.fetchRooms()
     }
 
 }
 
 private extension RoomsViewController {
-    @IBAction private func addNewRoom() {
+    @IBAction func addNewRoom() {
 
     }
 

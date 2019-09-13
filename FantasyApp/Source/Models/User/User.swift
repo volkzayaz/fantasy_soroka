@@ -9,7 +9,7 @@
 import Foundation
 
 struct User: Equatable {
-    
+    var id: String!
     var auth: AuthData
     var bio: Bio
     var preferences: SexPreference

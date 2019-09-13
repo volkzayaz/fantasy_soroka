@@ -124,6 +124,10 @@
 		84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4903232A2D0000F3609A /* ChatViewModel.swift */; };
 		84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4904232A2D0000F3609A /* ChatViewController.swift */; };
 		84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4905232A2D0000F3609A /* ChatRouter.swift */; };
+		84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4909232A7D7800F3609A /* String+Emojis.swift */; };
+		84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB490C232A841F00F3609A /* CommonFantasiesViewModel.swift */; };
+		84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB490D232A841F00F3609A /* CommonFantasiesRouter.swift */; };
+		84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB490E232A841F00F3609A /* CommonFantasiesViewController.swift */; };
 		84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB83C92303E3BC004CC171 /* ActorsLocator.swift */; };
 		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
 		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
@@ -298,6 +302,10 @@
 		84AB4903232A2D0000F3609A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		84AB4904232A2D0000F3609A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		84AB4905232A2D0000F3609A /* ChatRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		84AB4909232A7D7800F3609A /* String+Emojis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Emojis.swift"; sourceTree = "<group>"; };
+		84AB490C232A841F00F3609A /* CommonFantasiesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFantasiesViewModel.swift; sourceTree = "<group>"; };
+		84AB490D232A841F00F3609A /* CommonFantasiesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFantasiesRouter.swift; sourceTree = "<group>"; };
+		84AB490E232A841F00F3609A /* CommonFantasiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFantasiesViewController.swift; sourceTree = "<group>"; };
 		84AB83C92303E3BC004CC171 /* ActorsLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsLocator.swift; sourceTree = "<group>"; };
 		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
@@ -489,6 +497,7 @@
 				841681EF22E9B36C00FA9455 /* UIColor+Style.swift */,
 				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
 				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
+				84AB4909232A7D7800F3609A /* String+Emojis.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -961,6 +970,16 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		84AB490B232A83DE00F3609A /* CommonFantasies */ = {
+			isa = PBXGroup;
+			children = (
+				84AB490E232A841F00F3609A /* CommonFantasiesViewController.swift */,
+				84AB490D232A841F00F3609A /* CommonFantasiesRouter.swift */,
+				84AB490C232A841F00F3609A /* CommonFantasiesViewModel.swift */,
+			);
+			path = CommonFantasies;
+			sourceTree = "<group>";
+		};
 		84B8ACF222DCCC650026862E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1055,6 +1074,7 @@
 		84C1D0422327BA8200648DE1 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
+				84AB490B232A83DE00F3609A /* CommonFantasies */,
 				84AB4902232A2CE300F3609A /* Chat */,
 				84AB48FB232A16B400F3609A /* Details */,
 				84AB48FA232A16AA00F3609A /* List */,
@@ -1368,8 +1388,10 @@
 				841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */,
 				7379ED09230975A800E661A7 /* Analytics.swift in Sources */,
 				7322311123040DB6009DD37F /* FantasyDeckRouter.swift in Sources */,
+				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
+				84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
@@ -1379,6 +1401,7 @@
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
+				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
 				7390015022E1B8D000260198 /* Setting.swift in Sources */,
@@ -1455,6 +1478,7 @@
 				84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */,
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
+				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
 				84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,

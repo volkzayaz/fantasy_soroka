@@ -17,12 +17,12 @@ extension ChatManager {
         return message.rxCreate()
     }
 
-    static func getMessagesInRoom(_ roomId: String, offset: Int = 0) -> Maybe<[Chat.Message]> {
-        let query = PFQuery(className: "SinchMessage")
+    static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Maybe<[Chat.Message]> {
+        let query = PFQuery(className: Chat.Room.className)
         query.whereKey("roomId", equalTo: roomId)
         query.addAscendingOrder("createdAt")
         query.skip = offset
-        query.limit = 30
+        query.limit = limit
 
         return query.rx.fetchAll()
     }
@@ -33,7 +33,7 @@ extension ChatManager {
         }
 
         let predicate = NSPredicate(format: "owner == %@ OR recipient == %@", user, user)
-        let query = PFQuery(className: "Room", predicate: predicate)
+        let query = PFQuery(className: Chat.Room.className, predicate: predicate)
         query.addDescendingOrder("updatedAt")
 
         return query.rx.fetchAll()

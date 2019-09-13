@@ -36,7 +36,7 @@ extension RoomsViewModel {
 
                 return CellModel(companionName: companion?.name ?? "",
                                  updatedAt: "7 min ago", // TODO: display real date
-                                 lastMessage: room.messages?.first?.text ?? "",
+                                 lastMessage: "", // TODO: display real message
                                  identifier: room.objectId)
             } ?? []
             return [AnimatableSectionModel(model: "", items: models)]
@@ -63,7 +63,15 @@ struct RoomsViewModel: MVVM_ViewModel {
 }
 
 extension RoomsViewModel {
-    func roomTapped(_ room: Chat.Room) {
+    func roomTapped(_ model: RoomsViewModel.CellModel) {
+        // TODO: uncomment this lines when relation parsing is complete
+//        guard let room = AuthenticationManager.currentUser()?.connections.rooms
+//            .first(where: { $0.objectId == model.identifier }) else {
+//                return
+//        }
+        let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
+        let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
+        let room = Chat.Room(objectId: "Z9bq6myot7", updatedAt: Date(), owner: owner, recipient: recepient)
         router.roomTapped(room)
     }
 
@@ -85,12 +93,17 @@ extension RoomsViewModel {
 //    }
 
     func fetchRooms() {
-        ChatManager.getRooms()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { r in
-                Dispatcher.dispatch(action: SetRooms(rooms: r))
-            })
-            .disposed(by: bag)
+        let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
+        let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
+        let room = Chat.Room(objectId: "Z9bq6myot7", updatedAt: Date(), owner: owner, recipient: recepient)
+        Dispatcher.dispatch(action: SetRooms(rooms: [room]))
+        // TODO: uncomment this lines when relation parsing is complete
+//        ChatManager.getRooms()
+//            .trackView(viewIndicator: indicator)
+//            .silentCatch(handler: router.owner)
+//            .subscribe(onNext: { r in
+//                Dispatcher.dispatch(action: SetRooms(rooms: r))
+//            })
+//            .disposed(by: bag)
     }
 }

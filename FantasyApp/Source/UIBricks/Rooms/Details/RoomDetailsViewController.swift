@@ -19,7 +19,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         configure()
 
-        viewModel.currentPage.drive(onNext: { [weak self] page in
+        viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
     }

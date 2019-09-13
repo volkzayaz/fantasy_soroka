@@ -9,6 +9,7 @@
 import Foundation
 import RxDataSources
 import Parse
+import MessageKit
 
 enum Chat {}
 extension Chat {
@@ -26,15 +27,15 @@ extension Chat {
             return pfObjectId
         }
 
-        var senderId: String?
+        var senderDisplayName: String?
+        var senderId: String!
         var recepientId: String?
         var updatedAt: Date?
         var text: String?
-        var messageId: String?
         var objectId: String!
         var roomId: String?
+        var isRead: Bool = false
     }
-
 
     struct Room: Equatable, IdentifiableType, ParsePresentable {
         static var className: String {
@@ -53,6 +54,24 @@ extension Chat {
         var updatedAt: Date?
         var owner: UserSlice?
         var recipient: UserSlice?
-        var messages: [Message]?
+    }
+}
+
+extension Chat.Message: MessageType {
+    var sender: SenderType {
+        return Sender(senderId: senderId, displayName: senderDisplayName ?? "")
+    }
+
+    var messageId: String {
+        return objectId
+    }
+
+    var sentDate: Date {
+        return updatedAt ?? Date()
+    }
+
+    var kind: MessageKind {
+        let message = text ?? ""
+        return message.containsOnlyEmojis ? .emoji(message) : .text(message)
     }
 }

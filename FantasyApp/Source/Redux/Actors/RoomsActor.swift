@@ -29,7 +29,7 @@ class RoomsActor {
         }
 
         let predicate = NSPredicate(format: "owner == %@ OR recipient == %@", user, user)
-        query = PFQuery(className: "Room", predicate: predicate)
+        query = PFQuery(className: Chat.Room.className, predicate: predicate)
         query!.addDescendingOrder("updatedAt")
 
         let subscription: Subscription<PFObject> = Client.shared.subscribe(query!)

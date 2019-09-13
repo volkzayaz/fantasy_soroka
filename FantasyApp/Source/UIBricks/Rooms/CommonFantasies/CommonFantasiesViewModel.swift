@@ -1,5 +1,5 @@
 //
-//  RoomDetailsViewModel.swift
+//  ChatViewModel.swift
 //  FantasyApp
 //
 //  Created by Admin on 12.09.2019.
@@ -9,24 +9,15 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import MessageKit
 
-struct RoomDetailsViewModel: MVVM_ViewModel {
-    enum DetailsPage: Int {
-        case fantasies
-        case chat
-        case play
-    }
-
-    let router: RoomDetailsRouter
+struct CommonFantasiesViewModel: MVVM_ViewModel {
+    let router: CommonFantasiesRouter
     let room: Chat.Room
-    let page: BehaviorRelay<DetailsPage>
 
-    init(router: RoomDetailsRouter,
-         room: Chat.Room,
-         page: DetailsPage) {
+    init(router: CommonFantasiesRouter, room: Chat.Room) {
         self.router = router
         self.room = room
-        self.page = BehaviorRelay(value: page)
 
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -35,8 +26,4 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
 
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-}
-
-extension RoomDetailsViewModel {
-
 }
