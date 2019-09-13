@@ -22,6 +22,7 @@ class RoomTableViewCell: UITableViewCell {
 
 private extension RoomTableViewCell {
     func configure() {
+        selectionStyle = .none
         separator.backgroundColor = UIColor.basicGrey.withAlphaComponent(0.18)
         nameLabel.textColor = .fantasyBlack
         nameLabel.font = .boldFont(ofSize: 15)

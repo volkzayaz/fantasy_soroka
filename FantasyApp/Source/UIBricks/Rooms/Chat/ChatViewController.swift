@@ -17,7 +17,7 @@ class ChatViewController: MessagesViewController, MVVM_View {
         super.viewDidLoad()
         configure()
 
-        viewModel.messages.asDriver().drive(onNext: { [weak self] page in
+        viewModel.messages.asDriver().drive(onNext: { [weak self] _ in
             self?.messagesCollectionView.reloadDataAndKeepOffset()
         }).disposed(by: rx.disposeBag)
 
@@ -29,14 +29,26 @@ class ChatViewController: MessagesViewController, MVVM_View {
                 self?.messagesCollectionView.scrollToBottom(animated: true)
             }
         }).disposed(by: rx.disposeBag)
+
+        viewModel.loadMessages()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        becomeFirstResponder()
     }
 }
 
 private extension ChatViewController {
     func configure() {
+        messagesCollectionView.backgroundColor = .green
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        messageInputBar.delegate = self
+        messageInputBar.translatesAutoresizingMaskIntoConstraints = false
+        scrollsToBottomOnKeyboardBeginsEditing = true
+        maintainPositionOnKeyboardFrameChanged = true
     }
 }
 

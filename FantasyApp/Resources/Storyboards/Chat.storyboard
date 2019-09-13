@@ -138,14 +138,23 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDC-65-cFa" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="77" height="33"/>
                                                 <state key="normal" title="Fantasies"/>
+                                                <connections>
+                                                    <action selector="selectPage:" destination="4s0-Ma-EZL" eventType="touchUpInside" id="W4h-mt-oXS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbJ-x9-1JV" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                                 <rect key="frame" x="83" y="0.0" width="39" height="33"/>
                                                 <state key="normal" title="Chat"/>
+                                                <connections>
+                                                    <action selector="selectPage:" destination="4s0-Ma-EZL" eventType="touchUpInside" id="zQ5-uI-gjX"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoL-7K-BCs" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                                 <rect key="frame" x="128" y="0.0" width="34" height="33"/>
                                                 <state key="normal" title="Play"/>
+                                                <connections>
+                                                    <action selector="selectPage:" destination="4s0-Ma-EZL" eventType="touchUpInside" id="VhI-TE-eZE"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -154,52 +163,53 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.5568627451" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="oeI-Cr-GQ5" firstAttribute="centerX" secondItem="jtX-Ot-gjd" secondAttribute="centerX" id="R1d-nt-GE6"/>
                                     <constraint firstItem="oeI-Cr-GQ5" firstAttribute="top" secondItem="jtX-Ot-gjd" secondAttribute="top" id="S5b-MQ-l9d"/>
                                     <constraint firstAttribute="height" constant="50" id="jQn-Nw-76M"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tj-zr-HlS">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tj-zr-HlS">
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <subviews>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-xi-ohC">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
-                                        <connections>
-                                            <segue destination="gHg-Pb-Ovv" kind="embed" id="M1r-HC-D4V"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geO-oP-0Sk">
-                                        <rect key="frame" x="414" y="0.0" width="414" height="768"/>
-                                        <connections>
-                                            <segue destination="0J4-ni-ovR" kind="embed" id="xvG-p5-Sbc"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uY-fT-RfX">
-                                        <rect key="frame" x="828" y="0.0" width="414" height="768"/>
-                                        <connections>
-                                            <segue destination="gMh-3I-g7h" kind="embed" id="ZJf-fo-vNZ"/>
-                                        </connections>
-                                    </containerView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-66-hhp">
+                                        <rect key="frame" x="0.0" y="0.0" width="1242" height="768"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-Bc-6DD">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfW-yr-Y6j">
+                                                <rect key="frame" x="414" y="0.0" width="414" height="768"/>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qem-2N-8hc">
+                                                <rect key="frame" x="828" y="0.0" width="414" height="768"/>
+                                            </containerView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="pfW-yr-Y6j" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="79c-Kw-uW6"/>
+                                            <constraint firstItem="3pl-Bc-6DD" firstAttribute="leading" secondItem="zxQ-66-hhp" secondAttribute="leading" id="CsX-81-nVm"/>
+                                            <constraint firstItem="pfW-yr-Y6j" firstAttribute="leading" secondItem="3pl-Bc-6DD" secondAttribute="trailing" id="M5i-K7-O3v"/>
+                                            <constraint firstItem="3pl-Bc-6DD" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="RfW-2m-dsg"/>
+                                            <constraint firstItem="qem-2N-8hc" firstAttribute="leading" secondItem="pfW-yr-Y6j" secondAttribute="trailing" id="rha-al-FHd"/>
+                                            <constraint firstItem="qem-2N-8hc" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="xfv-6k-fpK"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="tpM-xi-ohC" secondAttribute="trailing" id="2hH-tA-UYA"/>
-                                    <constraint firstItem="geO-oP-0Sk" firstAttribute="leading" secondItem="tpM-xi-ohC" secondAttribute="trailing" id="5Yt-ga-zzn"/>
-                                    <constraint firstItem="1uY-fT-RfX" firstAttribute="leading" secondItem="geO-oP-0Sk" secondAttribute="trailing" id="6M6-wA-yty"/>
-                                    <constraint firstItem="tpM-xi-ohC" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="Df9-gK-axU"/>
-                                    <constraint firstItem="geO-oP-0Sk" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="Gl8-nz-R3x"/>
-                                    <constraint firstItem="1uY-fT-RfX" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="KLV-iK-RRS"/>
-                                    <constraint firstItem="geO-oP-0Sk" firstAttribute="top" secondItem="5tj-zr-HlS" secondAttribute="top" id="KrS-r9-WeV"/>
-                                    <constraint firstItem="geO-oP-0Sk" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="RSV-JL-1QX"/>
-                                    <constraint firstItem="1uY-fT-RfX" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="TO4-kA-mjy"/>
-                                    <constraint firstAttribute="bottom" secondItem="1uY-fT-RfX" secondAttribute="bottom" id="Ujg-MY-2O9"/>
-                                    <constraint firstItem="tpM-xi-ohC" firstAttribute="top" secondItem="5tj-zr-HlS" secondAttribute="top" id="WEm-Fg-29m"/>
-                                    <constraint firstAttribute="bottom" secondItem="geO-oP-0Sk" secondAttribute="bottom" id="ZgD-Og-dto"/>
-                                    <constraint firstItem="tpM-xi-ohC" firstAttribute="leading" secondItem="5tj-zr-HlS" secondAttribute="leading" id="okQ-G4-84F"/>
-                                    <constraint firstItem="tpM-xi-ohC" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="qfa-0M-eh7"/>
-                                    <constraint firstAttribute="bottom" secondItem="tpM-xi-ohC" secondAttribute="bottom" id="rGh-Ad-2gh"/>
-                                    <constraint firstItem="1uY-fT-RfX" firstAttribute="top" secondItem="5tj-zr-HlS" secondAttribute="top" id="tNd-DR-fD9"/>
+                                    <constraint firstItem="zxQ-66-hhp" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" multiplier="3" id="0lk-Jl-ypo"/>
+                                    <constraint firstItem="pfW-yr-Y6j" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="2HA-J1-FLo"/>
+                                    <constraint firstItem="zxQ-66-hhp" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="2rh-cM-KXq"/>
+                                    <constraint firstAttribute="trailing" secondItem="zxQ-66-hhp" secondAttribute="trailing" id="4WO-Lt-nF9"/>
+                                    <constraint firstItem="3pl-Bc-6DD" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="ElS-pQ-g2A"/>
+                                    <constraint firstItem="3pl-Bc-6DD" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="Glb-9F-NiQ"/>
+                                    <constraint firstItem="zxQ-66-hhp" firstAttribute="leading" secondItem="5tj-zr-HlS" secondAttribute="leading" id="I4P-vs-i2q"/>
+                                    <constraint firstItem="zxQ-66-hhp" firstAttribute="top" secondItem="5tj-zr-HlS" secondAttribute="top" id="IbP-3J-t4C"/>
+                                    <constraint firstItem="qem-2N-8hc" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="OLG-pD-W1B"/>
+                                    <constraint firstItem="qem-2N-8hc" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="ZmI-vT-BKA"/>
+                                    <constraint firstAttribute="bottom" secondItem="zxQ-66-hhp" secondAttribute="bottom" id="feN-Ms-aP9"/>
+                                    <constraint firstItem="pfW-yr-Y6j" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="x2u-NC-SFI"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -217,8 +227,11 @@
                     </view>
                     <connections>
                         <outlet property="chatButton" destination="YbJ-x9-1JV" id="kMB-Br-1tH"/>
+                        <outlet property="chatContainerView" destination="pfW-yr-Y6j" id="Asu-dh-ruJ"/>
+                        <outlet property="commonFantasiesContainerView" destination="3pl-Bc-6DD" id="OHk-Nt-AQQ"/>
                         <outlet property="fantasiesButton" destination="TDC-65-cFa" id="X6d-cA-OZA"/>
                         <outlet property="playButton" destination="qoL-7K-BCs" id="fX4-dX-51p"/>
+                        <outlet property="playContainerView" destination="qem-2N-8hc" id="H4N-YS-xR2"/>
                         <outlet property="scrollView" destination="5tj-zr-HlS" id="epG-Oh-X0I"/>
                     </connections>
                 </viewController>
@@ -226,27 +239,12 @@
             </objects>
             <point key="canvasLocation" x="3917" y="1485"/>
         </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="LCr-te-XjR">
-            <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="gHg-Pb-Ovv" customClass="ChatViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EXL-Dy-eaf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="6y9-xH-RRL"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wJj-Vc-E4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5545" y="892"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="j5Z-aG-q1U">
             <objects>
                 <viewController id="gMh-3I-g7h" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Msn-4R-cZG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="HcV-gM-yhy"/>
@@ -261,11 +259,11 @@
             <objects>
                 <viewController storyboardIdentifier="CommonFantasiesViewController" id="0J4-ni-ovR" customClass="CommonFantasiesViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zGA-SF-Uod">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YRB-6l-ydd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="690"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="023-c7-Cmr">
                                     <size key="itemSize" width="50" height="50"/>

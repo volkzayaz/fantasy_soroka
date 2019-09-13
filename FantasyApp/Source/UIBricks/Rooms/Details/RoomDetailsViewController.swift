@@ -10,10 +10,14 @@ import Foundation
 
 class RoomDetailsViewController: UIViewController, MVVM_View {
     var viewModel: RoomDetailsViewModel!
+    
     @IBOutlet private var fantasiesButton: PrimaryButton!
     @IBOutlet private var chatButton: PrimaryButton!
     @IBOutlet private var playButton: PrimaryButton!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var chatContainerView: UIView!
+    @IBOutlet private var commonFantasiesContainerView: UIView!
+    @IBOutlet private var playContainerView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,8 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
+
+        selectPage(viewModel.page.value)
     }
 }
 
@@ -30,6 +36,10 @@ private extension RoomDetailsViewController {
         chatButton.setTitle(R.string.localizable.roomDetailsChat(), for: .normal)
         playButton.setTitle(R.string.localizable.roomDetailsPlay(), for: .normal)
         fantasiesButton.setTitle(R.string.localizable.roomDetailsFantasies(), for: .normal)
+
+        viewModel.router.embedChat(in: chatContainerView)
+        viewModel.router.embedCommonFantasies(in: commonFantasiesContainerView)
+        viewModel.router.embedPlay(in: playContainerView)
     }
 
     func selectPage(_ page: RoomDetailsViewModel.DetailsPage) {
@@ -42,5 +52,15 @@ private extension RoomDetailsViewController {
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
         playButton.isSelected = page == .play
+    }
+
+    @IBAction func selectPage(_ sender: UIButton) {
+        if sender == fantasiesButton {
+            viewModel.page.accept(.fantasies)
+        } else if sender == chatButton {
+            viewModel.page.accept(.chat)
+        } else {
+            viewModel.page.accept(.play)
+        }
     }
 }

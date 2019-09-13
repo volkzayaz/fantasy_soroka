@@ -83,12 +83,15 @@ private extension ChatViewModel {
             var array: [Chat.Message] = self.messages.value
             switch event {
             case .entered(let messageObject), .created(let messageObject):
+                // TODO: NSDate to String
                 let message: Chat.Message = [messageObject].toCodable().first!
                 array.append(message)
             case .deleted(let messageObject), .left(let messageObject):
+                // TODO: NSDate to String
                 let message: Chat.Message = [messageObject].toCodable().first!
                 array.removeAll { message.objectId == $0.objectId }
             case .updated(let messageObject):
+                // TODO: NSDate to String
                 let message: Chat.Message = [messageObject].toCodable().first!
                 if let index = array.firstIndex(where: { message.objectId == $0.objectId }) {
                     array[index] = message
