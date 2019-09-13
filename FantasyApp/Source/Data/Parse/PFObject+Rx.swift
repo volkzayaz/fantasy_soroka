@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import Parse
 
 /*
   1. Make model conform to ParsePresentable
@@ -26,7 +27,6 @@ extension Reactive where Base: PFQuery<PFObject> {
     func fetchAll<T: ParsePresentable>() -> Maybe<[T]> {
         
         return Observable.create({ (subscriber) -> Disposable in
-        
             self.base.findObjectsInBackground(block: { (maybeValues, error) in
                 
                 if let x = error {
@@ -37,7 +37,15 @@ extension Reactive where Base: PFQuery<PFObject> {
                 guard let parseObjects = maybeValues else {
                     fatalError("Parse result is neither error nor value")
                 }
-                
+
+//                parseObjects.forEach { object in
+//                    object.allKeys.forEach { key in
+//                        if let relation = object[key] as? PFRelation {
+//                            relation.query()
+//                        }
+//                    }
+//                }
+
                 subscriber.onNext( parseObjects.toCodable() )
                 subscriber.onCompleted()
             })
@@ -144,9 +152,12 @@ extension Array where Element: PFObject {
             
             var json: [String: Any] = [:]
             
-            for key in pfObject.allKeys + ["objectId"] {
+            for key in pfObject.allKeys {
                 json[key] = pfObject[key]
             }
+            json["objectId"] = pfObject.objectId
+            json["updatedAt"] = pfObject.updatedAt
+            json["createdAt"] = pfObject.createdAt
             
             jsons.append(json)
         }

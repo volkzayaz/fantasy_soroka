@@ -12,5 +12,6 @@ enum FantasyError: Error {
     
     case generic(description: String)
     case canceled
+    case unauthorized
     
 }
