@@ -63,8 +63,7 @@ struct User: Equatable, Hashable {
         var likeRequests: [UserSlice]
         var chatRequests: [UserSlice] ///message or sticker...
         
-        var rooms: [Room]
-        
+        var rooms: [Chat.Room]
     }
     
     enum PremiumFeature {
@@ -98,15 +97,6 @@ struct User: Equatable, Hashable {
     
 }
 
-struct Room: Equatable {
-    
-    //let chatRef: Any ///data to identify chatting entity
-    let peer: UserSlice
-    
-    var fantasies: [Fantasy.Card]
-    
-}
-
 struct Community: Equatable {
     
     ///or define Community by any other geographical attribute
@@ -114,14 +104,15 @@ struct Community: Equatable {
     
 }
 
-struct UserSlice: Hashable, Codable, Equatable {
+struct UserSlice: Hashable, Codable, Equatable, ParsePresentable {
     let name: String
     let avatar: String?
-    
-    ///just enough data to display peer and fetch full data if needed
-    
-    ///for example show him near chat bubble or in like requests
-    
+    var objectId: String?
+
+    static var className: String {
+        return "User"
+    }
+
 }
 
 enum Sexuality: String, CaseIterable, Equatable {
@@ -137,6 +128,7 @@ enum Sexuality: String, CaseIterable, Equatable {
     case heteroflexible = "Heteroflexible"
     case homoflexible = "Homoflexible"
     case sapiosexual = "Sapiosexual"
+    case transsexual = "Transsexual"
     
 }
 

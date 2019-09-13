@@ -152,6 +152,17 @@
 		844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED422EE9C9B00E06665 /* TextField.swift */; };
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
+		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
+		84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */; };
+		84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */; };
+		84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */; };
+		84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4903232A2D0000F3609A /* ChatViewModel.swift */; };
+		84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4904232A2D0000F3609A /* ChatViewController.swift */; };
+		84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4905232A2D0000F3609A /* ChatRouter.swift */; };
+		84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB4909232A7D7800F3609A /* String+Emojis.swift */; };
+		84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB490C232A841F00F3609A /* CommonFantasiesViewModel.swift */; };
+		84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB490D232A841F00F3609A /* CommonFantasiesRouter.swift */; };
+		84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB490E232A841F00F3609A /* CommonFantasiesViewController.swift */; };
 		84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB83C92303E3BC004CC171 /* ActorsLocator.swift */; };
 		84B8AD0222DCCC650026862E /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF422DCCC650026862E /* APIResource.swift */; };
 		84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8ACF522DCCC650026862E /* APIProvider.swift */; };
@@ -161,6 +172,32 @@
 		84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD0D22DCCD200026862E /* Avatar.swift */; };
 		84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD0F22DCD5600026862E /* APIProvider+Rx.swift */; };
 		84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD1122DCD5800026862E /* ResponseProgress.swift */; };
+		84C1D0302327B95300648DE1 /* Sapiosexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0222327B95300648DE1 /* Sapiosexual.png */; };
+		84C1D0312327B95300648DE1 /* Lesbian.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0232327B95300648DE1 /* Lesbian.png */; };
+		84C1D0322327B95300648DE1 /* Transsexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0242327B95300648DE1 /* Transsexual.png */; };
+		84C1D0332327B95300648DE1 /* Gay.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0252327B95300648DE1 /* Gay.png */; };
+		84C1D0342327B95300648DE1 /* Questioning.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0262327B95300648DE1 /* Questioning.png */; };
+		84C1D0352327B95300648DE1 /* Homoflexible.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0272327B95300648DE1 /* Homoflexible.png */; };
+		84C1D0362327B95300648DE1 /* Asexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0282327B95300648DE1 /* Asexual.png */; };
+		84C1D0372327B95300648DE1 /* Heteroflexible.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0292327B95300648DE1 /* Heteroflexible.png */; };
+		84C1D0382327B95300648DE1 /* Straight.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D02A2327B95300648DE1 /* Straight.png */; };
+		84C1D0392327B95300648DE1 /* Pansexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D02B2327B95300648DE1 /* Pansexual.png */; };
+		84C1D03A2327B95300648DE1 /* Queer.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D02C2327B95300648DE1 /* Queer.png */; };
+		84C1D03B2327B95300648DE1 /* Bisexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D02D2327B95300648DE1 /* Bisexual.png */; };
+		84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D02F2327B95300648DE1 /* Shaders.metal */; };
+		84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */; };
+		84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */; };
+		84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0602327D5A800648DE1 /* Chat.storyboard */; };
+		84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0622327D5E500648DE1 /* RoomsActor.swift */; };
+		84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0642327D60100648DE1 /* RemoveRoom.swift */; };
+		84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0652327D60100648DE1 /* AddRooms.swift */; };
+		84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0662327D60100648DE1 /* UpdateRoom.swift */; };
+		84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* ChatManager.swift */; };
+		84C1D06D2327D68100648DE1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06C2327D68100648DE1 /* Chat.swift */; };
+		84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */; };
+		84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */; };
+		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
+		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,6 +365,17 @@
 		844A3ED422EE9C9B00E06665 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
+		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewController.swift; sourceTree = "<group>"; };
+		84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewModel.swift; sourceTree = "<group>"; };
+		84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsRouter.swift; sourceTree = "<group>"; };
+		84AB4903232A2D0000F3609A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		84AB4904232A2D0000F3609A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		84AB4905232A2D0000F3609A /* ChatRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		84AB4909232A7D7800F3609A /* String+Emojis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Emojis.swift"; sourceTree = "<group>"; };
+		84AB490C232A841F00F3609A /* CommonFantasiesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFantasiesViewModel.swift; sourceTree = "<group>"; };
+		84AB490D232A841F00F3609A /* CommonFantasiesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFantasiesRouter.swift; sourceTree = "<group>"; };
+		84AB490E232A841F00F3609A /* CommonFantasiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFantasiesViewController.swift; sourceTree = "<group>"; };
 		84AB83C92303E3BC004CC171 /* ActorsLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsLocator.swift; sourceTree = "<group>"; };
 		84B8ACF422DCCC650026862E /* APIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		84B8ACF522DCCC650026862E /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
@@ -337,6 +385,32 @@
 		84B8AD0D22DCCD200026862E /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		84B8AD0F22DCD5600026862E /* APIProvider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIProvider+Rx.swift"; sourceTree = "<group>"; };
 		84B8AD1122DCD5800026862E /* ResponseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProgress.swift; sourceTree = "<group>"; };
+		84C1D0222327B95300648DE1 /* Sapiosexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sapiosexual.png; sourceTree = "<group>"; };
+		84C1D0232327B95300648DE1 /* Lesbian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lesbian.png; sourceTree = "<group>"; };
+		84C1D0242327B95300648DE1 /* Transsexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Transsexual.png; sourceTree = "<group>"; };
+		84C1D0252327B95300648DE1 /* Gay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gay.png; sourceTree = "<group>"; };
+		84C1D0262327B95300648DE1 /* Questioning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Questioning.png; sourceTree = "<group>"; };
+		84C1D0272327B95300648DE1 /* Homoflexible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Homoflexible.png; sourceTree = "<group>"; };
+		84C1D0282327B95300648DE1 /* Asexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Asexual.png; sourceTree = "<group>"; };
+		84C1D0292327B95300648DE1 /* Heteroflexible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heteroflexible.png; sourceTree = "<group>"; };
+		84C1D02A2327B95300648DE1 /* Straight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Straight.png; sourceTree = "<group>"; };
+		84C1D02B2327B95300648DE1 /* Pansexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pansexual.png; sourceTree = "<group>"; };
+		84C1D02C2327B95300648DE1 /* Queer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Queer.png; sourceTree = "<group>"; };
+		84C1D02D2327B95300648DE1 /* Bisexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bisexual.png; sourceTree = "<group>"; };
+		84C1D02F2327B95300648DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientView.swift; sourceTree = "<group>"; };
+		84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientRenderer.swift; sourceTree = "<group>"; };
+		84C1D0602327D5A800648DE1 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		84C1D0622327D5E500648DE1 /* RoomsActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsActor.swift; sourceTree = "<group>"; };
+		84C1D0642327D60100648DE1 /* RemoveRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveRoom.swift; sourceTree = "<group>"; };
+		84C1D0652327D60100648DE1 /* AddRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRooms.swift; sourceTree = "<group>"; };
+		84C1D0662327D60100648DE1 /* UpdateRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRoom.swift; sourceTree = "<group>"; };
+		84C1D06A2327D63E00648DE1 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		84C1D06C2327D68100648DE1 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
+		84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsRouter.swift; sourceTree = "<group>"; };
+		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -486,6 +560,7 @@
 		7312B06122D7403300DB0F36 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84C1D0202327B95300648DE1 /* Metal */,
 				841681CA22E9AD9600FA9455 /* Font */,
 				7312B0B022D744EA00DB0F36 /* Strings */,
 				7312B0AF22D744DF00DB0F36 /* Storyboards */,
@@ -510,6 +585,7 @@
 		7312B07022D740AC00DB0F36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				84C1D03D2327B95F00648DE1 /* Metal */,
 				8416816522E96CD900FA9455 /* Components */,
 				7390014B22E1B84D00260198 /* ImageRetreiver.swift */,
 				7312B07122D740AC00DB0F36 /* R.generated.swift */,
@@ -522,6 +598,8 @@
 			isa = PBXGroup;
 			children = (
 				7322310D23040DA4009DD37F /* Fantasy */,
+				84C1D0422327BA8200648DE1 /* Rooms */,
+				7322310D23040DA4009DD37F /* Fantasies */,
 				7353BDE522EC98C5001D46A6 /* Profile */,
 				7353BDDE22EC983E001D46A6 /* MainTabBar */,
 				73E6012322EC512900F767BF /* Root */,
@@ -550,6 +628,7 @@
 				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
 				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
 				734C70BA23213D9200ED2E91 /* Collection+Safe.swift */,
+				84AB4909232A7D7800F3609A /* String+Emojis.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -606,6 +685,7 @@
 		7312B0AB22D7440800DB0F36 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84C1D0452327BE7D00648DE1 /* Chat */,
 				7322311723055C2A009DD37F /* Fantasy */,
 				7334CC7122ED9A7B00495843 /* User */,
 				84B8AD0C22DCCD0F0026862E /* Avatar */,
@@ -626,6 +706,7 @@
 		7312B0AF22D744DF00DB0F36 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				84C1D0602327D5A800648DE1 /* Chat.storyboard */,
 				7312B06322D7403300DB0F36 /* LaunchScreen.storyboard */,
 				7312B06522D7403300DB0F36 /* Main.storyboard */,
 				73E6012122EC3A9600F767BF /* Authorization.storyboard */,
@@ -660,6 +741,7 @@
 				734C529123266CD400B54510 /* Discover */,
 				734C70A92321205C00ED2E91 /* User */,
 				7379ED1F230D549600E661A7 /* Purchase */,
+				84C1D0482327C4AE00648DE1 /* Chat */,
 				7322311D23055CEE009DD37F /* Fantasy */,
 				7322311C23055CE5009DD37F /* Authentication */,
 			);
@@ -997,6 +1079,7 @@
 		7390015722E1E79600260198 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				84C1D04B2327C65800648DE1 /* Chat */,
 				732231202305671B009DD37F /* Fantasy */,
 				73E4C3A122F08E9800BB71B4 /* Community */,
 				7334CC7422EDC5F500495843 /* User */,
@@ -1038,6 +1121,7 @@
 		73E4C39E22F088E500BB71B4 /* Actors */ = {
 			isa = PBXGroup;
 			children = (
+				84C1D0622327D5E500648DE1 /* RoomsActor.swift */,
 				73E4C39F22F088F300BB71B4 /* LocationActor.swift */,
 				840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */,
 				84AB83C92303E3BC004CC171 /* ActorsLocator.swift */,
@@ -1128,6 +1212,47 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		84AB48FA232A16AA00F3609A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */,
+				84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */,
+				84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */,
+				84C1D0582327D30D00648DE1 /* Cell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		84AB48FB232A16B400F3609A /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */,
+				84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */,
+				84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		84AB4902232A2CE300F3609A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				84AB4905232A2D0000F3609A /* ChatRouter.swift */,
+				84AB4904232A2D0000F3609A /* ChatViewController.swift */,
+				84AB4903232A2D0000F3609A /* ChatViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		84AB490B232A83DE00F3609A /* CommonFantasies */ = {
+			isa = PBXGroup;
+			children = (
+				84AB490E232A841F00F3609A /* CommonFantasiesViewController.swift */,
+				84AB490D232A841F00F3609A /* CommonFantasiesRouter.swift */,
+				84AB490C232A841F00F3609A /* CommonFantasiesViewModel.swift */,
+			);
+			path = CommonFantasies;
+			sourceTree = "<group>";
+		};
 		84B8ACF222DCCC650026862E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1173,6 +1298,97 @@
 				84B8AD0D22DCCD200026862E /* Avatar.swift */,
 			);
 			path = Avatar;
+			sourceTree = "<group>";
+		};
+		84C1D0202327B95300648DE1 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D0212327B95300648DE1 /* Textures */,
+				84C1D02E2327B95300648DE1 /* Shaders */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		84C1D0212327B95300648DE1 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D0222327B95300648DE1 /* Sapiosexual.png */,
+				84C1D0232327B95300648DE1 /* Lesbian.png */,
+				84C1D0242327B95300648DE1 /* Transsexual.png */,
+				84C1D0252327B95300648DE1 /* Gay.png */,
+				84C1D0262327B95300648DE1 /* Questioning.png */,
+				84C1D0272327B95300648DE1 /* Homoflexible.png */,
+				84C1D0282327B95300648DE1 /* Asexual.png */,
+				84C1D0292327B95300648DE1 /* Heteroflexible.png */,
+				84C1D02A2327B95300648DE1 /* Straight.png */,
+				84C1D02B2327B95300648DE1 /* Pansexual.png */,
+				84C1D02C2327B95300648DE1 /* Queer.png */,
+				84C1D02D2327B95300648DE1 /* Bisexual.png */,
+			);
+			path = Textures;
+			sourceTree = "<group>";
+		};
+		84C1D02E2327B95300648DE1 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D02F2327B95300648DE1 /* Shaders.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		84C1D03D2327B95F00648DE1 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */,
+				84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		84C1D0422327BA8200648DE1 /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				84AB490B232A83DE00F3609A /* CommonFantasies */,
+				84AB4902232A2CE300F3609A /* Chat */,
+				84AB48FB232A16B400F3609A /* Details */,
+				84AB48FA232A16AA00F3609A /* List */,
+			);
+			path = Rooms;
+			sourceTree = "<group>";
+		};
+		84C1D0452327BE7D00648DE1 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D06C2327D68100648DE1 /* Chat.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		84C1D0482327C4AE00648DE1 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D06A2327D63E00648DE1 /* ChatManager.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		84C1D04B2327C65800648DE1 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
+				84C1D0652327D60100648DE1 /* AddRooms.swift */,
+				84C1D0642327D60100648DE1 /* RemoveRoom.swift */,
+				84C1D0662327D60100648DE1 /* UpdateRoom.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		84C1D0582327D30D00648DE1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				849E85E82328C89E0025462F /* RoomTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FF021B111BC4E47FDD0FDC23 /* Pods */ = {
@@ -1281,28 +1497,41 @@
 				841681E222E9AE6E00FA9455 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				7312B0D322D74FB200DB0F36 /* Fastfile in Resources */,
 				73097C05231D3D8200B71053 /* User.storyboard in Resources */,
+				84C1D0392327B95300648DE1 /* Pansexual.png in Resources */,
 				841681E922E9AE6E00FA9455 /* SF-Pro-Text-ThinItalic.otf in Resources */,
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
 				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
+				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
+				84C1D0322327B95300648DE1 /* Transsexual.png in Resources */,
 				841681E022E9AE6E00FA9455 /* SF-Pro-Text-Medium.otf in Resources */,
+				84C1D0382327B95300648DE1 /* Straight.png in Resources */,
 				841681E322E9AE6E00FA9455 /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				7322310C23040D79009DD37F /* FantasyCard.storyboard in Resources */,
 				841681E622E9AE6E00FA9455 /* SF-Pro-Text-Bold.otf in Resources */,
 				841681E722E9AE6E00FA9455 /* SF-Pro-Text-LightItalic.otf in Resources */,
 				7312B07422D7413C00DB0F36 /* Main.storyboard in Resources */,
+				84C1D03A2327B95300648DE1 /* Queer.png in Resources */,
 				73E6012222EC3A9600F767BF /* Authorization.storyboard in Resources */,
 				841681DF22E9AE6E00FA9455 /* SF-Pro-Text-Regular.otf in Resources */,
 				841681E522E9AE6E00FA9455 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				841681DE22E9AE6E00FA9455 /* SF-Pro-Text-Semibold.otf in Resources */,
+				84C1D0352327B95300648DE1 /* Homoflexible.png in Resources */,
+				84C1D0372327B95300648DE1 /* Heteroflexible.png in Resources */,
+				84C1D0312327B95300648DE1 /* Lesbian.png in Resources */,
+				84C1D0302327B95300648DE1 /* Sapiosexual.png in Resources */,
+				84C1D0362327B95300648DE1 /* Asexual.png in Resources */,
+				84C1D0342327B95300648DE1 /* Questioning.png in Resources */,
 				7312B0D122D74FB200DB0F36 /* deploy_patch_FantasyApp.command in Resources */,
 				7312B06A22D7403300DB0F36 /* Assets.xcassets in Resources */,
 				841681E422E9AE6E00FA9455 /* SF-Pro-Text-Light.otf in Resources */,
 				841681EB22E9AE6E00FA9455 /* SF-Pro-Text-BlackItalic.otf in Resources */,
 				841681EA22E9AE6E00FA9455 /* SF-Pro-Text-Black.otf in Resources */,
 				841681EC22E9AE6E00FA9455 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
+				84C1D03B2327B95300648DE1 /* Bisexual.png in Resources */,
+				84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */,
 				841681E822E9AE6E00FA9455 /* SF-Pro-Text-Ultralight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1437,27 +1666,39 @@
 				7379ED09230975A800E661A7 /* Analytics.swift in Sources */,
 				7322311123040DB6009DD37F /* FantasyDeckRouter.swift in Sources */,
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
+				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
+				84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
 				7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
+				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
+				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
+				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
+				84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
+				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
 				7390015022E1B8D000260198 /* Setting.swift in Sources */,
+				84C1D06D2327D68100648DE1 /* Chat.swift in Sources */,
 				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,
 				7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */,
 				734C70C223214B8D00ED2E91 /* UserProfileViewModel.swift in Sources */,
 				7322312323056731009DD37F /* ResetSwipeState.swift in Sources */,
 				73097C0A231D40B100B71053 /* EditProfileAboutCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
+				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
+				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
+				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
+				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				734C70C023214B8D00ED2E91 /* UserProfileRouter.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
@@ -1483,6 +1724,7 @@
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
+				84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */,
 				73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */,
 				73097C0F231D431600B71053 /* ProfilePhotoCollectionView.swift in Sources */,
 				7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */,
@@ -1496,21 +1738,26 @@
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
+				84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
 				734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */,
 				734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */,
+				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
+				84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */,
 				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
+				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
+				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
@@ -1518,20 +1765,26 @@
 				841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,
+				84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */,
 				73E6011F22EC3A4000F767BF /* LoginViewController.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				73E4C3A022F088F300BB71B4 /* LocationActor.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
+				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
+				84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
+				84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */,
 				84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */,
+				84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */,
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
+				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
 				84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */,
 				73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */,

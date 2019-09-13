@@ -8,11 +8,14 @@
 
 import Foundation
 import RxSwift
+import Parse
 
 /*
   1. Make model conform to ParsePresentable
   2. Fetch Model with PFQuery(predicate).rx.fetchAll<MyModel>()
-                   or PFQuery(predicate).rx.fetchFirst<MyModel>()
+ 
+ var objectId: String?
+ or PFQuery(predicate).rx.fetchFirst<MyModel>()
   3. Create and Save Model to Parse with MyModel(data).rxCreate()
   4. Edit existing Models and save to Parse in one go with Array<MyModel>().rxSave()
  
@@ -28,7 +31,9 @@ import RxSwift
  not into
  { "c": "abc", "b": null }
  
- You can use custom encoding to work this around. Take a look at SwipeState implementation for custom encoding
+ You can use custom encoding to wor
+ var objectId: String?
+ k this around. Take a look at SwipeState implementation for custom encoding
 */
 protocol ParsePresentable: Codable {
     static var className: String { get }
@@ -41,12 +46,13 @@ extension ParsePresentable {
     }
 }
 
+private let dateFormatter = ISO8601DateFormatter()
+
 extension Reactive where Base: PFQuery<PFObject> {
     
     func fetchAll<T: ParsePresentable>() -> Single<[T]> {
-        
+
         return Observable.create({ (subscriber) -> Disposable in
-        
             self.base.findObjectsInBackground(block: { (maybeValues, error) in
                 
                 if let x = error {
@@ -122,9 +128,11 @@ extension ParsePresentable {
             e.dateEncodingStrategy = .iso8601
             
             guard let data = try? e.encode(self),
-                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                  var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                 fatalError("Incorrect representation of Codable \(self)")
             }
+            
+            json.removeValue(forKey: "createdAt")
             
             let pfObject = PFObject(className: type(of: self).className,
                                     dictionary: json)
@@ -196,7 +204,7 @@ extension Array where Element: ParsePresentable {
             e.dateEncodingStrategy = .iso8601
             
             guard let data = try? e.encode(parsePresentable),
-                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                     fatalError("Incorrect representation of Codable \(parsePresentable)")
             }
             
@@ -206,6 +214,8 @@ extension Array where Element: ParsePresentable {
             
             let object = PFObject(withoutDataWithClassName: type(of: parsePresentable).className,
                                   objectId: objId)
+            
+            json.removeValue(forKey: "createdAt")
             
             object.setValuesForKeys(json)
             
@@ -230,7 +240,8 @@ extension Array where Element: PFObject {
             for key in pfObject.allKeys {
                 json[key] = pfObject[key]
             }
-            json["objectId"] = pfObject.objectId
+            json["objectId"]  = pfObject.objectId
+            json["createdAt"] = dateFormatter.string(from: pfObject.createdAt!)
             
             jsons.append(json)
         }

@@ -38,7 +38,6 @@ extension Configuration {
             config.applicationId = "416c8bf3a253b72a312835f0e4c1d20d23c22eb5"
             config.clientKey = "8c48e9b378ba8a6f1616ff78c3536c9f35437225"
             config.server = "https://apidev.fantasyapp.com/parseserver"
-            
         })
 
         // MARK: - Facebook
@@ -62,8 +61,9 @@ extension Configuration {
 
     private static func registerActors() {
         let actors: [Any] = [
-            //LocationActor(),
-            UserPropertyActor()
+//            LocationActor(),
+            UserPropertyActor(),
+            RoomsActor()
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }

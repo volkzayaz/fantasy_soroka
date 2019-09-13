@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import RxDataSources
 
 enum Fantasy {}
