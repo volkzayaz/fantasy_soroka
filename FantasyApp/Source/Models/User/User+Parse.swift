@@ -61,6 +61,8 @@ extension User {
             relationStatus = .single
         }
         
+        let maybeCommunity: Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
+        
         id = objectId
         bio = .init(name: name,
                     about: about,
@@ -73,7 +75,7 @@ extension User {
         preferences = .init(lookingFor: [],
                             kinks: [])
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
-        community = .init()
+        community = maybeCommunity
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
         privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
         

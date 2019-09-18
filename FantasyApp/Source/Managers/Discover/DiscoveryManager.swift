@@ -16,6 +16,7 @@ extension DiscoveryManager {
                             limit: Int) -> Single<[Profile]> {
         
         let q = PFUser.query()!
+        q.includeKey("belongsTo")
         q.limit = 50
         return q.rx.fetchAllObjects().map { x in
             return x.compactMap { try? User(pfUser: $0 as! PFUser) }

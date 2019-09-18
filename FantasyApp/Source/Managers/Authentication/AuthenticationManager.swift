@@ -67,8 +67,15 @@ extension AuthenticationManager {
                         return subscriber.onError(e)
                     }
                 
-                    subscriber.onNext( maybeUser! )
-                    subscriber.onCompleted()
+                    OperationQueue().addOperation {
+                        
+                        ///Can't "includeKey" during login
+                        let _ = try? (maybeUser?["belongsTo"] as? PFObject)?.fetch()
+                        
+                        subscriber.onNext( maybeUser! )
+                        subscriber.onCompleted()
+                    }
+                    
                 }
             
                 return Disposables.create()

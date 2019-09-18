@@ -15,7 +15,7 @@ struct User: Equatable, Hashable {
     
     var bio: Bio
     var fantasies: Fantasies
-    var community: Community
+    var community: Community?
     
     var preferences: SexPreference
     
@@ -97,10 +97,11 @@ struct User: Equatable, Hashable {
     
 }
 
-struct Community: Equatable {
+struct Community: Codable, Equatable {
     
     ///or define Community by any other geographical attribute
     //let region: CLRegion
+    let name: String
     
 }
 

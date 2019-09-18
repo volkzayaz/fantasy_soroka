@@ -227,6 +227,14 @@ extension Array where Element: ParsePresentable {
     
 }
 
+extension PFObject {
+    
+    func toCodable<T: Codable>() -> T {
+        return [self].toCodable().first!
+    }
+    
+}
+
 extension Array where Element: PFObject {
     
     func toCodable<T: Codable>() -> [T] {
