@@ -14,7 +14,7 @@ struct UpdateLocation: Action {
     
     func perform(initialState: AppState) -> AppState {
         var state = initialState
-        state.lastKnownLocation = with
+    //    state.lastKnownLocation = with
         return state       
     }
     

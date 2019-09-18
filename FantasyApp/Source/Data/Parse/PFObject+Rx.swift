@@ -44,6 +44,33 @@ extension ParsePresentable {
     static var query: PFQuery<PFObject> {
         return PFQuery(className: className)
     }
+    
+    var pfObject: PFObject {
+        
+        let e = JSONEncoder()
+        e.dateEncodingStrategy = .iso8601
+        
+        guard let data = try? e.encode(self),
+            var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                fatalError("Incorrect representation of Codable \(self)")
+        }
+        
+        guard let objId = objectId else {
+            fatalError("Can't save object without objectId. Please use rxCreate() instead")
+        }
+        
+        let object = PFObject(withoutDataWithClassName: type(of: self).className,
+                              objectId: objId)
+        
+        json.removeValue(forKey: "createdAt")
+        
+        object.setValuesForKeys(json)
+        
+        return object
+        
+    }
+    
+    
 }
 
 private let dateFormatter = ISO8601DateFormatter()
@@ -53,6 +80,8 @@ extension Reactive where Base: PFQuery<PFObject> {
     func fetchAll<T: ParsePresentable>() -> Single<[T]> {
 
         return Observable.create({ (subscriber) -> Disposable in
+            
+            var objectId: String?
             self.base.findObjectsInBackground(block: { (maybeValues, error) in
                 
                 if let x = error {
@@ -198,30 +227,8 @@ extension Array where Element: ParsePresentable {
     ///Suitable for editing PFObjects
     func rxSave() -> Single<Void> {
         
-        return map { parsePresentable in
-            
-            let e = JSONEncoder()
-            e.dateEncodingStrategy = .iso8601
-            
-            guard let data = try? e.encode(parsePresentable),
-                var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                    fatalError("Incorrect representation of Codable \(parsePresentable)")
-            }
-            
-            guard let objId = parsePresentable.objectId else {
-                fatalError("Can't save object without objectId. Please use rxCreate() instead")
-            }
-            
-            let object = PFObject(withoutDataWithClassName: type(of: parsePresentable).className,
-                                  objectId: objId)
-            
-            json.removeValue(forKey: "createdAt")
-            
-            object.setValuesForKeys(json)
-            
-            return object
-        }
-        .rxSave()
+        return map { $0.pfObject }
+            .rxSave()
         
     }
     
@@ -249,7 +256,9 @@ extension Array where Element: PFObject {
                 json[key] = pfObject[key]
             }
             json["objectId"]  = pfObject.objectId
-            json["createdAt"] = dateFormatter.string(from: pfObject.createdAt!)
+            if let x = pfObject.createdAt {
+                json["createdAt"] = dateFormatter.string(from: x)
+            }
             
             jsons.append(json)
         }

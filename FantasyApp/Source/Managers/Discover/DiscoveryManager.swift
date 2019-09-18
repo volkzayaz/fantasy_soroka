@@ -15,8 +15,13 @@ extension DiscoveryManager {
     static func profilesFor(filter: DiscoveryFilter?,
                             limit: Int) -> Single<[Profile]> {
         
+        guard let community = User.current?.community else {
+            return .just([])
+        }
+        
         let q = PFUser.query()!
         q.includeKey("belongsTo")
+        q.whereKey("belongsTo", equalTo: community.pfObject)
         q.limit = 50
         return q.rx.fetchAllObjects().map { x in
             return x.compactMap { try? User(pfUser: $0 as! PFUser) }

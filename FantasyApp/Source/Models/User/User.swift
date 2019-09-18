@@ -8,20 +8,20 @@
 
 import Foundation
 
-struct User: Equatable, Hashable {
+struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     let id: String
-    var auth: AuthData
+    //var auth: AuthData
     
     var bio: Bio
     var fantasies: Fantasies
     var community: Community?
     
-    var preferences: SexPreference
-    
+//    var preferences: SexPreference
+//
     var connections: Connections
-    var privacy: Privacy
-    
+//    var privacy: Privacy
+//
     //    ////Extract into Application property rather than User property
     //    var premiumFeatures: Set<PremiumFeature>
     
@@ -31,7 +31,7 @@ struct User: Equatable, Hashable {
         case fbData(String)
     };
     
-    struct Bio: Equatable {
+    struct Bio: Equatable, Codable {
         var name: String
         var about: String?
         var birthday: Date
@@ -40,7 +40,7 @@ struct User: Equatable, Hashable {
         var relationshipStatus: RelationshipStatus
         var photos: Photos
         
-        struct Photos: Equatable {
+        struct Photos: Equatable, Codable {
             var `public`: [String]
             var `private`: [String]
         };
@@ -58,7 +58,7 @@ struct User: Equatable, Hashable {
         
     };
     
-    struct Connections: Equatable {
+    struct Connections: Equatable, Codable {
         
         var likeRequests: [UserSlice]
         var chatRequests: [UserSlice] ///message or sticker...
@@ -80,7 +80,7 @@ struct User: Equatable, Hashable {
         let blockedList: Set<UserSlice>
     }
     
-    struct Fantasies: Equatable {
+    struct Fantasies: Equatable, Codable {
         var liked: [Fantasy.Card]
         var disliked: [Fantasy.Card]
         
@@ -97,10 +97,13 @@ struct User: Equatable, Hashable {
     
 }
 
-struct Community: Codable, Equatable {
+struct Community: Codable, Equatable, ParsePresentable {
     
-    ///or define Community by any other geographical attribute
-    //let region: CLRegion
+    static var className: String {
+        return "NewCommunity"
+    }
+    
+    var objectId: String?
     let name: String
     
 }
@@ -116,7 +119,7 @@ struct UserSlice: Hashable, Codable, Equatable, ParsePresentable {
 
 }
 
-enum Sexuality: String, CaseIterable, Equatable {
+enum Sexuality: String, CaseIterable, Equatable, Codable {
     
     case straight = "Straight"
     case gay = "Gay"
@@ -133,7 +136,7 @@ enum Sexuality: String, CaseIterable, Equatable {
     
 }
 
-enum Gender: String, CaseIterable, Equatable {
+enum Gender: String, CaseIterable, Equatable, Codable {
     
     case male
     case female
@@ -143,10 +146,33 @@ enum Gender: String, CaseIterable, Equatable {
     
 }
 
-enum RelationshipStatus: Equatable {
+enum RelationshipStatus: Equatable, Codable {
     
     case single
     case couple(partnerGender: Gender)
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        try container.encode(description)
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        
+        let str = try container.decode(String.self)
+        
+        if str == "single" {
+            self = .single
+            return
+        }
+        
+        if str.starts(with: "with") {
+            self = .couple(partnerGender: Gender(rawValue: String(str.split(separator: " ").last!))!)
+        }
+        
+        fatalError("Can't decode RelationshipStatus from \(str)")
+    }
     
     var description: String {
         switch self {

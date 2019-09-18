@@ -12,7 +12,7 @@ import RxDataSources
 enum Fantasy {}
 extension Fantasy {
     
-    struct Card: Equatable, IdentifiableType {
+    struct Card: Equatable, IdentifiableType, Codable {
         let name: String
         let description: String
         
@@ -25,7 +25,7 @@ extension Fantasy {
         }
     }
     
-    struct Collection: Equatable, IdentifiableType {
+    struct Collection: Equatable, IdentifiableType, Codable {
         let name: String
         let cards: [Card]
         

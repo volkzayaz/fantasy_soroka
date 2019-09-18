@@ -34,7 +34,7 @@ extension Chat {
         let createdAt: Date
     }
 
-    struct Room: Equatable, IdentifiableType, ParsePresentable {
+    struct Room: Equatable, IdentifiableType, ParsePresentable, Codable {
         static var className: String {
             return "Room"
         }

@@ -19,6 +19,30 @@ extension LocationActor {
             .asDriver(onErrorJustReturn: .notDetermined)
     }
     
+//    var near: Observable<Near> {
+//        
+//        return manager.rx.location
+//            .notNil()
+//            .flatMapLatest { (newLocation) -> Observable<[Community]> in
+//                return CommunityManager.communities(near: newLocation)
+//                    .asObservable()
+//            }
+//            .flatMapLatest { communities -> Observable<Near> in
+//                
+//                if communities.count > 0 {
+//                    return .just(.communities(communities))
+//                }
+//                
+//                
+//            }
+//        
+//    }
+//    
+    enum Near {
+        case communities([Community])
+        case bigCities([(name: String, center: CLLocationCoordinate2D)])
+    }
+    
 }
 
 struct LocationActor {
@@ -32,8 +56,12 @@ struct LocationActor {
         
         manager.rx.location
             .notNil()
+            .flatMapLatest { (newLocation) -> Observable<[Community]> in
+                return CommunityManager.communities(near: newLocation)
+                    .asObservable()
+            }
             .subscribe(onNext: { (x) in
-                Dispatcher.dispatch(action: UpdateLocation(with: x))
+                Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
             })
             .disposed(by: bag)
         

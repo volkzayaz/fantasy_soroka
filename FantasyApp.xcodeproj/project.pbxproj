@@ -88,6 +88,9 @@
 		7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */; };
 		7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */; };
 		7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */; };
+		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
+		7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3152332301F007B84B0 /* UpdateCommunity.swift */; };
+		7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -301,6 +304,9 @@
 		7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayRouter.swift; sourceTree = "<group>"; };
 		7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewController.swift; sourceTree = "<group>"; };
 		7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewModel.swift; sourceTree = "<group>"; };
+		7361F31323322BC5007B84B0 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
+		7361F3152332301F007B84B0 /* UpdateCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommunity.swift; sourceTree = "<group>"; };
+		7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+rx.swift"; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -597,9 +603,8 @@
 		7312B07522D741D500DB0F36 /* UIBricks */ = {
 			isa = PBXGroup;
 			children = (
-				7322310D23040DA4009DD37F /* Fantasy */,
 				84C1D0422327BA8200648DE1 /* Rooms */,
-				7322310D23040DA4009DD37F /* Fantasies */,
+				7322310D23040DA4009DD37F /* Fantasy */,
 				7353BDE522EC98C5001D46A6 /* Profile */,
 				7353BDDE22EC983E001D46A6 /* MainTabBar */,
 				73E6012322EC512900F767BF /* Root */,
@@ -641,6 +646,7 @@
 				7312B08322D7422100DB0F36 /* NSObject+Rx.swift */,
 				7312B08422D7422100DB0F36 /* NWise.swift */,
 				7312B08622D7422100DB0F36 /* MVVM */,
+				7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */,
 			);
 			path = RxExtensions;
 			sourceTree = "<group>";
@@ -737,6 +743,7 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7361F31223322BB4007B84B0 /* Community */,
 				734C52A8232A376800B54510 /* ServerBusinessLogic */,
 				734C529123266CD400B54510 /* Discover */,
 				734C70A92321205C00ED2E91 /* User */,
@@ -976,6 +983,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		7361F31223322BB4007B84B0 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				7361F31323322BC5007B84B0 /* CommunityManager.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
 		7379ECFA2309713200E661A7 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,6 +1148,7 @@
 			isa = PBXGroup;
 			children = (
 				73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */,
+				7361F3152332301F007B84B0 /* UpdateCommunity.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1691,6 +1707,7 @@
 				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,
 				7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */,
 				734C70C223214B8D00ED2E91 /* UserProfileViewModel.swift in Sources */,
+				7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */,
 				7322312323056731009DD37F /* ResetSwipeState.swift in Sources */,
 				73097C0A231D40B100B71053 /* EditProfileAboutCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
@@ -1707,7 +1724,9 @@
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
 				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
+				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
+				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
 				7379ED19230D3C5000E661A7 /* FantasyCollectionRouter.swift in Sources */,
 				7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */,
 				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,

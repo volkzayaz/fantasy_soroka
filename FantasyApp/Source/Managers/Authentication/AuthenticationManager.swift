@@ -54,6 +54,9 @@ extension AuthenticationManager {
             return Disposables.create()
         }
             .map { try User(pfUser: $0) }
+            .do(onNext: { (user) in
+                SettingsStore.currentUser.value = user
+            })
             .asMaybe()
         
     }
@@ -81,6 +84,9 @@ extension AuthenticationManager {
                 return Disposables.create()
             }
             .map { try User(pfUser: $0) }
+            .do(onNext: { (user) in
+                SettingsStore.currentUser.value = user
+            })
             .asMaybe()
         
     }
@@ -109,21 +115,19 @@ extension AuthenticationManager {
             return Disposables.create()
             }
             .map { try User(pfUser: $0) }
+            .do(onNext: { (user) in
+                SettingsStore.currentUser.value = user
+            })
             .asMaybe()
         
     }
  
     static func currentUser() -> User? {
-        
-        var user: User? = nil
-        if let pfUser = PFUser.current() {
-            user = try? User(pfUser: pfUser)
-        }
-        
-        return user
+        return SettingsStore.currentUser.value
     }
     
     static func logout() {
+        SettingsStore.currentUser.value = nil
         PFUser.logOutInBackground(block: { _ in })
     }
     

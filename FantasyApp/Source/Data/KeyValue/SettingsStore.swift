@@ -12,5 +12,8 @@ extension SettingsStore {
     
     static var lastUsedEmail: Setting<String?> = Setting(key: "com.fantasyapp.iosclient.settings.lastUsedEmail",
                                                            initialValue: nil)
+
+    static var currentUser: Setting<User?> = Setting(key: "com.fantasyapp.iosclient.settings.currentUser",
+                                                     initialValue: nil)
     
 }

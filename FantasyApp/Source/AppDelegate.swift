@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Configuration.setup(launchOptions: launchOptions)
-
+                
+//        CLGeocoder().rx.cities(near: CLLocation(latitude: 42.645815, longitude: 18.0590278))
+//            .subscribe()
+        
         return true
     }
 

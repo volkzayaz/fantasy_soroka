@@ -22,13 +22,13 @@ extension User {
             fatalError("Unsaved PFUsers conversion to native User is not supported")
         }
         
-        if let x = pfUser.email {
-            auth = .email(x)
-        }
-        else if let x = pfUser.value(forKey: "authData") as? [String: Any] {
-            auth = .fbData(x.description)
-        }
-        else { throw ParseMigrationError.dataCorrupted }
+//        if let x = pfUser.email {
+//            auth = .email(x)
+//        }
+//        else if let x = pfUser.value(forKey: "authData") as? [String: Any] {
+//            auth = .fbData(x.description)
+//        }
+//        else { throw ParseMigrationError.dataCorrupted }
     
         guard let name = pfUser["realname"] as? String else {
             throw ParseMigrationError.dataCorrupted
@@ -72,12 +72,12 @@ extension User {
                     relationshipStatus: relationStatus,
                     photos: .init(public: [], private: []))
         
-        preferences = .init(lookingFor: [],
-                            kinks: [])
+//        preferences = .init(lookingFor: [],
+//                            kinks: [])
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = maybeCommunity
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
-        privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
+        //privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
         
     }
     
@@ -93,7 +93,8 @@ extension User {
             "aboutMe"   : bio.about as Any,
             "birthady"  : bio.birthday,
             "gender"    : bio.gender.rawValue,
-            "sexuality" : bio.sexuality.rawValue
+            "sexuality" : bio.sexuality.rawValue,
+            "belongsTo" : community?.pfObject as Any
             ] as [String : Any]
         
         switch bio.relationshipStatus {

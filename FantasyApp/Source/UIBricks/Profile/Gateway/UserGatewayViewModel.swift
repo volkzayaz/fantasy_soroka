@@ -14,8 +14,9 @@ import RxCocoa
 extension UserGatewayViewModel {
     
     var tempLocation: Driver<String> {
-        return appState.changesOf { $0.lastKnownLocation }
-            .map { $0 == nil ? "Don't know where you are" : $0!.description }
+        return .just("no location")
+//        appState.changesOf { $0.lastKnownLocation }
+//            .map { $0 == nil ? "Don't know where you are" : $0!.description }
     }
  
 }
