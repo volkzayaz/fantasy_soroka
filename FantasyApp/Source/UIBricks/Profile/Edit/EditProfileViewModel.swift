@@ -64,7 +64,7 @@ extension EditProfileViewModel {
         return form.asDriver()
             .map { user.applied(editForm: $0) }
             .map { user in
-                return user.bio.photos.public
+                return user.bio.photos.private
         }
     }
     
