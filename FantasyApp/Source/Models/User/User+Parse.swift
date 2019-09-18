@@ -12,10 +12,15 @@ enum ParseMigrationError: Error {
     case dataCorrupted
 }
 
+
 extension User {
     
     ///single migration point from Parse Entity to Fantasy Entity
     init(pfUser: PFUser) throws {
+
+        guard let objectId = pfUser.objectId else {
+            fatalError("Unsaved PFUsers conversion to native User is not supported")
+        }
         
         if let x = pfUser.email {
             auth = .email(x)
@@ -28,10 +33,8 @@ extension User {
         guard let name = pfUser["realname"] as? String else {
             throw ParseMigrationError.dataCorrupted
         }
-
-        guard let objectId = pfUser.objectId else {
-            throw ParseMigrationError.dataCorrupted
-        }
+        
+        let about = pfUser["aboutMe"] as? String
         
         guard let birthday = pfUser["birthday"] as? Date else {
             throw ParseMigrationError.dataCorrupted
@@ -58,20 +61,73 @@ extension User {
             relationStatus = .single
         }
         
-        
-        bio = Bio(name: name,
-                  birthday: birthday,
-                  gender: gender,
-                  sexuality: sexuality,
-                  relationshipStatus: relationStatus,
-                  photos: .init(public: [], private: []))
         id = objectId
+        bio = .init(name: name,
+                    about: about,
+                    birthday: birthday,
+                    gender: gender,
+                    sexuality: sexuality,
+                    relationshipStatus: relationStatus,
+                    photos: .init(public: [], private: []))
+        
         preferences = .init(lookingFor: [],
                             kinks: [])
-        fantasies = .init(liked: [], disliked: [])
+        fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = .init()
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
         privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
+        
+    }
+    
+    ////we can edit only a subset of exisitng user properties to Parse
+    ////we apply reverse transformations from init
+    ////In the future on our backend it is expected that User consists fully from editable properties.
+    var toCurrentPFUser: PFUser {
+        
+        guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
+        
+        var dict = [
+            "realname"  : bio.name,
+            "aboutMe"   : bio.about as Any,
+            "birthady"  : bio.birthday,
+            "gender"    : bio.gender.rawValue,
+            "sexuality" : bio.sexuality.rawValue
+            ] as [String : Any]
+        
+        switch bio.relationshipStatus {
+        case .single:                    dict["couple"] = "single"
+        case .couple(let partnerGender): dict["couple"] = partnerGender
+        }
+        
+        user.setValuesForKeys(dict)
+        
+        return user
+    }
+}
+
+extension PFUser {
+    
+    func apply(editForm: EditProfileForm) {
+        
+        let setter: (String, Any?) -> () = { key, maybeValue in
+            
+            if let x = maybeValue {
+                self[key] = x
+            }
+            
+        }
+
+        setter("realname", editForm.name)
+        setter("birthday", editForm.brithdate)
+        
+        switch editForm.relationshipStatus {
+        case .single?:                    setter("couple", "single")
+        case .couple(let partnerGender)?: setter("couple", partnerGender.rawValue)
+        case .none: break
+        }
+        
+        setter("gender", editForm.gender?.rawValue)
+        setter("sexuality", editForm.sexuality?.rawValue)
         
     }
     

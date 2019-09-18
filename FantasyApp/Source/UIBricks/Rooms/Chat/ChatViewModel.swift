@@ -43,7 +43,7 @@ extension ChatViewModel {
     func loadMessages() {
         // TODO: Pagination
         let offset = 0
-        ChatManager.getMessagesInRoom(room.objectId, offset: offset)
+        ChatManager.getMessagesInRoom(room.objectId!, offset: offset)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { messages in
@@ -59,11 +59,11 @@ extension ChatViewModel {
         let message = Chat.Message(senderDisplayName: AuthenticationManager.currentUser()!.bio.name,
                                    senderId: AuthenticationManager.currentUser()!.id,
                                    recepientId: room.recipient?.objectId,
-                                   updatedAt: nil,
                                    text: text,
                                    objectId: nil,
                                    roomId: room.objectId,
-                                   isRead: false)
+                                   isRead: false,
+                                   createdAt: Date())
         ChatManager.sendMessage(message)
             .subscribe({ event in
                 // TODO: error handling
@@ -76,7 +76,7 @@ extension ChatViewModel {
 private extension ChatViewModel {
     func addSubscription() {
         query.addDescendingOrder("updatedAt")
-        query.whereKey("roomId", equalTo: room.objectId as String)
+        query.whereKey("roomId", equalTo: room.objectId as! String)
 
         let subscription: Subscription<PFObject> = Client.shared.subscribe(query)
         subscription.handleEvent { object, event in

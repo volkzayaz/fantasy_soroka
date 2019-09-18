@@ -29,7 +29,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
     init(router: MainTabBarRouter) {
         self.router = router
         
-        ///Refrech on app start happens here:
+        ///Refresh on app start happens here:
         ///Alternativelly we can encode appState to disk and just restore it from there
         ///To keep syncing problems at min for now we'll fetch most info from server
         ///But for v2 we want to implement disk-first retoration policy

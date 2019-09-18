@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfilePhotoCell" customModule="FantasyApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EditProfilePhotoCell" id="sIp-93-1j3" customClass="EditProfilePhotoCell" customModule="FantasyApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="73" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="73" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m5d-SA-YZw">
+                        <rect key="frame" x="0.0" y="0.0" width="73" height="68"/>
+                        <gestureRecognizers/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fic-Ya-5gS">
+                        <rect key="frame" x="43" y="0.0" width="30" height="30"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="X"/>
+                        <connections>
+                            <action selector="close:" destination="sIp-93-1j3" eventType="touchUpInside" id="ega-h0-0Xp"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="1" green="0.24313725489999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="m5d-SA-YZw" secondAttribute="trailing" id="02R-fy-AER"/>
+                <constraint firstAttribute="trailing" secondItem="fic-Ya-5gS" secondAttribute="trailing" id="0lv-dA-4QS"/>
+                <constraint firstItem="fic-Ya-5gS" firstAttribute="top" secondItem="sIp-93-1j3" secondAttribute="top" id="2Xq-kf-CMO"/>
+                <constraint firstAttribute="bottom" secondItem="m5d-SA-YZw" secondAttribute="bottom" id="x4B-0E-Lik"/>
+                <constraint firstItem="m5d-SA-YZw" firstAttribute="top" secondItem="sIp-93-1j3" secondAttribute="top" id="xoO-Oy-q6G"/>
+                <constraint firstItem="m5d-SA-YZw" firstAttribute="leading" secondItem="sIp-93-1j3" secondAttribute="leading" id="z75-Uh-e2M"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="EMX-my-6uX"/>
+            <connections>
+                <outlet property="closeButton" destination="fic-Ya-5gS" id="sIH-xW-Mkf"/>
+                <outlet property="photoView" destination="m5d-SA-YZw" id="tc5-Dp-kNs"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

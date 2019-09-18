@@ -14,17 +14,17 @@ import Parse
 enum AuthenticationManager {}
 extension AuthenticationManager {
     
-    static func register(with form: RegistrationViewModel.SubmissionForm) -> Maybe<User> {
+    static func register(with form: RegisterForm) -> Maybe<User> {
         
-        let form = RegistrationViewModel.SubmissionForm(agreementTick: true,
-                                                        name: "Pete Jackson",
-                                                        brithdate: Date(timeIntervalSince1970: 1234),
-                                                        sexuality: .straight,
-                                                        gender: .male,
-                                                        relationshipStatus: .single,
-                                                        email: "pete1@jackson.com",
-                                                        password: "1234", confirmPassword: "",
-                                                        photo: nil)
+        let form = RegisterForm(agreementTick: true,
+                                name: "Pete Jackson",
+                                brithdate: Date(timeIntervalSince1970: 1234),
+                                sexuality: .straight,
+                                gender: .male,
+                                relationshipStatus: .single,
+                                email: "pete1@jackson.com",
+                                password: "1234", confirmPassword: "",
+                                photo: form.photo)
         
         ///
         
@@ -34,16 +34,7 @@ extension AuthenticationManager {
         pfUser.email = form.email
         pfUser.password = form.password
         
-        pfUser["realname"] = form.name
-        pfUser["birthday"] = form.brithdate
-        
-        switch form.relationshipStatus! {
-        case .single:                       pfUser["couple"] = "single"
-        case .couple(let partnerGender):    pfUser["couple"] = partnerGender.rawValue
-        }
-        
-        pfUser["gender"] = form.gender.rawValue
-        pfUser["sexuality"] = form.sexuality.rawValue
+        pfUser.apply(editForm: form.toEditProfileForm)
         
         //fatalError("Implement picked photo uploading")
         

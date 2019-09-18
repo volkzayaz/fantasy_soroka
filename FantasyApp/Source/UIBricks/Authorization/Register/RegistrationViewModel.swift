@@ -68,7 +68,7 @@ extension RegistrationViewModel {
 
 struct RegistrationViewModel : MVVM_ViewModel {
     
-    fileprivate let form = BehaviorRelay(value: SubmissionForm())
+    fileprivate let form = BehaviorRelay(value: RegisterForm())
     
     fileprivate let step = BehaviorRelay(value: Step.notice)
     
@@ -88,19 +88,6 @@ struct RegistrationViewModel : MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
  
-    struct SubmissionForm {
-        var agreementTick: Bool = false
-        var name: String = ""
-        var brithdate: Date?
-        var sexuality: Sexuality = .straight
-        var gender: Gender = .female
-        var relationshipStatus: RelationshipStatus?
-        var email: String?
-        var password: String?
-        var confirmPassword: String?
-        var photo: UIImage?
-    };
-    
     enum Step: Int, CaseIterable {
         
         case notice = 1
@@ -194,7 +181,7 @@ extension RegistrationViewModel {
         updateForm { $0.photo = photo }
     }
     
-    private func updateForm(_ mapper: (inout SubmissionForm) -> Void ) {
+    private func updateForm(_ mapper: (inout RegisterForm) -> Void ) {
         var x = form.value
         mapper(&x)
         form.accept(x)

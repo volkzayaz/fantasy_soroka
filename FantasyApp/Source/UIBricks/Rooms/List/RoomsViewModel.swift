@@ -37,7 +37,7 @@ extension RoomsViewModel {
                 return CellModel(companionName: companion?.name ?? "",
                                  updatedAt: "7 min ago", // TODO: display real date
                                  lastMessage: "", // TODO: display real message
-                                 identifier: room.objectId)
+                                 identifier: room.objectId!)
             } ?? []
             return [AnimatableSectionModel(model: "", items: models)]
         }
@@ -71,7 +71,7 @@ extension RoomsViewModel {
 //        }
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
         let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
-        let room = Chat.Room(objectId: "Z9bq6myot7", updatedAt: Date(), owner: owner, recipient: recepient)
+        let room = Chat.Room(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
         router.roomTapped(room)
     }
 
@@ -95,7 +95,7 @@ extension RoomsViewModel {
     func fetchRooms() {
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
         let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
-        let room = Chat.Room(objectId: "Z9bq6myot7", updatedAt: Date(), owner: owner, recipient: recepient)
+        let room = Chat.Room(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
         Dispatcher.dispatch(action: SetRooms(rooms: [room]))
         // TODO: uncomment this lines when relation parsing is complete
 //        ChatManager.getRooms()

@@ -8,13 +8,17 @@
 
 import Foundation
 
-struct User: Equatable {
-    var id: String!
+struct User: Equatable, Hashable {
+    
+    let id: String
     var auth: AuthData
+    
     var bio: Bio
-    var preferences: SexPreference
     var fantasies: Fantasies
     var community: Community
+    
+    var preferences: SexPreference
+    
     var connections: Connections
     var privacy: Privacy
     
@@ -29,6 +33,7 @@ struct User: Equatable {
     
     struct Bio: Equatable {
         var name: String
+        var about: String?
         var birthday: Date
         var gender: Gender
         var sexuality: Sexuality
@@ -78,10 +83,16 @@ struct User: Equatable {
     struct Fantasies: Equatable {
         var liked: [Fantasy.Card]
         var disliked: [Fantasy.Card]
+        
+        var purchasedCollections: [Fantasy.Collection]
     }
     
     static var current: User? {
-        return AuthenticationManager.currentUser()
+        return appStateSlice.currentUser
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(bio.name)
     }
     
 }
@@ -96,15 +107,12 @@ struct Community: Equatable {
 struct UserSlice: Hashable, Codable, Equatable, ParsePresentable {
     let name: String
     let avatar: String?
-    var objectId: String!
+    var objectId: String?
 
     static var className: String {
         return "User"
     }
 
-    var pfObjectId: String {
-        return objectId
-    }
 }
 
 enum Sexuality: String, CaseIterable, Equatable {
@@ -138,6 +146,16 @@ enum RelationshipStatus: Equatable {
     
     case single
     case couple(partnerGender: Gender)
+    
+    var description: String {
+        switch self {
+        case .single:
+            return "single"
+        case .couple(let partnerGender):
+            return "with \(partnerGender.rawValue)"
+        
+        }
+    }
     
 }
 

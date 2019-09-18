@@ -49,6 +49,8 @@ struct AppState: Equatable {
     struct SwipeState: Equatable {
         var cards: [Fantasy.Card]
         
+        var freeCards: [Fantasy.Card] { return cards.filter { $0.isFree } }
+        
         enum Restriction: Equatable {
             case swipeCount(Int)
             case waiting(till: Date)
