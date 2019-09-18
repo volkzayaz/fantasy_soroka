@@ -396,18 +396,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8Y-ma-tWW">
+                                <rect key="frame" x="8" y="491" width="398" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jFF-Ap-2z8" firstAttribute="trailing" secondItem="O8Y-ma-tWW" secondAttribute="trailing" constant="8" id="1wd-eT-EEC"/>
                             <constraint firstItem="Qib-nk-HXF" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" id="2wH-dt-S1U"/>
                             <constraint firstItem="Lcx-fy-wAx" firstAttribute="centerX" secondItem="Qib-nk-HXF" secondAttribute="centerX" id="9mT-xh-mYi"/>
+                            <constraint firstItem="O8Y-ma-tWW" firstAttribute="top" secondItem="Lcx-fy-wAx" secondAttribute="bottom" constant="32" id="9tS-Qv-oDJ"/>
                             <constraint firstItem="Qib-nk-HXF" firstAttribute="trailing" secondItem="jFF-Ap-2z8" secondAttribute="trailing" id="DkL-3i-FWb"/>
                             <constraint firstItem="Lcx-fy-wAx" firstAttribute="top" secondItem="Qib-nk-HXF" secondAttribute="bottom" constant="55" id="kpA-VV-VXC"/>
                             <constraint firstItem="Qib-nk-HXF" firstAttribute="top" secondItem="jFF-Ap-2z8" secondAttribute="top" id="ngC-p5-kem"/>
+                            <constraint firstItem="O8Y-ma-tWW" firstAttribute="centerX" secondItem="Lcx-fy-wAx" secondAttribute="centerX" id="r7W-V8-EXZ"/>
+                            <constraint firstItem="O8Y-ma-tWW" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" constant="8" id="rEv-tG-oCC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jFF-Ap-2z8"/>
                     </view>
                     <connections>
+                        <outlet property="locationMessageLabel" destination="O8Y-ma-tWW" id="rXd-dg-3kz"/>
                         <outlet property="profilesTableView" destination="Qib-nk-HXF" id="vc2-00-7vK"/>
                         <outlet property="timeEndedLabel" destination="Lcx-fy-wAx" id="gWz-8q-tzk"/>
                     </connections>

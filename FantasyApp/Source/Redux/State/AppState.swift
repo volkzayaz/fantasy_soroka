@@ -31,7 +31,7 @@ func initAppState() -> Maybe<Void> {
     let _ =
     NotificationCenter.default.rx.notification(UIApplication.willTerminateNotification)
         .subscribe(onNext: { (_) in
-            SettingsStore.currentUser.value = AuthenticationManager.currentUser()
+            SettingsStore.currentUser.value = _appState.value!.currentUser
         })
     
     return .just( () )

@@ -22,6 +22,7 @@ extension DiscoveryManager {
         let q = PFUser.query()!
         q.includeKey("belongsTo")
         q.whereKey("belongsTo", equalTo: community.pfObject)
+        q.whereKey("objectId", notEqualTo: User.current!.id)
         q.limit = 50
         return q.rx.fetchAllObjects().map { x in
             return x.compactMap { try? User(pfUser: $0 as! PFUser) }

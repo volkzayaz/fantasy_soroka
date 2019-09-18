@@ -17,7 +17,9 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     lazy var viewModel: DiscoverProfileViewModel! = DiscoverProfileViewModel(router: .init(owner: self))
     
     @IBOutlet weak var timeEndedLabel: UILabel!
+    @IBOutlet weak var locationMessageLabel: UILabel!
     @IBOutlet weak var profilesTableView: UITableView!
+    
     
     lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Profile>>(configureCell: { [unowned self] (_, tableView, ip, x) in
         
@@ -64,8 +66,32 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         
         viewModel.mode
             .drive(onNext: { [unowned self] (mode) in
-                self.profilesTableView.isHidden = mode == .overTheLimit
-                self.timeEndedLabel.isHidden = mode == .profiles
+                
+                [self.profilesTableView, self.timeEndedLabel, self.locationMessageLabel]
+                    .forEach { $0?.isHidden = true }
+                
+                switch mode {
+                case .profiles:
+                    self.profilesTableView.isHidden = false
+                    
+                case .overTheLimit:
+                    self.timeEndedLabel.isHidden = false
+                    
+                case .noLocationPermission:
+                    self.locationMessageLabel.isHidden = false
+                    self.locationMessageLabel.text = "Can you share your location? We really need it"
+                    
+                case .absentCommunity(let nearestCity):
+                    self.locationMessageLabel.isHidden = false
+                    if let nearestCity = nearestCity {
+                        self.locationMessageLabel.text = "Fantasy is not yet available at \(nearestCity). Stay tuned, we'll soon be there"
+                    }
+                    else {
+                        self.locationMessageLabel.text = "We can't figure out where are you at the moment. Feel free to send us your City at fantasyapp@email.com. Or use teleport"
+                    }
+                    
+                }
+                
             })
             .disposed(by: rx.disposeBag)
         

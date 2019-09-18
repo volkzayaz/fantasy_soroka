@@ -19,28 +19,38 @@ extension LocationActor {
             .asDriver(onErrorJustReturn: .notDetermined)
     }
     
-//    var near: Observable<Near> {
-//        
-//        return manager.rx.location
-//            .notNil()
-//            .flatMapLatest { (newLocation) -> Observable<[Community]> in
-//                return CommunityManager.communities(near: newLocation)
-//                    .asObservable()
-//            }
-//            .flatMapLatest { communities -> Observable<Near> in
-//                
-//                if communities.count > 0 {
-//                    return .just(.communities(communities))
-//                }
-//                
-//                
-//            }
-//        
-//    }
-//    
+    var near: Driver<Near?> {
+        
+        return manager.rx.location
+            .notNil()
+            .flatMapLatest { (newLocation) in
+                return CommunityManager.communities(near: newLocation)
+                    .asObservable().map { ($0, newLocation) }
+            }
+            .flatMapLatest { (arg) -> Observable<Near?> in
+                
+                let (communities, location) = arg
+                
+                if communities.count > 0 {
+                    return .just(.communities(communities))
+                }
+                
+                return CLGeocoder().rx.city(near: location)
+                    .asObservable()
+                    .map { x -> Near? in
+                        if let x = x { return .bigCity(name: x) }
+                        
+                        return nil
+                    }
+                
+            }
+            .asDriver(onErrorJustReturn: nil)
+        
+    }
+    
     enum Near {
         case communities([Community])
-        case bigCities([(name: String, center: CLLocationCoordinate2D)])
+        case bigCity(name: String)
     }
     
 }
@@ -54,16 +64,6 @@ struct LocationActor {
         manager.requestWhenInUseAuthorization()
         manager.startMonitoringSignificantLocationChanges()
         
-        manager.rx.location
-            .notNil()
-            .flatMapLatest { (newLocation) -> Observable<[Community]> in
-                return CommunityManager.communities(near: newLocation)
-                    .asObservable()
-            }
-            .subscribe(onNext: { (x) in
-                Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
-            })
-            .disposed(by: bag)
         
     }
     

@@ -253,6 +253,11 @@ extension Array where Element: PFObject {
             var json: [String: Any] = [:]
             
             for key in pfObject.allKeys {
+                
+                if pfObject[key] is PFGeoPoint? {
+                    continue
+                }
+                
                 json[key] = pfObject[key]
             }
             json["objectId"]  = pfObject.objectId

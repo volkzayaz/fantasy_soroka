@@ -17,36 +17,19 @@ extension CLGeocoder {
 
 extension Reactive where Base == CLGeocoder {
 
-    func cities(near: CLLocation) -> Single<String> {
+    func city(near: CLLocation) -> Single<String?> {
         
         return Observable.create { (observer) -> Disposable in
             
             let geocoder = CLGeocoder()
             
             geocoder.reverseGeocodeLocation(near) { (maybePlacemarks, maybeError) in
-                guard maybeError == nil else {
+                guard let placemarks = maybePlacemarks, maybeError == nil else {
                     observer.onError(maybeError!)
                     return
                 }
 
-                let x = maybePlacemarks?.map { $0.locality }
-                
-                print(x)
-
-//                var results: [SearchLocation] = []
-//
-//                if let placemark = maybePlacemarks?.first {
-//                    results.append(SearchLocation(county: placemark.country,
-//                                                  city: placemark.locality))
-//                }
-//
-//                if let c = maybePlacemarks?.count, c > 1 {
-//                    let placemark = maybePlacemarks![1]
-//                    results.append(SearchLocation(county: placemark.country,
-//                                                  city: placemark.locality))
-//                }
-//
-//                observer.onNext(results)
+                observer.onNext(placemarks.compactMap { $0.locality }.first)
                 observer.onCompleted()
                 
             }

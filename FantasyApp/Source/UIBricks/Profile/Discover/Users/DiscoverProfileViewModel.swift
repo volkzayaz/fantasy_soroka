@@ -17,18 +17,42 @@ extension DiscoverProfileViewModel {
     
     enum Mode {
         case profiles, overTheLimit
+        case noLocationPermission
+        case absentCommunity(nearestCity: String?)
     }
     
     var mode: Driver<Mode> {
         
-        return swipeState.asDriver().map { x -> Mode? in
-            switch x {
-            case .limit(_)?:    return .profiles
-            case .tillDate(_)?: return .overTheLimit
-            case .none:         return nil
+        return Driver
+            .combineLatest(//locationActor.lastKnownAuthStatus,
+                           locationActor.near,
+                           swipeState.asDriver()) { ($0, $1) }
+            .map { (near, swipeState) -> Mode? in
+                
+//                guard status != .denied else {
+//                    return .noLocationPermission
+//                }
+                
+                switch near {
+                    
+                case .bigCity(let name)?:
+                    return .absentCommunity(nearestCity: name)
+
+                case .none:
+                    return .absentCommunity(nearestCity: nil)
+                    
+                case .communities(let x)?:
+                    Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
+                
+                }
+            
+                switch swipeState {
+                case .limit(_)?:    return .profiles
+                case .tillDate(_)?: return .overTheLimit
+                case .none:         return nil
+                }
             }
-        }
-        .notNil()
+            .notNil()
         
     }
     
@@ -110,6 +134,8 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     fileprivate let swipeState = BehaviorRelay<SwipeState?>(value: nil)
     
     fileprivate var viewedProfiles: Set<Profile> = []
+    
+    let locationActor = LocationActor()
     
     init(router: DiscoverProfileRouter) {
         self.router = router
