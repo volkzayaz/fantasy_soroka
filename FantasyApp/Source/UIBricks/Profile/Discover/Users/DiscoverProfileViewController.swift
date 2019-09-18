@@ -20,7 +20,6 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     @IBOutlet weak var locationMessageLabel: UILabel!
     @IBOutlet weak var profilesTableView: UITableView!
     
-    
     lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Profile>>(configureCell: { [unowned self] (_, tableView, ip, x) in
         
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.profileSearchCell,

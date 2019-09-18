@@ -23,34 +23,37 @@ extension DiscoverProfileViewModel {
     
     var mode: Driver<Mode> {
         
-        return Driver
-            .combineLatest(//locationActor.lastKnownAuthStatus,
-                           locationActor.near,
-                           swipeState.asDriver()) { ($0, $1) }
-            .map { (near, swipeState) -> Mode? in
+        return locationActor.lastKnownAuthStatus
+            .flatMapLatest { status -> Driver<Mode?> in
                 
-//                guard status != .denied else {
-//                    return .noLocationPermission
-//                }
-                
-                switch near {
-                    
-                case .bigCity(let name)?:
-                    return .absentCommunity(nearestCity: name)
+                guard status != .denied else {
+                    return .just(.noLocationPermission)
+                }
 
-                case .none:
-                    return .absentCommunity(nearestCity: nil)
-                    
-                case .communities(let x)?:
-                    Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
-                
-                }
-            
-                switch swipeState {
-                case .limit(_)?:    return .profiles
-                case .tillDate(_)?: return .overTheLimit
-                case .none:         return nil
-                }
+                return Driver
+                    .combineLatest(self.locationActor.near,
+                                   self.swipeState.asDriver()) { ($0, $1) }
+                    .map { (near, swipeState) -> Mode? in
+                        
+                        switch near {
+                            
+                        case .bigCity(let name)?:
+                            return .absentCommunity(nearestCity: name)
+                            
+                        case .none:
+                            return .absentCommunity(nearestCity: nil)
+                            
+                        case .communities(let x)?:
+                            Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
+                            
+                        }
+                        
+                        switch swipeState {
+                        case .limit(_)?:    return .profiles
+                        case .tillDate(_)?: return .overTheLimit
+                        case .none:         return nil
+                        }
+                    }
             }
             .notNil()
         
@@ -135,7 +138,7 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     
     fileprivate var viewedProfiles: Set<Profile> = []
     
-    let locationActor = LocationActor()
+    let locationActor = LocationViewModel()
     
     init(router: DiscoverProfileRouter) {
         self.router = router

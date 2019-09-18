@@ -61,7 +61,7 @@ extension Configuration {
 
     private static func registerActors() {
         let actors: [Any] = [
-//            LocationActor(),
+//            LocationViewModel(),
             UserPropertyActor(),
             RoomsActor()
         ]

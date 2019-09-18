@@ -1,5 +1,5 @@
 //
-//  LocationActor.swift
+//  LocationViewModel.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 7/30/19.
@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxCoreLocation
 
-extension LocationActor {
+extension LocationViewModel {
     
     var lastKnownAuthStatus: Driver<CLAuthorizationStatus> {
         return manager.rx.didChangeAuthorization.map { $0.status }
@@ -55,15 +55,15 @@ extension LocationActor {
     
 }
 
-struct LocationActor {
+struct LocationViewModel {
     
     private let manager = CLLocationManager()
     
     init() {
         
         manager.requestWhenInUseAuthorization()
-        manager.startMonitoringSignificantLocationChanges()
-        
+        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        manager.startUpdatingLocation()// startMonitoringSignificantLocationChanges()
         
     }
     

@@ -29,21 +29,21 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
          *     .drive(label.rx.text)
          *     .addDisposableTo(rx_disposeBag)
          */
-        viewModel.locationRequestHidden
-            .drive(onNext: { [unowned self] (hidden) in
-                
-                if hidden {
-                    if self.presentedViewController != nil {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-                else {
-                    let vc = R.storyboard.main.locationRequestViewController()!
-                    self.present(vc, animated: true, completion: nil)
-                }
-                
-            })
-            .disposed(by: rx.disposeBag)
+//        viewModel.locationRequestHidden
+//            .drive(onNext: { [unowned self] (hidden) in
+//                
+//                if hidden {
+//                    if self.presentedViewController != nil {
+//                        self.dismiss(animated: true, completion: nil)
+//                    }
+//                }
+//                else {
+//                    let vc = R.storyboard.main.locationRequestViewController()!
+//                    self.present(vc, animated: true, completion: nil)
+//                }
+//                
+//            })
+//            .disposed(by: rx.disposeBag)
         
     }
     

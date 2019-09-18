@@ -13,18 +13,18 @@ import RxCocoa
 
 extension MainTabBarViewModel {
     
-    var locationRequestHidden: Driver<Bool> {
-        return locationActor.lastKnownAuthStatus.map { x in
-            return x != .denied
-        }
-        .distinctUntilChanged()
-    }
+//    var locationRequestHidden: Driver<Bool> {
+//        return locationActor.lastKnownAuthStatus.map { x in
+//            return x != .denied
+//        }
+//        .distinctUntilChanged()
+//    }
  
 }
 
 struct MainTabBarViewModel : MVVM_ViewModel {
 
-    private let locationActor = LocationActor()
+    //private let locationActor = LocationViewModel()
     
     init(router: MainTabBarRouter) {
         self.router = router
