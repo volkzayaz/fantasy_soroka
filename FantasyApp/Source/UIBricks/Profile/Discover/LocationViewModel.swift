@@ -22,6 +22,7 @@ extension LocationViewModel {
     var near: Driver<Near?> {
         
         return manager.rx.location
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .notNil()
             .flatMapLatest { (newLocation) in
                 return CommunityManager.communities(near: newLocation)

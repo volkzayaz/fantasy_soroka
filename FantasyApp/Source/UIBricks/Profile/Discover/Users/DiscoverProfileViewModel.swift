@@ -59,16 +59,25 @@ extension DiscoverProfileViewModel {
         
     }
     
+    /*
+     
+     -> Location Updates }
+                          } Community
+     -> Teleport Choice  }
+     
+     
+     
+ */
+    
     var profiles: Driver<[Profile]> {
 
-        return Observable.zip(filter, swipeState.notNil()) { ($0, $1) }
+        return swipeState.notNil()
             .take(1)
             .flatMap { _ in
-                return self.filter.asDriver()
+                return appState.changesOf { $0.currentUser?.discoveryFilter }
             }
-            .asDriver(onErrorJustReturn: nil)
             .withLatestFrom(swipeState.asDriver().notNil()) { ($0, $1) }
-            .flatMapLatest { [unowned i = indicator] (filter, swipeState) in
+            .flatMapLatest { [unowned i = indicator] (filter, swipeState) -> Driver<[Profile]> in
                 
                 guard case .limit(let x) = swipeState else {
                     return .just([])
@@ -80,6 +89,7 @@ extension DiscoverProfileViewModel {
                     .asDriver(onErrorJustReturn: [])
                 
             }
+            .asDriver(onErrorJustReturn: [])
     }
     
     var timeLeftText: Driver<String> {
@@ -133,7 +143,6 @@ extension DiscoverProfileViewModel {
 
 struct DiscoverProfileViewModel : MVVM_ViewModel {
     
-    fileprivate let filter = BehaviorRelay<DiscoveryFilter?>(value: nil)
     fileprivate let swipeState = BehaviorRelay<SwipeState?>(value: nil)
     
     fileprivate var viewedProfiles: Set<Profile> = []
@@ -181,7 +190,7 @@ extension DiscoverProfileViewModel {
     }
     
     func presentFilter() {
-        router.presentFilter( filter )
+        router.presentFilter( )
     }
     
 }

@@ -17,14 +17,18 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     var fantasies: Fantasies
     var community: Community?
     
-//    var preferences: SexPreference
-//
     var connections: Connections
 //    var privacy: Privacy
-//
-    //    ////Extract into Application property rather than User property
-    //    var premiumFeatures: Set<PremiumFeature>
     
+    var searchPreferences: SearchPreferences?
+    
+    var discoveryFilter: DiscoveryFilter? {
+        
+        guard let x = searchPreferences,
+              let y = community else { return nil }
+        
+        return DiscoveryFilter(filter: x, community: y)
+    }
     
     enum AuthData: Equatable {
         case email(String)

@@ -72,8 +72,8 @@ extension User {
                     relationshipStatus: relationStatus,
                     photos: .init(public: [], private: []))
         
-//        preferences = .init(lookingFor: [],
-//                            kinks: [])
+        ///TODO: save on server
+        searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = maybeCommunity
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])

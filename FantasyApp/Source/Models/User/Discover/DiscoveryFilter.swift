@@ -8,8 +8,18 @@
 
 import Foundation
 
-struct DiscoveryFilter {
+struct DiscoveryFilter: Equatable {
+    
+    let filter: SearchPreferences
+    let community: Community
+    
+}
+
+struct SearchPreferences: Codable, Equatable {
     let age: Range<Int>
-    let radius: CLLocationDistance
     let gender: Gender
+    
+    static var `default`: SearchPreferences {
+        return SearchPreferences(age: 18..<30, gender: .male)
+    }
 }

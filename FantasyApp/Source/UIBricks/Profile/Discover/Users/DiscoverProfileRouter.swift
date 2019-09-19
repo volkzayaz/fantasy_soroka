@@ -24,10 +24,10 @@ struct DiscoverProfileRouter : MVVM_Router {
         
     }
     
-    func presentFilter(_ filter: BehaviorRelay<DiscoveryFilter?>) {
+    func presentFilter() {
         
         let x = R.storyboard.user.discoveryFilterViewController()!
-        x.viewModel = .init(router: .init(owner: x), filter: filter)
+        x.viewModel = .init(router: .init(owner: x))
         owner.navigationController?.pushViewController(x, animated: true)
         
     }

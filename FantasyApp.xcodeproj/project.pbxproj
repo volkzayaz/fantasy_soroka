@@ -95,6 +95,7 @@
 		7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31D23328A16007B84B0 /* TeleportRouter.swift */; };
 		7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31E23328A16007B84B0 /* TeleportViewController.swift */; };
 		7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31F23328A16007B84B0 /* TeleportViewModel.swift */; };
+		7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -314,6 +315,7 @@
 		7361F31D23328A16007B84B0 /* TeleportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportRouter.swift; sourceTree = "<group>"; };
 		7361F31E23328A16007B84B0 /* TeleportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewController.swift; sourceTree = "<group>"; };
 		7361F31F23328A16007B84B0 /* TeleportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewModel.swift; sourceTree = "<group>"; };
+		7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSearchPreferences.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 			children = (
 				7334CC7522EDC60000495843 /* SetUser.swift */,
 				734C70B82321355F00ED2E91 /* EditProfilePhoto.swift */,
+				7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1811,6 +1814,7 @@
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
+				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,

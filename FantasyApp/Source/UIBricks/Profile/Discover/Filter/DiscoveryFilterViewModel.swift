@@ -25,24 +25,11 @@ extension DiscoveryFilterViewModel {
 
 struct DiscoveryFilterViewModel : MVVM_ViewModel {
     
-    fileprivate let filter: BehaviorRelay<DiscoveryFilter?>
+    fileprivate let form: BehaviorRelay<SearchPreferences>
     
-    init(router: DiscoveryFilterRouter, filter: BehaviorRelay<DiscoveryFilter?>) {
+    init(router: DiscoveryFilterRouter) {
         self.router = router
-        self.filter = filter
-        
-        /**
-         
-         Proceed with initialization here
-         
-         */
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            
-            ///example of passing data back to userProfiles screen
-            filter.accept( DiscoveryFilter(age: 2..<5, radius: 12, gender: .male) )
-            
-        }
+        form = .init(value: User.current?.searchPreferences ?? .default)
         
         /////progress indicator
         
@@ -61,14 +48,17 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
 
 extension DiscoveryFilterViewModel {
     
-    /** Reference any actions ViewModel can handle
-     ** Actions should always be void funcs
-     ** any result should be reflected via corresponding drivers
-     
-     func buttonPressed(labelValue: String) {
-     
-     }
-     
-     */
+    func submit() {
+        
+        Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))
+        router.owner.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    private func updateForm(_ mapper: (inout SearchPreferences) -> Void ) {
+        var x = form.value
+        mapper(&x)
+        form.accept(x)
+    }
     
 }
