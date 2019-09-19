@@ -15,23 +15,21 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
     
-    /**
-     *  Connect any IBOutlets here
-     *  @IBOutlet private weak var label: UILabel!
-     */
-    
+    @IBOutlet weak var genderSwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /**
-         *  Set up any bindings here
-         *  viewModel.labelText
-         *     .drive(label.rx.text)
-         *     .addDisposableTo(rx_disposeBag)
-         */
-        
+      
+        genderSwitch.isOn = viewModel.prefs.gender == .male
+
     }
     
+    @IBAction func genderChanged(_ sender: Any) {
+        viewModel.change(gender:  genderSwitch.isOn ? .male : .female )
+    }
+    
+    @IBAction func apply(_ sender: Any) {
+        viewModel.submit()
+    }
 }
 
 private extension DiscoveryFilterViewController {

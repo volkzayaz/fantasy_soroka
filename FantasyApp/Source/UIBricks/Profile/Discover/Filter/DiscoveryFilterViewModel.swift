@@ -13,13 +13,9 @@ import RxCocoa
 
 extension DiscoveryFilterViewModel {
     
-    /** Reference binding drivers that are going to be used in the corresponding view
-    
-    var text: Driver<String> {
-        return privateTextVar.asDriver().notNil()
+    var prefs: SearchPreferences {
+        return form.value
     }
- 
-     */
     
 }
 
@@ -47,6 +43,10 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
 }
 
 extension DiscoveryFilterViewModel {
+    
+    func change(gender: Gender) {
+        updateForm { $0.gender = gender }
+    }
     
     func submit() {
         

@@ -340,10 +340,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwn-zz-Sqg">
+                                <rect key="frame" x="183" y="86" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="genderChanged:" destination="GF3-Ws-k4L" eventType="valueChanged" id="eB5-0S-G3I"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtf-wO-lMZ">
+                                <rect key="frame" x="24" y="86" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="apply"/>
+                                <connections>
+                                    <action selector="apply:" destination="GF3-Ws-k4L" eventType="touchUpInside" id="eNK-KP-ZfT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="C18-b0-cmC"/>
                     </view>
+                    <connections>
+                        <outlet property="genderSwitch" destination="Qwn-zz-Sqg" id="xJW-Yl-0Re"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nga-Xd-JCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -19,6 +19,7 @@ extension DiscoverProfileViewModel {
         case profiles, overTheLimit
         case noLocationPermission
         case absentCommunity(nearestCity: String?)
+        case noSearchPreferences
     }
     
     var mode: Driver<Mode> {
@@ -32,8 +33,9 @@ extension DiscoverProfileViewModel {
 
                 return Driver
                     .combineLatest(self.locationActor.near,
-                                   self.swipeState.asDriver()) { ($0, $1) }
-                    .map { (near, swipeState) -> Mode? in
+                                   self.swipeState.asDriver(),
+                                   appState.map { $0.currentUser?.searchPreferences == nil }) { ($0, $1, $2) }
+                    .map { (near, swipeState, isFilterEmpty) -> Mode? in
                         
                         switch near {
                             
@@ -46,6 +48,10 @@ extension DiscoverProfileViewModel {
                         case .communities(let x)?:
                             Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
                             
+                        }
+                        
+                        if isFilterEmpty {
+                            return .noSearchPreferences
                         }
                         
                         switch swipeState {
@@ -65,8 +71,6 @@ extension DiscoverProfileViewModel {
                           } Community
      -> Teleport Choice  }
      
-     
-     
  */
     
     var profiles: Driver<[Profile]> {
@@ -74,7 +78,9 @@ extension DiscoverProfileViewModel {
         return swipeState.notNil()
             .take(1)
             .flatMap { _ in
-                return appState.changesOf { $0.currentUser?.discoveryFilter }
+                return appState
+                    .changesOf { $0.currentUser?.discoveryFilter }
+                    .notNil()
             }
             .withLatestFrom(swipeState.asDriver().notNil()) { ($0, $1) }
             .flatMapLatest { [unowned i = indicator] (filter, swipeState) -> Driver<[Profile]> in

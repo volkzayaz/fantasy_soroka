@@ -89,6 +89,10 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                         self.locationMessageLabel.text = "We can't figure out where are you at the moment. Feel free to send us your City at fantasyapp@email.com. Or use teleport"
                     }
                     
+                case .noSearchPreferences:
+                    self.locationMessageLabel.isHidden = false
+                    self.locationMessageLabel.text = "Before we search, set your searching preferences"
+                    
                 }
                 
             })
