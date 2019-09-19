@@ -92,6 +92,9 @@
 		7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3152332301F007B84B0 /* UpdateCommunity.swift */; };
 		7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */; };
 		7361F31B23326CEF007B84B0 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31A23326CEF007B84B0 /* LocationViewModel.swift */; };
+		7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31D23328A16007B84B0 /* TeleportRouter.swift */; };
+		7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31E23328A16007B84B0 /* TeleportViewController.swift */; };
+		7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31F23328A16007B84B0 /* TeleportViewModel.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -308,6 +311,9 @@
 		7361F3152332301F007B84B0 /* UpdateCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommunity.swift; sourceTree = "<group>"; };
 		7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+rx.swift"; sourceTree = "<group>"; };
 		7361F31A23326CEF007B84B0 /* LocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		7361F31D23328A16007B84B0 /* TeleportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportRouter.swift; sourceTree = "<group>"; };
+		7361F31E23328A16007B84B0 /* TeleportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewController.swift; sourceTree = "<group>"; };
+		7361F31F23328A16007B84B0 /* TeleportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewModel.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -471,6 +477,7 @@
 		73097BFD231D3CEB00B71053 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				7361F31C23328A03007B84B0 /* Teleport */,
 				73097C0D231D42F000B71053 /* ProfilePhotoCollection */,
 				73097C06231D3FB400B71053 /* Cell */,
 				73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */,
@@ -990,6 +997,16 @@
 				7361F31323322BC5007B84B0 /* CommunityManager.swift */,
 			);
 			path = Community;
+			sourceTree = "<group>";
+		};
+		7361F31C23328A03007B84B0 /* Teleport */ = {
+			isa = PBXGroup;
+			children = (
+				7361F31D23328A16007B84B0 /* TeleportRouter.swift */,
+				7361F31E23328A16007B84B0 /* TeleportViewController.swift */,
+				7361F31F23328A16007B84B0 /* TeleportViewModel.swift */,
+			);
+			path = Teleport;
 			sourceTree = "<group>";
 		};
 		7379ECFA2309713200E661A7 /* List */ = {
@@ -1684,11 +1701,13 @@
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
+				7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
 				84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
 				7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
+				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
@@ -1776,6 +1795,7 @@
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
+				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,

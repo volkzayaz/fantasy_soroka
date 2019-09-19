@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxCocoa
 
 struct EditProfileRouter : MVVM_Router {
     
@@ -19,6 +20,14 @@ struct EditProfileRouter : MVVM_Router {
         
         let x = R.storyboard.user.userProfileViewController()!
         x.viewModel = .init(router: .init(owner: x), user: user)
+        owner.navigationController?.pushViewController(x, animated: true)
+        
+    }
+    
+    func presentTeleport(form: BehaviorRelay<EditProfileForm>) {
+        
+        let x = R.storyboard.user.teleportViewController()!
+        x.viewModel = .init(router: .init(owner: x), form: form)
         owner.navigationController?.pushViewController(x, animated: true)
         
     }

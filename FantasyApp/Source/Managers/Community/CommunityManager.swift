@@ -22,4 +22,8 @@ extension CommunityManager {
         
     }
     
+    static func allCommunities() -> Single<[Community]> {
+        return Community.query.rx.fetchAll()
+    }
+    
 }

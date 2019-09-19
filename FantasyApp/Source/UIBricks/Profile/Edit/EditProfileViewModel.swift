@@ -40,7 +40,11 @@ extension EditProfileViewModel {
                                                               value: user.bio.relationshipStatus.description)
                     ])
                 
-                return [about, account]
+                let community = SectionModel(model: R.string.localizable.editProfileAbout(),
+                                         items: [Model.attribute("Community",
+                                                                 value: user.community?.name ?? "No community") ])
+                
+                return [about, account, community]
                 
             }
         
@@ -126,6 +130,13 @@ extension EditProfileViewModel {
                 Dispatcher.dispatch(action: SetUser(user: user))
             })
             .disposed(by: bag)
+    }
+    
+    func cellClicked(ip: IndexPath) {
+        
+        guard ip.section == 2 else { return }
+        
+        router.presentTeleport(form: form)
     }
     
     private func updateForm(_ mapper: (inout EditProfileForm) -> Void ) {

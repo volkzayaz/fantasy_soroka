@@ -37,6 +37,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 cell.attributeLabel.text = value
                 
                 return cell
+                
             }
             
         }, titleForHeaderInSection: { dataSource, index in
@@ -70,6 +71,12 @@ class EditProfileViewController: UIViewController, MVVM_View {
         
         viewModel.dataSource
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] (x) in
+                self.viewModel.cellClicked(ip: x)
+            })
             .disposed(by: rx.disposeBag)
         
     }
