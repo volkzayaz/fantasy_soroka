@@ -96,6 +96,7 @@
 		7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31E23328A16007B84B0 /* TeleportViewController.swift */; };
 		7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31F23328A16007B84B0 /* TeleportViewModel.swift */; };
 		7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */; };
+		7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3262333F328007B84B0 /* FantasyCardsResource.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -316,6 +317,7 @@
 		7361F31E23328A16007B84B0 /* TeleportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewController.swift; sourceTree = "<group>"; };
 		7361F31F23328A16007B84B0 /* TeleportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewModel.swift; sourceTree = "<group>"; };
 		7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSearchPreferences.swift; sourceTree = "<group>"; };
+		7361F3262333F328007B84B0 /* FantasyCardsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCardsResource.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -1012,6 +1014,14 @@
 			path = Teleport;
 			sourceTree = "<group>";
 		};
+		7361F3252333F2FC007B84B0 /* FantasyCards */ = {
+			isa = PBXGroup;
+			children = (
+				7361F3262333F328007B84B0 /* FantasyCardsResource.swift */,
+			);
+			path = FantasyCards;
+			sourceTree = "<group>";
+		};
 		7379ECFA2309713200E661A7 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1314,6 +1324,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				734C52A42327AC1300B54510 /* User */,
 				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
 			);
@@ -1763,6 +1774,7 @@
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
+				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,

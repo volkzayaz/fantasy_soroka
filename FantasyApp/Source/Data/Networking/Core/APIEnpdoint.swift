@@ -12,6 +12,7 @@ import Moya
 public enum APIEnpdoint {
     case updateAvatar
     
+    case fantasySwipeState
     
     
 
@@ -30,6 +31,8 @@ public enum APIEnpdoint {
         switch self {
         case .updateAvatar:
             return [.path(.users), .path(.me), .path(.avatar)]
+        case .fantasySwipeState:
+            return [.value("users/me/swipe-state")]
         }
     }
 }
@@ -49,6 +52,8 @@ extension APIEnpdoint {
         switch self {
         case .updateAvatar:
             return .put
+        case .fantasySwipeState:
+            return .get
         }
     }
 }

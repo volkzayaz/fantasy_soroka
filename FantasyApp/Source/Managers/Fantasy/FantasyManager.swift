@@ -23,11 +23,15 @@ extension Fantasy.Manager {
     */
     static func fetchSwipeState() -> Single< AppState.SwipeState.Restriction > {
         
+//        FantasySwipeState().rx.request
+//            .subscribe(onSuccess: { (res) in
+//                print(res)
+//            }) { (error) in
+//                print(error)
+//        }
+        
         //fatalError("Implement me")
         return .just( .swipeCount(5) )
-        
-        
-        //return .just( .waiting(till: Date(timeIntervalSinceNow: 1234)) )
     }
     
     static func fetchMainCards(localLimit: Int) -> Single< [Fantasy.Card] > {
