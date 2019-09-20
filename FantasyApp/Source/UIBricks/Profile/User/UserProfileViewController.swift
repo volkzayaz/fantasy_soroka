@@ -56,7 +56,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
 extension UserProfileViewController {
     
     @IBAction func relationAction(_ sender: Any) {
-        
+        viewModel.relationAction()
     }
     
 }

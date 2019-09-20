@@ -159,3 +159,26 @@ struct RejectConnection: AuthorizedAPIResource {
     let with: User
     
 }
+
+struct GetConnectionRequests: AuthorizedAPIResource {
+    
+    var path: String {
+        return "/users/me/connections/requests"
+    }
+    
+    var method: Moya.Method {
+        return .get
+    }
+    
+    struct Response: Codable {
+        let userId: String
+        let status: ConnectionRequestType
+    }
+    
+    typealias responseType = [Response]
+    
+    var task: Task {
+        return .requestPlain
+    }
+    
+}

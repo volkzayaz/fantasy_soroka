@@ -32,4 +32,19 @@ extension ConnectionManager {
             .rx.request.map { _ in }
     }
     
+    static func inboundRequests() -> Single<[User]> {
+        
+        return GetConnectionRequests().rx.request
+            .flatMap { r -> Single<[User]> in
+                
+                return User.query
+                    .whereKey("objectId", containedIn: r.map { $0.userId })
+                    .rx.fetchAllObjects()
+                    .map { u in
+                        u.compactMap { try? User(pfUser: $0 as! PFUser) }
+                    }
+                
+                }
+    }
+    
 }

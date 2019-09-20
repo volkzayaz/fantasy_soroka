@@ -87,6 +87,10 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(bio.name)
     }
+ 
+    static var query: PFQuery<PFObject> {
+        return PFUser.query()!.includeKey("belongsTo")
+    }
     
 }
 

@@ -19,8 +19,7 @@ extension DiscoveryManager {
             return .just([])
         }
         
-        let q = PFUser.query()!
-        q.includeKey("belongsTo")
+        let q = User.query
         q.whereKey("belongsTo", equalTo: community.pfObject)
         q.whereKey("objectId", notEqualTo: User.current!.id)
         q.whereKey("gender", equalTo: filter.filter.gender.rawValue)

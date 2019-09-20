@@ -100,6 +100,9 @@
 		7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F32B2334EF6B007B84B0 /* Connection.swift */; };
 		7361F32F2334F442007B84B0 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F32E2334F442007B84B0 /* ConnectionManager.swift */; };
 		7361F33123350265007B84B0 /* ConectionResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33023350265007B84B0 /* ConectionResource.swift */; };
+		7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33523351F64007B84B0 /* ConnectionRouter.swift */; };
+		7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33623351F64007B84B0 /* ConnectionViewController.swift */; };
+		7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33723351F64007B84B0 /* ConnectionViewModel.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -324,6 +327,9 @@
 		7361F32B2334EF6B007B84B0 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		7361F32E2334F442007B84B0 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		7361F33023350265007B84B0 /* ConectionResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConectionResource.swift; sourceTree = "<group>"; };
+		7361F33523351F64007B84B0 /* ConnectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRouter.swift; sourceTree = "<group>"; };
+		7361F33623351F64007B84B0 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
+		7361F33723351F64007B84B0 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -620,6 +626,7 @@
 		7312B07522D741D500DB0F36 /* UIBricks */ = {
 			isa = PBXGroup;
 			children = (
+				7361F33223351F2A007B84B0 /* Connections */,
 				84C1D0422327BA8200648DE1 /* Rooms */,
 				7322310D23040DA4009DD37F /* Fantasy */,
 				7353BDE522EC98C5001D46A6 /* Profile */,
@@ -1045,6 +1052,16 @@
 				7361F32E2334F442007B84B0 /* ConnectionManager.swift */,
 			);
 			path = Connection;
+			sourceTree = "<group>";
+		};
+		7361F33223351F2A007B84B0 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				7361F33523351F64007B84B0 /* ConnectionRouter.swift */,
+				7361F33623351F64007B84B0 /* ConnectionViewController.swift */,
+				7361F33723351F64007B84B0 /* ConnectionViewModel.swift */,
+			);
+			path = Connections;
 			sourceTree = "<group>";
 		};
 		7379ECFA2309713200E661A7 /* List */ = {
@@ -1772,6 +1789,7 @@
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
 				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
+				7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
 				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,
@@ -1813,6 +1831,7 @@
 				7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */,
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
+				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
 				73E6012B22EC5CFE00F767BF /* User.swift in Sources */,
@@ -1867,6 +1886,7 @@
 				84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */,
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
+				7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */,
 				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
 				84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */,
