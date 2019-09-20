@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya
 
 struct FantasySwipeState: AuthorizedAPIResource {
     
@@ -15,10 +16,18 @@ struct FantasySwipeState: AuthorizedAPIResource {
         let wouldBeUpdatedAt: Date?
     }
     
-    var endpoint: APIEnpdoint {
-        return .fantasySwipeState
+    typealias responseType = Response
+    
+    var method: Moya.Method {
+        return .get
     }
     
-    typealias responseType = Response
+    var path: String {
+        return "users/me/swipe-state"
+    }
+    
+    var task: Task {
+        return .requestPlain
+    }
     
 }

@@ -97,6 +97,9 @@
 		7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31F23328A16007B84B0 /* TeleportViewModel.swift */; };
 		7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */; };
 		7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3262333F328007B84B0 /* FantasyCardsResource.swift */; };
+		7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F32B2334EF6B007B84B0 /* Connection.swift */; };
+		7361F32F2334F442007B84B0 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F32E2334F442007B84B0 /* ConnectionManager.swift */; };
+		7361F33123350265007B84B0 /* ConectionResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33023350265007B84B0 /* ConectionResource.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -318,6 +321,9 @@
 		7361F31F23328A16007B84B0 /* TeleportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewModel.swift; sourceTree = "<group>"; };
 		7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSearchPreferences.swift; sourceTree = "<group>"; };
 		7361F3262333F328007B84B0 /* FantasyCardsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCardsResource.swift; sourceTree = "<group>"; };
+		7361F32B2334EF6B007B84B0 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		7361F32E2334F442007B84B0 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		7361F33023350265007B84B0 /* ConectionResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConectionResource.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -754,6 +760,7 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7361F32D2334F436007B84B0 /* Connection */,
 				7361F31223322BB4007B84B0 /* Community */,
 				734C52A8232A376800B54510 /* ServerBusinessLogic */,
 				734C529123266CD400B54510 /* Discover */,
@@ -843,6 +850,7 @@
 		7334CC7122ED9A7B00495843 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				7361F32A2334EF62007B84B0 /* Connection */,
 				734C52AB232A84B500B54510 /* Photo */,
 				734C529F2326A77F00B54510 /* Discover */,
 				73097BF7231D39C100B71053 /* Profile */,
@@ -919,6 +927,7 @@
 		734C52A42327AC1300B54510 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				7361F33023350265007B84B0 /* ConectionResource.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1020,6 +1029,22 @@
 				7361F3262333F328007B84B0 /* FantasyCardsResource.swift */,
 			);
 			path = FantasyCards;
+			sourceTree = "<group>";
+		};
+		7361F32A2334EF62007B84B0 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				7361F32B2334EF6B007B84B0 /* Connection.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		7361F32D2334F436007B84B0 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				7361F32E2334F442007B84B0 /* ConnectionManager.swift */,
+			);
+			path = Connection;
 			sourceTree = "<group>";
 		};
 		7379ECFA2309713200E661A7 /* List */ = {
@@ -1770,7 +1795,9 @@
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
+				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
+				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
@@ -1820,6 +1847,7 @@
 				841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,
+				7361F32F2334F442007B84B0 /* ConnectionManager.swift in Sources */,
 				84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */,
 				73E6011F22EC3A4000F767BF /* LoginViewController.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,

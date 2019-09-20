@@ -23,6 +23,9 @@ class UserProfileViewController: UIViewController, MVVM_View {
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var profileTableView: UITableView!
     
+    @IBOutlet weak var relationStatusLabel: UILabel!
+    @IBOutlet weak var relationActionButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -37,6 +40,22 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             indicatorStackView.addArrangedSubview(x)
         }
+        
+        viewModel.relationLabel
+            .drive(relationStatusLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.relationActionTitle
+            .drive(relationActionButton.rx.title(for: .normal))
+            .disposed(by: rx.disposeBag)
+        
+    }
+    
+}
+
+extension UserProfileViewController {
+    
+    @IBAction func relationAction(_ sender: Any) {
         
     }
     

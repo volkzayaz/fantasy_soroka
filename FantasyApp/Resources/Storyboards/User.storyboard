@@ -299,12 +299,42 @@
                                     <constraint firstAttribute="height" constant="3" id="8vU-Tq-fR8"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50A-mP-roc">
+                                <rect key="frame" x="87" y="754" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relation status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh8-lU-h8b">
+                                        <rect key="frame" x="8" y="8" width="224" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Q6-ClW">
+                                        <rect key="frame" x="8" y="49" width="94" height="30"/>
+                                        <state key="normal" title="Action Button"/>
+                                        <connections>
+                                            <action selector="relationAction:" destination="E4i-Iq-Sbq" eventType="touchUpInside" id="Jxs-U7-CAC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.3181720890410959" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="3W7-gm-crL"/>
+                                    <constraint firstItem="Kh8-lU-h8b" firstAttribute="leading" secondItem="50A-mP-roc" secondAttribute="leading" constant="8" id="8x2-s0-E00"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kh8-lU-h8b" secondAttribute="trailing" constant="8" id="dNg-TC-g5N"/>
+                                    <constraint firstItem="Kh8-lU-h8b" firstAttribute="top" secondItem="50A-mP-roc" secondAttribute="top" constant="8" id="mMl-UT-IEE"/>
+                                    <constraint firstItem="Avj-Q6-ClW" firstAttribute="top" secondItem="Kh8-lU-h8b" secondAttribute="bottom" constant="20.5" id="rXh-LY-GEP"/>
+                                    <constraint firstAttribute="width" constant="240" id="wG9-rL-3pL"/>
+                                    <constraint firstItem="Avj-Q6-ClW" firstAttribute="leading" secondItem="Kh8-lU-h8b" secondAttribute="leading" id="zRb-Me-5N0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dhp-7F-cz4" firstAttribute="top" secondItem="UeB-Iu-akN" secondAttribute="top" id="0lL-3K-Es1"/>
                             <constraint firstItem="dhp-7F-cz4" firstAttribute="leading" secondItem="UeB-Iu-akN" secondAttribute="leading" constant="10" id="0uH-hC-liB"/>
+                            <constraint firstItem="50A-mP-roc" firstAttribute="centerX" secondItem="UeB-Iu-akN" secondAttribute="centerX" id="2eA-X3-nsj"/>
                             <constraint firstItem="H4V-fG-Dng" firstAttribute="trailing" secondItem="UeB-Iu-akN" secondAttribute="trailing" id="DTq-jP-RiT"/>
+                            <constraint firstItem="50A-mP-roc" firstAttribute="bottom" secondItem="UeB-Iu-akN" secondAttribute="bottom" constant="20" id="Jh6-MO-ipk"/>
                             <constraint firstAttribute="bottom" secondItem="H4V-fG-Dng" secondAttribute="bottom" id="Jjq-cX-QvL"/>
                             <constraint firstItem="dhp-7F-cz4" firstAttribute="trailing" secondItem="UeB-Iu-akN" secondAttribute="trailing" constant="-10" id="Q7r-LF-Ztj"/>
                             <constraint firstItem="H4V-fG-Dng" firstAttribute="top" secondItem="rrs-r4-IZO" secondAttribute="bottom" constant="8" id="RHz-Re-BaM"/>
@@ -319,6 +349,8 @@
                         <outlet property="indicatorStackView" destination="dhp-7F-cz4" id="tcH-tn-uXW"/>
                         <outlet property="photosCollectionView" destination="rrs-r4-IZO" id="mKd-ur-LNP"/>
                         <outlet property="profileTableView" destination="H4V-fG-Dng" id="juQ-X5-Hoa"/>
+                        <outlet property="relationActionButton" destination="Avj-Q6-ClW" id="edO-U7-hSS"/>
+                        <outlet property="relationStatusLabel" destination="Kh8-lU-h8b" id="3Ep-wi-klB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKK-n0-TcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

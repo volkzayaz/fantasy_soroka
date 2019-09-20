@@ -51,17 +51,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         
     };
     
-    struct SexPreference: Equatable {
-        
-        var lookingFor: [Gender]
-        var kinks: Set<Kink>
-        
-        enum Kink {
-            case bj, bdsm, MILF
-        };
-        
-    };
-    
     struct Connections: Equatable, Codable {
         
         var likeRequests: [UserSlice]

@@ -10,9 +10,8 @@ import Foundation
 import Moya
 import RxSwift
 
-public protocol APIResource: TargetType, Encodable, ReactiveCompatible {
-    var endpoint: APIEnpdoint { get }
-
+public protocol APIResource: TargetType, ReactiveCompatible {
+    
     associatedtype responseType: Decodable
 }
 
@@ -22,20 +21,8 @@ extension APIResource {
         return URL(string: "https://apidev.fantasyapp.com/api")!
     }
 
-    var path: String {
-        return endpoint.path
-    }
-
-    var method: Moya.Method {
-        return endpoint.method
-    }
-
     var sampleData: Data {
         return Data()
-    }
-
-    var task: Task {
-        return .requestJSONEncodable(self)
     }
 
     var validationType: ValidationType {

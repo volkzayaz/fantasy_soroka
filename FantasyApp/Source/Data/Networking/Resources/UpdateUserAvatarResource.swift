@@ -10,10 +10,7 @@ import Foundation
 import Moya
 
 struct UpdateUserAvatarResource: AuthorizedAPIResource {
-    var endpoint: APIEnpdoint {
-        return .updateAvatar
-    }
-
+    
     typealias responseType = Avatar
 
     private let image: UIImage
@@ -24,6 +21,14 @@ struct UpdateUserAvatarResource: AuthorizedAPIResource {
 
     enum CodingKeys: String, CodingKey {
         case imageData = "image"
+    }
+    
+    var method: Moya.Method {
+        return .put
+    }
+    
+    var path: String {
+        return "users/me/avatar"
     }
     
     var validationType: ValidationType {

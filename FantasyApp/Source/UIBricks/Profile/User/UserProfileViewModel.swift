@@ -49,6 +49,34 @@ extension UserProfileViewModel {
         return res
     }
     
+    var relationLabel: Driver<String> {
+        return relationshipState.asDriver().notNil()
+            .map { x in
+                switch x {
+                case .absent:              return "No relation sho far"
+                case .incomming(_): return "User liked you"
+                case .outgoing(_):  return "You liked this user"
+                case .rejected:            return "You've been rejected"
+                case .mutual:              return "You both liked each other"
+                }
+        }
+    }
+    
+    var relationActionTitle: Driver<String> {
+        return relationshipState.asDriver()
+            .map { x -> String? in
+                switch x {
+                case .absent?:       return "Like user"
+                case .incomming(_)?:        return "Decide"
+                case .outgoing(_)?:         return nil
+                case .rejected?:            return nil
+                case .mutual?:              return nil
+                case .none:                 return nil
+                }
+            }
+            .notNil()
+    }
+    
     enum Photo {
         case nothing
         case url(String)
@@ -66,16 +94,18 @@ extension UserProfileViewModel {
 struct UserProfileViewModel : MVVM_ViewModel {
     
     fileprivate let user: User
+    fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
     
     init(router: UserProfileRouter, user: User) {
         self.router = router
         self.user = user
         
-        /**
-         
-         Proceed with initialization here
-         
-         */
+        if user != User.current! {
+            ConnectionManager.relationStatus(with: user)
+                .asObservable()
+                .bind(to: relationshipState)
+                .disposed(by: bag)
+        }
         
         /////progress indicator
         
@@ -94,14 +124,70 @@ struct UserProfileViewModel : MVVM_ViewModel {
 
 extension UserProfileViewModel {
     
-    /** Reference any actions ViewModel can handle
-     ** Actions should always be void funcs
-     ** any result should be reflected via corresponding drivers
-     
-     func buttonPressed(labelValue: String) {
-     
-     }
-     
-     */
+    func relationAction() {
+        
+        if case .absent? = relationshipState.value {
+        
+            relationshipState.accept( .outgoing(request: .like))
+            
+            let _ = ConnectionManager.like(user: user)
+                .do(onError: { [weak r = relationshipState] (er) in
+                    r?.accept(.absent)
+                })
+                .silentCatch(handler: router.owner)
+            
+            return
+        }
+        
+        if case .incomming(_)? = relationshipState.value {
+            
+            router.owner.showDialog(title: "Pick Action", text: "", style: .alert,
+                                    actions: [
+                                        UIAlertAction(title: "Like",
+                                                      style: .default,
+                                                      handler: { (_) in
+                                                        self.likeBack()
+                                        }),
+                                        UIAlertAction(title: "Reject",
+                                                      style: .default,
+                                                      handler: { (_) in
+                                                        self.reject()
+                                        }),
+                                        UIAlertAction(title: "Cancel",
+                                                      style: .cancel,
+                                                      handler: nil),
+                ])
+            return
+        }
+        
+    }
+    
+    private func likeBack() {
+        let copy = relationshipState.value
+        
+        relationshipState.accept( .mutual )
+        
+        let _ = ConnectionManager.likeBack(user: user)
+            .do(onError: { [weak r = relationshipState] (er) in
+                r?.accept(copy)
+            })
+            .silentCatch(handler: router.owner)
+        
+        return
+    }
+    
+    private func reject() {
+        let copy = relationshipState.value
+        
+        relationshipState.accept( .rejected )
+        
+        let _ = ConnectionManager.reject(user: user)
+            .do(onError: { [weak r = relationshipState] (er) in
+                r?.accept(copy)
+            })
+            .silentCatch(handler: router.owner)
+        
+        return
+    }
     
 }

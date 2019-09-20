@@ -10,9 +10,10 @@ import Foundation
 import Moya
 
 public enum APIEnpdoint {
-    case updateAvatar
     
-    case fantasySwipeState
+    
+    
+    
     
     
 
@@ -29,10 +30,7 @@ public enum APIEnpdoint {
 
     private var components: [PathComponent] {
         switch self {
-        case .updateAvatar:
-            return [.path(.users), .path(.me), .path(.avatar)]
-        case .fantasySwipeState:
-            return [.value("users/me/swipe-state")]
+        
         }
     }
 }
@@ -50,10 +48,7 @@ extension APIEnpdoint {
 
     public var method: Moya.Method {
         switch self {
-        case .updateAvatar:
-            return .put
-        case .fantasySwipeState:
-            return .get
+        
         }
     }
 }
