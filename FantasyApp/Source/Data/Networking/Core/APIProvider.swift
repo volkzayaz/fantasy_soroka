@@ -26,32 +26,31 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
         completion: @escaping (_ result: Result<T.responseType, Error>) -> Void) -> Cancellable {
 
         return super.request(.target(resource), callbackQueue: callbackQueue, progress: { responseProgress in
-            do {
-                if let entity = try responseProgress.response?.map(T.responseType.self) {
-                    progress?(.value(entity))
-                }
-                else if let p = responseProgress.progressObject {
-                    progress?(.progress(p))
-                }
-            } catch {
-                // TODO: error handling for progress response mapping?
-                debugPrint(error.localizedDescription)
+            
+            if let p = responseProgress.progressObject {
+                progress?(.progress(p))
             }
+            
         }) { result in
             switch result {
             case .success(let response):
-                do {
-                    if let maybeError = try? response.map(GenericAPIError.self) {
-                        return completion(.failure( FantasyError.apiError(maybeError) ) )
-                    }
-                    
-                    let entity = try response.map(T.responseType.self)
-                    completion(.success(entity))
-                } catch {
-                    completion(.failure(MoyaError.jsonMapping(response)))
+                
+                if let maybeError = try? response.map(GenericAPIError.self) {
+                    return completion(.failure( FantasyError.apiError(maybeError) ) )
                 }
+                
+                let entity: T.responseType
+                do {
+                    entity = try response.mapFantasyResponse()
+                } catch {
+                    return completion(.failure(MoyaError.jsonMapping(response)))
+                }
+                
+                completion(.success(entity))
+                
             case .failure(let error):
                 completion(.failure(error))
+                
             }
         }
     }
@@ -64,4 +63,41 @@ extension APIProvider {
 struct GenericAPIError: Decodable {
     let error: String
     let message: String
+}
+
+extension Moya.Response {
+    
+    struct Wrapped<T: Decodable> : Decodable {
+        let value: T
+    }
+    
+    func mapFantasyResponse<T: Decodable>() throws -> T {
+        
+        ///We just want to represent Empty data response
+        /// as Optional<T>
+        ///while Moya's default behaviour in such case is Error
+        
+        guard data.count > 0 else {
+            
+            let fakeJSONData = """
+                                { "value": null }
+                               """.data(using: .utf8)!
+            
+            do {
+                return (try JSONDecoder().decode(Wrapped<T>.self, from: fakeJSONData)).value
+            } catch {
+                throw FantasyError.generic(description: "Can't map \(String(describing: T.self)) from empty response")
+            }
+            
+        }
+        
+        
+        do {
+            return try JSONDecoder().decode(T.self, from: data)
+        }
+        catch (let e) { throw e }
+        
+        
+    }
+    
 }

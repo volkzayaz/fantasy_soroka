@@ -45,7 +45,7 @@ struct GetConnection: AuthorizedAPIResource {
         return .requestPlain
     }
     
-    typealias responseType = Response
+    typealias responseType = Response?
     
     let with: User
 }

@@ -14,7 +14,7 @@ extension ConnectionManager {
     
     static func relationStatus(with user: User) -> Single<Connection> {
         return GetConnection(with: user).rx.request
-            .map { $0.toNative }
+            .map { $0?.toNative ?? .absent }
     }
     
     static func like(user: User) -> Single<Void> {
