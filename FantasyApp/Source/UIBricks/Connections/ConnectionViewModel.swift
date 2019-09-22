@@ -15,9 +15,11 @@ extension ConnectionViewModel {
     
     var requests: Driver<[User]> {
         
-        return reloadTrigger.asDriver().flatMapLatest { [unowned i = indicator] _ in
+        return reloadTrigger.asDriver().flatMapLatest { [unowned i = indicator,
+                                                         unowned o = router.owner] _ in
             return ConnectionManager.inboundRequests()
                 .trackView(viewIndicator: i)
+                .silentCatch(handler: o)
                 .asDriver(onErrorJustReturn: [])
         }
         

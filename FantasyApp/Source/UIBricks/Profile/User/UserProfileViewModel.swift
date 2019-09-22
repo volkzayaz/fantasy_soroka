@@ -53,7 +53,7 @@ extension UserProfileViewModel {
         return relationshipState.asDriver().notNil()
             .map { x in
                 switch x {
-                case .absent:              return "No relation sho far"
+                case .absent:              return "No relation so far"
                 case .incomming(_): return "User liked you"
                 case .outgoing(_):  return "You liked this user"
                 case .rejected:            return "You've been rejected"
@@ -64,17 +64,17 @@ extension UserProfileViewModel {
     
     var relationActionTitle: Driver<String> {
         return relationshipState.asDriver()
-            .map { x -> String? in
+            .map { x -> String in
                 switch x {
                 case .absent?:       return "Like user"
                 case .incomming(_)?:        return "Decide"
-                case .outgoing(_)?:         return nil
-                case .rejected?:            return nil
-                case .mutual?:              return nil
-                case .none:                 return nil
+                case .outgoing(_)?:         return ""
+                case .rejected?:            return ""
+                case .mutual?:              return ""
+                case .none:                 return ""
                 }
             }
-            .notNil()
+        
     }
     
     enum Photo {
@@ -103,6 +103,7 @@ struct UserProfileViewModel : MVVM_ViewModel {
         if user != User.current! {
             ConnectionManager.relationStatus(with: user)
                 .asObservable()
+                .silentCatch(handler: router.owner)
                 .bind(to: relationshipState)
                 .disposed(by: bag)
         }
@@ -135,6 +136,7 @@ extension UserProfileViewModel {
                     r?.accept(.absent)
                 })
                 .silentCatch(handler: router.owner)
+                .subscribe()
             
             return
         }
@@ -172,6 +174,7 @@ extension UserProfileViewModel {
                 r?.accept(copy)
             })
             .silentCatch(handler: router.owner)
+            .subscribe()
         
         return
     }
@@ -186,6 +189,7 @@ extension UserProfileViewModel {
                 r?.accept(copy)
             })
             .silentCatch(handler: router.owner)
+            .subscribe()
         
         return
     }

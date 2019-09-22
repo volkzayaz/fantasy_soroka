@@ -30,14 +30,36 @@ struct GetConnection: AuthorizedAPIResource {
         
         let userId: String
         let targetUserId: String
-        let connectType: String
+        let connectTypes: [ConnectionRequestType]
         fileprivate let status: ConnectionStatus
         let responseConnectType: String?
 
         var toNative: Connection {
 
-            return .absent
-
+            guard let connectType = connectTypes.first,
+                  let currentUser = User.current?.id else {
+                fatalErrorInDebug("Can't determine connect type, or currentUser is not defined")
+                return .absent
+            }
+            
+            if case .rejected = status {
+                return .rejected
+            }
+            
+            if case .connected = status {
+                return .mutual
+            }
+            
+            if targetUserId == currentUser {
+                return .incomming(request: connectType)
+            } else if userId == currentUser {
+                return .outgoing(request: connectType)
+            }
+            else {
+                fatalErrorInDebug("currentUser is not part of this connection \(self)")
+                return .absent
+            }
+            
         }
     }
     
@@ -54,7 +76,7 @@ struct GetConnection: AuthorizedAPIResource {
 struct UpsertConnection: AuthorizedAPIResource {
     
     var path: String {
-        return "​​users​/me/connections​/\(with.id)"
+        return "users/me/connections/\(with.id)"
     }
     
     var method: Moya.Method {
@@ -65,7 +87,7 @@ struct UpsertConnection: AuthorizedAPIResource {
         
         let userId: String
         let targetUserId: String
-        let connectType: String
+        let connectTypes: String
         let status: ConnectionRequestType
         let responseConnectType: String?
         //
@@ -76,7 +98,7 @@ struct UpsertConnection: AuthorizedAPIResource {
         //        }
     }
     
-    typealias responseType = Response?
+    typealias responseType = Response
     
     var task: Task {
         return .requestParameters(parameters: ["connectionType": type.rawValue],
@@ -90,7 +112,7 @@ struct UpsertConnection: AuthorizedAPIResource {
 struct AcceptConnection: AuthorizedAPIResource {
     
     var path: String {
-        return "​​users​/me​/connections​/\(with.id)/response"
+        return "users/me/connections/\(with.id)/response"
     }
     
     var method: Moya.Method {

@@ -14,7 +14,7 @@ import RxDataSources
 
 class ConnectionViewController: UIViewController, MVVM_View {
     
-    var viewModel: ConnectionViewModel!
+    lazy var viewModel: ConnectionViewModel! = ConnectionViewModel(router: .init(owner: self))
     
     @IBOutlet weak var tableView: UITableView!
     

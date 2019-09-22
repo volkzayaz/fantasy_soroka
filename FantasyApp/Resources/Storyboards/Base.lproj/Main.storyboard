@@ -240,10 +240,10 @@
             </objects>
             <point key="canvasLocation" x="2488" y="1444"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--ConnectionViewController-->
         <scene sceneID="5yc-Sp-wso">
             <objects>
-                <viewControllerPlaceholder id="Exy-I4-w64" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="ConnectionViewController" id="Exy-I4-w64" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="vGO-jx-WX6"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCf-b0-Zmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
