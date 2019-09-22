@@ -147,9 +147,7 @@ struct DeleteConnection: AuthorizedAPIResource {
         return .delete
     }
     
-    ///TODO: this should really be just Void
-    struct Empty: Codable {}
-    typealias responseType = Empty
+    typealias responseType = EmptyResponse
     
     var task: Task {
         return .requestPlain

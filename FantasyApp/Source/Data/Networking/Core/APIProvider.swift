@@ -101,3 +101,6 @@ extension Moya.Response {
     }
     
 }
+
+///TODO: this should really be just Void
+struct EmptyResponse: Codable {}

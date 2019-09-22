@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum ImageValidationError: Error {
     case nudity
@@ -17,26 +18,28 @@ enum ImageValidationError: Error {
 enum ImageValidator {}
 extension ImageValidator {
     
-    static func validate(image: UIImage) throws {
+    static func validate(image: UIImage) -> Single<Void> {
 
         ///Everything's valid so far
         
         ///TODO: add nudity processing using CoreML
         
-//        guard let personciImage = CIImage(image: photo) else {
-//            return
-//        }
-//
-//        let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
-//        let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: accuracy)
-//        let hasFace = faceDetector?.features(in: personciImage).count ?? 0 > 0
-//
-//        guard hasFace else {
-//            print("no face")
-//            return
-//        }
+        //        guard let personciImage = CIImage(image: photo) else {
+        //            return
+        //        }
+        //
+        //        let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+        //        let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: accuracy)
+        //        let hasFace = faceDetector?.features(in: personciImage).count ?? 0 > 0
+        //
+        //        guard hasFace else {
+        //            print("no face")
+        //            return
+        //        }
         
-        return
+        return ValidateProfileImage(image: image).rx.request
+            .map { _ in }
+        
     }
     
 }
