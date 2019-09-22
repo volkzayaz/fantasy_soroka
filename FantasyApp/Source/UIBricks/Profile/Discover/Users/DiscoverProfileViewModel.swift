@@ -24,10 +24,10 @@ extension DiscoverProfileViewModel {
     
     var mode: Driver<Mode> {
         
-        return locationActor.lastKnownAuthStatus
+        return locationActor.needsLocationPermission
             .flatMapLatest { status -> Driver<Mode?> in
                 
-                guard status != .denied else {
+                guard status == false else {
                     return .just(.noLocationPermission)
                 }
 
@@ -38,16 +38,15 @@ extension DiscoverProfileViewModel {
                     .map { (near, swipeState, isFilterEmpty) -> Mode? in
                         
                         switch near {
-                            
+
                         case .bigCity(let name)?:
                             return .absentCommunity(nearestCity: name)
-                            
+
                         case .none:
                             return .absentCommunity(nearestCity: nil)
                             
-                        case .communities(let x)?:
-                            Dispatcher.dispatch(action: UpdateCommunity(with: x.first))
-                            
+                        case .community(_)?: break
+
                         }
                         
                         if isFilterEmpty {
@@ -64,14 +63,6 @@ extension DiscoverProfileViewModel {
             .notNil()
         
     }
-    
-    /*
-     
-     -> Location Updates }
-                          } Community
-     -> Teleport Choice  }
-     
- */
     
     var profiles: Driver<[Profile]> {
 
@@ -153,7 +144,7 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     
     fileprivate var viewedProfiles: Set<Profile> = []
     
-    let locationActor = LocationViewModel()
+    let locationActor = PickCommunityViewModel()
     
     init(router: DiscoverProfileRouter) {
         self.router = router

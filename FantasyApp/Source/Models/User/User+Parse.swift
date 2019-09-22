@@ -61,7 +61,12 @@ extension User {
             relationStatus = .single
         }
         
-        let maybeCommunity: Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
+        var changePolicy = User.CommunityChangePolicy.locationBased
+        if let index = (pfUser["communityChangePolicy"] as? Int) {
+            changePolicy = User.CommunityChangePolicy(rawValue: index) ?? .locationBased
+        }
+        
+        let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
         
         id = objectId
         bio = .init(name: name,
@@ -75,7 +80,7 @@ extension User {
         ///TODO: save on server
         searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
-        community = maybeCommunity
+        community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
         //privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
         
@@ -89,12 +94,13 @@ extension User {
         guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
         
         var dict = [
-            "realname"  : bio.name,
-            "aboutMe"   : bio.about as Any,
-            "birthady"  : bio.birthday,
-            "gender"    : bio.gender.rawValue,
-            "sexuality" : bio.sexuality.rawValue,
-            "belongsTo" : community?.pfObject as Any
+            "realname"              : bio.name,
+            "aboutMe"               : bio.about as Any,
+            "birthady"              : bio.birthday,
+            "gender"                : bio.gender.rawValue,
+            "sexuality"             : bio.sexuality.rawValue,
+            "belongsTo"             : community.value?.pfObject as Any,
+            "communityChangePolicy" : community.changePolicy.rawValue
             ] as [String : Any]
         
         switch bio.relationshipStatus {

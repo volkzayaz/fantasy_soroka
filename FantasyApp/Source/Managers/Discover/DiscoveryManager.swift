@@ -15,12 +15,8 @@ extension DiscoveryManager {
     static func profilesFor(filter: DiscoveryFilter,
                             limit: Int) -> Single<[Profile]> {
         
-        guard let community = User.current?.community else {
-            return .just([])
-        }
-        
         let q = User.query
-        q.whereKey("belongsTo", equalTo: community.pfObject)
+        q.whereKey("belongsTo", equalTo: filter.community.pfObject)
         q.whereKey("objectId", notEqualTo: User.current!.id)
         q.whereKey("gender", equalTo: filter.filter.gender.rawValue)
         q.limit = 50

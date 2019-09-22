@@ -15,7 +15,8 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     var bio: Bio
     var fantasies: Fantasies
-    var community: Community?
+    
+    var community: Community
     
     var connections: Connections
 //    var privacy: Privacy
@@ -25,7 +26,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     var discoveryFilter: DiscoveryFilter? {
         
         guard let x = searchPreferences,
-              let y = community else { return nil }
+              let y = community.value else { return nil }
         
         return DiscoveryFilter(filter: x, community: y)
     }
@@ -78,6 +79,16 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var disliked: [Fantasy.Card]
         
         var purchasedCollections: [Fantasy.Collection]
+    }
+    
+    struct Community: Equatable, Codable {
+        var value: FantasyApp.Community?
+        var changePolicy: CommunityChangePolicy
+    }
+    
+    enum CommunityChangePolicy: Int, Equatable, Codable {
+        case teleport = 1
+        case locationBased = 2
     }
     
     static var current: User? {

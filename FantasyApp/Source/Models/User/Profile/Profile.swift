@@ -22,7 +22,7 @@ struct EditProfileForm {
     var publicPhotosRemoved: [String]?
     var privatePhotosRemoved: [String]?
     
-    var teleportedCommunity: Community?
+    var communityChange: User.Community?
     
 }
 
@@ -42,7 +42,18 @@ struct RegisterForm {
     var photo: UIImage?
     
     var toEditProfileForm: EditProfileForm {
-        return .init(name: name, brithdate: brithdate, sexuality: sexuality, gender: gender, relationshipStatus: relationshipStatus, publicPhotosAdded: [], privatePhotosAdded: [], publicPhotosRemoved: [], privatePhotosRemoved: [], teleportedCommunity: nil)
+        return EditProfileForm(name: name,
+                               brithdate: brithdate,
+                               sexuality: sexuality,
+                               gender: gender,
+                               relationshipStatus: relationshipStatus,
+                               publicPhotosAdded: [],
+                               privatePhotosAdded: [],
+                               publicPhotosRemoved: [],
+                               privatePhotosRemoved: [],
+                               communityChange: User.Community(value: nil,
+                                                               changePolicy: .locationBased)
+                               )
     }
     
 };
@@ -69,10 +80,7 @@ extension User {
         applicator(lhs: &bio.relationshipStatus, rhs: editForm.relationshipStatus)
         applicator(lhs: &bio.gender, rhs: editForm.gender)
         applicator(lhs: &bio.sexuality, rhs: editForm.sexuality)
-        
-        if let x = editForm.teleportedCommunity {
-            community = x
-        }
+        applicator(lhs: &community, rhs: editForm.communityChange)
         
     }
     

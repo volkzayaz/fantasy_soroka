@@ -91,7 +91,7 @@
 		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
 		7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3152332301F007B84B0 /* UpdateCommunity.swift */; };
 		7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */; };
-		7361F31B23326CEF007B84B0 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31A23326CEF007B84B0 /* LocationViewModel.swift */; };
+		7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31A23326CEF007B84B0 /* PickCommunityViewModel.swift */; };
 		7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31D23328A16007B84B0 /* TeleportRouter.swift */; };
 		7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31E23328A16007B84B0 /* TeleportViewController.swift */; };
 		7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31F23328A16007B84B0 /* TeleportViewModel.swift */; };
@@ -318,7 +318,7 @@
 		7361F31323322BC5007B84B0 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
 		7361F3152332301F007B84B0 /* UpdateCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommunity.swift; sourceTree = "<group>"; };
 		7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+rx.swift"; sourceTree = "<group>"; };
-		7361F31A23326CEF007B84B0 /* LocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		7361F31A23326CEF007B84B0 /* PickCommunityViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickCommunityViewModel.swift; sourceTree = "<group>"; };
 		7361F31D23328A16007B84B0 /* TeleportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportRouter.swift; sourceTree = "<group>"; };
 		7361F31E23328A16007B84B0 /* TeleportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewController.swift; sourceTree = "<group>"; };
 		7361F31F23328A16007B84B0 /* TeleportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportViewModel.swift; sourceTree = "<group>"; };
@@ -888,7 +888,7 @@
 		734C528A23266ABB00B54510 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				7361F31A23326CEF007B84B0 /* LocationViewModel.swift */,
+				7361F31A23326CEF007B84B0 /* PickCommunityViewModel.swift */,
 				734C52982326A66100B54510 /* Filter */,
 				734C52972326A65700B54510 /* Users */,
 			);
@@ -1774,7 +1774,7 @@
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
-				7361F31B23326CEF007B84B0 /* LocationViewModel.swift in Sources */,
+				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,

@@ -24,7 +24,7 @@ extension MainTabBarViewModel {
 
 struct MainTabBarViewModel : MVVM_ViewModel {
 
-    //private let locationActor = LocationViewModel()
+    //private let locationActor = PickCommunityViewModel()
     
     init(router: MainTabBarRouter) {
         self.router = router

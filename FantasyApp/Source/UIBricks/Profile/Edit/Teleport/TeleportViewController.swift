@@ -16,13 +16,20 @@ class TeleportViewController: UIViewController, MVVM_View {
     
     var viewModel: TeleportViewModel!
 
-    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Community>>(
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TeleportViewModel.Data>>(
         configureCell: { [unowned self] (_, tableView, ip, x) in
             
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCell,
                                                      for: ip)!
             
-            cell.textLabel?.text = x.name
+            switch x {
+            case .community(let communiy):
+                cell.textLabel?.text = communiy.name
+                
+            case .location:
+                cell.textLabel?.text = "Automaticly based on location"
+                
+            }
             
             return cell
             
@@ -37,9 +44,9 @@ class TeleportViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
-        tableView.rx.modelSelected(Community.self)
+        tableView.rx.modelSelected(TeleportViewModel.Data.self)
             .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.selected(community: x)
+                self.viewModel.selected(data: x)
             })
             .disposed(by: rx.disposeBag)
     }

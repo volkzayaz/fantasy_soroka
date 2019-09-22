@@ -14,18 +14,25 @@ import RxDataSources
 
 extension TeleportViewModel {
     
-    var dataSource: Driver<[SectionModel<String, Community>]> {
+    var dataSource: Driver<[SectionModel<String, Data>]> {
         
         return CommunityManager.allCommunities()
             .trackView(viewIndicator: indicator)
             .silentCatch()
             .asDriver(onErrorJustReturn: [])
             .map { communities in
-                return [SectionModel(model: "", items: communities)]
+                return [
+                    SectionModel(model: "", items: [Data.location]),
+                    SectionModel(model: "", items: communities.map { Data.community($0) })
+                ]
             }
         
     }
     
+    enum Data {
+        case community(Community)
+        case location
+    }
     
 }
 
@@ -67,13 +74,23 @@ struct TeleportViewModel : MVVM_ViewModel {
 
 extension TeleportViewModel {
     
-    func selected(community: Community) {
+    func selected(data: Data) {
         
         var x = form.value
-        x.teleportedCommunity = community
+        
+        switch data {
+        case .community(let community):
+            x.communityChange = User.Community(value: community,
+                                               changePolicy: .teleport)
+        
+        case .location:
+            x.communityChange = User.Community(value: nil,
+                                               changePolicy: .locationBased)
+            
+        }
+        
         form.accept(x)
         
-        //Dispatcher.dispatch(action: UpdateCommunity(with: community))
         router.owner.navigationController?.popViewController(animated: true)
         
     }

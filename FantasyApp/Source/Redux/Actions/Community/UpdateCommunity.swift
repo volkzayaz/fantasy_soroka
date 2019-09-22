@@ -15,12 +15,12 @@ struct UpdateCommunity: ActionCreator {
     func perform(initialState: AppState) -> Observable<AppState> {
         
         guard var user = initialState.currentUser,
-              user.community != with else {
+              user.community.value != with else {
             return .just(initialState)
         }
         
         var state = initialState
-        user.community = with
+        user.community.value = with
         state.currentUser = user
         
         return user.toCurrentPFUser.rxSave()

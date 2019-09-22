@@ -42,7 +42,7 @@ extension EditProfileViewModel {
                 
                 let community = SectionModel(model: R.string.localizable.editProfileAbout(),
                                          items: [Model.attribute("Community",
-                                                                 value: user.community?.name ?? "No community") ])
+                                                                 value: user.community.value?.name ?? "No community") ])
                 
                 return [about, account, community]
                 
