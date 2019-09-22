@@ -70,7 +70,7 @@ extension UserProfileViewModel {
                 case .incomming(_)?:        return "Decide"
                 case .outgoing(_)?:         return ""
                 case .rejected?:            return ""
-                case .mutual?:              return ""
+                case .mutual?:              return "Unlike"
                 case .none:                 return ""
                 }
             }
@@ -160,6 +160,19 @@ extension UserProfileViewModel {
                                                       handler: nil),
                 ])
             return
+        }
+        
+        if case .mutual? = relationshipState.value {
+            
+            relationshipState.accept( .absent )
+            
+            let _ = ConnectionManager.deleteConnection(with: user)
+                .do(onError: { [weak r = relationshipState] (er) in
+                    r?.accept(.absent)
+                })
+                .silentCatch(handler: router.owner)
+                .subscribe()
+            
         }
         
     }

@@ -15,6 +15,43 @@ fileprivate enum ConnectionStatus: String, Codable {
     case connected
 }
 
+struct ConnectionResponse: Codable {
+    
+    let userId: String
+    let targetUserId: String
+    let connectTypes: [ConnectionRequestType]
+    fileprivate let status: ConnectionStatus
+    let responseConnectType: String?
+    
+    var toNative: Connection {
+        
+        guard let connectType = connectTypes.first,
+            let currentUser = User.current?.id else {
+                fatalErrorInDebug("Can't determine connect type, or currentUser is not defined")
+                return .absent
+        }
+        
+        if case .rejected = status {
+            return .rejected
+        }
+        
+        if case .connected = status {
+            return .mutual
+        }
+        
+        if targetUserId == currentUser {
+            return .incomming(request: connectType)
+        } else if userId == currentUser {
+            return .outgoing(request: connectType)
+        }
+        else {
+            fatalErrorInDebug("currentUser is not part of this connection \(self)")
+            return .absent
+        }
+        
+    }
+}
+
 ///Find out how you are connected with other user (Connection)
 struct GetConnection: AuthorizedAPIResource {
     
@@ -26,48 +63,11 @@ struct GetConnection: AuthorizedAPIResource {
         return .get
     }
     
-    struct Response: Codable {
-        
-        let userId: String
-        let targetUserId: String
-        let connectTypes: [ConnectionRequestType]
-        fileprivate let status: ConnectionStatus
-        let responseConnectType: String?
-
-        var toNative: Connection {
-
-            guard let connectType = connectTypes.first,
-                  let currentUser = User.current?.id else {
-                fatalErrorInDebug("Can't determine connect type, or currentUser is not defined")
-                return .absent
-            }
-            
-            if case .rejected = status {
-                return .rejected
-            }
-            
-            if case .connected = status {
-                return .mutual
-            }
-            
-            if targetUserId == currentUser {
-                return .incomming(request: connectType)
-            } else if userId == currentUser {
-                return .outgoing(request: connectType)
-            }
-            else {
-                fatalErrorInDebug("currentUser is not part of this connection \(self)")
-                return .absent
-            }
-            
-        }
-    }
-    
     var task: Task {
         return .requestPlain
     }
     
-    typealias responseType = Response?
+    typealias responseType = ConnectionResponse?
     
     let with: User
 }
@@ -83,22 +83,7 @@ struct UpsertConnection: AuthorizedAPIResource {
         return .post
     }
     
-    struct Response: Codable {
-        
-        let userId: String
-        let targetUserId: String
-        let connectTypes: String
-        let status: ConnectionRequestType
-        let responseConnectType: String?
-        //
-        //        var toNative: Connection {
-        //
-        //
-        //
-        //        }
-    }
-    
-    typealias responseType = Response
+    typealias responseType = ConnectionResponse
     
     var task: Task {
         return .requestParameters(parameters: ["connectionType": type.rawValue],
@@ -118,23 +103,8 @@ struct AcceptConnection: AuthorizedAPIResource {
     var method: Moya.Method {
         return .post
     }
-    
-    struct Response: Codable {
-        
-        let userId: String
-        let targetUserId: String
-        let connectType: String
-        let status: ConnectionRequestType
-        let responseConnectType: String?
-        //
-        //        var toNative: Connection {
-        //
-        //
-        //
-        //        }
-    }
-    
-    typealias responseType = Response?
+
+    typealias responseType = ConnectionResponse
     
     var task: Task {
         return .requestParameters(parameters: ["status": ConnectionStatus.connected.rawValue,
@@ -149,33 +119,40 @@ struct AcceptConnection: AuthorizedAPIResource {
 struct RejectConnection: AuthorizedAPIResource {
     
     var path: String {
-        return "​​users​/me​/connections​/\(with.id)/response"
+        return "users/me/connections/\(with.id)/response"
     }
     
     var method: Moya.Method {
         return .post
     }
     
-    struct Response: Codable {
-        
-        let userId: String
-        let targetUserId: String
-        let connectType: String
-        let status: ConnectionRequestType
-        let responseConnectType: String?
-        //
-        //        var toNative: Connection {
-        //
-        //
-        //
-        //        }
-    }
-    
-    typealias responseType = Response?
+    typealias responseType = ConnectionResponse
     
     var task: Task {
         return .requestParameters(parameters: ["status": ConnectionStatus.rejected.rawValue],
                                   encoding: JSONEncoding())
+    }
+    
+    let with: User
+    
+}
+
+struct DeleteConnection: AuthorizedAPIResource {
+    
+    var path: String {
+        return "users/me/connections/\(with.id)"
+    }
+    
+    var method: Moya.Method {
+        return .delete
+    }
+    
+    ///TODO: this should really be just Void
+    struct Empty: Codable {}
+    typealias responseType = Empty
+    
+    var task: Task {
+        return .requestPlain
     }
     
     let with: User

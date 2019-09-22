@@ -32,6 +32,11 @@ extension ConnectionManager {
             .rx.request.map { _ in }
     }
     
+    static func deleteConnection(with: User) -> Single<Void> {
+        return DeleteConnection(with: with)
+            .rx.request.map { _ in }
+    }
+    
     static func inboundRequests() -> Single<[User]> {
         
         return GetConnectionRequests().rx.request
