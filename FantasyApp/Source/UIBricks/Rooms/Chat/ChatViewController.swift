@@ -29,13 +29,15 @@ class ChatViewController: MessagesViewController, MVVM_View {
                 self?.messagesCollectionView.scrollToBottom(animated: true)
             }
         }).disposed(by: rx.disposeBag)
-
-        viewModel.loadMessages()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         becomeFirstResponder()
+    }
+
+    deinit {
+        viewModel.disconnect()
     }
 }
 

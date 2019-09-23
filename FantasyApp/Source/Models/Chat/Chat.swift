@@ -27,13 +27,24 @@ extension Chat {
             return pfObjectId
         }
 
+        enum CodingKeys: String, CodingKey {
+            case senderDisplayName
+            case senderId
+            case recepientId = "recipientId"
+            case updatedAt
+            case text
+            case objectId
+            case roomId
+            case isRead = "isReaded"
+        }
+
         var senderDisplayName: String?
-        var senderId: String!
-        var recepientId: String?
+        let senderId: String
+        let recepientId: String?
         var updatedAt: Date?
         var text: String?
         var objectId: String!
-        var roomId: String?
+        let roomId: String
         var isRead: Bool = false
     }
 
@@ -57,6 +68,7 @@ extension Chat {
     }
 }
 
+// MARK: - MessageKit
 extension Chat.Message: MessageType {
     var sender: SenderType {
         return Sender(senderId: senderId, displayName: senderDisplayName ?? "")

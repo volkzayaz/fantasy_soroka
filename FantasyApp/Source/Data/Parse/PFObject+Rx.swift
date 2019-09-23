@@ -38,14 +38,6 @@ extension Reactive where Base: PFQuery<PFObject> {
                     fatalError("Parse result is neither error nor value")
                 }
 
-//                parseObjects.forEach { object in
-//                    object.allKeys.forEach { key in
-//                        if let relation = object[key] as? PFRelation {
-//                            relation.query()
-//                        }
-//                    }
-//                }
-
                 subscriber.onNext( parseObjects.toCodable() )
                 subscriber.onCompleted()
             })

@@ -28,7 +28,7 @@ extension RoomsViewModel {
             let models: [CellModel] = rooms?.map { room in
                 var companion: UserSlice?
                 if let ownerId = room.owner?.objectId,
-                    ownerId == PFUser.current()?.objectId {
+                    ownerId == User.current?.id {
                     companion = room.recipient
                 } else {
                     companion = room.owner
@@ -55,6 +55,8 @@ struct RoomsViewModel: MVVM_ViewModel {
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
+
+        fetchRooms()
     }
 
     let router: RoomsRouter

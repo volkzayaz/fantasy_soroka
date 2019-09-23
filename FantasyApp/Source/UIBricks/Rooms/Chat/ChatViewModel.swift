@@ -17,7 +17,6 @@ struct ChatViewModel: MVVM_ViewModel {
     let room: Chat.Room
     let messages = BehaviorRelay<[Chat.Message]>(value: [])
     let isSendingMessage = BehaviorRelay<Bool>(value: false)
-    private var query: PFQuery<PFObject> = PFQuery(className: Chat.Message.className)
 
     init(router: ChatRouter, room: Chat.Room) {
         self.router = router
@@ -26,8 +25,6 @@ struct ChatViewModel: MVVM_ViewModel {
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
-
-        addSubscription()
     }
 
     fileprivate let indicator: ViewIndicator = ViewIndicator()
@@ -36,12 +33,11 @@ struct ChatViewModel: MVVM_ViewModel {
 
 extension ChatViewModel {
     var currentSender: Sender {
-        return Sender(senderId: AuthenticationManager.currentUser()!.id,
-                      displayName: AuthenticationManager.currentUser()!.bio.name)
+        return Sender(senderId: User.current!.id, displayName: User.current!.bio.name)
     }
 
     func loadMessages() {
-        // TODO: Pagination
+        // TODO: Pagination and error handling
         let offset = 0
         ChatManager.getMessagesInRoom(room.objectId, offset: offset)
             .trackView(viewIndicator: indicator)
@@ -50,13 +46,14 @@ extension ChatViewModel {
                 var array = self.messages.value
                 array.insert(contentsOf: messages, at: offset)
                 self.messages.accept(messages)
+                self.connect()
             })
             .disposed(by: bag)
     }
 
     func sendMessage(text: String) {
         isSendingMessage.accept(true)
-        let message = Chat.Message(senderDisplayName: AuthenticationManager.currentUser()!.bio.name,
+        let message = Chat.Message(senderDisplayName: User.current!.bio.name,
                                    senderId: AuthenticationManager.currentUser()!.id,
                                    recepientId: room.recipient?.objectId,
                                    updatedAt: nil,
@@ -64,40 +61,30 @@ extension ChatViewModel {
                                    objectId: nil,
                                    roomId: room.objectId,
                                    isRead: false)
-        ChatManager.sendMessage(message)
-            .subscribe({ event in
-                // TODO: error handling
-                self.isSendingMessage.accept(false)
-            })
-            .disposed(by: bag)
+        ChatManager.sendMessage(message).subscribe({ event in
+            // TODO: error handling
+            self.isSendingMessage.accept(false)
+        }).disposed(by: bag)
     }
-}
 
-private extension ChatViewModel {
-    func addSubscription() {
-        query.addDescendingOrder("updatedAt")
-        query.whereKey("roomId", equalTo: room.objectId as String)
-
-        let subscription: Subscription<PFObject> = Client.shared.subscribe(query)
-        subscription.handleEvent { object, event in
+    func connect() {
+        ChatManager.connect(roomId: room.objectId).subscribe(onNext: { event in
             var array: [Chat.Message] = self.messages.value
             switch event {
-            case .entered(let messageObject), .created(let messageObject):
-                // TODO: NSDate to String
-                let message: Chat.Message = [messageObject].toCodable().first!
+            case .messageAdded(let message):
                 array.append(message)
-            case .deleted(let messageObject), .left(let messageObject):
-                // TODO: NSDate to String
-                let message: Chat.Message = [messageObject].toCodable().first!
+            case .messageRemoved(let message):
                 array.removeAll { message.objectId == $0.objectId }
-            case .updated(let messageObject):
-                // TODO: NSDate to String
-                let message: Chat.Message = [messageObject].toCodable().first!
+            case .messageUpdated(let message):
                 if let index = array.firstIndex(where: { message.objectId == $0.objectId }) {
                     array[index] = message
                 }
             }
             self.messages.accept(array)
-        }
+        }).disposed(by: bag)
+    }
+
+    func disconnect() {
+        ChatManager.disconnect(roomId: room.objectId)
     }
 }
