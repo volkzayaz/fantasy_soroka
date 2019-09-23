@@ -43,18 +43,17 @@ class ChatViewController: MessagesViewController, MVVM_View {
 
 private extension ChatViewController {
     func configure() {
-        messagesCollectionView.backgroundColor = .green
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
         messageInputBar.translatesAutoresizingMaskIntoConstraints = false
-        scrollsToBottomOnKeyboardBeginsEditing = true
-        maintainPositionOnKeyboardFrameChanged = true
+//        scrollsToBottomOnKeyboardBeginsEditing = true
+//        maintainPositionOnKeyboardFrameChanged = true
     }
 }
 
-extension ChatViewController: MessagesDataSource {
+extension ChatViewController: MessagesDataSource, MessagesDisplayDelegate, MessagesLayoutDelegate {
     func currentSender() -> SenderType {
         return viewModel.currentSender
     }
@@ -63,21 +62,39 @@ extension ChatViewController: MessagesDataSource {
         return viewModel.messages.value.count
     }
 
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+    func messageForItem(at indexPath: IndexPath,
+                        in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return viewModel.messages.value[indexPath.section]
     }
-}
 
-extension ChatViewController: MessagesLayoutDelegate {
+//    func messageTopLabelAttributedText(for message: MessageType,
+//                                       at indexPath: IndexPath) -> NSAttributedString? {
+//
+//    }
 
-}
+    func backgroundColor(for message: MessageType,
+                         at indexPath: IndexPath,
+                         in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        switch message.kind {
+        case .emoji:
+            return .clear
+        default:
+            return isFromCurrentSender(message: message) ? .myMessageBackground : .messageBackground
+        }
+    }
 
-extension ChatViewController: MessagesDisplayDelegate {
     func configureAvatarView(_ avatarView: AvatarView,
                              for message: MessageType,
                              at indexPath: IndexPath,
                              in messagesCollectionView: MessagesCollectionView) {
         // TODO: load user avatar here
+    }
+
+    func messageStyle(for message: MessageType,
+                      at indexPath: IndexPath,
+                      in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        return .bubbleTail(isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft,
+                           .pointedEdge)
     }
 }
 

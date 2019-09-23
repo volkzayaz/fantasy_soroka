@@ -13,23 +13,23 @@ import RxCocoa
 
 extension MainTabBarViewModel {
     
-    var locationRequestHidden: Driver<Bool> {
-        return locationActor.lastKnownAuthStatus.map { x in
-            return x != .denied
-        }
-        .distinctUntilChanged()
-    }
+//    var locationRequestHidden: Driver<Bool> {
+//        return locationActor.lastKnownAuthStatus.map { x in
+//            return x != .denied
+//        }
+//        .distinctUntilChanged()
+//    }
  
 }
 
 struct MainTabBarViewModel : MVVM_ViewModel {
 
-    private let locationActor = LocationActor()
+    //private let locationActor = PickCommunityViewModel()
     
     init(router: MainTabBarRouter) {
         self.router = router
         
-        ///Refrech on app start happens here:
+        ///Refresh on app start happens here:
         ///Alternativelly we can encode appState to disk and just restore it from there
         ///To keep syncing problems at min for now we'll fetch most info from server
         ///But for v2 we want to implement disk-first retoration policy

@@ -67,6 +67,62 @@
             </objects>
             <point key="canvasLocation" x="-413" y="402"/>
         </scene>
+        <!--Fantasy Collection View Controller-->
+        <scene sceneID="dCa-79-2HK">
+            <objects>
+                <viewController storyboardIdentifier="FantasyCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6EI-uA-pE9" customClass="FantasyCollectionViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bgm-hv-4Yc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uUj-7s-fFw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Simple collection cell" textLabel="fiN-3k-b70" detailTextLabel="wPG-iE-Dk6" style="IBUITableViewCellStyleSubtitle" id="NzH-aR-udK">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NzH-aR-udK" id="oZj-GF-qtR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fiN-3k-b70">
+                                                    <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wPG-iE-Dk6">
+                                                    <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uUj-7s-fFw" firstAttribute="trailing" secondItem="lQE-dP-CV6" secondAttribute="trailing" id="3M4-dD-bRc"/>
+                            <constraint firstItem="uUj-7s-fFw" firstAttribute="top" secondItem="lQE-dP-CV6" secondAttribute="top" id="jnG-uy-fSP"/>
+                            <constraint firstItem="uUj-7s-fFw" firstAttribute="bottom" secondItem="lQE-dP-CV6" secondAttribute="bottom" id="nXR-Ax-kjk"/>
+                            <constraint firstItem="uUj-7s-fFw" firstAttribute="leading" secondItem="lQE-dP-CV6" secondAttribute="leading" id="zdr-5t-MVG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lQE-dP-CV6"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="uUj-7s-fFw" id="dZk-8X-MvA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IU4-Fk-ChJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-413" y="1101"/>
+        </scene>
         <!--Fantasy Details View Controller-->
         <scene sceneID="oJL-Dw-bar">
             <objects>
@@ -207,14 +263,23 @@
                                     <constraint firstItem="zDI-4a-eZ1" firstAttribute="top" secondItem="Cy3-0H-x0L" secondAttribute="top" constant="55" id="s1g-f2-uYS"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebt-aA-4op">
+                                <rect key="frame" x="168.5" y="650" width="77" height="30"/>
+                                <state key="normal" title="Collections"/>
+                                <connections>
+                                    <segue destination="6EI-uA-pE9" kind="show" id="vaL-Bg-1Jn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="83H-HO-uhm" firstAttribute="centerX" secondItem="MWl-cV-xbo" secondAttribute="centerX" id="CMv-UB-kHv"/>
+                            <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="ebt-aA-4op" secondAttribute="bottom" constant="45" id="D78-B0-pbV"/>
                             <constraint firstItem="Cy3-0H-x0L" firstAttribute="centerY" secondItem="MWl-cV-xbo" secondAttribute="centerY" id="KAQ-36-WsT"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="Cy3-0H-x0L" secondAttribute="trailing" constant="51" id="LZQ-hk-lmc"/>
                             <constraint firstItem="Cy3-0H-x0L" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" constant="51" id="NpT-8r-IGd"/>
                             <constraint firstItem="83H-HO-uhm" firstAttribute="top" secondItem="MWl-cV-xbo" secondAttribute="top" constant="43" id="mSE-Lq-QB1"/>
+                            <constraint firstItem="ebt-aA-4op" firstAttribute="centerX" secondItem="MWl-cV-xbo" secondAttribute="centerX" id="uMU-bd-jXa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MWl-cV-xbo"/>
                     </view>

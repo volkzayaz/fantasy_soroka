@@ -37,11 +37,14 @@ public extension Reactive where Base: APIResource {
                                                             observer.onNext(progress)
                 }, completion: { result in
                     switch result {
-                    case .success       : observer.onCompleted()
+                    case .success(let res):
+                        observer.onNext(.value(res))
+                        observer.onCompleted()
+                        
                     case .failure(let e): observer.onError(e)
                     }
                 })
-
+                
                 return Disposables.create {
                     token.cancel()
                 }

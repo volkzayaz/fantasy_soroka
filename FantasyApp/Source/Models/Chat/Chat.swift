@@ -19,33 +19,29 @@ extension Chat {
             return "SinchMessage"
         }
 
-        var pfObjectId: String {
-            return objectId
-        }
-
         var identity: String {
-            return pfObjectId
+            return objectId!
         }
 
         enum CodingKeys: String, CodingKey {
             case senderDisplayName
             case senderId
             case recepientId = "recipientId"
-            case updatedAt
             case text
             case objectId
             case roomId
             case isRead = "isReaded"
+            case createdAt
         }
 
         var senderDisplayName: String?
         let senderId: String
-        let recepientId: String?
-        var updatedAt: Date?
+        let recepientId: String
         var text: String?
-        var objectId: String!
+        var objectId: String?
         let roomId: String
         var isRead: Bool = false
+        let createdAt: Date
     }
 
     struct Room: Equatable, IdentifiableType, ParsePresentable {
@@ -53,15 +49,11 @@ extension Chat {
             return "Room"
         }
 
-        var pfObjectId: String {
-            return objectId
-        }
-
         var identity: String {
-            return pfObjectId
+            return objectId!
         }
 
-        var objectId: String!
+        var objectId: String?
         var updatedAt: Date?
         var owner: UserSlice?
         var recipient: UserSlice?
@@ -75,11 +67,11 @@ extension Chat.Message: MessageType {
     }
 
     var messageId: String {
-        return objectId
+        return objectId!
     }
 
     var sentDate: Date {
-        return updatedAt ?? Date()
+        return createdAt
     }
 
     var kind: MessageKind {

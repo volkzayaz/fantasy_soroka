@@ -21,13 +21,12 @@ enum ChatManager {
     private static var query: PFQuery<PFObject> = PFQuery(className: Chat.Message.className)
 }
 extension ChatManager {
-
-    static func sendMessage(_ message: Chat.Message) -> Maybe<Void> {
-        return message.rxCreate()
+    static func sendMessage(_ message: Chat.Message) -> Single<Void> {
+        return message.rxCreate().map { _ in }
     }
 
-    static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Maybe<[Chat.Message]> {
-        let query = PFQuery(className: Chat.Room.className)
+    static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Single<[Chat.Message]> {
+        let query = PFQuery(className: Chat.Message.className)
         query.whereKey("roomId", equalTo: roomId)
         query.addAscendingOrder("createdAt")
         query.skip = offset
@@ -36,7 +35,7 @@ extension ChatManager {
         return query.rx.fetchAll()
     }
 
-    static func getRooms() -> Maybe<[Chat.Room]> {
+    static func getRooms() -> Single<[Chat.Room]> {
         guard let user = PFUser.current() else {
             return .error(FantasyError.unauthorized)
         }
@@ -48,8 +47,8 @@ extension ChatManager {
         return query.rx.fetchAll()
     }
 
-    static func createRoom(_ room: Chat.Room) -> Maybe<Void> {
-       return room.rxCreate()
+    static func createRoom(_ room: Chat.Room) -> Single<Void> {
+        return room.rxCreate().map { _ in }
     }
 
     static func connect(roomId: String) -> Observable<ChatEvent> {

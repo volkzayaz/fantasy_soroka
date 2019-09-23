@@ -14,17 +14,17 @@ import Parse
 enum AuthenticationManager {}
 extension AuthenticationManager {
     
-    static func register(with form: RegistrationViewModel.SubmissionForm) -> Maybe<User> {
+    static func register(with form: RegisterForm) -> Maybe<User> {
         
-        let form = RegistrationViewModel.SubmissionForm(agreementTick: true,
-                                                        name: "Pete Jackson",
-                                                        brithdate: Date(timeIntervalSince1970: 1234),
-                                                        sexuality: .straight,
-                                                        gender: .male,
-                                                        relationshipStatus: .single,
-                                                        email: "pete1@jackson.com",
-                                                        password: "1234", confirmPassword: "",
-                                                        photo: nil)
+        let form = RegisterForm(agreementTick: true,
+                                name: "Pete Jackson",
+                                brithdate: Date(timeIntervalSince1970: 1234),
+                                sexuality: .straight,
+                                gender: .male,
+                                relationshipStatus: .single,
+                                email: "pete1@jackson.com",
+                                password: "1234", confirmPassword: "",
+                                photo: form.photo)
         
         ///
         
@@ -34,16 +34,7 @@ extension AuthenticationManager {
         pfUser.email = form.email
         pfUser.password = form.password
         
-        pfUser["realname"] = form.name
-        pfUser["birthday"] = form.brithdate
-        
-        switch form.relationshipStatus! {
-        case .single:                       pfUser["couple"] = "single"
-        case .couple(let partnerGender):    pfUser["couple"] = partnerGender.rawValue
-        }
-        
-        pfUser["gender"] = form.gender.rawValue
-        pfUser["sexuality"] = form.sexuality.rawValue
+        pfUser.apply(editForm: form.toEditProfileForm)
         
         //fatalError("Implement picked photo uploading")
         
@@ -63,6 +54,9 @@ extension AuthenticationManager {
             return Disposables.create()
         }
             .map { try User(pfUser: $0) }
+            .do(onNext: { (user) in
+                SettingsStore.currentUser.value = user
+            })
             .asMaybe()
         
     }
@@ -76,13 +70,23 @@ extension AuthenticationManager {
                         return subscriber.onError(e)
                     }
                 
-                    subscriber.onNext( maybeUser! )
-                    subscriber.onCompleted()
+                    OperationQueue().addOperation {
+                        
+                        ///Can't "includeKey" during login
+                        let _ = try? (maybeUser?["belongsTo"] as? PFObject)?.fetch()
+                        
+                        subscriber.onNext( maybeUser! )
+                        subscriber.onCompleted()
+                    }
+                    
                 }
             
                 return Disposables.create()
             }
             .map { try User(pfUser: $0) }
+            .do(onNext: { (user) in
+                SettingsStore.currentUser.value = user
+            })
             .asMaybe()
         
     }
@@ -111,21 +115,19 @@ extension AuthenticationManager {
             return Disposables.create()
             }
             .map { try User(pfUser: $0) }
+            .do(onNext: { (user) in
+                SettingsStore.currentUser.value = user
+            })
             .asMaybe()
         
     }
  
     static func currentUser() -> User? {
-        
-        var user: User? = nil
-        if let pfUser = PFUser.current() {
-            user = try? User(pfUser: pfUser)
-        }
-        
-        return user
+        return SettingsStore.currentUser.value
     }
     
     static func logout() {
+        SettingsStore.currentUser.value = nil
         PFUser.logOutInBackground(block: { _ in })
     }
     

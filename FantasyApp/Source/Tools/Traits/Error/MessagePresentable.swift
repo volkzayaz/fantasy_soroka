@@ -39,6 +39,11 @@ extension MessagePresentable {
             return
         }
         
+        if case .apiError(let x)? = error as? FantasyError {
+            presentMessage(x.message)
+            return
+        }
+        
         if case .dataCorrupted? = error as? ParseMigrationError {
             presentMessage( R.string.localizable.authorizationMigrationDataCorrupted() )
             return

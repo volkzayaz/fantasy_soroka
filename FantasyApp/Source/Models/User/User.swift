@@ -8,52 +8,51 @@
 
 import Foundation
 
-struct User: Equatable {
-    var id: String!
-    var auth: AuthData
+struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
+    
+    let id: String
+    //var auth: AuthData
+    
     var bio: Bio
-    var preferences: SexPreference
     var fantasies: Fantasies
+    
     var community: Community
+    
     var connections: Connections
-    var privacy: Privacy
+//    var privacy: Privacy
     
-    //    ////Extract into Application property rather than User property
-    //    var premiumFeatures: Set<PremiumFeature>
+    var searchPreferences: SearchPreferences?
     
+    var discoveryFilter: DiscoveryFilter? {
+        
+        guard let x = searchPreferences,
+              let y = community.value else { return nil }
+        
+        return DiscoveryFilter(filter: x, community: y)
+    }
     
     enum AuthData: Equatable {
         case email(String)
         case fbData(String)
     };
     
-    struct Bio: Equatable {
+    struct Bio: Equatable, Codable {
         var name: String
+        var about: String?
         var birthday: Date
         var gender: Gender
         var sexuality: Sexuality
         var relationshipStatus: RelationshipStatus
         var photos: Photos
         
-        struct Photos: Equatable {
+        struct Photos: Equatable, Codable {
             var `public`: [String]
             var `private`: [String]
         };
         
     };
     
-    struct SexPreference: Equatable {
-        
-        var lookingFor: [Gender]
-        var kinks: Set<Kink>
-        
-        enum Kink {
-            case bj, bdsm, MILF
-        };
-        
-    };
-    
-    struct Connections: Equatable {
+    struct Connections: Equatable, Codable {
         
         var likeRequests: [UserSlice]
         var chatRequests: [UserSlice] ///message or sticker...
@@ -75,39 +74,60 @@ struct User: Equatable {
         let blockedList: Set<UserSlice>
     }
     
-    struct Fantasies: Equatable {
+    struct Fantasies: Equatable, Codable {
         var liked: [Fantasy.Card]
         var disliked: [Fantasy.Card]
+        
+        var purchasedCollections: [Fantasy.Collection]
+    }
+    
+    struct Community: Equatable, Codable {
+        var value: FantasyApp.Community?
+        var changePolicy: CommunityChangePolicy
+    }
+    
+    enum CommunityChangePolicy: Int, Equatable, Codable {
+        case teleport = 1
+        case locationBased = 2
     }
     
     static var current: User? {
-        return AuthenticationManager.currentUser()
+        return appStateSlice.currentUser
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(bio.name)
+    }
+ 
+    static var query: PFQuery<PFObject> {
+        return PFUser.query()!.includeKey("belongsTo")
     }
     
 }
 
-struct Community: Equatable {
+struct Community: Codable, Equatable, ParsePresentable {
     
-    ///or define Community by any other geographical attribute
-    //let region: CLRegion
+    static var className: String {
+        return "NewCommunity"
+    }
+    
+    var objectId: String?
+    let name: String
     
 }
 
 struct UserSlice: Hashable, Codable, Equatable, ParsePresentable {
     let name: String
     let avatar: String?
-    var objectId: String!
+    var objectId: String?
 
     static var className: String {
         return "User"
     }
 
-    var pfObjectId: String {
-        return objectId
-    }
 }
 
-enum Sexuality: String, CaseIterable, Equatable {
+enum Sexuality: String, CaseIterable, Equatable, Codable {
     
     case straight = "Straight"
     case gay = "Gay"
@@ -124,7 +144,7 @@ enum Sexuality: String, CaseIterable, Equatable {
     
 }
 
-enum Gender: String, CaseIterable, Equatable {
+enum Gender: String, CaseIterable, Equatable, Codable {
     
     case male
     case female
@@ -134,10 +154,43 @@ enum Gender: String, CaseIterable, Equatable {
     
 }
 
-enum RelationshipStatus: Equatable {
+enum RelationshipStatus: Equatable, Codable {
     
     case single
     case couple(partnerGender: Gender)
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        try container.encode(description)
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        
+        let str = try container.decode(String.self)
+        
+        if str == "single" {
+            self = .single
+            return
+        }
+        
+        if str.starts(with: "with") {
+            self = .couple(partnerGender: Gender(rawValue: String(str.split(separator: " ").last!))!)
+        }
+        
+        fatalError("Can't decode RelationshipStatus from \(str)")
+    }
+    
+    var description: String {
+        switch self {
+        case .single:
+            return "single"
+        case .couple(let partnerGender):
+            return "with \(partnerGender.rawValue)"
+        
+        }
+    }
     
 }
 

@@ -25,9 +25,14 @@ func initAppState() -> Maybe<Void> {
     
     ///we can use network requests here as well if we want to delay application initialization
     _appState.accept(AppState(currentUser: AuthenticationManager.currentUser(),
-                              lastKnownLocation: nil,
                               fantasies: .init(cards: [],
                                                restriction: .swipeCount(0))))
+    
+    let _ =
+    NotificationCenter.default.rx.notification(UIApplication.willTerminateNotification)
+        .subscribe(onNext: { (_) in
+            SettingsStore.currentUser.value = _appState.value!.currentUser
+        })
     
     return .just( () )
 }
@@ -42,12 +47,13 @@ var appState: Driver<AppState> {
 
 struct AppState: Equatable {
     var currentUser: User?
-    var lastKnownLocation: CLLocation?
     
     var fantasies: SwipeState
     
     struct SwipeState: Equatable {
         var cards: [Fantasy.Card]
+        
+        var freeCards: [Fantasy.Card] { return cards.filter { $0.isFree } }
         
         enum Restriction: Equatable {
             case swipeCount(Int)

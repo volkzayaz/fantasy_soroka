@@ -25,6 +25,8 @@ struct ChatViewModel: MVVM_ViewModel {
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
+
+        loadMessages()
     }
 
     fileprivate let indicator: ViewIndicator = ViewIndicator()
@@ -39,7 +41,7 @@ extension ChatViewModel {
     func loadMessages() {
         // TODO: Pagination and error handling
         let offset = 0
-        ChatManager.getMessagesInRoom(room.objectId, offset: offset)
+        ChatManager.getMessagesInRoom(room.objectId!, offset: offset)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { messages in
@@ -52,23 +54,32 @@ extension ChatViewModel {
     }
 
     func sendMessage(text: String) {
+        guard let roomId = room.objectId,
+            let recepientId = room.recipient?.objectId else {
+            return
+        }
         isSendingMessage.accept(true)
         let message = Chat.Message(senderDisplayName: User.current!.bio.name,
                                    senderId: AuthenticationManager.currentUser()!.id,
-                                   recepientId: room.recipient?.objectId,
-                                   updatedAt: nil,
+                                   recepientId: recepientId,
                                    text: text,
                                    objectId: nil,
-                                   roomId: room.objectId,
-                                   isRead: false)
-        ChatManager.sendMessage(message).subscribe({ event in
-            // TODO: error handling
-            self.isSendingMessage.accept(false)
-        }).disposed(by: bag)
+                                   roomId: roomId,
+                                   isRead: false,
+                                   createdAt: Date())
+        ChatManager.sendMessage(message)
+            .subscribe({ event in
+                // TODO: error handling
+                self.isSendingMessage.accept(false)
+            })
+            .disposed(by: bag)
     }
 
     func connect() {
-        ChatManager.connect(roomId: room.objectId).subscribe(onNext: { event in
+        guard let roomId = room.objectId else {
+            return
+        }
+        ChatManager.connect(roomId: roomId).subscribe(onNext: { event in
             var array: [Chat.Message] = self.messages.value
             switch event {
             case .messageAdded(let message):
@@ -85,6 +96,9 @@ extension ChatViewModel {
     }
 
     func disconnect() {
-        ChatManager.disconnect(roomId: room.objectId)
+        guard let roomId = room.objectId else {
+            return
+        }
+        ChatManager.disconnect(roomId: roomId)
     }
 }

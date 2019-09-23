@@ -26,7 +26,10 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         selectPage(viewModel.page.value)
     }
 }
@@ -34,8 +37,11 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
 private extension RoomDetailsViewController {
     func configure() {
         chatButton.setTitle(R.string.localizable.roomDetailsChat(), for: .normal)
+        chatButton.mode = .selector
         playButton.setTitle(R.string.localizable.roomDetailsPlay(), for: .normal)
+        playButton.mode = .selector
         fantasiesButton.setTitle(R.string.localizable.roomDetailsFantasies(), for: .normal)
+        fantasiesButton.mode = .selector
 
         viewModel.router.embedChat(in: chatContainerView)
         viewModel.router.embedCommonFantasies(in: commonFantasiesContainerView)
