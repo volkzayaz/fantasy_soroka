@@ -15,7 +15,9 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: UserGatewayViewModel! = .init(router: .init(owner: self))
     
-    @IBOutlet private weak var tempLocationLabel: UILabel!
+    @IBOutlet weak var profileAvatarImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
     /**
      *  Connect any IBOutlets here
      *  @IBOutlet private weak var label: UILabel!
@@ -24,29 +26,19 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.tempLocation
-            .drive(tempLocationLabel.rx.text)
+        viewModel.name
+            .drive(nameLabel.rx.text)
             .disposed(by: rx.disposeBag)
+        
+        viewModel.image
+            .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0)  }
+            .map { $0 ?? R.image.noPhoto() }
+        .drive(profileAvatarImageView.rx.image)
+        .disposed(by: rx.disposeBag)
         
     }
     
 }
 
 private extension UserGatewayViewController {
-
-    @IBAction func logout(_ sender: Any) {
-        viewModel.logout()
-    }
-    
-    @IBAction func dislikedCardsTapped(_ sender: Any) {
-        viewModel.showDislikedCards()
-    }
-    
-    @IBAction func likedCardsTapped(_ sender: Any) {
-        viewModel.showLikedCards()
-    }
-
-    @IBAction func editProfile(_ sender: Any) {
-        viewModel.showEditProfile()
-    }
 }

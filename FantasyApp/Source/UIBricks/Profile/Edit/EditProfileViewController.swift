@@ -14,7 +14,7 @@ import RxDataSources
 
 class EditProfileViewController: UIViewController, MVVM_View {
     
-    var viewModel: EditProfileViewModel!
+    lazy var viewModel: EditProfileViewModel! = EditProfileViewModel(router: .init(owner: self))
     
     lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, VM.Model>>(
         configureCell: { [unowned self] (_, tableView, ip, x) in
