@@ -27,16 +27,5 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
         self.router = router
         self.room = room
         self.page = BehaviorRelay(value: page)
-
-        indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
-            h?.setLoadingStatus(loading)
-        }).disposed(by: bag)
     }
-
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
-    fileprivate let bag = DisposeBag()
-}
-
-extension RoomDetailsViewModel {
-
 }

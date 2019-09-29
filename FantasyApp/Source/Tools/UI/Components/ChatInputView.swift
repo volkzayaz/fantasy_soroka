@@ -1,0 +1,188 @@
+//
+//  ChatInputView.swift
+//  FantasyApp
+//
+//  Created by Admin on 29.09.2019.
+//  Copyright © 2019 Fantasy App. All rights reserved.
+//
+
+import ChattoAdditions
+import UIKit
+
+public protocol ChatInputViewDelegate: class {
+    func inputBarShouldBeginTextEditing(_ inputBar: ChatInputView) -> Bool
+    func inputBarDidBeginEditing(_ inputBar: ChatInputView)
+    func inputBarDidEndEditing(_ inputBar: ChatInputView)
+    func inputBarDidChangeText(_ inputBar: ChatInputView)
+    func inputBarSendButtonPressed(_ inputBar: ChatInputView)
+    func inputBarDidShowPlaceholder(_ inputBar: ChatInputView)
+    func inputBarDidHidePlaceholder(_ inputBar: ChatInputView)
+}
+
+public class ChatInputView: UIView {
+
+    public var pasteActionInterceptor: PasteActionInterceptor? {
+        get { return textView.pasteActionInterceptor }
+        set { textView.pasteActionInterceptor = newValue }
+    }
+
+    public weak var delegate: ChatInputViewDelegate?
+
+    public var shouldEnableSendButton = { (inputBar: ChatInputView) -> Bool in
+        return !inputBar.textView.text.isEmpty
+    }
+
+    public var inputTextView: UITextView? {
+        return textView
+    }
+
+    private var textView = ExpandableTextView(frame: .zero)
+    private var sendButton = SecondaryButton(frame: .zero)
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        configure()
+    }
+
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        configure()
+    }
+
+    public var maxCharactersCount: UInt? // nil -> unlimited
+
+    private func updateIntrinsicContentSizeAnimated() {
+        let options: UIView.AnimationOptions = [.beginFromCurrentState, .allowUserInteraction]
+        UIView.animate(withDuration: 0.25, delay: 0, options: options, animations: { () -> Void in
+            self.invalidateIntrinsicContentSize()
+            self.layoutIfNeeded()
+        }, completion: nil)
+    }
+
+    open override func layoutSubviews() {
+        updateConstraints() // Interface rotation or size class changes will reset constraints as defined in interface builder -> constraintsForVisibleTextView will be activated
+        super.layoutSubviews()
+    }
+
+    open func becomeFirstResponderWithInputView(_ inputView: UIView?) {
+        textView.inputView = inputView
+
+        if textView.isFirstResponder {
+            textView.reloadInputViews()
+        } else {
+            textView.becomeFirstResponder()
+        }
+    }
+
+    public var inputText: String {
+        get {
+            return textView.text
+        }
+        set {
+            textView.text = newValue
+            updateSendButton()
+        }
+    }
+
+    public var inputSelectedRange: NSRange {
+        get {
+            return textView.selectedRange
+        }
+        set {
+            textView.selectedRange = newValue
+        }
+    }
+
+    public var placeholderText: String {
+        get {
+            return textView.placeholderText
+        }
+        set {
+            textView.placeholderText = newValue
+        }
+    }
+
+    fileprivate func updateSendButton() {
+        sendButton.isEnabled = shouldEnableSendButton(self)
+    }
+
+    @objc private func buttonTapped() {
+        delegate?.inputBarSendButtonPressed(self)
+    }
+
+    private func configure() {
+        addSubview(textView)
+        addSubview(sendButton)
+
+        textView.scrollsToTop = false
+        textView.delegate = self
+        textView.placeholderDelegate = self
+        textView.layer.cornerRadius = 18.0
+        textView.setTextPlaceholderFont(.regularFont(ofSize: 15))
+        textView.setTextPlaceholderColor(.basicGrey)
+        textView.textColor = .fantasyBlack
+        textView.font = .regularFont(ofSize: 15)
+        textView.backgroundColor = .messageBackground
+        textView.translatesAutoresizingMaskIntoConstraints = false
+
+        sendButton.isEnabled = false
+        sendButton.setImage(R.image.sendMessage(), for: .normal)
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            textView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            textView.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -8),
+
+            sendButton.widthAnchor.constraint(equalToConstant: 36),
+            sendButton.heightAnchor.constraint(equalToConstant: 36),
+            sendButton.topAnchor.constraint(equalTo: textView.topAnchor),
+            sendButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16)
+        ])
+    }
+}
+
+// MARK: UITextViewDelegate
+extension ChatInputView: UITextViewDelegate {
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return delegate?.inputBarShouldBeginTextEditing(self) ?? true
+    }
+
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        delegate?.inputBarDidEndEditing(self)
+    }
+
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        delegate?.inputBarDidBeginEditing(self)
+    }
+
+    public func textViewDidChange(_ textView: UITextView) {
+        updateSendButton()
+        delegate?.inputBarDidChangeText(self)
+    }
+
+    public func textView(_ textView: UITextView, shouldChangeTextIn nsRange: NSRange, replacementText text: String) -> Bool {
+        guard let maxCharactersCount = maxCharactersCount else { return true }
+        let currentText: NSString = textView.text as NSString
+        let currentCount = currentText.length
+        let rangeLength = nsRange.length
+        let nextCount = currentCount - rangeLength + (text as NSString).length
+        return UInt(nextCount) <= maxCharactersCount
+    }
+
+}
+
+// MARK: ExpandableTextViewPlaceholderDelegate
+extension ChatInputView: ExpandableTextViewPlaceholderDelegate {
+    public func expandableTextViewDidShowPlaceholder(_ textView: ExpandableTextView) {
+        delegate?.inputBarDidShowPlaceholder(self)
+    }
+
+    public func expandableTextViewDidHidePlaceholder(_ textView: ExpandableTextView) {
+        delegate?.inputBarDidHidePlaceholder(self)
+    }
+}

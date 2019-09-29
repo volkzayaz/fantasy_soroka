@@ -13,11 +13,10 @@ target 'FantasyApp' do
 
     #data layer
     pod 'Parse', '1.17.2'
-    pod 'ParseLiveQuery', '~> 2.6'
+    pod 'ParseLiveQuery', '2.6.1'
     pod 'Parse/FacebookUtils'
-    pod 'FBSDKCoreKit', '4.40.0'
-    pod 'FBSDKLoginKit', '4.40.0'
-    
+    pod 'FBSDKCoreKit', '4.44.1'
+    pod 'FBSDKLoginKit', '4.44.1'
     pod 'Moya', '13.0.1'
   
     pod 'RxCocoa', '~> 5.0'
@@ -32,7 +31,8 @@ target 'FantasyApp' do
     pod 'Kingfisher', '~> 5.7'
     pod 'FDTake'
     pod 'Koloda', '~> 5.0'
-    pod 'MessageKit', '~> 3.0'
+    pod 'Chatto', '~> 3.5'
+    pod 'ChattoAdditions', '~> 3.5'
 end
 
 target 'FantasyAppTests' do

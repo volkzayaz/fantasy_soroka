@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import MessageKit
 
 struct CommonFantasiesViewModel: MVVM_ViewModel {
     let router: CommonFantasiesRouter

@@ -9,56 +9,77 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import MessageKit
 import ParseLiveQuery
+import Chatto
+import ChattoAdditions
 
-struct ChatViewModel: MVVM_ViewModel {
+class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
     let router: ChatRouter
     let room: Chat.Room
     let messages = BehaviorRelay<[Chat.Message]>(value: [])
-    let isSendingMessage = BehaviorRelay<Bool>(value: false)
+    var delegate: ChatDataSourceDelegateProtocol?
 
     init(router: ChatRouter, room: Chat.Room) {
         self.router = router
         self.room = room
 
-        indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
-            h?.setLoadingStatus(loading)
-        }).disposed(by: bag)
+//        indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
+//            h?.setLoadingStatus(loading)
+//        }).disposed(by: bag)
 
         loadMessages()
     }
 
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
+   // fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
+
+    func loadNext() {
+
+    }
+
+    func loadPrevious() {
+
+    }
+
+    func adjustNumberOfMessages(preferredMaxCount: Int?, focusPosition: Double, completion: (Bool) -> Void) {
+
+    }
+
+    var chatItems: [ChatItemProtocol] {
+        return messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
+    }
+
+    var hasMoreNext: Bool {
+        return false
+    }
+
+    var hasMorePrevious: Bool {
+        return true
+    }
 }
 
 extension ChatViewModel {
-    var currentSender: Sender {
-        return Sender(senderId: User.current!.id, displayName: User.current!.bio.name)
-    }
-
     func loadMessages() {
-        // TODO: Pagination and error handling
+        // TODO: Pagination, progress bar and error handling
         let offset = 0
         ChatManager.getMessagesInRoom(room.objectId!, offset: offset)
-            .trackView(viewIndicator: indicator)
+            //.trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { messages in
+            .subscribe(onNext: { [weak self] messages in
+                guard let self = self else { return }
                 var array = self.messages.value
                 array.insert(contentsOf: messages, at: offset)
                 self.messages.accept(messages)
                 self.connect()
+                self.delegate?.chatDataSourceDidUpdate(self, updateType: .firstLoad)
             })
             .disposed(by: bag)
     }
 
     func sendMessage(text: String) {
-        guard let roomId = room.objectId,
-            let recepientId = room.recipient?.objectId else {
+        guard let roomId = room.objectId, let recepientId = room.recipient?.objectId else {
             return
         }
-        isSendingMessage.accept(true)
         let message = Chat.Message(senderDisplayName: User.current!.bio.name,
                                    senderId: AuthenticationManager.currentUser()!.id,
                                    recepientId: recepientId,
@@ -67,19 +88,18 @@ extension ChatViewModel {
                                    roomId: roomId,
                                    isRead: false,
                                    createdAt: Date())
-        ChatManager.sendMessage(message)
-            .subscribe({ event in
-                // TODO: error handling
-                self.isSendingMessage.accept(false)
-            })
-            .disposed(by: bag)
+        ChatManager.sendMessage(message).subscribe({ [weak self] event in
+            guard let self = self else { return }
+            // TODO: error handling
+        }).disposed(by: bag)
     }
 
     func connect() {
         guard let roomId = room.objectId else {
             return
         }
-        ChatManager.connect(roomId: roomId).subscribe(onNext: { event in
+        ChatManager.connect(roomId: roomId).subscribe(onNext: { [weak self] event in
+            guard let self = self else { return }
             var array: [Chat.Message] = self.messages.value
             switch event {
             case .messageAdded(let message):
@@ -92,6 +112,7 @@ extension ChatViewModel {
                 }
             }
             self.messages.accept(array)
+            self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
         }).disposed(by: bag)
     }
 

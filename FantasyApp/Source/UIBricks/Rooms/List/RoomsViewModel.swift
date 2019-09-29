@@ -77,22 +77,21 @@ extension RoomsViewModel {
         router.roomTapped(room)
     }
 
-//    Test code to create room with Andriy
-//    func createRoomWithAdmin() {
-//        let query = PFUser.query()!.whereKey("fbId", equalTo: "113922985842130" as NSString)
-//        query.findObjectsInBackground { (objects, error) in
-//            if error == nil,
-//                let admin = objects?.first as? PFUser,
-//                let currentUser = PFUser.current() {
-//                let room = PFObject(className: "Room")
-//                let recipientRelation = room.relation(forKey: "recipient")
-//                let ownerRelation = room.relation(forKey: "owner")
-//                recipientRelation.add(currentUser)
-//                ownerRelation.add(admin)
-//                room.saveInBackground(block: { (didSave, maybeError) in })
-//            }
-//        }
-//    }
+    func createRoomWithAdmin() {
+        let query = PFUser.query()!.whereKey("fbId", equalTo: "113922985842130" as NSString)
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil,
+                let admin = objects?.first as? PFUser,
+                let currentUser = PFUser.current() {
+                let room = PFObject(className: "Room")
+                let recipientRelation = room.relation(forKey: "recipient")
+                let ownerRelation = room.relation(forKey: "owner")
+                recipientRelation.add(currentUser)
+                ownerRelation.add(admin)
+                room.saveInBackground(block: { (didSave, maybeError) in })
+            }
+        }
+    }
 
     func fetchRooms() {
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")

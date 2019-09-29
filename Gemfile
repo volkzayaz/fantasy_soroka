@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem "cocoapods", "1.7.4"
-gem "fastlane", "2.130.0"
+gem "cocoapods", "1.8.0"
+gem "fastlane", "2.131.0"

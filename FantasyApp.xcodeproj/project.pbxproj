@@ -212,6 +212,7 @@
 		84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */; };
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
+		84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE118B23413045007EAFE6 /* ChatInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -439,6 +440,7 @@
 		84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsRouter.swift; sourceTree = "<group>"; };
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
+		84EE118B23413045007EAFE6 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1268,6 +1270,7 @@
 			isa = PBXGroup;
 			children = (
 				8416816622E96CF700FA9455 /* PrimaryButton.swift */,
+				84EE118B23413045007EAFE6 /* ChatInputView.swift */,
 				841681C822E999CA00FA9455 /* SecondaryButton.swift */,
 				844A3ED422EE9C9B00E06665 /* TextField.swift */,
 				844A3ED622EEA25300E06665 /* ErrorView.swift */,
@@ -1895,6 +1898,7 @@
 				739F798A2309496C0045FCD7 /* StoreMainCards.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
 				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,
+				84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */,
 				739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */,
 				734C70BB23213D9200ED2E91 /* Collection+Safe.swift in Sources */,
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,

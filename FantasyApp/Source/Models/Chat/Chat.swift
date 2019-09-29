@@ -9,12 +9,17 @@
 import Foundation
 import RxDataSources
 import Parse
-import MessageKit
+import ChattoAdditions
+import Chatto
 
 enum Chat {}
 extension Chat {
 
-    struct Message: Equatable, IdentifiableType, ParsePresentable {
+    class Message: Equatable, IdentifiableType, ParsePresentable {
+        static func == (lhs: Chat.Message, rhs: Chat.Message) -> Bool {
+            return lhs.objectId == rhs.objectId && lhs.roomId == rhs.roomId
+        }
+
         static var className: String {
             return "SinchMessage"
         }
@@ -42,6 +47,24 @@ extension Chat {
         let roomId: String
         var isRead: Bool = false
         let createdAt: Date
+
+        init(senderDisplayName: String?,
+             senderId: String,
+             recepientId: String,
+             text: String?,
+             objectId: String?,
+             roomId: String,
+             isRead: Bool = false,
+             createdAt: Date) {
+            self.senderDisplayName = senderDisplayName
+            self.senderId = senderId
+            self.recepientId = recepientId
+            self.text = text
+            self.objectId = objectId
+            self.roomId = roomId
+            self.isRead = isRead
+            self.createdAt = createdAt
+        }
     }
 
     struct Room: Equatable, IdentifiableType, ParsePresentable {
@@ -57,25 +80,35 @@ extension Chat {
         var updatedAt: Date?
         var owner: UserSlice?
         var recipient: UserSlice?
+        var backendId: String?
     }
 }
 
-// MARK: - MessageKit
-extension Chat.Message: MessageType {
-    var sender: SenderType {
-        return Sender(senderId: senderId, displayName: senderDisplayName ?? "")
+// MARK: - Chatto
+extension Chat.Message: MessageModelProtocol {
+    var isIncoming: Bool {
+        return senderId == User.current?.id
     }
 
-    var messageId: String {
-        return objectId!
-    }
-
-    var sentDate: Date {
+    var date: Date {
         return createdAt
     }
 
-    var kind: MessageKind {
-        let message = text ?? ""
-        return message.containsOnlyEmojis ? .emoji(message) : .text(message)
+    var status: MessageStatus {
+        return .success
+    }
+
+    enum Kind: String {
+        case text = "text-chat-message"
+        case emoji = "emoji-chat-message"
+    }
+
+    var type: ChatItemType {
+        return (text ?? "").containsOnlyEmojis ? Chat.Message.Kind.emoji.rawValue :
+            Chat.Message.Kind.text.rawValue
+    }
+
+    var uid: String {
+        return objectId ?? ""
     }
 }
