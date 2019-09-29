@@ -13,7 +13,7 @@ import RxCocoa
 
 class ProfileSettingsViewController: UITableViewController, MVVM_View {
     
-    var viewModel: ProfileSettingsViewModel!
+    lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
     /**
      *  Connect any IBOutlets here

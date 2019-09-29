@@ -17,10 +17,10 @@ struct AddProfilePhoto: Action {
         var state = initialState
         
         if isPublic {
-            state.currentUser?.bio.photos.public.append(newPhoto)
+            state.currentUser?.bio.photos.public.images.append( Photo(url: newPhoto, thumbnailURL: newPhoto) )
         }
         else {
-            state.currentUser?.bio.photos.private.append(newPhoto)
+            state.currentUser?.bio.photos.private.images.append( Photo(url: newPhoto, thumbnailURL: newPhoto) )
         }
         
         return state
@@ -37,10 +37,10 @@ struct RemoveProfilePhoto: Action {
         var state = initialState
         
         if isPublic {
-            state.currentUser?.bio.photos.public.remove(at: byIndex)
+            state.currentUser?.bio.photos.public.images.remove(at: byIndex)
         }
         else {
-            state.currentUser?.bio.photos.private.remove(at: byIndex)
+            state.currentUser?.bio.photos.private.images.remove(at: byIndex)
         }
         
         return state

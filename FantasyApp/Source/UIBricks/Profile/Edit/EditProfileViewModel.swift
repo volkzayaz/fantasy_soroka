@@ -52,26 +52,6 @@ extension EditProfileViewModel {
         
     }
     
-    var publicPhotos: Driver<[String]> {
-        let user = User.current!
-        
-        return form.asDriver()
-            .map { user.applied(editForm: $0) }
-            .map { user in
-                return user.bio.photos.public
-            }
-    }
-    
-    var privatePhotos: Driver<[String]> {
-        let user = User.current!
-        
-        return form.asDriver()
-            .map { user.applied(editForm: $0) }
-            .map { user in
-                return user.bio.photos.private
-        }
-    }
-    
     func profilePhotoRouter(for owner: EditProfilePhotoCell) -> ProfilePhotoRouter {
         return .init(owner: owner, container: router.owner)
     }

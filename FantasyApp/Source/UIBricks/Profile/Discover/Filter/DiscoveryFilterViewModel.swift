@@ -48,6 +48,18 @@ extension DiscoveryFilterViewModel {
         updateForm { $0.gender = gender }
     }
     
+    func change(sexuality: Sexuality) {
+        updateForm { $0.sexuality = sexuality }
+    }
+    
+    func changeAgeFrom(x: Int) {
+        updateForm { $0.age = x..<$0.age.upperBound }
+    }
+    
+    func changeAgeTo(x: Int) {
+        updateForm { $0.age = $0.age.lowerBound..<x }
+    }
+    
     func submit() {
         
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))

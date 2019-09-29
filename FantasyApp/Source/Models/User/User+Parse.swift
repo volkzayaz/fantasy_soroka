@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum ParseMigrationError: Error {
     case dataCorrupted
@@ -16,7 +17,7 @@ enum ParseMigrationError: Error {
 extension User {
     
     ///single migration point from Parse Entity to Fantasy Entity
-    init(pfUser: PFUser) throws {
+    init(pfUser: PFUser, albums: (public: Album, private: Album)? = nil) throws {
 
         guard let objectId = pfUser.objectId else {
             fatalError("Unsaved PFUsers conversion to native User is not supported")
@@ -50,6 +51,12 @@ extension User {
             throw ParseMigrationError.dataCorrupted
         }
         
+        guard let photoURL = pfUser["avatar"] as? String,
+              let thumbnailURL = pfUser["avatarThumbnail"] as? String else {
+            throw ParseMigrationError.dataCorrupted
+        }
+        let mainPhoto = Photo(url: photoURL, thumbnailURL: thumbnailURL)
+        
         let relationStatus: RelationshipStatus
         if let x = pfUser["couple"] as? String {
             
@@ -61,12 +68,18 @@ extension User {
             relationStatus = .single
         }
         
-        var changePolicy = User.CommunityChangePolicy.locationBased
+        let changePolicy: User.CommunityChangePolicy
         if let index = (pfUser["communityChangePolicy"] as? Int) {
             changePolicy = User.CommunityChangePolicy(rawValue: index) ?? .locationBased
         }
+        else {
+            changePolicy = .locationBased
+        }
         
         let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
+        let photos = User.Bio.Photos(parseAvatarShortcut: mainPhoto,
+                                     public             : albums?.public  ?? .init(images: []) ,
+                                     private            : albums?.private ?? .init(images: []))
         
         id = objectId
         bio = .init(name: name,
@@ -75,7 +88,7 @@ extension User {
                     gender: gender,
                     sexuality: sexuality,
                     relationshipStatus: relationStatus,
-                    photos: .init(public: [], private: []))
+                    photos: photos)
         
         ///TODO: save on server
         searchPreferences = nil
@@ -137,6 +150,17 @@ extension PFUser {
         
         setter("gender", editForm.gender?.rawValue)
         setter("sexuality", editForm.sexuality?.rawValue)
+        
+    }
+ 
+    func convertWithAlbums() -> Single<User> {
+        
+        guard self == PFUser.current() else {
+            fatalError("Method is only designed to be used for currentUser")
+        }
+        
+        return UserManager.fetchOrCreateAlbums()
+            .map { try User(pfUser: self, albums: $0) }
         
     }
     

@@ -115,7 +115,7 @@
             <objects>
                 <navigationController id="XBn-ky-axQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" id="p9f-Nm-IKM"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8vp-US-9xt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="8vp-US-9xt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

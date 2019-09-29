@@ -135,6 +135,7 @@
 		73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */; };
 		73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */; };
 		73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */; };
+		73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F212340B05B002C3F8E /* AlbumRequest.swift */; };
 		73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */; };
 		73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011522EC3A3400F767BF /* RegistrationRouter.swift */; };
 		73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011622EC3A3400F767BF /* RegistrationViewController.swift */; };
@@ -369,6 +370,7 @@
 		73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesRouter.swift; sourceTree = "<group>"; };
 		73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesViewController.swift; sourceTree = "<group>"; };
 		73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesViewModel.swift; sourceTree = "<group>"; };
+		73C96F212340B05B002C3F8E /* AlbumRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequest.swift; sourceTree = "<group>"; };
 		73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocation.swift; sourceTree = "<group>"; };
 		73E6011522EC3A3400F767BF /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		73E6011622EC3A3400F767BF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -1243,6 +1245,14 @@
 			path = MyFantasies;
 			sourceTree = "<group>";
 		};
+		73C96F202340B046002C3F8E /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				73C96F212340B05B002C3F8E /* AlbumRequest.swift */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
 		73E4C39E22F088E500BB71B4 /* Actors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1403,6 +1413,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73C96F202340B046002C3F8E /* Album */,
 				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				734C52A42327AC1300B54510 /* User */,
 				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
@@ -1785,6 +1796,7 @@
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
+				73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */,
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
 				7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */,
 				7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */,

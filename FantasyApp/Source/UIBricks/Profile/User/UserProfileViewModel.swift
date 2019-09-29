@@ -10,16 +10,24 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 extension UserProfileViewModel {
     
-    var photos: [Photo] {
+    var photos: Driver<[AnimatableSectionModel<String, Photo>]> {
         
-        guard user.bio.photos.public.count > 0 else {
-            return [.nothing]
+        guard !user.bio.photos.public.isReal else {
+            return .just( [AnimatableSectionModel(model: "",
+                                                  items: Photo.fromPhotos(p: user.bio.photos.public.images))] )
         }
         
-        return user.bio.photos.public.map { .url($0) }
+        return UserManager.images(of: user)
+            .trackView(viewIndicator: indicator)
+            .silentCatch()
+            .asDriver(onErrorJustReturn: [])
+            .map { Photo.fromPhotos(p: $0) }
+            .map { [AnimatableSectionModel(model: "", items: $0)] }
+            
     }
 
     var sections: [Section] {
@@ -77,9 +85,24 @@ extension UserProfileViewModel {
         
     }
     
-    enum Photo {
+    enum Photo: IdentifiableType, Equatable {
         case nothing
         case url(String)
+        
+        var identity: String {
+            if case .url(let x) = self { return x }
+            
+            return "nothing"
+        }
+        
+        static func fromPhotos(p: [FantasyApp.Photo]) -> [Photo] {
+            
+            guard p.count > 0 else { return [.nothing] }
+            
+            return p.map { .url($0.url) }
+        }
+        
+        
     }
     
     enum Section {

@@ -45,4 +45,35 @@ extension UserManager {
         
     }
     
+    static func fetchOrCreateAlbums() -> Single<(public: Album, private: Album)> {
+        return GetAlbums(of: .me).rx.request
+            .flatMap { albums in
+                
+                guard albums.count == 2,
+                    let publicAlbum  = albums.filter({ !$0.isPrivate }).first,
+                    let privateAlbum = albums.filter({  $0.isPrivate }).first else {
+                    fatalError("Can't continue without one public and one private album. Received: \(albums)")
+                }
+                
+                return Single.zip(GetAlbumContent(album: publicAlbum ).rx.request,
+                                  GetAlbumContent(album: privateAlbum).rx.request)
+                    .map { (public: $0, private: $1) }
+                
+            }
+    }
+    
+    static func images(of user: User) -> Single<[Photo]> {
+        
+        ///Server does not return Main avatar as part of the Album
+        
+        return GetImages(of: .user(user)).rx.request.map { photos in
+            
+            if let p = user.bio.photos.main {
+                return [p] + photos
+            }
+            
+            return photos
+        }
+    }
+    
 }
