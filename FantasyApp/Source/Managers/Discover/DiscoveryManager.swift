@@ -13,14 +13,21 @@ enum DiscoveryManager {}
 extension DiscoveryManager {
     
     static func profilesFor(filter: DiscoveryFilter) -> Single<[Profile]> {
-        
-        let q = User.query
-        q.whereKey("belongsTo", equalTo: filter.community.pfObject)
-        q.whereKey("objectId", notEqualTo: User.current!.id)
-        q.whereKey("gender", equalTo: filter.filter.gender.rawValue)
-        return q.rx.fetchAllObjects().map { x in
-            return x.compactMap { try? User(pfUser: $0 as! PFUser) }
-        }
+
+        return GetAllConnections().rx.request
+            .flatMap { (response) -> Single<[PFObject]> in
+                
+                let noGo = response.map { $0.otherUserId } + [User.current!.id]
+                
+                return User.query
+                    .whereKey("objectId", notContainedIn: noGo)
+                    .whereKey("belongsTo", equalTo: filter.community.pfObject)
+                    .whereKey("gender", equalTo: filter.filter.gender.rawValue)
+                    .rx.fetchAllObjects()
+            }
+            .map { x in
+                return x.compactMap { try? User(pfUser: $0 as! PFUser) }
+            }
         
     }
 

@@ -50,6 +50,18 @@ struct ConnectionResponse: Codable {
         }
         
     }
+    
+    var otherUserId: String {
+        if userId == User.current?.id {
+            return targetUserId
+        }
+        else if targetUserId == User.current?.id {
+            return userId
+        }
+        
+        fatalErrorInDebug("currentUser is not part of this connection \(self)")
+        return ""
+    }
 }
 
 ///Find out how you are connected with other user (Connection)
@@ -173,6 +185,24 @@ struct GetConnectionRequests: AuthorizedAPIResource {
     }
     
     typealias responseType = [Response]
+    
+    var task: Task {
+        return .requestPlain
+    }
+    
+}
+
+struct GetAllConnections: AuthorizedAPIResource {
+    
+    var path: String {
+        return "/users/me/connections"
+    }
+    
+    var method: Moya.Method {
+        return .get
+    }
+        
+    typealias responseType = [ConnectionResponse]
     
     var task: Task {
         return .requestPlain
