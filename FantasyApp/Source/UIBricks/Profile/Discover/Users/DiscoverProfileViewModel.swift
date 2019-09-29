@@ -16,7 +16,7 @@ typealias Profile = User
 extension DiscoverProfileViewModel {
     
     enum Mode {
-        case profiles, overTheLimit
+        case profiles
         case noLocationPermission
         case absentCommunity(nearestCity: String?)
         case noSearchPreferences
@@ -33,9 +33,8 @@ extension DiscoverProfileViewModel {
 
                 return Driver
                     .combineLatest(self.locationActor.near,
-                                   self.swipeState.asDriver(),
-                                   appState.map { $0.currentUser?.searchPreferences == nil }) { ($0, $1, $2) }
-                    .map { (near, swipeState, isFilterEmpty) -> Mode? in
+                                   appState.map { $0.currentUser?.searchPreferences == nil }) { ($0, $1) }
+                    .map { (near, isFilterEmpty) -> Mode? in
                         
                         switch near {
 
@@ -53,11 +52,8 @@ extension DiscoverProfileViewModel {
                             return .noSearchPreferences
                         }
                         
-                        switch swipeState {
-                        case .limit(_)?:    return .profiles
-                        case .tillDate(_)?: return .overTheLimit
-                        case .none:         return nil
-                        }
+                        return .profiles
+                        
                     }
             }
             .notNil()
@@ -66,81 +62,23 @@ extension DiscoverProfileViewModel {
     
     var profiles: Driver<[Profile]> {
 
-        return swipeState.notNil()
-            .take(1)
-            .flatMap { _ in
-                return appState
-                    .changesOf { $0.currentUser?.discoveryFilter }
-                    .notNil()
-            }
-            .withLatestFrom(swipeState.asDriver().notNil()) { ($0, $1) }
-            .flatMapLatest { [unowned i = indicator] (filter, swipeState) -> Driver<[Profile]> in
+        return appState
+            .changesOf { $0.currentUser?.discoveryFilter }
+            .notNil()
+            .flatMapLatest { [unowned i = indicator] (filter) -> Driver<[Profile]> in
                 
-                guard case .limit(let x) = swipeState else {
-                    return .just([])
-                }
-                
-                return DiscoveryManager.profilesFor(filter: filter,
-                                                    limit: x)
+                return DiscoveryManager.profilesFor(filter: filter)
                     .trackView(viewIndicator: i)
                     .asDriver(onErrorJustReturn: [])
                 
             }
             .asDriver(onErrorJustReturn: [])
     }
-    
-    var timeLeftText: Driver<String> {
-        
-        return swipeState.asDriver().notNil()
-            .map { x -> Date? in
-                if case .tillDate(let date) = x {
-                    return date
-                }
-                return nil
-            }
-            .notNil()
-            .flatMapLatest { date in
-                
-                return Driver<Int>.interval(.seconds(1)).map { _ in
-                    
-                    let secondsTillEnd = Int(date.timeIntervalSinceNow)
-                    
-                    let hours   =  secondsTillEnd / 3600
-                    let minutes = (secondsTillEnd % 3600) / 60
-                    let seconds = (secondsTillEnd % 3600) % 60
-                    
-                    return "\(hours):\(minutes):\(seconds)"
-                }
-                
-        }
-        
-    }
-    
-    enum SwipeState {
-        case limit(Int)
-        case tillDate(Date)
-        
-        func decrement() -> SwipeState {
-            switch self {
-            case .tillDate(_): return self
-            case .limit(let x):
-                
-                guard x - 1 > 0 else {
-                    return .tillDate( Date(timeIntervalSinceNow: 3600 * 24) )
-                }
-                
-                return .limit(x - 1)
-            
-            }
-        }
-        
-    }
+
     
 }
 
 struct DiscoverProfileViewModel : MVVM_ViewModel {
-    
-    fileprivate let swipeState = BehaviorRelay<SwipeState?>(value: nil)
     
     fileprivate var viewedProfiles: Set<Profile> = []
     
@@ -148,12 +86,6 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     
     init(router: DiscoverProfileRouter) {
         self.router = router
-        
-        DiscoveryManager.swipeState()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .bind(to: swipeState)
-            .disposed(by: bag)
         
         /////progress indicator
         
@@ -176,10 +108,6 @@ extension DiscoverProfileViewModel {
         guard !viewedProfiles.contains(profile) else { return }
         
         viewedProfiles.insert(profile)
-        swipeState.accept(swipeState.value?.decrement())
-        
-        ///might want to queue it up and debounce later
-        _ = DiscoveryManager.updateSwipeState(swipeState.value!).subscribe()
     }
     
     func profileSelected(_ profile: Profile) {

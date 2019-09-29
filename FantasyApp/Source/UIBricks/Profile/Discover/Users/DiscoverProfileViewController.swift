@@ -16,7 +16,6 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: DiscoverProfileViewModel! = DiscoverProfileViewModel(router: .init(owner: self))
     
-    @IBOutlet weak var timeEndedLabel: UILabel!
     @IBOutlet weak var locationMessageLabel: UILabel!
     @IBOutlet weak var profilesTableView: UITableView!
     
@@ -43,10 +42,6 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
             .drive(profilesTableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
-        viewModel.timeLeftText
-            .drive(timeEndedLabel.rx.text)
-            .disposed(by: rx.disposeBag)
-        
         profilesTableView.rx.willDisplayCell
             .subscribe(onNext: { [weak view = profilesTableView, weak self] (_, ip) in
                 guard let model: Profile = try? view?.rx.model(at: ip) else {
@@ -66,15 +61,12 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         viewModel.mode
             .drive(onNext: { [unowned self] (mode) in
                 
-                [self.profilesTableView, self.timeEndedLabel, self.locationMessageLabel]
+                [self.profilesTableView, self.locationMessageLabel]
                     .forEach { $0?.isHidden = true }
                 
                 switch mode {
                 case .profiles:
                     self.profilesTableView.isHidden = false
-                    
-                case .overTheLimit:
-                    self.timeEndedLabel.isHidden = false
                     
                 case .noLocationPermission:
                     self.locationMessageLabel.isHidden = false
