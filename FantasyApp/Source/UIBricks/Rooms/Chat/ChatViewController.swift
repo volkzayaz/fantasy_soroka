@@ -27,6 +27,7 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
         let chatInputView = ChatInputView(frame: .zero)
         chatInputView.translatesAutoresizingMaskIntoConstraints = false
         chatInputView.maxCharactersCount = 1000
+        chatInputView.delegate = self
         return chatInputView
     }
 
@@ -75,6 +76,13 @@ private extension ChatViewController {
             view.leftAnchor.constraint(equalTo: superview.leftAnchor),
             view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
         ])
+    }
+}
+
+extension ChatViewController: ChatInputViewDelegate {
+    func inputViewSendButtonPressed(_ inputView: ChatInputView) {
+        viewModel.sendMessage(text: inputView.inputText)
+        inputView.inputText = ""
     }
 }
 

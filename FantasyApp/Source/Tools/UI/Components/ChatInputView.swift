@@ -10,13 +10,23 @@ import ChattoAdditions
 import UIKit
 
 public protocol ChatInputViewDelegate: class {
-    func inputBarShouldBeginTextEditing(_ inputBar: ChatInputView) -> Bool
-    func inputBarDidBeginEditing(_ inputBar: ChatInputView)
-    func inputBarDidEndEditing(_ inputBar: ChatInputView)
-    func inputBarDidChangeText(_ inputBar: ChatInputView)
-    func inputBarSendButtonPressed(_ inputBar: ChatInputView)
-    func inputBarDidShowPlaceholder(_ inputBar: ChatInputView)
-    func inputBarDidHidePlaceholder(_ inputBar: ChatInputView)
+    func inputViewShouldBeginTextEditing(_ inputView: ChatInputView) -> Bool
+    func inputViewDidBeginEditing(_ inputView: ChatInputView)
+    func inputViewDidEndEditing(_ inputView: ChatInputView)
+    func inputViewDidChangeText(_ inputView: ChatInputView)
+    func inputViewSendButtonPressed(_ inputView: ChatInputView)
+    func inputViewDidShowPlaceholder(_ inputView: ChatInputView)
+    func inputViewDidHidePlaceholder(_ inputView: ChatInputView)
+}
+
+extension ChatInputViewDelegate {
+    // optional functions
+    func inputViewShouldBeginTextEditing(_ inputView: ChatInputView) -> Bool { return true }
+    func inputViewDidBeginEditing(_ inputView: ChatInputView) {}
+    func inputViewDidEndEditing(_ inputView: ChatInputView) {}
+    func inputViewDidChangeText(_ inputView: ChatInputView) {}
+    func inputViewDidShowPlaceholder(_ inputView: ChatInputView) {}
+    func inputViewDidHidePlaceholder(_ inputView: ChatInputView) {}
 }
 
 public class ChatInputView: UIView {
@@ -28,8 +38,8 @@ public class ChatInputView: UIView {
 
     public weak var delegate: ChatInputViewDelegate?
 
-    public var shouldEnableSendButton = { (inputBar: ChatInputView) -> Bool in
-        return !inputBar.textView.text.isEmpty
+    public var shouldEnableSendButton = { (inputView: ChatInputView) -> Bool in
+        return !inputView.textView.text.isEmpty
     }
 
     public var inputTextView: UITextView? {
@@ -110,7 +120,7 @@ public class ChatInputView: UIView {
     }
 
     @objc private func buttonTapped() {
-        delegate?.inputBarSendButtonPressed(self)
+        delegate?.inputViewSendButtonPressed(self)
     }
 
     public override func updateConstraints() {
@@ -153,7 +163,7 @@ public class ChatInputView: UIView {
         textView.setTextPlaceholderFont(.regularFont(ofSize: 15))
         textView.setTextPlaceholderColor(.basicGrey)
         textView.placeholderText = R.string.localizable.chatInputViewPlaceholder()
-        textView.textContainerInset = UIEdgeInsets(top: 7, left: 12, bottom: 8, right: 12)
+        textView.textContainerInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         textView.textColor = .fantasyBlack
         textView.font = .regularFont(ofSize: 15)
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -170,20 +180,20 @@ public class ChatInputView: UIView {
 // MARK: UITextViewDelegate
 extension ChatInputView: UITextViewDelegate {
     public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        return delegate?.inputBarShouldBeginTextEditing(self) ?? true
+        return delegate?.inputViewShouldBeginTextEditing(self) ?? true
     }
 
     public func textViewDidEndEditing(_ textView: UITextView) {
-        delegate?.inputBarDidEndEditing(self)
+        delegate?.inputViewDidEndEditing(self)
     }
 
     public func textViewDidBeginEditing(_ textView: UITextView) {
-        delegate?.inputBarDidBeginEditing(self)
+        delegate?.inputViewDidBeginEditing(self)
     }
 
     public func textViewDidChange(_ textView: UITextView) {
         updateSendButton()
-        delegate?.inputBarDidChangeText(self)
+        delegate?.inputViewDidChangeText(self)
     }
 
     public func textView(_ textView: UITextView, shouldChangeTextIn nsRange: NSRange, replacementText text: String) -> Bool {
@@ -200,10 +210,10 @@ extension ChatInputView: UITextViewDelegate {
 // MARK: ExpandableTextViewPlaceholderDelegate
 extension ChatInputView: ExpandableTextViewPlaceholderDelegate {
     public func expandableTextViewDidShowPlaceholder(_ textView: ExpandableTextView) {
-        delegate?.inputBarDidShowPlaceholder(self)
+        delegate?.inputViewDidShowPlaceholder(self)
     }
 
     public func expandableTextViewDidHidePlaceholder(_ textView: ExpandableTextView) {
-        delegate?.inputBarDidHidePlaceholder(self)
+        delegate?.inputViewDidHidePlaceholder(self)
     }
 }

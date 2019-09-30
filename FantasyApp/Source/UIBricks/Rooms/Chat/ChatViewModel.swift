@@ -112,7 +112,10 @@ extension ChatViewModel {
                 }
             }
             self.messages.accept(array)
-            self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
+            }
         }).disposed(by: bag)
     }
 

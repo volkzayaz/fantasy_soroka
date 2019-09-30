@@ -87,7 +87,7 @@ extension Chat {
 // MARK: - Chatto
 extension Chat.Message: MessageModelProtocol {
     var isIncoming: Bool {
-        return senderId == User.current?.id
+        return senderId != User.current?.id
     }
 
     var date: Date {
