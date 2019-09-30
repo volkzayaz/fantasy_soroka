@@ -171,14 +171,15 @@ extension RegistrationViewModel {
     }
     
     func photoChanged(photo: UIImage) {
-        do { try ImageValidator.validate(image: photo) }
-        catch (let e) {
-            ///TODO: substitute to inline messages on view itself
-            router.owner.present(error: e)
-            return;
-        }
         
-        updateForm { $0.photo = photo }
+        ImageValidator.validate(image: photo)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { (_) in
+                self.updateForm { $0.photo = photo }
+            })
+            .disposed(by: bag)
+            
     }
     
     private func updateForm(_ mapper: (inout RegisterForm) -> Void ) {

@@ -58,7 +58,9 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
 }
 
 extension APIProvider {
-    public static let `default` = APIProvider(plugins: [NetworkLoggerPlugin(verbose: true)])
+    public static let `default` = APIProvider(plugins: [
+    //    NetworkLoggerPlugin(verbose: true)
+    ])
 }
 
 struct GenericAPIError: Decodable {
