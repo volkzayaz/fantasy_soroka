@@ -16,16 +16,16 @@ extension AuthenticationManager {
     
     static func register(with form: RegisterForm) -> Single<User> {
         
-        let form = RegisterForm(agreementTick: true,
-                                name: "Pete Jackson",
-                                brithdate: Date(timeIntervalSince1970: 1234),
-                                sexuality: .straight,
-                                gender: .male,
-                                relationshipStatus: .single,
-                                email: "pete1@jackson.com",
-                                password: "1234", confirmPassword: "",
-                                photo: form.photo)
-        
+//        let form = RegisterForm(agreementTick: true,
+//                                name: "Pete3 Jackson",
+//                                brithdate: Date(timeIntervalSince1970: 1234),
+//                                sexuality: .straight,
+//                                gender: .male,
+//                                relationshipStatus: .single,
+//                                email: "pete3@jackson.com",
+//                                password: "1234", confirmPassword: "",
+//                                photo: form.photo)
+//        
         ///
         
         let pfUser = PFUser()
@@ -35,8 +35,6 @@ extension AuthenticationManager {
         pfUser.password = form.password
         
         pfUser.apply(editForm: form.toEditProfileForm)
-        
-        //fatalError("Implement picked photo uploading")
         
         return Observable.create { (subscriber) -> Disposable in
             
@@ -54,6 +52,15 @@ extension AuthenticationManager {
             return Disposables.create()
         }
         .asSingle()
+        .flatMap { (u: PFUser) -> Single<PFUser> in
+            return UpdateUserAvatarResource(image: form.photo!).rx.request
+                .map { avatar -> PFUser in
+                    u["avatar"] = avatar.avatar.absoluteString
+                    u["avatarThumbnail"] = avatar.avatarThumbnail.absoluteString
+                    
+                    return u
+                }
+        }
         .flatMap { (u: PFUser) -> Single<User> in
             return u.convertWithAlbums()
         }
