@@ -23,14 +23,14 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
         self.router = router
         self.room = room
 
-//        indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
-//            h?.setLoadingStatus(loading)
-//        }).disposed(by: bag)
+        indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
+            h?.setLoadingStatus(loading)
+        }).disposed(by: bag)
 
         loadMessages()
     }
 
-   // fileprivate let indicator: ViewIndicator = ViewIndicator()
+    fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 
     func loadNext() {
@@ -60,10 +60,10 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
 
 extension ChatViewModel {
     func loadMessages() {
-        // TODO: Pagination, progress bar and error handling
+        // TODO: Pagination and error handling
         let offset = 0
         ChatManager.getMessagesInRoom(room.objectId!, offset: offset)
-            //.trackView(viewIndicator: indicator)
+            .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak self] messages in
                 guard let self = self else { return }

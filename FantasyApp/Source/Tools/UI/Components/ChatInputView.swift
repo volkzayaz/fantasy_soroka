@@ -36,6 +36,7 @@ public class ChatInputView: UIView {
         return textView
     }
 
+    private var textViewContainer = UIView(frame: .zero)
     private var textView = ExpandableTextView(frame: .zero)
     private var sendButton = SecondaryButton(frame: .zero)
 
@@ -112,19 +113,49 @@ public class ChatInputView: UIView {
         delegate?.inputBarSendButtonPressed(self)
     }
 
+    public override func updateConstraints() {
+        super.updateConstraints()
+
+        NSLayoutConstraint.activate([
+            textViewContainer.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            textViewContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            textViewContainer.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            textViewContainer.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -8),
+
+            textView.topAnchor.constraint(equalTo: textViewContainer.topAnchor),
+            textView.bottomAnchor.constraint(equalTo: textViewContainer.bottomAnchor),
+            textView.leftAnchor.constraint(equalTo: textViewContainer.leftAnchor),
+            textView.rightAnchor.constraint(equalTo: textViewContainer.rightAnchor),
+
+            sendButton.widthAnchor.constraint(equalToConstant: 36),
+            sendButton.heightAnchor.constraint(equalToConstant: 36),
+            sendButton.topAnchor.constraint(equalTo: textView.topAnchor),
+            sendButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16)
+        ])
+    }
+
     private func configure() {
-        addSubview(textView)
+        addSubview(textViewContainer)
+        textViewContainer.addSubview(textView)
         addSubview(sendButton)
 
+        textViewContainer.layer.cornerRadius = 18.0
+        textViewContainer.clipsToBounds = true
+        textViewContainer.backgroundColor = .messageBackground
+        textViewContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        textView.setContentCompressionResistancePriority(.required, for: .horizontal)
         textView.scrollsToTop = false
         textView.delegate = self
         textView.placeholderDelegate = self
-        textView.layer.cornerRadius = 18.0
+        textView.textAlignment = .left
+        textView.backgroundColor = .messageBackground
         textView.setTextPlaceholderFont(.regularFont(ofSize: 15))
         textView.setTextPlaceholderColor(.basicGrey)
+        textView.placeholderText = R.string.localizable.chatInputViewPlaceholder()
+        textView.textContainerInset = UIEdgeInsets(top: 7, left: 12, bottom: 8, right: 12)
         textView.textColor = .fantasyBlack
         textView.font = .regularFont(ofSize: 15)
-        textView.backgroundColor = .messageBackground
         textView.translatesAutoresizingMaskIntoConstraints = false
 
         sendButton.isEnabled = false
@@ -132,17 +163,7 @@ public class ChatInputView: UIView {
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
-        NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
-            textView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            textView.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -8),
-
-            sendButton.widthAnchor.constraint(equalToConstant: 36),
-            sendButton.heightAnchor.constraint(equalToConstant: 36),
-            sendButton.topAnchor.constraint(equalTo: textView.topAnchor),
-            sendButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16)
-        ])
+        updateConstraints()
     }
 }
 

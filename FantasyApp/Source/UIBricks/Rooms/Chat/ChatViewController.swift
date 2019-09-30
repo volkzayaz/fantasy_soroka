@@ -67,6 +67,7 @@ private extension ChatViewController {
         guard let superview = view.superview else {
             return
         }
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: superview.topAnchor),
