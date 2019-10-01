@@ -18,8 +18,9 @@ struct DiscoveryFilter: Equatable {
 struct SearchPreferences: Codable, Equatable {
     var age: Range<Int>
     var gender: Gender
+    var sexuality: Sexuality
     
     static var `default`: SearchPreferences {
-        return SearchPreferences(age: 18..<30, gender: .male)
+        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .straight)
     }
 }

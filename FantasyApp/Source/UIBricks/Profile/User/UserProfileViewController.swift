@@ -10,10 +10,21 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class UserProfileViewController: UIViewController, MVVM_View {
     
     var viewModel: UserProfileViewModel!
+    
+    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, UserProfileViewModel.Photo>>(configureCell: { [unowned self] (_, cv, ip, x) in
+        
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoCell, for: ip)!
+        
+        cell.set(photo: x)
+        
+        return cell
+        
+    })
     
     @IBOutlet weak var indicatorStackView: UIStackView! {
         didSet {
@@ -34,12 +45,21 @@ class UserProfileViewController: UIViewController, MVVM_View {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
-        for i in viewModel.photos.enumerated() {
-            let x = UIView()
-            x.backgroundColor = i.offset == 0 ? .red : .green
-            
-            indicatorStackView.addArrangedSubview(x)
-        }
+        viewModel.photos
+            .do(onNext: { [weak self] (data) in
+                
+                self?.indicatorStackView.subviews.forEach { $0.removeFromSuperview() }
+                
+                for i in data.first!.items.enumerated() {
+                    let x = UIView()
+                    x.backgroundColor = i.offset == 0 ? .red : .green
+                    
+                    self?.indicatorStackView.addArrangedSubview(x)
+                }
+
+            })
+            .drive(photosCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
         
         viewModel.relationLabel
             .drive(relationStatusLabel.rx.text)
@@ -61,7 +81,7 @@ extension UserProfileViewController {
     
 }
 
-extension UserProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension UserProfileViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let index = photosCollectionView.indexPathsForVisibleItems.first?.row else {
@@ -71,20 +91,6 @@ extension UserProfileViewController: UICollectionViewDataSource, UICollectionVie
         indicatorStackView.subviews.enumerated().forEach {
             $0.element.backgroundColor = $0.offset == index ? .red : .green
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.photos.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoCell, for: indexPath)!
-        
-        cell.set(photo: viewModel.photos[indexPath.row])
-        
-        return cell
     }
     
 }

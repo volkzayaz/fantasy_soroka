@@ -42,7 +42,8 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
                 let entity: T.responseType
                 do {
                     entity = try response.mapFantasyResponse()
-                } catch {
+                } catch (let e) {
+                    print(e)
                     return completion(.failure(MoyaError.jsonMapping(response)))
                 }
                 
@@ -57,7 +58,9 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
 }
 
 extension APIProvider {
-    public static let `default` = APIProvider(plugins: [NetworkLoggerPlugin(verbose: true)])
+    public static let `default` = APIProvider(plugins: [
+    //    NetworkLoggerPlugin(verbose: true)
+    ])
 }
 
 struct GenericAPIError: Decodable {

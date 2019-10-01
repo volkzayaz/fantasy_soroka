@@ -23,10 +23,10 @@ extension ProfilePhotoViewModel {
         let isPublic = self.isPublic
         
         return appState.changesOf { $0.currentUser?.bio.photos }
-            .map { isPublic ? $0?.public[safe: i] : $0?.private[safe: i] }
+            .map { isPublic ? $0?.public.images[safe: i] : $0?.private.images[safe: i] }
             .flatMapLatest { (maybeURL) in
                 
-                guard let x = maybeURL else { return .just(nil) }
+                guard let x = maybeURL?.url else { return .just(nil) }
                 
                 return ImageRetreiver.imageForURLWithoutProgress(url: x)
             }

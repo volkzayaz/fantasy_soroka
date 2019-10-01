@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Kingfisher
 
 fileprivate let validationToken = "5b49f2cc-ebf8-46dd-ac1a-af43c200d949"
 
@@ -39,7 +40,11 @@ struct UpdateUserAvatarResource: AuthorizedAPIResource {
     
     var task: Task {
         
-        let data = image.pngData()!.base64EncodedString()
+        let newImage =
+        ResizingImageProcessor(referenceSize: CGSize(width: 300, height: 400), mode: .aspectFill)
+            .process(item: .image(image), options: [])!
+        
+        let data = newImage.pngData()!.base64EncodedString()
         
         let string = """
         { "image": "data:image/png;base64,\(data)"}
@@ -72,7 +77,11 @@ struct ValidateProfileImage: APIResource {
     
     var task: Task {
         
-        let data = image.pngData()!.base64EncodedString()
+        let newImage =
+        ResizingImageProcessor(referenceSize: CGSize(width: 300, height: 400), mode: .aspectFill)
+            .process(item: .image(image), options: [])!
+        
+        let data = newImage.pngData()!.base64EncodedString()
         
         let string = """
         { "image": "data:image/png;base64,\(data)"}
@@ -87,4 +96,8 @@ struct ValidateProfileImage: APIResource {
     
     typealias responseType = EmptyResponse
     
+    var headers: [String : String]? {
+        return ["Authorization": "5b49f2cc-ebf8-46dd-ac1a-af43c200d949",
+                "Content-Type": "application/json"]
+    }
 }

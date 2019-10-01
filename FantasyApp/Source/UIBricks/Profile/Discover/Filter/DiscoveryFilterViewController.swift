@@ -15,25 +15,78 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
     
-    @IBOutlet weak var genderSwitch: UISwitch!
+    @IBOutlet weak var genderTextField: UITextField!
+    @IBOutlet weak var sexualityTextField: UITextField!
+    
+    @IBOutlet weak var ageFromTextField: UITextField!
+    @IBOutlet weak var ageToTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        genderSwitch.isOn = viewModel.prefs.gender == .male
-
-    }
-    
-    @IBAction func genderChanged(_ sender: Any) {
-        viewModel.change(gender:  genderSwitch.isOn ? .male : .female )
+        if let x = [Gender.male: 1,
+        Gender.female: 2,
+        Gender.transgenderMale: 3,
+        Gender.transgenderFemale: 4,
+        Gender.nonBinary: 5][viewModel.prefs.gender] {
+            genderTextField.text = String(x)
+        }
+        
+        if let x = [Sexuality.straight: 1,
+        Sexuality.gay: 2,
+        Sexuality.lesbian: 3,
+        Sexuality.bisexual: 4][viewModel.prefs.sexuality] {
+            sexualityTextField.text = String(x)
+        }
+        
+        ageFromTextField.text = String(viewModel.prefs.age.lowerBound)
+        ageToTextField.text = String(viewModel.prefs.age.upperBound)
+      
     }
     
     @IBAction func apply(_ sender: Any) {
+        view.endEditing(true)
+        
         viewModel.submit()
     }
 }
 
-private extension DiscoveryFilterViewController {
+extension DiscoveryFilterViewController: UITextFieldDelegate {
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        if textField == genderTextField {
+            
+            if let gender = [1: Gender.male,
+            2: Gender.female,
+            3: Gender.transgenderMale,
+            4: Gender.transgenderFemale,
+            5: Gender.nonBinary][Int(textField.text ?? "") ?? 0] {
+                viewModel.change(gender: gender)
+            }
+            
+        }
+        else if textField == sexualityTextField {
+            
+            if let sexuality = [1: Sexuality.straight,
+                             2: Sexuality.gay,
+                             3: Sexuality.lesbian,
+                             4: Sexuality.bisexual][Int(textField.text ?? "") ?? 0] {
+                viewModel.change(sexuality: sexuality)
+            }
+            
+        }
+        else if textField == ageFromTextField {
+            viewModel.changeAgeFrom(x: Int(textField.text ?? "") ?? 18)
+        }
+        else if textField == ageToTextField {
+            viewModel.changeAgeTo(x: Int(textField.text ?? "") ?? 60)
+        }
+        
+        return true
+    }
+    
+
     /**
      *  Describe any IBActions here
      *

@@ -14,18 +14,18 @@ import Parse
 enum AuthenticationManager {}
 extension AuthenticationManager {
     
-    static func register(with form: RegisterForm) -> Maybe<User> {
+    static func register(with form: RegisterForm) -> Single<User> {
         
-        let form = RegisterForm(agreementTick: true,
-                                name: "Pete Jackson",
-                                brithdate: Date(timeIntervalSince1970: 1234),
-                                sexuality: .straight,
-                                gender: .male,
-                                relationshipStatus: .single,
-                                email: "pete1@jackson.com",
-                                password: "1234", confirmPassword: "",
-                                photo: form.photo)
-        
+//        let form = RegisterForm(agreementTick: true,
+//                                name: "Pete3 Jackson",
+//                                brithdate: Date(timeIntervalSince1970: 1234),
+//                                sexuality: .straight,
+//                                gender: .male,
+//                                relationshipStatus: .single,
+//                                email: "pete3@jackson.com",
+//                                password: "1234", confirmPassword: "",
+//                                photo: form.photo)
+//        
         ///
         
         let pfUser = PFUser()
@@ -35,8 +35,6 @@ extension AuthenticationManager {
         pfUser.password = form.password
         
         pfUser.apply(editForm: form.toEditProfileForm)
-        
-        //fatalError("Implement picked photo uploading")
         
         return Observable.create { (subscriber) -> Disposable in
             
@@ -53,15 +51,26 @@ extension AuthenticationManager {
             
             return Disposables.create()
         }
-            .map { try User(pfUser: $0) }
-            .do(onNext: { (user) in
-                SettingsStore.currentUser.value = user
-            })
-            .asMaybe()
+        .asSingle()
+        .flatMap { (u: PFUser) -> Single<PFUser> in
+            return UpdateUserAvatarResource(image: form.photo!).rx.request
+                .map { avatar -> PFUser in
+                    u["avatar"] = avatar.avatar.absoluteString
+                    u["avatarThumbnail"] = avatar.avatarThumbnail.absoluteString
+                    
+                    return u
+                }
+        }
+        .flatMap { (u: PFUser) -> Single<User> in
+            return u.convertWithAlbums()
+        }
+        .do(onSuccess: { (user) in
+            SettingsStore.currentUser.value = user
+        })
         
     }
     
-    static func login(with email: String, password: String) -> Maybe<User> {
+    static func login(with email: String, password: String) -> Single<User> {
         
         return Observable.create { (subscriber) -> Disposable in
             
@@ -83,15 +92,18 @@ extension AuthenticationManager {
             
                 return Disposables.create()
             }
-            .map { try User(pfUser: $0) }
-            .do(onNext: { (user) in
+            .asSingle()
+            .flatMap { (u: PFUser) -> Single<User> in
+                return u.convertWithAlbums()
+            }
+            .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
             })
-            .asMaybe()
+            
         
     }
     
-    static func loginWithFacebook() -> Maybe<User> {
+    static func loginWithFacebook() -> Single<User> {
         
         return Observable.create { (subscriber) -> Disposable in
             
@@ -114,12 +126,14 @@ extension AuthenticationManager {
                         
             return Disposables.create()
             }
-            .map { try User(pfUser: $0) }
-            .do(onNext: { (user) in
+            .asSingle()
+            .flatMap { (u: PFUser) -> Single<User> in
+                return u.convertWithAlbums()
+            }
+            .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
             })
-            .asMaybe()
-        
+            
     }
  
     static func currentUser() -> User? {

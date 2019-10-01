@@ -128,6 +128,14 @@
 		739F799823095C7E0045FCD7 /* FantasyDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */; };
 		739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */; };
 		739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */; };
+		73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */; };
+		73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */; };
+		73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */; };
+		73C96F172340A421002C3F8E /* UserGateway.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C96F162340A421002C3F8E /* UserGateway.storyboard */; };
+		73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */; };
+		73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */; };
+		73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */; };
+		73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F212340B05B002C3F8E /* AlbumRequest.swift */; };
 		73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */; };
 		73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011522EC3A3400F767BF /* RegistrationRouter.swift */; };
 		73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011622EC3A3400F767BF /* RegistrationViewController.swift */; };
@@ -364,6 +372,14 @@
 		739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsRouter.swift; sourceTree = "<group>"; };
 		739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewController.swift; sourceTree = "<group>"; };
 		739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewModel.swift; sourceTree = "<group>"; };
+		73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsRouter.swift; sourceTree = "<group>"; };
+		73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
+		73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewModel.swift; sourceTree = "<group>"; };
+		73C96F162340A421002C3F8E /* UserGateway.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserGateway.storyboard; sourceTree = "<group>"; };
+		73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesRouter.swift; sourceTree = "<group>"; };
+		73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesViewController.swift; sourceTree = "<group>"; };
+		73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesViewModel.swift; sourceTree = "<group>"; };
+		73C96F212340B05B002C3F8E /* AlbumRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequest.swift; sourceTree = "<group>"; };
 		73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocation.swift; sourceTree = "<group>"; };
 		73E6011522EC3A3400F767BF /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		73E6011622EC3A3400F767BF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -501,6 +517,8 @@
 		73097BFA231D3CD800B71053 /* Gateway */ = {
 			isa = PBXGroup;
 			children = (
+				73C96F192340A63E002C3F8E /* MyFantasies */,
+				73C96F0F23409DEC002C3F8E /* Settings */,
 				7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */,
 				7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */,
 				7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */,
@@ -760,6 +778,7 @@
 				73E6012122EC3A9600F767BF /* Authorization.storyboard */,
 				7322310B23040D79009DD37F /* FantasyCard.storyboard */,
 				73097C04231D3D8200B71053 /* User.storyboard */,
+				73C96F162340A421002C3F8E /* UserGateway.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1225,6 +1244,34 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		73C96F0F23409DEC002C3F8E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */,
+				73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */,
+				73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		73C96F192340A63E002C3F8E /* MyFantasies */ = {
+			isa = PBXGroup;
+			children = (
+				73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */,
+				73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */,
+				73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */,
+			);
+			path = MyFantasies;
+			sourceTree = "<group>";
+		};
+		73C96F202340B046002C3F8E /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				73C96F212340B05B002C3F8E /* AlbumRequest.swift */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
 		73E4C39E22F088E500BB71B4 /* Actors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1441,6 +1488,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73C96F202340B046002C3F8E /* Album */,
 				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				843CF71B23436B570098C196 /* Rooms */,
 				734C52A42327AC1300B54510 /* User */,
@@ -1680,6 +1728,7 @@
 				84C1D03A2327B95300648DE1 /* Queer.png in Resources */,
 				73E6012222EC3A9600F767BF /* Authorization.storyboard in Resources */,
 				841681DF22E9AE6E00FA9455 /* SF-Pro-Text-Regular.otf in Resources */,
+				73C96F172340A421002C3F8E /* UserGateway.storyboard in Resources */,
 				841681E522E9AE6E00FA9455 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				841681DE22E9AE6E00FA9455 /* SF-Pro-Text-Semibold.otf in Resources */,
 				84C1D0352327B95300648DE1 /* Homoflexible.png in Resources */,
@@ -1823,6 +1872,7 @@
 				843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
+				73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */,
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
 				7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */,
 				7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */,
@@ -1868,6 +1918,7 @@
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
 				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
+				73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */,
 				7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
@@ -1876,6 +1927,7 @@
 				734C70C023214B8D00ED2E91 /* UserProfileRouter.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
 				734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */,
+				73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */,
 				734C529323266CE100B54510 /* DiscoveryManager.swift in Sources */,
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
 				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
@@ -1884,6 +1936,7 @@
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
+				73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */,
 				7379ED19230D3C5000E661A7 /* FantasyCollectionRouter.swift in Sources */,
 				7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */,
 				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,
@@ -1898,6 +1951,7 @@
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
+				73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
@@ -1931,9 +1985,11 @@
 				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
+				73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */,
 				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
+				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,

@@ -23,6 +23,7 @@ class UserProfilePhotoCell: UICollectionViewCell {
         
         case .url(let url):
             ImageRetreiver.imageForURLWithoutProgress(url: url)
+                .map { $0 ?? R.image.errorPhoto() }
                 .drive(imageView.rx.image)
                 .disposed(by: disposeBag)
             
