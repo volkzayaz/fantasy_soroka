@@ -121,11 +121,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         ////Sexuality
         
-        Observable.just(Sexuality.allCases)
+        let data = Sexuality.allCases
+        
+        Observable.just(data)
             .bind(to: sexualityPicker.rx.itemTitles) { _, item in
                 return item.rawValue
             }
             .disposed(by: rx.disposeBag)
+        
+        sexualityPicker.selectRow(data.firstIndex(of: viewModel.defaultSexuality)!,
+                                  inComponent: 0, animated: false)
         
         sexualityPicker.rx.modelSelected(Sexuality.self)
             .subscribe(onNext: { [unowned self] (x) in
@@ -135,11 +140,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         ///Gender
         
-        Observable.just(Gender.allCases)
+        let genders = Gender.allCases
+        
+        Observable.just(genders)
             .bind(to: genderPickerView.rx.itemTitles) { _, item in
                 return item.rawValue
             }
             .disposed(by: rx.disposeBag)
+        
+        genderPickerView.selectRow(genders.firstIndex(of: viewModel.defaultGender)!,
+                                   inComponent: 0, animated: false)
         
         genderPickerView.rx.modelSelected(Gender.self)
             .subscribe(onNext: { [unowned self] (x) in

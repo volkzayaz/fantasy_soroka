@@ -146,26 +146,26 @@ struct UserSlice: Hashable, Codable, Equatable, ParsePresentable {
 
 enum Sexuality: String, CaseIterable, Equatable, Codable {
     
-    case straight = "Straight"
-    case gay = "Gay"
-    case lesbian = "Lesbian"
-    case bisexual = "Bisexual"
     case asexual = "Asexual"
-    case pansexual = "Pansexual"
-    case queer = "Queer"
     case questioning = "Questioning"
-    case heteroflexible = "Heteroflexible"
-    case homoflexible = "Homoflexible"
     case sapiosexual = "Sapiosexual"
     case transsexual = "Transsexual"
+    case straight = "Straight"
+    case heteroflexible = "Heteroflexible"
+    case pansexual = "Pansexual"
+    case queer = "Queer"
+    case bisexual = "Bisexual"
+    case lesbian = "Lesbian"
+    case homoflexible = "Homoflexible"
+    case gay = "Gay"
     
 }
 
 enum Gender: String, CaseIterable, Equatable, Codable {
     
+    case transgenderMale = "MtF"
     case male
     case female
-    case transgenderMale = "MtF"
     case transgenderFemale = "FtM"
     case nonBinary
     

@@ -64,6 +64,9 @@ extension RegistrationViewModel {
         return form.asDriver().map { $0.photo ?? R.image.stub()! }
     }
     
+    var defaultGender: Gender { return .female }
+    var defaultSexuality: Sexuality { return .heteroflexible }
+    
 }
 
 struct RegistrationViewModel : MVVM_ViewModel {
