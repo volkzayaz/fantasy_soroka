@@ -92,10 +92,10 @@ struct RegistrationViewModel : MVVM_ViewModel {
         
         case notice = 1
         case name
-        case birthday
-        case sexuality
         case gender
+        case birthday
         case relationship
+        case sexuality
         case email
         case password
         case photo

@@ -194,6 +194,7 @@ enum RelationshipStatus: Equatable, Codable {
         
         if str.starts(with: "with") {
             self = .couple(partnerGender: Gender(rawValue: String(str.split(separator: " ").last!))!)
+            return
         }
         
         fatalError("Can't decode RelationshipStatus from \(str)")

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FOA-WO-XM8">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FOA-WO-XM8">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,14 +25,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSN-cn-P1L">
-                                <rect key="frame" x="309" y="37" width="47" height="30"/>
+                                <rect key="frame" x="309" y="17" width="47" height="30"/>
                                 <state key="normal" title="Sign in"/>
                                 <connections>
                                     <action selector="presentSignIn:" destination="FOA-WO-XM8" eventType="touchUpInside" id="n7o-2c-HJ9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-vD-Al1">
-                                <rect key="frame" x="137.5" y="444" width="100" height="36"/>
+                                <rect key="frame" x="137.5" y="439" width="100" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Get Started"/>
                                 <connections>
@@ -42,20 +40,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REm-5i-h73">
-                                <rect key="frame" x="104.5" y="501" width="166" height="30"/>
+                                <rect key="frame" x="104.5" y="496" width="166" height="30"/>
                                 <state key="normal" title="Or sign in with facebook"/>
                                 <connections>
                                     <action selector="facebookSignIn:" destination="FOA-WO-XM8" eventType="touchUpInside" id="QoS-H9-fa7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fantasy Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-5E-PU6">
-                                <rect key="frame" x="45.5" y="142" width="284" height="60"/>
+                                <rect key="frame" x="45.5" y="137" width="284" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the app for Open-Minded Couples and solos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xy-r2-dJw">
-                                <rect key="frame" x="65" y="269" width="245" height="60"/>
+                                <rect key="frame" x="65" y="264" width="245" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -67,22 +65,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="087-qp-8rn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nsy-cJ-wcV">
-                                        <rect key="frame" x="16" y="60" width="343" height="220"/>
+                                        <rect key="frame" x="16" y="60" width="343" height="221"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YMC-Vb-Ud7">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="72.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGZ-BK-FQM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hqp-1q-cBO">
-                                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28.5" width="343" height="44"/>
                                                         <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.25" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="PFL-ia-OlF"/>
@@ -95,16 +93,16 @@
                                                 <color key="backgroundColor" red="0.0039215686269999999" green="0.18823529410000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XTF-79-UTO">
-                                                <rect key="frame" x="0.0" y="82" width="343" height="72"/>
+                                                <rect key="frame" x="0.0" y="82.5" width="343" height="72.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-5u-wNC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UbH-Xw-Oec">
-                                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28.5" width="343" height="44"/>
                                                         <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.25" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -114,7 +112,7 @@
                                                 <color key="backgroundColor" red="0.0039215686269999999" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmm-8V-qIx">
-                                                <rect key="frame" x="0.0" y="164" width="343" height="56"/>
+                                                <rect key="frame" x="0.0" y="165" width="343" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="d22-i8-m6D"/>
@@ -133,7 +131,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSu-Dn-pmX">
-                                        <rect key="frame" x="170.5" y="288" width="34" height="30"/>
+                                        <rect key="frame" x="170.5" y="289" width="34" height="30"/>
                                         <state key="normal" title="Back"/>
                                         <connections>
                                             <action selector="closeSignIn:" destination="FOA-WO-XM8" eventType="touchUpInside" id="Dzu-cb-sBm"/>
@@ -207,9 +205,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="213" id="mhd-6j-Qpb"/>
                                                 </constraints>
-                                                <mutableString key="text">Notice disclaimer
+                                                <string key="text">Notice disclaimer
 
-Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -244,12 +242,11 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="dkF-7d-Cnk" firstAttribute="leading" secondItem="Iw3-35-FsF" secondAttribute="leading" constant="50" id="zbn-Kf-070"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqj-Tn-7U8" userLabel="Container2">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqj-Tn-7U8" userLabel="container2">
                                         <rect key="frame" x="335.5" y="0.0" width="335.5" height="600"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGf-mF-yQF">
-                                                <rect key="frame" x="34" y="135.5" width="279.5" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="34" y="135.5" width="279.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -268,48 +265,8 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="b3Z-i4-6eM" firstAttribute="leading" secondItem="cqj-Tn-7U8" secondAttribute="leading" constant="34" id="ixK-8s-Cxh"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-GX-bBp" userLabel="container3">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d44-LZ-0vC" userLabel="container3">
                                         <rect key="frame" x="671" y="0.0" width="335.5" height="600"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your birthday?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-y5-2cs">
-                                                <rect key="frame" x="43" y="61" width="167.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nL1-Bf-Jyv">
-                                                <rect key="frame" x="28" y="135.5" width="279.5" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="nL1-Bf-Jyv" firstAttribute="leading" secondItem="hc4-GX-bBp" secondAttribute="leading" constant="28" id="BZz-ny-Aos"/>
-                                            <constraint firstItem="Ymd-y5-2cs" firstAttribute="leading" secondItem="hc4-GX-bBp" secondAttribute="leading" constant="43" id="VFo-M7-QvU"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3U-6q-EWJ" userLabel="container4">
-                                        <rect key="frame" x="1006.5" y="0.0" width="335.5" height="600"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your sexuality?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghM-QL-dHa">
-                                                <rect key="frame" x="27" y="61" width="171" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-QK-P5k">
-                                                <rect key="frame" x="8" y="192" width="320" height="216"/>
-                                            </pickerView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="zFK-QK-P5k" firstAttribute="centerX" secondItem="h3U-6q-EWJ" secondAttribute="centerX" id="Cah-7r-vVQ"/>
-                                            <constraint firstItem="zFK-QK-P5k" firstAttribute="centerY" secondItem="h3U-6q-EWJ" secondAttribute="centerY" id="FoQ-Qv-NqE"/>
-                                            <constraint firstItem="ghM-QL-dHa" firstAttribute="leading" secondItem="h3U-6q-EWJ" secondAttribute="leading" constant="27" id="izq-L4-VPe"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d44-LZ-0vC" userLabel="container4.5">
-                                        <rect key="frame" x="1342" y="0.0" width="336" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your body look like?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKM-4U-Saf">
                                                 <rect key="frame" x="27" y="61" width="209" height="20.5"/>
@@ -327,8 +284,28 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="ZcY-2P-nND" firstAttribute="centerY" secondItem="d44-LZ-0vC" secondAttribute="centerY" id="eqd-nl-aWg"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-GX-bBp" userLabel="container4">
+                                        <rect key="frame" x="1006.5" y="0.0" width="335.5" height="600"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your birthday?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-y5-2cs">
+                                                <rect key="frame" x="43" y="61" width="167.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nL1-Bf-Jyv">
+                                                <rect key="frame" x="28" y="135.5" width="279.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="nL1-Bf-Jyv" firstAttribute="leading" secondItem="hc4-GX-bBp" secondAttribute="leading" constant="28" id="BZz-ny-Aos"/>
+                                            <constraint firstItem="Ymd-y5-2cs" firstAttribute="leading" secondItem="hc4-GX-bBp" secondAttribute="leading" constant="43" id="VFo-M7-QvU"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxv-5y-syX" userLabel="container5">
-                                        <rect key="frame" x="1678" y="0.0" width="335.5" height="600"/>
+                                        <rect key="frame" x="1342" y="0.0" width="336" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your relationship status?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e16-yG-T9J">
                                                 <rect key="frame" x="34" y="61" width="244.5" height="20.5"/>
@@ -337,7 +314,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="vnc-sW-4t4">
-                                                <rect key="frame" x="34" y="117.5" width="115" height="29"/>
+                                                <rect key="frame" x="34" y="117.5" width="125" height="32"/>
                                                 <segments>
                                                     <segment title="Solo"/>
                                                     <segment title="Couple"/>
@@ -347,13 +324,13 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How's your partner Body look like?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZi-ac-pEX">
-                                                <rect key="frame" x="34" y="195.5" width="264" height="20.5"/>
+                                                <rect key="frame" x="34" y="198.5" width="264" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-uW-Yim">
-                                                <rect key="frame" x="7.5" y="238" width="320" height="216"/>
+                                                <rect key="frame" x="8" y="241" width="320" height="216"/>
                                             </pickerView>
                                         </subviews>
                                         <constraints>
@@ -366,7 +343,26 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="vnc-sW-4t4" firstAttribute="top" secondItem="e16-yG-T9J" secondAttribute="bottom" constant="36" id="OQE-1z-OC1"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWX-BB-QRt" userLabel="container6">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3U-6q-EWJ" userLabel="container6">
+                                        <rect key="frame" x="1678" y="0.0" width="335.5" height="600"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your sexuality?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghM-QL-dHa">
+                                                <rect key="frame" x="27" y="61" width="171" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-QK-P5k">
+                                                <rect key="frame" x="7.5" y="192" width="320" height="216"/>
+                                            </pickerView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="zFK-QK-P5k" firstAttribute="centerX" secondItem="h3U-6q-EWJ" secondAttribute="centerX" id="Cah-7r-vVQ"/>
+                                            <constraint firstItem="zFK-QK-P5k" firstAttribute="centerY" secondItem="h3U-6q-EWJ" secondAttribute="centerY" id="FoQ-Qv-NqE"/>
+                                            <constraint firstItem="ghM-QL-dHa" firstAttribute="leading" secondItem="h3U-6q-EWJ" secondAttribute="leading" constant="27" id="izq-L4-VPe"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWX-BB-QRt" userLabel="container7">
                                         <rect key="frame" x="2013.5" y="0.0" width="335.5" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xw-se-93L">
@@ -376,8 +372,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W1H-5l-z5r">
-                                                <rect key="frame" x="35" y="128.5" width="290.5" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="35" y="128.5" width="290.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                             </textField>
@@ -389,7 +384,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="W1H-5l-z5r" firstAttribute="leading" secondItem="1xw-se-93L" secondAttribute="leading" id="add-0l-wrx"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-rH-j8L" userLabel="container7">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-rH-j8L" userLabel="container8">
                                         <rect key="frame" x="2349" y="0.0" width="335.5" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVJ-fh-NY8">
@@ -399,14 +394,12 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjb-DL-h83">
-                                                <rect key="frame" x="23" y="128.5" width="292.5" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="23" y="128.5" width="292.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onP-rS-jYW">
-                                                <rect key="frame" x="23" y="196.5" width="292.5" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="23" y="200.5" width="292.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                             </textField>
@@ -421,7 +414,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="onP-rS-jYW" firstAttribute="trailing" secondItem="xjb-DL-h83" secondAttribute="trailing" id="tsS-0X-5Cx"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9x-rs-nWX" userLabel="container8">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9x-rs-nWX" userLabel="container9">
                                         <rect key="frame" x="2684.5" y="0.0" width="335.5" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update main photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwl-4R-QyM">
@@ -484,7 +477,6 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="d44-LZ-0vC" firstAttribute="width" secondItem="h3U-6q-EWJ" secondAttribute="width" id="1ma-yi-Uat"/>
-                                    <constraint firstItem="xxv-5y-syX" firstAttribute="leading" secondItem="d44-LZ-0vC" secondAttribute="trailing" id="1xV-3L-yL5"/>
                                     <constraint firstItem="xxv-5y-syX" firstAttribute="width" secondItem="h3U-6q-EWJ" secondAttribute="width" id="2Nf-h4-Fow"/>
                                     <constraint firstItem="Ymd-y5-2cs" firstAttribute="centerY" secondItem="b3Z-i4-6eM" secondAttribute="centerY" id="3gP-RS-MdK"/>
                                     <constraint firstItem="e16-yG-T9J" firstAttribute="centerY" secondItem="ghM-QL-dHa" secondAttribute="centerY" id="7UN-SF-5Yf"/>
@@ -496,24 +488,22 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                     <constraint firstItem="cqj-Tn-7U8" firstAttribute="leading" secondItem="Iw3-35-FsF" secondAttribute="trailing" id="CP8-lf-QDp"/>
                                     <constraint firstItem="nL1-Bf-Jyv" firstAttribute="centerY" secondItem="wGf-mF-yQF" secondAttribute="centerY" id="E7b-sN-p13"/>
                                     <constraint firstItem="1xw-se-93L" firstAttribute="centerY" secondItem="e16-yG-T9J" secondAttribute="centerY" id="EHZ-GU-bXx"/>
-                                    <constraint firstItem="xxv-5y-syX" firstAttribute="trailing" secondItem="cWX-BB-QRt" secondAttribute="leading" id="GCB-fw-DNl"/>
                                     <constraint firstItem="WBa-rH-j8L" firstAttribute="width" secondItem="cWX-BB-QRt" secondAttribute="width" id="Imx-NP-S9Y"/>
                                     <constraint firstItem="cWX-BB-QRt" firstAttribute="top" secondItem="xxv-5y-syX" secondAttribute="top" id="Jaz-nU-Fsd"/>
                                     <constraint firstItem="Iw3-35-FsF" firstAttribute="leading" secondItem="WdF-1N-zRB" secondAttribute="leading" id="LJr-ja-FEg"/>
                                     <constraint firstAttribute="bottom" secondItem="hc4-GX-bBp" secondAttribute="bottom" id="Ljx-ty-BAn"/>
                                     <constraint firstItem="d44-LZ-0vC" firstAttribute="bottom" secondItem="h3U-6q-EWJ" secondAttribute="bottom" id="MGF-ef-iwl"/>
-                                    <constraint firstItem="h3U-6q-EWJ" firstAttribute="leading" secondItem="hc4-GX-bBp" secondAttribute="trailing" id="Myj-kF-wTX"/>
                                     <constraint firstItem="h3U-6q-EWJ" firstAttribute="top" secondItem="hc4-GX-bBp" secondAttribute="top" id="Ns5-uJ-IF6"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="top" secondItem="WBa-rH-j8L" secondAttribute="top" id="PL1-dJ-0pA"/>
+                                    <constraint firstItem="xxv-5y-syX" firstAttribute="leading" secondItem="hc4-GX-bBp" secondAttribute="trailing" id="PmG-wL-Jdn"/>
                                     <constraint firstItem="cWX-BB-QRt" firstAttribute="width" secondItem="xxv-5y-syX" secondAttribute="width" id="T3V-Bz-suU"/>
-                                    <constraint firstItem="hc4-GX-bBp" firstAttribute="leading" secondItem="cqj-Tn-7U8" secondAttribute="trailing" id="TxL-tK-veg"/>
                                     <constraint firstItem="h3U-6q-EWJ" firstAttribute="width" secondItem="hc4-GX-bBp" secondAttribute="width" id="UUi-5j-ztQ"/>
                                     <constraint firstItem="hc4-GX-bBp" firstAttribute="width" secondItem="cqj-Tn-7U8" secondAttribute="width" id="WrL-t3-fm4"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="bottom" secondItem="WBa-rH-j8L" secondAttribute="bottom" id="Y6w-jA-3XD"/>
                                     <constraint firstItem="ghM-QL-dHa" firstAttribute="centerY" secondItem="Ymd-y5-2cs" secondAttribute="centerY" id="Yn0-QA-CB0"/>
                                     <constraint firstItem="WBa-rH-j8L" firstAttribute="bottom" secondItem="cWX-BB-QRt" secondAttribute="bottom" id="Z8e-DV-Zqz"/>
-                                    <constraint firstItem="d44-LZ-0vC" firstAttribute="leading" secondItem="h3U-6q-EWJ" secondAttribute="trailing" id="ZtG-kV-UD3"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="leading" secondItem="WBa-rH-j8L" secondAttribute="trailing" id="ciB-rQ-AnU"/>
+                                    <constraint firstItem="d44-LZ-0vC" firstAttribute="trailing" secondItem="hc4-GX-bBp" secondAttribute="leading" id="cmv-fX-cfj"/>
                                     <constraint firstItem="Iw3-35-FsF" firstAttribute="width" secondItem="WdF-1N-zRB" secondAttribute="width" multiplier="1:9" placeholder="YES" id="dHr-4y-5kr"/>
                                     <constraint firstItem="Bwl-4R-QyM" firstAttribute="centerY" secondItem="rVJ-fh-NY8" secondAttribute="centerY" id="eRk-bQ-c6c"/>
                                     <constraint firstItem="cWX-BB-QRt" firstAttribute="bottom" secondItem="xxv-5y-syX" secondAttribute="bottom" id="eka-pv-aG9"/>
@@ -524,11 +514,14 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                     <constraint firstItem="rVJ-fh-NY8" firstAttribute="centerY" secondItem="1xw-se-93L" secondAttribute="centerY" id="oHH-eP-iMC"/>
                                     <constraint firstItem="Iw3-35-FsF" firstAttribute="top" secondItem="WdF-1N-zRB" secondAttribute="top" id="pOK-Ac-d40"/>
                                     <constraint firstItem="Iw3-35-FsF" firstAttribute="height" secondItem="WdF-1N-zRB" secondAttribute="height" id="pYS-zf-8sO"/>
+                                    <constraint firstItem="xxv-5y-syX" firstAttribute="trailing" secondItem="h3U-6q-EWJ" secondAttribute="leading" id="qS4-KC-2O7"/>
+                                    <constraint firstItem="d44-LZ-0vC" firstAttribute="leading" secondItem="cqj-Tn-7U8" secondAttribute="trailing" id="rPo-oU-EPg"/>
                                     <constraint firstItem="hc4-GX-bBp" firstAttribute="top" secondItem="WdF-1N-zRB" secondAttribute="top" id="rcm-bu-F9N"/>
                                     <constraint firstItem="xxv-5y-syX" firstAttribute="top" secondItem="h3U-6q-EWJ" secondAttribute="top" id="skK-r5-KBz"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="width" secondItem="WBa-rH-j8L" secondAttribute="width" id="snK-Zu-TDq"/>
                                     <constraint firstAttribute="trailing" secondItem="Q9x-rs-nWX" secondAttribute="trailing" id="tC0-ze-F5v"/>
                                     <constraint firstItem="WBa-rH-j8L" firstAttribute="top" secondItem="cWX-BB-QRt" secondAttribute="top" id="xAx-9A-fmp"/>
+                                    <constraint firstItem="cWX-BB-QRt" firstAttribute="leading" secondItem="h3U-6q-EWJ" secondAttribute="trailing" id="ypG-zr-3Vv"/>
                                     <constraint firstItem="h3U-6q-EWJ" firstAttribute="bottom" secondItem="hc4-GX-bBp" secondAttribute="bottom" id="z7C-Or-tBN"/>
                                     <constraint firstAttribute="bottom" secondItem="cqj-Tn-7U8" secondAttribute="bottom" id="zs3-im-jGn"/>
                                 </constraints>
@@ -537,7 +530,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c91-h7-1Sy">
-                                <rect key="frame" x="20" y="40" width="34" height="30"/>
+                                <rect key="frame" x="20" y="20" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="back:" destination="97H-h1-q95" eventType="touchUpInside" id="XAP-YA-jiX"/>
@@ -552,7 +545,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0CI-Kx-HRX">
-                                <rect key="frame" x="0.0" y="20" width="0.0" height="5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="LYs-Ny-aVf"/>
