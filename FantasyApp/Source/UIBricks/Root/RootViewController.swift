@@ -32,17 +32,17 @@ class RootViewController: UINavigationController, MVVM_View {
                     let vc = R.storyboard.authorization.loginViewController()!
                     vc.viewModel = .init(router: .init(owner: vc))
                     self.setViewControllers([vc], animated: true)
+                    
+                case .ageRestriction:
+                    let vc = R.storyboard.authorization.ageRestrictionViewConrtoller()!
+                    self.setViewControllers([vc], animated: true)
+                    
                 }
                 
             })
             .disposed(by: rx.disposeBag)
         
-        /**
-         *  Set up any bindings here
-         *  viewModel.labelText
-         *     .drive(label.rx.text)
-         *     .addDisposableTo(rx_disposeBag)
-         */
+        
         
     }
     

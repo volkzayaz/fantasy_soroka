@@ -608,5 +608,35 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
             </objects>
             <point key="canvasLocation" x="-147.19999999999999" y="648.57571214392806"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="C17-qY-TpX">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qdd-6v-g0d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="AgeRestrictionViewConrtoller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3nT-De-AGM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a7S-40-NYg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1e-BY-XeV">
+                                <rect key="frame" x="83.5" y="303" width="208" height="61"/>
+                                <string key="text">21+ 
+To join Fantasy you need to
+be at least 21 years old</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="c1e-BY-XeV" firstAttribute="centerX" secondItem="qRj-OU-ESl" secondAttribute="centerX" id="VxN-Cj-vu0"/>
+                            <constraint firstItem="c1e-BY-XeV" firstAttribute="centerY" secondItem="qRj-OU-ESl" secondAttribute="centerY" id="gKM-Ft-iAP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qRj-OU-ESl"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-84" y="1353.3733133433284"/>
+        </scene>
     </scenes>
 </document>

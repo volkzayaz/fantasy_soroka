@@ -261,8 +261,8 @@ private extension RegistrationViewController {
     func configure(_ birthdayTextField: UITextField) {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-        ///fixme: I'm not really a 21 year old
-        picker.maximumDate = Date(timeIntervalSinceNow: -1 * 3600 * 24 * 366 * 21 )
+        
+        picker.maximumDate = Date()
         picker.date = Date(timeIntervalSince1970: 0)
         
         birthdayTextField.inputView = picker

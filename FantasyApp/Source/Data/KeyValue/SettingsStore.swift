@@ -16,4 +16,6 @@ extension SettingsStore {
     static var currentUser: Setting<User?> = Setting(key: "com.fantasyapp.iosclient.settings.currentUser",
                                                      initialValue: nil)
     
+    static var ageRestriction: Setting<Date?> = Setting(key: "com.fantasyapp.iosclient.settings.ageRestriction",
+                                                     initialValue: nil)
 }
