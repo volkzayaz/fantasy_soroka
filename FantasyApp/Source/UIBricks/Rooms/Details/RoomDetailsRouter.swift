@@ -11,8 +11,8 @@ import UIKit
 struct RoomDetailsRouter: MVVM_Router {
 
     unowned private(set) var owner: RoomDetailsViewController
-    private var room: Chat.Room
-    init(owner: RoomDetailsViewController, room: Chat.Room) {
+    private var room: Chat.RoomDetails
+    init(owner: RoomDetailsViewController, room: Chat.RoomDetails) {
         self.owner = owner
         self.room = room
     }

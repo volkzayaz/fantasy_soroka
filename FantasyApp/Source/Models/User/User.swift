@@ -57,7 +57,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var likeRequests: [UserSlice]
         var chatRequests: [UserSlice] ///message or sticker...
         
-        var rooms: [Chat.Room]
+        var rooms: [Chat.RoomDetails]
     }
     
     enum PremiumFeature {

@@ -15,11 +15,13 @@ import ChattoAdditions
 
 class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
     let router: ChatRouter
-    let room: Chat.Room
+    let room: Chat.RoomDetails
     let messages = BehaviorRelay<[Chat.Message]>(value: [])
-    var delegate: ChatDataSourceDelegateProtocol?
+    weak var delegate: ChatDataSourceDelegateProtocol?
+    fileprivate let indicator: ViewIndicator = ViewIndicator()
+    fileprivate let bag = DisposeBag()
 
-    init(router: ChatRouter, room: Chat.Room) {
+    init(router: ChatRouter, room: Chat.RoomDetails) {
         self.router = router
         self.room = room
 
@@ -30,23 +32,15 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
         loadMessages()
     }
 
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
-    fileprivate let bag = DisposeBag()
-
-    func loadNext() {
-
-    }
+    func loadNext() {}
+    func adjustNumberOfMessages(preferredMaxCount: Int?, focusPosition: Double, completion: (Bool) -> Void) {}
 
     func loadPrevious() {
-
-    }
-
-    func adjustNumberOfMessages(preferredMaxCount: Int?, focusPosition: Double, completion: (Bool) -> Void) {
-
+        //loadMessages()
     }
 
     var chatItems: [ChatItemProtocol] {
-        return messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
+        return prepareChatItems()
     }
 
     var hasMoreNext: Bool {
@@ -60,15 +54,13 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
 
 extension ChatViewModel {
     func loadMessages() {
-        // TODO: Pagination and error handling
-        let offset = 0
-        ChatManager.getMessagesInRoom(room.objectId!, offset: offset)
+        ChatManager.getMessagesInRoom(room.objectId!, offset: messages.value.count)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak self] messages in
                 guard let self = self else { return }
                 var array = self.messages.value
-                array.insert(contentsOf: messages, at: offset)
+                array.append(contentsOf: messages)
                 self.messages.accept(messages)
                 self.connect()
                 self.delegate?.chatDataSourceDidUpdate(self, updateType: .firstLoad)
@@ -124,5 +116,25 @@ extension ChatViewModel {
             return
         }
         ChatManager.disconnect(roomId: roomId)
+    }
+
+    private func prepareChatItems() -> [ChatItemProtocol] {
+        var dateToCompare = Date()
+        let array = messages.value
+        // build message cell models
+        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
+        // build time separator cell models
+        // TODO: use reduce instead of forEach?
+        array.enumerated().reversed().forEach { index, message in
+            if index == 0 {
+                let model = TimeSeparatorModel(uid: UUID().uuidString, date: message.createdAt.toWeekDayAndDateString())
+                result.insert(model, at: index)
+            } else if message.createdAt.compare(with: dateToCompare, by: .day) != 0 {
+                let model = TimeSeparatorModel(uid: UUID().uuidString, date: dateToCompare.toWeekDayAndDateString())
+                result.insert(model, at: index)
+                dateToCompare = message.createdAt
+            }
+        }
+        return result
     }
 }

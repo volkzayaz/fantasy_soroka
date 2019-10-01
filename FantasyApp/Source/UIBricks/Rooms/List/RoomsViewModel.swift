@@ -45,7 +45,7 @@ extension RoomsViewModel {
 }
 
 struct RoomsViewModel: MVVM_ViewModel {
-    var rooms: Driver<[Chat.Room]?> {
+    var rooms: Driver<[Chat.RoomDetails]?> {
         return appState.changesOf { $0.currentUser?.connections.rooms }
     }
 
@@ -73,7 +73,7 @@ extension RoomsViewModel {
 //        }
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
         let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
-        let room = Chat.Room(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
+        let room = Chat.RoomDetails(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
         router.roomTapped(room)
     }
 
@@ -96,7 +96,7 @@ extension RoomsViewModel {
     func fetchRooms() {
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
         let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
-        let room = Chat.Room(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
+        let room = Chat.RoomDetails(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
         Dispatcher.dispatch(action: SetRooms(rooms: [room]))
         // TODO: uncomment this lines when relation parsing is complete
 //        ChatManager.getRooms()
@@ -106,5 +106,7 @@ extension RoomsViewModel {
 //                Dispatcher.dispatch(action: SetRooms(rooms: r))
 //            })
 //            .disposed(by: bag)
+        
     }
+    
 }

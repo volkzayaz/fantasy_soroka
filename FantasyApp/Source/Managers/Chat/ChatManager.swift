@@ -35,20 +35,24 @@ extension ChatManager {
         return query.rx.fetchAll()
     }
 
-    static func getRooms() -> Single<[Chat.Room]> {
+    static func getRoomsDetails() -> Single<[Chat.RoomDetails]> {
         guard let user = PFUser.current() else {
             return .error(FantasyError.unauthorized)
         }
 
         let predicate = NSPredicate(format: "owner == %@ OR recipient == %@", user, user)
-        let query = PFQuery(className: Chat.Room.className, predicate: predicate)
+        let query = PFQuery(className: Chat.RoomDetails.className, predicate: predicate)
         query.addDescendingOrder("updatedAt")
 
         return query.rx.fetchAll()
     }
 
-    static func createRoom(_ room: Chat.Room) -> Single<Void> {
-        return room.rxCreate().map { _ in }
+    static func getRooms() -> Single<[Chat.Room]> {
+        return RoomsResource().rx.request.map { $0 }
+    }
+
+    static func createRoomDetails(_ roomDetails: Chat.RoomDetails) -> Single<Void> {
+        return roomDetails.rxCreate().map { _ in }
     }
 
     static func connect(roomId: String) -> Observable<ChatEvent> {

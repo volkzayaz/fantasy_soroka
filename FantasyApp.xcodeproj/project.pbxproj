@@ -163,6 +163,14 @@
 		841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */; };
 		841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681EF22E9B36C00FA9455 /* UIColor+Style.swift */; };
 		841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681F122E9B37E00FA9455 /* UIFont+Style.swift */; };
+		843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */; };
+		843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF715234249420098C196 /* TimeSeparatorModel.swift */; };
+		843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */; };
+		843CF71D23436B630098C196 /* RoomsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71C23436B630098C196 /* RoomsResource.swift */; };
+		843CF71F234370480098C196 /* CreateDraftRoomResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71E234370480098C196 /* CreateDraftRoomResource.swift */; };
+		843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF720234372450098C196 /* ActivateRoomResource.swift */; };
+		843CF723234373610098C196 /* RoomResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF722234373610098C196 /* RoomResource.swift */; };
+		843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */; };
 		844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED422EE9C9B00E06665 /* TextField.swift */; };
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
@@ -391,6 +399,14 @@
 		841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-UltralightItalic.otf"; sourceTree = "<group>"; };
 		841681EF22E9B36C00FA9455 /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
 		841681F122E9B37E00FA9455 /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
+		843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorCollectionViewCell.swift; sourceTree = "<group>"; };
+		843CF715234249420098C196 /* TimeSeparatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorModel.swift; sourceTree = "<group>"; };
+		843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorPresenter.swift; sourceTree = "<group>"; };
+		843CF71C23436B630098C196 /* RoomsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsResource.swift; sourceTree = "<group>"; };
+		843CF71E234370480098C196 /* CreateDraftRoomResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDraftRoomResource.swift; sourceTree = "<group>"; };
+		843CF720234372450098C196 /* ActivateRoomResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateRoomResource.swift; sourceTree = "<group>"; };
+		843CF722234373610098C196 /* RoomResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomResource.swift; sourceTree = "<group>"; };
+		843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomSettingsResource.swift; sourceTree = "<group>"; };
 		844A3ED422EE9C9B00E06665 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
@@ -936,6 +952,7 @@
 		734C52A42327AC1300B54510 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
 				7361F33023350265007B84B0 /* ConectionResource.swift */,
 			);
 			path = User;
@@ -1270,7 +1287,6 @@
 			isa = PBXGroup;
 			children = (
 				8416816622E96CF700FA9455 /* PrimaryButton.swift */,
-				84EE118B23413045007EAFE6 /* ChatInputView.swift */,
 				841681C822E999CA00FA9455 /* SecondaryButton.swift */,
 				844A3ED422EE9C9B00E06665 /* TextField.swift */,
 				844A3ED622EEA25300E06665 /* ErrorView.swift */,
@@ -1303,6 +1319,61 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		843CF7102342466B0098C196 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				843CF71A23436B150098C196 /* InputView */,
+				843CF7132342469E0098C196 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843CF7132342469E0098C196 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				843CF71923436A9C0098C196 /* Message */,
+				843CF714234246A20098C196 /* TimeSeparator */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		843CF714234246A20098C196 /* TimeSeparator */ = {
+			isa = PBXGroup;
+			children = (
+				843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */,
+				843CF715234249420098C196 /* TimeSeparatorModel.swift */,
+				843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */,
+			);
+			path = TimeSeparator;
+			sourceTree = "<group>";
+		};
+		843CF71923436A9C0098C196 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		843CF71A23436B150098C196 /* InputView */ = {
+			isa = PBXGroup;
+			children = (
+				84EE118B23413045007EAFE6 /* ChatInputView.swift */,
+			);
+			path = InputView;
+			sourceTree = "<group>";
+		};
+		843CF71B23436B570098C196 /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				843CF722234373610098C196 /* RoomResource.swift */,
+				843CF71C23436B630098C196 /* RoomsResource.swift */,
+				843CF71E234370480098C196 /* CreateDraftRoomResource.swift */,
+				843CF720234372450098C196 /* ActivateRoomResource.swift */,
+				843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */,
+			);
+			path = Rooms;
+			sourceTree = "<group>";
+		};
 		84AB48FA232A16AA00F3609A /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1327,6 +1398,7 @@
 		84AB4902232A2CE300F3609A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				843CF7102342466B0098C196 /* Views */,
 				84AB4905232A2D0000F3609A /* ChatRouter.swift */,
 				84AB4904232A2D0000F3609A /* ChatViewController.swift */,
 				84AB4903232A2D0000F3609A /* ChatViewModel.swift */,
@@ -1370,8 +1442,8 @@
 			isa = PBXGroup;
 			children = (
 				7361F3252333F2FC007B84B0 /* FantasyCards */,
+				843CF71B23436B570098C196 /* Rooms */,
 				734C52A42327AC1300B54510 /* User */,
-				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1748,6 +1820,7 @@
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
+				843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
@@ -1759,6 +1832,7 @@
 				7322311123040DB6009DD37F /* FantasyDeckRouter.swift in Sources */,
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
+				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
@@ -1767,7 +1841,9 @@
 				7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
+				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
+				843CF71F234370480098C196 /* CreateDraftRoomResource.swift in Sources */,
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
@@ -1804,6 +1880,7 @@
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
 				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
+				843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
@@ -1830,6 +1907,7 @@
 				73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */,
 				73097C0F231D431600B71053 /* ProfilePhotoCollectionView.swift in Sources */,
 				7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */,
+				843CF723234373610098C196 /* RoomResource.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */,
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,
@@ -1896,6 +1974,8 @@
 				73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,
 				739F798A2309496C0045FCD7 /* StoreMainCards.swift in Sources */,
+				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,
+				843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
 				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,
 				84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */,

@@ -12,6 +12,7 @@ import Parse
 import ChattoAdditions
 import Chatto
 
+// MARK: - Messages
 enum Chat {}
 extension Chat {
 
@@ -66,22 +67,6 @@ extension Chat {
             self.createdAt = createdAt
         }
     }
-
-    struct Room: Equatable, IdentifiableType, ParsePresentable {
-        static var className: String {
-            return "Room"
-        }
-
-        var identity: String {
-            return objectId!
-        }
-
-        var objectId: String?
-        var updatedAt: Date?
-        var owner: UserSlice?
-        var recipient: UserSlice?
-        var backendId: String?
-    }
 }
 
 // MARK: - Chatto
@@ -98,17 +83,81 @@ extension Chat.Message: MessageModelProtocol {
         return .success
     }
 
-    enum Kind: String {
-        case text = "text-chat-message"
-        case emoji = "emoji-chat-message"
-    }
-
     var type: ChatItemType {
-        return (text ?? "").containsOnlyEmojis ? Chat.Message.Kind.emoji.rawValue :
-            Chat.Message.Kind.text.rawValue
+        return (text ?? "").containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
+            Chat.CellType.text.rawValue
     }
 
     var uid: String {
         return objectId ?? ""
+    }
+}
+
+// MARK: - Cells
+extension Chat {
+    enum CellType: String {
+        case text = "text-chat-message"
+        case emoji = "emoji-chat-message"
+        case timeSeparator = "time-separator"
+    }
+}
+
+// MARK: - Rooms
+extension Chat {
+    struct RoomDetails: Equatable, IdentifiableType, ParsePresentable {
+        static var className: String {
+            return "Room"
+        }
+
+        var identity: String {
+            return objectId!
+        }
+
+        var objectId: String?
+        var updatedAt: Date?
+        var owner: UserSlice?
+        var recipient: UserSlice?
+        var backendId: String?
+    }
+
+    struct Room: Codable {
+        var id: String!
+        var ownerId: String!
+        var settings: RoomSettings?
+        var type = RoomType.public
+        var status = RoomStatus.created
+        var name = ""
+        var isFrozen = false
+        var participants = [RoomParticipant]()
+        var createdAt: String?
+        var updatedAt: String?
+    }
+
+    struct RoomSettings: Codable {
+        var isClosedRoom = false
+        var isHideCommonFantasies = false
+        var isScreenShieldEnabled = false
+        var sharedCollections = [String]()
+    }
+
+    struct RoomParticipant: Codable {
+        var id: String!
+        var status: RoomParticipantStatus = .accepted
+    }
+
+    enum RoomType: String, Codable {
+        case `private`
+        case `public`
+    }
+
+    enum RoomStatus: String, Codable {
+        case draft
+        case created
+    }
+
+    enum RoomParticipantStatus: String, Codable {
+        case invited
+        case accepted
+        case rejected
     }
 }

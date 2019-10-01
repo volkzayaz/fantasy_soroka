@@ -32,21 +32,16 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
     }
 
     override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenter = TextMessagePresenterBuilder(
+        let textMessagePresenterBuilder = TextMessagePresenterBuilder(
             viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>(),
             interactionHandler: self
         )
-        textMessagePresenter.baseMessageStyle = BaseMessageCollectionViewCellDefaultStyle()
-
-        let emojiMessagePresenter = TextMessagePresenterBuilder(
-            viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>(),
-            interactionHandler: self
-        )
-        emojiMessagePresenter.baseMessageStyle = BaseMessageCollectionViewCellDefaultStyle()
+        textMessagePresenterBuilder.baseMessageStyle = BaseMessageCollectionViewCellDefaultStyle()
 
         return [
-            Chat.Message.Kind.text.rawValue: [textMessagePresenter],
-            Chat.Message.Kind.emoji.rawValue: [emojiMessagePresenter]
+            Chat.CellType.text.rawValue: [textMessagePresenterBuilder],
+            //Chat.CellType.emoji.rawValue: [textMessagePresenterBuilder],
+            Chat.CellType.timeSeparator.rawValue: [TimeSeparatorPresenterBuilder()]
         ]
     }
 
