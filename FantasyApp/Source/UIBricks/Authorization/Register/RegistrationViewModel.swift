@@ -67,6 +67,10 @@ extension RegistrationViewModel {
     var defaultGender: Gender { return .female }
     var defaultSexuality: Sexuality { return .heteroflexible }
     
+    var currentStep: Driver<Step> {
+        return step.asDriver()
+    }
+    
 }
 
 struct RegistrationViewModel : MVVM_ViewModel {

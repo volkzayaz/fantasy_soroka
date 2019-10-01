@@ -73,6 +73,20 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(photoImageView.rx.image)
             .disposed(by: rx.disposeBag)
         
+        viewModel.currentStep
+            .drive(onNext: { [unowned self] (step) in
+                
+                let x: [RegistrationViewModel.Step: UIResponder] = [
+                    .name: self.nameTextField,
+                    .birthday: self.birthdayTextField,
+                    .email: self.emailTextField,
+                    .password: self.passwordTextField
+                ]
+                
+                x[step]?.becomeFirstResponder()
+            })
+            .disposed(by: rx.disposeBag)
+        
         ///extract into extension
         
         let mapper: (Notification) -> (CGFloat, CGFloat) = { n -> (CGFloat, CGFloat) in
