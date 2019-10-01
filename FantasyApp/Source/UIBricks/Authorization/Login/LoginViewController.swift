@@ -28,7 +28,7 @@ class LoginViewController: UIViewController, MVVM_View {
     
 }
 
-private extension LoginViewController {
+extension LoginViewController {
 
     @IBAction func register(_ sender: Any) {
         viewModel.presentRegister()
@@ -43,7 +43,7 @@ private extension LoginViewController {
                         password: passwordTextField.text ?? "")
     }
 
-    @IBAction func presentSignIn(_ sender: Any) {
+    @IBAction func presentSignIn() {
         loginView.transform = CGAffineTransform(translationX: 0, y: view.frame.size.height)
         loginView.alpha = 0
         loginView.isHidden = false

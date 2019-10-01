@@ -28,7 +28,7 @@
                                 <rect key="frame" x="309" y="17" width="47" height="30"/>
                                 <state key="normal" title="Sign in"/>
                                 <connections>
-                                    <action selector="presentSignIn:" destination="FOA-WO-XM8" eventType="touchUpInside" id="n7o-2c-HJ9"/>
+                                    <action selector="presentSignIn" destination="FOA-WO-XM8" eventType="touchUpInside" id="kyZ-9l-Ejw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-vD-Al1">
@@ -229,6 +229,13 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoD-pn-3Wo">
+                                                <rect key="frame" x="270" y="16" width="47" height="30"/>
+                                                <state key="normal" title="Sign in"/>
+                                                <connections>
+                                                    <action selector="backToSignIn:" destination="97H-h1-q95" eventType="touchUpInside" id="AQp-r7-cyG"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="eBr-Gg-mey" firstAttribute="top" secondItem="dkF-7d-Cnk" secondAttribute="bottom" constant="14" id="799-sV-Gsg"/>
@@ -236,8 +243,10 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                             <constraint firstItem="eBr-Gg-mey" firstAttribute="leading" secondItem="Iw3-35-FsF" secondAttribute="leading" constant="50" id="ONw-m3-OEQ"/>
                                             <constraint firstItem="dkF-7d-Cnk" firstAttribute="top" secondItem="gyh-WB-V1r" secondAttribute="bottom" constant="15" id="gXg-Z8-pjN"/>
                                             <constraint firstItem="gyh-WB-V1r" firstAttribute="top" secondItem="Iw3-35-FsF" secondAttribute="top" constant="45" id="i7P-7M-K4R"/>
+                                            <constraint firstItem="EoD-pn-3Wo" firstAttribute="top" secondItem="Iw3-35-FsF" secondAttribute="top" constant="16" id="iIm-ve-eVr"/>
                                             <constraint firstItem="gyh-WB-V1r" firstAttribute="centerX" secondItem="Iw3-35-FsF" secondAttribute="centerX" id="jlP-zf-fHJ"/>
                                             <constraint firstItem="KWe-kV-O8S" firstAttribute="leading" secondItem="eBr-Gg-mey" secondAttribute="leading" id="q27-hQ-4Vn"/>
+                                            <constraint firstAttribute="trailing" secondItem="EoD-pn-3Wo" secondAttribute="trailing" constant="18.5" id="sUM-9q-Vam"/>
                                             <constraint firstItem="KWe-kV-O8S" firstAttribute="top" secondItem="eBr-Gg-mey" secondAttribute="bottom" constant="21" id="vp1-fP-0Ot"/>
                                             <constraint firstItem="dkF-7d-Cnk" firstAttribute="leading" secondItem="Iw3-35-FsF" secondAttribute="leading" constant="50" id="zbn-Kf-070"/>
                                         </constraints>

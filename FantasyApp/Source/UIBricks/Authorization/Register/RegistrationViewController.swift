@@ -232,6 +232,10 @@ extension RegistrationViewController: UIScrollViewDelegate {
         }
     }
     
+    @IBAction func backToSignIn(_ sender: Any) {
+        viewModel.backToSignIn()
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.frame.size.width * (scrollView.contentOffset.x + scrollView.frame.size.width) / scrollView.contentSize.width
         progressWidthConstraint.constant = x

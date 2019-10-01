@@ -137,6 +137,10 @@ extension RegistrationViewModel {
         step.accept( next )
     }
     
+    func backToSignIn() {
+        router.backToSignIn()
+    }
+    
     func agreementChanged(agrred: Bool) {
         updateForm { $0.agreementTick = agrred }
     }
