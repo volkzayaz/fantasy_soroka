@@ -47,7 +47,7 @@ platform :ios do
                 build_secret: "23e218800f398f44a1b99535f0a9e70571f31c508860c4e4be496e02abcf6b7c",
                 notes: changelog_from_git_commits,
                 groups: "Basic")
-#    upload_symbols_to_crashlytics                    
+    upload_symbols_to_crashlytics                    
 
     ##cleaning up
     File.delete("../FantasyApp.ipa")

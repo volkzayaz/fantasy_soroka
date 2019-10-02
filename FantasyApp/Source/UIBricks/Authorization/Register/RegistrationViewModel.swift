@@ -37,7 +37,7 @@ extension RegistrationViewModel {
                 case .gender:       return true
                 case .relationship: return form.relationshipStatus != nil
                 case .email:        return form.email != nil
-                case .password:     return form.password == form.confirmPassword && form.password != nil
+                case .password:     return form.password == form.confirmPassword && form.password != nil && (form.password?.count ?? 0) > 7
                 
                 case .photo:        return form.photo != nil
                     
@@ -62,6 +62,13 @@ extension RegistrationViewModel {
     
     var selectedPhoto: Driver<UIImage> {
         return form.asDriver().map { $0.photo ?? R.image.stub()! }
+    }
+    
+    var defaultGender: Gender { return .female }
+    var defaultSexuality: Sexuality { return .heteroflexible }
+    
+    var currentStep: Driver<Step> {
+        return step.asDriver()
     }
     
 }
@@ -92,10 +99,10 @@ struct RegistrationViewModel : MVVM_ViewModel {
         
         case notice = 1
         case name
-        case birthday
-        case sexuality
         case gender
+        case birthday
         case relationship
+        case sexuality
         case email
         case password
         case photo
@@ -118,6 +125,18 @@ extension RegistrationViewModel {
     
     func forward() {
         
+        ///fixme: I'm not really a 21 year old
+        let years21: TimeInterval = -1 * 3600 * 24 * 366 * 21
+        
+        if step.value == .birthday,
+            let d = form.value.brithdate,
+            d.timeIntervalSinceNow > years21 {
+            
+            SettingsStore.ageRestriction.value = d
+            
+            return
+        }
+        
         guard let next = Step(rawValue: step.value.rawValue + 1) else {
             
             AuthenticationManager.register(with: form.value)
@@ -132,6 +151,10 @@ extension RegistrationViewModel {
         }
         
         step.accept( next )
+    }
+    
+    func backToSignIn() {
+        router.backToSignIn()
     }
     
     func agreementChanged(agrred: Bool) {

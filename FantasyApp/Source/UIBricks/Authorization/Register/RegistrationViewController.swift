@@ -73,6 +73,20 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(photoImageView.rx.image)
             .disposed(by: rx.disposeBag)
         
+        viewModel.currentStep
+            .drive(onNext: { [unowned self] (step) in
+                
+                let x: [RegistrationViewModel.Step: UIResponder] = [
+                    .name: self.nameTextField,
+                    .birthday: self.birthdayTextField,
+                    .email: self.emailTextField,
+                    .password: self.passwordTextField
+                ]
+                
+                x[step]?.becomeFirstResponder()
+            })
+            .disposed(by: rx.disposeBag)
+        
         ///extract into extension
         
         let mapper: (Notification) -> (CGFloat, CGFloat) = { n -> (CGFloat, CGFloat) in
@@ -121,11 +135,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         ////Sexuality
         
-        Observable.just(Sexuality.allCases)
+        let data = Sexuality.allCases
+        
+        Observable.just(data)
             .bind(to: sexualityPicker.rx.itemTitles) { _, item in
                 return item.rawValue
             }
             .disposed(by: rx.disposeBag)
+        
+        sexualityPicker.selectRow(data.firstIndex(of: viewModel.defaultSexuality)!,
+                                  inComponent: 0, animated: false)
         
         sexualityPicker.rx.modelSelected(Sexuality.self)
             .subscribe(onNext: { [unowned self] (x) in
@@ -135,11 +154,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         ///Gender
         
-        Observable.just(Gender.allCases)
+        let genders = Gender.allCases
+        
+        Observable.just(genders)
             .bind(to: genderPickerView.rx.itemTitles) { _, item in
                 return item.rawValue
             }
             .disposed(by: rx.disposeBag)
+        
+        genderPickerView.selectRow(genders.firstIndex(of: viewModel.defaultGender)!,
+                                   inComponent: 0, animated: false)
         
         genderPickerView.rx.modelSelected(Gender.self)
             .subscribe(onNext: { [unowned self] (x) in
@@ -222,6 +246,10 @@ extension RegistrationViewController: UIScrollViewDelegate {
         }
     }
     
+    @IBAction func backToSignIn(_ sender: Any) {
+        viewModel.backToSignIn()
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.frame.size.width * (scrollView.contentOffset.x + scrollView.frame.size.width) / scrollView.contentSize.width
         progressWidthConstraint.constant = x
@@ -233,8 +261,8 @@ private extension RegistrationViewController {
     func configure(_ birthdayTextField: UITextField) {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-        ///fixme: I'm not really a 21 year old
-        picker.maximumDate = Date(timeIntervalSinceNow: -1 * 3600 * 24 * 366 * 21 )
+        
+        picker.maximumDate = Date()
         picker.date = Date(timeIntervalSince1970: 0)
         
         birthdayTextField.inputView = picker

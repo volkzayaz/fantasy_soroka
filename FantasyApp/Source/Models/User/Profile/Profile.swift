@@ -31,7 +31,7 @@ struct RegisterForm {
     
     var name: String = ""
     var brithdate: Date?
-    var sexuality: Sexuality = .straight
+    var sexuality: Sexuality = .heteroflexible
     var gender: Gender = .female
     var relationshipStatus: RelationshipStatus?
     

@@ -19,4 +19,15 @@ struct RegistrationRouter : MVVM_Router {
         owner.navigationController?.popViewController(animated: true)
     }
     
+    func backToSignIn() {
+        
+        guard let vc = owner.navigationController?.viewControllers.first as? LoginViewController else {
+            fatalErrorInDebug("Please reconsider your viewHierarchy. Registration Brick can't handle SignIn rout")
+            return
+        }
+        
+        vc.presentSignIn()
+        dismiss()
+    }
+    
 }

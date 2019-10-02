@@ -14,10 +14,20 @@ import RxCocoa
 extension RootViewModel {
     
     var state: Driver<State> {
-        return appState.changesOf { $0.currentUser }
-            .map { $0 == nil }
-            .distinctUntilChanged()
-            .map { return $0 ? .authentication : .mainApp }
+        
+        let age = SettingsStore.ageRestriction.observable.asDriver(onErrorJustReturn: nil)
+        
+        let user = appState.changesOf { $0.currentUser }
+                            .map { $0 == nil }
+        .distinctUntilChanged()
+        
+        return Driver.combineLatest(age, user) { ($0, $1) }
+            .map { (maybeAge, user) in
+                
+                guard maybeAge == nil else { return .ageRestriction }
+                
+                return user ? .authentication : .mainApp
+            }
     }
     
 }
@@ -27,6 +37,8 @@ struct RootViewModel : MVVM_ViewModel {
     enum State {
         case authentication
         case mainApp
+        
+        case ageRestriction
     }
     
     init(router: RootRouter) {
