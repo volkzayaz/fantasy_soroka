@@ -120,19 +120,17 @@ extension ChatViewModel {
 
     private func prepareChatItems() -> [ChatItemProtocol] {
         var dateToCompare = Date()
+        var adjustment = 0
         let array = messages.value
         // build message cell models
         var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
         // build time separator cell models
-        // TODO: use reduce instead of forEach?
-        array.enumerated().reversed().forEach { index, message in
-            if index == 0 {
+        array.enumerated().forEach { index, message in
+            if index == 0 || message.createdAt.compare(with: dateToCompare, by: .day) != 0 {
                 let model = TimeSeparatorModel(uid: UUID().uuidString, date: message.createdAt.toWeekDayAndDateString())
-                result.insert(model, at: index)
-            } else if message.createdAt.compare(with: dateToCompare, by: .day) != 0 {
-                let model = TimeSeparatorModel(uid: UUID().uuidString, date: dateToCompare.toWeekDayAndDateString())
-                result.insert(model, at: index)
+                result.insert(model, at: index + adjustment)
                 dateToCompare = message.createdAt
+                adjustment += 1
             }
         }
         return result

@@ -181,6 +181,7 @@
 		843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */; };
 		844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED422EE9C9B00E06665 /* TextField.swift */; };
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
+		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
 		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
 		84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */; };
@@ -425,6 +426,7 @@
 		843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomSettingsResource.swift; sourceTree = "<group>"; };
 		844A3ED422EE9C9B00E06665 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePresenterBuilder.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
 		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1397,6 +1399,7 @@
 		843CF71923436A9C0098C196 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1981,6 +1984,7 @@
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
+				84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */,
 				84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */,
 				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,

@@ -31,12 +31,20 @@ extension Date {
     private static let weekdayAndDateStampDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.dateFormat = "MMMM dd yyyy" // "Monday, Mar 7 2016"
+        dateFormatter.dateFormat = "MMMM dd yyyy"
         return dateFormatter
     }()
 
     func toWeekDayAndDateString() -> String {
-        return Date.weekdayAndDateStampDateFormatter.string(from: self)
+        let formatter = Date.weekdayAndDateStampDateFormatter
+        let formatWithYear = "MMMM dd yyyy"
+        let formatWithoutYear = "MMMM dd"
+        formatter.dateFormat = distance(from: Date(), in: .day) > 365 ? formatWithYear : formatWithoutYear
+        return formatter.string(from: self)
+    }
+
+    func distance(from date: Date, in component: Calendar.Component) -> Int {
+        return Calendar.current.dateComponents([component], from: self, to: date).value(for: component) ?? 0
     }
 
     func compare(with date: Date, by component: Calendar.Component) -> Int {

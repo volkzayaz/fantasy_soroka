@@ -102,6 +102,20 @@ extension Chat {
     }
 }
 
+// MARK: - Date Formatting
+extension Date {
+    private static let hoursAndMinutesDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "HH:MM"
+        return dateFormatter
+    }()
+
+    func toMessageTimestampString() -> String {
+        return Date.hoursAndMinutesDateFormatter.string(from: self)
+    }
+}
+
 // MARK: - Rooms
 extension Chat {
     struct RoomDetails: Equatable, IdentifiableType, ParsePresentable {
@@ -115,6 +129,7 @@ extension Chat {
 
         var objectId: String?
         var updatedAt: Date?
+        var lastMessage: String?
         var owner: UserSlice?
         var recipient: UserSlice?
         var backendId: String?

@@ -32,26 +32,25 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
     }
 
     override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenterBuilder = TextMessagePresenterBuilder(
+        let textMessagePresenterBuilder = MessagePresenterBuilder(
             viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>(),
             interactionHandler: self
         )
-        textMessagePresenterBuilder.baseMessageStyle = BaseMessageCollectionViewCellDefaultStyle()
 
         return [
             Chat.CellType.text.rawValue: [textMessagePresenterBuilder],
-            //Chat.CellType.emoji.rawValue: [textMessagePresenterBuilder],
+            Chat.CellType.emoji.rawValue: [textMessagePresenterBuilder],
             Chat.CellType.timeSeparator.rawValue: [TimeSeparatorPresenterBuilder()]
         ]
     }
 
-    func userDidTapOnFailIcon(viewModel: ViewModelT, failIconView: UIView) {}
-    func userDidTapOnAvatar(viewModel: ViewModelT) {}
-    func userDidTapOnBubble(viewModel: ViewModelT) {}
-    func userDidBeginLongPressOnBubble(viewModel: ViewModelT) {}
-    func userDidEndLongPressOnBubble(viewModel: ViewModelT) {}
-    func userDidSelectMessage(viewModel: ViewModelT) {}
-    func userDidDeselectMessage(viewModel: ViewModelT) {}
+    func userDidTapOnFailIcon(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>, failIconView: UIView) {}
+    func userDidTapOnAvatar(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidTapOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidBeginLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidEndLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidSelectMessage(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidDeselectMessage(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
 }
 
 private extension ChatViewController {
@@ -84,7 +83,7 @@ extension ChatViewController: ChatInputViewDelegate {
 class ChatItemsDecorator: ChatItemsDecoratorProtocol {
     func decorateItems(_ chatItems: [ChatItemProtocol]) -> [DecoratedChatItem] {
         let attributes = ChatItemDecorationAttributes(
-            bottomMargin: 10,
+            bottomMargin: 8,
             messageDecorationAttributes: BaseMessageDecorationAttributes(
                 canShowFailedIcon: false,
                 isShowingTail: true,

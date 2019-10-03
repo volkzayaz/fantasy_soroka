@@ -26,7 +26,7 @@ extension String {
                 return false
             }
         }
-        return true
+        return false
     }
 
 }
