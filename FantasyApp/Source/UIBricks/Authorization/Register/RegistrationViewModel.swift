@@ -42,7 +42,7 @@ extension RegistrationViewModel {
                 case .photo:        return form.photo != nil
                     
                 }
-                
+                    
             }
     }
     

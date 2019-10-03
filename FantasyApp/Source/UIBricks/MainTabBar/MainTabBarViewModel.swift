@@ -13,18 +13,29 @@ import RxCocoa
 
 extension MainTabBarViewModel {
     
-//    var locationRequestHidden: Driver<Bool> {
-//        return locationActor.lastKnownAuthStatus.map { x in
-//            return x != .denied
-//        }
-//        .distinctUntilChanged()
-//    }
+    var locationRequestHidden: Driver<Bool> {
+        
+        return Observable.combineLatest(SettingsStore.atLeastOnceLocation.observable,
+                                        locationManager.rx.didChangeAuthorization) { ($0, $1) }
+            .map { (didAskForLocation, authorizationStatus) in
+                
+                if authorizationStatus.status == .notDetermined { return true }
+                
+                guard didAskForLocation != nil else {
+                    return false
+                }
+                
+                return (authorizationStatus.status != .denied)
+            }
+            .asDriver(onErrorJustReturn: false)
+        
+    }
  
 }
 
 struct MainTabBarViewModel : MVVM_ViewModel {
 
-    //private let locationActor = PickCommunityViewModel()
+    private let locationManager = CLLocationManager()
     
     init(router: MainTabBarRouter) {
         self.router = router
@@ -47,11 +58,12 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
-        /**
-         
-         Proceed with initialization here
-         
-         */
+        locationManager.rx.didChangeAuthorization
+            .filter { $0.status != .denied && $0.status != .notDetermined }
+            .subscribe(onNext: { (_) in
+                SettingsStore.atLeastOnceLocation.value = true
+            })
+            .disposed(by: bag)
         
         /////progress indicator
         

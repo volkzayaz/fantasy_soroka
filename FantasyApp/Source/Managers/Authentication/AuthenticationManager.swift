@@ -119,6 +119,15 @@ extension AuthenticationManager {
                     return subscriber.onError( FantasyError.generic(description: R.string.localizable.authorizationNewFBUser()) )
                 }
                 
+                OperationQueue().addOperation {
+                    
+                    ///Can't "includeKey" during login
+                    let _ = try? (maybeUser?["belongsTo"] as? PFObject)?.fetch()
+                    
+                    subscriber.onNext( maybeUser! )
+                    subscriber.onCompleted()
+                }
+                
                 subscriber.onNext( maybeUser! )
                 subscriber.onCompleted()
                 
@@ -142,6 +151,7 @@ extension AuthenticationManager {
     
     static func logout() {
         SettingsStore.currentUser.value = nil
+        SettingsStore.atLeastOnceLocation.value = nil
         PFUser.logOutInBackground(block: { _ in })
     }
     

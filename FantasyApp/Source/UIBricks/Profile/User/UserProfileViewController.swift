@@ -120,7 +120,7 @@ extension UserProfileViewController: UITableViewDataSource {
             
         case .about(let x):
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileAboutCell, for: indexPath)!
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAboutCell, for: indexPath)!
             
             cell.textLabel?.text = x
             

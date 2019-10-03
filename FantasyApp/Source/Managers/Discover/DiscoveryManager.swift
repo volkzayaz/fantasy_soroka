@@ -17,7 +17,7 @@ extension DiscoveryManager {
         return GetAllConnections().rx.request
             .flatMap { (response) -> Single<[PFObject]> in
                 
-                let noGo = response.map { $0.otherUserId } + [User.current!.id]
+                let noGo = /*response.map { $0.otherUserId } +*/ [User.current!.id]
                 
                 return User.query
                     .whereKey("objectId", notContainedIn: noGo)
