@@ -31,8 +31,18 @@ struct ConnectionResponse: Codable {
                 return .absent
         }
         
+        guard targetUserId == currentUser ||
+              userId == currentUser else {
+                fatalErrorInDebug("currentUser is not part of this connection \(self)")
+                return .absent
+        }
+        
         if case .rejected = status {
-            return .rejected
+            
+            return targetUserId == currentUser ?
+                .iRejected :
+                .iWasRejected
+            
         }
         
         if case .connected = status {
@@ -45,7 +55,7 @@ struct ConnectionResponse: Codable {
             return .outgoing(request: connectType)
         }
         else {
-            fatalErrorInDebug("currentUser is not part of this connection \(self)")
+            
             return .absent
         }
         
@@ -172,7 +182,7 @@ struct DeleteConnection: AuthorizedAPIResource {
 struct GetConnectionRequests: AuthorizedAPIResource {
     
     var path: String {
-        return "/users/me/connections/requests"
+        return "/users/me/connections/requests/incoming"
     }
     
     var method: Moya.Method {
@@ -180,8 +190,8 @@ struct GetConnectionRequests: AuthorizedAPIResource {
     }
     
     struct Response: Codable {
-        let userId: String
-        let status: ConnectionRequestType
+        let _id: String
+        let connection: ConnectionResponse
     }
     
     typealias responseType = [Response]

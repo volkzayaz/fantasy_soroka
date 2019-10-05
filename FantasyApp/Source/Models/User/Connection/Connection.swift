@@ -14,11 +14,12 @@ enum ConnectionRequestType: String, Codable {
     case sticker
 }
 
-///between 2 users
+///between ME and other User
 enum Connection {
     case absent
     case incomming(request: ConnectionRequestType)
     case outgoing(request: ConnectionRequestType)
-    case rejected ///poor fela, there're plenty of fish in the sea ;)
+    case iRejected    ///I initiated it, but other user doesn't want it
+    case iWasRejected ///Other user initiated it, but I don't want it
     case mutual
 }

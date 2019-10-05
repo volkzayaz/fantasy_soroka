@@ -65,11 +65,12 @@ extension UserProfileViewModel {
         return relationshipState.asDriver().notNil()
             .map { x in
                 switch x {
-                case .absent:              return "No relation so far"
+                case .absent:       return "No relation so far"
                 case .incomming(_): return "User liked you"
                 case .outgoing(_):  return "You liked this user"
-                case .rejected:            return "You've been rejected"
-                case .mutual:              return "You both liked each other"
+                case .iRejected:    return "You rejected user"
+                case .iWasRejected: return "You were rejected"
+                case .mutual:       return "You both liked each other"
                 }
         }
     }
@@ -78,10 +79,11 @@ extension UserProfileViewModel {
         return relationshipState.asDriver()
             .map { x -> String in
                 switch x {
-                case .absent?:       return "Like user"
+                case .absent?:              return "Like user"
                 case .incomming(_)?:        return "Decide"
                 case .outgoing(_)?:         return ""
-                case .rejected?:            return ""
+                case .iWasRejected?:        return ""
+                case .iRejected?:           return "Unreject"
                 case .mutual?:              return "Unlike"
                 case .none:                 return ""
                 }
@@ -201,6 +203,19 @@ extension UserProfileViewModel {
                 .subscribe()
             
         }
+ 
+        if case .iRejected? = relationshipState.value {
+            
+            relationshipState.accept( .absent )
+            
+            let _ = ConnectionManager.deleteConnection(with: user)
+                .do(onError: { [weak r = relationshipState] (er) in
+                    r?.accept(.absent)
+                })
+                .silentCatch(handler: router.owner)
+                .subscribe()
+            
+        }
         
     }
     
@@ -222,7 +237,7 @@ extension UserProfileViewModel {
     private func reject() {
         let copy = relationshipState.value
         
-        relationshipState.accept( .rejected )
+        relationshipState.accept( .iRejected )
         
         let _ = ConnectionManager.reject(user: user)
             .do(onError: { [weak r = relationshipState] (er) in

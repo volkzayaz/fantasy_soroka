@@ -43,7 +43,7 @@ extension ConnectionManager {
             .flatMap { r -> Single<[User]> in
                 
                 return User.query
-                    .whereKey("objectId", containedIn: r.map { $0.userId })
+                    .whereKey("objectId", containedIn: r.map { $0._id })
                     .rx.fetchAllObjects()
                     .map { u in
                         u.compactMap { try? User(pfUser: $0 as! PFUser) }
