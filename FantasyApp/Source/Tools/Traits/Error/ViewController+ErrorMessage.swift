@@ -60,5 +60,30 @@ extension UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+ 
+    func showTextQuestionDialog(title: String,
+                                text: String,
+                                style: UIAlertController.Style = .alert,
+                                callback: @escaping (String) -> Void) {
+        let alertController = UIAlertController(title: title,
+                                                message: text,
+                                                preferredStyle: style)
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        })
+        
+        alertController.addTextField(configurationHandler: { (_) in
+            
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            callback( alertController.textFields?.first?.text ?? "" )
+        })
+        
+        alertController.popoverPresentationController?.sourceView = view
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
 }

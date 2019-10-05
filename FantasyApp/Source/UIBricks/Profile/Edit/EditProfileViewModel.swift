@@ -25,7 +25,7 @@ extension EditProfileViewModel {
                 ////TODO: split separate texts into own translation tables instead of dot prefixing
                 ////usage of dot prefixes creates a lot of redundant prefix mentions in client code
                 let about = SectionModel(model: R.string.localizable.editProfileAbout(),
-                                         items: [Model.about])
+                                         items: [Model.about(user.bio.about ?? "")])
                 
                 let account = SectionModel(model: R.string.localizable.editProfileAccount(),
                                            items: [Model.attribute(R.string.localizable.editProfileName(),
@@ -41,8 +41,13 @@ extension EditProfileViewModel {
                     ])
                 
                 let community = SectionModel(model: R.string.localizable.editProfileAbout(),
-                                         items: [Model.attribute("Community",
-                                                                 value: user.community.value?.name ?? "No community") ])
+                                         items:
+                    [
+                        Model.attribute("Active city",
+                                        value: user.community.value?.name ?? "No community"),
+                        Model.attribute("Looking for",
+                                        value: user.bio.lookingFor?.description ?? "Choose"),
+                ])
                 
                 return [about, account, community]
                 
@@ -86,7 +91,7 @@ struct EditProfileViewModel : MVVM_ViewModel {
     fileprivate let bag = DisposeBag()
  
     enum Model {
-        case about
+        case about(String)
         case attribute(String, value: String)
     }
     
@@ -118,9 +123,34 @@ extension EditProfileViewModel {
     
     func cellClicked(ip: IndexPath) {
         
-        guard ip.section == 2 else { return }
+        if ip.section == 2 && ip.row == 0 {
+            router.presentTeleport(form: form)
+        }
         
-        router.presentTeleport(form: form)
+        if ip.section == 2 && ip.row == 1 {
+            
+            router.owner.showTextQuestionDialog(title: "Choose", text: "Looking for") { (str) in
+                
+                guard let int = Int(str), let value = LookingFor(rawValue: int) else {
+                    return
+                }
+                
+                self.updateForm { $0.lookingFor = value }
+                
+            }
+         
+        }
+        
+        if ip.section == 0 && ip.row == 0 {
+            
+            router.owner.showTextQuestionDialog(title: "About", text: "") { (str) in
+                
+                self.updateForm { $0.about = str }
+                
+            }
+            
+            router.presentTeleport(form: form)
+        }
     }
     
     private func updateForm(_ mapper: (inout EditProfileForm) -> Void ) {

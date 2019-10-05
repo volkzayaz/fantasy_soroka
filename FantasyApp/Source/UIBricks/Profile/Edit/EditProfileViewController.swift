@@ -21,9 +21,11 @@ class EditProfileViewController: UIViewController, MVVM_View {
             
             switch x {
                 
-            case .about:
+            case .about(let x):
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileAboutCell,
                                                          for: ip)!
+                
+                cell.textLabel?.text = x
                 
                 return cell
                 

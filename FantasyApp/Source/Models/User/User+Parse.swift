@@ -81,6 +81,14 @@ extension User {
                                      public             : albums?.public  ?? .init(images: []) ,
                                      private            : albums?.private ?? .init(images: []))
         
+        let maybeLookingFor: LookingFor?
+        if let int = pfUser["lookingFor"] as? Int {
+            maybeLookingFor = LookingFor(rawValue: int)
+        }
+        else {
+            maybeLookingFor = nil
+        }
+            
         id = objectId
         bio = .init(name: name,
                     about: about,
@@ -112,6 +120,7 @@ extension User {
             "birthady"              : bio.birthday,
             "gender"                : bio.gender.rawValue,
             "sexuality"             : bio.sexuality.rawValue,
+            "lookingFor"            : bio.lookingFor?.rawValue as Any,
             "belongsTo"             : community.value?.pfObject as Any,
             "communityChangePolicy" : community.changePolicy.rawValue
             ] as [String : Any]

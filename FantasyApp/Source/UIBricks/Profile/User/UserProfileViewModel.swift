@@ -44,6 +44,10 @@ extension UserProfileViewModel {
             "Sexuality - " + user.bio.sexuality.rawValue
         ]))
         
+        if let l = user.bio.lookingFor {
+            res.append(.basic("Looking for: \(l)"))
+        }
+        
         if user.fantasies.liked.count > 0 {
             
             let simpleFantasies = user.fantasies.liked

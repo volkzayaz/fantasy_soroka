@@ -44,6 +44,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var sexuality: Sexuality
         var relationshipStatus: RelationshipStatus
         var photos: Photos
+        var lookingFor: LookingFor?
         
         struct Photos: Equatable, Codable {
             
@@ -212,3 +213,30 @@ enum RelationshipStatus: Equatable, Codable {
     
 }
 
+let LookingForOptions: [String] = [
+    
+]
+
+enum LookingFor: Int, Codable, Equatable {
+    
+    case relationship = 0
+    case someoneToPlayWith
+    case princesDaySlutNight
+    case friendship
+    case sleepPartners
+    
+    var description: String {
+        
+        switch self {
+            
+        case .relationship: return "Relationship"
+        case .someoneToPlayWith: return "Someone to play with"
+        case .princesDaySlutNight: return "Princes by day, slut by night"
+        case .friendship: return "Friendship"
+        case .sleepPartners: return "Sleep partners"
+            
+        }
+        
+    }
+    
+}
