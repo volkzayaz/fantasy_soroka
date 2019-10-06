@@ -90,7 +90,9 @@ extension User {
         if let int = pfUser["expirience"] as? Int {
             maybeExpirience = Expirience(rawValue: int)
         }
-            
+        
+        let answers = pfUser["answers"] as? Bio.PersonalQuestion ?? [:]
+        
         id = objectId
         bio = User.Bio(name: name,
                        about: about,
@@ -100,7 +102,8 @@ extension User {
                        relationshipStatus: relationStatus,
                        photos: photos,
                        lookingFor: maybeLookingFor,
-                       expirience: maybeExpirience)
+                       expirience: maybeExpirience,
+                       answers: answers)
         
         ///TODO: save on server
         searchPreferences = nil
@@ -126,6 +129,7 @@ extension User {
             "sexuality"             : bio.sexuality.rawValue,
             "lookingFor"            : bio.lookingFor?.rawValue as Any,
             "expirience"            : bio.expirience?.rawValue as Any,
+            "answers"               : bio.answers,
             "belongsTo"             : community.value?.pfObject as Any,
             "communityChangePolicy" : community.changePolicy.rawValue
             ] as [String : Any]

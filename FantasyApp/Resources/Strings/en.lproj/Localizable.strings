@@ -23,12 +23,17 @@
 
 "editProfile.about" = "About";
 "editProfile.account" = "Account";
+"editProfile.answers" = "Answers";
 
 "editProfile.name" = "Name";
 "editProfile.age" = "Age";
 "editProfile.body" = "Body";
 "editProfile.sexuaity" = "Sexuality";
 "editProfile.relationship" = "Relationship";
+
+"editProfile.question1" = "What are you looking for?";
+"editProfile.question2" = "Facts about me that surprise people";
+"editProfile.question3" = "Two truths and a lie";
 
 "rooms.add.new.room" = "Add New Room";
 "room.details.fantasies" = "Fantasies";

@@ -54,6 +54,14 @@ extension UserProfileViewModel {
         
         res.append( .extended( bioSection ))
        
+        if user.bio.answers.count > 0 {
+            
+            for (key, value) in user.bio.answers {
+                res.append( .extended( [key, value] ) )
+            }
+            
+        }
+        
         if user.fantasies.liked.count > 0 {
             
             let simpleFantasies = user.fantasies.liked

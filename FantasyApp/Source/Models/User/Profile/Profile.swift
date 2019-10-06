@@ -27,7 +27,7 @@ struct EditProfileForm {
     
     var communityChange: User.Community?
     
-    
+    var answers: User.Bio.PersonalQuestion
     
 }
 
@@ -60,7 +60,8 @@ struct RegisterForm {
                                publicPhotosRemoved: [],
                                privatePhotosRemoved: [],
                                communityChange: User.Community(value: nil,
-                                                               changePolicy: .locationBased)
+                                                               changePolicy: .locationBased),
+                               answers: [:]
                                )
     }
     
@@ -92,7 +93,7 @@ extension User {
         applicator(lhs: &bio.expirience, rhs: editForm.expirience)
         applicator(lhs: &bio.about, rhs: editForm.about)
         applicator(lhs: &community, rhs: editForm.communityChange)
-        
+        applicator(lhs: &bio.answers, rhs: editForm.answers)
         
     }
     

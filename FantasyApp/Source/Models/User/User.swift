@@ -46,6 +46,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var photos: Photos
         var lookingFor: LookingFor?
         var expirience: Expirience?
+        var answers: PersonalQuestion
         
         struct Photos: Equatable, Codable {
             
@@ -68,6 +69,8 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
             var `public`: Album
             var `private`: Album
         };
+        
+        typealias PersonalQuestion = [String: String]
         
     };
     
@@ -260,4 +263,10 @@ enum Expirience: Int, Codable, Equatable {
         
     }
     
+}
+
+extension User.Bio.PersonalQuestion {
+    static let question1: String = "What are you looking for?"
+    static let question2: String = "Facts about me that surprise people"
+    static let question3: String = "Two truths and a lie"
 }
