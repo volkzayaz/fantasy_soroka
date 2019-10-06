@@ -1,8 +1,8 @@
 //
-//  MyFantasiesViewController.swift
+//  MyFantasiesSettingsViewController.swift
 //  FantasyApp
 //
-//  Created by Vlad Soroka on 9/29/19.
+//  Created by Vlad Soroka on 10/6/19.
 //Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -11,9 +11,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyFantasiesViewController: UIViewController, MVVM_View {
+class MyFantasiesSettingsViewController: UIViewController, MVVM_View {
     
-    lazy var viewModel: MyFantasiesViewModel! = MyFantasiesViewModel(router: .init(owner: self))
+    var viewModel: MyFantasiesSettingsViewModel!
     
     /**
      *  Connect any IBOutlets here
@@ -31,33 +31,34 @@ class MyFantasiesViewController: UIViewController, MVVM_View {
          */
         
     }
-
+    
 }
 
-extension MyFantasiesViewController {
-
+extension MyFantasiesSettingsViewController {
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == R.segue.myFantasiesViewController.embedLikedCards.identifier {
+        if segue.identifier == R.segue.myFantasiesSettingsViewController.blockedFantasiesSegue.identifier {
             
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
-                                                cards: User.current!.fantasies.liked)
+                                                cards: []) ///TODO: put blocked cards //User.current?.fantasies.disliked)
             
         }
-        
     }
     
-    @IBAction func blockedCards(_ sender: Any) {
-        viewModel.showBlockedCards()
-    }
+    /**
+     *  Describe any IBActions here
+     *
+     
+     @IBAction func performAction(_ sender: Any) {
+     
+     }
     
-    @IBAction func dislikedCards(_ sender: Any) {
-        viewModel.showDislikedCards()
-    }
-    
-    @IBAction func likedCards(_ sender: Any) {
-        viewModel.showLikedCards()
-    }
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+     }
+ 
+    */
     
 }
