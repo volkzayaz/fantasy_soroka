@@ -12,6 +12,11 @@ import RxSwift
 class UserProfilePhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var stubCell: UILabel! {
+        didSet {
+            stubCell.isHidden = true
+        }
+    }
     
     var disposeBag = DisposeBag()
     
@@ -27,6 +32,10 @@ class UserProfilePhotoCell: UICollectionViewCell {
                 .drive(imageView.rx.image)
                 .disposed(by: disposeBag)
             
+        case .privateStub(let x):
+            stubCell.isHidden = false
+            stubCell.text = "\(x) more photos availabel after you match"
+            
         }
         
         
@@ -36,6 +45,7 @@ class UserProfilePhotoCell: UICollectionViewCell {
         super.prepareForReuse()
         
         imageView.image = nil
+        stubCell.isHidden = true
         disposeBag = DisposeBag()
     }
     

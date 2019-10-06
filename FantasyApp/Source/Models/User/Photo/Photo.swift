@@ -29,7 +29,7 @@ struct Album: Codable, Equatable {
     ///though Parse knows nothing about Album entity
     ///To avoid numerous roundtrips to new backend
     ///we sometimes fake albums
-    ///it's ok as long as we use it just as iamge storage
+    ///it's ok as long as we use it just as image storage
     ///as soon as we want to do any Album related API
     ///we can check this property to decide,
     ///whether we need to fetch real user Albums first
@@ -54,5 +54,22 @@ struct Photo: Codable, Equatable {
     
     let url: String
     let thumbnailURL: String
+}
+
+struct IsPrivatePhoto: Codable, Equatable {
+    
+    enum CodingKeys: String, CodingKey {
+        case url = "src"
+        case thumbnailURL = "srcThumbnail"
+        case isPrivate
+    }
+    
+    let url: String
+    let thumbnailURL: String
+    let isPrivate: Bool
+    
+    var toRegular: Photo {
+        return Photo(url: url, thumbnailURL: thumbnailURL)
+    }
     
 }

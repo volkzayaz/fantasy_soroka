@@ -39,9 +39,17 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pvb-HH-jN0">
                                                     <rect key="frame" x="0.0" y="0.0" width="219" height="236"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWL-wv-il6">
+                                                    <rect key="frame" x="88" y="107" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="cWL-wv-il6" firstAttribute="centerY" secondItem="4Pv-tm-4E5" secondAttribute="centerY" id="2E3-2X-EaH"/>
+                                            <constraint firstItem="cWL-wv-il6" firstAttribute="centerX" secondItem="4Pv-tm-4E5" secondAttribute="centerX" id="IhP-1u-dKP"/>
                                             <constraint firstItem="Pvb-HH-jN0" firstAttribute="leading" secondItem="4Pv-tm-4E5" secondAttribute="leading" id="Qkm-N5-WV5"/>
                                             <constraint firstAttribute="bottom" secondItem="Pvb-HH-jN0" secondAttribute="bottom" id="UPw-zA-Vhs"/>
                                             <constraint firstAttribute="trailing" secondItem="Pvb-HH-jN0" secondAttribute="trailing" id="g0A-kj-dj4"/>
@@ -49,6 +57,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="Pvb-HH-jN0" id="ryY-FS-WPd"/>
+                                            <outlet property="stubCell" destination="cWL-wv-il6" id="tih-f7-XM4"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

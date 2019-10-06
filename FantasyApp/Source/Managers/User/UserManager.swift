@@ -62,17 +62,23 @@ extension UserManager {
             }
     }
     
-    static func images(of user: User) -> Single<[Photo]> {
+    static func images(of user: User) -> Single<([Photo], [Photo])> {
         
         ///Server does not return Main avatar as part of the Album
         
         return GetImages(of: .user(user)).rx.request.map { photos in
             
+            var `public` = photos.filter { !$0.isPrivate }
+                                 .map { $0.toRegular }
+            
             if let p = user.bio.photos.main {
-                return [p] + photos
+                `public` = [p] + `public`
             }
             
-            return photos
+            let `private` = photos.filter { $0.isPrivate }
+                                  .map { $0.toRegular }
+            
+            return (`public`, `private`)
         }
     }
     

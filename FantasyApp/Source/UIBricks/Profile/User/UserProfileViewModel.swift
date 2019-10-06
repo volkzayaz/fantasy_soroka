@@ -16,16 +16,31 @@ extension UserProfileViewModel {
     
     var photos: Driver<[AnimatableSectionModel<String, Photo>]> {
         
-        guard !user.bio.photos.public.isReal else {
-            return .just( [AnimatableSectionModel(model: "",
-                                                  items: Photo.fromPhotos(p: user.bio.photos.public.images))] )
+        let photosDriver: Driver<([FantasyApp.Photo], [FantasyApp.Photo])>
+        
+        if user.bio.photos.public.isReal {
+            photosDriver = .just( (user.bio.photos.public.images, user.bio.photos.private.images) )
+        }
+        else {
+            photosDriver = UserManager.images(of: user)
+                    .trackView(viewIndicator: indicator)
+                    .silentCatch()
+                    .asDriver(onErrorJustReturn: ([], []))
         }
         
-        return UserManager.images(of: user)
-            .trackView(viewIndicator: indicator)
-            .silentCatch()
-            .asDriver(onErrorJustReturn: [])
-            .map { Photo.fromPhotos(p: $0) }
+        return Driver.combineLatest(photosDriver,
+                                    relationshipState.asDriver().notNil()) { ($0, $1) }
+            .map { (userPhotos, relation) in
+                
+                var includesPrivatePhotos = false
+                if case .mutual = relation {
+                    includesPrivatePhotos = true
+                }
+
+                return Photo.fromPhotos(public: userPhotos.0,
+                                        private: userPhotos.1,
+                                        includePrivate: includesPrivatePhotos)
+            }
             .map { [AnimatableSectionModel(model: "", items: $0)] }
             
     }
@@ -79,6 +94,7 @@ extension UserProfileViewModel {
         return relationshipState.asDriver().notNil()
             .map { x in
                 switch x {
+                case .sameUser:     return ""
                 case .absent:       return "No relation so far"
                 case .incomming(_): return "User liked you"
                 case .outgoing(_):  return "You liked this user"
@@ -93,6 +109,7 @@ extension UserProfileViewModel {
         return relationshipState.asDriver()
             .map { x -> String in
                 switch x {
+                case .sameUser:             return ""
                 case .absent?:              return "Like user"
                 case .incomming(_)?:        return "Decide"
                 case .outgoing(_)?:         return ""
@@ -108,18 +125,33 @@ extension UserProfileViewModel {
     enum Photo: IdentifiableType, Equatable {
         case nothing
         case url(String)
+        case privateStub(Int)
         
         var identity: String {
             if case .url(let x) = self { return x }
+            if case .privateStub(_) = self { return "private stub" }
             
             return "nothing"
         }
         
-        static func fromPhotos(p: [FantasyApp.Photo]) -> [Photo] {
+        static func fromPhotos(public: [FantasyApp.Photo],
+                               private: [FantasyApp.Photo],
+                               includePrivate: Bool = false) -> [Photo] {
             
-            guard p.count > 0 else { return [.nothing] }
+            guard `public`.count > 0 else { return [.nothing] }
             
-            return p.map { .url($0.url) }
+            var showPhotos = `public`
+            if includePrivate {
+                showPhotos.append(contentsOf: `private`)
+            }
+            
+            var res: [Photo] = showPhotos.map { .url($0.url) }
+            
+            if !includePrivate {
+                res.append( .privateStub(`private`.count) )
+            }
+            
+            return res
         }
         
         
@@ -149,6 +181,9 @@ struct UserProfileViewModel : MVVM_ViewModel {
                 .silentCatch(handler: router.owner)
                 .bind(to: relationshipState)
                 .disposed(by: bag)
+        }
+        else {
+            relationshipState.accept(.sameUser)
         }
         
         /////progress indicator

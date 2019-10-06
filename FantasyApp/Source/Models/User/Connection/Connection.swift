@@ -16,6 +16,7 @@ enum ConnectionRequestType: String, Codable {
 
 ///between ME and other User
 enum Connection {
+    case sameUser ///I am not in connection with myself
     case absent
     case incomming(request: ConnectionRequestType)
     case outgoing(request: ConnectionRequestType)
