@@ -25,7 +25,7 @@ extension UserManager {
     static func uploadPhoto(image: UIImage, isPublic: Bool) -> Single<String> {
         
         ///TODO: implement network upload
-        
+
         let fakeURL = UUID().uuidString
         ImageRetreiver.registerImage(image: image, forKey: fakeURL)
         

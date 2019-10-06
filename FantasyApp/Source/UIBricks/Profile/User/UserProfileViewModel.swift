@@ -38,16 +38,22 @@ extension UserProfileViewModel {
             res.append( .about(x) )
         }
         
-        res.append( .extended( [
+        var bioSection = [
             "Gender - " + user.bio.gender.rawValue,
             "Relationship - " + user.bio.relationshipStatus.description,
             "Sexuality - " + user.bio.sexuality.rawValue
-        ]))
+        ]
         
         if let l = user.bio.lookingFor {
-            res.append(.basic("Looking for: \(l)"))
+            bioSection.append("Looking for: \(l)")
         }
         
+        if let x = user.bio.expirience {
+            bioSection.append("Expirience: \(x)")
+        }
+        
+        res.append( .extended( bioSection ))
+       
         if user.fantasies.liked.count > 0 {
             
             let simpleFantasies = user.fantasies.liked

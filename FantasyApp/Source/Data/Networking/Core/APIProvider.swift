@@ -59,7 +59,7 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
 
 extension APIProvider {
     public static let `default` = APIProvider(plugins: [
-    //    NetworkLoggerPlugin(verbose: true)
+        NetworkLoggerPlugin(verbose: true)
     ])
 }
 

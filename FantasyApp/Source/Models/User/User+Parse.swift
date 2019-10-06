@@ -81,22 +81,26 @@ extension User {
                                      public             : albums?.public  ?? .init(images: []) ,
                                      private            : albums?.private ?? .init(images: []))
         
-        let maybeLookingFor: LookingFor?
+        var maybeLookingFor: LookingFor? = nil
         if let int = pfUser["lookingFor"] as? Int {
             maybeLookingFor = LookingFor(rawValue: int)
         }
-        else {
-            maybeLookingFor = nil
+        
+        var maybeExpirience: Expirience? = nil
+        if let int = pfUser["expirience"] as? Int {
+            maybeExpirience = Expirience(rawValue: int)
         }
             
         id = objectId
-        bio = .init(name: name,
-                    about: about,
-                    birthday: birthday,
-                    gender: gender,
-                    sexuality: sexuality,
-                    relationshipStatus: relationStatus,
-                    photos: photos)
+        bio = User.Bio(name: name,
+                       about: about,
+                       birthday: birthday,
+                       gender: gender,
+                       sexuality: sexuality,
+                       relationshipStatus: relationStatus,
+                       photos: photos,
+                       lookingFor: maybeLookingFor,
+                       expirience: maybeExpirience)
         
         ///TODO: save on server
         searchPreferences = nil
@@ -121,6 +125,7 @@ extension User {
             "gender"                : bio.gender.rawValue,
             "sexuality"             : bio.sexuality.rawValue,
             "lookingFor"            : bio.lookingFor?.rawValue as Any,
+            "expirience"            : bio.expirience?.rawValue as Any,
             "belongsTo"             : community.value?.pfObject as Any,
             "communityChangePolicy" : community.changePolicy.rawValue
             ] as [String : Any]

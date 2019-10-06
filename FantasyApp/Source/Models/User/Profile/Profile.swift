@@ -16,6 +16,7 @@ struct EditProfileForm {
     var gender: Gender?
     var relationshipStatus: RelationshipStatus?
     var lookingFor: LookingFor?
+    var expirience: Expirience?
     var about: String?
     
     var publicPhotosAdded: [String]?
@@ -52,6 +53,7 @@ struct RegisterForm {
                                gender: gender,
                                relationshipStatus: relationshipStatus,
                                lookingFor: nil,
+                               expirience: nil,
                                about: nil,
                                publicPhotosAdded: [],
                                privatePhotosAdded: [],
@@ -87,6 +89,7 @@ extension User {
         applicator(lhs: &bio.gender, rhs: editForm.gender)
         applicator(lhs: &bio.sexuality, rhs: editForm.sexuality)
         applicator(lhs: &bio.lookingFor, rhs: editForm.lookingFor)
+        applicator(lhs: &bio.expirience, rhs: editForm.expirience)
         applicator(lhs: &bio.about, rhs: editForm.about)
         applicator(lhs: &community, rhs: editForm.communityChange)
         

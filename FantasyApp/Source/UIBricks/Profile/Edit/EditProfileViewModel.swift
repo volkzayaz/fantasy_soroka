@@ -47,6 +47,8 @@ extension EditProfileViewModel {
                                         value: user.community.value?.name ?? "No community"),
                         Model.attribute("Looking for",
                                         value: user.bio.lookingFor?.description ?? "Choose"),
+                        Model.attribute("Expience",
+                                        value: user.bio.expirience?.description ?? "Choose"),
                 ])
                 
                 return [about, account, community]
@@ -136,6 +138,20 @@ extension EditProfileViewModel {
                 }
                 
                 self.updateForm { $0.lookingFor = value }
+                
+            }
+         
+        }
+        
+        if ip.section == 2 && ip.row == 2 {
+            
+            router.owner.showTextQuestionDialog(title: "Choose", text: "Expirience") { (str) in
+                
+                guard let int = Int(str), let value = Expirience(rawValue: int) else {
+                    return
+                }
+                
+                self.updateForm { $0.expirience = value }
                 
             }
          
