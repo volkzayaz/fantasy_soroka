@@ -48,10 +48,12 @@ struct StrippedAlbum: Codable, Equatable {
 struct Photo: Codable, Equatable {
     
     enum CodingKeys: String, CodingKey {
+        case id
         case url = "src"
         case thumbnailURL = "srcThumbnail"
     }
     
+    let id: String
     let url: String
     let thumbnailURL: String
 }
@@ -59,17 +61,19 @@ struct Photo: Codable, Equatable {
 struct IsPrivatePhoto: Codable, Equatable {
     
     enum CodingKeys: String, CodingKey {
+        case id
         case url = "src"
         case thumbnailURL = "srcThumbnail"
         case isPrivate
     }
     
+    let id: String
     let url: String
     let thumbnailURL: String
     let isPrivate: Bool
     
     var toRegular: Photo {
-        return Photo(url: url, thumbnailURL: thumbnailURL)
+        return Photo(id: id, url: url, thumbnailURL: thumbnailURL)
     }
     
 }

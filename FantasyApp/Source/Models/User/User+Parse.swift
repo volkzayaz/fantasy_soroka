@@ -55,7 +55,7 @@ extension User {
               let thumbnailURL = pfUser["avatarThumbnail"] as? String else {
             throw ParseMigrationError.dataCorrupted
         }
-        let mainPhoto = Photo(url: photoURL, thumbnailURL: thumbnailURL)
+        let mainPhoto = Photo(id: "fake", url: photoURL, thumbnailURL: thumbnailURL)
         
         let relationStatus: RelationshipStatus
         if let x = pfUser["couple"] as? String {

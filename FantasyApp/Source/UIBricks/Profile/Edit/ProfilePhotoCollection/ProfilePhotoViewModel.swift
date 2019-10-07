@@ -26,7 +26,7 @@ extension ProfilePhotoViewModel {
             .map { isPublic ? $0?.public.images[safe: i] : $0?.private.images[safe: i] }
             .flatMapLatest { (maybeURL) in
                 
-                guard let x = maybeURL?.url else { return .just(nil) }
+                guard let x = maybeURL?.thumbnailURL else { return .just(nil) }
                 
                 return ImageRetreiver.imageForURLWithoutProgress(url: x)
             }
@@ -69,9 +69,9 @@ extension ProfilePhotoViewModel {
             UserManager.uploadPhoto(image: image, isPublic: self.isPublic)
                 .trackView(viewIndicator: self.indicator)
                 .silentCatch(handler: self.router.container)
-                .subscribe(onNext: { (newURL) in
+                .subscribe(onNext: { (photo) in
                     
-                    Dispatcher.dispatch(action: AddProfilePhoto(newPhoto: newURL,
+                    Dispatcher.dispatch(action: AddProfilePhoto(newPhoto: photo,
                                                                 isPublic: self.isPublic))
                     
                 })
@@ -84,9 +84,6 @@ extension ProfilePhotoViewModel {
     func deletePhoto() {
         
         Dispatcher.dispatch(action: RemoveProfilePhoto(byIndex: photoNumber, isPublic: self.isPublic))
-        
-        let _ = UserManager.dropPhoto(index: photoNumber, isPublic: self.isPublic)
-            .subscribe()
         
     }
     
