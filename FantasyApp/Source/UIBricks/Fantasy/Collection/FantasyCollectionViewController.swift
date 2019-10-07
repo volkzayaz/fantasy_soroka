@@ -24,7 +24,7 @@ class FantasyCollectionViewController: UIViewController, MVVM_View {
                                                  for: ip)!
         
         cell.textLabel?.text = x.name
-        cell.detailTextLabel?.text = "\(x.cards.count) cards"
+        cell.detailTextLabel?.text = "\(x.cardsCount) cards"
         
         return cell
         

@@ -79,7 +79,7 @@ struct GetImages: AuthorizedAPIResource {
         return .get
     }
     
-    typealias responseType = [Photo]
+    typealias responseType = [IsPrivatePhoto]
     
     var task: Task {
         return .requestPlain

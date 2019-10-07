@@ -47,9 +47,23 @@ extension EditProfileViewModel {
                                         value: user.community.value?.name ?? "No community"),
                         Model.attribute("Looking for",
                                         value: user.bio.lookingFor?.description ?? "Choose"),
+                        Model.attribute("Expience",
+                                        value: user.bio.expirience?.description ?? "Choose"),
                 ])
                 
-                return [about, account, community]
+                let q1 = User.Bio.PersonalQuestion.question1
+                let q2 = User.Bio.PersonalQuestion.question2
+                let q3 = User.Bio.PersonalQuestion.question3
+                
+                let questions = SectionModel(model: R.string.localizable.editProfileAnswers(),
+                                         items:
+                    [
+                        Model.about("\(q1)\n \(user.bio.answers[q1] ?? "")"),
+                        Model.about("\(q2)\n \(user.bio.answers[q2] ?? "")"),
+                        Model.about("\(q3)\n \(user.bio.answers[q3] ?? "")")
+                ])
+                
+                return [about, account, community, questions]
                 
             }
         
@@ -66,7 +80,7 @@ extension EditProfileViewModel {
 struct EditProfileViewModel : MVVM_ViewModel {
     
     ////soure of truth
-    fileprivate let form = BehaviorRelay(value: EditProfileForm())
+    fileprivate let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
     
     init(router: EditProfileRouter) {
         self.router = router
@@ -141,6 +155,20 @@ extension EditProfileViewModel {
          
         }
         
+        if ip.section == 2 && ip.row == 2 {
+            
+            router.owner.showTextQuestionDialog(title: "Choose", text: "Expirience") { (str) in
+                
+                guard let int = Int(str), let value = Expirience(rawValue: int) else {
+                    return
+                }
+                
+                self.updateForm { $0.expirience = value }
+                
+            }
+         
+        }
+        
         if ip.section == 0 && ip.row == 0 {
             
             router.owner.showTextQuestionDialog(title: "About", text: "") { (str) in
@@ -149,8 +177,22 @@ extension EditProfileViewModel {
                 
             }
             
-            router.presentTeleport(form: form)
         }
+        
+        if ip.section == 3 {
+            
+            let q = [User.Bio.PersonalQuestion.question1,
+                     User.Bio.PersonalQuestion.question2,
+                     User.Bio.PersonalQuestion.question3][ip.row]
+            
+            router.owner.showTextQuestionDialog(title: q, text: "") { (str) in
+                
+                self.updateForm { $0.answers[q] = str }
+                
+            }
+            
+        }
+        
     }
     
     private func updateForm(_ mapper: (inout EditProfileForm) -> Void ) {

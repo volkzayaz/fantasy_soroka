@@ -55,7 +55,7 @@ extension User {
               let thumbnailURL = pfUser["avatarThumbnail"] as? String else {
             throw ParseMigrationError.dataCorrupted
         }
-        let mainPhoto = Photo(url: photoURL, thumbnailURL: thumbnailURL)
+        let mainPhoto = Photo(id: "fake", url: photoURL, thumbnailURL: thumbnailURL)
         
         let relationStatus: RelationshipStatus
         if let x = pfUser["couple"] as? String {
@@ -77,26 +77,33 @@ extension User {
         }
         
         let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
-        let photos = User.Bio.Photos(parseAvatarShortcut: mainPhoto,
-                                     public             : albums?.public  ?? .init(images: []) ,
-                                     private            : albums?.private ?? .init(images: []))
+        let photos = User.Bio.Photos(avatar  : mainPhoto,
+                                     public  : albums?.public  ?? .init(images: []) ,
+                                     private : albums?.private ?? .init(images: []))
         
-        let maybeLookingFor: LookingFor?
+        var maybeLookingFor: LookingFor? = nil
         if let int = pfUser["lookingFor"] as? Int {
             maybeLookingFor = LookingFor(rawValue: int)
         }
-        else {
-            maybeLookingFor = nil
+        
+        var maybeExpirience: Expirience? = nil
+        if let int = pfUser["expirience"] as? Int {
+            maybeExpirience = Expirience(rawValue: int)
         }
-            
+        
+        let answers = pfUser["answers"] as? Bio.PersonalQuestion ?? [:]
+        
         id = objectId
-        bio = .init(name: name,
-                    about: about,
-                    birthday: birthday,
-                    gender: gender,
-                    sexuality: sexuality,
-                    relationshipStatus: relationStatus,
-                    photos: photos)
+        bio = User.Bio(name: name,
+                       about: about,
+                       birthday: birthday,
+                       gender: gender,
+                       sexuality: sexuality,
+                       relationshipStatus: relationStatus,
+                       photos: photos,
+                       lookingFor: maybeLookingFor,
+                       expirience: maybeExpirience,
+                       answers: answers)
         
         ///TODO: save on server
         searchPreferences = nil
@@ -121,6 +128,8 @@ extension User {
             "gender"                : bio.gender.rawValue,
             "sexuality"             : bio.sexuality.rawValue,
             "lookingFor"            : bio.lookingFor?.rawValue as Any,
+            "expirience"            : bio.expirience?.rawValue as Any,
+            "answers"               : bio.answers,
             "belongsTo"             : community.value?.pfObject as Any,
             "communityChangePolicy" : community.changePolicy.rawValue
             ] as [String : Any]

@@ -14,6 +14,11 @@ import RxCocoa
 extension ProfilePhotoViewModel {
  
     var deleteButtonHidden: Driver<Bool> {
+        
+        if isPublic && photoNumber == 0 {
+            return .just(true)
+        }
+        
         return image.map { $0 == nil }
     }
     
@@ -23,10 +28,21 @@ extension ProfilePhotoViewModel {
         let isPublic = self.isPublic
         
         return appState.changesOf { $0.currentUser?.bio.photos }
-            .map { isPublic ? $0?.public.images[safe: i] : $0?.private.images[safe: i] }
+            .map { photos -> Photo? in
+                
+                if !isPublic {
+                    return photos?.private.images[safe: i]
+                }
+                
+                if i == 0 {
+                    return photos?.avatar
+                }
+                
+                return photos?.public.images[safe: i - 1]
+            }
             .flatMapLatest { (maybeURL) in
                 
-                guard let x = maybeURL?.url else { return .just(nil) }
+                guard let x = maybeURL?.thumbnailURL else { return .just(nil) }
                 
                 return ImageRetreiver.imageForURLWithoutProgress(url: x)
             }
@@ -65,13 +81,31 @@ extension ProfilePhotoViewModel {
     func pickPhoto() {
         
         FDTakeImagePicker.present(on: router.container) { (image) in
+        
+            if self.isPublic && self.photoNumber == 0 {
+                
+                UserManager.replaceAvatar(image: image)
+                    .trackView(viewIndicator: self.indicator)
+                    .silentCatch(handler: self.router.container)
+                    .subscribe(onNext: { (photo) in
+                    
+                        var u = User.current!
+                        u.bio.photos.avatar = photo
+                        
+                        Dispatcher.dispatch(action: SetUser(user: u))
+                        
+                    })
+                    .disposed(by: self.bag)
+                
+                return
+            }
             
             UserManager.uploadPhoto(image: image, isPublic: self.isPublic)
                 .trackView(viewIndicator: self.indicator)
                 .silentCatch(handler: self.router.container)
-                .subscribe(onNext: { (newURL) in
+                .subscribe(onNext: { (photo) in
                     
-                    Dispatcher.dispatch(action: AddProfilePhoto(newPhoto: newURL,
+                    Dispatcher.dispatch(action: AddProfilePhoto(newPhoto: photo,
                                                                 isPublic: self.isPublic))
                     
                 })
@@ -83,10 +117,12 @@ extension ProfilePhotoViewModel {
     
     func deletePhoto() {
         
-        Dispatcher.dispatch(action: RemoveProfilePhoto(byIndex: photoNumber, isPublic: self.isPublic))
+        var index = photoNumber
+        if isPublic {
+            index -= 1
+        }
         
-        let _ = UserManager.dropPhoto(index: photoNumber, isPublic: self.isPublic)
-            .subscribe()
+        Dispatcher.dispatch(action: RemoveProfilePhoto(byIndex: index, isPublic: self.isPublic))
         
     }
     

@@ -87,6 +87,12 @@ class EditProfileViewController: UIViewController, MVVM_View {
         
     }
     
+    @IBAction func uploadPublicPhoto(_ sender: Any) {
+    }
+    
+    @IBAction func uploadPrivatePhoto(_ sender: Any) {
+    }
+    
 }
 
 extension EditProfileViewController {

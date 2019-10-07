@@ -16,16 +16,25 @@ extension UserProfileViewModel {
     
     var photos: Driver<[AnimatableSectionModel<String, Photo>]> {
         
-        guard !user.bio.photos.public.isReal else {
-            return .just( [AnimatableSectionModel(model: "",
-                                                  items: Photo.fromPhotos(p: user.bio.photos.public.images))] )
-        }
-        
-        return UserManager.images(of: user)
+        let photosDriver = UserManager
+            .images(of: user)
             .trackView(viewIndicator: indicator)
             .silentCatch()
-            .asDriver(onErrorJustReturn: [])
-            .map { Photo.fromPhotos(p: $0) }
+            .asDriver(onErrorJustReturn: ([], []))
+        
+        return Driver.combineLatest(photosDriver,
+                                    relationshipState.asDriver().notNil()) { ($0, $1) }
+            .map { (userPhotos, relation) in
+                
+                var includesPrivatePhotos = false
+                if case .mutual = relation {
+                    includesPrivatePhotos = true
+                }
+
+                return Photo.fromPhotos(public: userPhotos.0,
+                                        private: userPhotos.1,
+                                        includePrivate: includesPrivatePhotos)
+            }
             .map { [AnimatableSectionModel(model: "", items: $0)] }
             
     }
@@ -38,21 +47,35 @@ extension UserProfileViewModel {
             res.append( .about(x) )
         }
         
-        res.append( .extended( [
+        var bioSection = [
             "Gender - " + user.bio.gender.rawValue,
             "Relationship - " + user.bio.relationshipStatus.description,
             "Sexuality - " + user.bio.sexuality.rawValue
-        ]))
+        ]
         
         if let l = user.bio.lookingFor {
-            res.append(.basic("Looking for: \(l)"))
+            bioSection.append("Looking for: \(l)")
+        }
+        
+        if let x = user.bio.expirience {
+            bioSection.append("Expirience: \(x)")
+        }
+        
+        res.append( .extended( bioSection ))
+       
+        if user.bio.answers.count > 0 {
+            
+            for (key, value) in user.bio.answers {
+                res.append( .extended( [key, value] ) )
+            }
+            
         }
         
         if user.fantasies.liked.count > 0 {
             
             let simpleFantasies = user.fantasies.liked
-                .map { $0.name }
-                .joined(separator: ", ")
+                .map { $0.text }
+                .joined(separator: "; ")
             
             
             res.append( .fantasy( "Fantasies: " + simpleFantasies  ) )
@@ -65,6 +88,7 @@ extension UserProfileViewModel {
         return relationshipState.asDriver().notNil()
             .map { x in
                 switch x {
+                case .sameUser:     return ""
                 case .absent:       return "No relation so far"
                 case .incomming(_): return "User liked you"
                 case .outgoing(_):  return "You liked this user"
@@ -79,6 +103,7 @@ extension UserProfileViewModel {
         return relationshipState.asDriver()
             .map { x -> String in
                 switch x {
+                case .sameUser:             return ""
                 case .absent?:              return "Like user"
                 case .incomming(_)?:        return "Decide"
                 case .outgoing(_)?:         return ""
@@ -94,18 +119,33 @@ extension UserProfileViewModel {
     enum Photo: IdentifiableType, Equatable {
         case nothing
         case url(String)
+        case privateStub(Int)
         
         var identity: String {
             if case .url(let x) = self { return x }
+            if case .privateStub(_) = self { return "private stub" }
             
             return "nothing"
         }
         
-        static func fromPhotos(p: [FantasyApp.Photo]) -> [Photo] {
+        static func fromPhotos(public: [FantasyApp.Photo],
+                               private: [FantasyApp.Photo],
+                               includePrivate: Bool = false) -> [Photo] {
             
-            guard p.count > 0 else { return [.nothing] }
+            guard `public`.count > 0 else { return [.nothing] }
             
-            return p.map { .url($0.url) }
+            var showPhotos = `public`
+            if includePrivate {
+                showPhotos.append(contentsOf: `private`)
+            }
+            
+            var res: [Photo] = showPhotos.map { .url($0.url) }
+            
+            if !includePrivate {
+                res.append( .privateStub(`private`.count) )
+            }
+            
+            return res
         }
         
         
@@ -135,6 +175,9 @@ struct UserProfileViewModel : MVVM_ViewModel {
                 .silentCatch(handler: router.owner)
                 .bind(to: relationshipState)
                 .disposed(by: bag)
+        }
+        else {
+            relationshipState.accept(.sameUser)
         }
         
         /////progress indicator

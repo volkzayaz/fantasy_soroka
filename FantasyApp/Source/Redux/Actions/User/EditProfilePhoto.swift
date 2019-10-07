@@ -7,20 +7,21 @@
 //
 
 import Foundation
+import RxSwift
 
 struct AddProfilePhoto: Action {
     
-    let newPhoto: String
+    let newPhoto: Photo
     let isPublic: Bool
     
     func perform(initialState: AppState) -> AppState {
         var state = initialState
         
         if isPublic {
-            state.currentUser?.bio.photos.public.images.append( Photo(url: newPhoto, thumbnailURL: newPhoto) )
+            state.currentUser?.bio.photos.public.images.append( newPhoto )
         }
         else {
-            state.currentUser?.bio.photos.private.images.append( Photo(url: newPhoto, thumbnailURL: newPhoto) )
+            state.currentUser?.bio.photos.private.images.append( newPhoto )
         }
         
         return state
@@ -28,22 +29,38 @@ struct AddProfilePhoto: Action {
     
 }
 
-struct RemoveProfilePhoto: Action {
+struct RemoveProfilePhoto: ActionCreator {
     
     let byIndex: Int
     let isPublic: Bool
     
-    func perform(initialState: AppState) -> AppState {
+    func perform(initialState: AppState) -> Observable<AppState> {
         var state = initialState
         
+        var album: Album!
         if isPublic {
-            state.currentUser?.bio.photos.public.images.remove(at: byIndex)
+            album = state.currentUser?.bio.photos.public
         }
         else {
-            state.currentUser?.bio.photos.private.images.remove(at: byIndex)
+            album = state.currentUser?.bio.photos.private
         }
         
-        return state
+        let request = UserManager.dropPhoto(fromAlbum: album, index: byIndex)
+        
+        album.images.remove(at: byIndex)
+        
+        if isPublic {
+            state.currentUser?.bio.photos.public = album
+        }
+        else {
+            state.currentUser?.bio.photos.private = album
+        }
+            
+        return request.asObservable()
+            .startWith( () )/// sending deleted image state prediction right away
+            .map { _ in state }
+            .catchErrorJustReturn(initialState)
+        
     }
     
 }

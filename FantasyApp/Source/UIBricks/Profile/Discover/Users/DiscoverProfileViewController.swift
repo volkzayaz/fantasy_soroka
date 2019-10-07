@@ -10,26 +10,20 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import RxDataSources
+
+import iCarousel
 
 class DiscoverProfileViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: DiscoverProfileViewModel! = DiscoverProfileViewModel(router: .init(owner: self))
     
     @IBOutlet weak var locationMessageLabel: UILabel!
-    @IBOutlet weak var profilesTableView: UITableView!
-    
-    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Profile>>(configureCell: { [unowned self] (_, tableView, ip, x) in
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.profileSearchCell,
-                                                 for: ip)!
-        
-        cell.textLabel?.text = x.bio.name
-        //cell.detailTextLabel?.text = "\(x.cards.count) cards"
-        
-        return cell
-        
-    })
+    @IBOutlet weak var profilesCarousel: iCarousel! {
+        didSet {
+            profilesCarousel.type = .custom
+            profilesCarousel.isPagingEnabled = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,35 +34,20 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                                                             action: #selector(presentFilter))
         
         viewModel.profiles
-            .map { [SectionModel(model: "", items: $0)] }
-            .drive(profilesTableView.rx.items(dataSource: dataSource))
-            .disposed(by: rx.disposeBag)
-        
-        profilesTableView.rx.willDisplayCell
-            .subscribe(onNext: { [weak view = profilesTableView, weak self] (_, ip) in
-                guard let model: Profile = try? view?.rx.model(at: ip) else {
-                    return
-                }
-                
-                self?.viewModel.profileSwiped(profile: model)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        profilesTableView.rx.modelSelected(Profile.self)
-            .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.profileSelected(x)
+            .subscribe(onNext: { [weak self] (_) in
+                self?.profilesCarousel.reloadData()
             })
             .disposed(by: rx.disposeBag)
         
         viewModel.mode
             .drive(onNext: { [unowned self] (mode) in
                 
-                [self.profilesTableView, self.locationMessageLabel]
+                [self.profilesCarousel, self.locationMessageLabel]
                     .forEach { $0?.isHidden = true }
                 
                 switch mode {
                 case .profiles:
-                    self.profilesTableView.isHidden = false
+                    self.profilesCarousel.isHidden = false
                     
                 case .noLocationPermission:
                     self.locationMessageLabel.isHidden = false
@@ -96,10 +75,90 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     
 }
 
-extension DiscoverProfileViewController {
+extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource {
 
     @objc func presentFilter() {
         viewModel.presentFilter()
+    }
+    
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return viewModel.profiles.value.count + 1 /// 1 stands for "No new fantasy seekers today" placeholder
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        
+        guard let profile = viewModel.profiles.value[safe: index] else {
+            
+            let noFantasySeekersPlaceholder = UIView()
+            
+            noFantasySeekersPlaceholder.backgroundColor = .blue
+            
+            let label = UILabel()
+            label.text = "No More Fantasy seekers. Invite friends or change filter"
+            label.sizeToFit()
+            
+            noFantasySeekersPlaceholder.addSubview(label)
+            
+            return noFantasySeekersPlaceholder
+        }
+        
+        let view = UIView(frame: carousel.bounds)
+        
+        let label = UILabel()
+        label.text = profile.bio.name
+        label.sizeToFit()
+        
+        view.addSubview(label)
+        view.backgroundColor = index % 2 == 0 ? .red : .green
+        
+        return view
+        
+    }
+    
+    func carousel(_ carousel: iCarousel,
+                  valueFor option: iCarouselOption,
+                  withDefault value: CGFloat) -> CGFloat {
+        
+        switch option {
+        case .wrap: return 0
+        case .spacing: return 0.5
+        case .visibleItems: return 3
+        case .radius: return 220
+            
+        default: return value
+            
+        }
+
+        
+    }
+    
+    func carousel(_ carousel: iCarousel,
+                  itemTransformForOffset offset: CGFloat,
+                  baseTransform transform: CATransform3D) -> CATransform3D {
+        let MAX_SCALE: Float = 1
+        let MAX_Shift: Float = 25
+        let distance: Float = 40
+        
+        let shift: Float = fminf(1, fmaxf(-1, Float(offset)))
+        let scale: CGFloat = CGFloat(1 + (1 - abs(shift)) * (MAX_SCALE - 1))
+        let z:     Float = -fminf(1, abs(Float(offset))) * distance
+        
+        let newTransform = CATransform3DTranslate(transform,
+                                                  offset * carousel.itemWidth + CGFloat(shift * MAX_Shift),
+                                                  0,
+                                                  CGFloat(z));
+        return CATransform3DScale(newTransform, scale, scale, scale);
+
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+ 
+        guard let profile = viewModel.profiles.value[safe: index] else {
+            return
+        }
+        
+        viewModel.profileSelected(profile)
+        
     }
     
 }

@@ -53,15 +53,14 @@ struct FantasyCardInteraction: ActionCreator {
     
     func perform(initialState: AppState) -> Observable<AppState> {
         
-        ///TODO: substitue for real network requests
-        let request: Observable<Void>
+        let request: Single<Void>
         switch type {
-        case .dislike: request = Observable.just( () )
-        case .like:    request = Observable.just( () )
-        case .neutral: request = Observable.just( () )
+        case .dislike: request = Fantasy.Manager.like(card: card)
+        case .like:    request = Fantasy.Manager.dislike(card: card)
+        case .neutral: request = Fantasy.Manager.neutral(card: card)
         }
         
-        return request.flatMap { _ -> Observable<AppState> in
+        return request.asObservable().flatMap { _ -> Observable<AppState> in
             
             var state = initialState
             

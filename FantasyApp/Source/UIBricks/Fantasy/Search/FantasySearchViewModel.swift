@@ -48,7 +48,7 @@ extension FantasySearchViewModel {
         let isBlurred: Bool
         
         var identity: String {
-            return card.name
+            return card.text
         }
     }
     

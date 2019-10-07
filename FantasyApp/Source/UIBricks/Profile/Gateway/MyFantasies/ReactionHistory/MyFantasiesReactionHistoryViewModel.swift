@@ -1,8 +1,8 @@
 //
-//  UserGatewayViewModel.swift
+//  MyFantasiesReactionHistoryViewModel.swift
 //  FantasyApp
 //
-//  Created by Vlad Soroka on 7/27/19.
+//  Created by Vlad Soroka on 10/6/19.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -11,20 +11,19 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-extension UserGatewayViewModel {
+extension MyFantasiesReactionHistoryViewModel {
     
-    var name: Driver<String?> {
-        return appState.changesOf { $0.currentUser?.bio.name }
+    /** Reference binding drivers that are going to be used in the corresponding view
+    
+    var text: Driver<String> {
+        return privateTextVar.asDriver().notNil()
     }
-
-    var image: Driver<String> {
-        return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL }
-            .map { $0 ?? "" }
-    }
+ 
+     */
     
 }
 
-struct UserGatewayViewModel : MVVM_ViewModel {
+struct MyFantasiesReactionHistoryViewModel : MVVM_ViewModel {
     
     /** Reference dependent viewModels, managers, stores, tracking variables...
      
@@ -34,7 +33,7 @@ struct UserGatewayViewModel : MVVM_ViewModel {
      
      */
     
-    init(router: UserGatewayRouter) {
+    init(router: MyFantasiesReactionHistoryRouter) {
         self.router = router
         
         /**
@@ -52,13 +51,22 @@ struct UserGatewayViewModel : MVVM_ViewModel {
             .disposed(by: bag)
     }
     
-    let router: UserGatewayRouter
+    let router: MyFantasiesReactionHistoryRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     
 }
 
-extension UserGatewayViewModel {
+extension MyFantasiesReactionHistoryViewModel {
     
+    /** Reference any actions ViewModel can handle
+     ** Actions should always be void funcs
+     ** any result should be reflected via corresponding drivers
+     
+     func buttonPressed(labelValue: String) {
+     
+     }
+     
+     */
     
 }

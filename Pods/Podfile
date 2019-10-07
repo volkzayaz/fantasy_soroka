@@ -33,6 +33,9 @@ target 'FantasyApp' do
     pod 'Koloda', '~> 5.0'
     pod 'Chatto', '~> 3.5'
     pod 'ChattoAdditions', '~> 3.5'
+    pod 'MessageKit', '~> 3.0'
+    pod 'iCarousel'
+
 end
 
 target 'FantasyAppTests' do

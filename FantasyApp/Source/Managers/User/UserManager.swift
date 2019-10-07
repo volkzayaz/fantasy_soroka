@@ -22,27 +22,43 @@ extension UserManager {
         
     }
     
-    static func uploadPhoto(image: UIImage, isPublic: Bool) -> Single<String> {
+    static func replaceAvatar(image: UIImage) -> Single<Photo> {
+        return UpdateUserAvatarResource(image: image).rx.request
+            .map { avatar in
+                
+                let photo = Photo(id: "fake", url: avatar.avatar.absoluteString,
+                                  thumbnailURL: avatar.avatarThumbnail.absoluteString)
+                
+                ImageRetreiver.registerImage(image: image, forKey: photo.url)
+                
+                return photo
+                
+            }
+    }
+    
+    static func uploadPhoto(image: UIImage, isPublic: Bool) -> Single<Photo> {
         
-        ///TODO: implement network upload
+        let photos = User.current!.bio.photos
         
-        let fakeURL = UUID().uuidString
-        ImageRetreiver.registerImage(image: image, forKey: fakeURL)
+        let album = isPublic ? photos.public : photos.private
         
-        return Observable.just(fakeURL)
-            .delay(.seconds(1), scheduler: MainScheduler.instance)
-            .asSingle()
+        return UploadAlbumImage(image: image, album: album).rx.request.map { album in
+            
+            let photo = album.images.last!
+        
+            ImageRetreiver.registerImage(image: image, forKey: photo.url)
+            
+            return photo
+        }
         
     }
     
-    static func dropPhoto(index: Int, isPublic: Bool) -> Single<Void> {
+    static func dropPhoto(fromAlbum: Album, index: Int) -> Single<Void> {
         
-        ///TODO: implement network upload
-        
-        return Observable.just( () )
-            .delay(.seconds(3), scheduler: MainScheduler.instance)
-            .asSingle()
-        
+        return DeletePhoto(fromAlbum: fromAlbum, photo: fromAlbum.images[index])
+            .rx.request
+            .map { _ in }
+            
     }
     
     static func fetchOrCreateAlbums() -> Single<(public: Album, private: Album)> {
@@ -62,17 +78,28 @@ extension UserManager {
             }
     }
     
-    static func images(of user: User) -> Single<[Photo]> {
+    static func images(of user: User) -> Single<([Photo], [Photo])> {
         
         ///Server does not return Main avatar as part of the Album
         
+        if user.bio.photos.public.isReal {
+            
+            let pub  = [user.bio.photos.avatar] + user.bio.photos.public.images
+            let priv = user.bio.photos.private.images
+            
+            return .just( (pub, priv) )
+        }
+        
         return GetImages(of: .user(user)).rx.request.map { photos in
             
-            if let p = user.bio.photos.main {
-                return [p] + photos
-            }
+            var `public` = photos.filter { !$0.isPrivate }
+                                 .map { $0.toRegular }
+            `public`.insert(user.bio.photos.avatar, at: 0)
             
-            return photos
+            let `private` = photos.filter { $0.isPrivate }
+                                  .map { $0.toRegular }
+            
+            return (`public`, `private`)
         }
     }
     

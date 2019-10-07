@@ -33,8 +33,8 @@ class UserGatewayViewController: UIViewController, MVVM_View {
         viewModel.image
             .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0)  }
             .map { $0 ?? R.image.noPhoto() }
-        .drive(profileAvatarImageView.rx.image)
-        .disposed(by: rx.disposeBag)
+            .drive(profileAvatarImageView.rx.image)
+            .disposed(by: rx.disposeBag)
         
     }
     

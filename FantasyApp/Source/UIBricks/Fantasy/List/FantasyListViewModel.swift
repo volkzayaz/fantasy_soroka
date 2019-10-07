@@ -16,19 +16,26 @@ extension FantasyListViewModel {
 
     var dataSource: Driver<[AnimatableSectionModel<String, Fantasy.Card>]> {
         
-        return .just([AnimatableSectionModel(model: "",
-                                             items: cards)])
+        return cards.map { x in
+            return [AnimatableSectionModel(model: "",
+                                           items: x)]
+        }
+            
         
     }
 }
 
 struct FantasyListViewModel : MVVM_ViewModel {
     
-    fileprivate let cards: [Fantasy.Card]
+    fileprivate let cards: Driver<[Fantasy.Card]>
     
     init(router: FantasyListRouter, cards: [Fantasy.Card]) {
+        self.init(router: router, cardsProvider: .just(cards))
+    }
+    
+    init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>) {
         self.router = router
-        self.cards = cards
+        self.cards = cardsProvider
         
         /////progress indicator
         

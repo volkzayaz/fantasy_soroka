@@ -26,6 +26,7 @@ class ProfilePhotoCollectionView: UICollectionView, UICollectionViewDataSource {
         dataSource = self
         
         register(R.nib.editProfilePhotoCell)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

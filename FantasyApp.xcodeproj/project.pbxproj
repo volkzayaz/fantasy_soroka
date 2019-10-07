@@ -148,6 +148,12 @@
 		73E6012822EC513700F767BF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012522EC513700F767BF /* RootViewController.swift */; };
 		73E6012922EC513700F767BF /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012622EC513700F767BF /* RootViewModel.swift */; };
 		73E6012B22EC5CFE00F767BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6012A22EC5CFE00F767BF /* User.swift */; };
+		73EBBA5C234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA59234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift */; };
+		73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA5A234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift */; };
+		73EBBA5E234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA5B234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift */; };
+		73EBBA63234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA60234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift */; };
+		73EBBA64234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA61234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift */; };
+		73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
@@ -393,6 +399,12 @@
 		73E6012522EC513700F767BF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		73E6012622EC513700F767BF /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		73E6012A22EC5CFE00F767BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		73EBBA59234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesSettingsRouter.swift; sourceTree = "<group>"; };
+		73EBBA5A234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesSettingsViewController.swift; sourceTree = "<group>"; };
+		73EBBA5B234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesSettingsViewModel.swift; sourceTree = "<group>"; };
+		73EBBA60234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryRouter.swift; sourceTree = "<group>"; };
+		73EBBA61234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryViewController.swift; sourceTree = "<group>"; };
+		73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryViewModel.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -1259,6 +1271,8 @@
 		73C96F192340A63E002C3F8E /* MyFantasies */ = {
 			isa = PBXGroup;
 			children = (
+				73EBBA5F234A1C3B00B79121 /* ReactionHistory */,
+				73EBBA58234A1AD800B79121 /* Settings */,
 				73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */,
 				73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */,
 				73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */,
@@ -1330,6 +1344,26 @@
 				73E6012622EC513700F767BF /* RootViewModel.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		73EBBA58234A1AD800B79121 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				73EBBA59234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift */,
+				73EBBA5A234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift */,
+				73EBBA5B234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		73EBBA5F234A1C3B00B79121 /* ReactionHistory */ = {
+			isa = PBXGroup;
+			children = (
+				73EBBA60234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift */,
+				73EBBA61234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift */,
+				73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */,
+			);
+			path = ReactionHistory;
 			sourceTree = "<group>";
 		};
 		8416816522E96CD900FA9455 /* Components */ = {
@@ -1887,6 +1921,7 @@
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
+				73EBBA5C234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift in Sources */,
 				7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
 				84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */,
@@ -1919,6 +1954,7 @@
 				7322312323056731009DD37F /* ResetSwipeState.swift in Sources */,
 				73097C0A231D40B100B71053 /* EditProfileAboutCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
+				73EBBA63234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift in Sources */,
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
 				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
 				73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */,
@@ -1973,6 +2009,7 @@
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
 				73E6012B22EC5CFE00F767BF /* User.swift in Sources */,
+				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
@@ -1982,6 +2019,7 @@
 				734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */,
 				734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */,
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
+				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */,
@@ -2000,6 +2038,7 @@
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
+				73EBBA5E234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
@@ -2046,6 +2085,7 @@
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,
 				7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */,
 				84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */,
+				73EBBA64234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

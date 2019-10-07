@@ -45,15 +45,10 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var relationshipStatus: RelationshipStatus
         var photos: Photos
         var lookingFor: LookingFor?
+        var expirience: Expirience?
+        var answers: PersonalQuestion
         
         struct Photos: Equatable, Codable {
-            
-            ///TODO: this should be nonnullable entity when we migrate User to new backend
-            ///|main| and |parseAvatarShortcut| are actually the same entity
-            ///should be merged into single nonullable property
-            var main: Photo? {
-                return `public`.images.first ?? parseAvatarShortcut
-            }
             
             ///All Album rlated activities are done on new Backend
             ///however Users are still queried via Parse API
@@ -62,11 +57,15 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
             ///into Parse fields
             ///this way we don't need to query new server for Photo
             ///every time we wanna fetch user details
-            var parseAvatarShortcut: Photo?
+            ///
+            ///TODO: this should be nonnullable entity when we migrate User to new backend
+            var avatar: Photo
             
             var `public`: Album
             var `private`: Album
         };
+        
+        typealias PersonalQuestion = [String: String]
         
     };
     
@@ -213,10 +212,6 @@ enum RelationshipStatus: Equatable, Codable {
     
 }
 
-let LookingForOptions: [String] = [
-    
-]
-
 enum LookingFor: Int, Codable, Equatable {
     
     case relationship = 0
@@ -239,4 +234,34 @@ enum LookingFor: Int, Codable, Equatable {
         
     }
     
+}
+
+enum Expirience: Int, Codable, Equatable {
+    
+    case veryExpirienced = 0
+    case somewhereInTheMiddle
+    case curious
+    case brandNew
+    case curiousAndLooking
+    
+    var description: String {
+        
+        switch self {
+            
+        case .veryExpirienced: return "Very expirienced"
+        case .somewhereInTheMiddle: return "Somewhere in the middle"
+        case .curious: return "Curious"
+        case .brandNew: return "Brand New"
+        case .curiousAndLooking: return "Curious And Looking"
+            
+        }
+        
+    }
+    
+}
+
+extension User.Bio.PersonalQuestion {
+    static let question1: String = "What are you looking for?"
+    static let question2: String = "Facts about me that surprise people"
+    static let question3: String = "Two truths and a lie"
 }
