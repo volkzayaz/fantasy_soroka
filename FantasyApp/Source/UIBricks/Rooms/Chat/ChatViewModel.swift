@@ -9,17 +9,19 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import MessageKit
 import ParseLiveQuery
+import Chatto
+import ChattoAdditions
 
-struct ChatViewModel: MVVM_ViewModel {
+class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
     let router: ChatRouter
-    let room: Chat.Room
+    let room: Chat.RoomDetails
     let messages = BehaviorRelay<[Chat.Message]>(value: [])
-    let isSendingMessage = BehaviorRelay<Bool>(value: false)
-    private var query: PFQuery<PFObject> = PFQuery(className: Chat.Message.className)
+    weak var delegate: ChatDataSourceDelegateProtocol?
+    fileprivate let indicator: ViewIndicator = ViewIndicator()
+    fileprivate let bag = DisposeBag()
 
-    init(router: ChatRouter, room: Chat.Room) {
+    init(router: ChatRouter, room: Chat.RoomDetails) {
         self.router = router
         self.room = room
 
@@ -27,77 +29,110 @@ struct ChatViewModel: MVVM_ViewModel {
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
 
-        addSubscription()
+        loadMessages()
     }
 
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
-    fileprivate let bag = DisposeBag()
+    func loadNext() {}
+    func adjustNumberOfMessages(preferredMaxCount: Int?, focusPosition: Double, completion: (Bool) -> Void) {}
+
+    func loadPrevious() {
+        //loadMessages()
+    }
+
+    var chatItems: [ChatItemProtocol] {
+        return prepareChatItems()
+    }
+
+    var hasMoreNext: Bool {
+        return false
+    }
+
+    var hasMorePrevious: Bool {
+        return true
+    }
 }
 
 extension ChatViewModel {
-    var currentSender: Sender {
-        return Sender(senderId: AuthenticationManager.currentUser()!.id,
-                      displayName: AuthenticationManager.currentUser()!.bio.name)
-    }
-
     func loadMessages() {
-        // TODO: Pagination
-        let offset = 0
-        ChatManager.getMessagesInRoom(room.objectId!, offset: offset)
+        ChatManager.getMessagesInRoom(room.objectId!, offset: messages.value.count)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { messages in
+            .subscribe(onNext: { [weak self] messages in
+                guard let self = self else { return }
                 var array = self.messages.value
-                array.insert(contentsOf: messages, at: offset)
+                array.append(contentsOf: messages)
                 self.messages.accept(messages)
+                self.connect()
+                self.delegate?.chatDataSourceDidUpdate(self, updateType: .firstLoad)
             })
             .disposed(by: bag)
     }
 
     func sendMessage(text: String) {
-        isSendingMessage.accept(true)
-        let message = Chat.Message(senderDisplayName: AuthenticationManager.currentUser()!.bio.name,
+        guard let roomId = room.objectId, let recepientId = room.recipient?.objectId else {
+            return
+        }
+        let message = Chat.Message(senderDisplayName: User.current!.bio.name,
                                    senderId: AuthenticationManager.currentUser()!.id,
-                                   recepientId: room.recipient?.objectId,
+                                   recepientId: recepientId,
                                    text: text,
                                    objectId: nil,
-                                   roomId: room.objectId,
+                                   roomId: roomId,
                                    isRead: false,
                                    createdAt: Date())
-        ChatManager.sendMessage(message)
-            .subscribe({ event in
-                // TODO: error handling
-                self.isSendingMessage.accept(false)
-            })
-            .disposed(by: bag)
+        ChatManager.sendMessage(message).subscribe({ [weak self] event in
+            guard let self = self else { return }
+            // TODO: error handling
+        }).disposed(by: bag)
     }
-}
 
-private extension ChatViewModel {
-    func addSubscription() {
-        query.addDescendingOrder("updatedAt")
-        query.whereKey("roomId", equalTo: room.objectId as! String)
-
-        let subscription: Subscription<PFObject> = Client.shared.subscribe(query)
-        subscription.handleEvent { object, event in
+    func connect() {
+        guard let roomId = room.objectId else {
+            return
+        }
+        ChatManager.connect(roomId: roomId).subscribe(onNext: { [weak self] event in
+            guard let self = self else { return }
             var array: [Chat.Message] = self.messages.value
             switch event {
-            case .entered(let messageObject), .created(let messageObject):
-                // TODO: NSDate to String
-                let message: Chat.Message = [messageObject].toCodable().first!
+            case .messageAdded(let message):
                 array.append(message)
-            case .deleted(let messageObject), .left(let messageObject):
-                // TODO: NSDate to String
-                let message: Chat.Message = [messageObject].toCodable().first!
+            case .messageRemoved(let message):
                 array.removeAll { message.objectId == $0.objectId }
-            case .updated(let messageObject):
-                // TODO: NSDate to String
-                let message: Chat.Message = [messageObject].toCodable().first!
+            case .messageUpdated(let message):
                 if let index = array.firstIndex(where: { message.objectId == $0.objectId }) {
                     array[index] = message
                 }
             }
             self.messages.accept(array)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
+            }
+        }).disposed(by: bag)
+    }
+
+    func disconnect() {
+        guard let roomId = room.objectId else {
+            return
         }
+        ChatManager.disconnect(roomId: roomId)
+    }
+
+    private func prepareChatItems() -> [ChatItemProtocol] {
+        var dateToCompare = Date()
+        var adjustment = 0
+        let array = messages.value
+        // build message cell models
+        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
+        // build time separator cell models
+        array.enumerated().forEach { index, message in
+            if index == 0 || message.createdAt.compare(with: dateToCompare, by: .day) != 0 {
+                let model = TimeSeparatorModel(uid: UUID().uuidString, date: message.createdAt.toWeekDayAndDateString())
+                result.insert(model, at: index + adjustment)
+                dateToCompare = message.createdAt
+                adjustment += 1
+            }
+        }
+        return result
     }
 }

@@ -69,7 +69,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
-                h?.setLoadingStatus(loading)
+                //h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
     }

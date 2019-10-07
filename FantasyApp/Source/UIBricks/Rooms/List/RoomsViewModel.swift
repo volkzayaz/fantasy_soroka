@@ -28,7 +28,7 @@ extension RoomsViewModel {
             let models: [CellModel] = rooms?.map { room in
                 var companion: UserSlice?
                 if let ownerId = room.owner?.objectId,
-                    ownerId == PFUser.current()?.objectId {
+                    ownerId == User.current?.id {
                     companion = room.recipient
                 } else {
                     companion = room.owner
@@ -45,7 +45,7 @@ extension RoomsViewModel {
 }
 
 struct RoomsViewModel: MVVM_ViewModel {
-    var rooms: Driver<[Chat.Room]?> {
+    var rooms: Driver<[Chat.RoomDetails]?> {
         return appState.changesOf { $0.currentUser?.connections.rooms }
     }
 
@@ -55,6 +55,8 @@ struct RoomsViewModel: MVVM_ViewModel {
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
+
+        fetchRooms()
     }
 
     let router: RoomsRouter
@@ -71,31 +73,30 @@ extension RoomsViewModel {
 //        }
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
         let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
-        let room = Chat.Room(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
+        let room = Chat.RoomDetails(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
         router.roomTapped(room)
     }
 
-//    Test code to create room with Andriy
-//    func createRoomWithAdmin() {
-//        let query = PFUser.query()!.whereKey("fbId", equalTo: "113922985842130" as NSString)
-//        query.findObjectsInBackground { (objects, error) in
-//            if error == nil,
-//                let admin = objects?.first as? PFUser,
-//                let currentUser = PFUser.current() {
-//                let room = PFObject(className: "Room")
-//                let recipientRelation = room.relation(forKey: "recipient")
-//                let ownerRelation = room.relation(forKey: "owner")
-//                recipientRelation.add(currentUser)
-//                ownerRelation.add(admin)
-//                room.saveInBackground(block: { (didSave, maybeError) in })
-//            }
-//        }
-//    }
+    func createRoomWithAdmin() {
+        let query = PFUser.query()!.whereKey("fbId", equalTo: "113922985842130" as NSString)
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil,
+                let admin = objects?.first as? PFUser,
+                let currentUser = PFUser.current() {
+                let room = PFObject(className: "Room")
+                let recipientRelation = room.relation(forKey: "recipient")
+                let ownerRelation = room.relation(forKey: "owner")
+                recipientRelation.add(currentUser)
+                ownerRelation.add(admin)
+                room.saveInBackground(block: { (didSave, maybeError) in })
+            }
+        }
+    }
 
     func fetchRooms() {
         let owner = UserSlice(name: "Andrew", avatar: nil, objectId: "TVA5fPIa0A")
         let recepient = UserSlice(name: "Jack peteson", avatar: nil, objectId: "qg5Ndd5LP8")
-        let room = Chat.Room(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
+        let room = Chat.RoomDetails(objectId: "Z9bq6myot7", owner: owner, recipient: recepient)
         Dispatcher.dispatch(action: SetRooms(rooms: [room]))
         // TODO: uncomment this lines when relation parsing is complete
 //        ChatManager.getRooms()
@@ -105,5 +106,7 @@ extension RoomsViewModel {
 //                Dispatcher.dispatch(action: SetRooms(rooms: r))
 //            })
 //            .disposed(by: bag)
+        
     }
+    
 }

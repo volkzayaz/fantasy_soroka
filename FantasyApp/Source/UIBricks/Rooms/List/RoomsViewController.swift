@@ -41,8 +41,6 @@ class RoomsViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] cellModel in
             self.viewModel.roomTapped(cellModel)
         }).disposed(by: rx.disposeBag)
-
-        viewModel.fetchRooms()
     }
 
 }

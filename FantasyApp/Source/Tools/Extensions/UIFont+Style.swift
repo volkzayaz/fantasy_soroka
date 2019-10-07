@@ -9,6 +9,10 @@
 import UIKit
 
 extension UIFont {
+    static func semiBoldFont(ofSize size: CGFloat) -> UIFont {
+        return R.font.sfProTextSemibold(size: size)!
+    }
+
     static func boldFont(ofSize size: CGFloat) -> UIFont {
         return R.font.sfProTextBold(size: size)!
     }

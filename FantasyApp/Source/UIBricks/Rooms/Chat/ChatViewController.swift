@@ -7,84 +7,91 @@
 //
 
 import Foundation
-import MessageKit
-import InputBarAccessoryView
+import Chatto
+import ChattoAdditions
 
-class ChatViewController: MessagesViewController, MVVM_View {
+class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteractionHandlerProtocol {
+    typealias ViewModelT = TextMessageViewModel<TextMessageModel<Chat.Message>>
     var viewModel: ChatViewModel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         configure()
-
-        viewModel.messages.asDriver().drive(onNext: { [weak self] _ in
-            self?.messagesCollectionView.reloadDataAndKeepOffset()
-        }).disposed(by: rx.disposeBag)
-
-        viewModel.isSendingMessage.asDriver().drive(onNext: { [weak self] isSendingMessage in
-            if isSendingMessage {
-                self?.messageInputBar.sendButton.startAnimating()
-            } else {
-                self?.messageInputBar.sendButton.stopAnimating()
-                self?.messagesCollectionView.scrollToBottom(animated: true)
-            }
-        }).disposed(by: rx.disposeBag)
-
-        viewModel.loadMessages()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        becomeFirstResponder()
+    deinit {
+        viewModel.disconnect()
     }
+
+    override func createChatInputView() -> UIView {
+        let chatInputView = ChatInputView(frame: .zero)
+        chatInputView.translatesAutoresizingMaskIntoConstraints = false
+        chatInputView.maxCharactersCount = 1000
+        chatInputView.delegate = self
+        return chatInputView
+    }
+
+    override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
+        let textMessagePresenterBuilder = MessagePresenterBuilder(
+            viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>(),
+            interactionHandler: self
+        )
+
+        return [
+            Chat.CellType.text.rawValue: [textMessagePresenterBuilder],
+            Chat.CellType.emoji.rawValue: [textMessagePresenterBuilder],
+            Chat.CellType.timeSeparator.rawValue: [TimeSeparatorPresenterBuilder()]
+        ]
+    }
+
+    func userDidTapOnFailIcon(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>, failIconView: UIView) {}
+    func userDidTapOnAvatar(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidTapOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidBeginLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidEndLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidSelectMessage(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidDeselectMessage(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
 }
 
 private extension ChatViewController {
     func configure() {
-        messagesCollectionView.backgroundColor = .green
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
-        messageInputBar.delegate = self
-        messageInputBar.translatesAutoresizingMaskIntoConstraints = false
-        scrollsToBottomOnKeyboardBeginsEditing = true
-        maintainPositionOnKeyboardFrameChanged = true
+        chatDataSource = viewModel
+        chatDataSource?.delegate = self
+        chatItemsDecorator = ChatItemsDecorator()
+
+        guard let superview = view.superview else {
+            return
+        }
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: superview.topAnchor),
+            view.rightAnchor.constraint(equalTo: superview.rightAnchor),
+            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+        ])
     }
 }
 
-extension ChatViewController: MessagesDataSource {
-    func currentSender() -> SenderType {
-        return viewModel.currentSender
-    }
-
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return viewModel.messages.value.count
-    }
-
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return viewModel.messages.value[indexPath.section]
+extension ChatViewController: ChatInputViewDelegate {
+    func inputViewSendButtonPressed(_ inputView: ChatInputView) {
+        viewModel.sendMessage(text: inputView.inputText)
+        inputView.inputText = ""
     }
 }
 
-extension ChatViewController: MessagesLayoutDelegate {
-
-}
-
-extension ChatViewController: MessagesDisplayDelegate {
-    func configureAvatarView(_ avatarView: AvatarView,
-                             for message: MessageType,
-                             at indexPath: IndexPath,
-                             in messagesCollectionView: MessagesCollectionView) {
-        // TODO: load user avatar here
-    }
-}
-
-extension ChatViewController: MessageInputBarDelegate {
-    func inputBar(_ inputBar: InputBarAccessoryView,
-                  didPressSendButtonWith text: String) {
-        viewModel.sendMessage(text: text)
-
-        messageInputBar.inputTextView.text = ""
-        messageInputBar.invalidatePlugins()
+class ChatItemsDecorator: ChatItemsDecoratorProtocol {
+    func decorateItems(_ chatItems: [ChatItemProtocol]) -> [DecoratedChatItem] {
+        let attributes = ChatItemDecorationAttributes(
+            bottomMargin: 8,
+            messageDecorationAttributes: BaseMessageDecorationAttributes(
+                canShowFailedIcon: false,
+                isShowingTail: true,
+                isShowingAvatar: true,
+                isShowingSelectionIndicator: false,
+                isSelected: false
+            )
+        )
+        return chatItems.map { DecoratedChatItem(chatItem: $0, decorationAttributes: attributes)}
     }
 }

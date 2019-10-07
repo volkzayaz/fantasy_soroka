@@ -29,7 +29,7 @@ class EditProfilePhotoCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         photoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                              action: Selector("selectImage")))
+                                                              action: #selector(selectImage)))
     }
     
     @IBAction func close(_ sender: Any) {

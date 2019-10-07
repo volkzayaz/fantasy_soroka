@@ -10,7 +10,24 @@ import UIKit
 import Foundation
 
 public class PrimaryButton: UIButton {
+    public enum Mode {
+        case normal
+        case selector
+    }
+
+    public var mode: Mode = .normal {
+        didSet {
+            setupBackgroundColor()
+        }
+    }
+
     public override var isHighlighted: Bool {
+        didSet {
+            setupBackgroundColor()
+        }
+    }
+
+    public override var isSelected: Bool {
         didSet {
             setupBackgroundColor()
         }
@@ -66,8 +83,14 @@ private extension PrimaryButton {
     }
 
     func setupBackgroundColor() {
-        backgroundColor = isEnabled ? (isHighlighted ? highlightedBackgroundColor :
-            normalBackgroundColor) : disabledBackgroundColor
+        switch mode {
+        case .normal:
+            backgroundColor = isEnabled ? (isHighlighted ? highlightedBackgroundColor :
+                normalBackgroundColor) : disabledBackgroundColor
+        case .selector:
+            backgroundColor = isSelected ? (isHighlighted ? highlightedBackgroundColor :
+                normalBackgroundColor) : disabledBackgroundColor
+        }
     }
 
     func setupTransparencyMask() {

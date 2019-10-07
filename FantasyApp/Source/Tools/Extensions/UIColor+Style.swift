@@ -28,4 +28,8 @@ extension UIColor {
 
     // MARK: - ErrorView
     static let errorViewBackground = UIColor.black.withAlphaComponent(0.1)
+
+    // MARK: - Chat
+    static let messageBackground = UIColor(red: 247, green: 247, blue: 250)
+    static let myMessageBackground = UIColor(red: 211, green: 100, blue: 177)
 }

@@ -80,8 +80,6 @@ extension Reactive where Base: PFQuery<PFObject> {
     func fetchAll<T: ParsePresentable>() -> Single<[T]> {
 
         return Observable.create({ (subscriber) -> Disposable in
-            
-            var objectId: String?
             self.base.findObjectsInBackground(block: { (maybeValues, error) in
                 
                 if let x = error {

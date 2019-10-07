@@ -10,7 +10,7 @@ import Foundation
 
 struct AddRooms: Action {
 
-    let rooms: [Chat.Room]
+    let rooms: [Chat.RoomDetails]
 
     func perform(initialState: AppState) -> AppState {
         var state = initialState

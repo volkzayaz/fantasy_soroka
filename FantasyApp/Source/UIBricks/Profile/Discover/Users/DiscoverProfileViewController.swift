@@ -34,8 +34,10 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .done,
-                                                            target: self, action: "presentFilter")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(presentFilter))
         
         viewModel.profiles
             .map { [SectionModel(model: "", items: $0)] }

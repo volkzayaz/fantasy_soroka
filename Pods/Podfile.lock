@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
-  - Amplitude-iOS (4.8.0)
+  - Amplitude-iOS (4.8.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -8,21 +8,21 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - Chatto (3.5.0)
+  - ChattoAdditions (3.5.0):
+    - Chatto
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Differentiator (4.0.1)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (4.40.0):
+  - FBSDKCoreKit (4.44.1):
     - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.40.0):
+  - FBSDKLoginKit (4.44.1):
     - FBSDKCoreKit
   - FDTake (3.0.0)
-  - InputBarAccessoryView (4.2.2)
   - Kingfisher (5.7.1)
   - Koloda (5.0):
     - pop (~> 1.0)
-  - MessageKit (3.0.0):
-    - InputBarAccessoryView (~> 4.2.2)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
   - Moya/Core (13.0.1):
@@ -66,17 +66,18 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.7)
+  - Chatto (~> 3.5)
+  - ChattoAdditions (~> 3.5)
   - Crashlytics (~> 3.13)
-  - FBSDKCoreKit (= 4.40.0)
-  - FBSDKLoginKit (= 4.40.0)
+  - FBSDKCoreKit (= 4.44.1)
+  - FBSDKLoginKit (= 4.44.1)
   - FDTake
   - Kingfisher (~> 5.7)
   - Koloda (~> 5.0)
-  - MessageKit (~> 3.0)
   - Moya (= 13.0.1)
   - Parse (= 1.17.2)
   - Parse/FacebookUtils
-  - ParseLiveQuery (~> 2.6)
+  - ParseLiveQuery (= 2.6.1)
   - R.swift (= 5.0.3)
   - RxCocoa (~> 5.0)
   - RxCoreLocation
@@ -84,21 +85,21 @@ DEPENDENCIES:
   - SnapKit (~> 5.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - Amplitude-iOS
     - Bolts
     - Bolts-Swift
+    - Chatto
+    - ChattoAdditions
     - Crashlytics
     - Differentiator
     - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FDTake
-    - InputBarAccessoryView
     - Kingfisher
     - Koloda
-    - MessageKit
     - Moya
     - Parse
     - ParseLiveQuery
@@ -116,19 +117,19 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  Amplitude-iOS: 2f704f85db0a6ded42cdeadb8aa0918d68019db1
+  Amplitude-iOS: 6e2a21000b89aaa428a45cd22e56caed5e2360bf
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
+  Chatto: 3b4d5b8c56156dfa94caafc2bd4b3b42efb809a0
+  ChattoAdditions: abd81bf223d15b4cdd82e23d675a2a286c150d56
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
-  FBSDKLoginKit: 7a1e411d46acc8834588eca437daf34de42e1d52
+  FBSDKCoreKit: a823ae35bdb60ebb8d7a7e51abe7c5d87d2bfced
+  FBSDKLoginKit: 54ae59987f2a8703021557c90a9aebb9e5c2bef6
   FDTake: cbae493765483304fbaa48e402ea3d7b22ba86d0
-  InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
-  MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   ParseLiveQuery: 75166799bc5090d2583bb9992ea3d0d7be48e217
@@ -144,6 +145,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: 2b6f5f52ee24fd3c75d91f2aeb4c11490dabc18b
+PODFILE CHECKSUM: 3d6afe92c53cd4f24ff266d80a2336d01b30428c
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.8.0
