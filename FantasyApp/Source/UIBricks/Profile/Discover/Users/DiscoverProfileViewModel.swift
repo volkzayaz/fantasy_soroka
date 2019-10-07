@@ -60,25 +60,12 @@ extension DiscoverProfileViewModel {
         
     }
     
-    var profiles: Driver<[Profile]> {
-
-        return appState
-            .changesOf { $0.currentUser?.discoveryFilter }
-            .notNil()
-            .flatMapLatest { [unowned i = indicator] (filter) -> Driver<[Profile]> in
-                
-                return DiscoveryManager.profilesFor(filter: filter)
-                    .trackView(viewIndicator: i)
-                    .asDriver(onErrorJustReturn: [])
-                
-            }
-            .asDriver(onErrorJustReturn: [])
-    }
-
     
 }
 
 struct DiscoverProfileViewModel : MVVM_ViewModel {
+    
+    let profiles = BehaviorRelay<[Profile]>(value: [])
     
     fileprivate var viewedProfiles: Set<Profile> = []
     
@@ -86,6 +73,19 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     
     init(router: DiscoverProfileRouter) {
         self.router = router
+//        
+//        appState.changesOf { $0.currentUser?.discoveryFilter }
+//            .notNil()
+//            .flatMapLatest { [unowned i = indicator] (filter) -> Driver<[Profile]> in
+//                
+//                return DiscoveryManager.profilesFor(filter: filter)
+//                    .trackView(viewIndicator: i)
+//                    .asDriver(onErrorJustReturn: [])
+//                
+//            }
+//            .asDriver(onErrorJustReturn: [])
+//            .drive(profiles)
+//            .disposed(by: bag)
         
         /////progress indicator
         

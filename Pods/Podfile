@@ -33,6 +33,7 @@ target 'FantasyApp' do
     pod 'FDTake'
     pod 'Koloda', '~> 5.0'
     pod 'MessageKit', '~> 3.0'
+    pod 'iCarousel'
 end
 
 target 'FantasyAppTests' do
