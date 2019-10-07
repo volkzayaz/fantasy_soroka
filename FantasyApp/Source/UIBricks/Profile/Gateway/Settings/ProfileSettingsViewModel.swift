@@ -64,5 +64,18 @@ extension ProfileSettingsViewModel {
         Dispatcher.dispatch(action: SetUser(user: nil))
     }
     
+    func deleteAccount() {
+        
+        router.owner.showDialog(title: "Delete account?", text: "You will be logged out. All your data will be erased. This can not be undone", style: .alert, negativeText: "Cancel", negativeCallback: nil, positiveText: "Delete account") {
+            
+//            UserManager.deleteAccount()
+//                ....
+            
+            self.logout()
+            
+            
+        }
+        
+    }
     
 }
