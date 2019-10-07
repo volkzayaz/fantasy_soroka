@@ -12,6 +12,8 @@ import Koloda
 import RxSwift
 import RxCocoa
 
+import SnapKit
+
 class FantasyDeckViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
@@ -96,12 +98,16 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
         let card = cardsProxy[index]
         
         let label = UILabel()
-        label.text = card.name
+        label.text = card.text
         label.textColor = .white
         label.font = .systemFont(ofSize: 23)
-        label.sizeToFit()
+        label.numberOfLines = 0
         
         view.addSubview(label)
+        
+        label.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         
         return view
     }

@@ -25,22 +25,12 @@ struct BuyCollection: ActionCreator {
                     return .just(state)
                 }
 
-                let freeCards = Array(Fantasy.Card.fakes.prefix(swipesLeft))
-                let payedCards = state.currentUser?.fantasies.purchasedCollections.flatMap { $0.cards } ?? []
-                
-                state.fantasies.cards = (freeCards + payedCards).shuffled()
-                
-                return .just( state )
-                
-                
-                //fatalError("Put correct cards fetching here:")
-//                return Fantasy.Manager.fetchMainCards(localLimit: swipesLeft).asObservable()
-//                    .map { cards in
-//                        state.fantasies.cards = cards
-//                        state.fantasies.restriction = .swipeCount(swipesLeft)
-//
-//                        return state
-//                }
+                return Fantasy.Manager.fetchMainCards(localLimit: swipesLeft)
+                    .asObservable()
+                    .map { cards in
+                        state.fantasies.cards = cards
+                        return state
+                    }
                 
             }
         

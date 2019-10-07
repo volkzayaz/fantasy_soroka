@@ -23,48 +23,54 @@ extension Fantasy.Manager {
     */
     static func fetchSwipeState() -> Single< AppState.SwipeState.Restriction > {
         
-//        FantasySwipeState().rx.request
-//            .subscribe(onSuccess: { (res) in
-//                print(res)
-//            }) { (error) in
-//                print(error)
-//        }
+        return Fantasy.Request.SwipeState().rx.request
+            .map { res in
+                
+                if res.amount > 0 {
+                    return .swipeCount(res.amount)
+                }
+                
+                if let x = res.wouldBeUpdatedAt {
+                    return .waiting(till: x)
+                }
+                
+                fatalErrorInDebug("Server returned neither update date, nor available amount")
+                return .waiting(till: Date(timeIntervalSinceNow: 24 * 3600))
+            }
         
-        //fatalError("Implement me")
-        return .just( .swipeCount(5) )
     }
     
     static func fetchMainCards(localLimit: Int) -> Single< [Fantasy.Card] > {
         
-        //fatalError("Implement me")
-        
-        let freeCards = Array(Fantasy.Card.fakes.prefix(localLimit))
-        
-        let payedCards = appStateSlice.currentUser?.fantasies.purchasedCollections.flatMap { $0.cards } ?? []
-        
-        return .just( (freeCards + payedCards).shuffled() )        
+        return Fantasy.Request.Deck().rx.request
+            .map { Array($0.prefix(upTo: localLimit)) }
+                
     }
     
     static func searchFor(query: String) -> Single< [Fantasy.Card] > {
         
         //fatalError("Implement me")
+
+        fatalErrorInDebug("Not implemented so far")
         
-        let allCards = Fantasy.Card.fakes
-        
-        guard query.count > 0 else {
-            return .just(allCards)
-        }
-        
-        return .just( allCards.filter { $0.name.lowercased().contains(query.lowercased()) } )
-        
+        return .just([])
+
     }
     
     static func fetchCollections() -> Single< [Fantasy.Collection] > {
-        
-        //fatalError("Implement me")
-        
-        return .just( Fantasy.Collection.fakes )
-        
+        return Fantasy.Request.Collection().rx.request
+    }
+ 
+    static func like(card: Fantasy.Card) -> Single<Void> {
+        return .just( () )
+    }
+    
+    static func dislike(card: Fantasy.Card) -> Single<Void> {
+        return .just( () )
+    }
+    
+    static func neutral(card: Fantasy.Card) -> Single<Void> {
+        return .just( () )
     }
     
 }

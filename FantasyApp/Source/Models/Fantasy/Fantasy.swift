@@ -13,21 +13,39 @@ enum Fantasy {}
 extension Fantasy {
     
     struct Card: Equatable, IdentifiableType, Codable {
-        let name: String
-        let description: String
+        
+        enum CodingKeys: String, CodingKey {
+            case text
+            case imageURL = "src"
+          //  case isPaid
+        }
+        
+        let text: String
+        let imageURL: String
+        //let isPaid: Bool
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection
-        let isFree: Bool
+        var isFree: Bool {
+            return true //!isPaid
+        }
         
         var identity: String {
-            return name
+            return text
         }
     }
     
     struct Collection: Equatable, IdentifiableType, Codable {
+        
+        enum CodingKeys: String, CodingKey {
+            case name = "description"
+            case imageURL = "src"
+            case cardsCount = "size"
+        }
+        
         let name: String
-        let cards: [Card]
+        let imageURL: String
+        let cardsCount: Int
         
         var identity: String {
             return name
@@ -57,39 +75,39 @@ extension AppState.SwipeState.Restriction {
 
 extension Fantasy.Card {
     
-    static var fakes: [Fantasy.Card] {
-        
-        return [.init(name: "BJ", description: "Some vanila stuff", isFree: true),
-                .init(name: "Go down", description: "Even more vanila stuff", isFree: true),
-                .init(name: "anal", description: "Doing kinky dirty stuff", isFree: true),
-                .init(name: "BDSM", description: "For those who love it rough", isFree: true),
-                .init(name: "ESPN", description: "Watch your team getting fucked every weekend online. Real hardcore shit", isFree: true)]
-        
-    }
+//    static var fakes: [Fantasy.Card] {
+//
+//        return [.init(name: "BJ", description: "Some vanila stuff", isPaid: false),
+//                .init(name: "Go down", description: "Even more vanila stuff", isPaid: false),
+//                .init(name: "anal", description: "Doing kinky dirty stuff", isPaid: false),
+//                .init(name: "BDSM", description: "For those who love it rough", isPaid: false),
+//                .init(name: "ESPN", description: "Watch your team getting fucked every weekend online. Real hardcore shit", isPaid: false)]
+//
+//    }
     
 }
 
 extension Fantasy.Collection {
     
-    static var fakes: [Fantasy.Collection] {
-        
-        let x = Fantasy.Collection(name: "Vanila",
-                                   cards: [.init(name: "Kiss on chick", description: "Some vanila stuff", isFree: false),
-                                           .init(name: "Kiss on lips", description: "Even more vanila stuff", isFree: false),
-                                           .init(name: "Kiss on neck", description: "neck stuff", isFree: false)])
-        
-        let y = Fantasy.Collection(name: "Public",
-                                   cards: [.init(name: "Fuck inside a bus", description: "lorem ipsum bus", isFree: false),
-                                           .init(name: "Fuck in the park", description: "lorem ipsum park", isFree: false),
-                                           .init(name: "Fuck in dressing room", description: "lorem ipsum dressing", isFree: false)])
-        
-        let z = Fantasy.Collection(name: "Gangbang",
-                                   cards: [.init(name: "Fuck 3 guys at a time", description: "lorem ipsum", isFree: false),
-                                           .init(name: "Fuck 7 guys at a time", description: "lorem ipsum 7", isFree: false),
-                                           .init(name: "Fuck the whole football team", description: "lorem ipsum 11", isFree: false)])
-        
-        return [x, y ,z]
-        
-    }
+//    static var fakes: [Fantasy.Collection] {
+//        
+//        let x = Fantasy.Collection(name: "Vanila",
+//                                   cards: [.init(name: "Kiss on chick", description: "Some vanila stuff", isPaid: true),
+//                                           .init(name: "Kiss on lips", description: "Even more vanila stuff", isPaid: true),
+//                                           .init(name: "Kiss on neck", description: "neck stuff", isPaid: true)])
+//        
+//        let y = Fantasy.Collection(name: "Public",
+//                                   cards: [.init(name: "Fuck inside a bus", description: "lorem ipsum bus", isPaid: true),
+//                                           .init(name: "Fuck in the park", description: "lorem ipsum park", isPaid: true),
+//                                           .init(name: "Fuck in dressing room", description: "lorem ipsum dressing", isPaid: true)])
+//        
+//        let z = Fantasy.Collection(name: "Gangbang",
+//                                   cards: [.init(name: "Fuck 3 guys at a time", description: "lorem ipsum", isPaid: true),
+//                                           .init(name: "Fuck 7 guys at a time", description: "lorem ipsum 7", isPaid: true),
+//                                           .init(name: "Fuck the whole football team", description: "lorem ipsum 11", isPaid: true)])
+//        
+//        return [x, y ,z]
+//        
+//    }
     
 }

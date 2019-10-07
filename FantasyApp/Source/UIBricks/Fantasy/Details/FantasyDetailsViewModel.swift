@@ -14,11 +14,11 @@ import RxCocoa
 extension FantasyDetailsViewModel {
     
     var title: String {
-        return card.name
+        return "FantasyCard has no name by definition"
     }
     
     var description: String {
-        return card.description
+        return card.text
     }
     
     var likeText: Driver<String> {

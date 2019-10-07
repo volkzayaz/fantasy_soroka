@@ -23,7 +23,7 @@ class FantasyListViewController: UIViewController, MVVM_View {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.regularFantasyCell,
                                                  for: ip)!
         
-        cell.textLabel?.text = x.name
+        cell.textLabel?.text = x.text
         
         return cell
         

@@ -80,8 +80,8 @@ extension UserProfileViewModel {
         if user.fantasies.liked.count > 0 {
             
             let simpleFantasies = user.fantasies.liked
-                .map { $0.name }
-                .joined(separator: ", ")
+                .map { $0.text }
+                .joined(separator: "; ")
             
             
             res.append( .fantasy( "Fantasies: " + simpleFantasies  ) )
