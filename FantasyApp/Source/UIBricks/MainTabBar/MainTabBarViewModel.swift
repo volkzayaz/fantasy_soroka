@@ -22,7 +22,7 @@ extension MainTabBarViewModel {
                 if authorizationStatus.status == .notDetermined { return true }
                 
                 guard didAskForLocation != nil else {
-                    return false
+                    return SettingsStore.currentUser.value == nil
                 }
                 
                 return (authorizationStatus.status != .denied)
