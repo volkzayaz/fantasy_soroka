@@ -18,7 +18,7 @@ extension UserGatewayViewModel {
     }
 
     var image: Driver<String> {
-        return appState.changesOf { $0.currentUser?.bio.photos.main?.thumbnailURL }
+        return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL }
             .map { $0 ?? "" }
     }
     

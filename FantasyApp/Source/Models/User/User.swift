@@ -50,13 +50,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         
         struct Photos: Equatable, Codable {
             
-            ///TODO: this should be nonnullable entity when we migrate User to new backend
-            ///|main| and |parseAvatarShortcut| are actually the same entity
-            ///should be merged into single nonullable property
-            var main: Photo? {
-                return `public`.images.first ?? parseAvatarShortcut
-            }
-            
             ///All Album rlated activities are done on new Backend
             ///however Users are still queried via Parse API
             ///And parse knows nothing about Albums
@@ -64,7 +57,9 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
             ///into Parse fields
             ///this way we don't need to query new server for Photo
             ///every time we wanna fetch user details
-            var parseAvatarShortcut: Photo?
+            ///
+            ///TODO: this should be nonnullable entity when we migrate User to new backend
+            var avatar: Photo
             
             var `public`: Album
             var `private`: Album

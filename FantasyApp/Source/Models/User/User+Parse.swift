@@ -77,9 +77,9 @@ extension User {
         }
         
         let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
-        let photos = User.Bio.Photos(parseAvatarShortcut: mainPhoto,
-                                     public             : albums?.public  ?? .init(images: []) ,
-                                     private            : albums?.private ?? .init(images: []))
+        let photos = User.Bio.Photos(avatar  : mainPhoto,
+                                     public  : albums?.public  ?? .init(images: []) ,
+                                     private : albums?.private ?? .init(images: []))
         
         var maybeLookingFor: LookingFor? = nil
         if let int = pfUser["lookingFor"] as? Int {

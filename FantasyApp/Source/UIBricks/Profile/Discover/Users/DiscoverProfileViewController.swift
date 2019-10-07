@@ -93,6 +93,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
             
             let label = UILabel()
             label.text = "No More Fantasy seekers. Invite friends or change filter"
+            label.sizeToFit()
             
             noFantasySeekersPlaceholder.addSubview(label)
             
@@ -103,6 +104,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         
         let label = UILabel()
         label.text = profile.bio.name
+        label.sizeToFit()
         
         view.addSubview(label)
         view.backgroundColor = index % 2 == 0 ? .red : .green

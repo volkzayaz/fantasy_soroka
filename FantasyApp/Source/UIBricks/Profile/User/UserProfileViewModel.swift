@@ -16,17 +16,11 @@ extension UserProfileViewModel {
     
     var photos: Driver<[AnimatableSectionModel<String, Photo>]> {
         
-        let photosDriver: Driver<([FantasyApp.Photo], [FantasyApp.Photo])>
-        
-        if user.bio.photos.public.isReal {
-            photosDriver = .just( (user.bio.photos.public.images, user.bio.photos.private.images) )
-        }
-        else {
-            photosDriver = UserManager.images(of: user)
-                    .trackView(viewIndicator: indicator)
-                    .silentCatch()
-                    .asDriver(onErrorJustReturn: ([], []))
-        }
+        let photosDriver = UserManager
+            .images(of: user)
+            .trackView(viewIndicator: indicator)
+            .silentCatch()
+            .asDriver(onErrorJustReturn: ([], []))
         
         return Driver.combineLatest(photosDriver,
                                     relationshipState.asDriver().notNil()) { ($0, $1) }

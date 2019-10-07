@@ -22,6 +22,20 @@ extension UserManager {
         
     }
     
+    static func replaceAvatar(image: UIImage) -> Single<Photo> {
+        return UpdateUserAvatarResource(image: image).rx.request
+            .map { avatar in
+                
+                let photo = Photo(id: "fake", url: avatar.avatar.absoluteString,
+                                  thumbnailURL: avatar.avatarThumbnail.absoluteString)
+                
+                ImageRetreiver.registerImage(image: image, forKey: photo.url)
+                
+                return photo
+                
+            }
+    }
+    
     static func uploadPhoto(image: UIImage, isPublic: Bool) -> Single<Photo> {
         
         let photos = User.current!.bio.photos
@@ -68,14 +82,19 @@ extension UserManager {
         
         ///Server does not return Main avatar as part of the Album
         
+        if user.bio.photos.public.isReal {
+            
+            let pub  = [user.bio.photos.avatar] + user.bio.photos.public.images
+            let priv = user.bio.photos.private.images
+            
+            return .just( (pub, priv) )
+        }
+        
         return GetImages(of: .user(user)).rx.request.map { photos in
             
             var `public` = photos.filter { !$0.isPrivate }
                                  .map { $0.toRegular }
-            
-            if let p = user.bio.photos.main {
-                `public` = [p] + `public`
-            }
+            `public`.insert(user.bio.photos.avatar, at: 0)
             
             let `private` = photos.filter { $0.isPrivate }
                                   .map { $0.toRegular }
