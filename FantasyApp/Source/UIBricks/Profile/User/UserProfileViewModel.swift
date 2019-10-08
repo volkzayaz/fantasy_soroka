@@ -39,7 +39,7 @@ extension UserProfileViewModel {
             
     }
 
-    var sections: [Section] {
+    var sections: Driver<[Section]> {
         
         var res = [Section.basic(user.bio.name + " \(user.bio.birthday)")]
         
@@ -71,17 +71,23 @@ extension UserProfileViewModel {
             
         }
         
-        if user.fantasies.liked.count > 0 {
+        return Fantasy.Manager.mutualCards(with: user)
+            .map { (collection) -> [Section] in
+                
+                if collection.count > 0 {
+                    
+                    let simpleFantasies = collection
+                        .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
+                        .joined(separator: "; ")
+                    
+                    res.append( .fantasy( "Fantasies: " + simpleFantasies  ) )
+                }
             
-            let simpleFantasies = user.fantasies.liked
-                .map { $0.text }
-                .joined(separator: "; ")
-            
-            
-            res.append( .fantasy( "Fantasies: " + simpleFantasies  ) )
-        }
+                return res
+            }
+            .asDriver(onErrorJustReturn: res)
+            .startWith(res)
         
-        return res
     }
     
     var relationLabel: Driver<String> {
@@ -148,14 +154,22 @@ extension UserProfileViewModel {
             return res
         }
         
-        
     }
     
-    enum Section {
+    enum Section: IdentifiableType, Equatable {
         case basic(String)
         case about(String)
         case extended([String])
         case fantasy(String)
+        
+        var identity: String {
+            switch self {
+            case .basic(let x): return "basic \(x)"
+            case .about(let x): return "about \(x)"
+            case .extended(let x): return "extended \(x)"
+            case .fantasy(let x): return "fantasy \(x)"
+            }
+        }
     }
     
 }

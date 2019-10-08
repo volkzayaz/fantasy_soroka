@@ -26,6 +26,45 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
     })
     
+    lazy var sectionsTableDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, UserProfileViewModel.Section>>(configureCell: { [unowned self] (_, tv, ip, section) in
+        
+        switch section {
+        case .basic(let x):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileBasicCell, for: ip)!
+            
+            cell.textLabel?.text = x
+            
+            return cell
+            
+        case .about(let x):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAboutCell, for: ip)!
+            
+            cell.textLabel?.text = x
+            
+            return cell
+            
+        case .extended(let x):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileExtendedCell, for: ip)!
+            
+            cell.textLabel?.text = x.joined(separator: "\n")
+            
+            return cell
+            
+        case .fantasy(let x):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileFantasyCell, for: ip)!
+            
+            cell.textLabel?.text = x
+            
+            return cell
+            
+        }
+        
+    })
+    
     @IBOutlet weak var indicatorStackView: UIStackView! {
         didSet {
             indicatorStackView.subviews.forEach { $0.removeFromSuperview() }
@@ -61,6 +100,11 @@ class UserProfileViewController: UIViewController, MVVM_View {
             .drive(photosCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
+        viewModel.sections
+            .map { $0.map { AnimatableSectionModel(model: $0.identity, items: [$0]) } }
+            .drive(profileTableView.rx.items(dataSource: sectionsTableDataSource))
+            .disposed(by: rx.disposeBag)
+        
         viewModel.relationLabel
             .drive(relationStatusLabel.rx.text)
             .disposed(by: rx.disposeBag)
@@ -91,59 +135,6 @@ extension UserProfileViewController: UIScrollViewDelegate {
         indicatorStackView.subviews.enumerated().forEach {
             $0.element.backgroundColor = $0.offset == index ? .red : .green
         }
-    }
-    
-}
-
-extension UserProfileViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let section = viewModel.sections[indexPath.section]
-        
-        switch section {
-        case .basic(let x):
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileBasicCell, for: indexPath)!
-            
-            cell.textLabel?.text = x
-            
-            return cell
-            
-        case .about(let x):
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAboutCell, for: indexPath)!
-            
-            cell.textLabel?.text = x
-            
-            return cell
-            
-        case .extended(let x):
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileExtendedCell, for: indexPath)!
-            
-            cell.textLabel?.text = x.joined(separator: "\n")
-            
-            return cell
-            
-        case .fantasy(let x):
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileFantasyCell, for: indexPath)!
-            
-            cell.textLabel?.text = x
-            
-            return cell
-            
-        }
-        
     }
     
 }

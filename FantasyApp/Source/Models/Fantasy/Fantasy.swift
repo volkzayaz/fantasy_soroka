@@ -15,11 +15,13 @@ extension Fantasy {
     struct Card: Equatable, IdentifiableType, Codable {
         
         enum CodingKeys: String, CodingKey {
+            case id
             case text
             case imageURL = "src"
             case isPaid
         }
         
+        let id: String
         let text: String
         let imageURL: String
         let isPaid: Bool

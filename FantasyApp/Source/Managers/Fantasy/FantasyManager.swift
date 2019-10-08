@@ -51,7 +51,7 @@ extension Fantasy.Manager {
         
         //fatalError("Implement me")
 
-        fatalErrorInDebug("Not implemented so far")
+        fatalErrorInDebug("Not implemented for release 1")
         
         return .just([])
 
@@ -62,15 +62,28 @@ extension Fantasy.Manager {
     }
  
     static func like(card: Fantasy.Card) -> Single<Void> {
-        return .just( () )
+        return Fantasy.Request.ReactOnCard(reaction: .like,
+                                           card: card)
+            .rx.request
+            .map { _ in }
     }
     
     static func dislike(card: Fantasy.Card) -> Single<Void> {
-        return .just( () )
+        return Fantasy.Request.ReactOnCard(reaction: .dislike,
+                                           card: card)
+            .rx.request
+            .map { _ in }
     }
     
     static func neutral(card: Fantasy.Card) -> Single<Void> {
-        return .just( () )
+        return Fantasy.Request.ReactOnCard(reaction: .neutral,
+                                           card: card)
+            .rx.request
+            .map { _ in }
+    }
+    
+    static func mutualCards(with: User) -> Single<[Fantasy.Request.MutualCards.SurrogateCollection]> {
+        return Fantasy.Request.MutualCards(with: with).rx.request
     }
     
 }

@@ -74,7 +74,7 @@ extension Fantasy.Request {
         
     }
     
-    struct ReactionCards: AuthorizedAPIResource {
+    struct FetchCards: AuthorizedAPIResource {
         
         enum ReactionType {
             case liked, disliked, blocked
@@ -100,6 +100,59 @@ extension Fantasy.Request {
             }
             
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        }
+        
+    }
+ 
+    struct ReactOnCard: AuthorizedAPIResource {
+        
+        enum Reaction {
+               case like, dislike, neutral
+        }; let reaction: Reaction
+        
+        let card: Fantasy.Card
+        
+        typealias responseType = EmptyResponse
+        
+        var method: Moya.Method {
+            return .put
+        }
+        
+        var path: String {
+            switch reaction {
+            case .like   : return "/fantasy-cards/\(card.id)/like"
+            case .dislike: return "/fantasy-cards/\(card.id)/dislike"
+            case .neutral: return "/fantasy-cards/\(card.id)/neutral"
+            }
+            
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+
+    struct MutualCards: AuthorizedAPIResource {
+        
+        let with: User
+        
+        struct SurrogateCollection: Codable {
+            let description: String
+            let src: String
+            let cards: [Fantasy.Card]
+        }; typealias responseType = [SurrogateCollection]
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/users/\(with.id)/fantasy-cards"
+        }
+        
+        var task: Task {
+            return .requestPlain
         }
         
     }

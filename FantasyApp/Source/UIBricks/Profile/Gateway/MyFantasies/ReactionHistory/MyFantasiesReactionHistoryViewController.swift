@@ -40,10 +40,10 @@ extension MyFantasiesReactionHistoryViewController {
             let provider = segmentedControl.rx.value.flatMapLatest { x -> Single<[Fantasy.Card]> in
                 
                 if x == 0 {
-                    return Fantasy.Request.ReactionCards(reactionType: .liked).rx.request
+                    return Fantasy.Request.FetchCards(reactionType: .liked).rx.request
                 }
                 
-                return Fantasy.Request.ReactionCards(reactionType: .disliked).rx.request
+                return Fantasy.Request.FetchCards(reactionType: .disliked).rx.request
             }
             .asDriver(onErrorJustReturn: [])
             

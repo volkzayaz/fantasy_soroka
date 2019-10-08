@@ -42,7 +42,7 @@ extension MyFantasiesViewController {
             
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
-                                                cardsProvider: Fantasy.Request.ReactionCards(reactionType: .liked).rx.request.asDriver(onErrorJustReturn: []))
+                                                cardsProvider: Fantasy.Request.FetchCards(reactionType: .liked).rx.request.asDriver(onErrorJustReturn: []))
             
         }
         
