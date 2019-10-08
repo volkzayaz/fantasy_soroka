@@ -17,17 +17,17 @@ extension Fantasy {
         enum CodingKeys: String, CodingKey {
             case text
             case imageURL = "src"
-          //  case isPaid
+            case isPaid
         }
         
         let text: String
         let imageURL: String
-        //let isPaid: Bool
+        let isPaid: Bool
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection
         var isFree: Bool {
-            return true //!isPaid
+            return !isPaid
         }
         
         var identity: String {

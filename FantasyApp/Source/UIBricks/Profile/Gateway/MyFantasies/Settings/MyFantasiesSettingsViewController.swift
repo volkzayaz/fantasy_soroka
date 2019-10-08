@@ -42,23 +42,9 @@ extension MyFantasiesSettingsViewController {
             
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
-                                                cards: []) ///TODO: put blocked cards //User.current?.fantasies.disliked)
-            
+                                                cardsProvider: Fantasy.Request.ReactionCards(reactionType: .blocked).rx.request.asDriver(onErrorJustReturn: []))
         }
+            
     }
-    
-    /**
-     *  Describe any IBActions here
-     *
-     
-     @IBAction func performAction(_ sender: Any) {
-     
-     }
-    
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     }
- 
-    */
     
 }

@@ -7,20 +7,13 @@
 //
 
 import UIKit
+import RxCocoa
 
 struct MyFantasiesRouter : MVVM_Router {
     
     unowned private(set) var owner: MyFantasiesViewController
     init(owner: MyFantasiesViewController) {
         self.owner = owner
-    }
-    
-    func showCards(cards: [Fantasy.Card]) {
-        
-        let vc = R.storyboard.fantasyCard.fantasyListViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), cards: cards)
-        owner.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     

@@ -42,22 +42,10 @@ extension MyFantasiesViewController {
             
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
-                                                cards: User.current!.fantasies.liked)
+                                                cardsProvider: Fantasy.Request.ReactionCards(reactionType: .liked).rx.request.asDriver(onErrorJustReturn: []))
             
         }
         
-    }
-    
-    @IBAction func blockedCards(_ sender: Any) {
-        viewModel.showBlockedCards()
-    }
-    
-    @IBAction func dislikedCards(_ sender: Any) {
-        viewModel.showDislikedCards()
-    }
-    
-    @IBAction func likedCards(_ sender: Any) {
-        viewModel.showLikedCards()
     }
     
 }

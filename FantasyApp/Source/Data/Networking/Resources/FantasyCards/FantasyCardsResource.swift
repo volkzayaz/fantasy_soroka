@@ -58,7 +58,6 @@ extension Fantasy.Request {
     
     struct Collection: AuthorizedAPIResource {
         
-        ///TODO: this mapping is bad
         typealias responseType = [Fantasy.Collection]
         
         var method: Moya.Method {
@@ -75,7 +74,35 @@ extension Fantasy.Request {
         
     }
     
-    
+    struct ReactionCards: AuthorizedAPIResource {
+        
+        enum ReactionType {
+            case liked, disliked, blocked
+        }; let reactionType: ReactionType
+     
+        typealias responseType = [Fantasy.Card]
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/fantasy-cards/deck"
+        }
+        
+        var task: Task {
+            
+            var params: [String: Bool] = [:]
+            switch reactionType {
+            case .liked:    params["liked"] = true
+            case .disliked: params["disliked"] = true
+            case .blocked:  params["blocked"] = true
+            }
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        }
+        
+    }
     
 }
 

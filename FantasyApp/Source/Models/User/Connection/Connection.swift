@@ -20,7 +20,7 @@ enum Connection {
     case absent
     case incomming(request: ConnectionRequestType)
     case outgoing(request: ConnectionRequestType)
-    case iRejected    ///I initiated it, but other user doesn't want it
-    case iWasRejected ///Other user initiated it, but I don't want it
+    case iRejected    ///Other user initiated it, but I don't want it
+    case iWasRejected ///I initiated it, but other user doesn't want it
     case mutual
 }

@@ -59,29 +59,4 @@ struct MyFantasiesViewModel : MVVM_ViewModel {
 
 extension MyFantasiesViewModel {
     
-    /** Reference any actions ViewModel can handle
-     ** Actions should always be void funcs
-     ** any result should be reflected via corresponding drivers
-     
-     func buttonPressed(labelValue: String) {
-     
-     }
-     
-     */
-    
-    func showLikedCards() {
-        let cards = appStateSlice.currentUser?.fantasies.liked ?? []
-        router.showCards(cards: cards)
-    }
-    
-    func showDislikedCards() {
-        let cards = appStateSlice.currentUser?.fantasies.disliked ?? []
-        router.showCards(cards: cards)
-    }
-    
-    func showBlockedCards() {
-        ///TODO: shove model here
-        let cards: [Fantasy.Card] = []
-        router.showCards(cards: cards)
-    }
 }
