@@ -87,7 +87,7 @@ extension Fantasy.Request {
         }
         
         var path: String {
-            return "/fantasy-cards/deck"
+            return "/fantasy-cards"
         }
         
         var task: Task {

@@ -55,8 +55,8 @@ struct FantasyCardInteraction: ActionCreator {
         
         let request: Single<Void>
         switch type {
-        case .dislike: request = Fantasy.Manager.like(card: card)
-        case .like:    request = Fantasy.Manager.dislike(card: card)
+        case .dislike: request = Fantasy.Manager.dislike(card: card)
+        case .like:    request = Fantasy.Manager.like(card: card)
         case .neutral: request = Fantasy.Manager.neutral(card: card)
         }
         
