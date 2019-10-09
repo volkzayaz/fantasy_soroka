@@ -57,9 +57,11 @@ extension Configuration {
         ///we need to delay app ViewControllers presentation
         let _ = Dispatcher.kickOff().subscribe()
         
-        ///
-        let _ = PurchaseManager.completeTransacions()
+        ///StoreKit complete transactions
+        PurchaseManager.completeTransacions()
         
+        ///Push registration
+        PushManager.kickOff()
     }
 
     private static func registerActors() {
