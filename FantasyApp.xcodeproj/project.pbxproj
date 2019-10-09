@@ -156,6 +156,7 @@
 		73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */; };
 		73EBBA6D234CDAB800B79121 /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */; };
 		73EBBA70234E046100B79121 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA6F234E046100B79121 /* PushManager.swift */; };
+		73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA72234E23BE00B79121 /* NotificationSettings.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
@@ -409,6 +410,7 @@
 		73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryViewModel.swift; sourceTree = "<group>"; };
 		73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
 		73EBBA6F234E046100B79121 /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		73EBBA72234E23BE00B79121 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 		7312B0AB22D7440800DB0F36 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				73EBBA71234E23AE00B79121 /* Notification */,
 				84C1D0452327BE7D00648DE1 /* Chat */,
 				7322311723055C2A009DD37F /* Fantasy */,
 				7334CC7122ED9A7B00495843 /* User */,
@@ -1378,6 +1381,14 @@
 				73EBBA6F234E046100B79121 /* PushManager.swift */,
 			);
 			path = Push;
+			sourceTree = "<group>";
+		};
+		73EBBA71234E23AE00B79121 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				73EBBA72234E23BE00B79121 /* NotificationSettings.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		8416816522E96CD900FA9455 /* Components */ = {
@@ -2096,6 +2107,7 @@
 				739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */,
 				734C70BB23213D9200ED2E91 /* Collection+Safe.swift in Sources */,
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
+				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
 				73EBBA70234E046100B79121 /* PushManager.swift in Sources */,
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,

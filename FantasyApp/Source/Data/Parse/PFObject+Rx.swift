@@ -144,6 +144,32 @@ extension Reactive where Base: PFQuery<PFObject> {
     
 }
 
+extension Reactive where Base: PFObject {
+    
+    func fetch() -> Single<PFObject> {
+
+        return Observable.create({ (subscriber) -> Disposable in
+            self.base.fetchInBackground(block: { (maybeValue, error) in
+                
+                if let x = error {
+                    subscriber.onError(x)
+                    return
+                }
+                
+                subscriber.onNext( maybeValue! )
+                subscriber.onCompleted()
+            })
+            
+            return Disposables.create {
+            }
+        })
+        .asSingle()
+        
+    }
+    
+}
+
+
 extension ParsePresentable {
     
     ///Suitable for creating PFObjects
