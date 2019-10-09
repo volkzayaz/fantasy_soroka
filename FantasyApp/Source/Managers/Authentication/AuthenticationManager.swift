@@ -62,7 +62,7 @@ extension AuthenticationManager {
                 }
         }
         .flatMap { (u: PFUser) -> Single<User> in
-            return u.convertWithAlbums()
+            return u.convertWithAlbumsAndSubscription()
         }
         .do(onSuccess: { (user) in
             SettingsStore.currentUser.value = user
@@ -94,7 +94,7 @@ extension AuthenticationManager {
             }
             .asSingle()
             .flatMap { (u: PFUser) -> Single<User> in
-                return u.convertWithAlbums()
+                return u.convertWithAlbumsAndSubscription()
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
@@ -137,7 +137,7 @@ extension AuthenticationManager {
             }
             .asSingle()
             .flatMap { (u: PFUser) -> Single<User> in
-                return u.convertWithAlbums()
+                return u.convertWithAlbumsAndSubscription()
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user

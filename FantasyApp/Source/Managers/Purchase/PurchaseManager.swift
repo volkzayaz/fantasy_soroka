@@ -16,9 +16,15 @@ extension PurchaseManager {
     
     static func purhcase(collection: Fantasy.Collection) -> Single< Void > {
         
-        //fatalError("Unimplemented")
+        guard let pid = collection.productId else {
+            fatalErrorInDebug("Can't purchase collection without productID")
+            return .just( () )
+        }
         
-        return .just( () )
+        return SwiftyStoreKit.rx_purchase(product: pid)
+            .flatMap { _ in SwiftyStoreKit.rx_fetchReceipt(forceRefresh: false) }
+            .flatMap { x in User.Request.PurchaseCollection(collection: collection, recieptData: x).rx.request }
+            .map { _ in }
         
     }
     
@@ -87,7 +93,7 @@ extension PurchaseManager {
         
         return SwiftyStoreKit.rx_fetchReceipt(forceRefresh: forceRefresh)
             .flatMap { reciept in
-                return User.Request.SubscriptionStatus().rx.request
+                return User.Request.SendReceipt(recieptData: reciept).rx.request
             }
             .do(onSuccess: { (subscription) in
                 

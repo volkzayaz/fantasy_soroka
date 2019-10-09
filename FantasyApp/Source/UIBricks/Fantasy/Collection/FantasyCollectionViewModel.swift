@@ -67,11 +67,14 @@ extension FantasyCollectionViewModel {
     
     func collectionTapped(collection: Fantasy.Collection) {
         
-        router.owner.showDialog(title: "Buy Collection", text: "To check all fantasies inside?", style: .alert,
-                                positiveText: "Pay 1.29$") { [weak o = router.owner] in
-                                    Dispatcher.dispatch(action: BuyCollection(collection: collection))
-                                    o?.navigationController?.popViewController(animated: true)
-        }
+        PurchaseManager.purhcase(collection: collection)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { [weak o = router.owner] in
+                Dispatcher.dispatch(action: BuyCollection(collection: collection))
+                o?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
         
     }
     

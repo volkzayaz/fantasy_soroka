@@ -17,7 +17,9 @@ enum ParseMigrationError: Error {
 extension User {
     
     ///single migration point from Parse Entity to Fantasy Entity
-    init(pfUser: PFUser, albums: (public: Album, private: Album)? = nil) throws {
+    init(pfUser: PFUser,
+         albums: (public: Album, private: Album)? = nil,
+         subscriptionStatus: User.Subscription? = nil) throws {
 
         guard let objectId = pfUser.objectId else {
             fatalError("Unsaved PFUsers conversion to native User is not supported")
@@ -110,7 +112,7 @@ extension User {
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
-        subscription = .init(isSubscribed: isSubscribed, status: nil)
+        subscription = subscriptionStatus ?? .init(isSubscribed: isSubscribed, status: nil)
         
     }
     
@@ -171,15 +173,22 @@ extension PFUser {
         
     }
  
-    func convertWithAlbums() -> Single<User> {
+    func convertWithAlbumsAndSubscription() -> Single<User> {
         
         guard self == PFUser.current() else {
             fatalError("Method is only designed to be used for currentUser")
         }
         
-        return UserManager.fetchOrCreateAlbums()
-            .map { try User(pfUser: self, albums: $0) }
-        
+        return Single.zip(UserManager.fetchOrCreateAlbums(), PurchaseManager.fetchSubscriptionStatus())
+            .map { (arg) -> User in
+                
+                let (albums, subscripiton) = arg
+                
+                return try User(pfUser: self,
+                                albums: albums,
+                                subscriptionStatus: subscripiton)
+            }
+            
     }
     
 }

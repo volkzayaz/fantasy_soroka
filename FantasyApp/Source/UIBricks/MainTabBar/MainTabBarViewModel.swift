@@ -58,15 +58,6 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
-        PurchaseManager.fetchSubscriptionStatus()
-            .retry(2)
-            .subscribe(onSuccess: { x in
-                var u = User.current!
-                u.subscription = x
-                Dispatcher.dispatch(action: SetUser(user: u))
-            })
-            .disposed(by: bag)
-        
         locationManager.rx.didChangeAuthorization
             .filter { $0.status != .denied && $0.status != .notDetermined }
             .subscribe(onNext: { (_) in

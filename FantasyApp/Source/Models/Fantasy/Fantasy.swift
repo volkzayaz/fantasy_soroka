@@ -61,17 +61,24 @@ extension Fantasy {
     struct Collection: Equatable, IdentifiableType, Codable {
         
         enum CodingKeys: String, CodingKey {
+            case id
             case name = "description"
             case imageURL = "src"
             case cardsCount = "size"
+            case isPurchased
+            case productId
         }
         
+        let id: String
         let name: String
         let imageURL: String
         let cardsCount: Int
         
+        let isPurchased: Bool
+        let productId: String? ///absence of ProductID means product is free
+        
         var identity: String {
-            return name
+            return id
         }
     }
     
