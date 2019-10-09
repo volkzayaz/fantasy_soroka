@@ -16,9 +16,11 @@ struct NotificationSettings: Codable, Equatable, ParsePresentable {
 
     var objectId: String?
     
-    let newMatch: Bool = true
-    let newMessage: Bool = true
-    let newFantasyMatch: Bool = true
+    ///these names are actually keys on Parse Table,
+    ///so be accurate when chaning them
+    var newMatch: Bool = true
+    var newMessage: Bool = true
+    var newFantasyMatch: Bool = true
     
     
 }

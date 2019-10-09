@@ -182,13 +182,15 @@ extension PFUser {
             fatalError("Method is only designed to be used for currentUser")
         }
         
-        ///Fetch or create
+        ///Fetch or create notification settings
         let notificationSettingsSignal: Single<NotificationSettings>
         if let x = (self["notificationSettings"] as? PFObject) {
             notificationSettingsSignal = x.rx.fetch().map { $0.toCodable() }
         }
         else {
-            notificationSettingsSignal = NotificationSettings().rxCreate()
+            let x = NotificationSettings()
+            self["notificationSettings"] = x.freshPFObject
+            notificationSettingsSignal = self.rxSave().map { _ in x }
         }
         
         return Single.zip(UserManager.fetchOrCreateAlbums(),

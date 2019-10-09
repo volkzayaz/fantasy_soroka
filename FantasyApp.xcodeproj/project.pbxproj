@@ -157,6 +157,10 @@
 		73EBBA6D234CDAB800B79121 /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */; };
 		73EBBA70234E046100B79121 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA6F234E046100B79121 /* PushManager.swift */; };
 		73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA72234E23BE00B79121 /* NotificationSettings.swift */; };
+		73EBBA78234E2BEC00B79121 /* NotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA75234E2BEC00B79121 /* NotificationSettingsRouter.swift */; };
+		73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */; };
+		73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */; };
+		73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
@@ -411,6 +415,10 @@
 		73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
 		73EBBA6F234E046100B79121 /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
 		73EBBA72234E23BE00B79121 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		73EBBA75234E2BEC00B79121 /* NotificationSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsRouter.swift; sourceTree = "<group>"; };
+		73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
+		73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewModel.swift; sourceTree = "<group>"; };
+		73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationSettings.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -932,6 +940,7 @@
 				7334CC7522EDC60000495843 /* SetUser.swift */,
 				734C70B82321355F00ED2E91 /* EditProfilePhoto.swift */,
 				7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */,
+				73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1270,6 +1279,7 @@
 		73C96F0F23409DEC002C3F8E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				73EBBA74234E2BD300B79121 /* NotificationSettings */,
 				73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */,
 				73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */,
 				73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */,
@@ -1389,6 +1399,16 @@
 				73EBBA72234E23BE00B79121 /* NotificationSettings.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		73EBBA74234E2BD300B79121 /* NotificationSettings */ = {
+			isa = PBXGroup;
+			children = (
+				73EBBA75234E2BEC00B79121 /* NotificationSettingsRouter.swift */,
+				73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */,
+				73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */,
+			);
+			path = NotificationSettings;
 			sourceTree = "<group>";
 		};
 		8416816522E96CD900FA9455 /* Components */ = {
@@ -1942,6 +1962,7 @@
 				841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */,
 				7379ED09230975A800E661A7 /* Analytics.swift in Sources */,
 				7322311123040DB6009DD37F /* FantasyDeckRouter.swift in Sources */,
+				73EBBA78234E2BEC00B79121 /* NotificationSettingsRouter.swift in Sources */,
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
@@ -1965,6 +1986,7 @@
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
+				73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
@@ -2033,6 +2055,7 @@
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
+				73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
 				73E6012B22EC5CFE00F767BF /* User.swift in Sources */,
 				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
@@ -2055,6 +2078,7 @@
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
 				73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */,
 				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
+				73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
