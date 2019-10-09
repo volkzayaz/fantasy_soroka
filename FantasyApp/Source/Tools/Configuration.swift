@@ -57,11 +57,13 @@ extension Configuration {
         ///we need to delay app ViewControllers presentation
         let _ = Dispatcher.kickOff().subscribe()
         
+        ///
+        let _ = PurchaseManager.completeTransacions()
+        
     }
 
     private static func registerActors() {
         let actors: [Any] = [
-//            LocationViewModel(),
             UserPropertyActor(),
             RoomsActor()
         ]
