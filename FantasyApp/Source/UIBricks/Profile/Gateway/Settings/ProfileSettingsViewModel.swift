@@ -61,7 +61,7 @@ extension ProfileSettingsViewModel {
     
     func logout() {
         AuthenticationManager.logout()
-        Dispatcher.dispatch(action: SetUser(user: nil))
+        Dispatcher.dispatch(action: Logout())
     }
     
     func deleteAccount() {
@@ -76,6 +76,14 @@ extension ProfileSettingsViewModel {
             
         }
         
+    }
+
+    func restorePurchases() {
+        PurchaseManager.restorePurchases()
+        .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe()
+            .disposed(by: bag)
     }
     
 }

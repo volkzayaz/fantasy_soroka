@@ -154,6 +154,7 @@
 		73EBBA63234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA60234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift */; };
 		73EBBA64234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA61234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift */; };
 		73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */; };
+		73EBBA6D234CDAB800B79121 /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
@@ -405,6 +406,7 @@
 		73EBBA60234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryRouter.swift; sourceTree = "<group>"; };
 		73EBBA61234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryViewController.swift; sourceTree = "<group>"; };
 		73EBBA62234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesReactionHistoryViewModel.swift; sourceTree = "<group>"; };
+		73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -987,6 +989,7 @@
 			children = (
 				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
 				7361F33023350265007B84B0 /* ConectionResource.swift */,
+				73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1996,6 +1999,7 @@
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
+				73EBBA6D234CDAB800B79121 /* SubscriptionStatus.swift in Sources */,
 				84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */,
 				73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */,
 				73097C0F231D431600B71053 /* ProfilePhotoCollectionView.swift in Sources */,

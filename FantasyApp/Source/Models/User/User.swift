@@ -31,6 +31,8 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         return DiscoveryFilter(filter: x, community: y)
     }
     
+    var subscription: Subscription
+    
     enum AuthData: Equatable {
         case email(String)
         case fbData(String)
@@ -118,6 +120,22 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
  
     static var query: PFQuery<PFObject> {
         return PFUser.query()!.includeKey("belongsTo")
+    }
+    
+    struct Subscription: Codable, Equatable {
+        
+        enum CodingKeys: String, CodingKey {
+            case isSubscribed
+            case status = "subscription"
+        }
+        
+        var isSubscribed: Bool
+        let status: Status?
+        
+        struct Status: Codable, Equatable {
+            let endDate: Date
+        }
+        
     }
     
 }

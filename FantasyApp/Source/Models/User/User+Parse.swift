@@ -92,6 +92,7 @@ extension User {
         }
         
         let answers = pfUser["answers"] as? Bio.PersonalQuestion ?? [:]
+        let isSubscribed = pfUser["isSubscribed"] as? Bool ?? false
         
         id = objectId
         bio = User.Bio(name: name,
@@ -105,12 +106,11 @@ extension User {
                        expirience: maybeExpirience,
                        answers: answers)
         
-        ///TODO: save on server
         searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
         connections = .init(likeRequests: [], chatRequests: [], rooms: [])
-        //privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
+        subscription = .init(isSubscribed: isSubscribed, status: nil)
         
     }
     

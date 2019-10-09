@@ -47,6 +47,10 @@ extension UserProfileViewModel {
             res.append( .about(x) )
         }
         
+        if user.subscription.isSubscribed {
+            res.append( .basic("This user has golden membership") )
+        }
+        
         var bioSection = [
             "Gender - " + user.bio.gender.rawValue,
             "Relationship - " + user.bio.relationshipStatus.description,

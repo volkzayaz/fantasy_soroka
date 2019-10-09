@@ -40,5 +40,10 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     
 }
 
-private extension UserGatewayViewController {
+extension UserGatewayViewController {
+    
+    @IBAction func teleport(_ sender: Any) {
+        viewModel.teleport()
+    }
+    
 }
