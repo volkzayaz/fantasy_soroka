@@ -106,10 +106,7 @@ extension Fantasy.Request {
  
     struct ReactOnCard: AuthorizedAPIResource {
         
-        enum Reaction {
-               case like, dislike, neutral
-        }; let reaction: Reaction
-        
+        let reaction: Fantasy.Card.Reaction
         let card: Fantasy.Card
         
         typealias responseType = EmptyResponse
@@ -123,6 +120,7 @@ extension Fantasy.Request {
             case .like   : return "/fantasy-cards/\(card.id)/like"
             case .dislike: return "/fantasy-cards/\(card.id)/dislike"
             case .neutral: return "/fantasy-cards/\(card.id)/neutral"
+            case .block  : return "/fantasy-cards/\(card.id)/block"
             }
             
         }
@@ -148,7 +146,7 @@ extension Fantasy.Request {
         }
         
         var path: String {
-            return "/users/\(with.id)/fantasy-cards"
+            return "/users/\(with.id)/fantasy-collections"
         }
         
         var task: Task {

@@ -22,21 +22,20 @@ extension FantasyDetailsViewModel {
     }
     
     var likeText: Driver<String> {
-        let c = card
         
-        return appState.changesOf { $0.currentUser?.fantasies }
-            .notNil()
-            .map { fantasies in
+        let flipUp = flipUpAction
+        
+        return currentState.asDriver()
+            .map { reaction -> String in
                 
-                if fantasies.disliked.contains(c) {
-                    return "Already Disliked"
+                switch flipUp {
+                
+                case .neutral: return ""
+                    
+                case .like   : return reaction == .neutral ? "Like"    : "Already liked"
+                case .dislike: return reaction == .neutral ? "Dislike" : "Already disliked"
+                case .block  : return reaction == .neutral ? "Block"   : "Already blocked"
                 }
-                
-                if fantasies.liked.contains(c) {
-                    return "Already liked"
-                }
-                
-                return "Like"
                 
             }
     }
@@ -47,18 +46,28 @@ struct FantasyDetailsViewModel : MVVM_ViewModel {
 
     private let card: Fantasy.Card
     private let shouldDecrement: Bool
-    private let positiveAction: FantasyCardInteraction.InteractionType
+    
+    private let currentState: BehaviorRelay<Fantasy.Card.Reaction>
+    
+    private let flipUpAction: Fantasy.Card.Reaction
     
     init(router: FantasyDetailsRouter, card: Fantasy.Card, shouldDecrement: Bool) {
         self.router = router
         self.card = card
         self.shouldDecrement = shouldDecrement
         
-        if appStateSlice.currentUser?.fantasies.disliked.contains(card) ?? false {
-            self.positiveAction = .dislike
-        }
-        else {
-            self.positiveAction = .like
+        self.currentState = BehaviorRelay(value: card.reaction)
+        
+        switch card.reaction {
+        case .neutral, .like:
+            flipUpAction = .like
+            
+        case .block:
+            flipUpAction = .block
+            
+        case .dislike:
+            flipUpAction = .dislike
+        
         }
         
         /////progress indicator
@@ -80,28 +89,30 @@ extension FantasyDetailsViewModel {
     
     func likeButtonTapped() {
         
-        ///TODO: clarify flipping rules on business logic side
-        ///this is already too messy
-        if case .like = positiveAction {
+        if currentState.value != .neutral {
             
-            if appStateSlice.currentUser?.fantasies.liked.contains(card) ?? false {
-                Dispatcher.dispatch(action: NeutralFantasy(card: card))
-            }
-            else {
-                Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: shouldDecrement))
-            }
+            Dispatcher.dispatch(action: NeutralFantasy(card: card))
+            currentState.accept( .neutral )
+            return
             
         }
-        else {
+        
+        switch flipUpAction {
+        case .neutral: break;
+        case .like:
+            Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: shouldDecrement))
             
-            if appStateSlice.currentUser?.fantasies.disliked.contains(card) ?? false {
-                Dispatcher.dispatch(action: NeutralFantasy(card: card))
-            }
-            else {
-                Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: shouldDecrement))
-            }
+        case .dislike:
+            Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: shouldDecrement))
+            
+        case .block:
+            ///TODO: dispatch block fantasy
+            break
             
         }
+        
+        currentState.accept( flipUpAction )
+         
         
     }
     

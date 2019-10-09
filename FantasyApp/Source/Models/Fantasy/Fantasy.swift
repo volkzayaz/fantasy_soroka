@@ -19,12 +19,29 @@ extension Fantasy {
             case text
             case imageURL = "src"
             case isPaid
+            
+            case isLikedByYou
+            case isDislikedByYou
+            case isBlockedByYou
+            
         }
         
         let id: String
         let text: String
         let imageURL: String
         let isPaid: Bool
+        
+        private let isLikedByYou: Bool
+        private let isDislikedByYou: Bool
+        private let isBlockedByYou: Bool
+        
+        var reaction: Reaction {
+            if isLikedByYou { return .like }
+            if isDislikedByYou { return .dislike }
+            if isBlockedByYou { return .block }
+            
+            return .neutral
+        }
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection
@@ -35,6 +52,10 @@ extension Fantasy {
         var identity: String {
             return text
         }
+        
+        enum Reaction: Int, Codable {
+               case like, dislike, block, neutral
+        };
     }
     
     struct Collection: Equatable, IdentifiableType, Codable {

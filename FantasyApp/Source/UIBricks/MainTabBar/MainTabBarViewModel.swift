@@ -51,7 +51,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
-        Fantasy.Manager.fetchMainCards(localLimit: 20)
+        Fantasy.Manager.fetchMainCards()
             .trackView(viewIndicator: indicator)
             .subscribe(onNext: { x in
                 Dispatcher.dispatch(action: StoreMainCards(cards: x))

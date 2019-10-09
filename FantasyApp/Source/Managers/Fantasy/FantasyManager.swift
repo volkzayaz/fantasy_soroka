@@ -40,11 +40,8 @@ extension Fantasy.Manager {
         
     }
     
-    static func fetchMainCards(localLimit: Int) -> Single< [Fantasy.Card] > {
-        
+    static func fetchMainCards() -> Single< [Fantasy.Card] > {
         return Fantasy.Request.Deck().rx.request
-            .map { Array($0.prefix(upTo: localLimit)) }
-                
     }
     
     static func searchFor(query: String) -> Single< [Fantasy.Card] > {
