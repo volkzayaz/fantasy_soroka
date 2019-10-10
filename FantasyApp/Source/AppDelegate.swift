@@ -22,20 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - deep linking
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return Branch.getInstance()?.application(
-            application,
-            open: url,
-            sourceApplication: sourceApplication,
-            annotation: annotation
-        ) ?? true
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+      Branch.getInstance()?.application(app, open: url, options: options)
+      return true
     }
 
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        Branch.getInstance()?.continue(userActivity)
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+      Branch.getInstance()?.continue(userActivity)
+      return true
+    }
 
-        return true
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      Branch.getInstance()?.handlePushNotification(userInfo)
     }
 }

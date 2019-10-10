@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import ParseLiveQuery
+import Branch
 
 class RoomsActor {
     var query: PFQuery<PFObject>?
@@ -17,6 +18,7 @@ class RoomsActor {
         appState.changesOf { $0.currentUser }.drive(onNext: { [weak self] user in
             if user != nil {
                 self?.addSubscription()
+                self?.acceptRoomInviteIfNeeded()
             } else {
                 self?.removeSubscription()
             }
@@ -58,6 +60,17 @@ class RoomsActor {
                 Dispatcher.dispatch(action: UpdateRoom(room: room))
             }
         }
+    }
+
+    private func acceptRoomInviteIfNeeded() {
+        guard let sessionParams = Branch.getInstance()?.getLatestReferringParams() as? [String: AnyObject],
+            let roomId = sessionParams["roomId"] as? String else {
+                return
+        }
+        ChatManager.acceptInviteToRoom(roomId).subscribe({ [weak self] room in
+            guard let self = self else { return }
+
+        }).disposed(by: bag)
     }
 
     private func removeSubscription() {

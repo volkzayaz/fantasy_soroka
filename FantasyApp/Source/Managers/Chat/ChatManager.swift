@@ -63,7 +63,7 @@ extension ChatManager {
     // MARK: - Room creation
     static func createDraftRoom() -> Single<Chat.Room?> {
         let settings = Chat.RoomSettings(isClosedRoom: true,
-                                         isHideCommonFantasies: true,
+                                         isHideCommonFantasies: false,
                                          isScreenShieldEnabled: false,
                                          sharedCollections: [])
         return CreateDraftRoomResource(settings: settings).rx.request
@@ -71,6 +71,22 @@ extension ChatManager {
             .flatMapLatest { room -> Observable<Chat.Room> in
                 Dispatcher.dispatch(action: AddRooms(rooms: [room]))
                 return createDraftRoomDetails(for: room).asObservable()
+            }.first()
+    }
+
+    static func createRoomWith(participant: Chat.RoomParticipant) -> Single<Chat.Room?> {
+        let settings = Chat.RoomSettings(isClosedRoom: true,
+                                         isHideCommonFantasies: false,
+                                         isScreenShieldEnabled: false,
+                                         sharedCollections: [])
+        return CreateDraftRoomResource(settings: settings).rx.request
+            .asObservable()
+            .flatMapLatest { room -> Observable<Chat.Room> in
+                Dispatcher.dispatch(action: AddRooms(rooms: [room]))
+                return createDraftRoomDetails(for: room).asObservable()
+            }
+            .flatMapLatest { room -> Observable<Chat.Room> in
+                return inviteParticipant(participant, to: room.id).asObservable()
             }.first()
     }
 

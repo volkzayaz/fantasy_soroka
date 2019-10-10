@@ -47,9 +47,10 @@ extension Configuration {
         PFFacebookUtils.facebookLoginManager().loginBehavior = .browser
 
         // MARK: - Branch
+        Branch.setUseTestBranchKey(true)
         let branch = Branch.getInstance()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
-
+            
          })
 
         // MARK: - Logging
@@ -63,7 +64,9 @@ extension Configuration {
         ///in case AppState initialisation becomes async
         ///we need to delay app ViewControllers presentation
         let _ = Dispatcher.kickOff().subscribe()
-        
+
+        // uncomment to test Branch Integration
+        // Branch.getInstance()?.validateSDKIntegration()
     }
 
     private static func registerActors() {

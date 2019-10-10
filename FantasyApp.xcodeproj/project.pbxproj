@@ -180,6 +180,7 @@
 		843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6483234E5B4D00E5639B /* Date+Formatting.swift */; };
 		843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6485234E61E500E5639B /* InviteParticipantResource.swift */; };
 		843B6488234E624E00E5639B /* AcceptInviteResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6487234E624E00E5639B /* AcceptInviteResource.swift */; };
+		843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 843B648A234EAC4600E5639B /* FantasyApp.entitlements */; };
 		843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */; };
 		843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF715234249420098C196 /* TimeSeparatorModel.swift */; };
 		843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */; };
@@ -1759,6 +1760,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */,
 				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				7312B0D222D74FB200DB0F36 /* Appfile in Resources */,
 				841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */,
