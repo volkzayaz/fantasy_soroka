@@ -177,6 +177,9 @@
 		841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */; };
 		841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681EF22E9B36C00FA9455 /* UIColor+Style.swift */; };
 		841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681F122E9B37E00FA9455 /* UIFont+Style.swift */; };
+		843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6483234E5B4D00E5639B /* Date+Formatting.swift */; };
+		843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6485234E61E500E5639B /* InviteParticipantResource.swift */; };
+		843B6488234E624E00E5639B /* AcceptInviteResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6487234E624E00E5639B /* AcceptInviteResource.swift */; };
 		843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */; };
 		843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF715234249420098C196 /* TimeSeparatorModel.swift */; };
 		843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */; };
@@ -428,6 +431,10 @@
 		841681DC22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-UltralightItalic.otf"; sourceTree = "<group>"; };
 		841681EF22E9B36C00FA9455 /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
 		841681F122E9B37E00FA9455 /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
+		843B6483234E5B4D00E5639B /* Date+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
+		843B6485234E61E500E5639B /* InviteParticipantResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParticipantResource.swift; sourceTree = "<group>"; };
+		843B6487234E624E00E5639B /* AcceptInviteResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptInviteResource.swift; sourceTree = "<group>"; };
+		843B648A234EAC4600E5639B /* FantasyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FantasyApp.entitlements; sourceTree = "<group>"; };
 		843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		843CF715234249420098C196 /* TimeSeparatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorModel.swift; sourceTree = "<group>"; };
 		843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorPresenter.swift; sourceTree = "<group>"; };
@@ -606,6 +613,7 @@
 		7312B04222D73AD100DB0F36 /* FantasyApp */ = {
 			isa = PBXGroup;
 			children = (
+				843B648A234EAC4600E5639B /* FantasyApp.entitlements */,
 				7312B05E22D7403300DB0F36 /* Source */,
 				7312B06122D7403300DB0F36 /* Resources */,
 				7312B05C22D7403300DB0F36 /* support_files */,
@@ -704,6 +712,7 @@
 				7312B07F22D7422100DB0F36 /* RxExtensions */,
 				7312B09222D7422100DB0F36 /* UIColor+Extension.swift */,
 				841681EF22E9B36C00FA9455 /* UIColor+Style.swift */,
+				843B6483234E5B4D00E5639B /* Date+Formatting.swift */,
 				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
 				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
 				734C70BA23213D9200ED2E91 /* Collection+Safe.swift */,
@@ -1402,6 +1411,13 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		843B6489234EA78100E5639B /* RoomCreationOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RoomCreationOnboarding;
+			sourceTree = "<group>";
+		};
 		843CF7102342466B0098C196 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1451,6 +1467,8 @@
 			children = (
 				843CF722234373610098C196 /* RoomResource.swift */,
 				843CF71C23436B630098C196 /* RoomsResource.swift */,
+				843B6485234E61E500E5639B /* InviteParticipantResource.swift */,
+				843B6487234E624E00E5639B /* AcceptInviteResource.swift */,
 				843CF71E234370480098C196 /* CreateDraftRoomResource.swift */,
 				843CF720234372450098C196 /* ActivateRoomResource.swift */,
 				843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */,
@@ -1597,6 +1615,7 @@
 		84C1D0422327BA8200648DE1 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
+				843B6489234EA78100E5639B /* RoomCreationOnboarding */,
 				84AB490B232A83DE00F3609A /* CommonFantasies */,
 				84AB4902232A2CE300F3609A /* Chat */,
 				84AB48FB232A16B400F3609A /* Details */,
@@ -1987,6 +2006,7 @@
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
+				843B6488234E624E00E5639B /* AcceptInviteResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
@@ -1995,6 +2015,7 @@
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
+				843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
 				84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */,
 				73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */,
@@ -2036,6 +2057,7 @@
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
+				843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
 				73EBBA5E234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift in Sources */,
@@ -2257,6 +2279,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CB48395Y6T;
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
@@ -2281,6 +2304,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CB48395Y6T;
@@ -2360,6 +2384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CB48395Y6T;

@@ -2,7 +2,7 @@
 //  CreateDraftRoomResource.swift
 //  FantasyApp
 //
-//  Created by Admin on 01.10.2019.
+//  Created by Borys Vynohradov on 01.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 import Moya
 
 struct CreateDraftRoomResource: AuthorizedAPIResource {
-    private let room: Chat.Room
+    private let settings: Chat.RoomSettings
 
-    init(room: Chat.Room) {
-        self.room = room
+    init(settings: Chat.RoomSettings) {
+        self.settings = settings
     }
 
     typealias responseType = Chat.Room
@@ -27,6 +27,6 @@ struct CreateDraftRoomResource: AuthorizedAPIResource {
     }
 
     var task: Task {
-        return .requestJSONEncodable(room)
+        return .requestJSONEncodable(settings)
     }
 }

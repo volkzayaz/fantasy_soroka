@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import Amplitude_iOS
 import Parse
+import Branch
 
 enum Configuration {}
 extension Configuration {
@@ -44,6 +45,12 @@ extension Configuration {
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         FBSDKSettings.setAppID("1298342663520828") 
         PFFacebookUtils.facebookLoginManager().loginBehavior = .browser
+
+        // MARK: - Branch
+        let branch = Branch.getInstance()
+        branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+
+         })
 
         // MARK: - Logging
         if Environment.debug {

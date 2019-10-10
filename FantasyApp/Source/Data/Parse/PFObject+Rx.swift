@@ -252,15 +252,18 @@ extension Array where Element: PFObject {
             
             for key in pfObject.allKeys {
                 
-                if pfObject[key] is PFGeoPoint? {
+                if pfObject[key] is PFRelation || pfObject[key] is NSDate || pfObject[key] is PFGeoPoint? {
                     continue
                 }
-                
+
                 json[key] = pfObject[key]
             }
             json["objectId"]  = pfObject.objectId
             if let x = pfObject.createdAt {
                 json["createdAt"] = dateFormatter.string(from: x)
+            }
+            if let x = pfObject.updatedAt {
+                json["updatedAt"] = dateFormatter.string(from: x)
             }
             
             jsons.append(json)

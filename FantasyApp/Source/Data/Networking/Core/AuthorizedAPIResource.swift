@@ -14,7 +14,6 @@ public protocol AuthorizedAPIResource: APIResource {
 
 extension AuthorizedAPIResource {
     var headers: [String : String]? {
-        
         guard let token = PFUser.current()?.sessionToken else {
             fatalErrorInDebug("No sessionToken available. Can't access authorized resource \(self)")
             return [:]

@@ -2,7 +2,7 @@
 //  RoomDetailsViewModel.swift
 //  FantasyApp
 //
-//  Created by Admin on 12.09.2019.
+//  Created by Borys Vynohradov on 12.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -18,11 +18,11 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
     }
 
     let router: RoomDetailsRouter
-    let room: Chat.RoomDetails
+    let room: Chat.Room
     let page: BehaviorRelay<DetailsPage>
 
     init(router: RoomDetailsRouter,
-         room: Chat.RoomDetails,
+         room: Chat.Room,
          page: DetailsPage) {
         self.router = router
         self.room = room

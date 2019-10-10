@@ -2,7 +2,7 @@
 //  MessagePresenter.swift
 //  FantasyApp
 //
-//  Created by Admin on 03.10.2019.
+//  Created by Borys Vynohradov on 03.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  Avatar.swift
 //  newpl
 //
-//  Created by Admin on 08.07.2019.
+//  Created by Borys Vynohradov on 08.07.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

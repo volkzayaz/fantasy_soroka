@@ -2,7 +2,7 @@
 //  ChatViewModel.swift
 //  FantasyApp
 //
-//  Created by Admin on 12.09.2019.
+//  Created by Borys Vynohradov on 12.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -15,13 +15,13 @@ import ChattoAdditions
 
 class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
     let router: ChatRouter
-    let room: Chat.RoomDetails
+    let room: Chat.Room
     let messages = BehaviorRelay<[Chat.Message]>(value: [])
     weak var delegate: ChatDataSourceDelegateProtocol?
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 
-    init(router: ChatRouter, room: Chat.RoomDetails) {
+    init(router: ChatRouter, room: Chat.Room) {
         self.router = router
         self.room = room
 
@@ -54,7 +54,7 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
 
 extension ChatViewModel {
     func loadMessages() {
-        ChatManager.getMessagesInRoom(room.objectId!, offset: messages.value.count)
+        ChatManager.getMessagesInRoom(room.id, offset: messages.value.count)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak self] messages in
@@ -69,28 +69,20 @@ extension ChatViewModel {
     }
 
     func sendMessage(text: String) {
-        guard let roomId = room.objectId, let recepientId = room.recipient?.objectId else {
-            return
-        }
         let message = Chat.Message(senderDisplayName: User.current!.bio.name,
                                    senderId: AuthenticationManager.currentUser()!.id,
-                                   recepientId: recepientId,
                                    text: text,
                                    objectId: nil,
-                                   roomId: roomId,
+                                   roomId: room.id,
                                    isRead: false,
                                    createdAt: Date())
-        ChatManager.sendMessage(message).subscribe({ [weak self] event in
-            guard let self = self else { return }
+        ChatManager.sendMessage(message, to: room).subscribe({ event in
             // TODO: error handling
         }).disposed(by: bag)
     }
 
     func connect() {
-        guard let roomId = room.objectId else {
-            return
-        }
-        ChatManager.connect(roomId: roomId).subscribe(onNext: { [weak self] event in
+        ChatManager.connectToRoom(room).subscribe(onNext: { [weak self] event in
             guard let self = self else { return }
             var array: [Chat.Message] = self.messages.value
             switch event {
@@ -112,10 +104,7 @@ extension ChatViewModel {
     }
 
     func disconnect() {
-        guard let roomId = room.objectId else {
-            return
-        }
-        ChatManager.disconnect(roomId: roomId)
+        ChatManager.disconnectFromRoom(room.id )
     }
 
     private func prepareChatItems() -> [ChatItemProtocol] {

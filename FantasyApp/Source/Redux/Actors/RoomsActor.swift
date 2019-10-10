@@ -2,7 +2,7 @@
 //  RoomsActor.swift
 //  FantasyApp
 //
-//  Created by Admin on 10.09.2019.
+//  Created by Borys Vynohradov on 10.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -24,26 +24,39 @@ class RoomsActor {
     }
 
     private func addSubscription() {
-        guard let user = PFUser.current() else {
+        guard let userId = AuthenticationManager.currentUser()?.id else {
             return
         }
 
-        let predicate = NSPredicate(format: "owner == %@ OR recipient == %@", user, user)
+        let predicate = NSPredicate(format: "ownerId == %@ OR recipientId == %@", userId, userId)
         query = PFQuery(className: Chat.RoomDetails.className, predicate: predicate)
         query!.addDescendingOrder("updatedAt")
 
         let subscription: Subscription<PFObject> = Client.shared.subscribe(query!)
         subscription.handleEvent { object, event in
-            var action: Action
             switch event {
-            case .entered(let roomObject), .created(let roomObject):
-                action = AddRooms(rooms: [roomObject].toCodable())
-            case .deleted(let roomObject), .left(let roomObject):
-                action = RemoveRoom(room: [roomObject].toCodable().first!)
-            case .updated(let roomObject):
-                action = UpdateRoom(room: [roomObject].toCodable().first!)
+            case .entered(let roomObject),
+                 .created(let roomObject),
+                 .updated(let roomObject):
+                let roomDetails: Chat.RoomDetails = [roomObject].toCodable().first!
+                guard var room = appStateSlice.rooms
+                    .first(where: { $0.id == roomDetails.backendId }) else {
+                        return
+                }
+                room.details = roomDetails
+
+               Dispatcher.dispatch(action: UpdateRoom(room: room))
+            case .deleted(let roomObject),
+                 .left(let roomObject):
+                let roomDetails: Chat.RoomDetails = [roomObject].toCodable().first!
+                guard var room = appStateSlice.rooms
+                     .first(where: { $0.id == roomDetails.backendId }) else {
+                         return
+                 }
+                 room.details = nil
+
+                Dispatcher.dispatch(action: UpdateRoom(room: room))
             }
-            Dispatcher.dispatch(action: action)
         }
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,5 +20,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
+
+    // MARK: - deep linking
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return Branch.getInstance()?.application(
+            application,
+            open: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation
+        ) ?? true
+    }
+
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        Branch.getInstance()?.continue(userActivity)
+
+        return true
+    }
 }

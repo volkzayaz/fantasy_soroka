@@ -2,7 +2,7 @@
 //  ChatViewController.swift
 //  FantasyApp
 //
-//  Created by Admin on 12.09.2019.
+//  Created by Borys Vynohradov on 12.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

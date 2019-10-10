@@ -109,7 +109,7 @@ extension User {
         searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
-        connections = .init(likeRequests: [], chatRequests: [], rooms: [])
+        connections = .init(likeRequests: [], chatRequests: [])
         //privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
         
     }

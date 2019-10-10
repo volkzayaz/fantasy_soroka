@@ -21,20 +21,22 @@ target 'FantasyApp' do
   
     pod 'RxCocoa', '~> 5.0'
     pod 'RxDataSources', '~> 4.0.1'
-    pod 'RxCoreLocation'
+    pod 'RxCoreLocation', '~> 1.4'
     
     #analytics
-    pod 'Amplitude-iOS', '~> 4.7'
+    pod 'Amplitude-iOS', '~> 4.8'
+
+    #deep linking
+    pod 'Branch'
     
     #ui
     pod 'SnapKit', '~> 5.0'
-    pod 'Kingfisher', '~> 5.7'
+    pod 'Kingfisher', '~> 5.8'
     pod 'FDTake'
     pod 'Koloda', '~> 5.0'
     pod 'Chatto', '~> 3.5'
     pod 'ChattoAdditions', '~> 3.5'
-    pod 'MessageKit', '~> 3.0'
-    pod 'iCarousel'
+    pod 'iCarousel', '~> 1.8'
 
 end
 

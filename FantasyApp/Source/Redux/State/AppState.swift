@@ -47,7 +47,7 @@ var appState: Driver<AppState> {
 
 struct AppState: Equatable {
     var currentUser: User?
-    
+    var rooms: [Chat.Room] = []
     var fantasies: SwipeState
     
     struct SwipeState: Equatable {
@@ -58,7 +58,9 @@ struct AppState: Equatable {
         enum Restriction: Equatable {
             case swipeCount(Int)
             case waiting(till: Date)
-        }; var restriction: Restriction
+        }
+
+        var restriction: Restriction
         
     };
     
