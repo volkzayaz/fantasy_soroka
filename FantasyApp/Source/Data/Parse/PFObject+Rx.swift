@@ -144,25 +144,58 @@ extension Reactive where Base: PFQuery<PFObject> {
     
 }
 
+extension Reactive where Base: PFObject {
+    
+    func fetch() -> Single<PFObject> {
+
+        return Observable.create({ (subscriber) -> Disposable in
+            self.base.fetchInBackground(block: { (maybeValue, error) in
+                
+                if let x = error {
+                    subscriber.onError(x)
+                    return
+                }
+                
+                subscriber.onNext( maybeValue! )
+                subscriber.onCompleted()
+            })
+            
+            return Disposables.create {
+            }
+        })
+        .asSingle()
+        
+    }
+    
+}
+
+
 extension ParsePresentable {
+    
+    ///does not have objectID assigned. This is a freshly created PFObject
+    var freshPFObject: PFObject {
+
+        let e = JSONEncoder()
+        e.dateEncodingStrategy = .iso8601
+        
+        guard let data = try? e.encode(self),
+              var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+            fatalError("Incorrect representation of Codable \(self)")
+        }
+        
+        json.removeValue(forKey: "createdAt")
+        
+        return PFObject(className: type(of: self).className,
+                        dictionary: json)
+        
+    }
     
     ///Suitable for creating PFObjects
     func rxCreate() -> Single<Self> {
         
         return Observable.create { (subscriber) -> Disposable in
             
-            let e = JSONEncoder()
-            e.dateEncodingStrategy = .iso8601
-            
-            guard let data = try? e.encode(self),
-                  var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                fatalError("Incorrect representation of Codable \(self)")
-            }
-            
-            json.removeValue(forKey: "createdAt")
-            
-            let pfObject = PFObject(className: type(of: self).className,
-                                    dictionary: json)
+            let pfObject = self.freshPFObject
             
             pfObject.saveInBackground(block: { (didSave, maybeError) in
                 

@@ -25,7 +25,7 @@ struct BuyCollection: ActionCreator {
                     return .just(state)
                 }
 
-                return Fantasy.Manager.fetchMainCards(localLimit: swipesLeft)
+                return Fantasy.Manager.fetchMainCards()
                     .asObservable()
                     .map { cards in
                         state.fantasies.cards = cards

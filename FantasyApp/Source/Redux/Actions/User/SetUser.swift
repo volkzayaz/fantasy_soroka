@@ -19,3 +19,13 @@ struct SetUser: Action {
     }
     
 }
+
+struct Logout: Action {
+    
+    func perform(initialState: AppState) -> AppState {
+        return AppState(currentUser: nil,
+                        fantasies: .init(cards: [],
+                                         restriction: .swipeCount(0)))
+    }
+    
+}

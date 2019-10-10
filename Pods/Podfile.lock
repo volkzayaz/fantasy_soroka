@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
-  - Amplitude-iOS (4.8.2)
+  - Amplitude-iOS (4.8.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -24,9 +24,9 @@ PODS:
     - FBSDKCoreKit
   - FDTake (3.0.0)
   - iCarousel (1.8.3)
-  - Kingfisher (5.8.3):
-    - Kingfisher/Core (= 5.8.3)
-  - Kingfisher/Core (5.8.3)
+  - Kingfisher (5.8.2):
+    - Kingfisher/Core (= 5.8.2)
+  - Kingfisher/Core (5.8.2)
   - Koloda (5.0):
     - pop (~> 1.0)
   - Moya (13.0.1):
@@ -69,6 +69,7 @@ PODS:
   - RxSwift (5.0.0)
   - SnapKit (5.0.1)
   - Starscream (3.0.6)
+  - SwiftyStoreKit (0.15.0)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
@@ -91,9 +92,10 @@ DEPENDENCIES:
   - RxCoreLocation (~> 1.4)
   - RxDataSources (~> 4.0.1)
   - SnapKit (~> 5.0)
+  - SwiftyStoreKit
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Amplitude-iOS
     - Bolts
@@ -124,10 +126,11 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - Starscream
+    - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  Amplitude-iOS: 46c8e6e65c49bb1ad1909a9add1a68e1f8562b3f
+  Amplitude-iOS: 6e2a21000b89aaa428a45cd22e56caed5e2360bf
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
   Branch: 3833f9691b0c874c81233362c929239c452f2ff0
@@ -140,7 +143,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 54ae59987f2a8703021557c90a9aebb9e5c2bef6
   FDTake: cbae493765483304fbaa48e402ea3d7b22ba86d0
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
+  Kingfisher: 3adc15096595f5aed800bb0d5cb757fc58b2d2dd
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
@@ -156,7 +159,8 @@ SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: c1affd5524e18fc328680d68e6e570337b0a15ad
+PODFILE CHECKSUM: d830b4beb359374cf2f52309b9d5bac2224f6e78
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.7.4

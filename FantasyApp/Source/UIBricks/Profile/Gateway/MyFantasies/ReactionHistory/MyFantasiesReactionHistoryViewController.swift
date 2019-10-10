@@ -37,11 +37,13 @@ extension MyFantasiesReactionHistoryViewController {
         
         if segue.identifier == R.segue.myFantasiesReactionHistoryViewController.embedFantasyList.identifier {
             
-            let provider = segmentedControl.rx.value.map { x -> [Fantasy.Card] in
+            let provider = segmentedControl.rx.value.flatMapLatest { x -> Single<[Fantasy.Card]> in
                 
-                if x == 0 { return User.current!.fantasies.liked }
+                if x == 0 {
+                    return Fantasy.Request.FetchCards(reactionType: .liked).rx.request
+                }
                 
-                return User.current!.fantasies.disliked
+                return Fantasy.Request.FetchCards(reactionType: .disliked).rx.request
             }
             .asDriver(onErrorJustReturn: [])
             

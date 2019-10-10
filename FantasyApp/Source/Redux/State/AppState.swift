@@ -64,6 +64,8 @@ struct AppState: Equatable {
         
     };
     
+    
+    
 }
 
 extension Dispatcher {

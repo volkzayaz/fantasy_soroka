@@ -42,6 +42,14 @@ extension ProfileSettingsViewController {
             viewModel.logout()
         }
         
+        if indexPath.section == 4 {
+            viewModel.deleteAccount()
+        }
+
+        if indexPath.section == 3 && indexPath.row == 1 {
+            viewModel.restorePurchases()
+        }
+        
     }
     
 }

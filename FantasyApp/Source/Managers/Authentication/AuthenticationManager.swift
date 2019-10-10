@@ -62,7 +62,7 @@ extension AuthenticationManager {
                 }
         }
         .flatMap { (u: PFUser) -> Single<User> in
-            return u.convertWithAlbums()
+            return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
         }
         .do(onSuccess: { (user) in
             SettingsStore.currentUser.value = user
@@ -78,15 +78,9 @@ extension AuthenticationManager {
                     if let e = maybeError {
                         return subscriber.onError(e)
                     }
-                
-                    OperationQueue().addOperation {
-                        
-                        ///Can't "includeKey" during login
-                        let _ = try? (maybeUser?["belongsTo"] as? PFObject)?.fetch()
-                        
-                        subscriber.onNext( maybeUser! )
-                        subscriber.onCompleted()
-                    }
+                    
+                    subscriber.onNext( maybeUser! )
+                    subscriber.onCompleted()
                     
                 }
             
@@ -94,7 +88,7 @@ extension AuthenticationManager {
             }
             .asSingle()
             .flatMap { (u: PFUser) -> Single<User> in
-                return u.convertWithAlbums()
+                return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
@@ -119,15 +113,6 @@ extension AuthenticationManager {
                     return subscriber.onError( FantasyError.generic(description: R.string.localizable.authorizationNewFBUser()) )
                 }
                 
-                OperationQueue().addOperation {
-                    
-                    ///Can't "includeKey" during login
-                    let _ = try? (maybeUser?["belongsTo"] as? PFObject)?.fetch()
-                    
-                    subscriber.onNext( maybeUser! )
-                    subscriber.onCompleted()
-                }
-                
                 subscriber.onNext( maybeUser! )
                 subscriber.onCompleted()
                 
@@ -137,7 +122,7 @@ extension AuthenticationManager {
             }
             .asSingle()
             .flatMap { (u: PFUser) -> Single<User> in
-                return u.convertWithAlbums()
+                return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user

@@ -103,4 +103,28 @@ extension UserManager {
         }
     }
     
+    static func deleteAccount() -> Single<Void> {
+        
+        return Observable.create { (subscriber) in
+            
+            PFUser(withoutDataWithObjectId: User.current!.id).deleteInBackground { (res, error) in
+                
+                if let e = error {
+                    subscriber.onError(e)
+                }
+                
+                subscriber.onNext( () )
+                subscriber.onCompleted()
+            }
+            
+            return Disposables.create()
+        }
+        .asSingle()
+            
+            
+        
+        
+        
+    }
+    
 }

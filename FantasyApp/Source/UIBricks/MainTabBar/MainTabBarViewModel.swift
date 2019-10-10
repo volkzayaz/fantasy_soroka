@@ -43,7 +43,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         ///Refresh on app start happens here:
         ///Alternativelly we can encode appState to disk and just restore it from there
         ///To keep syncing problems at min for now we'll fetch most info from server
-        ///But for v2 we want to implement disk-first retoration policy
+        ///But for v2 we want to implement disk-first restoration policy
         Fantasy.Manager.fetchSwipeState()
             .trackView(viewIndicator: indicator)
             .subscribe(onNext: { x in
@@ -51,7 +51,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
-        Fantasy.Manager.fetchMainCards(localLimit: 20)
+        Fantasy.Manager.fetchMainCards()
             .trackView(viewIndicator: indicator)
             .subscribe(onNext: { x in
                 Dispatcher.dispatch(action: StoreMainCards(cards: x))

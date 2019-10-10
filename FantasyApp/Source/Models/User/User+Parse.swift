@@ -17,7 +17,10 @@ enum ParseMigrationError: Error {
 extension User {
     
     ///single migration point from Parse Entity to Fantasy Entity
-    init(pfUser: PFUser, albums: (public: Album, private: Album)? = nil) throws {
+    init(pfUser: PFUser,
+         albums: (public: Album, private: Album)? = nil,
+         subscriptionStatus: User.Subscription? = nil,
+         notifSettings: NotificationSettings? = nil) throws {
 
         guard let objectId = pfUser.objectId else {
             fatalError("Unsaved PFUsers conversion to native User is not supported")
@@ -77,6 +80,7 @@ extension User {
         }
         
         let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
+        
         let photos = User.Bio.Photos(avatar  : mainPhoto,
                                      public  : albums?.public  ?? .init(images: []) ,
                                      private : albums?.private ?? .init(images: []))
@@ -92,6 +96,7 @@ extension User {
         }
         
         let answers = pfUser["answers"] as? Bio.PersonalQuestion ?? [:]
+        let isSubscribed = pfUser["isSubscribed"] as? Bool ?? false
         
         id = objectId
         bio = User.Bio(name: name,
@@ -105,13 +110,12 @@ extension User {
                        expirience: maybeExpirience,
                        answers: answers)
         
-        ///TODO: save on server
         searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
         connections = .init(likeRequests: [], chatRequests: [])
-        //privacy = .init(privateMode: false, disabledMode: false, blockedList: [])
-        
+        subscription = subscriptionStatus ?? .init(isSubscribed: isSubscribed, status: nil)
+        notificationSettings = notifSettings ?? NotificationSettings()
     }
     
     ////we can edit only a subset of exisitng user properties to Parse
@@ -131,7 +135,8 @@ extension User {
             "expirience"            : bio.expirience?.rawValue as Any,
             "answers"               : bio.answers,
             "belongsTo"             : community.value?.pfObject as Any,
-            "communityChangePolicy" : community.changePolicy.rawValue
+            "communityChangePolicy" : community.changePolicy.rawValue,
+            "notificationSettings"  : notificationSettings.pfObject
             ] as [String : Any]
         
         switch bio.relationshipStatus {
@@ -171,15 +176,38 @@ extension PFUser {
         
     }
  
-    func convertWithAlbums() -> Single<User> {
+    func convertWithAlbumsAndSubscriptionAndNotificationSettings() -> Single<User> {
         
         guard self == PFUser.current() else {
             fatalError("Method is only designed to be used for currentUser")
         }
         
-        return UserManager.fetchOrCreateAlbums()
-            .map { try User(pfUser: self, albums: $0) }
+        ///Fetch or create notification settings
+        let notificationSettingsSignal: Single<NotificationSettings>
+        if let x = (self["notificationSettings"] as? PFObject) {
+            notificationSettingsSignal = x.rx.fetch().map { $0.toCodable() }
+        }
+        else {
+            let x = NotificationSettings()
+            self["notificationSettings"] = x.freshPFObject
+            notificationSettingsSignal = self.rxSave().map { _ in x }
+        }
         
+        return Single.zip(UserManager.fetchOrCreateAlbums(),
+                          PurchaseManager.fetchSubscriptionStatus(),
+                          (self["belongsTo"] as! PFObject).rx.fetch(),
+                          notificationSettingsSignal
+                          )
+            .map { (arg) -> User in
+                
+                let (albums, subscripiton, _, ns) = arg
+                
+                return try User(pfUser: self,
+                                albums: albums,
+                                subscriptionStatus: subscripiton,
+                                notifSettings: ns)
+            }
+            
     }
     
 }

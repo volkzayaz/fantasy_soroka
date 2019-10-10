@@ -15,40 +15,70 @@ extension Fantasy {
     struct Card: Equatable, IdentifiableType, Codable {
         
         enum CodingKeys: String, CodingKey {
+            case id
             case text
             case imageURL = "src"
-          //  case isPaid
+            case isPaid
+            
+            case isLikedByYou
+            case isDislikedByYou
+            case isBlockedByYou
+            
         }
         
+        let id: String
         let text: String
         let imageURL: String
-        //let isPaid: Bool
+        let isPaid: Bool
+        
+        private let isLikedByYou: Bool
+        private let isDislikedByYou: Bool
+        private let isBlockedByYou: Bool
+        
+        var reaction: Reaction {
+            if isLikedByYou { return .like }
+            if isDislikedByYou { return .dislike }
+            if isBlockedByYou { return .block }
+            
+            return .neutral
+        }
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection
         var isFree: Bool {
-            return true //!isPaid
+            return !isPaid
         }
         
         var identity: String {
             return text
         }
+        
+        enum Reaction: Int, Codable {
+               case like, dislike, block, neutral
+        };
     }
     
     struct Collection: Equatable, IdentifiableType, Codable {
         
         enum CodingKeys: String, CodingKey {
+            case id
             case name = "description"
             case imageURL = "src"
             case cardsCount = "size"
+            case isPurchased
+            case productId
         }
         
+        let id: String
         let name: String
         let imageURL: String
         let cardsCount: Int
         
+        let isPurchased: Bool
+        let productId: String? ///absence of ProductID means product is free
+        
         var identity: String {
-            return name
+            return id
         }
     }
     

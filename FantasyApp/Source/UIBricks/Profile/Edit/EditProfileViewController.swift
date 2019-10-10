@@ -69,10 +69,6 @@ class EditProfileViewController: UIViewController, MVVM_View {
                                                               style: .done,
                                                               target: self,
                                                               action: #selector(preview)),
-                                              UIBarButtonItem(title: "Save",
-                                                              style: .done,
-                                                              target: self,
-                                                              action: #selector(submitChanges)),
         ]
         
         viewModel.dataSource
@@ -87,22 +83,12 @@ class EditProfileViewController: UIViewController, MVVM_View {
         
     }
     
-    @IBAction func uploadPublicPhoto(_ sender: Any) {
-    }
-    
-    @IBAction func uploadPrivatePhoto(_ sender: Any) {
-    }
-    
 }
 
 extension EditProfileViewController {
 
     @objc func preview() {
         viewModel.preview()
-    }
-    
-    @objc func submitChanges() {
-        viewModel.submitChanges()
     }
     
 }
