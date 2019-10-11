@@ -63,18 +63,8 @@ class ConnectionViewController: UIViewController, MVVM_View {
 
 private extension ConnectionViewController {
     
-    /**
-     *  Describe any IBActions here
-     *
-     
-     @IBAction func performAction(_ sender: Any) {
-     
-     }
-    
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     }
- 
-    */
+    @IBAction func dataSourceChanged(_ sender: UISegmentedControl) {
+        viewModel.sourceChanged(source: sender.selectedSegmentIndex == 0 ? .incomming : .outgoing )
+    }
     
 }

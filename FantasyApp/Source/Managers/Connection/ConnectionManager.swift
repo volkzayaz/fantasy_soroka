@@ -37,9 +37,9 @@ extension ConnectionManager {
             .rx.request.map { _ in }
     }
     
-    static func inboundRequests() -> Single<[User]> {
+    static func connectionRequests(source: GetConnectionRequests.Source) -> Single<[User]> {
         
-        return GetConnectionRequests().rx.request
+        return GetConnectionRequests(source: source).rx.request
             .flatMap { r -> Single<[User]> in
                 
                 return User.query
@@ -51,5 +51,5 @@ extension ConnectionManager {
                 
                 }
     }
-    
+
 }

@@ -15,12 +15,14 @@ extension ConnectionViewModel {
     
     var requests: Driver<[User]> {
         
-        return reloadTrigger.asDriver().flatMapLatest { [unowned i = indicator,
-                                                         unowned o = router.owner] _ in
-            return ConnectionManager.inboundRequests()
-                .trackView(viewIndicator: i)
-                .silentCatch(handler: o)
-                .asDriver(onErrorJustReturn: [])
+        return Driver.combineLatest(reloadTrigger.asDriver(), source.asDriver()) { ($0, $1) }
+            .flatMapLatest { [unowned i = indicator,
+                              unowned o = router.owner] (_, source) in
+                
+                return ConnectionManager.connectionRequests(source: source)
+                    .trackView(viewIndicator: i)
+                    .silentCatch(handler: o)
+                    .asDriver(onErrorJustReturn: [])
         }
         
     }
@@ -30,6 +32,7 @@ extension ConnectionViewModel {
 struct ConnectionViewModel : MVVM_ViewModel {
     
     fileprivate let reloadTrigger = BehaviorRelay<Void>(value: () )
+    fileprivate let source = BehaviorRelay<GetConnectionRequests.Source>(value: .incomming )
     
     init(router: ConnectionRouter) {
         self.router = router
@@ -59,6 +62,10 @@ extension ConnectionViewModel {
     
     func viewAppeared() {
         reloadTrigger.accept( () )
+    }
+    
+    func sourceChanged( source: GetConnectionRequests.Source ) {
+        self.source.accept(source)
     }
     
     func show(user: User) {

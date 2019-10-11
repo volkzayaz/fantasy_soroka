@@ -181,8 +181,18 @@ struct DeleteConnection: AuthorizedAPIResource {
 
 struct GetConnectionRequests: AuthorizedAPIResource {
     
+    enum Source { case incomming, outgoing }
+    
     var path: String {
-        return "/users/me/connections/requests/outgoing"
+        
+        switch source {
+        case .incomming:
+            return "/users/me/connections/requests/outgoing"
+            
+        case .outgoing:
+            return "/users/me/connections/requests/incoming"
+            
+        }
     }
     
     var method: Moya.Method {
@@ -199,6 +209,8 @@ struct GetConnectionRequests: AuthorizedAPIResource {
     var task: Task {
         return .requestPlain
     }
+    
+    let source: Source
     
 }
 
