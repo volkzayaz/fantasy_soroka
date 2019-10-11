@@ -76,7 +76,12 @@ extension RoomsViewModel {
         ChatManager.createDraftRoom()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { _ in })
+            .subscribe(onNext: { room in
+                guard let room = room else {
+                    return
+                }
+                self.router.roomCreated(room)
+            })
             .disposed(by: bag)
     }
 }

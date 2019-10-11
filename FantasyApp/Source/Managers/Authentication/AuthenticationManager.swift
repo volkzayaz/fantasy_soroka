@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-
+import Branch
 import Parse
 
 enum AuthenticationManager {}
@@ -29,7 +29,7 @@ extension AuthenticationManager {
         ///
         
         let pfUser = PFUser()
-        
+
         pfUser.username = form.email
         pfUser.email = form.email
         pfUser.password = form.password
@@ -66,6 +66,7 @@ extension AuthenticationManager {
         }
         .do(onSuccess: { (user) in
             SettingsStore.currentUser.value = user
+            Branch.getInstance()?.setIdentity(user.id)
         })
         
     }
@@ -98,6 +99,7 @@ extension AuthenticationManager {
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
+                Branch.getInstance()?.setIdentity(user.id)
             })
             
         
@@ -141,6 +143,7 @@ extension AuthenticationManager {
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
+                Branch.getInstance()?.setIdentity(user.id)
             })
             
     }
@@ -153,6 +156,7 @@ extension AuthenticationManager {
         SettingsStore.currentUser.value = nil
         SettingsStore.atLeastOnceLocation.value = nil
         PFUser.logOutInBackground(block: { _ in })
+        Branch.getInstance()?.logout()
     }
     
 }

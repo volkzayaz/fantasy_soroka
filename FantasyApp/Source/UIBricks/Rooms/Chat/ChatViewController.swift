@@ -9,6 +9,7 @@
 import Foundation
 import Chatto
 import ChattoAdditions
+import ScreenShieldKit
 
 class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteractionHandlerProtocol {
     typealias ViewModelT = TextMessageViewModel<TextMessageModel<Chat.Message>>
@@ -69,6 +70,17 @@ private extension ChatViewController {
             view.rightAnchor.constraint(equalTo: superview.rightAnchor),
             view.leftAnchor.constraint(equalTo: superview.leftAnchor),
             view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+        ])
+    }
+
+    func setupScreenCaptureProtection() {
+        let containerView = SSKProtectedImageView(image: R.image.screenProtection())
+        view.addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.topAnchor),
+            containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

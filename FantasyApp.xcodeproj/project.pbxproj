@@ -181,6 +181,11 @@
 		843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6485234E61E500E5639B /* InviteParticipantResource.swift */; };
 		843B6488234E624E00E5639B /* AcceptInviteResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6487234E624E00E5639B /* AcceptInviteResource.swift */; };
 		843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 843B648A234EAC4600E5639B /* FantasyApp.entitlements */; };
+		843B648D234F196E00E5639B /* RoomCreationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B648C234F196E00E5639B /* RoomCreationRouter.swift */; };
+		843B648F234F197B00E5639B /* RoomCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B648E234F197B00E5639B /* RoomCreationViewModel.swift */; };
+		843B6491234F198500E5639B /* RoomCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6490234F198500E5639B /* RoomCreationViewController.swift */; };
+		843B6494235051DA00E5639B /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843B649223504DE000E5639B /* ScreenShieldKit.framework */; };
+		843B6495235051DA00E5639B /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 843B649223504DE000E5639B /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */; };
 		843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF715234249420098C196 /* TimeSeparatorModel.swift */; };
 		843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */; };
@@ -251,6 +256,20 @@
 			remoteInfo = FantasyApp;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		843B6496235051DA00E5639B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				843B6495235051DA00E5639B /* ScreenShieldKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		01A0637DC285DFE7725E2C7F /* Pods-FantasyAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -436,6 +455,10 @@
 		843B6485234E61E500E5639B /* InviteParticipantResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParticipantResource.swift; sourceTree = "<group>"; };
 		843B6487234E624E00E5639B /* AcceptInviteResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptInviteResource.swift; sourceTree = "<group>"; };
 		843B648A234EAC4600E5639B /* FantasyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FantasyApp.entitlements; sourceTree = "<group>"; };
+		843B648C234F196E00E5639B /* RoomCreationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomCreationRouter.swift; path = FantasyApp/Source/UIBricks/Rooms/Chat/RoomCreationRouter.swift; sourceTree = SOURCE_ROOT; };
+		843B648E234F197B00E5639B /* RoomCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreationViewModel.swift; sourceTree = "<group>"; };
+		843B6490234F198500E5639B /* RoomCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreationViewController.swift; sourceTree = "<group>"; };
+		843B649223504DE000E5639B /* ScreenShieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenShieldKit.framework; sourceTree = "<group>"; };
 		843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		843CF715234249420098C196 /* TimeSeparatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorModel.swift; sourceTree = "<group>"; };
 		843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorPresenter.swift; sourceTree = "<group>"; };
@@ -504,6 +527,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843B6494235051DA00E5639B /* ScreenShieldKit.framework in Frameworks */,
 				23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,6 +658,7 @@
 		7312B05E22D7403300DB0F36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				843B649223504DE000E5639B /* ScreenShieldKit.framework */,
 				7390015222E1E6F800260198 /* Redux */,
 				7312B07522D741D500DB0F36 /* UIBricks */,
 				7312B0B722D745DF00DB0F36 /* Managers */,
@@ -1412,11 +1437,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		843B6489234EA78100E5639B /* RoomCreationOnboarding */ = {
+		843B6489234EA78100E5639B /* RoomCreation */ = {
 			isa = PBXGroup;
 			children = (
+				843B648C234F196E00E5639B /* RoomCreationRouter.swift */,
+				843B648E234F197B00E5639B /* RoomCreationViewModel.swift */,
+				843B6490234F198500E5639B /* RoomCreationViewController.swift */,
 			);
-			path = RoomCreationOnboarding;
+			path = RoomCreation;
 			sourceTree = "<group>";
 		};
 		843CF7102342466B0098C196 /* Views */ = {
@@ -1616,7 +1644,7 @@
 		84C1D0422327BA8200648DE1 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
-				843B6489234EA78100E5639B /* RoomCreationOnboarding */,
+				843B6489234EA78100E5639B /* RoomCreation */,
 				84AB490B232A83DE00F3609A /* CommonFantasies */,
 				84AB4902232A2CE300F3609A /* Chat */,
 				84AB48FB232A16B400F3609A /* Details */,
@@ -1687,6 +1715,7 @@
 				7312B03E22D73AD100DB0F36 /* Resources */,
 				73953D3522EED6C300242243 /* Fabric */,
 				C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */,
+				843B6496235051DA00E5639B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1994,6 +2023,7 @@
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
 				843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
+				843B648D234F196E00E5639B /* RoomCreationRouter.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
 				73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */,
@@ -2011,6 +2041,7 @@
 				843B6488234E624E00E5639B /* AcceptInviteResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
+				843B648F234F197B00E5639B /* RoomCreationViewModel.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
 				73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
@@ -2025,6 +2056,7 @@
 				7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */,
 				843CF723234373610098C196 /* RoomResource.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
+				843B6491234F198500E5639B /* RoomCreationViewController.swift in Sources */,
 				7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */,
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
@@ -2282,8 +2314,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = CB48395Y6T;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JDQD36FDTW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FantasyApp/Source",
+				);
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2292,7 +2329,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = FantasyAppDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2310,6 +2347,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CB48395Y6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FantasyApp/Source",
+				);
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2390,6 +2431,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CB48395Y6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FantasyApp/Source",
+				);
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

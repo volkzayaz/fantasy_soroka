@@ -22,4 +22,14 @@ struct RoomsRouter : MVVM_Router {
                              page: .chat)
         owner.navigationController?.pushViewController(vc, animated: true)
     }
+
+    func roomCreated(_ room: Chat.Room) {
+        let vc = R.storyboard.chat.roomCreationViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), room: room)
+        owner.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func close() {
+        owner.navigationController?.popViewController(animated: true)
+    }
 }
