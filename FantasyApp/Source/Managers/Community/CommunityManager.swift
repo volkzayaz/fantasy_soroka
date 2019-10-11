@@ -33,7 +33,8 @@ extension CommunityManager {
         PFQuery(className: "CommunityLog")
             .whereKey("center",
                       nearGeoPoint: .init(location: location),
-                      withinKilometers: 0.2)
+                      withinKilometers: 5)
+            .whereKey("name", equalTo: name)
                 .rx.fetchFirstObject()
                 .flatMap { (maybeLog: PFObject?) -> Single<Void> in
                 
