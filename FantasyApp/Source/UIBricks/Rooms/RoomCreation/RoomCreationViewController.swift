@@ -28,17 +28,25 @@ class RoomCreationViewController: UIViewController, MVVM_View {
         <AnimatableSectionModel<String, RoomCreationViewModel.CellModel>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
 
+        switch model {
+        case .user(let thumbnailURL, let isAdmin, let name, _):
             let cell = self.participantsCollectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.participantCollectionViewCell,
                                      for: indexPath)!
-            cell.nameLabel.text = model.name
-            cell.adminLabel.isHidden = !model.isAdmin
-            ImageRetreiver.imageForURLWithoutProgress(url: model.thumbnailURL)
+            cell.nameLabel.text = name
+            cell.adminLabel.isHidden = !isAdmin
+            ImageRetreiver.imageForURLWithoutProgress(url: thumbnailURL)
                 .map { $0 ?? R.image.errorPhoto() }
                 .drive(cell.imageView.rx.image)
                 .disposed(by: self.rx.disposeBag)
-
-        return cell
+            return cell
+            
+        case .invite:
+            let cell = self.participantsCollectionView
+                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.inviteParticipantCollectionViewCell,
+                                     for: indexPath)!
+            return cell
+        }
     })
 
     override func viewDidLoad() {
@@ -73,7 +81,7 @@ private extension RoomCreationViewController {
         copyLinkButton.setTitle(R.string.localizable.roomCreationInviteCopy(), for: .normal)
 
         seeParticipantsButton.setTitle(R.string.localizable.roomCreationParticipantsSeeAll(), for: .normal)
-        seeParticipantsButton.backgroundColor = .seeParticipantsButton
+        seeParticipantsButton.backgroundColor = .fantasyGrey
         seeParticipantsButton.setTitleColor(.fantasyPink, for: .normal)
         seeParticipantsButton.titleLabel?.font = .boldFont(ofSize: 14)
         seeParticipantsButton.layer.cornerRadius = seeParticipantsButton.bounds.height / 2.0
@@ -84,10 +92,15 @@ private extension RoomCreationViewController {
             .drive(participantsCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
 
-//        participantsCollectionView.rx.modelSelected(RoomsViewModel.CellModel.self)
-//            .subscribe(onNext: { [unowned self] cellModel in
-//            //
-//        }).disposed(by: rx.disposeBag)
+        participantsCollectionView.rx.modelSelected(RoomCreationViewModel.CellModel.self)
+            .subscribe(onNext: { [unowned self] cellModel in
+                switch cellModel {
+                case .invite:
+                    self.viewModel.shareLink()
+                default:
+                    break
+                }
+        }).disposed(by: rx.disposeBag)
 
     }
 

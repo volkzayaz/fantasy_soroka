@@ -318,7 +318,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="YOn-P7-aWw"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="ssn-PU-gR1">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="16" id="ssn-PU-gR1">
                                                     <size key="itemSize" width="80" height="130"/>
                                                     <size key="estimatedItemSize" width="80" height="130"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -335,6 +335,9 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1g-RD-Nyx">
                                                                     <rect key="frame" x="0.0" y="90" width="80" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="jQo-cn-94j"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -369,6 +372,44 @@
                                                             <outlet property="adminLabel" destination="Mlj-GI-wIV" id="Vbs-tk-ryq"/>
                                                             <outlet property="imageView" destination="18A-FM-W0w" id="mkb-it-8by"/>
                                                             <outlet property="nameLabel" destination="P1g-RD-Nyx" id="vXU-ch-5Ps"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InviteParticipantCollectionViewCell" id="xdV-yh-9cn" customClass="InviteParticipantCollectionViewCell" customModule="FantasyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="80" y="5" width="80" height="130"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tiq-nC-eJg">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="130"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBL-nA-IZk">
+                                                                    <rect key="frame" x="0.0" y="90" width="80" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="jyV-wy-eVB"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBV-4i-5X6">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="80" id="TjX-Kb-bTs"/>
+                                                                        <constraint firstAttribute="width" constant="80" id="W8v-o8-Bm9"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="HBL-nA-IZk" firstAttribute="leading" secondItem="tiq-nC-eJg" secondAttribute="leading" id="2Is-SS-8fs"/>
+                                                                <constraint firstItem="VBV-4i-5X6" firstAttribute="centerX" secondItem="tiq-nC-eJg" secondAttribute="centerX" id="boZ-jU-KaZ"/>
+                                                                <constraint firstItem="HBL-nA-IZk" firstAttribute="top" secondItem="VBV-4i-5X6" secondAttribute="bottom" constant="10" id="pi0-zm-Ufy"/>
+                                                                <constraint firstItem="VBV-4i-5X6" firstAttribute="top" secondItem="tiq-nC-eJg" secondAttribute="top" id="yCZ-ex-x6M"/>
+                                                                <constraint firstAttribute="trailing" secondItem="HBL-nA-IZk" secondAttribute="trailing" id="z3U-4g-3Fx"/>
+                                                            </constraints>
+                                                        </collectionViewCellContentView>
+                                                        <size key="customSize" width="80" height="130"/>
+                                                        <connections>
+                                                            <outlet property="imageView" destination="VBV-4i-5X6" id="pTW-bS-EqR"/>
+                                                            <outlet property="titleLabel" destination="HBL-nA-IZk" id="tBR-sY-eMk"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
