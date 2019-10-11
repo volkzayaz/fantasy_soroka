@@ -64,6 +64,12 @@ extension Configuration {
         ///in case AppState initialisation becomes async
         ///we need to delay app ViewControllers presentation
         let _ = Dispatcher.kickOff().subscribe()
+        
+        ///StoreKit complete transactions
+        PurchaseManager.completeTransacions()
+        
+        ///Push registration
+        PushManager.kickOff()
 
         // uncomment to test Branch Integration
         // Branch.getInstance()?.validateSDKIntegration()
@@ -71,7 +77,6 @@ extension Configuration {
 
     private static func registerActors() {
         let actors: [Any] = [
-//            LocationViewModel(),
             UserPropertyActor(),
             RoomsActor()
         ]

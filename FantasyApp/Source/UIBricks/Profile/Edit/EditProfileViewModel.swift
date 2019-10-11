@@ -85,11 +85,21 @@ struct EditProfileViewModel : MVVM_ViewModel {
     init(router: EditProfileRouter) {
         self.router = router
         
-        /**
-         
-         Proceed with initialization here
-         
-         */
+        ///Stakeholders insist on submitting every change to server instead of only once
+        
+        form.skip(1) // initial value
+            .flatMapLatest { form in
+                return UserManager.submitEdits(form: form)
+                    .silentCatch(handler: router.owner)
+            }
+            .subscribe(onNext: { (user) in
+                
+                ///this state save should really belong elsewhere
+                SettingsStore.currentUser.value = user
+                
+                Dispatcher.dispatch(action: SetUser(user: user))
+            })
+            .disposed(by: bag)
         
         /////progress indicator
         
@@ -116,23 +126,6 @@ extension EditProfileViewModel {
     func preview() {
         
         router.preview(user: User.current!.applied(editForm: form.value))
-    }
-    
-    func submitChanges() {
-        
-        let edits = form.value
-        
-        UserManager.submitEdits(form: edits)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { (user) in
-                
-                ///this state save should really belong elsewhere
-                SettingsStore.currentUser.value = user
-                
-                Dispatcher.dispatch(action: SetUser(user: user))
-            })
-            .disposed(by: bag)
     }
     
     func cellClicked(ip: IndexPath) {

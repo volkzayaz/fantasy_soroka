@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - deep linking
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
       Branch.getInstance()?.application(app, open: url, options: options)
       return true
     }
@@ -34,9 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
     }
 
-    func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-      Branch.getInstance()?.handlePushNotification(userInfo)
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        PushManager.updateDeviceToken(data: deviceToken)
     }
+
 }

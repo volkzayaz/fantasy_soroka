@@ -22,6 +22,7 @@ enum FDTakeImagePicker: ImagePicker {
         x.didGetPhoto = { image, _ in
             completion(image)
         }
+        x.allowsEditing = true
         x.presentingViewController = viewController
         
         x.present()

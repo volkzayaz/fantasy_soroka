@@ -55,8 +55,8 @@ struct FantasyCardInteraction: ActionCreator {
         
         let request: Single<Void>
         switch type {
-        case .dislike: request = Fantasy.Manager.like(card: card)
-        case .like:    request = Fantasy.Manager.dislike(card: card)
+        case .dislike: request = Fantasy.Manager.dislike(card: card)
+        case .like:    request = Fantasy.Manager.like(card: card)
         case .neutral: request = Fantasy.Manager.neutral(card: card)
         }
         
@@ -86,14 +86,13 @@ struct FantasyCardInteraction: ActionCreator {
             case .neutral: break
             }
             
-            
             ///Performing Smart Refresh of Main Deck
             guard case .swipeCount(let swipesLeft) = state.fantasies.restriction,
                   swipesLeft != state.fantasies.freeCards.count else {
                 return .just(state)
             }
             
-            return Fantasy.Manager.fetchMainCards(localLimit: swipesLeft).asObservable()
+            return Fantasy.Manager.fetchMainCards().asObservable()
                 .map { cards in
                     state.fantasies.cards = cards
                     state.fantasies.restriction = .swipeCount(swipesLeft)
