@@ -47,7 +47,15 @@ extension PickCommunityViewModel {
                         
                         return CLGeocoder().rx
                             .city(near: location)
-                            .map { $0 != nil ? Near.bigCity(name: $0!) : nil }
+                            .map { bigCity in
+                                
+                                if let x = bigCity {
+                                    CommunityManager.logBigCity(name: x, location: location)
+                                    return Near.bigCity(name: x)
+                                }
+                                
+                                return nil
+                            }
                         
                     }
                     .asDriver(onErrorJustReturn: nil)
