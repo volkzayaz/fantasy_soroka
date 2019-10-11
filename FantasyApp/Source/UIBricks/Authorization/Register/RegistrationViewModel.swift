@@ -153,6 +153,28 @@ extension RegistrationViewModel {
         step.accept( next )
     }
     
+    func resetPassword() {
+        
+        router.owner.showTextQuestionDialog(title: "Forgot password",
+                                            text: "Put in your email",
+                                            style: .alert) { (str) in
+                                                
+                                                PFUser.requestPasswordResetForEmail(inBackground: str) { (res, error) in
+                                                    
+                                                    if let e = error {
+                                                        self.router.owner.present(error: e)
+                                                    }
+                                                    else {
+                                                        self.router.owner.showMessage(title: "Success",
+                                                                                      text: "Check your email for instructions")
+                                                    }
+                                                    
+                                                }
+                                                
+        }
+        
+    }
+    
     func backToSignIn() {
         router.backToSignIn()
     }

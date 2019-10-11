@@ -102,7 +102,8 @@ extension FantasyDeckViewModel {
             
         case .down:
             ///don't really know what should happen here for now
-            fatalError("Implement me")
+            //fatalError("Implement me")
+            break
             
         }
         

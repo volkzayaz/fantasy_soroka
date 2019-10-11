@@ -211,6 +211,10 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
     }
     
+    @IBAction func forgotPassword(_ sender: Any) {
+        viewModel.resetPassword()
+    }
+    
 }
 
 extension RegistrationViewController: UIScrollViewDelegate {
