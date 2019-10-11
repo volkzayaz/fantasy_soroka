@@ -59,6 +59,7 @@ private extension ChatViewController {
         chatDataSource = viewModel
         chatDataSource?.delegate = self
         chatItemsDecorator = ChatItemsDecorator()
+        collectionView?.backgroundColor = .white
 
         guard let superview = view.superview else {
             return
@@ -71,16 +72,27 @@ private extension ChatViewController {
             view.leftAnchor.constraint(equalTo: superview.leftAnchor),
             view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
         ])
+        setupScreenCaptureProtection()
     }
 
     func setupScreenCaptureProtection() {
-        let containerView = SSKProtectedImageView(image: R.image.screenProtection())
-        view.addSubview(containerView)
+        let containerView = SSKProtectedImageView(image: R.image.screenProtectionInactive())
+        let imageView = UIImageView(image: R.image.screenProtectionActive())
+        containerView.screenCaptureView.addSubview(imageView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.isUserInteractionEnabled = false
+        view.insertSubview(containerView, belowSubview: collectionView!)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.topAnchor),
             containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

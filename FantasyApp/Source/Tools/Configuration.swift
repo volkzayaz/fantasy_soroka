@@ -47,6 +47,7 @@ extension Configuration {
         PFFacebookUtils.facebookLoginManager().loginBehavior = .browser
 
         // MARK: - Branch
+        // unncomment to disable debug mode
         Branch.setUseTestBranchKey(true)
         let branch = Branch.getInstance()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
@@ -72,7 +73,7 @@ extension Configuration {
         PushManager.kickOff()
 
         // uncomment to test Branch Integration
-        Branch.getInstance()?.validateSDKIntegration()
+        // Branch.getInstance()?.validateSDKIntegration()
     }
 
     private static func registerActors() {

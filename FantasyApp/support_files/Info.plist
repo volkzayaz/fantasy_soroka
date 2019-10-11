@@ -109,5 +109,10 @@
 	</array>
 	<key>Versioning System </key>
 	<string>Apple Generic</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
