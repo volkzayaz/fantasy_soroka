@@ -182,7 +182,7 @@ struct DeleteConnection: AuthorizedAPIResource {
 struct GetConnectionRequests: AuthorizedAPIResource {
     
     var path: String {
-        return "/users/me/connections/requests/incoming"
+        return "/users/me/connections/requests/outgoing"
     }
     
     var method: Moya.Method {

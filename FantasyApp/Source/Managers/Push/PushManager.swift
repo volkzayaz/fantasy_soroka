@@ -27,20 +27,37 @@ extension PushManager {
     }
     
     static func sendPush(to user: User, text: String) {
+
         
-        let query = PFInstallation.query()! as! PFQuery<PFInstallation>
-        query.whereKey("userId", equalTo: user.id)
+//        NSString *alertString = [NSString stringWithFormat:message, currentUser.realname];
+//
+//        NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+//        [userInfo setValue:activity.objectId forKey:@"activity"];
+//
+//        [data setValue:alertString forKey:@"alert"];
+//        [data setValue:@"bingbong.aiff" forKey:@"sound"];
+//        [data setValue:userInfo forKey:@"userInfo"];
+//        [data setValue:user.objectId forKey:@"userId"];
+//        [data setValue:@"Increment" forKey:@"badge"];
+//
+//        NSError *error = nil;
+//        [PFCloud callFunction:@"sendPush" withParameters:data error:&error];
         
-        let push = PFPush()
-        push.setQuery(query)
-        push.setMessage(text)
-        push.sendInBackground(block: nil)
+        let params = [
+            "alert": text,
+            "userId": user.id
+        ]
+        
+        PFCloud.callFunction(inBackground: "sendPush",
+                             withParameters: params) { (value, error) in
+                                print("error")
+        }
         
     }
     
     static func requestNotificationPermission() {
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge, .provisional],
+            .requestAuthorization(options: [.alert, .sound, .badge],
                                   completionHandler: { _, _ in })
     }
     

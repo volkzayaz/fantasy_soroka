@@ -198,6 +198,8 @@ struct UserProfileViewModel : MVVM_ViewModel {
             relationshipState.accept(.sameUser)
         }
         
+        PushManager.sendPush(to: user, text: "Hello")
+        
         /////progress indicator
         
         indicator.asDriver()
