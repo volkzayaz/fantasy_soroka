@@ -25,11 +25,13 @@ extension UIColor {
     static let title = UIColor.white
     static let fantasyBlack = UIColor(red: 72, green: 78, blue: 94)
     static let basicGrey = UIColor(red: 175, green: 180, blue: 193)
+    static let fantasyPink = UIColor(red: 211, green: 100, blue: 177)
 
     // MARK: - ErrorView
     static let errorViewBackground = UIColor.black.withAlphaComponent(0.1)
 
     // MARK: - Chat
+    static let seeParticipantsButton = UIColor(red: 237, green: 237, blue: 241)
     static let messageBackground = UIColor(red: 247, green: 247, blue: 250)
     static let myMessageBackground = UIColor(red: 211, green: 100, blue: 177)
 }

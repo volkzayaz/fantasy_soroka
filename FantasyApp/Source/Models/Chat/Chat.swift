@@ -140,8 +140,12 @@ extension Chat {
         var sharedCollections: [String]?
     }
 
-    struct RoomParticipant: Codable, Equatable {
-        var id: String!
+    struct RoomParticipant: Codable, Equatable, IdentifiableType {
+        var identity: String {
+            return userId!
+        }
+
+        var userId: String!
         var status: RoomParticipantStatus = .accepted
     }
 

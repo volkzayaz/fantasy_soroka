@@ -203,6 +203,7 @@
 		843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */; };
 		844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED422EE9C9B00E06665 /* TextField.swift */; };
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
+		844C84F123508FA800BDC60F /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C84F023508FA800BDC60F /* ParticipantCollectionViewCell.swift */; };
 		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
 		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
@@ -483,6 +484,7 @@
 		843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomSettingsResource.swift; sourceTree = "<group>"; };
 		844A3ED422EE9C9B00E06665 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		844C84F023508FA800BDC60F /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
 		84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePresenterBuilder.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
 		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
@@ -1485,6 +1487,7 @@
 		843B6489234EA78100E5639B /* RoomCreation */ = {
 			isa = PBXGroup;
 			children = (
+				844C84EF23508F9F00BDC60F /* Cells */,
 				843B648C234F196E00E5639B /* RoomCreationRouter.swift */,
 				843B648E234F197B00E5639B /* RoomCreationViewModel.swift */,
 				843B6490234F198500E5639B /* RoomCreationViewController.swift */,
@@ -1548,6 +1551,14 @@
 				843CF724234373C60098C196 /* UpdateRoomSettingsResource.swift */,
 			);
 			path = Rooms;
+			sourceTree = "<group>";
+		};
+		844C84EF23508F9F00BDC60F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				844C84F023508FA800BDC60F /* ParticipantCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		84AB48FA232A16AA00F3609A /* List */ = {
@@ -1761,6 +1772,7 @@
 				73953D3522EED6C300242243 /* Fabric */,
 				C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */,
 				843B6496235051DA00E5639B /* Embed Frameworks */,
+				844C84EE23505F9F00BDC60F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1974,6 +1986,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" e84ce1420f7f93176fb81a16a43f00b1cdbc00ff 23e218800f398f44a1b99535f0a9e70571f31c508860c4e4be496e02abcf6b7c\n";
 		};
+		844C84EE23505F9F00BDC60F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash    \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScreenShieldKit.framework/strip-frameworks.sh\"\n";
+		};
 		C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2061,6 +2090,7 @@
 				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				734C70C023214B8D00ED2E91 /* UserProfileRouter.swift in Sources */,
+				844C84F123508FA800BDC60F /* ParticipantCollectionViewCell.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
 				734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */,
 				73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */,
