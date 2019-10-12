@@ -5,7 +5,8 @@ default_platform :ios
 platform :ios do
     
     before_all do
-        ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+        
+        ENV["SLACK_URL"] = "https://hooks.slack.com/services" + "/TH0QEA8U9/BNZN41NN7/dbYCOhlavcLeauUL777XPVoG"
         ensure_git_status_clean
         
     end
