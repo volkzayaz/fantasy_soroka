@@ -46,7 +46,6 @@ class RootViewController: UINavigationController, MVVM_View {
         
         
     }
-    
 }
 
 private extension RootViewController {

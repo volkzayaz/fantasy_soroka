@@ -12,14 +12,12 @@ import RxSwift
 import RxCocoa
 
 class WelcomeViewController: UIViewController, MVVM_View {
-    
+
     var viewModel: WelcomeViewModel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
 }
+
+// MAKR:- Actions
 
 extension WelcomeViewController {
 
@@ -31,4 +29,7 @@ extension WelcomeViewController {
         viewModel.authorizeUsingFacebook()
     }
 
+    @IBAction func presentSignIn() {
+        viewModel.presentSignIn()
+    }
 }

@@ -26,7 +26,7 @@ struct RegistrationRouter : MVVM_Router {
             return
         }
         
-        vc.presentSignIn()
+//        vc.presentSignIn()
         dismiss()
     }
     

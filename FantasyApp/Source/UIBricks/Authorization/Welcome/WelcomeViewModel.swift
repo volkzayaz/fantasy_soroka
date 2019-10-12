@@ -59,20 +59,12 @@ struct WelcomeViewModel : MVVM_ViewModel {
 
 extension WelcomeViewModel {
 
-    func presentRegister() {
-        router.presentRegister()
+    func presentSignIn() {
+        router.presentSignIn()
     }
 
-    func login(email: String, password: String) {
-
-        AuthenticationManager.login(with: email, password: password)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { (user) in
-                Dispatcher.dispatch(action: SetUser(user: user))
-            })
-            .disposed(by: bag)
-
+    func presentRegister() {
+        router.presentRegister()
     }
 
     func authorizeUsingFacebook() {

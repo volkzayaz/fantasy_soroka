@@ -58,7 +58,11 @@ struct LoginViewModel : MVVM_ViewModel {
 }
 
 extension LoginViewModel {
-    
+
+    func presentForgotPassword() {
+        router.presentForgotPassword()
+    }
+
     func presentRegister() {
         router.presentRegister()
     }
@@ -74,6 +78,8 @@ extension LoginViewModel {
             .disposed(by: bag)
         
     }
+
+    
     
     func authorizeUsingFacebook() {
         
@@ -86,5 +92,8 @@ extension LoginViewModel {
             .disposed(by: bag)
         
     }
-    
+
+    func closeSignIn() {
+        router.closeSignIn()
+    }
 }

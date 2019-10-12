@@ -21,5 +21,12 @@ struct WelcomeRouterRouter : MVVM_Router {
 
         owner.navigationController?.pushViewController(vc, animated: true)
     }
+
+    func presentSignIn() {
+        let vc = R.storyboard.authorization.loginViewController()!
+        vc.viewModel = .init(router: .init(owner: vc))
+
+        owner.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
