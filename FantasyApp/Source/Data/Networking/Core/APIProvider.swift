@@ -25,7 +25,7 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
         progress: ((ResponseProgress<T.responseType>) -> Void)? = .none,
         completion: @escaping (_ result: Result<T.responseType, Error>) -> Void) -> Cancellable {
 
-        return super.request(.target(resource), callbackQueue: callbackQueue, progress: { responseProgress in
+            return super.request(.target(resource), callbackQueue: callbackQueue, progress: { responseProgress in
             
             if let p = responseProgress.progressObject {
                 progress?(.progress(p))
@@ -74,11 +74,23 @@ extension Moya.Response {
         let value: T
     }
     
+    private static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.locale = enUSPosixLocale
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        return dateFormatter
+    }()
+    
     func mapFantasyResponse<T: Decodable>() throws -> T {
         
         ///We just want to represent Empty data response
         /// as Optional<T>
         ///while Moya's default behaviour in such case is Error
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted( Moya.Response.dateFormatter )
         
         guard data.count > 0 else {
             
@@ -87,7 +99,7 @@ extension Moya.Response {
                                """.data(using: .utf8)!
             
             do {
-                return (try JSONDecoder().decode(Wrapped<T>.self, from: fakeJSONData)).value
+                return (try decoder.decode(Wrapped<T>.self, from: fakeJSONData)).value
             } catch {
                 throw FantasyError.generic(description: "Can't map \(String(describing: T.self)) from empty response")
             }
@@ -96,7 +108,7 @@ extension Moya.Response {
         
         
         do {
-            return try JSONDecoder().decode(T.self, from: data)
+            return try decoder.decode(T.self, from: data)
         }
         catch (let e) { throw e }
         

@@ -69,7 +69,7 @@ extension Fantasy.Request {
         }
         
         var task: Task {
-            return .requestPlain
+            return .requestParameters(parameters: ["isPaid" : true], encoding: URLEncoding.default)
         }
         
     }

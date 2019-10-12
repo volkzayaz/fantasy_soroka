@@ -44,7 +44,7 @@ extension PurchaseManager {
     
     static func purhcaseSubscription() -> Single<User.Subscription> {
         
-        let goldPlanProductId = "com.fantasyapp.iapsandbox.purchase.goldenmemebership"
+        let goldPlanProductId = "com.fantasyapp.iosclient.iap.premium"
         
         return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
             .flatMap { x in
@@ -56,8 +56,6 @@ extension PurchaseManager {
     static func fetchSubscriptionStatus() -> Single<User.Subscription> {
         return User.Request.SubscriptionStatus().rx.request
     }
-    
-    
     
 }
 
@@ -113,38 +111,38 @@ extension PurchaseManager {
 
 extension SwiftyStoreKit {
     
-//    public class func rx_validateReceipt(forceRefresh: Bool) -> Maybe<Data> {
-//        return Maybe.create(subscribe: { (subscriber) -> Disposable in
-//
-//            let v = AppleReceiptValidator(service: .sandbox, sharedSecret: "65a05395a994432092536f0462481af6")
-//
-//            SwiftyStoreKit.verifyReceipt(using: v,
-//                forceRefresh: forceRefresh,
-//                completion: { (result) in
-//
-//                    switch result {
-//
-//                    case .error(let error):
-//                        subscriber(.error(error))
-//
-//                    case .success(let receiptData):
-//
-//                        let res = SwiftyStoreKit.verifySubscription(ofType: .autoRenewable,
+    public class func rx_validateReceipt(forceRefresh: Bool) -> Maybe<Data> {
+        return Maybe.create(subscribe: { (subscriber) -> Disposable in
+
+            let v = AppleReceiptValidator(service: .sandbox, sharedSecret: "a95cb2f1957d470c8837076a0359e901")
+
+            SwiftyStoreKit.verifyReceipt(using: v,
+                forceRefresh: forceRefresh,
+                completion: { (result) in
+
+                    switch result {
+
+                    case .error(let error):
+                        subscriber(.error(error))
+
+                    case .success(let receiptData):
+
+//                        let res = SwiftyStoreKit.verifyPurchase(productId: "asd", inReceipt: receiptData) .verifySubscription(ofType: .autoRenewable,
 //                                                                    productId: Subscription.Plan.oneMonthTrial.productIdentifier,
 //                                                                    inReceipt: receiptData)
-//
-//                        print(res)
-//
-//                        print(receiptData)
-//
-//                        subscriber(.success(Data()))
-//                    }
-//
-//            })
-//
-//            return Disposables.create()
-//        })
-//    }
+
+                        //print(res)
+
+                        print(receiptData)
+
+                        subscriber(.success(Data()))
+                    }
+
+            })
+
+            return Disposables.create()
+        })
+    }
     
     public class func rx_fetchReceipt(forceRefresh: Bool) -> Single<Data> {
         return Single.create(subscribe: { (subscriber) -> Disposable in

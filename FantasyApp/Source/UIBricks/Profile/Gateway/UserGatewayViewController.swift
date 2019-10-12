@@ -17,7 +17,7 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     
     @IBOutlet weak var profileAvatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
+    @IBOutlet weak var premiumUserLabel: UILabel!
     /**
      *  Connect any IBOutlets here
      *  @IBOutlet private weak var label: UILabel!
@@ -34,6 +34,11 @@ class UserGatewayViewController: UIViewController, MVVM_View {
             .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0)  }
             .map { $0 ?? R.image.noPhoto() }
             .drive(profileAvatarImageView.rx.image)
+            .disposed(by: rx.disposeBag)
+    
+        viewModel.isPremium
+            .map { $0 ? "You are premium user" : "" }
+            .drive(premiumUserLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
     }

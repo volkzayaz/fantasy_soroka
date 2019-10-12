@@ -26,7 +26,7 @@ extension APIResource {
     }
 
     var validationType: ValidationType {
-        return .successCodes
+        return .none
     }
 
     // TODO: Default headers in .json config?
