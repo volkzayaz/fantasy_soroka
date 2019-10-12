@@ -30,7 +30,7 @@ class RootViewController: UINavigationController, MVVM_View {
                     self.setViewControllers([vc], animated: true)
                     
                 case .authentication:
-                    let vc = R.storyboard.authorization.loginViewController()!
+                    let vc = R.storyboard.authorization.welcomeViewController()!
                     vc.viewModel = .init(router: .init(owner: vc))
                     self.setViewControllers([vc], animated: true)
                     

@@ -254,6 +254,11 @@
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 		84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE118B23413045007EAFE6 /* ChatInputView.swift */; };
+		B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C631234F92120017CE1A /* GradientBackgroundView.swift */; };
+		B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6342350D6C00017CE1A /* WelcomeRouter.swift */; };
+		B783C6382350D6C00017CE1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6352350D6C00017CE1A /* WelcomeViewController.swift */; };
+		B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6362350D6C00017CE1A /* WelcomeViewModel.swift */; };
+		B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C63A2351BCB10017CE1A /* GradientLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -538,6 +543,11 @@
 		84EE118B23413045007EAFE6 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		B783C631234F92120017CE1A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		B783C6342350D6C00017CE1A /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
+		B783C6352350D6C00017CE1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		B783C6362350D6C00017CE1A /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
+		B783C63A2351BCB10017CE1A /* GradientLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1368,6 +1378,7 @@
 		73E6010922E9C11500F767BF /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				B783C6332350D6A60017CE1A /* Welcome */,
 				73E6011422EC3A2400F767BF /* Register */,
 				73E6011322EC3A1E00F767BF /* Login */,
 			);
@@ -1453,10 +1464,12 @@
 		8416816522E96CD900FA9455 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				844A3ED622EEA25300E06665 /* ErrorView.swift */,
+				B783C631234F92120017CE1A /* GradientBackgroundView.swift */,
+				B783C63A2351BCB10017CE1A /* GradientLineView.swift */,
 				8416816622E96CF700FA9455 /* PrimaryButton.swift */,
 				841681C822E999CA00FA9455 /* SecondaryButton.swift */,
 				844A3ED422EE9C9B00E06665 /* TextField.swift */,
-				844A3ED622EEA25300E06665 /* ErrorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1745,6 +1758,16 @@
 				849E85E82328C89E0025462F /* RoomTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B783C6332350D6A60017CE1A /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				B783C6342350D6C00017CE1A /* WelcomeRouter.swift */,
+				B783C6352350D6C00017CE1A /* WelcomeViewController.swift */,
+				B783C6362350D6C00017CE1A /* WelcomeViewModel.swift */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		FF021B111BC4E47FDD0FDC23 /* Pods */ = {
@@ -2048,6 +2071,7 @@
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
+				B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				73EBBA5C234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift in Sources */,
 				7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */,
@@ -2129,6 +2153,7 @@
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
 				843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */,
+				B783C6382350D6C00017CE1A /* WelcomeViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
 				73EBBA6D234CDAB800B79121 /* SubscriptionStatus.swift in Sources */,
 				84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */,
@@ -2142,6 +2167,7 @@
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
+				B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */,
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
 				73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
@@ -2207,10 +2233,12 @@
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
 				7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */,
+				B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */,
 				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
 				84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */,
 				73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */,
+				B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,
 				739F798A2309496C0045FCD7 /* StoreMainCards.swift in Sources */,
 				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,

@@ -16,10 +16,6 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>2.0.6</string>
-	<key>branch_app_domain</key>
-	<string>fantasy.test-app.link</string>
-	<key>branch_key</key>
-	<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -96,6 +92,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
