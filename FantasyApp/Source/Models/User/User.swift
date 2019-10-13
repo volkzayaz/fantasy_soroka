@@ -124,11 +124,12 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     struct Subscription: Codable, Equatable {
         
         enum CodingKeys: String, CodingKey {
-            case isSubscribed
             case status = "subscription"
         }
         
-        var isSubscribed: Bool
+        var isSubscribed: Bool {
+            return (status?.endDate.timeIntervalSinceNow ?? -1) > 0
+        }
         let status: Status?
         
         struct Status: Codable, Equatable {

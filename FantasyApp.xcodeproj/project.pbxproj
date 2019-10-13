@@ -57,6 +57,7 @@
 		7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7322311E23055CFE009DD37F /* FantasyManager.swift */; };
 		7322312323056731009DD37F /* ResetSwipeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7322312223056731009DD37F /* ResetSwipeState.swift */; };
 		73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73223124230568A6009DD37F /* LikeFantasyCard.swift */; };
+		733096822353586F0039D013 /* DeleteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733096812353586F0039D013 /* DeleteUser.swift */; };
 		7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7222ED9A8C00495843 /* User+Parse.swift */; };
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
@@ -351,6 +352,7 @@
 		7322311E23055CFE009DD37F /* FantasyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyManager.swift; sourceTree = "<group>"; };
 		7322312223056731009DD37F /* ResetSwipeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSwipeState.swift; sourceTree = "<group>"; };
 		73223124230568A6009DD37F /* LikeFantasyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFantasyCard.swift; sourceTree = "<group>"; };
+		733096812353586F0039D013 /* DeleteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUser.swift; sourceTree = "<group>"; };
 		7334CC7222ED9A8C00495843 /* User+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Parse.swift"; sourceTree = "<group>"; };
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
@@ -1066,6 +1068,7 @@
 				84B8ACFA22DCCC650026862E /* UpdateUserAvatarResource.swift */,
 				7361F33023350265007B84B0 /* ConectionResource.swift */,
 				73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */,
+				733096812353586F0039D013 /* DeleteUser.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2248,6 +2251,7 @@
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
+				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,

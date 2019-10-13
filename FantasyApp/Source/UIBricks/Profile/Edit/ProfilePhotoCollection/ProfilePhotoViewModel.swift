@@ -80,7 +80,7 @@ extension ProfilePhotoViewModel {
     
     func pickPhoto() {
         
-        FDTakeImagePicker.present(on: router.container) { (image) in
+        FMPhotoImagePicker.present(on: router.container) { (image) in
         
             if self.isPublic && self.photoNumber == 0 {
                 

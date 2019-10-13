@@ -22,6 +22,10 @@ extension UserGatewayViewModel {
             .map { $0 ?? "" }
     }
     
+    var isPremium: Driver<Bool> {
+        return appState.changesOf { $0.currentUser?.subscription.isSubscribed ?? false }
+    }
+    
 }
 
 struct UserGatewayViewModel : MVVM_ViewModel {

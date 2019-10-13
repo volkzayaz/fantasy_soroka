@@ -38,7 +38,7 @@ extension User.Request {
         let recieptData: Data
         
         var path: String {
-            return "users/me/subscription"
+            return "/users/me/purchases/restore"
         }
         
         var method: Moya.Method {
@@ -64,7 +64,7 @@ extension User.Request {
         let recieptData: Data
         
         var path: String {
-            return "/fantasy-collections/\(collection.id)/purchase"
+            return "/fantasy-collections/purchase"
         }
         
         var method: Moya.Method {

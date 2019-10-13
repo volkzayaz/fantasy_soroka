@@ -65,6 +65,8 @@
 	<string>We want you take your photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Suggesting people in closest communities</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Let you pick your profile photo</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Text-Black.otf</string>

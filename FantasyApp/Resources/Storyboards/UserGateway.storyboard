@@ -95,16 +95,24 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-zS-k3T">
+                                <rect key="frame" x="78" y="130" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JpP-Ah-3wV" firstAttribute="leading" secondItem="HuV-6u-lMV" secondAttribute="leading" id="8Cy-R3-kJZ"/>
+                            <constraint firstItem="EZz-zS-k3T" firstAttribute="top" secondItem="JpP-Ah-3wV" secondAttribute="bottom" constant="7.5" id="9Gi-q6-0vK"/>
                             <constraint firstItem="SQx-P7-pTF" firstAttribute="centerY" secondItem="91Q-kF-4Fk" secondAttribute="centerY" id="AGH-ed-CHn"/>
                             <constraint firstItem="91Q-kF-4Fk" firstAttribute="leading" secondItem="4h5-Jk-u16" secondAttribute="leading" constant="20" id="H4u-53-ch5"/>
                             <constraint firstItem="4h5-Jk-u16" firstAttribute="trailing" secondItem="SQx-P7-pTF" secondAttribute="trailing" constant="37" id="H9I-7X-Bac"/>
                             <constraint firstItem="HuV-6u-lMV" firstAttribute="leading" secondItem="91Q-kF-4Fk" secondAttribute="trailing" constant="8" id="HXB-aI-d4b"/>
                             <constraint firstItem="HuV-6u-lMV" firstAttribute="top" secondItem="91Q-kF-4Fk" secondAttribute="top" id="OVE-Ny-gNh"/>
                             <constraint firstAttribute="trailing" secondItem="nJd-iy-M2h" secondAttribute="trailing" constant="20" id="QqN-Ms-zb8"/>
+                            <constraint firstItem="EZz-zS-k3T" firstAttribute="leading" secondItem="JpP-Ah-3wV" secondAttribute="leading" id="W6g-Ud-eU2"/>
                             <constraint firstItem="JpP-Ah-3wV" firstAttribute="top" secondItem="HuV-6u-lMV" secondAttribute="bottom" constant="8" id="azi-52-qtb"/>
                             <constraint firstItem="4h5-Jk-u16" firstAttribute="bottom" secondItem="nJd-iy-M2h" secondAttribute="bottom" constant="134" id="lZM-5t-wI2"/>
                             <constraint firstItem="91Q-kF-4Fk" firstAttribute="top" secondItem="4h5-Jk-u16" secondAttribute="top" constant="20" id="n0q-rg-G1r"/>
@@ -116,6 +124,7 @@
                     <navigationItem key="navigationItem" id="PPD-N9-PTq"/>
                     <connections>
                         <outlet property="nameLabel" destination="HuV-6u-lMV" id="QEf-TU-jZr"/>
+                        <outlet property="premiumUserLabel" destination="EZz-zS-k3T" id="LrB-c6-Lae"/>
                         <outlet property="profileAvatarImageView" destination="91Q-kF-4Fk" id="LSt-Xg-FL5"/>
                     </connections>
                 </viewController>
@@ -312,7 +321,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Delete Account (nothing)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qaf-ho-WvR">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Delete Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qaf-ho-WvR">
                                                     <rect key="frame" x="20" y="0.0" width="314.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>

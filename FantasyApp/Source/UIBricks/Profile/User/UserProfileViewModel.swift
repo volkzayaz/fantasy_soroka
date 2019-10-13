@@ -101,7 +101,11 @@ extension UserProfileViewModel {
                 case .sameUser:     return ""
                 case .absent:       return "No relation so far"
                 case .incomming(_): return "User liked you"
-                case .outgoing(_):  return "You liked this user"
+                    
+                case .outgoing(let x, _):
+                    let str = x.map({ $0.rawValue }).joined(separator: ", ")
+                    return "You \(str) this user"
+                    
                 case .iRejected:    return "You rejected user"
                 case .iWasRejected: return "You were rejected"
                 case .mutual:       return "You both liked each other"
@@ -109,18 +113,48 @@ extension UserProfileViewModel {
         }
     }
     
-    var relationActionTitle: Driver<String> {
+    var relationActions: Driver<[ (String, () -> Void) ]> {
         return relationshipState.asDriver()
-            .map { x -> String in
+            .map { x in
                 switch x {
-                case .sameUser:             return ""
-                case .absent?:              return "Like user"
-                case .incomming(_)?:        return "Decide"
-                case .outgoing(_)?:         return ""
-                case .iWasRejected?:        return ""
-                case .iRejected?:           return "Unreject"
-                case .mutual?:              return "Unlike"
-                case .none:                 return ""
+                case .absent?:
+                    return [
+                        ("Like User", self.initiateLike),
+                        ("Message User", self.initiateMessage)
+                    ]
+                    
+                case .incomming(_, let room)?:
+                    return [
+                        ("Accept", self.likeBack),
+                        ("Reject", self.reject),
+                        ("Open Room", { self.present(room: room) } )
+                    ]
+                
+                case .mutual(let room)?:
+                    return [
+                        ("Unlike", self.unlike),
+                        ("Open Room", { self.present(room: room) } )
+                    ]
+                    
+                case .outgoing(let types, let room)?: ///waiting for response
+                    
+                    var res = [ ("Message", { self.present(room: room) } ) ]
+                    
+                    if !types.contains(.like) {
+                        res.append(("Like", self.initiateLike ))
+                    }
+                    
+                    return res
+                        
+                case .iWasRejected?:
+                    return [] ///nothing we can do
+                    
+                case .iRejected?:
+                    return [
+                        ("Delete Connection", self.unlike )
+                    ]
+                    
+                case .sameUser, .none: return []
                 }
             }
         
@@ -187,7 +221,7 @@ struct UserProfileViewModel : MVVM_ViewModel {
         self.router = router
         self.user = user
         
-        if user != User.current! {
+        if user.id != User.current!.id {
             ConnectionManager.relationStatus(with: user)
                 .asObservable()
                 .silentCatch(handler: router.owner)
@@ -197,8 +231,6 @@ struct UserProfileViewModel : MVVM_ViewModel {
         else {
             relationshipState.accept(.sameUser)
         }
-        
-        PushManager.sendPush(to: user, text: "Hello")
         
         /////progress indicator
         
@@ -217,99 +249,62 @@ struct UserProfileViewModel : MVVM_ViewModel {
 
 extension UserProfileViewModel {
     
-    func relationAction() {
+    func initiateLike() {
         
-        if case .absent? = relationshipState.value {
-        
-            relationshipState.accept( .outgoing(request: .like))
-            
-            let _ = ConnectionManager.like(user: user)
-                .do(onError: { [weak r = relationshipState] (er) in
-                    r?.accept(.absent)
-                })
-                .silentCatch(handler: router.owner)
-                .subscribe()
-            
-            return
-        }
-        
-        if case .incomming(_)? = relationshipState.value {
-            
-            router.owner.showDialog(title: "Pick Action", text: "", style: .alert,
-                                    actions: [
-                                        UIAlertAction(title: "Like",
-                                                      style: .default,
-                                                      handler: { (_) in
-                                                        self.likeBack()
-                                        }),
-                                        UIAlertAction(title: "Reject",
-                                                      style: .default,
-                                                      handler: { (_) in
-                                                        self.reject()
-                                        }),
-                                        UIAlertAction(title: "Cancel",
-                                                      style: .cancel,
-                                                      handler: nil),
-                ])
-            return
-        }
-        
-        if case .mutual? = relationshipState.value {
-            
-            relationshipState.accept( .absent )
-            
-            let _ = ConnectionManager.deleteConnection(with: user)
-                .do(onError: { [weak r = relationshipState] (er) in
-                    r?.accept(.absent)
-                })
-                .silentCatch(handler: router.owner)
-                .subscribe()
-            
-        }
- 
-        if case .iRejected? = relationshipState.value {
-            
-            relationshipState.accept( .absent )
-            
-            let _ = ConnectionManager.deleteConnection(with: user)
-                .do(onError: { [weak r = relationshipState] (er) in
-                    r?.accept(.absent)
-                })
-                .silentCatch(handler: router.owner)
-                .subscribe()
-            
-        }
+        let _ = ConnectionManager.initiate(with: user, type: .like)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .bind(to: relationshipState)
         
     }
     
-    private func likeBack() {
-        let copy = relationshipState.value
+    func initiateMessage() {
         
-        relationshipState.accept( .mutual )
+        let _ = ConnectionManager.initiate(with: user, type: .message)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .do(onNext: { (x) in
+                
+                guard case .outgoing(_, let room) = x else {
+                    fatalErrorInDebug("Expected connection = .outgoing(_, let room). Received \(x)")
+                    return
+                }
+                
+                self.present(room: room)
+            })
+            .bind(to: relationshipState)
+        
+    }
+    
+    func likeBack() {
         
         let _ = ConnectionManager.likeBack(user: user)
-            .do(onError: { [weak r = relationshipState] (er) in
-                r?.accept(copy)
-            })
+            .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe()
+            .bind(to: relationshipState)
         
-        return
     }
     
-    private func reject() {
-        let copy = relationshipState.value
-        
-        relationshipState.accept( .iRejected )
+    func reject() {
         
         let _ = ConnectionManager.reject(user: user)
-            .do(onError: { [weak r = relationshipState] (er) in
-                r?.accept(copy)
-            })
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .bind(to: relationshipState)
+        
+    }
+    
+    func unlike() {
+        
+        relationshipState.accept( .absent )
+        
+        let _ = ConnectionManager.deleteConnection(with: user)
             .silentCatch(handler: router.owner)
             .subscribe()
-        
-        return
+    }
+    
+    func present(room: Chat.Room) {
+        router.present(room: room)
     }
     
 }

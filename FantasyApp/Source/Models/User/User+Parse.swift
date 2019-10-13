@@ -96,7 +96,6 @@ extension User {
         }
         
         let answers = pfUser["answers"] as? Bio.PersonalQuestion ?? [:]
-        let isSubscribed = pfUser["isSubscribed"] as? Bool ?? false
         
         id = objectId
         bio = User.Bio(name: name,
@@ -114,7 +113,7 @@ extension User {
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
         connections = .init(likeRequests: [], chatRequests: [])
-        subscription = subscriptionStatus ?? .init(isSubscribed: isSubscribed, status: nil)
+        subscription = subscriptionStatus ?? .init(status: nil)
         notificationSettings = notifSettings ?? NotificationSettings()
     }
     
@@ -195,7 +194,7 @@ extension PFUser {
         
         return Single.zip(UserManager.fetchOrCreateAlbums(),
                           PurchaseManager.fetchSubscriptionStatus(),
-                          (self["belongsTo"] as! PFObject).rx.fetch(),
+                          (self["belongsTo"] as? PFObject)?.rx.fetch() ?? .just( PFUser() ),
                           notificationSettingsSignal
                           )
             .map { (arg) -> User in

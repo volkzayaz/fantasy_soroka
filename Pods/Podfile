@@ -33,7 +33,7 @@ target 'FantasyApp' do
     #ui
     pod 'SnapKit', '~> 5.0'
     pod 'Kingfisher', '~> 5.8'
-    pod 'FDTake'
+    pod 'FMPhotoPicker', '~> 0.8'
     pod 'Koloda', '~> 5.0'
     pod 'Chatto', '~> 3.5'
     pod 'ChattoAdditions', '~> 3.5'

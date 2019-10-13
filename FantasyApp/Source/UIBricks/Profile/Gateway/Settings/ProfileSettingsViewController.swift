@@ -46,7 +46,7 @@ extension ProfileSettingsViewController {
             viewModel.deleteAccount()
         }
 
-        if indexPath.section == 3 && indexPath.row == 1 {
+        if indexPath.section == 2 && indexPath.row == 1 {
             viewModel.restorePurchases()
         }
         

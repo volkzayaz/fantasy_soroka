@@ -70,11 +70,15 @@ class UserProfileViewController: UIViewController, MVVM_View {
             indicatorStackView.subviews.forEach { $0.removeFromSuperview() }
         }
     }
+    @IBOutlet weak var actionButtonsStackView: UIStackView! {
+        didSet {
+            actionButtonsStackView.subviews.forEach { $0.removeFromSuperview() }
+        }
+    }
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var profileTableView: UITableView!
     
     @IBOutlet weak var relationStatusLabel: UILabel!
-    @IBOutlet weak var relationActionButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,18 +113,26 @@ class UserProfileViewController: UIViewController, MVVM_View {
             .drive(relationStatusLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
-        viewModel.relationActionTitle
-            .drive(relationActionButton.rx.title(for: .normal))
+        viewModel.relationActions
+            .drive(onNext: { [weak self] (data) in
+                
+                self?.actionButtonsStackView.subviews.forEach { $0.removeFromSuperview() }
+                
+                data.forEach { (title, action) in
+                    
+                    let button = UIButton(type: .system)
+                    button.setTitle(title, for: .normal)
+                    button.rx.controlEvent(.touchUpInside)
+                        .subscribe(onNext: action)
+                        .disposed(by: button.rx.disposeBag)
+                    
+                    self?.actionButtonsStackView.addArrangedSubview(button)
+                    
+                }
+                
+            })
             .disposed(by: rx.disposeBag)
         
-    }
-    
-}
-
-extension UserProfileViewController {
-    
-    @IBAction func relationAction(_ sender: Any) {
-        viewModel.relationAction()
     }
     
 }

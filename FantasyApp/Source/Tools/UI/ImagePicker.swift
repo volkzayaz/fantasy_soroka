@@ -7,25 +7,42 @@
 //
 
 import Foundation
-import FDTake
+import FMPhotoPicker
 
 protocol ImagePicker {
     static func present(on viewController: UIViewController, completion: @escaping (UIImage) -> Void)
 }
 
-enum FDTakeImagePicker: ImagePicker {
+
+
+class FMPhotoImagePicker: ImagePicker, FMPhotoPickerViewControllerDelegate {
+    
+    static let delegate = FMPhotoImagePicker()
+    
+    private var completion: ((UIImage) -> Void)? = nil
     
     static func present(on viewController: UIViewController, completion: @escaping (UIImage) -> Void) {
         
-        let x = FDTakeController()
-        x.allowsVideo = false
-        x.didGetPhoto = { image, _ in
-            completion(image)
-        }
-        x.allowsEditing = true
-        x.presentingViewController = viewController
+        FMPhotoImagePicker.delegate.completion = completion
         
-        x.present()
+        var config = FMPhotoPickerConfig()
+        config.selectMode = .single
+        
+        let picker = FMPhotoPickerViewController(config: config)
+        picker.delegate = FMPhotoImagePicker.delegate
+        viewController.present(picker, animated: true)
+        
     }
+    
+    func fmPhotoPickerController(_ picker: FMPhotoPickerViewController, didFinishPickingPhotoWith photos: [UIImage]) {
+        
+        completion?(photos.first!)
+        self.completion = nil
+        picker.dismiss(animated: true, completion: {
+            picker.dismiss(animated: true, completion: nil)
+        })
+        
+    }
+    
     
 }

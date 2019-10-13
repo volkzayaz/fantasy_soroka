@@ -19,20 +19,29 @@ struct ConnectionResponse: Codable {
     
     let userId: String
     let targetUserId: String
-    let connectTypes: [ConnectionRequestType]
+    let connectTypes: Set<ConnectionRequestType>
     fileprivate let status: ConnectionStatus
     let responseConnectType: String?
+    let roomId: String? ///always exists unless rejected
     
     var toNative: Connection {
         
-        guard let connectType = connectTypes.first,
+        var room: Chat.Room {
+            guard let id = roomId else {
+                fatalError("Connection does not have assosiated roomId. Details: \(self)")
+            }
+            
+            return Chat.Room(id: id)
+        }
+        
+        guard connectTypes.count > 0,
             let currentUser = User.current?.id else {
                 fatalErrorInDebug("Can't determine connect type, or currentUser is not defined")
                 return .absent
         }
         
         guard targetUserId == currentUser ||
-              userId == currentUser else {
+            userId == currentUser else {
                 fatalErrorInDebug("currentUser is not part of this connection \(self)")
                 return .absent
         }
@@ -46,16 +55,15 @@ struct ConnectionResponse: Codable {
         }
         
         if case .connected = status {
-            return .mutual
+            return .mutual(room: room)
         }
         
         if targetUserId == currentUser {
-            return .incomming(request: connectType)
+            return .incomming(request: connectTypes, draftRoom: room)
         } else if userId == currentUser {
-            return .outgoing(request: connectType)
+            return .outgoing(request: connectTypes, draftRoom: room)
         }
         else {
-            
             return .absent
         }
         
@@ -126,7 +134,7 @@ struct AcceptConnection: AuthorizedAPIResource {
         return .post
     }
 
-    typealias responseType = ConnectionResponse
+    typealias responseType = AcceptConnectionResponse
     
     var task: Task {
         return .requestParameters(parameters: ["status": ConnectionStatus.connected.rawValue,
@@ -136,6 +144,12 @@ struct AcceptConnection: AuthorizedAPIResource {
     
     let with: User
     let type: ConnectionRequestType
+ 
+    struct AcceptConnectionResponse: Codable {
+        let connection: ConnectionResponse
+        let room: Chat.Room
+    }
+    
 }
 
 struct RejectConnection: AuthorizedAPIResource {
@@ -148,7 +162,7 @@ struct RejectConnection: AuthorizedAPIResource {
         return .post
     }
     
-    typealias responseType = ConnectionResponse
+    typealias responseType = RejectConnectionResponse
     
     var task: Task {
         return .requestParameters(parameters: ["status": ConnectionStatus.rejected.rawValue],
@@ -157,6 +171,9 @@ struct RejectConnection: AuthorizedAPIResource {
     
     let with: User
     
+    struct RejectConnectionResponse: Codable {
+        let connection: ConnectionResponse
+    }
 }
 
 struct DeleteConnection: AuthorizedAPIResource {
@@ -187,10 +204,10 @@ struct GetConnectionRequests: AuthorizedAPIResource {
         
         switch source {
         case .incomming:
-            return "/users/me/connections/requests/outgoing"
+            return "/users/me/connections/requests/incoming"
             
         case .outgoing:
-            return "/users/me/connections/requests/incoming"
+            return "/users/me/connections/requests/outgoing"
             
         }
     }
