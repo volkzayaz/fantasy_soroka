@@ -264,6 +264,7 @@
 		B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */; };
 		B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6FA23521A11003A36BA /* TransparentTextField.swift */; };
 		B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */; };
+		B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -558,6 +559,7 @@
 		B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		B78BE6FA23521A11003A36BA /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
 		B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGradientView.swift; sourceTree = "<group>"; };
+		B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1483,6 +1485,7 @@
 				844A3ED422EE9C9B00E06665 /* TextField.swift */,
 				B78BE6FA23521A11003A36BA /* TransparentTextField.swift */,
 				B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */,
+				B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2150,6 +2153,7 @@
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
 				843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
+				B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
 				843B648D234F196E00E5639B /* RoomCreationRouter.swift in Sources */,
@@ -2459,6 +2463,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
+				DEVELOPMENT_TEAM = CB48395Y6T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",

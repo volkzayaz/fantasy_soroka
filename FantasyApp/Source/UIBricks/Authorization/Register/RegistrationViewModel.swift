@@ -55,9 +55,13 @@ extension RegistrationViewModel {
     }
     
     var selecetedDate: Driver<String> {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM, dd yyyy"
+
         return form.asDriver().map { $0.brithdate }
             .notNil()
-            .map { $0.description }
+            .map { dateFormatter.string(from: $0) }
     }
     
     var selectedPhoto: Driver<UIImage> {
@@ -70,14 +74,20 @@ extension RegistrationViewModel {
     var currentStep: Driver<Step> {
         return step.asDriver()
     }
-    
+
+    var showNameLenghtAlert: Driver<Bool> {
+        return showNameLenghtAlertVar.asDriver()
+    }
 }
 
 struct RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate let form = BehaviorRelay(value: RegisterForm())
     
+    fileprivate let showNameLenghtAlertVar = BehaviorRelay(value: false)
+
     fileprivate let step = BehaviorRelay(value: Step.notice)
+
     
     init(router: RegistrationRouter) {
         self.router = router
@@ -164,6 +174,7 @@ extension RegistrationViewModel {
     }
     
     func nameChanged(name: String) {
+        showNameLenghtAlertVar.accept(name.count < 2)
         updateForm { $0.name = name }
     }
     

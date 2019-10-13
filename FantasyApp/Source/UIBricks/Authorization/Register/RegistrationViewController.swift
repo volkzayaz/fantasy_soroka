@@ -19,14 +19,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var stepForwardButton: UIButton!
 
     // Notice section
-    @IBOutlet private weak var agrementBackgroundRoundedView: UIView!{
-        didSet {
-            agrementBackgroundRoundedView.clipsToBounds = true
-            agrementBackgroundRoundedView.layer.cornerRadius = 20
-            agrementBackgroundRoundedView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        }
-    }
-
+    @IBOutlet private weak var agrementBackgroundRoundedView: UIView!
     @IBOutlet private weak var agrementTextView: UITextView!
     @IBOutlet private weak var agrementLabel: UILabel! {
         didSet {
@@ -37,16 +30,32 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var agrementButton: UIButton!
 
     // Name section
-
     @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var showNameLenghtAlertView: UIView!
+
+    // Gender section
+    @IBOutlet private weak var genderPickerView: UIPickerView!
+
+    // Birthday section
+
     @IBOutlet private weak var birthdayTextField: UITextField! {
         didSet { configure(birthdayTextField) }
     }
+
     @IBOutlet private weak var sexualityPicker: UIPickerView!
-    @IBOutlet private weak var genderPickerView: UIPickerView!
-    
+
     @IBOutlet private weak var partnerBodyLabel: UILabel!
     @IBOutlet private weak var partnerBodyPickerView: UIPickerView!
+    @IBOutlet private weak var soloPartnerButton: PrimaryButton! {
+        didSet {
+            soloPartnerButton.mode = .selector
+        }
+    }
+    @IBOutlet private weak var couplePartnerButton: PrimaryButton! {
+        didSet {
+            couplePartnerButton.mode = .selector
+        }
+    }
     
     @IBOutlet private weak var emailTextField: UITextField!
     
@@ -56,12 +65,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var photoImageView: UIImageView!
     
     @IBOutlet private weak var progressWidthConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var progressView: UIView!
+    @IBOutlet private weak var progressView: UIView! {
+        didSet {
+            progressView.layer.cornerRadius = 1.5
+            progressView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        }
+    }
     
     @IBOutlet private weak var scrollView: UIScrollView!
-    
-    @IBOutlet private weak var buttonToKeybosrdConstraint: NSLayoutConstraint!
-    
+    @IBOutlet var buttonToKeybosrdConstraints: [NSLayoutConstraint]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,7 +118,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 x[step]?.becomeFirstResponder()
             })
             .disposed(by: rx.disposeBag)
-        
+
+        viewModel.showNameLenghtAlert
+            .map { !$0 }
+            .drive(showNameLenghtAlertView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
         ///extract into extension
         
         let mapper: (Notification) -> (CGFloat, CGFloat) = { n -> (CGFloat, CGFloat) in
@@ -129,7 +147,11 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .merge()
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
-                    self.buttonToKeybosrdConstraint.constant += delta
+
+                    self.buttonToKeybosrdConstraints.forEach { (item) in
+                        item.constant += delta
+                    }
+
                     self.view.layoutIfNeeded()
                 })
             })
@@ -157,8 +179,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
         let data = Sexuality.allCases
         
         Observable.just(data)
-            .bind(to: sexualityPicker.rx.itemTitles) { _, item in
-                return item.rawValue
+            .bind(to: sexualityPicker.rx.itemAttributedTitles) { _, item in
+                return NSAttributedString(string: item.rawValue,
+                  attributes: [
+                    NSAttributedString.Key.foregroundColor: UIColor.white,
+                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
+                ])
             }
             .disposed(by: rx.disposeBag)
         
@@ -176,8 +202,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
         let genders = Gender.allCases
         
         Observable.just(genders)
-            .bind(to: genderPickerView.rx.itemTitles) { _, item in
-                return item.rawValue
+            .bind(to: genderPickerView.rx.itemAttributedTitles) { _, item in
+                return NSAttributedString(string: item.rawValue,
+                  attributes: [
+                    NSAttributedString.Key.foregroundColor: UIColor.white,
+                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
+                ])
             }
             .disposed(by: rx.disposeBag)
         
@@ -189,12 +219,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.viewModel.genderChanged(gender: x.first!)
             })
             .disposed(by: rx.disposeBag)
-        
+
         ///Relationship
         
         Observable.just(Gender.allCases)
-            .bind(to: partnerBodyPickerView.rx.itemTitles) { _, item in
-                return item.rawValue
+            .bind(to: partnerBodyPickerView.rx.itemAttributedTitles) { _, item in
+                 return NSAttributedString(string: item.rawValue,
+                                 attributes: [
+                                   NSAttributedString.Key.foregroundColor: UIColor.white,
+                                   NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
+                               ])
             }
             .disposed(by: rx.disposeBag)
         
@@ -248,9 +282,12 @@ extension RegistrationViewController: UIScrollViewDelegate {
         viewModel.agreementChanged(agrred: sender.isSelected)
     }
     
-    @IBAction func relationshipChanged(_ sender: UISegmentedControl) {
-        
-        if sender.selectedSegmentIndex == 0 {
+    @IBAction func relationshipChanged(_ sender: UIButton) {
+
+        soloPartnerButton.isSelected = sender.tag == 1
+        couplePartnerButton.isSelected = sender.tag != 1
+
+        if sender.tag == 1 {
             viewModel.relationshipChanged(status: .single)
         }
         else {
@@ -278,14 +315,13 @@ extension RegistrationViewController: UIScrollViewDelegate {
 private extension RegistrationViewController {
     
     func configure(_ birthdayTextField: UITextField) {
+
         let picker = UIDatePicker()
+        picker.backgroundColor = UIColor.white
         picker.datePickerMode = .date
-        
         picker.maximumDate = Date()
         picker.date = Date(timeIntervalSince1970: 0)
-        
         birthdayTextField.inputView = picker
-        
     }
-    
+
 }
