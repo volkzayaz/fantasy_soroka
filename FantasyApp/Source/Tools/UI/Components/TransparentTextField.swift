@@ -10,14 +10,26 @@ import UIKit
 
 class TransparentTextField: UITextField {
 
+    let clearButton = UIButton()
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        clearButtonMode = .whileEditing
-
+        clearButton.addTarget(self, action: #selector(clear), for: .touchUpInside)
+//        clearButton.setContentHuggingPriority(.required, for: .horizontal)
+//        clearButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+        clearButton.setImage(R.image.textFieldClear(), for: .normal)
+        rightView = clearButton
+        rightViewMode = .whileEditing
         guard let p = placeholder else { return }
 
         attributedPlaceholder = NSAttributedString(string: p, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white.withAlphaComponent(0.31)])
     }
 
+    @objc func clear() {
+        text = nil
+//        clearButton.isHidden = true
+    }
 }
+
+

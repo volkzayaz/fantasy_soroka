@@ -14,11 +14,30 @@ import RxCocoa
 class RegistrationViewController: UIViewController, MVVM_View {
     
     var viewModel: RegistrationViewModel!
-    
+
     @IBOutlet private weak var stepBackButton: UIButton!
     @IBOutlet private weak var stepForwardButton: UIButton!
-    
-    @IBOutlet private weak var agrementSwitch: UISwitch!
+
+    // Notice section
+    @IBOutlet private weak var agrementBackgroundRoundedView: UIView!{
+        didSet {
+            agrementBackgroundRoundedView.clipsToBounds = true
+            agrementBackgroundRoundedView.layer.cornerRadius = 20
+            agrementBackgroundRoundedView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
+    }
+
+    @IBOutlet private weak var agrementTextView: UITextView!
+    @IBOutlet private weak var agrementLabel: UILabel! {
+        didSet {
+            agrementLabel.font = UIFont.regularFont(ofSize: 15)
+        }
+    }
+
+    @IBOutlet private weak var agrementButton: UIButton!
+
+    // Name section
+
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var birthdayTextField: UITextField! {
         didSet { configure(birthdayTextField) }
@@ -224,8 +243,9 @@ extension RegistrationViewController: UIScrollViewDelegate {
         viewModel.forward()
     }
     
-    @IBAction func termsAgreementChange(_ sender: Any) {
-        viewModel.agreementChanged(agrred: agrementSwitch.isOn)
+    @IBAction func termsAgreementClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.agreementChanged(agrred: sender.isSelected)
     }
     
     @IBAction func relationshipChanged(_ sender: UISegmentedControl) {

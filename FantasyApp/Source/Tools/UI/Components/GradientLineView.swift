@@ -10,20 +10,20 @@ import UIKit
 
 class GradientLineView: UIView {
 
-    public var gradientLayer: CAGradientLayer {
+    public var gradientLayer: CAGradientLayer = CAGradientLayer()
 
-        let layerVar = CAGradientLayer()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
         let color1 = UIColor.clear
         let color2 = UIColor.white.withAlphaComponent(0.5)
         let color3 = UIColor.clear
 
-        layerVar.colors = [color1.cgColor, color2.cgColor, color3.cgColor]
-        layerVar.startPoint = CGPoint(x: 0.0, y: 0.5)
-        layerVar.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.colors = [color1.cgColor, color2.cgColor, color3.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
 
-        layer.insertSublayer(layerVar, at: 0)
-
-        return layerVar
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 
     override public func layoutSubviews() {
