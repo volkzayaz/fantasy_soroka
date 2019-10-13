@@ -105,21 +105,29 @@ extension UserManager {
     
     static func deleteAccount() -> Single<Void> {
         
-        return Observable.create { (subscriber) in
-            
-            PFUser(withoutDataWithObjectId: User.current!.id).deleteInBackground { (res, error) in
+        return DeleteUser().rx.request
+            .flatMap { _ in
                 
-                if let e = error {
-                    subscriber.onError(e)
+                Single.create { (subscriber) in
+                    
+                    let user = PFUser(withoutDataWithObjectId: User.current!.id)
+                    let notificationSettings = User.current!.notificationSettings.pfObject
+                    
+                    PFObject.deleteAll(inBackground: [user, notificationSettings]) { (res, error) in
+                        
+                        if let e = error {
+                            subscriber(.error(e))
+                        }
+                        
+                        subscriber( .success( () ) )
+                        
+                    }
+                    
+                    return Disposables.create()
                 }
                 
-                subscriber.onNext( () )
-                subscriber.onCompleted()
-            }
-            
-            return Disposables.create()
         }
-        .asSingle()
+        
     }
 
     static func getUser(id: String) -> Single<User?> {

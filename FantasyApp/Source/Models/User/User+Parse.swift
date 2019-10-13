@@ -194,7 +194,7 @@ extension PFUser {
         
         return Single.zip(UserManager.fetchOrCreateAlbums(),
                           PurchaseManager.fetchSubscriptionStatus(),
-                          (self["belongsTo"] as! PFObject).rx.fetch(),
+                          (self["belongsTo"] as? PFObject)?.rx.fetch() ?? .just( PFUser() ),
                           notificationSettingsSignal
                           )
             .map { (arg) -> User in
