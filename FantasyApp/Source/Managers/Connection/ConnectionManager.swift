@@ -17,19 +17,19 @@ extension ConnectionManager {
             .map { $0?.toNative ?? .absent }
     }
     
-    static func like(user: User) -> Single<Void> {
-        return UpsertConnection(with: user, type: .like)
-            .rx.request.map { _ in }
+    static func initiate(with user: User, type: ConnectionRequestType) -> Single<Connection> {
+        return UpsertConnection(with: user, type: type)
+            .rx.request.map { $0.toNative }
     }
     
-    static func likeBack(user: User) -> Single<Void> {
+    static func likeBack(user: User) -> Single<Connection> {
         return AcceptConnection(with: user, type: .like)
-            .rx.request.map { _ in }
+            .rx.request.map { $0.connection.toNative }
     }
     
-    static func reject(user: User) -> Single<Void> {
+    static func reject(user: User) -> Single<Connection> {
         return RejectConnection(with: user)
-            .rx.request.map { _ in }
+            .rx.request.map { $0.connection.toNative }
     }
     
     static func deleteConnection(with: User) -> Single<Void> {
@@ -37,19 +37,49 @@ extension ConnectionManager {
             .rx.request.map { _ in }
     }
     
-    static func connectionRequests(source: GetConnectionRequests.Source) -> Single<[User]> {
+    static func connectionRequests(source: GetConnectionRequests.Source) -> Single<[ConnectedUser]> {
         
         return GetConnectionRequests(source: source).rx.request
-            .flatMap { r -> Single<[User]> in
+            .flatMap { r in
                 
                 return User.query
                     .whereKey("objectId", containedIn: r.map { $0._id })
                     .rx.fetchAllObjects()
-                    .map { u in
-                        u.compactMap { try? User(pfUser: $0 as! PFUser) }
-                    }
+                    .map { ($0, r) }
+            }
+            .map { (users, requests) in
                 
+                let connections = Dictionary(uniqueKeysWithValues: requests.map { ($0._id, $0.connection) })
+                
+                return users.compactMap { pfUser in
+                    
+                    guard let user = try? User(pfUser: pfUser as! PFUser),
+                        let connection = connections[user.id]?.toNative else {
+                        return nil
+                    }
+                    
+                    let room: Chat.Room
+                    let connectType: Set<ConnectionRequestType>
+                    switch connection {
+                    case .incomming(let request, let draftRoom):
+                        connectType = request
+                        room = draftRoom
+                        
+                    case .outgoing(let request, let draftRoom):
+                        connectType = request
+                        room = draftRoom
+                       
+                    default:
+                        return nil
+                        
+                    }
+                    
+                    return ConnectedUser(user: user,
+                                         room: room,
+                                         connectTypes: connectType)
                 }
+                 
+            }
     }
 
 }

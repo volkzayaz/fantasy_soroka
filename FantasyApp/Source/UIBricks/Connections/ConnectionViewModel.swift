@@ -10,20 +10,21 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 extension ConnectionViewModel {
     
-    var requests: Driver<[User]> {
+    var requests: Driver<[SectionModel<String, ConnectedUser>]> {
         
         return Driver.combineLatest(reloadTrigger.asDriver(), source.asDriver()) { ($0, $1) }
             .flatMapLatest { [unowned i = indicator,
                               unowned o = router.owner] (_, source) in
-                
                 return ConnectionManager.connectionRequests(source: source)
                     .trackView(viewIndicator: i)
                     .silentCatch(handler: o)
                     .asDriver(onErrorJustReturn: [])
-        }
+            }
+            .map { [SectionModel(model: "", items: $0)] }
         
     }
     
@@ -68,8 +69,8 @@ extension ConnectionViewModel {
         self.source.accept(source)
     }
     
-    func show(user: User) {
-        router.show(user: user)
+    func show(room: Chat.Room) {
+        router.show(room: room)
     }
     
 }

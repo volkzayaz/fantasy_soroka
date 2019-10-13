@@ -131,6 +131,10 @@ extension Chat {
 
         // property is set during runtime
         var details: RoomDetails?
+        
+        init(id: String) {
+            self.id = id
+        }
     }
 
     struct RoomSettings: Codable, Equatable {

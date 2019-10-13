@@ -18,36 +18,28 @@ class ConnectionViewController: UIViewController, MVVM_View {
     
     @IBOutlet weak var tableView: UITableView!
     
-    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(configureCell: { [unowned self] (_, tableView, ip, x) in
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, ConnectedUser>>(configureCell: { [unowned self] (_, tableView, ip, x) in
         
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.connectionRequestCell,
                                                  for: ip)!
         
-        cell.textLabel?.text = x.bio.name
+        cell.textLabel?.text = x.user.bio.name
+        cell.detailTextLabel?.text = x.connectTypes.map({ $0.rawValue }).joined(separator: ", ")
         
         return cell
         
     })
     
-    
-    /**
-     *  Connect any IBOutlets here
-     *  @IBOutlet private weak var label: UILabel!
-     */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.requests
-            .map { [SectionModel(model: "", items: $0)] }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
     
-        tableView.rx.modelSelected(User.self)
+        tableView.rx.modelSelected(ConnectedUser.self)
             .subscribe(onNext: { [unowned self] (x) in
-                
-                self.viewModel.show(user: x)
-                
+                self.viewModel.show(room: x.room)
             })
             .disposed(by: rx.disposeBag)
         
