@@ -18,11 +18,17 @@ extension ConnectionManager {
     }
     
     static func initiate(with user: User, type: ConnectionRequestType) -> Single<Connection> {
+        
+        PushManager.sendPush(to: user, text: "\(User.current!.bio.name) is interested in you")
+        
         return UpsertConnection(with: user, type: type)
             .rx.request.map { $0.toNative }
     }
     
     static func likeBack(user: User) -> Single<Connection> {
+        
+        PushManager.sendPush(to: user, text: "\(User.current!.bio.name) accepted your room request")
+        
         return AcceptConnection(with: user, type: .like)
             .rx.request.map { $0.connection.toNative }
     }
