@@ -173,11 +173,14 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         ///Relationship
         
-        Observable.just(Gender.allCases)
+        Observable.just(genders)
             .bind(to: partnerBodyPickerView.rx.itemTitles) { _, item in
                 return item.rawValue
             }
             .disposed(by: rx.disposeBag)
+        
+        partnerBodyPickerView.selectRow(genders.firstIndex(of: viewModel.defaultGender)!,
+                                        inComponent: 0, animated: false)
         
         partnerBodyPickerView.rx.modelSelected(Gender.self)
             .subscribe(onNext: { [unowned self] (x) in
@@ -245,7 +248,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
     
     @IBAction func changePhoto(_ sender: Any) {
-        FDTakeImagePicker.present(on: self) { [unowned self] (image) in
+        FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
             self.viewModel.photoChanged(photo: image)
         }
     }
