@@ -65,7 +65,7 @@ extension RegistrationViewModel {
     }
     
     var selectedPhoto: Driver<UIImage> {
-        return form.asDriver().map { $0.photo ?? R.image.stub()! }
+        return form.asDriver().map { $0.photo ?? R.image.loginCameraImage()! }
     }
     
     var defaultGender: Gender { return .female }

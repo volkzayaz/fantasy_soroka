@@ -15,7 +15,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
     
     var viewModel: RegistrationViewModel!
 
-    @IBOutlet private weak var stepBackButton: UIButton!
     @IBOutlet private weak var stepForwardButton: UIButton!
 
     // Notice section
@@ -56,12 +55,25 @@ class RegistrationViewController: UIViewController, MVVM_View {
             couplePartnerButton.mode = .selector
         }
     }
-    
+
+    // Email section
     @IBOutlet private weak var emailTextField: UITextField!
-    
+    @IBOutlet private weak var emailValidationAlertView: UIView!
+
+    // Password section
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
-    
+    @IBOutlet private weak var passwordValidationAlertView: UIView!
+
+    // Photo section
+    @IBOutlet private weak var photoInstructionBackgroundView: UIView! {
+        didSet {
+            photoInstructionBackgroundView.layer.cornerRadius = 15.0
+            photoInstructionBackgroundView.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
+            photoInstructionBackgroundView.layer.borderWidth = 1.0
+        }
+    }
+
     @IBOutlet private weak var photoImageView: UIImageView!
     
     @IBOutlet private weak var progressWidthConstraint: NSLayoutConstraint!
