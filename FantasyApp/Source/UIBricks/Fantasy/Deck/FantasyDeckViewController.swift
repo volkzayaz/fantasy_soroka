@@ -97,16 +97,32 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
 
         let card = cardsProxy[index]
         
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        
+        ImageRetreiver.imageForURLWithoutProgress(url: card.imageURL)
+            .drive(imageView.rx.image)
+            .disposed(by: imageView.rx.disposeBag)
+        
+        view.addSubview(imageView)
+        
+        imageView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
         let label = UILabel()
         label.text = card.text
         label.textColor = .white
-        label.font = .systemFont(ofSize: 23)
+        label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 0
+        
         
         view.addSubview(label)
         
         label.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
         
         return view

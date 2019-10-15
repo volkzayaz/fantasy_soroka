@@ -14,25 +14,20 @@ struct BuyCollection: ActionCreator {
     
     func perform(initialState: AppState) -> Observable<AppState> {
         
-        return PurchaseManager.purhcase(collection: collection).asObservable()
-            .flatMap { _ -> Observable<AppState> in
+        var state = initialState
         
-                var state = initialState
-                
-                state.currentUser?.fantasies.purchasedCollections.append(self.collection)
-                
-                guard case .swipeCount(let swipesLeft) = state.fantasies.restriction else {
-                    return .just(state)
-                }
-
-                return Fantasy.Manager.fetchMainCards()
-                    .asObservable()
-                    .map { cards in
-                        state.fantasies.cards = cards
-                        return state
-                    }
-                
-            }
+        state.currentUser?.fantasies.purchasedCollections.append(self.collection)
+        
+        guard case .swipeCount(let swipesLeft) = state.fantasies.restriction else {
+            return .just(state)
+        }
+        
+        return Fantasy.Manager.fetchMainCards()
+            .asObservable()
+            .map { cards in
+                state.fantasies.cards = cards
+                return state
+        }
         
     }
     
