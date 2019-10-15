@@ -124,7 +124,7 @@ extension Chat {
         var type = RoomType.public
         var status = RoomStatus.created
         var roomName: String?
-        //var freezeStatus = RoomFreezeStatus.unfrozen
+        var freezeStatus: RoomFreezeStatus?
         var participants = [RoomParticipant]()
         var createdAt: String?
         var updatedAt: String?

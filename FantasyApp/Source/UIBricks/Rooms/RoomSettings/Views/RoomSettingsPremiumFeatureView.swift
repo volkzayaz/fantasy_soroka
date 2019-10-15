@@ -2,7 +2,7 @@
 //  RoomSettingsPremiumFeatureView.swift
 //  FantasyApp
 //
-//  Created by Admin on 15.10.2019.
+//  Created by Borys Vynohradov on 15.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -122,6 +122,7 @@ class RoomSettingsPremiumFeatureView: UIView {
             optionSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
             optionSwitch.isOn = option.1
             optionSwitch.onTintColor = .fantasyPink
+            optionSwitch.isUserInteractionEnabled = viewModel?.isEnabled == true
             switches.append(optionSwitch)
             containerView.addSubview(optionSwitch)
 

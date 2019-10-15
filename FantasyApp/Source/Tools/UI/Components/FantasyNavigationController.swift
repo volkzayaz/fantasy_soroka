@@ -2,7 +2,7 @@
 //  FantasyNavigationController.swift
 //  FantasyApp
 //
-//  Created by Admin on 15.10.2019.
+//  Created by Borys Vynohradov on 15.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

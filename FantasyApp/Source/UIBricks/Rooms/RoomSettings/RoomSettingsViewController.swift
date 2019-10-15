@@ -2,7 +2,7 @@
 //  RoomSettingsViewController.swift
 //  FantasyApp
 //
-//  Created by Admin on 10.10.2019.
+//  Created by Borys Vynohradov on 10.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -106,10 +106,10 @@ private extension RoomSettingsViewController {
         inviteView.layer.cornerRadius = 12.0
         notificationsView.layer.cornerRadius = 12.0
 
-        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
-        securitySettingsView.didChangeOptions = { [weak self] options in
-            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
-        }
+//        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
+//        securitySettingsView.didChangeOptions = { [weak self] options in
+//            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
+//        }
 
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))

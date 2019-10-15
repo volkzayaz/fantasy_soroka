@@ -2,7 +2,7 @@
 //  InviteParticipantCollectionViewCell.swift
 //  FantasyApp
 //
-//  Created by Admin on 11.10.2019.
+//  Created by Borys Vynohradov on 11.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
