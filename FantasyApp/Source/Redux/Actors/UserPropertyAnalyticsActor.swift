@@ -10,6 +10,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+import Crashlytics
+
 class UserPropertyActor {
     private let bag = DisposeBag()
 
@@ -23,8 +25,18 @@ class UserPropertyActor {
                 AnalyticsReporter.default.setValue(user.bio.name, forProperty: .name)
                 // AnalyticsReporter.default.setValue(user.bio.age, forProperty: .age)
                 // AnalyticsReporter.default.setValue(user.community.name, forProperty: .community)
+                
         }).disposed(by: bag)
 
+        appState.changesOf { $0.currentUser }
+        .drive(onNext: { user in
+                
+                Crashlytics.sharedInstance().setUserIdentifier(user?.id)
+                Crashlytics.sharedInstance().setUserName(user?.bio.name)
+                
+            })
+            .disposed(by: bag)
+        
         appState.changesOf { $0.rooms }.drive(onNext: { rooms in
             AnalyticsReporter.default.setValue(rooms.count, forProperty: .chatRoomsQuantity)
         }).disposed(by: bag)

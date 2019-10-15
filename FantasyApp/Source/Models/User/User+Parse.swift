@@ -140,7 +140,7 @@ extension User {
         
         switch bio.relationshipStatus {
         case .single:                    dict["couple"] = "single"
-        case .couple(let partnerGender): dict["couple"] = partnerGender
+        case .couple(let partnerGender): dict["couple"] = partnerGender.rawValue
         }
         
         user.setValuesForKeys(dict)
@@ -187,9 +187,7 @@ extension PFUser {
             notificationSettingsSignal = x.rx.fetch().map { $0.toCodable() }
         }
         else {
-            let x = NotificationSettings()
-            self["notificationSettings"] = x.freshPFObject
-            notificationSettingsSignal = self.rxSave().map { _ in x }
+            notificationSettingsSignal = NotificationSettings().rxCreate()
         }
         
         return Single.zip(UserManager.fetchOrCreateAlbums(),

@@ -36,7 +36,7 @@ extension AuthenticationManager {
         
         pfUser.apply(editForm: form.toEditProfileForm)
         
-        return Observable.create { (subscriber) -> Disposable in
+        let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
             
             pfUser.signUpInBackground(block: { (didSignUp, maybeError) in
                 
@@ -51,7 +51,6 @@ extension AuthenticationManager {
             
             return Disposables.create()
         }
-        .asSingle()
         .flatMap { (u: PFUser) -> Single<PFUser> in
             return UpdateUserAvatarResource(image: form.photo!).rx.request
                 .map { avatar -> PFUser in
@@ -59,21 +58,16 @@ extension AuthenticationManager {
                     u["avatarThumbnail"] = avatar.avatarThumbnail.absoluteString
                     
                     return u
-                }
+            }
         }
-        .flatMap { (u: PFUser) -> Single<User> in
-            return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
-        }
-        .do(onSuccess: { (user) in
-            SettingsStore.currentUser.value = user
-            Branch.getInstance()?.setIdentity(user.id)
-        })
+
+        return postAuthorizationParseMess(signal: x)
         
     }
     
     static func login(with email: String, password: String) -> Single<User> {
         
-        return Observable.create { (subscriber) -> Disposable in
+        let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
             
                 PFUser.logInWithUsername(inBackground: email, password: password) { (maybeUser, maybeError) in
                     if let e = maybeError {
@@ -87,21 +81,14 @@ extension AuthenticationManager {
             
                 return Disposables.create()
             }
-            .asSingle()
-            .flatMap { (u: PFUser) -> Single<User> in
-                return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
-            }
-            .do(onSuccess: { (user) in
-                SettingsStore.currentUser.value = user
-                Branch.getInstance()?.setIdentity(user.id)
-            })
             
+        return postAuthorizationParseMess(signal: x)
         
     }
     
     static func loginWithFacebook() -> Single<User> {
         
-        return Observable.create { (subscriber) -> Disposable in
+        let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
             
             let permissions = ["public_profile", "email", "user_photos", "user_birthday"]
             
@@ -121,16 +108,9 @@ extension AuthenticationManager {
             }
                         
             return Disposables.create()
-            }
-            .asSingle()
-            .flatMap { (u: PFUser) -> Single<User> in
-                return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
-            }
-            .do(onSuccess: { (user) in
-                SettingsStore.currentUser.value = user
-                Branch.getInstance()?.setIdentity(user.id)
-            })
+        }
             
+        return postAuthorizationParseMess(signal: x)
     }
  
     static func currentUser() -> User? {
@@ -142,6 +122,20 @@ extension AuthenticationManager {
         SettingsStore.atLeastOnceLocation.value = nil
         PFUser.logOutInBackground(block: { _ in })
         Branch.getInstance()?.logout()
+    }
+
+    private static func postAuthorizationParseMess( signal: Observable<PFUser> ) -> Single<User> {
+        
+        return signal
+            .asSingle()
+            .flatMap { (u: PFUser) -> Single<User> in
+                return u.convertWithAlbumsAndSubscriptionAndNotificationSettings()
+            }
+            .do(onSuccess: { (user) in
+                SettingsStore.currentUser.value = user
+                Branch.getInstance()?.setIdentity(user.id)
+            })
+        
     }
     
 }
