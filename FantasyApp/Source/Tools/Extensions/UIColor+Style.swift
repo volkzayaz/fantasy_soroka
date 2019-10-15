@@ -15,6 +15,10 @@ extension UIColor {
     static let gradient2 = UIColor(red: 184, green: 141, blue: 218)
     static let gradient3 = UIColor(red: 237, green: 61, blue: 138)
 
+    static let gradient4 = UIColor(red: 212, green: 91, blue: 181)
+    static let gradient5 = UIColor(red: 132, green: 185, blue: 215)
+
+
     // MARK: - Buttons
     static let shadow = UIColor(red: 199, green: 119, blue: 197)
     static let primary = UIColor.white

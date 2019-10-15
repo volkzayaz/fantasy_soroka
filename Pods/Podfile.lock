@@ -95,7 +95,7 @@ DEPENDENCIES:
   - SwiftyStoreKit
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Amplitude-iOS
     - Bolts
