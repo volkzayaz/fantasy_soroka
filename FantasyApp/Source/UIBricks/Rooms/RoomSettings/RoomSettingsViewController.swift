@@ -1,5 +1,5 @@
 //
-//  RoomCreationViewController.swift
+//  RoomSettingsViewController.swift
 //  FantasyApp
 //
 //  Created by Admin on 10.10.2019.
@@ -10,31 +10,36 @@ import Foundation
 import RxDataSources
 import Kingfisher
 
-class RoomCreationViewController: UIViewController, MVVM_View {
-    var viewModel: RoomCreationViewModel!
+class RoomSettingsViewController: UIViewController, MVVM_View {
+    var viewModel: RoomSettingsViewModel!
 
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var inviteView: UIView!
     @IBOutlet private var inviteLabel: UILabel!
+    @IBOutlet private var notificationsView: UIView!
+    @IBOutlet private var notificationsLabel: UILabel!
     @IBOutlet private var participantsCollectionView: UICollectionView!
+    @IBOutlet private var securitySettingsView: RoomSettingsPremiumFeatureView!
     @IBOutlet private var inviteLinkLabel: UILabel!
     @IBOutlet private var participantsLabel: UILabel!
     @IBOutlet private var copyLinkButton: SecondaryButton!
     @IBOutlet private var seeParticipantsButton: UIButton!
+    @IBOutlet private var leaveRoomButton: UIButton!
 
-    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource
-        <AnimatableSectionModel<String, RoomCreationViewModel.CellModel>>(
+    lazy var participantsDataSource = RxCollectionViewSectionedAnimatedDataSource
+        <AnimatableSectionModel<String, RoomSettingsViewModel.CellModel>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
 
         switch model {
-        case .user(let thumbnailURL, let isAdmin, let name, _):
+        case .user(let thumbnailURL, let isAdmin, let name, let status, _):
             let cell = self.participantsCollectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.participantCollectionViewCell,
                                      for: indexPath)!
             cell.nameLabel.text = name
             cell.adminLabel.isHidden = !isAdmin
+            cell.status = isAdmin ? nil : status
             ImageRetreiver.imageForURLWithoutProgress(url: thumbnailURL)
                 .map { $0 ?? R.image.errorPhoto() }
                 .drive(cell.imageView.rx.image)
@@ -55,8 +60,10 @@ class RoomCreationViewController: UIViewController, MVVM_View {
     }
 }
 
-private extension RoomCreationViewController {
+private extension RoomSettingsViewController {
     func configure() {
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.backgroundColor = .messageBackground
         contentView.backgroundColor = .messageBackground
         inviteView.backgroundColor = .white
         
@@ -67,6 +74,10 @@ private extension RoomCreationViewController {
         inviteLabel.font = .boldFont(ofSize: 15)
         inviteLabel.textColor = .fantasyBlack
         inviteLabel.text = R.string.localizable.roomCreationInvite()
+
+        notificationsLabel.font = .boldFont(ofSize: 15)
+        notificationsLabel.textColor = .fantasyBlack
+        notificationsLabel.text = R.string.localizable.roomCreationNotifications()
 
         participantsLabel.font = .boldFont(ofSize: 15)
         participantsLabel.textColor = .fantasyBlack
@@ -86,13 +97,25 @@ private extension RoomCreationViewController {
         seeParticipantsButton.titleLabel?.font = .boldFont(ofSize: 14)
         seeParticipantsButton.layer.cornerRadius = seeParticipantsButton.bounds.height / 2.0
 
-        inviteView.layer.cornerRadius = 12.0
+        leaveRoomButton.setTitle(R.string.localizable.roomSettingsLeaveRoom(), for: .normal)
+        leaveRoomButton.setTitleColor(.fantasyRed, for: .normal)
+        leaveRoomButton.titleLabel?.font = .mediumFont(ofSize: 15)
+        leaveRoomButton.backgroundColor = .white
 
-        viewModel.dataSource
-            .drive(participantsCollectionView.rx.items(dataSource: dataSource))
+        leaveRoomButton.layer.cornerRadius = 12.0
+        inviteView.layer.cornerRadius = 12.0
+        notificationsView.layer.cornerRadius = 12.0
+
+        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
+        securitySettingsView.didChangeOptions = { [weak self] options in
+            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
+        }
+
+        viewModel.participantsDataSource
+            .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
 
-        participantsCollectionView.rx.modelSelected(RoomCreationViewModel.CellModel.self)
+        participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
             .subscribe(onNext: { [unowned self] cellModel in
                 switch cellModel {
                 case .invite:
@@ -101,7 +124,6 @@ private extension RoomCreationViewController {
                     break
                 }
         }).disposed(by: rx.disposeBag)
-
     }
 
     @IBAction func copyLink() {
@@ -109,6 +131,14 @@ private extension RoomCreationViewController {
     }
 
     @IBAction func seeAllParticipants() {
+
+    }
+
+    @IBAction func editNotificationSettings() {
+
+    }
+
+    @IBAction func leaveRoom() {
 
     }
 }

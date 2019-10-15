@@ -10,12 +10,12 @@ import Foundation
 import Moya
 
 struct InviteParticipantResource: AuthorizedAPIResource {
-    private let participant: Chat.RoomParticipant
+    private let userId: String?
     private let roomId: String
 
-    init(roomId: String, participant: Chat.RoomParticipant) {
+    init(roomId: String, userId: String?) {
         self.roomId = roomId
-        self.participant = participant
+        self.userId = userId
     }
 
     typealias responseType = Chat.Room
@@ -29,6 +29,10 @@ struct InviteParticipantResource: AuthorizedAPIResource {
     }
 
     var task: Task {
-        return .requestJSONEncodable(participant)
+        if let userId = userId {
+            return .requestParameters(parameters: ["userId": userId], encoding: JSONEncoding.default)
+        } else {
+            return .requestParameters(parameters: ["isNewUser": true], encoding: JSONEncoding.default)
+        }
     }
 }

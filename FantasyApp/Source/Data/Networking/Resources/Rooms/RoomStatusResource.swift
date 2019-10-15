@@ -1,5 +1,5 @@
 //
-//  AcceptInviteResource.swift
+//  RoomStatusResource.swift
 //  FantasyApp
 //
 //  Created by Borys Vynohradov on 09.10.2019.
@@ -9,11 +9,13 @@
 import Foundation
 import Moya
 
-struct AcceptInviteResource: AuthorizedAPIResource {
+struct RoomStatusResource: AuthorizedAPIResource {
     private let roomId: String
+    private let status: Chat.RoomParticipantStatus
 
-    init(roomId: String) {
+    init(roomId: String, status: Chat.RoomParticipantStatus) {
         self.roomId = roomId
+        self.status = status
     }
 
     typealias responseType = Chat.Room
@@ -23,11 +25,11 @@ struct AcceptInviteResource: AuthorizedAPIResource {
     }
 
     var path: String {
-        return "users/me/rooms/\(roomId)/invite"
+        return "users/me/rooms/\(roomId)/invite/response"
     }
 
     var task: Task {
-        return .requestParameters(parameters: ["status": Chat.RoomParticipantStatus.accepted.rawValue],
+        return .requestParameters(parameters: ["status": status.rawValue],
                                   encoding: JSONEncoding())
     }
 }

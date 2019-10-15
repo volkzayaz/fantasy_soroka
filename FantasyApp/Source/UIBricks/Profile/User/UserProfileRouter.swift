@@ -16,7 +16,6 @@ struct UserProfileRouter : MVVM_Router {
     }
     
     func present(room: Chat.Room) {
-        
         let vc = R.storyboard.chat.roomDetailsViewController()!
         vc.viewModel = RoomDetailsViewModel(router: .init(owner: vc, room: room), room: room,
                                             page: .chat)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct RoomsRouter : MVVM_Router {
+struct RoomsRouter: MVVM_Router {
 
     unowned private(set) var owner: RoomsViewController
     init(owner: RoomsViewController) {
@@ -23,9 +23,11 @@ struct RoomsRouter : MVVM_Router {
         owner.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func roomCreated(_ room: Chat.Room) {
-        let vc = R.storyboard.chat.roomCreationViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), room: room)
+    func showRoomSettings(_ room: Chat.Room) {
+        let vc = R.storyboard.chat.roomDetailsViewController()!
+        vc.viewModel = .init(router: .init(owner: vc, room: room),
+                             room: room,
+                             page: .settings)
         owner.navigationController?.pushViewController(vc, animated: true)
     }
 

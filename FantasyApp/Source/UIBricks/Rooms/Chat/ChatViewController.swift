@@ -56,6 +56,9 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
 
 private extension ChatViewController {
     func configure() {
+        if viewModel.room.settings?.isScreenShieldEnabled == true {
+            setupScreenCaptureProtection()
+        }
         chatDataSource = viewModel
         chatDataSource?.delegate = self
         chatItemsDecorator = ChatItemsDecorator()
@@ -72,7 +75,6 @@ private extension ChatViewController {
             view.leftAnchor.constraint(equalTo: superview.leftAnchor),
             view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
         ])
-        setupScreenCaptureProtection()
     }
 
     func setupScreenCaptureProtection() {
@@ -89,10 +91,10 @@ private extension ChatViewController {
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            imageView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            imageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+            imageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
     }
 }

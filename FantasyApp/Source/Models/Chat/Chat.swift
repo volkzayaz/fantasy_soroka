@@ -124,7 +124,7 @@ extension Chat {
         var type = RoomType.public
         var status = RoomStatus.created
         var roomName: String?
-        //var isFrozen = false
+        //var freezeStatus = RoomFreezeStatus.unfrozen
         var participants = [RoomParticipant]()
         var createdAt: String?
         var updatedAt: String?
@@ -137,6 +137,12 @@ extension Chat {
         }
     }
 
+    enum RoomFreezeStatus: String, Codable, Equatable {
+        case frozen
+        case unfrozen
+        case unfrozenPaid
+    }
+
     struct RoomSettings: Codable, Equatable {
         var isClosedRoom = false
         var isHideCommonFantasies = false
@@ -146,11 +152,13 @@ extension Chat {
 
     struct RoomParticipant: Codable, Equatable, IdentifiableType {
         var identity: String {
-            return userId!
+            return _id!
         }
 
-        var userId: String!
+        var _id: String!
+        var userId: String?
         var status: RoomParticipantStatus = .accepted
+        var invitationLink: String?
     }
 
     enum RoomType: String, Codable, Equatable {

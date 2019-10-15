@@ -12,6 +12,7 @@ import RxCocoa
 
 struct RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
+        case settings
         case fantasies
         case chat
         case play

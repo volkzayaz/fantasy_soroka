@@ -47,13 +47,11 @@
             </objects>
             <point key="canvasLocation" x="820" y="1105"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Fantasy Navigation Controller-->
         <scene sceneID="WO7-hd-2pB">
             <objects>
-                <navigationController id="xyB-8x-x4W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="messages" selectedImage="messagesSelected" id="xOD-QJ-sOG">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
+                <navigationController id="xyB-8x-x4W" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="messages" selectedImage="messagesSelected" id="xOD-QJ-sOG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wE5-WS-YiB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

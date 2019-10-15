@@ -64,10 +64,10 @@ class RoomsActor {
 
     private func acceptRoomInviteIfNeeded() {
         guard let sessionParams = Branch.getInstance()?.getLatestReferringParams() as? [String: AnyObject],
-            let roomId = sessionParams["roomId"] as? String else {
+            let invitationLink = sessionParams["invitationLink"] as? String else {
                 return
         }
-        ChatManager.acceptInviteToRoom(roomId).subscribe({ [weak self] room in
+        ChatManager.acceptInviteToRoom(invitationLink).subscribe({ [weak self] room in
             guard let self = self else { return }
 
         }).disposed(by: bag)

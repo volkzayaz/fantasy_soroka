@@ -38,6 +38,7 @@
 "editProfile.question3" = "Two truths and a lie";
 
 "rooms.add.new.room" = "Add New Room";
+"room.details.settings" = "Settings";
 "room.details.fantasies" = "Fantasies";
 "room.details.chat" = "Chat";
 "room.details.play" = "Play";
@@ -45,6 +46,7 @@
 "room.creation.title" = "New Room Settings";
 "room.creation.invite" = "Invite Someone";
 "room.creation.invite.copy" = "Copy";
+"room.creation.notifications" = "Notifications";
 "room.creation.participants" = "Participants";
 "room.creation.participants.see.all" = "See All";
 "room.creation.participants.add" = "Add";
@@ -52,5 +54,17 @@
 "room.creation.general.settings.participants" = "Anyone can add new participants";
 "room.creation.participants.admin" = "Admin";
 "room.creation.participants.add" = "Add";
+
+"room.creation.tutorial.title" = "Add New Room";
+"room.creation.tutorial.button.title" = "Let's Go";
+
+"room.participant.status.invited" = "Invited";
+"room.participant.status.accepted" = "Accepted";
+"room.participant.status.rejected" = "Rejected";
+
+"room.settings.security.title" = "Security";
+"room.settings.security.description" = "Protect this room from being screenshoted on other devices";
+"room.settings.security.option.screen.shield" = "Screen Shield";
+"room.settings.leave.room" = "Leave Room";
 
 "chat.input.view.placeholder" = "Send a message";

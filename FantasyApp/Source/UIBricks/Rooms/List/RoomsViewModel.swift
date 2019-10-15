@@ -65,7 +65,7 @@ extension RoomsViewModel {
     }
 
     func fetchRooms() {
-        ChatManager.getRooms()
+        ChatManager.getAllRooms()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { _ in })
@@ -77,10 +77,7 @@ extension RoomsViewModel {
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { room in
-                guard let room = room else {
-                    return
-                }
-                self.router.roomCreated(room)
+                self.router.showRoomSettings(room)
             })
             .disposed(by: bag)
     }

@@ -47,34 +47,31 @@ extension ChatManager {
                 populatedRoom.details = roomDetails.first(where: { $0.backendId == room.id })
                 return populatedRoom
             }
-            Dispatcher.dispatch(action: SetRooms(rooms: populatedRooms))
             return populatedRooms
         }
     }
 
-    static func getRooms() -> Single<[Chat.Room]?> {
+    static func getAllRooms() -> Single<[Chat.Room]> {
         return RoomsResource().rx.request.map { $0 }.asObservable()
             .flatMapLatest { rooms -> Observable<[Chat.Room]> in
-            Dispatcher.dispatch(action: SetRooms(rooms: rooms))
-            return getDetails(for: rooms).asObservable()
-        }.first()
+                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
+                return getDetails(for: rooms).asObservable()
+            }
+            .asSingle()
+            .do(onSuccess: { rooms in
+                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
+            })
+    }
+
+    static func getRoom(id: String) -> Single<Chat.Room?> {
+        return RoomResource(id: id).rx.request.map { $0 }.asObservable()
+            .flatMapLatest { room -> Observable<Chat.Room?> in
+                return getDetails(for: [room]).map { $0.first }.asObservable()
+            }.asSingle()
     }
 
     // MARK: - Room creation
-    static func createDraftRoom() -> Single<Chat.Room?> {
-        let settings = Chat.RoomSettings(isClosedRoom: true,
-                                         isHideCommonFantasies: false,
-                                         isScreenShieldEnabled: false,
-                                         sharedCollections: [])
-        return CreateDraftRoomResource(settings: settings).rx.request
-            .asObservable()
-            .flatMapLatest { room -> Observable<Chat.Room> in
-                Dispatcher.dispatch(action: AddRooms(rooms: [room]))
-                return createDraftRoomDetails(for: room).asObservable()
-            }.first()
-    }
-
-    static func createRoomWith(participant: Chat.RoomParticipant) -> Single<Chat.Room?> {
+    static func createDraftRoom() -> Single<Chat.Room> {
         let settings = Chat.RoomSettings(isClosedRoom: true,
                                          isHideCommonFantasies: false,
                                          isScreenShieldEnabled: false,
@@ -86,8 +83,24 @@ extension ChatManager {
                 return createDraftRoomDetails(for: room).asObservable()
             }
             .flatMapLatest { room -> Observable<Chat.Room> in
-                return inviteParticipant(participant, to: room.id).asObservable()
-            }.first()
+                return inviteUser(to: room.id).asObservable()
+            }.asSingle()
+    }
+
+    static func createRoomWithUser(_ userId: String) -> Single<Chat.Room> {
+        let settings = Chat.RoomSettings(isClosedRoom: true,
+                                         isHideCommonFantasies: false,
+                                         isScreenShieldEnabled: false,
+                                         sharedCollections: [])
+        return CreateDraftRoomResource(settings: settings).rx.request
+            .asObservable()
+            .flatMapLatest { room -> Observable<Chat.Room> in
+                Dispatcher.dispatch(action: AddRooms(rooms: [room]))
+                return createDraftRoomDetails(for: room).asObservable()
+            }
+            .flatMapLatest { room -> Observable<Chat.Room> in
+                return inviteUser(userId, to: room.id).asObservable()
+            }.asSingle()
     }
 
     static func activateRoom(_ roomId: String) -> Single<Chat.Room> {
@@ -116,14 +129,27 @@ extension ChatManager {
         _ = details.rxSave().map { _ in }
     }
 
-    // MARK: - Invite user
-    static func inviteParticipant(_ participant: Chat.RoomParticipant, to roomId: String) -> Single<Chat.Room> {
-        return InviteParticipantResource(roomId: roomId, participant: participant).rx.request.map { $0 }
+    // MARK: - Invites
+    static func inviteUser(_ userId: String? = nil, to roomId: String) -> Single<Chat.Room> {
+        return InviteParticipantResource(roomId: roomId, userId: userId).rx.request.map { $0 }
     }
 
-    // MARK: - Accept invitation
-    static func acceptInviteToRoom(_ roomId: String) -> Single<Chat.Room> {
-        return AcceptInviteResource(roomId: roomId).rx.request.map { $0 }
+    static func acceptInviteToRoom(_ invitationLink: String) -> Single<Chat.Room> {
+        return RoomByInvitationTokenResource(token: invitationLink).rx.request
+            .asObservable()
+            .flatMapLatest { room -> Observable<Chat.Room> in
+                return respondToInvite(in: room.id, status: .accepted).asObservable()
+            }
+            .asSingle()
+    }
+
+    static func respondToInvite(in roomId: String, status: Chat.RoomParticipantStatus) -> Single<Chat.Room> {
+        return RoomStatusResource(roomId: roomId, status: status).rx.request
+    }
+
+    // MARK: - Settings
+    static func updateRoomSettings(roomId: String, settings: Chat.RoomSettings) -> Single<Chat.Room> {
+        return UpdateRoomSettingsResource(roomId: roomId, settings: settings).rx.request
     }
 
     // MARK: - Connect/disconnect

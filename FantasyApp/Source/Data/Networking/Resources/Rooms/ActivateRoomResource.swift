@@ -19,7 +19,7 @@ struct ActivateRoomResource: AuthorizedAPIResource {
     typealias responseType = Chat.Room
 
     var method: Moya.Method {
-        return .get
+        return .post
     }
 
     var path: String {
