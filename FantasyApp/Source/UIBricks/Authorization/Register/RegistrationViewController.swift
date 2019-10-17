@@ -85,7 +85,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     }
     
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet var buttonToKeybosrdConstraints: [NSLayoutConstraint]!
+    @IBOutlet var buttonToKeybosrdConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,11 +159,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .merge()
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
-
-                    self.buttonToKeybosrdConstraints.forEach { (item) in
-                        item.constant += delta
-                    }
-
+                    self.buttonToKeybosrdConstraint.constant += delta
                     self.view.layoutIfNeeded()
                 })
             })
