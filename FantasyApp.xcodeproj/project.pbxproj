@@ -58,9 +58,11 @@
 		7322312323056731009DD37F /* ResetSwipeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7322312223056731009DD37F /* ResetSwipeState.swift */; };
 		73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73223124230568A6009DD37F /* LikeFantasyCard.swift */; };
 		733096822353586F0039D013 /* DeleteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733096812353586F0039D013 /* DeleteUser.swift */; };
+		7330FBA92358C63E008C08CF /* TickButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330FBA82358C63E008C08CF /* TickButton.swift */; };
 		7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7222ED9A8C00495843 /* User+Parse.swift */; };
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
+		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
 		734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */; };
@@ -358,9 +360,11 @@
 		7322312223056731009DD37F /* ResetSwipeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSwipeState.swift; sourceTree = "<group>"; };
 		73223124230568A6009DD37F /* LikeFantasyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFantasyCard.swift; sourceTree = "<group>"; };
 		733096812353586F0039D013 /* DeleteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUser.swift; sourceTree = "<group>"; };
+		7330FBA82358C63E008C08CF /* TickButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickButton.swift; sourceTree = "<group>"; };
 		7334CC7222ED9A8C00495843 /* User+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Parse.swift"; sourceTree = "<group>"; };
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
+		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
 		734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewModel.swift; sourceTree = "<group>"; };
@@ -710,6 +714,7 @@
 		7312B05E22D7403300DB0F36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				7330FBA72358C630008C08CF /* ReusableUI */,
 				843B649223504DE000E5639B /* ScreenShieldKit.framework */,
 				7390015222E1E6F800260198 /* Redux */,
 				7312B07522D741D500DB0F36 /* UIBricks */,
@@ -996,6 +1001,14 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		7330FBA72358C630008C08CF /* ReusableUI */ = {
+			isa = PBXGroup;
+			children = (
+				7330FBA82358C63E008C08CF /* TickButton.swift */,
+			);
+			path = ReusableUI;
+			sourceTree = "<group>";
+		};
 		7334CC7122ED9A7B00495843 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -1026,6 +1039,14 @@
 				7334CC8822EDE76700495843 /* ImageValidator.swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		7343D8662358C45F00FC1816 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				7343D8672358C48500FC1816 /* CurrentLocationCell.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		734C528A23266ABB00B54510 /* Discover */ = {
@@ -1169,6 +1190,7 @@
 		7361F31C23328A03007B84B0 /* Teleport */ = {
 			isa = PBXGroup;
 			children = (
+				7343D8662358C45F00FC1816 /* cells */,
 				7361F31D23328A16007B84B0 /* TeleportRouter.swift */,
 				7361F31E23328A16007B84B0 /* TeleportViewController.swift */,
 				7361F31F23328A16007B84B0 /* TeleportViewModel.swift */,
@@ -1492,7 +1514,6 @@
 		8416816522E96CD900FA9455 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				844A3ED622EEA25300E06665 /* ErrorView.swift */,
 				B783C631234F92120017CE1A /* GradientBackgroundView.swift */,
 				B783C63A2351BCB10017CE1A /* GradientLineView.swift */,
 				8416816622E96CF700FA9455 /* PrimaryButton.swift */,
@@ -2168,6 +2189,7 @@
 				73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */,
 				7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
+				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
 				842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */,
 				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,
@@ -2187,7 +2209,7 @@
 				B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
-				843B648D234F196E00E5639B /* RoomCreationRouter.swift in Sources */,
+				843B648D234F196E00E5639B /* RoomSettingsRouter.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
 				73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */,
@@ -2220,6 +2242,7 @@
 				73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */,
 				73097C0F231D431600B71053 /* ProfilePhotoCollectionView.swift in Sources */,
 				7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */,
+				7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */,
 				843CF723234373610098C196 /* RoomResource.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */,

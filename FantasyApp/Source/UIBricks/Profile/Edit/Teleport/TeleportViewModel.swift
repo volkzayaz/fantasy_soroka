@@ -14,7 +14,7 @@ import RxDataSources
 
 extension TeleportViewModel {
     
-    var dataSource: Driver<[SectionModel<String, Data>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, Data>]> {
         
         return mode.asDriver()
             .flatMapLatest { mode in
@@ -24,14 +24,24 @@ extension TeleportViewModel {
                     switch mode {
                     case .countries:
                         return [
-                            SectionModel(model: "", items: [Data.location]),
-                            SectionModel(model: "", items: data.keys.sorted().reversed().map { Data.country($0) })
+                            AnimatableSectionModel(model: "current location",
+                                                   items: [Data.location]),
+                            
+                            AnimatableSectionModel(model: "available locations",
+                                                   items: data
+                                                    .sorted { $0.value.count > $1.value.count }
+                                                    .map { Data.country($0.key, $0.value.count) }
+                                )
+                                
                         ]
                         
                     case .communities(let fromCountry):
                         return [
-                            SectionModel(model: "", items: [Data.location]),
-                            SectionModel(model: "", items: (data[fromCountry] ?? []).map { Data.community($0) })
+                            AnimatableSectionModel(model: "current location",
+                                                   items: [Data.location]),
+                            
+                            AnimatableSectionModel(model: "available locations",
+                                                   items: (data[fromCountry] ?? []).map { Data.community($0) })
                         ]
                         
                     }
@@ -42,10 +52,19 @@ extension TeleportViewModel {
         
     }
     
-    enum Data {
+    enum Data: IdentifiableType, Equatable {
         case community(Community)
-        case country(String)
+        case country(String, Int)
         case location
+        
+        var identity: String {
+            switch self {
+            case .community(let x):  return x.name + x.country
+            case .country(let x, _): return x
+            case .location:          return "currentLocation"
+            }
+        }
+        
     }
     
     enum Mode {
@@ -109,7 +128,7 @@ extension TeleportViewModel {
             x.communityChange = User.Community(value: nil,
                                                changePolicy: .locationBased)
             
-        case .country(let country):
+        case .country(let country, _):
             return mode.accept(.communities(fromCountry: country))
             
         }
