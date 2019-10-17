@@ -29,6 +29,9 @@ class TeleportViewController: UIViewController, MVVM_View {
             case .location:
                 cell.textLabel?.text = "Automaticly based on location"
                 
+            case .country(let country):
+                cell.textLabel?.text = country
+                
             }
             
             return cell
@@ -39,6 +42,9 @@ class TeleportViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = .init(title: "Back", style: .plain,
+                                                 target: self, action: Selector("back"))
         
         viewModel.dataSource
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -53,20 +59,10 @@ class TeleportViewController: UIViewController, MVVM_View {
     
 }
 
-private extension TeleportViewController {
+extension TeleportViewController {
     
-    /**
-     *  Describe any IBActions here
-     *
-     
-     @IBAction func performAction(_ sender: Any) {
-     
-     }
-    
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     }
- 
-    */
+    @objc func back() {
+        viewModel.back()
+    }
     
 }

@@ -16,40 +16,62 @@ extension TeleportViewModel {
     
     var dataSource: Driver<[SectionModel<String, Data>]> {
         
-        return CommunityManager.allCommunities()
-            .trackView(viewIndicator: indicator)
-            .silentCatch()
-            .asDriver(onErrorJustReturn: [])
-            .map { communities in
-                return [
-                    SectionModel(model: "", items: [Data.location]),
-                    SectionModel(model: "", items: communities.map { Data.community($0) })
-                ]
+        return mode.asDriver()
+            .flatMapLatest { mode in
+                
+                return self.data.asDriver().map { data in
+                    
+                    switch mode {
+                    case .countries:
+                        return [
+                            SectionModel(model: "", items: [Data.location]),
+                            SectionModel(model: "", items: data.keys.sorted().reversed().map { Data.country($0) })
+                        ]
+                        
+                    case .communities(let fromCountry):
+                        return [
+                            SectionModel(model: "", items: [Data.location]),
+                            SectionModel(model: "", items: (data[fromCountry] ?? []).map { Data.community($0) })
+                        ]
+                        
+                    }
+                    
+                }
+                
             }
         
     }
     
     enum Data {
         case community(Community)
+        case country(String)
         case location
+    }
+    
+    enum Mode {
+        case countries
+        case communities(fromCountry: String)
     }
     
 }
 
 struct TeleportViewModel : MVVM_ViewModel {
     
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
+    fileprivate let mode = BehaviorRelay(value: Mode.countries)
+    fileprivate let data = BehaviorRelay<[String: [Community]]>(value: [:])
+    
     fileprivate let form: BehaviorRelay<EditProfileForm>
     
     init(router: TeleportRouter, form: BehaviorRelay<EditProfileForm>) {
         self.router = router
         self.form = form
+        
+        CommunityManager.allCommunities()
+            .trackView(viewIndicator: indicator)
+            .silentCatch()
+            .map { Dictionary(grouping: $0, by: { $0.country }) }
+            .bind(to: data)
+            .disposed(by: bag)
         
         /**
          
@@ -87,11 +109,23 @@ extension TeleportViewModel {
             x.communityChange = User.Community(value: nil,
                                                changePolicy: .locationBased)
             
+        case .country(let country):
+            return mode.accept(.communities(fromCountry: country))
+            
         }
         
         form.accept(x)
+        router.popBack()
         
-        router.owner.navigationController?.popViewController(animated: true)
+    }
+    
+    func back() {
+        
+        if case .communities(_) = mode.value {
+            return mode.accept(.countries)
+        }
+
+        router.popBack()
         
     }
     
