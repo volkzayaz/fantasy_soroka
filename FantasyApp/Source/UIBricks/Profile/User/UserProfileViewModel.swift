@@ -41,10 +41,10 @@ extension UserProfileViewModel {
 
     var sections: Driver<[Section]> {
         
-        var res = [Section.basic(user.bio.name + " \(user.bio.birthday)")]
+        var res = [Section.basic(user.bio.name + ", \(Calendar.current.dateComponents([.year], from: user.bio.birthday, to: Date()).year!)")]
         
         if let x = user.bio.about {
-            res.append( .about(x) )
+            res.append( .about(x, user.bio.sexuality) )
         }
         
         if user.subscription.isSubscribed {
@@ -70,7 +70,7 @@ extension UserProfileViewModel {
         if user.bio.answers.count > 0 {
             
             for (key, value) in user.bio.answers {
-                res.append( .extended( [key, value] ) )
+                res.append( .answer(q: key, a: value ) )
             }
             
         }
@@ -196,9 +196,10 @@ extension UserProfileViewModel {
     
     enum Section: IdentifiableType, Equatable {
         case basic(String)
-        case about(String)
+        case about(String, Sexuality)
         case extended([String])
         case fantasy(String)
+        case answer(q: String, a: String)
         
         var identity: String {
             switch self {
@@ -206,6 +207,8 @@ extension UserProfileViewModel {
             case .about(let x): return "about \(x)"
             case .extended(let x): return "extended \(x)"
             case .fantasy(let x): return "fantasy \(x)"
+            case .answer(let q, let a): return "answer \(q), \(a)"
+                
             }
         }
     }

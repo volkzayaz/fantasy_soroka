@@ -50,3 +50,11 @@ class UserProfilePhotoCell: UICollectionViewCell {
     }
     
 }
+
+class UserProfilePrivateStubCell: UICollectionViewCell {
+    
+    @IBOutlet weak var amountLabel: UILabel!
+    
+}
+
+

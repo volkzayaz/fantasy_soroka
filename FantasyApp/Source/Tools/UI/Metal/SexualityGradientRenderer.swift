@@ -16,7 +16,9 @@ public class SexualityGradientRenderer: NSObject {
     public var fromTextureResource: CGImage? {
         didSet {
             guard let resource = fromTextureResource, fromTextureResource != oldValue else { return }
+            
             fromTexture = try! textureLoader.newTexture(cgImage: resource, options: [.SRGB: false])
+            
         }
     }
     public var toTextureResource: CGImage? {

@@ -18,11 +18,27 @@ class UserProfileViewController: UIViewController, MVVM_View {
     
     lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, UserProfileViewModel.Photo>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoCell, for: ip)!
+        switch x {
+            
+        case .privateStub(let x):
+            
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoStubCell, for: ip)!
+            
+            cell.amountLabel.text = "\(x) Secret Photos"
+            
+            return cell
+            
+        default:
         
-        cell.set(photo: x)
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoCell, for: ip)!
+            
+            cell.set(photo: x)
+            
+            return cell
+            
+        }
         
-        return cell
+        
         
     })
     
@@ -37,11 +53,12 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             return cell
             
-        case .about(let x):
+        case .about(let about, let sexuality):
             
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAboutCell, for: ip)!
             
-            cell.textLabel?.text = x
+            cell.descriptionLabel.text = about
+            cell.sexualityGradientView.sexuality = sexuality
             
             return cell
             
@@ -58,6 +75,15 @@ class UserProfileViewController: UIViewController, MVVM_View {
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileFantasyCell, for: ip)!
             
             cell.textLabel?.text = x
+            
+            return cell
+            
+        case .answer(let q, let a):
+
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAnswerCell, for: ip)!
+            
+            cell.questionLabel.text = q
+            cell.answerLabel.text = a
             
             return cell
             
@@ -94,7 +120,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
             .map { CGPoint(x: $0.x, y: -1 * $0.y) }
             .subscribe(onNext: { [unowned self] (x) in
                 self.scrollableBackground.frame = .init(origin: x,
-                                                        size: UIScreen.main.bounds.size)
+                                                        size: UIScreen.main.bounds.size) ///should be tableView.contentSize.height
             })
             .disposed(by: rx.disposeBag)
         
@@ -112,7 +138,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
                 
                 for i in data.first!.items.enumerated() {
                     let x = UIView()
-                    x.backgroundColor = i.offset == 0 ? .red : .green
+                    x.backgroundColor = i.offset == 0 ? .white : UIColor(white: 1, alpha: 0.3)
                     
                     self?.indicatorStackView.addArrangedSubview(x)
                 }
@@ -173,7 +199,7 @@ extension UserProfileViewController: UIScrollViewDelegate {
         }
         
         indicatorStackView.subviews.enumerated().forEach {
-            $0.element.backgroundColor = $0.offset == index ? .red : .green
+            $0.element.backgroundColor = $0.offset == index ? .white : UIColor(white: 1, alpha: 0.3)
         }
     }
     
