@@ -14,7 +14,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     var viewModel: RoomSettingsViewModel!
 
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var contentView: UIView!
+    @IBOutlet private var stackView: UIStackView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var inviteView: UIView!
     @IBOutlet private var inviteLabel: UILabel!
@@ -61,9 +61,16 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
 
 private extension RoomSettingsViewController {
     func configure() {
-        scrollView.contentInsetAdjustmentBehavior = .never
+        stackView.setCustomSpacing(16, after: titleLabel)
+        stackView.setCustomSpacing(10, after: inviteLabel)
+        stackView.setCustomSpacing(22, after: inviteView)
+        stackView.setCustomSpacing(16, after: participantsLabel)
+        stackView.setCustomSpacing(12, after: participantsCollectionView)
+        stackView.setCustomSpacing(12, after: notificationsView)
+        stackView.setCustomSpacing(26, after: securitySettingsView)
+
         scrollView.backgroundColor = .messageBackground
-        contentView.backgroundColor = .messageBackground
+        stackView.backgroundColor = .messageBackground
         inviteView.backgroundColor = .white
         
         titleLabel.font = .boldFont(ofSize: 25)
@@ -107,8 +114,8 @@ private extension RoomSettingsViewController {
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
 
-        viewModel.securitySettingsViewModel.drive(onNext: { [weak self] viewModel in
-            self?.securitySettingsView.viewModel = viewModel
+        viewModel.room.asDriver().drive(onNext: { [weak self] room in
+            self?.securitySettingsView.viewModel = self?.viewModel.securitySettingsViewModelFor(room: room)
         }).disposed(by: rx.disposeBag)
 
         participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
@@ -127,7 +134,7 @@ private extension RoomSettingsViewController {
     }
 
     @IBAction func editNotificationSettings() {
-
+        viewModel.showNotificationSettings()
     }
 
     @IBAction func leaveRoom() {

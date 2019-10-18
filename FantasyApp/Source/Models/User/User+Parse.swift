@@ -115,6 +115,7 @@ extension User {
         connections = .init(likeRequests: [], chatRequests: [])
         subscription = subscriptionStatus ?? .init(status: nil)
         notificationSettings = notifSettings ?? NotificationSettings()
+        roomsNotificationSettings = []
     }
     
     ////we can edit only a subset of exisitng user properties to Parse
@@ -125,18 +126,19 @@ extension User {
         guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
         
         var dict = [
-            "realname"              : bio.name,
-            "aboutMe"               : bio.about as Any,
-            "birthady"              : bio.birthday,
-            "gender"                : bio.gender.rawValue,
-            "sexuality"             : bio.sexuality.rawValue,
-            "lookingFor"            : bio.lookingFor?.rawValue as Any,
-            "expirience"            : bio.expirience?.rawValue as Any,
-            "answers"               : bio.answers,
-            "belongsTo"             : community.value?.pfObject as Any,
-            "communityChangePolicy" : community.changePolicy.rawValue,
-            "notificationSettings"  : notificationSettings.pfObject
-            ] as [String : Any]
+            "realname"                  : bio.name,
+            "aboutMe"                   : bio.about as Any,
+            "birthady"                  : bio.birthday,
+            "gender"                    : bio.gender.rawValue,
+            "sexuality"                 : bio.sexuality.rawValue,
+            "lookingFor"                : bio.lookingFor?.rawValue as Any,
+            "expirience"                : bio.expirience?.rawValue as Any,
+            "answers"                   : bio.answers,
+            "belongsTo"                 : community.value?.pfObject as Any,
+            "communityChangePolicy"     : community.changePolicy.rawValue,
+            "notificationSettings"      : notificationSettings.pfObject,
+            "roomsNotificationSettings" : (roomsNotificationSettings ?? []).map { $0.pfObject }
+        ] as [String : Any]
         
         switch bio.relationshipStatus {
         case .single:                    dict["couple"] = "single"

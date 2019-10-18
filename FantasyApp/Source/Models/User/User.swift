@@ -33,6 +33,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     var subscription: Subscription
     var notificationSettings: NotificationSettings
+    var roomsNotificationSettings: [RoomNotificationSettings]?
     
     enum AuthData: Equatable {
         case email(String)

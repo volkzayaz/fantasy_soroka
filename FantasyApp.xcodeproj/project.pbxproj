@@ -214,6 +214,11 @@
 		844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A3ED622EEA25300E06665 /* ErrorView.swift */; };
 		844C84F123508FA800BDC60F /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C84F023508FA800BDC60F /* ParticipantCollectionViewCell.swift */; };
 		844C84F323509C4C00BDC60F /* InviteParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C84F223509C4C00BDC60F /* InviteParticipantCollectionViewCell.swift */; };
+		844CD6F9235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6F8235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift */; };
+		844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */; };
+		844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */; };
+		844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */; };
+		844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */; };
 		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
 		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
@@ -516,6 +521,11 @@
 		844A3ED622EEA25300E06665 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		844C84F023508FA800BDC60F /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
 		844C84F223509C4C00BDC60F /* InviteParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
+		844CD6F8235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsViewController.swift; sourceTree = "<group>"; };
+		844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsViewModel.swift; sourceTree = "<group>"; };
+		844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsRouter.swift; sourceTree = "<group>"; };
+		844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomNotificationSettings.swift; sourceTree = "<group>"; };
+		844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomNotificationSettings.swift; sourceTree = "<group>"; };
 		84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePresenterBuilder.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
 		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
@@ -1644,6 +1654,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		844CD6F7235A776A004E6BA3 /* RoomNotificationSettings */ = {
+			isa = PBXGroup;
+			children = (
+				844CD6F8235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift */,
+				844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */,
+				844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */,
+			);
+			path = RoomNotificationSettings;
+			sourceTree = "<group>";
+		};
 		84AB48FA232A16AA00F3609A /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1783,6 +1803,7 @@
 		84C1D0422327BA8200648DE1 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
+				844CD6F7235A776A004E6BA3 /* RoomNotificationSettings */,
 				843B6489234EA78100E5639B /* RoomSettings */,
 				84AB490B232A83DE00F3609A /* CommonFantasies */,
 				84AB4902232A2CE300F3609A /* Chat */,
@@ -1815,6 +1836,8 @@
 				84C1D0652327D60100648DE1 /* AddRooms.swift */,
 				84C1D0642327D60100648DE1 /* RemoveRoom.swift */,
 				84C1D0662327D60100648DE1 /* UpdateRoom.swift */,
+				844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */,
+				844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2148,11 +2171,13 @@
 				73EBBA78234E2BEC00B79121 /* NotificationSettingsRouter.swift in Sources */,
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
+				844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */,
 				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
 				B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				73EBBA5C234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift in Sources */,
 				7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */,
+				844CD6F9235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift in Sources */,
 				736D235A235A057A00430863 /* AboutCell.swift in Sources */,
 				73E6012722EC513700F767BF /* RootRouter.swift in Sources */,
 				84AB4910232A841F00F3609A /* CommonFantasiesRouter.swift in Sources */,
@@ -2289,6 +2314,7 @@
 				B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
+				844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */,
 				843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
@@ -2333,12 +2359,14 @@
 				B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,
 				739F798A2309496C0045FCD7 /* StoreMainCards.swift in Sources */,
+				844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */,
 				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,
 				843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
 				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,
 				84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */,
 				739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */,
+				844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */,
 				734C70BB23213D9200ED2E91 /* Collection+Safe.swift in Sources */,
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,

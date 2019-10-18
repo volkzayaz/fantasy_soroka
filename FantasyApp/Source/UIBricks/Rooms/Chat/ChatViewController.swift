@@ -56,9 +56,10 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
 
 private extension ChatViewController {
     func configure() {
-        if viewModel.room.settings?.isScreenShieldEnabled == true {
+        // TODO: uncomment this condition when ScreenShield testing is finished
+        //if viewModel.room.settings?.isScreenShieldEnabled == true {
             setupScreenCaptureProtection()
-        }
+        //}
         chatDataSource = viewModel
         chatDataSource?.delegate = self
         chatItemsDecorator = ChatItemsDecorator()
