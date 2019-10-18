@@ -60,10 +60,10 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         }
     }
 
-    var securitySettingsViewModel: RoomSettingsPremiumFeatureViewModel {
+    var securitySettingsViewModel: Driver<RoomSettingsPremiumFeatureViewModel> {
         let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
         let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
-                        isScreenShieldAvailable ? true : false)]
+                        room.settings?.isScreenShieldEnabled ?? false)]
 
         return RoomSettingsPremiumFeatureViewModel(
             title: R.string.localizable.roomSettingsSecurityTitle(),

@@ -25,7 +25,6 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     @IBOutlet private var inviteLinkLabel: UILabel!
     @IBOutlet private var participantsLabel: UILabel!
     @IBOutlet private var copyLinkButton: SecondaryButton!
-    @IBOutlet private var seeParticipantsButton: UIButton!
     @IBOutlet private var leaveRoomButton: UIButton!
 
     lazy var participantsDataSource = RxCollectionViewSectionedAnimatedDataSource
@@ -91,12 +90,6 @@ private extension RoomSettingsViewController {
 
         copyLinkButton.setTitle(R.string.localizable.roomCreationInviteCopy(), for: .normal)
 
-        seeParticipantsButton.setTitle(R.string.localizable.roomCreationParticipantsSeeAll(), for: .normal)
-        seeParticipantsButton.backgroundColor = .fantasyGrey
-        seeParticipantsButton.setTitleColor(.fantasyPink, for: .normal)
-        seeParticipantsButton.titleLabel?.font = .boldFont(ofSize: 14)
-        seeParticipantsButton.layer.cornerRadius = seeParticipantsButton.bounds.height / 2.0
-
         leaveRoomButton.setTitle(R.string.localizable.roomSettingsLeaveRoom(), for: .normal)
         leaveRoomButton.setTitleColor(.fantasyRed, for: .normal)
         leaveRoomButton.titleLabel?.font = .mediumFont(ofSize: 15)
@@ -106,14 +99,17 @@ private extension RoomSettingsViewController {
         inviteView.layer.cornerRadius = 12.0
         notificationsView.layer.cornerRadius = 12.0
 
-//        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
-//        securitySettingsView.didChangeOptions = { [weak self] options in
-//            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
-//        }
+        securitySettingsView.didChangeOptions = { [weak self] options in
+            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
+        }
 
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
+
+        viewModel.securitySettingsViewModel.drive(onNext: { [weak self] viewModel in
+            self?.securitySettingsView.viewModel = viewModel
+        }).disposed(by: rx.disposeBag)
 
         participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
             .subscribe(onNext: { [unowned self] cellModel in
@@ -128,10 +124,6 @@ private extension RoomSettingsViewController {
 
     @IBAction func copyLink() {
         UIPasteboard.general.string = viewModel.inviteLink.value
-    }
-
-    @IBAction func seeAllParticipants() {
-
     }
 
     @IBAction func editNotificationSettings() {
