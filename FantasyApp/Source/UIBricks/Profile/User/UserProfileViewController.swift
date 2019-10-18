@@ -77,16 +77,33 @@ class UserProfileViewController: UIViewController, MVVM_View {
     }
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var profileTableView: UITableView!
+    @IBOutlet weak var scrollableBackground: UIView! {
+        didSet {
+            scrollableBackground.clipsToBounds = true
+            scrollableBackground.layer.cornerRadius = 42
+            scrollableBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
+    }
     
     @IBOutlet weak var relationStatusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        profileTableView.rx.contentOffset
+            .map { CGPoint(x: $0.x, y: -1 * $0.y) }
+            .subscribe(onNext: { [unowned self] (x) in
+                self.scrollableBackground.frame = .init(origin: x,
+                                                        size: UIScreen.main.bounds.size)
+            })
+            .disposed(by: rx.disposeBag)
+        
         let layout = photosCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = photosCollectionView.frame.size
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
+        
+        //MARK: ViewModel binding
         
         viewModel.photos
             .do(onNext: { [weak self] (data) in
@@ -135,6 +152,17 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let top = photosCollectionView.frame.size.height - scrollableBackground.layer.cornerRadius
+        
+        profileTableView.contentInset = .init(top: top,
+                                              left: 0, bottom: 0, right: 0)
+        
+    }
+ 
+    
 }
 
 extension UserProfileViewController: UIScrollViewDelegate {
@@ -147,6 +175,15 @@ extension UserProfileViewController: UIScrollViewDelegate {
         indicatorStackView.subviews.enumerated().forEach {
             $0.element.backgroundColor = $0.offset == index ? .red : .green
         }
+    }
+    
+}
+
+
+class CoolTable: UITableView {
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return point.y > 0
     }
     
 }
