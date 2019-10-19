@@ -14,7 +14,7 @@ import RxDataSources
 
 extension ConnectionViewModel {
     
-    var requests: Driver<[SectionModel<String, ConnectedUser>]> {
+    var requests: Driver<[AnimatableSectionModel<String, ConnectedUser>]> {
         
         return Driver.combineLatest(reloadTrigger.asDriver(), source.asDriver()) { ($0, $1) }
             .flatMapLatest { [unowned i = indicator,
@@ -24,7 +24,7 @@ extension ConnectionViewModel {
                     .silentCatch(handler: o)
                     .asDriver(onErrorJustReturn: [])
             }
-            .map { [SectionModel(model: "", items: $0)] }
+            .map { [AnimatableSectionModel(model: "", items: $0)] }
         
     }
     

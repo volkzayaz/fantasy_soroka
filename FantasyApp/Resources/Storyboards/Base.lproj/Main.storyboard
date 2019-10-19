@@ -178,14 +178,18 @@
             </objects>
             <point key="canvasLocation" x="2393" y="1454"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Fantasy Navigation Controller-->
         <scene sceneID="Quj-fC-pzi">
             <objects>
-                <navigationController id="AGp-U5-2Fc" sceneMemberID="viewController">
+                <navigationController id="AGp-U5-2Fc" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="navNotification" selectedImage="navNotificationSelected" id="1vZ-Up-xF2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nY2-69-Qbi">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Exy-I4-w64" kind="relationship" relationship="rootViewController" id="K2C-wY-HyS"/>
