@@ -24,7 +24,7 @@ class TransparentTextField: UITextField {
         clearButton.setImage(R.image.textFieldClear(), for: .normal)
 
         showPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchDown)
-        showPasswordButton.addTarget(self, action: #selector(hidePassword), for: .touchUpOutside)
+        showPasswordButton.addTarget(self, action: #selector(hidePassword), for: .touchUpInside)
         showPasswordButton.setImage(R.image.showPassword(), for: .normal)
 
         let list =  (isSecureTextEntry == true) ? [showPasswordButton, clearButton] : [clearButton]
@@ -47,12 +47,16 @@ class TransparentTextField: UITextField {
     }
 
     @objc func showPassword() {
-            isSecureTextEntry = false
-        }
+        isSecureTextEntry = false
+
+
+        print("touchDown")
+    }
 
     @objc func hidePassword() {
-            isSecureTextEntry = true
-        }
+        isSecureTextEntry = true
+        print("touchUpOutside")
+    }
 }
 
 

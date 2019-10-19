@@ -13,28 +13,34 @@ import RxCocoa
 
 extension ForgotPasswordViewModel {
     
-    /** Reference binding drivers that are going to be used in the corresponding view
+    var resetButtonEnabled: Driver<Bool> {
+        return emailVar.asDriver()
+            .map { (email) -> Bool in
+                return email.isValidEmail
+        }
+    }
 
-     var text: Driver<String> {
-     return privateTextVar.asDriver().notNil()
-     }
+    var loading: Driver<Bool> {
+        return indicator.asDriver()
+    }
 
-     */
-    
+    var showCodeWasSent: Driver<Bool> {
+        return showCodeWasSentVar.asDriver()
+    }
+
+    var showWrongEmail: Driver<Bool> {
+        return showWrongEmailVar.asDriver()
+    }
 }
 
 struct ForgotPasswordViewModel : MVVM_ViewModel {
 
+    fileprivate let emailVar = BehaviorRelay(value: "")
+    fileprivate let showCodeWasSentVar = BehaviorRelay(value: false)
+    fileprivate let showWrongEmailVar = BehaviorRelay(value: false)
+
     init(router: ForgotPasswordRouter) {
         self.router = router
-
-        /////progress indicator
-
-        indicator.asDriver()
-            .drive(onNext: { [weak h = router.owner] (loading) in
-                h?.setLoadingStatus(loading)
-            })
-            .disposed(by: bag)
     }
     
     let router: ForgotPasswordRouter
@@ -44,23 +50,27 @@ struct ForgotPasswordViewModel : MVVM_ViewModel {
 
 extension ForgotPasswordViewModel {
 
+    func emailChanged(email: String) {
+        showWrongEmailVar.accept(false)
+        emailVar.accept(email)
+    }
+
     func closeSignIn() {
         router.closeSignIn()
     }
 
     func resetPassword(_ email: String) {
 
-        PFUser.requestPasswordResetForEmail(inBackground: email) { (res, error) in
+        AuthenticationManager.requestPassword(with: email)
+            .trackView(viewIndicator: indicator)
+            .subscribe(onNext: { (res) in
+                guard res else { return }
+                self.showCodeWasSentVar.accept(true)
+            }, onError: { (e) in
+                self.showWrongEmailVar.accept(true)
+            })
+            .disposed(by: bag)
 
-            if let e = error {
-                self.router.owner.present(error: e)
-            }
-            else {
-                self.router.owner.showMessage(title: "Success",
-                                              text: "Check your email for instructions")
-            }
-
-        }
     }
 
 }

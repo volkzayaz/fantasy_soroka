@@ -335,9 +335,23 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
     
     @IBAction func changePhoto(_ sender: Any) {
-        FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
-            self.viewModel.photoChanged(photo: image)
-        }
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
+            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+                self.viewModel.photoChanged(photo: image)
+            }
+        }))
+
+        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
+            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+                self.viewModel.photoChanged(photo: image)
+            }
+        }))
+
+        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
+
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func backToSignIn(_ sender: Any) {
