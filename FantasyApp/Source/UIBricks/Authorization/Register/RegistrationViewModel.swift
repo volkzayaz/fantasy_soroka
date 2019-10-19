@@ -22,7 +22,28 @@ extension RegistrationViewModel {
     var scrollViewOffsetMuiltiplier: Driver<CGFloat> {
         return step.asDriver().map { CGFloat($0.rawValue - 1) }
     }
-    
+
+    var showEmaillValidationAlert: Driver<Bool> {
+        return form.asDriver()
+            .map { (form) -> Bool in
+                guard let email = form.email,
+                    email.count > 0 else { return false}
+
+                return !email.isValidEmail
+        }
+    }
+
+    var showPasswordValidationAlert: Driver<Bool> {
+        return form.asDriver()
+            .map { ($0.password?.count ?? 0) < 8 }
+    }
+
+    var agreementButtonHidden: Driver<Bool> {
+        return step.asDriver()
+            .map { $0 != .notice }
+    }
+
+
     var forwardButtonEnabled: Driver<Bool> {
         return Driver.combineLatest(step.asDriver(), form.asDriver()) { ($0, $1) }
             .map { (step, form) -> Bool in
@@ -36,7 +57,7 @@ extension RegistrationViewModel {
                 case .sexuality:    return true
                 case .gender:       return true
                 case .relationship: return form.relationshipStatus != nil
-                case .email:        return form.email != nil
+                case .email:        return form.email?.isValidEmail ?? false
                 case .password:     return form.password == form.confirmPassword && form.password != nil && (form.password?.count ?? 0) > 7
                 
                 case .photo:        return form.photo != nil
