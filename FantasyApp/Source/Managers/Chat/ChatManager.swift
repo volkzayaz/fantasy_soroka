@@ -51,11 +51,29 @@ extension ChatManager {
         }
     }
 
+    // MARK: - Rooms fetching
+    private static func getNotificationSettings(for rooms: [Chat.Room]) -> Single<[Chat.Room]> {
+        let query = PFQuery(className: RoomNotificationSettings.className)
+        query.whereKey("roomId", containedIn: rooms.map { $0.id! })
+        return query.rx.fetchAll().map { (settings: [RoomNotificationSettings]) in
+            let populatedRooms: [Chat.Room] = rooms.map { room in
+                var populatedRoom = room
+                populatedRoom.notificationSettings = settings.first(where: { $0.roomId == room.id })
+                return populatedRoom
+            }
+            return populatedRooms
+        }
+    }
+
     static func getAllRooms() -> Single<[Chat.Room]> {
         return RoomsResource().rx.request.map { $0 }.asObservable()
             .flatMapLatest { rooms -> Observable<[Chat.Room]> in
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
                 return getDetails(for: rooms).asObservable()
+            }
+            .flatMapLatest { rooms -> Observable<[Chat.Room]> in
+                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
+                return getNotificationSettings(for: rooms).asObservable()
             }
             .asSingle()
             .do(onSuccess: { rooms in
@@ -81,6 +99,9 @@ extension ChatManager {
             .flatMapLatest { room -> Observable<Chat.Room> in
                 Dispatcher.dispatch(action: AddRooms(rooms: [room]))
                 return createDraftRoomDetails(for: room).asObservable()
+            }
+            .flatMapLatest { room -> Observable<Chat.Room> in
+                return createRoomNotificationSettings(for: room).asObservable()
             }
             .flatMapLatest { room -> Observable<Chat.Room> in
                 return inviteUser(to: room.id).asObservable()
@@ -116,6 +137,17 @@ extension ChatManager {
                                            lastMessage: nil,
                                            backendId: room.id)
         return roomDetails.rxCreate().map { _ in return room }
+    }
+
+    private static func createRoomNotificationSettings(for room: Chat.Room) -> Single<Chat.Room> {
+        let roomSettings = RoomNotificationSettings(objectId: nil,
+                                                   roomId: room.id,
+                                                   newMessage: true,
+                                                   newFantasyMatch: true)
+        return roomSettings.rxCreate().map { settings in
+            Dispatcher.dispatch(action: AddRoomNotificationSettings(settings: settings))
+            return room
+        }
     }
 
     private static func updateLastMessage(_ message: Chat.Message, in room: Chat.Room) {

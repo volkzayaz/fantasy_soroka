@@ -33,6 +33,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     var subscription: Subscription
     var notificationSettings: NotificationSettings
+    var roomsNotificationSettings: [RoomNotificationSettings]?
     
     enum AuthData: Equatable {
         case email(String)
@@ -148,6 +149,11 @@ struct Community: Codable, Equatable, ParsePresentable {
     
     var objectId: String?
     let name: String
+    let country: String
+    
+    init() {
+        fatalError("Do not use. Swift freaks out for some reason without this init. Process is terminated with Bad_Access if you try creating Value ")
+    }
     
 }
 

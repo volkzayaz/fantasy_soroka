@@ -129,8 +129,9 @@ extension Chat {
         var createdAt: String?
         var updatedAt: String?
 
-        // property is set during runtime
+        // property are set during runtime
         var details: RoomDetails?
+        var notificationSettings: RoomNotificationSettings?
         
         init(id: String) {
             self.id = id

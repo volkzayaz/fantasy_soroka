@@ -14,7 +14,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     var viewModel: RoomSettingsViewModel!
 
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var contentView: UIView!
+    @IBOutlet private var stackView: UIStackView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var inviteView: UIView!
     @IBOutlet private var inviteLabel: UILabel!
@@ -25,7 +25,6 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     @IBOutlet private var inviteLinkLabel: UILabel!
     @IBOutlet private var participantsLabel: UILabel!
     @IBOutlet private var copyLinkButton: SecondaryButton!
-    @IBOutlet private var seeParticipantsButton: UIButton!
     @IBOutlet private var leaveRoomButton: UIButton!
 
     lazy var participantsDataSource = RxCollectionViewSectionedAnimatedDataSource
@@ -62,9 +61,16 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
 
 private extension RoomSettingsViewController {
     func configure() {
-        scrollView.contentInsetAdjustmentBehavior = .never
+        stackView.setCustomSpacing(16, after: titleLabel)
+        stackView.setCustomSpacing(10, after: inviteLabel)
+        stackView.setCustomSpacing(22, after: inviteView)
+        stackView.setCustomSpacing(16, after: participantsLabel)
+        stackView.setCustomSpacing(12, after: participantsCollectionView)
+        stackView.setCustomSpacing(12, after: notificationsView)
+        stackView.setCustomSpacing(26, after: securitySettingsView)
+
         scrollView.backgroundColor = .messageBackground
-        contentView.backgroundColor = .messageBackground
+        stackView.backgroundColor = .messageBackground
         inviteView.backgroundColor = .white
         
         titleLabel.font = .boldFont(ofSize: 25)
@@ -91,12 +97,6 @@ private extension RoomSettingsViewController {
 
         copyLinkButton.setTitle(R.string.localizable.roomCreationInviteCopy(), for: .normal)
 
-        seeParticipantsButton.setTitle(R.string.localizable.roomCreationParticipantsSeeAll(), for: .normal)
-        seeParticipantsButton.backgroundColor = .fantasyGrey
-        seeParticipantsButton.setTitleColor(.fantasyPink, for: .normal)
-        seeParticipantsButton.titleLabel?.font = .boldFont(ofSize: 14)
-        seeParticipantsButton.layer.cornerRadius = seeParticipantsButton.bounds.height / 2.0
-
         leaveRoomButton.setTitle(R.string.localizable.roomSettingsLeaveRoom(), for: .normal)
         leaveRoomButton.setTitleColor(.fantasyRed, for: .normal)
         leaveRoomButton.titleLabel?.font = .mediumFont(ofSize: 15)
@@ -106,14 +106,17 @@ private extension RoomSettingsViewController {
         inviteView.layer.cornerRadius = 12.0
         notificationsView.layer.cornerRadius = 12.0
 
-//        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
-//        securitySettingsView.didChangeOptions = { [weak self] options in
-//            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
-//        }
+        securitySettingsView.didChangeOptions = { [weak self] options in
+            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
+        }
 
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
+
+        viewModel.room.asDriver().drive(onNext: { [weak self] room in
+            self?.securitySettingsView.viewModel = self?.viewModel.securitySettingsViewModelFor(room: room)
+        }).disposed(by: rx.disposeBag)
 
         participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
             .subscribe(onNext: { [unowned self] cellModel in
@@ -130,12 +133,8 @@ private extension RoomSettingsViewController {
         UIPasteboard.general.string = viewModel.inviteLink.value
     }
 
-    @IBAction func seeAllParticipants() {
-
-    }
-
     @IBAction func editNotificationSettings() {
-
+        viewModel.showNotificationSettings()
     }
 
     @IBAction func leaveRoom() {

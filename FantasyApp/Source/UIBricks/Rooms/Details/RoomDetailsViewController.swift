@@ -45,7 +45,6 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
 
 private extension RoomDetailsViewController {
     func configure() {
-        scrollView.contentInsetAdjustmentBehavior = .never
         settingsButton.setTitle(R.string.localizable.roomDetailsSettings(), for: .normal)
         settingsButton.mode = .selector
         chatButton.setTitle(R.string.localizable.roomDetailsChat(), for: .normal)

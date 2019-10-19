@@ -13,6 +13,7 @@ enum ConnectionRequestType: String, Codable {
     case like
     case message
     case sticker
+    case inviteLink = "link"
 }
 
 ///between ME and other User

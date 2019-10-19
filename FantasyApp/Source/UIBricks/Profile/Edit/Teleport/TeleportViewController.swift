@@ -16,29 +16,58 @@ class TeleportViewController: UIViewController, MVVM_View {
     
     var viewModel: TeleportViewModel!
 
-    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, TeleportViewModel.Data>>(
+    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, TeleportViewModel.Data>>(animationConfiguration: .init(insertAnimation: .left, reloadAnimation: .automatic, deleteAnimation: .right),
         configureCell: { [unowned self] (_, tableView, ip, x) in
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCell,
-                                                     for: ip)!
             
             switch x {
             case .community(let communiy):
+            
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCommunityCell,
+                                                         for: ip)!
+                
                 cell.textLabel?.text = communiy.name
                 
-            case .location:
-                cell.textLabel?.text = "Automaticly based on location"
+                return cell
                 
-            }
+            case .location:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCurrentCell,
+                                                         for: ip)!
+                
+                cell.locationNameLabel.text = "My current location"
+                cell.countryNameLabel.text = "Stuff"
+                cell.indicatorImageView.image = R.image.location()
+                cell.tickButton.isSelected = true
+                
+                return cell
+                
+            case .country(let country, let cityCount):
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCountryCell,
+                                                         for: ip)!
+                
+                cell.textLabel?.text = country
+                cell.detailTextLabel?.text = "\(cityCount) Cities"
             
-            return cell
+                return cell
+            }
             
         })
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet var activeCityHeaderView: UIView!
+    @IBOutlet weak var teleportToBadge: UIImageView!
+    @IBOutlet weak var teleportToLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Teleport"
+        navigationItem.leftBarButtonItem = .init(title: "Back", style: .plain,
+                                                 target: self, action: Selector("back"))
+    
+        tableView.estimatedSectionHeaderHeight = 84
         
         viewModel.dataSource
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -53,20 +82,23 @@ class TeleportViewController: UIViewController, MVVM_View {
     
 }
 
-private extension TeleportViewController {
+extension TeleportViewController: UITableViewDelegate {
     
-    /**
-     *  Describe any IBActions here
-     *
-     
-     @IBAction func performAction(_ sender: Any) {
-     
-     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 1 ? 82 : 0
+    }
     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     }
- 
-    */
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 1 {
+            return self.activeCityHeaderView
+        }
+        
+        return nil
+    }
+    
+    @objc func back() {
+        viewModel.back()
+    }
     
 }

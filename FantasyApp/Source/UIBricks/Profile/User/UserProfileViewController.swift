@@ -18,11 +18,27 @@ class UserProfileViewController: UIViewController, MVVM_View {
     
     lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, UserProfileViewModel.Photo>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoCell, for: ip)!
+        switch x {
+            
+        case .privateStub(let x):
+            
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoStubCell, for: ip)!
+            
+            cell.amountLabel.text = "\(x) Secret Photos"
+            
+            return cell
+            
+        default:
         
-        cell.set(photo: x)
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoCell, for: ip)!
+            
+            cell.set(photo: x)
+            
+            return cell
+            
+        }
         
-        return cell
+        
         
     })
     
@@ -37,11 +53,12 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             return cell
             
-        case .about(let x):
+        case .about(let about, let sexuality):
             
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAboutCell, for: ip)!
             
-            cell.textLabel?.text = x
+            cell.descriptionLabel.text = about
+            cell.sexualityGradientView.sexuality = sexuality
             
             return cell
             
@@ -61,6 +78,15 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             return cell
             
+        case .answer(let q, let a):
+
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileAnswerCell, for: ip)!
+            
+            cell.questionLabel.text = q
+            cell.answerLabel.text = a
+            
+            return cell
+            
         }
         
     })
@@ -77,16 +103,33 @@ class UserProfileViewController: UIViewController, MVVM_View {
     }
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var profileTableView: UITableView!
+    @IBOutlet weak var scrollableBackground: UIView! {
+        didSet {
+            scrollableBackground.clipsToBounds = true
+            scrollableBackground.layer.cornerRadius = 42
+            scrollableBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
+    }
     
     @IBOutlet weak var relationStatusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        profileTableView.rx.contentOffset
+            .map { CGPoint(x: $0.x, y: -1 * $0.y) }
+            .subscribe(onNext: { [unowned self] (x) in
+                self.scrollableBackground.frame = .init(origin: x,
+                                                        size: UIScreen.main.bounds.size) ///should be tableView.contentSize.height
+            })
+            .disposed(by: rx.disposeBag)
+        
         let layout = photosCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = photosCollectionView.frame.size
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
+        
+        //MARK: ViewModel binding
         
         viewModel.photos
             .do(onNext: { [weak self] (data) in
@@ -95,7 +138,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
                 
                 for i in data.first!.items.enumerated() {
                     let x = UIView()
-                    x.backgroundColor = i.offset == 0 ? .red : .green
+                    x.backgroundColor = i.offset == 0 ? .white : UIColor(white: 1, alpha: 0.3)
                     
                     self?.indicatorStackView.addArrangedSubview(x)
                 }
@@ -135,6 +178,17 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let top = photosCollectionView.frame.size.height - scrollableBackground.layer.cornerRadius
+        
+        profileTableView.contentInset = .init(top: top,
+                                              left: 0, bottom: 0, right: 0)
+        
+    }
+ 
+    
 }
 
 extension UserProfileViewController: UIScrollViewDelegate {
@@ -145,8 +199,17 @@ extension UserProfileViewController: UIScrollViewDelegate {
         }
         
         indicatorStackView.subviews.enumerated().forEach {
-            $0.element.backgroundColor = $0.offset == index ? .red : .green
+            $0.element.backgroundColor = $0.offset == index ? .white : UIColor(white: 1, alpha: 0.3)
         }
+    }
+    
+}
+
+
+class CoolTable: UITableView {
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return point.y > 0
     }
     
 }

@@ -34,8 +34,8 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     }
 
     let router: RoomSettingsRouter
-    let room: Chat.Room
     let inviteLink = BehaviorRelay<String?>(value: nil)
+    let room: BehaviorRelay<Chat.Room>
     private let buo: BranchUniversalObject
     private let properties: BranchLinkProperties
     private let users = BehaviorRelay<[User]>(value: [User.current!])
@@ -46,9 +46,9 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
             var models = users.map { user in
                 return CellModel.user(
                     thumbnailURL: user.bio.photos.avatar.thumbnailURL,
-                    isAdmin: self.room.ownerId == user.id,
+                    isAdmin: self.room.value.ownerId == user.id,
                     name: user.bio.name,
-                    status: self.room.participants.first(where: { $0.userId == user.id })?.status,
+                    status: self.room.value.participants.first(where: { $0.userId == user.id })?.status,
                     identifier: user.id
                 )
             }
@@ -60,22 +60,9 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         }
     }
 
-    var securitySettingsViewModel: RoomSettingsPremiumFeatureViewModel {
-        let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
-        let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
-                        isScreenShieldAvailable ? true : false)]
-
-        return RoomSettingsPremiumFeatureViewModel(
-            title: R.string.localizable.roomSettingsSecurityTitle(),
-            description: R.string.localizable.roomSettingsSecurityDescription(),
-            options: options,
-            isEnabled: isScreenShieldAvailable
-        )
-    }
-
     init(router: RoomSettingsRouter, room: Chat.Room) {
         self.router = router
-        self.room = room
+        self.room = BehaviorRelay(value: room)
         self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id!)")
         self.properties = BranchLinkProperties()
 
@@ -84,12 +71,12 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         }).disposed(by: bag)
 
         generateInviteLink()
-
         loadParticipants()
     }
 
     private func generateInviteLink() {
-        guard let invitationLink = room.participants.first(where: { $0.userId != User.current?.id })?
+        guard let invitationLink = room.value.participants
+            .first(where: { $0.userId != User.current?.id })?
             .invitationLink else {
             return
         }
@@ -106,7 +93,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     }
 
     private func loadParticipants() {
-        Single.zip(room.participants.compactMap { $0.userId }.map { UserManager.getUser(id: $0) })
+        Single.zip(room.value.participants.compactMap { $0.userId }.map { UserManager.getUser(id: $0) })
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { users in
@@ -127,16 +114,33 @@ extension RoomSettingsViewModel {
         }
     }
 
+    func securitySettingsViewModelFor(room: Chat.Room) -> RoomSettingsPremiumFeatureViewModel {
+        let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
+        let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
+                        room.settings?.isScreenShieldEnabled ?? false)]
+        return RoomSettingsPremiumFeatureViewModel(
+            title: R.string.localizable.roomSettingsSecurityTitle(),
+            description: R.string.localizable.roomSettingsSecurityDescription(),
+            options: options,
+            isEnabled: isScreenShieldAvailable
+        )
+    }
+
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
-        guard var roomSettings = room.settings else {
+        guard var roomSettings = room.value.settings else {
             return
         }
         roomSettings.isScreenShieldEnabled = isScreenShieldEnabled
-        ChatManager.updateRoomSettings(roomId: room.id, settings: roomSettings)
+        ChatManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { _ in })
+            .subscribe(onNext: { updatedRoom in
+                self.room.accept(updatedRoom)
+            })
             .disposed(by: bag)
-        
+    }
+
+    func showNotificationSettings() {
+        router.showNotificationSettings(for: room.value)
     }
 }

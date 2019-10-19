@@ -14,42 +14,83 @@ import RxDataSources
 
 extension TeleportViewModel {
     
-    var dataSource: Driver<[SectionModel<String, Data>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, Data>]> {
         
-        return CommunityManager.allCommunities()
-            .trackView(viewIndicator: indicator)
-            .silentCatch()
-            .asDriver(onErrorJustReturn: [])
-            .map { communities in
-                return [
-                    SectionModel(model: "", items: [Data.location]),
-                    SectionModel(model: "", items: communities.map { Data.community($0) })
-                ]
+        return mode.asDriver()
+            .flatMapLatest { mode in
+                
+                return self.data.asDriver().map { data in
+                    
+                    switch mode {
+                    case .countries:
+                        return [
+                            AnimatableSectionModel(model: "current location",
+                                                   items: [Data.location]),
+                            
+                            AnimatableSectionModel(model: "available locations",
+                                                   items: data
+                                                    .sorted { $0.value.count > $1.value.count }
+                                                    .map { Data.country($0.key, $0.value.count) }
+                                )
+                                
+                        ]
+                        
+                    case .communities(let fromCountry):
+                        return [
+                            AnimatableSectionModel(model: "current location",
+                                                   items: [Data.location]),
+                            
+                            AnimatableSectionModel(model: "available locations",
+                                                   items: (data[fromCountry] ?? []).map { Data.community($0) })
+                        ]
+                        
+                    }
+                    
+                }
+                
             }
         
     }
     
-    enum Data {
+    enum Data: IdentifiableType, Equatable {
         case community(Community)
+        case country(String, Int)
         case location
+        
+        var identity: String {
+            switch self {
+            case .community(let x):  return x.name + x.country
+            case .country(let x, _): return x
+            case .location:          return "currentLocation"
+            }
+        }
+        
+    }
+    
+    enum Mode {
+        case countries
+        case communities(fromCountry: String)
     }
     
 }
 
 struct TeleportViewModel : MVVM_ViewModel {
     
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
+    fileprivate let mode = BehaviorRelay(value: Mode.countries)
+    fileprivate let data = BehaviorRelay<[String: [Community]]>(value: [:])
+    
     fileprivate let form: BehaviorRelay<EditProfileForm>
     
     init(router: TeleportRouter, form: BehaviorRelay<EditProfileForm>) {
         self.router = router
         self.form = form
+        
+        CommunityManager.allCommunities()
+            .trackView(viewIndicator: indicator)
+            .silentCatch()
+            .map { Dictionary(grouping: $0, by: { $0.country }) }
+            .bind(to: data)
+            .disposed(by: bag)
         
         /**
          
@@ -87,11 +128,23 @@ extension TeleportViewModel {
             x.communityChange = User.Community(value: nil,
                                                changePolicy: .locationBased)
             
+        case .country(let country, _):
+            return mode.accept(.communities(fromCountry: country))
+            
         }
         
         form.accept(x)
+        router.popBack()
         
-        router.owner.navigationController?.popViewController(animated: true)
+    }
+    
+    func back() {
+        
+        if case .communities(_) = mode.value {
+            return mode.accept(.countries)
+        }
+
+        router.popBack()
         
     }
     
