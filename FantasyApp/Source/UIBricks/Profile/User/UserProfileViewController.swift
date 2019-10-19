@@ -148,10 +148,6 @@ class UserProfileViewController: UIViewController, MVVM_View {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
-        navigationItem.rightBarButtonItem = .init(image: R.image.option()!.withRenderingMode(.alwaysOriginal),
-                                                  style: .plain,
-                                                  target: self, action: Selector("showOptions"))
-        
         //MARK: ViewModel binding
         
         viewModel.photos
@@ -214,6 +210,8 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
     }
     
+    var navigationHidden: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -223,6 +221,15 @@ class UserProfileViewController: UIViewController, MVVM_View {
         profileTableView.contentInset = .init(top: top,
                                               left: 0, bottom: bottom, right: 0)
         
+        self.navigationHidden = self.navigationController!.isNavigationBarHidden
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(self.navigationHidden, animated: true)
     }
  
     override func viewDidLayoutSubviews() {
@@ -231,7 +238,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
         actionContainer.layer.sublayers!.first!.frame = actionContainer.bounds
     }
     
-    @objc func showOptions() {
+    @IBAction func showOptions() {
         
         let actions: [UIAlertAction] = avaliableSheetActions.map { (name, action) in
             UIAlertAction(title: name, style: .default, handler: { _ in action() })
@@ -241,6 +248,10 @@ class UserProfileViewController: UIViewController, MVVM_View {
                         style: .actionSheet,
                         actions: actions)
         
+    }
+    
+    @IBAction func back() {
+        navigationController?.popViewController(animated: true)
     }
     
 }
