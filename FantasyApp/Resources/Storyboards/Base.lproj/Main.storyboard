@@ -47,23 +47,6 @@
             </objects>
             <point key="canvasLocation" x="820" y="1105"/>
         </scene>
-        <!--Fantasy Navigation Controller-->
-        <scene sceneID="WO7-hd-2pB">
-            <objects>
-                <navigationController id="xyB-8x-x4W" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="messages" selectedImage="messagesSelected" id="xOD-QJ-sOG"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wE5-WS-YiB">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="cQz-D4-5De" kind="relationship" relationship="rootViewController" id="K0X-Mu-1Ke"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BU4-2z-lGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1732" y="1445"/>
-        </scene>
         <!--UserGateway-->
         <scene sceneID="vwC-Ln-Y6D">
             <objects>
@@ -91,11 +74,11 @@
             </objects>
             <point key="canvasLocation" x="1732" y="761"/>
         </scene>
-        <!--Fantasy cards-->
+        <!--Navigation Controller-->
         <scene sceneID="W3g-wp-wql">
             <objects>
                 <navigationController id="sAf-SH-0GH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Fantasy cards" id="gEg-7m-vRc"/>
+                    <tabBarItem key="tabBarItem" title="" image="navFantasies" selectedImage="navFantasySelected" id="gEg-7m-vRc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b0M-zD-oFu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -108,11 +91,12 @@
             </objects>
             <point key="canvasLocation" x="1733" y="-13"/>
         </scene>
-        <!--Discover-->
+        <!--Fantasy Navigation Controller-->
         <scene sceneID="xSo-eD-Ten">
             <objects>
-                <navigationController id="XBn-ky-axQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" id="p9f-Nm-IKM"/>
+                <navigationController id="XBn-ky-axQ" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="navDiscovery" selectedImage="navDiscoverySelected" id="qdj-gC-BHJ"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="8vp-US-9xt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -153,18 +137,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.86150974035263062" green="0.47359281778335571" blue="0.74149644374847412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="XBn-ky-axQ" kind="relationship" relationship="viewControllers" id="Vye-b6-AeV"/>
                         <segue destination="sAf-SH-0GH" kind="relationship" relationship="viewControllers" id="aN5-Lf-cbO"/>
-                        <segue destination="927-RS-Xud" kind="relationship" relationship="viewControllers" id="Ozy-PS-36s"/>
-                        <segue destination="xyB-8x-x4W" kind="relationship" relationship="viewControllers" id="kbQ-Uc-Oen"/>
+                        <segue destination="AGp-U5-2Fc" kind="relationship" relationship="viewControllers" id="5Rz-Vz-lua"/>
+                        <segue destination="NlQ-0E-WzG" kind="relationship" relationship="viewControllers" id="Hwd-5G-js6"/>
                         <segue destination="l0T-vF-a2a" kind="relationship" relationship="viewControllers" id="oUH-Nh-sa2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGK-p9-X3r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="814" y="371"/>
+        </scene>
+        <!--Fantasy Navigation Controller-->
+        <scene sceneID="DCQ-ZI-Lgg">
+            <objects>
+                <navigationController id="NlQ-0E-WzG" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="messages" selectedImage="messagesSelected" id="FDl-aE-Rbp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gWD-2p-jzx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cQz-D4-5De" kind="relationship" relationship="rootViewController" id="sO2-M9-c2x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HkH-5X-cJ9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="1454"/>
         </scene>
         <!--Chat-->
         <scene sceneID="kAy-5Z-pkU">
@@ -174,7 +176,24 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bju-aY-3xV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2488" y="1444"/>
+            <point key="canvasLocation" x="2393" y="1454"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Quj-fC-pzi">
+            <objects>
+                <navigationController id="AGp-U5-2Fc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="navNotification" selectedImage="navNotificationSelected" id="1vZ-Up-xF2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nY2-69-Qbi">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Exy-I4-w64" kind="relationship" relationship="rootViewController" id="K2C-wY-HyS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fCF-YA-9ek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="2172"/>
         </scene>
         <!--ConnectionViewController-->
         <scene sceneID="5yc-Sp-wso">
@@ -184,28 +203,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCf-b0-Zmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2488" y="2192"/>
-        </scene>
-        <!--Requests-->
-        <scene sceneID="WaG-rr-2GM">
-            <objects>
-                <navigationController id="927-RS-Xud" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Requests" id="sI7-2y-Fda"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pUf-sd-OkH">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Exy-I4-w64" kind="relationship" relationship="rootViewController" id="6Ba-kL-2EF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zse-ez-gtu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1732" y="2193"/>
+            <point key="canvasLocation" x="2488" y="2172"/>
         </scene>
     </scenes>
     <resources>
         <image name="messages" width="40" height="40"/>
         <image name="messagesSelected" width="40" height="40"/>
+        <image name="navDiscovery" width="40" height="30"/>
+        <image name="navDiscoverySelected" width="40" height="30"/>
+        <image name="navFantasies" width="30" height="30"/>
+        <image name="navFantasySelected" width="30" height="30"/>
+        <image name="navNotification" width="30" height="30"/>
+        <image name="navNotificationSelected" width="30" height="30"/>
     </resources>
 </document>

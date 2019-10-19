@@ -39,44 +39,44 @@ extension UserProfileViewModel {
             
     }
 
-    var sections: Driver<[Section]> {
+    var sections: Driver<[(String, [Row])]> {
         
-        var res = [Section.basic(user.bio.name + ", \(Calendar.current.dateComponents([.year], from: user.bio.birthday, to: Date()).year!)")]
+        let years = Calendar.current.dateComponents([.year], from: user.bio.birthday, to: Date()).year!
+        var res = [("basic", [Row.basic(user.bio.name + ", \(years)", user.subscription.isSubscribed)])]
         
         if let x = user.bio.about {
-            res.append( .about(x, user.bio.sexuality) )
+            res.append( ("about", [.about(x, user.bio.sexuality)]) )
         }
         
-        if user.subscription.isSubscribed {
-            res.append( .basic("This user has golden membership") )
+        var bioSection: (String, [Row]) = ("bio", [])
+        if let x = user.community.value?.name {
+            bioSection.1.append( .bio(R.image.profileLocation()!, x) )
         }
         
-        var bioSection = [
-            "Gender - " + user.bio.gender.rawValue,
-            "Relationship - " + user.bio.relationshipStatus.description,
-            "Sexuality - " + user.bio.sexuality.rawValue
-        ]
+        bioSection.1.append( .bio(R.image.profileSexuality()!, "\(user.bio.sexuality) \(user.bio.gender)") )
+        bioSection.1.append( .bio(R.image.profileRelationships()!, user.bio.relationshipStatus.description) )
         
         if let l = user.bio.lookingFor {
-            bioSection.append("Looking for: \(l)")
+            bioSection.1.append( .bio(R.image.profileLookingFor()!, l.description) )
         }
         
         if let x = user.bio.expirience {
-            bioSection.append("Expirience: \(x)")
+            bioSection.1.append( .bio(R.image.profileExpirience()!, x.description) )
         }
         
-        res.append( .extended( bioSection ))
+        res.append( bioSection )
        
         if user.bio.answers.count > 0 {
             
             for (key, value) in user.bio.answers {
-                res.append( .answer(q: key, a: value ) )
+                let x = Row.answer(q: key, a: value)
+                res.append( (x.identity, [x] ) )
             }
             
         }
         
         return Fantasy.Manager.mutualCards(with: user)
-            .map { (collection) -> [Section] in
+            .map { (collection) in
                 
                 if collection.count > 0 {
                     
@@ -84,7 +84,7 @@ extension UserProfileViewModel {
                         .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
                         .joined(separator: "; ")
                     
-                    res.append( .fantasy( "Fantasies: " + simpleFantasies  ) )
+                    res.append( ("fantasies", [.fantasy( "Fantasies: " + simpleFantasies  )]) )
                 }
             
                 return res
@@ -92,6 +92,25 @@ extension UserProfileViewModel {
             .asDriver(onErrorJustReturn: res)
             .startWith(res)
         
+    }
+    
+    var likedStikerHidden: Driver<Bool> {
+        return relationshipState.asDriver()
+            .map { maybe in
+                
+                guard let connection = maybe else {
+                    return true
+                }
+                
+                switch connection {
+                case .absent, .iRejected, .iWasRejected, .sameUser, .outgoing(_):
+                    return true
+                    
+                case .incomming(_), .mutual(_):
+                    return false
+                }
+                
+            }
     }
     
     var relationLabel: Driver<String> {
@@ -113,35 +132,44 @@ extension UserProfileViewModel {
         }
     }
     
-    var relationActions: Driver<[ (String, () -> Void) ]> {
+    var relationActions: Driver<[ RelationAction ]> {
         return relationshipState.asDriver()
             .map { x in
                 switch x {
                 case .absent?:
                     return [
-                        ("Like User", self.initiateLike),
-                        ("Message User", self.initiateMessage)
+                        .init(descriptior: .imageButton(R.image.profileActionLike()!),
+                              action: self.initiateLike),
+                        .init(descriptior: .imageButton(R.image.profileActionMessage()!),
+                              action: self.initiateMessage)
                     ]
                     
                 case .incomming(_, let room)?:
                     return [
-                        ("Accept", self.likeBack),
-                        ("Reject", self.reject),
-                        ("Open Room", { self.present(room: room) } )
+                        .init(descriptior: .actionSheetOption("Accept invite"),
+                              action: self.likeBack),
+                        .init(descriptior: .actionSheetOption("Reject invite"),
+                              action: self.reject),
+                        .init(descriptior: .openRoomButton,
+                              action: { self.present(room: room) })
                     ]
                 
                 case .mutual(let room)?:
                     return [
-                        ("Unlike", self.unlike),
-                        ("Open Room", { self.present(room: room) } )
+                        .init(descriptior: .actionSheetOption("Unlike"),
+                              action: self.unlike),
+                        .init(descriptior: .openRoomButton,
+                              action: { self.present(room: room) })
                     ]
                     
                 case .outgoing(let types, let room)?: ///waiting for response
                     
-                    var res = [ ("Message", { self.present(room: room) } ) ]
-                    
+                    var res = [ RelationAction(descriptior: .imageButton(R.image.profileActionMessage()!),
+                                               action: { self.present(room: room) }) ]
+                        
                     if !types.contains(.like) {
-                        res.append(("Like", self.initiateLike ))
+                        res.append( .init(descriptior: .imageButton(R.image.profileActionLike()!),
+                                          action:self.initiateLike))
                     }
                     
                     return res
@@ -151,7 +179,8 @@ extension UserProfileViewModel {
                     
                 case .iRejected?:
                     return [
-                        ("Delete Connection", self.unlike )
+                        .init(descriptior: .actionSheetOption("Delete Connection"),
+                              action: self.unlike)
                     ]
                     
                 case .sameUser, .none: return []
@@ -194,19 +223,32 @@ extension UserProfileViewModel {
         
     }
     
-    enum Section: IdentifiableType, Equatable {
-        case basic(String)
+    struct RelationAction {
+        
+        let descriptior: Descriptior
+        let action: () -> Void
+        
+        enum Descriptior {
+            case imageButton(UIImage)
+            case openRoomButton
+            case actionSheetOption(String)
+        }
+        
+    }
+    
+    enum Row: IdentifiableType, Equatable {
+        case basic(String, Bool)
         case about(String, Sexuality)
-        case extended([String])
+        case bio(UIImage, String)
         case fantasy(String)
         case answer(q: String, a: String)
         
         var identity: String {
             switch self {
-            case .basic(let x): return "basic \(x)"
-            case .about(let x): return "about \(x)"
-            case .extended(let x): return "extended \(x)"
-            case .fantasy(let x): return "fantasy \(x)"
+            case .basic(let x):         return "basic \(x)"
+            case .about(let x):         return "about \(x)"
+            case .bio(_, let y):        return "bio \(y)"
+            case .fantasy(let x):       return "fantasy \(x)"
             case .answer(let q, let a): return "answer \(q), \(a)"
                 
             }
