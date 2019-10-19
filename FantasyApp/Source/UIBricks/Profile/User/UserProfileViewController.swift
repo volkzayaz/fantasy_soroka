@@ -136,8 +136,9 @@ class UserProfileViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
     
         profileTableView.rx.contentOffset
-            .map { CGPoint(x: $0.x, y: -1 * $0.y) }
+            .map { CGPoint(x: $0.x, y: -1 * ($0.y - 44)) }
             .subscribe(onNext: { [unowned self] (x) in
+                
                 self.scrollableBackground.frame = .init(origin: x,
                                                         size: self.profileTableView.contentSize)
             })
@@ -220,9 +221,10 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
         profileTableView.contentInset = .init(top: top,
                                               left: 0, bottom: bottom, right: 0)
-        
+            
         self.navigationHidden = self.navigationController!.isNavigationBarHidden
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        profileTableView.setContentOffset(.init(x: 0, y: -top), animated: true)
         
     }
     
