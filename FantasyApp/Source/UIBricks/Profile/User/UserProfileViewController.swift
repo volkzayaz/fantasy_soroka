@@ -159,7 +159,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
                 for i in data.first!.items.enumerated() {
                     let x = UIView()
                     x.backgroundColor = i.offset == 0 ? .white : UIColor(white: 1, alpha: 0.3)
-                    
+                    x.layer.cornerRadius = 1.5
                     self?.indicatorStackView.addArrangedSubview(x)
                 }
 

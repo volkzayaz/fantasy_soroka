@@ -23,14 +23,18 @@ class LoginViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        emailTextField.text = "pete1@jackson.com"
-//        passwordTextField.text = "1234"
+        #if DEBUG
+            emailTextField.text = "pete1@jackson.com"
+            passwordTextField.text = "1234"
+        #else 
+        #endif
 
-
+        #if ADHOC || RELEASE
         viewModel.signinButtonEnabled
             .drive(signinButton.rx.isEnabled)
             .disposed(by: rx.disposeBag)
-
+        #endif
+        
         emailTextField.rx.text
             .skip(1)
             .subscribe(onNext: { [unowned self] (x) in

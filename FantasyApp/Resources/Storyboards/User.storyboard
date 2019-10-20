@@ -186,7 +186,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVP-kf-Dek" customClass="SexualityGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="89"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="379" height="94"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mU9-If-oIo">
@@ -198,11 +198,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mU9-If-oIo" firstAttribute="leading" secondItem="Mr7-M9-zdL" secondAttribute="leading" constant="16" id="7Na-Lw-xd3"/>
-                                                <constraint firstAttribute="trailing" secondItem="cVP-kf-Dek" secondAttribute="trailing" id="JKz-WL-nzT"/>
+                                                <constraint firstAttribute="trailing" secondItem="cVP-kf-Dek" secondAttribute="trailing" constant="-5" id="JKz-WL-nzT"/>
                                                 <constraint firstAttribute="trailing" secondItem="mU9-If-oIo" secondAttribute="trailing" constant="16" id="VoL-ag-ts0"/>
                                                 <constraint firstItem="cVP-kf-Dek" firstAttribute="leading" secondItem="Mr7-M9-zdL" secondAttribute="leading" id="XcK-c0-4lC"/>
                                                 <constraint firstItem="cVP-kf-Dek" firstAttribute="top" secondItem="Mr7-M9-zdL" secondAttribute="top" id="fMD-XB-DA7"/>
-                                                <constraint firstAttribute="bottom" secondItem="cVP-kf-Dek" secondAttribute="bottom" id="fgX-DR-x6a"/>
+                                                <constraint firstAttribute="bottom" secondItem="cVP-kf-Dek" secondAttribute="bottom" constant="-5" id="fgX-DR-x6a"/>
                                                 <constraint firstAttribute="bottom" secondItem="mU9-If-oIo" secondAttribute="bottom" constant="16" id="nJA-VA-siw"/>
                                                 <constraint firstItem="mU9-If-oIo" firstAttribute="top" secondItem="Mr7-M9-zdL" secondAttribute="top" constant="16" id="pBp-XR-kS5"/>
                                             </constraints>
