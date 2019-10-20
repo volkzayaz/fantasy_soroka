@@ -28,6 +28,8 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addFantasyGradient()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter",
                                                             style: .done,
                                                             target: self,
