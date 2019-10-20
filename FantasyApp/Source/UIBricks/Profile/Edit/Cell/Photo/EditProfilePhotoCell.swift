@@ -17,19 +17,31 @@ class EditProfilePhotoCell: UICollectionViewCell {
                 .drive(photoView.rx.image)
                 .disposed(by: rx.disposeBag)
             
-            viewModel.deleteButtonHidden
-                .drive(closeButton.rx.isHidden)
+            viewModel.deleteButtonEnabled
+                .drive(closeButton.rx.isEnabled)
                 .disposed(by: rx.disposeBag)
             
         }
     }
     
-    @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet weak var photoView: UIImageView! {
+        didSet {
+            photoView.layer.cornerRadius = 8
+        }
+    }
     @IBOutlet weak var closeButton: UIButton!
     
     override func awakeFromNib() {
         photoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                               action: #selector(selectImage)))
+    }
+    
+    func showsChange(change: Bool) {
+        
+        let image = change ? R.image.profilePhotoChange()! : R.image.profilePhotoDelete()!
+        
+        closeButton.setImage(image,
+                             for: .normal)
     }
     
     @IBAction func close(_ sender: Any) {

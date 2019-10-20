@@ -38,3 +38,16 @@ struct ConnectedUser: Equatable, IdentifiableType {
         return user.id
     }
 }
+
+extension ConnectionRequestType {
+    
+    var requestImage: UIImage {
+        switch self {
+        case .like:         return R.image.requestLike()!
+        case .message:      return R.image.requestMessage()!
+        case .sticker:      return R.image.requestSticker()!
+        case .inviteLink:   return R.image.requestLink()!
+        }
+    }
+    
+}

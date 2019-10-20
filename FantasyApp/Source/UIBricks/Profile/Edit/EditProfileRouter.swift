@@ -27,23 +27,33 @@ struct EditProfileRouter : MVVM_Router {
     func presentTeleport(form: BehaviorRelay<EditProfileForm>) {
         
         let x = R.storyboard.user.teleportViewController()!
-        x.viewModel = .init(router: .init(owner: x), form: form)
+        x.viewModel = .init(router: .init(owner: x), response: .editForm(form))
         owner.navigationController?.pushViewController(x, animated: true)
         
     }
     
-    /**
-     
-     func showNextModule(with data: String) {
-     
-        let nextViewController = owner.storyboard.instantiate()
-        let nextRouter = NextRouter(owner: nextViewController)
-        let nextViewModel = NextViewModel(router: nextRuter, data: data)
+    func presentSinglePick<T: SinglePickModel>(title: String,
+                                               models: [T],
+                                               defaultModel: T?,
+                                               mode: SinglePickViewController.Mode,
+                                               result: @escaping (T) -> Void) {
         
-        nextViewController.viewModel = nextViewModel
-        owner.present(nextViewController)
-     }
-     
-     */
+        let x = R.storyboard.userGateway.singlePickViewController()!
+        x.viewModel = SinglePickViewModel(router: .init(owner: x),
+                                          title: title,
+                                          models: models,
+                                          defaultModel: defaultModel,
+                                          mode: mode, result: result)
+        owner.navigationController?.pushViewController(x, animated: true)
+        
+    }
+    
+    func presentRelationship(status: RelationshipStatus,
+                             callback: @escaping (RelationshipStatus) -> Void) {
+        let x = R.storyboard.userGateway.editRelationshipViewController()!
+        x.defaultStatus = status
+        x.callback = callback
+        owner.navigationController?.pushViewController(x, animated: true)
+    }
     
 }

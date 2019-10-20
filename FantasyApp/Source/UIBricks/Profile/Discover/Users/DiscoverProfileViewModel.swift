@@ -94,6 +94,7 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+        
     }
     
     let router: DiscoverProfileRouter

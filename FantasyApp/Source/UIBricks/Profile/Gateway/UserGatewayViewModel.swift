@@ -65,11 +65,7 @@ struct UserGatewayViewModel : MVVM_ViewModel {
 extension UserGatewayViewModel {
     
     func teleport() {
-        PurchaseManager.purhcaseSubscription()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe()
-            .disposed(by: bag)
+        router.presentTeleport()
     }
     
 }

@@ -44,6 +44,10 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
       
     }
     
+    @IBAction func openTeleport(_ sender: Any) {
+        viewModel.openTeleport()
+    }
+    
     @IBAction func apply(_ sender: Any) {
         view.endEditing(true)
         

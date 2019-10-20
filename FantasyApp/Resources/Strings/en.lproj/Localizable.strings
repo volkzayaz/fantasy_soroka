@@ -26,6 +26,7 @@
 "editProfile.about" = "About";
 "editProfile.account" = "Account";
 "editProfile.answers" = "Answers";
+"editProfile.prefs" = "Prefereneces";
 
 "editProfile.name" = "Name";
 "editProfile.age" = "Age";
@@ -33,9 +34,18 @@
 "editProfile.sexuaity" = "Sexuality";
 "editProfile.relationship" = "Relationship";
 
+"editProfile.aboutPlaceholder" = "Tell the community about yourself…";
+"editProfile.questionPlaceholder" = "Tap to answer";
+
 "editProfile.question1" = "What are you looking for?";
 "editProfile.question2" = "Facts about me that surprise people";
 "editProfile.question3" = "Two truths and a lie";
+
+"editProfile.changeRelationshipTitle" = "What’s Your Relationship Status?";
+"editProfile.changeLookingForTitle" = "What Are You Looking For?";
+"editProfile.changeExpirienceTitle" = "What’s Your Experience?";
+"editProfile.changeGenderTitle" = "How Would You Describe Yourself?";
+"editProfile.changeSexualityTitle" = "What’s Your Sexuality?";
 
 "rooms.add.new.room" = "Add New Room";
 "room.details.settings" = "Settings";

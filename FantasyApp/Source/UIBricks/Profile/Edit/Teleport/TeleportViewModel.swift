@@ -79,11 +79,16 @@ struct TeleportViewModel : MVVM_ViewModel {
     fileprivate let mode = BehaviorRelay(value: Mode.countries)
     fileprivate let data = BehaviorRelay<[String: [Community]]>(value: [:])
     
-    fileprivate let form: BehaviorRelay<EditProfileForm>
+    enum Response {
+        case editForm(BehaviorRelay<EditProfileForm>)
+        case directApplication
+    }
     
-    init(router: TeleportRouter, form: BehaviorRelay<EditProfileForm>) {
+    fileprivate let response: Response
+    
+    init(router: TeleportRouter, response: Response) {
         self.router = router
-        self.form = form
+        self.response = response
         
         CommunityManager.allCommunities()
             .trackView(viewIndicator: indicator)
@@ -91,12 +96,6 @@ struct TeleportViewModel : MVVM_ViewModel {
             .map { Dictionary(grouping: $0, by: { $0.country }) }
             .bind(to: data)
             .disposed(by: bag)
-        
-        /**
-         
-         Proceed with initialization here
-         
-         */
         
         /////progress indicator
         
@@ -117,23 +116,51 @@ extension TeleportViewModel {
     
     func selected(data: Data) {
         
-        var x = form.value
+        let x: User.Community
         
         switch data {
-        case .community(let community):
-            x.communityChange = User.Community(value: community,
-                                               changePolicy: .teleport)
-        
-        case .location:
-            x.communityChange = User.Community(value: nil,
-                                               changePolicy: .locationBased)
             
         case .country(let country, _):
             return mode.accept(.communities(fromCountry: country))
             
+        case .community(let community):
+            x = User.Community(value: community,
+                               changePolicy: .teleport)
+        
+        case .location:
+            x = User.Community(value: nil,
+                               changePolicy: .locationBased)
+            
         }
         
-        form.accept(x)
+        guard (User.current?.subscription.isSubscribed ?? false) else {
+            
+            PurchaseManager.purhcaseSubscription()
+                .trackView(viewIndicator: indicator)
+                .silentCatch(handler: router.owner)
+                .map { _ in data}
+                .subscribe(onNext: self.selected)
+                .disposed(by: bag)
+            
+            return
+        }
+        
+        switch response {
+        case .editForm(let form):
+            var y = form.value
+            y.communityChange = x
+            form.accept(y)
+            
+        case .directApplication:
+            
+            var u = User.current!
+            u.community = x
+            Dispatcher.dispatch(action: SetUser(user: u))
+            
+            let _ = UserManager.save(user: u).subscribe()
+            
+        }
+        
         router.popBack()
         
     }

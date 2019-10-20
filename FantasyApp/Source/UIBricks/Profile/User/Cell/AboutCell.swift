@@ -22,3 +22,20 @@ class UserProfileAnswerCell: UITableViewCell {
     @IBOutlet weak var answerLabel: UILabel!
     
 }
+
+class UserProfileBioCell: UITableViewCell {
+    
+    @IBOutlet weak var indicatorImageView: UIImageView!
+    @IBOutlet weak var descriptionTextLabel: UILabel!
+    
+}
+
+class UserProfileBasicCell: UITableViewCell {
+    
+    @IBOutlet weak var basicLabel: UILabel!
+    @IBOutlet var goldMemberBadge: UIImageView!
+    @IBOutlet weak var stackView: UIStackView!
+    
+    @IBOutlet weak var likeIndicatorImageView: UIImageView!
+    
+}

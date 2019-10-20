@@ -19,7 +19,11 @@ extension UIColor {
                   blue: CGFloat(blue) / 255.0,
                   alpha: alpha)
     }
-
+    
+    convenience init(fromHex:Int) {
+        self.init(red:(fromHex >> 16) & 0xff, green:(fromHex >> 8) & 0xff, blue:fromHex & 0xff)
+    }
+    
     func lighter(by percentage: CGFloat = 5.0) -> UIColor {
         return adjust(by: abs(percentage) )
     }

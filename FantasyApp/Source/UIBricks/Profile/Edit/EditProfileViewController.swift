@@ -21,24 +21,42 @@ class EditProfileViewController: UIViewController, MVVM_View {
             
             switch x {
                 
-            case .about(let x):
-                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileAboutCell,
+            case .expandable(let text, let placeholder, let maybeTitle, let action):
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileExpandableCell,
                                                          for: ip)!
                 
-                cell.textLabel?.text = x
+                cell.expandableTextView.text = text
+                cell.expandableTextView.placeholder = placeholder
+                cell.action = action
+                cell.tableView = tableView
+                
+                if let title = maybeTitle {
+                    cell.stackTitleLabel.text = title
+                } else {
+                    cell.dropTitle()
+                }
                 
                 return cell
                 
-            case .attribute(let name, let value):
+            case .attribute(let name, let value, let image, let maybeAction):
                 
                 let cell = tableView
                     .dequeueReusableCell(withIdentifier: R.reuseIdentifier.attributeEditProfileCell,
                                          for: ip)!
                 
-                cell.valueLabel.text = name
-                cell.attributeLabel.text = value
+                cell.attributeLabel.text = name
+                cell.valueLabel.text = value
+                cell.indicatorImage.image = image
+                cell.lockImage.isHidden = maybeAction != nil
+                cell.valueLabel.isHidden = maybeAction == nil
                 
                 return cell
+                
+            case .footer:
+                return tableView
+                .dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileFooterCell,
+                                     for: ip)!
+                
                 
             }
             
@@ -47,11 +65,18 @@ class EditProfileViewController: UIViewController, MVVM_View {
         })
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var photoContainerView: UIView! {
+        didSet {
+            photoContainerView.backgroundColor = .clear
+        }
+    }
     
     @IBOutlet weak var publicPhotoCollectionView: ProfilePhotoCollectionView! {
         didSet {
             publicPhotoCollectionView.viewModel = viewModel
             publicPhotoCollectionView.isPublic = true
+            publicPhotoCollectionView.backgroundColor = .clear
         }
     }
     
@@ -59,11 +84,16 @@ class EditProfileViewController: UIViewController, MVVM_View {
         didSet {
             privatePhotoCollectionView.viewModel = viewModel
             privatePhotoCollectionView.isPublic = false
+            privatePhotoCollectionView.backgroundColor = .clear
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addFantasyGradient()
+        
+        title = "Profile"
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Preview",
                                                               style: .done,
@@ -76,19 +106,60 @@ class EditProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         tableView.rx.itemSelected
+            .subscribe(onNext: { [weak tv = tableView] (x) in
+                tv?.deselectRow(at: x, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        tableView.rx.modelSelected(VM.Model.self)
+            .subscribe(onNext: { (x) in
+                
+                switch x {
+                case .attribute(_, _, _, let editAction): editAction?()
+                    
+                case .expandable(_), .footer: break
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
+        
+        let height = photoContainerView.bounds.size.height
+        
+        tableView.rx.contentOffset
+            .map { [unowned self] offset in
+                
+                let inset: CGFloat = self.view.safeAreaInsets.top
+                let containerHeight: CGFloat = height
+                
+                return CGPoint(x: offset.x, y: max(-1 * (offset.y - inset - containerHeight), inset))
+            }
             .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.cellClicked(ip: x)
+                
+                self.backgroundView.frame = .init(origin: x,
+                                                  size: self.tableView.contentSize)
+                
             })
             .disposed(by: rx.disposeBag)
         
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        
+        ///just rxing into contentOffset observable
+        tableView.contentOffset = CGPoint(x: tableView.contentOffset.x, y: tableView.contentOffset.y + 1)
+    }
+    
 }
 
-extension EditProfileViewController {
-
+extension EditProfileViewController: UIScrollViewDelegate {
+    
     @objc func preview() {
         viewModel.preview()
+    }
+    
+    @IBAction func endEditing(_ sender: Any) {
+        view.endEditing(true)
     }
     
 }

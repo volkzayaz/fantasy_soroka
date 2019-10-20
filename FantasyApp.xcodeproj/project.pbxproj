@@ -15,7 +15,7 @@
 		73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C00231D3CFB00B71053 /* EditProfileViewModel.swift */; };
 		73097C05231D3D8200B71053 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73097C04231D3D8200B71053 /* User.storyboard */; };
 		73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C07231D3FCA00B71053 /* EditProfilePhotoCell.swift */; };
-		73097C0A231D40B100B71053 /* EditProfileAboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C09231D40B100B71053 /* EditProfileAboutCell.swift */; };
+		73097C0A231D40B100B71053 /* EditProfileExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C09231D40B100B71053 /* EditProfileExpandableCell.swift */; };
 		73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C0B231D417B00B71053 /* AttributeEditProfileCell.swift */; };
 		73097C0F231D431600B71053 /* ProfilePhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C0E231D431600B71053 /* ProfilePhotoCollectionView.swift */; };
 		73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73097C11231D448B00B71053 /* EditProfilePhotoCell.xib */; };
@@ -107,6 +107,7 @@
 		7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33623351F64007B84B0 /* ConnectionViewController.swift */; };
 		7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33723351F64007B84B0 /* ConnectionViewModel.swift */; };
 		736D235A235A057A00430863 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2359235A057A00430863 /* AboutCell.swift */; };
+		7374F6A8235B8435000D6D20 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7374F6A7235B8435000D6D20 /* ConnectionCell.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -165,6 +166,11 @@
 		73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */; };
 		73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */; };
 		73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */; };
+		73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC2F235C6E3100480E79 /* SinglePickRouter.swift */; };
+		73EEFC33235C6E3100480E79 /* SinglePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC30235C6E3100480E79 /* SinglePickViewController.swift */; };
+		73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */; };
+		73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */; };
+		73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
@@ -324,7 +330,7 @@
 		73097C00231D3CFB00B71053 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		73097C04231D3D8200B71053 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		73097C07231D3FCA00B71053 /* EditProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePhotoCell.swift; sourceTree = "<group>"; };
-		73097C09231D40B100B71053 /* EditProfileAboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileAboutCell.swift; sourceTree = "<group>"; };
+		73097C09231D40B100B71053 /* EditProfileExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileExpandableCell.swift; sourceTree = "<group>"; };
 		73097C0B231D417B00B71053 /* AttributeEditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeEditProfileCell.swift; sourceTree = "<group>"; };
 		73097C0E231D431600B71053 /* ProfilePhotoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCollectionView.swift; sourceTree = "<group>"; };
 		73097C11231D448B00B71053 /* EditProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfilePhotoCell.xib; sourceTree = "<group>"; };
@@ -421,6 +427,7 @@
 		7361F33623351F64007B84B0 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		7361F33723351F64007B84B0 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		736D2359235A057A00430863 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
+		7374F6A7235B8435000D6D20 /* ConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -479,6 +486,11 @@
 		73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationSettings.swift; sourceTree = "<group>"; };
+		73EEFC2F235C6E3100480E79 /* SinglePickRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickRouter.swift; sourceTree = "<group>"; };
+		73EEFC30235C6E3100480E79 /* SinglePickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickViewController.swift; sourceTree = "<group>"; };
+		73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickViewModel.swift; sourceTree = "<group>"; };
+		73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickTableCell.swift; sourceTree = "<group>"; };
+		73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewController.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -655,6 +667,7 @@
 		73097BFD231D3CEB00B71053 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				73EEFC2E235C6E1300480E79 /* SinglePick */,
 				7361F31C23328A03007B84B0 /* Teleport */,
 				73097C0D231D42F000B71053 /* ProfilePhotoCollection */,
 				73097C06231D3FB400B71053 /* Cell */,
@@ -669,8 +682,9 @@
 			isa = PBXGroup;
 			children = (
 				73097C10231D447C00B71053 /* Photo */,
-				73097C09231D40B100B71053 /* EditProfileAboutCell.swift */,
+				73097C09231D40B100B71053 /* EditProfileExpandableCell.swift */,
 				73097C0B231D417B00B71053 /* AttributeEditProfileCell.swift */,
+				73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1251,11 +1265,20 @@
 		7361F33223351F2A007B84B0 /* Connections */ = {
 			isa = PBXGroup;
 			children = (
+				7374F6A6235B8419000D6D20 /* Cells */,
 				7361F33523351F64007B84B0 /* ConnectionRouter.swift */,
 				7361F33623351F64007B84B0 /* ConnectionViewController.swift */,
 				7361F33723351F64007B84B0 /* ConnectionViewModel.swift */,
 			);
 			path = Connections;
+			sourceTree = "<group>";
+		};
+		7374F6A6235B8419000D6D20 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7374F6A7235B8435000D6D20 /* ConnectionCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7379ECFA2309713200E661A7 /* List */ = {
@@ -1537,6 +1560,25 @@
 				73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */,
 			);
 			path = NotificationSettings;
+			sourceTree = "<group>";
+		};
+		73EEFC2E235C6E1300480E79 /* SinglePick */ = {
+			isa = PBXGroup;
+			children = (
+				73EEFC37235C952700480E79 /* Relationship */,
+				73EEFC2F235C6E3100480E79 /* SinglePickRouter.swift */,
+				73EEFC30235C6E3100480E79 /* SinglePickViewController.swift */,
+				73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */,
+			);
+			path = SinglePick;
+			sourceTree = "<group>";
+		};
+		73EEFC37235C952700480E79 /* Relationship */ = {
+			isa = PBXGroup;
+			children = (
+				73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */,
+			);
+			path = Relationship;
 			sourceTree = "<group>";
 		};
 		8416816522E96CD900FA9455 /* Components */ = {
@@ -2227,6 +2269,7 @@
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
+				7374F6A8235B8435000D6D20 /* ConnectionCell.swift in Sources */,
 				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
 				84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
@@ -2245,7 +2288,7 @@
 				734C70C223214B8D00ED2E91 /* UserProfileViewModel.swift in Sources */,
 				7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */,
 				7322312323056731009DD37F /* ResetSwipeState.swift in Sources */,
-				73097C0A231D40B100B71053 /* EditProfileAboutCell.swift in Sources */,
+				73097C0A231D40B100B71053 /* EditProfileExpandableCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
 				73EBBA63234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift in Sources */,
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
@@ -2284,12 +2327,14 @@
 				739F799823095C7E0045FCD7 /* FantasyDetailsRouter.swift in Sources */,
 				734C70C8232157C200ED2E91 /* CenteredCollectionViewLayout.swift in Sources */,
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
+				73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
+				73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				843B648F234F197B00E5639B /* RoomSettingsViewModel.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
@@ -2308,6 +2353,7 @@
 				7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */,
 				7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */,
 				843CF723234373610098C196 /* RoomResource.swift in Sources */,
+				73EEFC33235C6E3100480E79 /* SinglePickViewController.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */,
 				843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */,
@@ -2324,6 +2370,7 @@
 				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
+				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
@@ -2384,6 +2431,7 @@
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
 				84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */,
 				B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */,
+				73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */,
 				84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */,
 				84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */,
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
@@ -2591,7 +2639,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = CB48395Y6T;
+				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
@@ -2604,7 +2652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = FantasyAppDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

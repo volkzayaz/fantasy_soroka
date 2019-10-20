@@ -17,9 +17,9 @@ struct Album: Codable, Equatable {
     let isPrivate: Bool
     var images: [Photo]
     
-    init(images: [Photo]) {
-        self.id = "parseStubNotARealValue"
-        self.ownerId = "parseStubNotARealValue"
+    init(images: [Photo], id: String = "parseStubNotARealValue") {
+        self.id = id
+        self.ownerId = id
         self.isPrivate = false
         
         self.images = images

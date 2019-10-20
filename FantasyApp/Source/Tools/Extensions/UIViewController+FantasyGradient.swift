@@ -8,13 +8,15 @@
 
 import Foundation
 
-extension UIViewController {
+extension UIView {
     func addFantasyGradient() {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.gradient3.cgColor,
-                                UIColor.gradient2.cgColor,
-                                UIColor.gradient1.cgColor]
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [UIColor.gradient2.cgColor, UIColor.gradient3.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        layer.insertSublayer(gradientLayer, at: 0)
     }
+    
 }

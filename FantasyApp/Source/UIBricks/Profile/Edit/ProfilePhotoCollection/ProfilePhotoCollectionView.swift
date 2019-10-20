@@ -43,6 +43,8 @@ class ProfilePhotoCollectionView: UICollectionView, UICollectionViewDataSource {
                                number: indexPath.row,
                                isPublic: isPublic)
         
+        cell.showsChange(change: isPublic && indexPath.row == 0 )
+        
         return cell
     }
 

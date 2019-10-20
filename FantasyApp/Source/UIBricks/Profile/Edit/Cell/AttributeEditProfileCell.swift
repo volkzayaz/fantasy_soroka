@@ -12,5 +12,7 @@ class AttributeEditProfileCell: UITableViewCell {
     
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var attributeLabel: UILabel!
+    @IBOutlet weak var indicatorImage: UIImageView!
+    @IBOutlet weak var lockImage: UIImageView!
     
 }

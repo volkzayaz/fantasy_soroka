@@ -30,5 +30,17 @@ class FantasyNavigationController: UINavigationController, UINavigationControlle
                               willShow viewController: UIViewController, animated: Bool) {
         let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         viewController.navigationItem.backBarButtonItem = item
+        
+        setNavigationBarHidden(viewController.prefersNavigationBarHidden, animated: true)
+        
     }
+    
+}
+
+extension UIViewController {
+    
+    @objc var prefersNavigationBarHidden: Bool {
+        return false
+    }
+    
 }

@@ -21,7 +21,10 @@ class SexualityGradientView: MTKView {
                 fromSexuality = newValue
             }
             toSexuality = newValue
+            
+            #if !targetEnvironment(simulator)
             animateSexualitySelection(newValue)
+            #endif
         }
         get {
             return fromSexuality

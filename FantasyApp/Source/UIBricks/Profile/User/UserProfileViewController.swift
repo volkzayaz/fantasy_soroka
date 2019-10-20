@@ -38,18 +38,24 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
         }
         
-        
-        
     })
     
-    lazy var sectionsTableDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, UserProfileViewModel.Section>>(configureCell: { [unowned self] (_, tv, ip, section) in
+    lazy var sectionsTableDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, UserProfileViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, section) in
         
         switch section {
-        case .basic(let x):
+        case .basic(let text, let isMember):
             
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileBasicCell, for: ip)!
             
-            cell.textLabel?.text = x
+            cell.basicLabel.text = text
+            cell.goldMemberBadge.removeFromSuperview()
+            if isMember {
+                cell.stackView.addArrangedSubview(cell.goldMemberBadge)
+            }
+            
+            self.viewModel.likedStikerHidden
+                .drive(cell.likeIndicatorImageView.rx.isHidden)
+                .disposed(by: cell.rx.disposeBag)
             
             return cell
             
@@ -62,11 +68,12 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             return cell
             
-        case .extended(let x):
+        case .bio(let image, let text):
             
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileExtendedCell, for: ip)!
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileBioCell, for: ip)!
             
-            cell.textLabel?.text = x.joined(separator: "\n")
+            cell.indicatorImageView.image = image
+            cell.descriptionTextLabel.text = text
             
             return cell
             
@@ -111,16 +118,29 @@ class UserProfileViewController: UIViewController, MVVM_View {
         }
     }
     
-    @IBOutlet weak var relationStatusLabel: UILabel!
+    @IBOutlet weak var actionContainer: UIView! {
+        didSet {
+            
+            let gradientLayer = CAGradientLayer()
+            
+            gradientLayer.colors = [UIColor.clear.cgColor,
+                                    UIColor(white: 0, alpha: 0.102).cgColor]
+            
+            actionContainer.layer.insertSublayer(gradientLayer, at: 0)
+        }
+    }
+    
+    private var avaliableSheetActions: [(String, () -> Void)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         profileTableView.rx.contentOffset
-            .map { CGPoint(x: $0.x, y: -1 * $0.y) }
+            .map { CGPoint(x: $0.x, y: -1 * ($0.y - 44)) }
             .subscribe(onNext: { [unowned self] (x) in
+                
                 self.scrollableBackground.frame = .init(origin: x,
-                                                        size: UIScreen.main.bounds.size) ///should be tableView.contentSize.height
+                                                        size: self.profileTableView.contentSize)
             })
             .disposed(by: rx.disposeBag)
         
@@ -139,7 +159,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
                 for i in data.first!.items.enumerated() {
                     let x = UIView()
                     x.backgroundColor = i.offset == 0 ? .white : UIColor(white: 1, alpha: 0.3)
-                    
+                    x.layer.cornerRadius = 1.5
                     self?.indicatorStackView.addArrangedSubview(x)
                 }
 
@@ -148,46 +168,86 @@ class UserProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.sections
-            .map { $0.map { AnimatableSectionModel(model: $0.identity, items: [$0]) } }
+            .map { $0.map { AnimatableSectionModel(model: $0.0, items: $0.1) } }
             .drive(profileTableView.rx.items(dataSource: sectionsTableDataSource))
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.relationLabel
-            .drive(relationStatusLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
         viewModel.relationActions
             .drive(onNext: { [weak self] (data) in
                 
                 self?.actionButtonsStackView.subviews.forEach { $0.removeFromSuperview() }
-                
-                data.forEach { (title, action) in
+                var sheetActions: [(String, () -> Void)] = []
+                data.forEach { (action) in
                     
-                    let button = UIButton(type: .system)
-                    button.setTitle(title, for: .normal)
-                    button.rx.controlEvent(.touchUpInside)
-                        .subscribe(onNext: action)
-                        .disposed(by: button.rx.disposeBag)
-                    
-                    self?.actionButtonsStackView.addArrangedSubview(button)
+                    switch action.descriptior {
+                    case .openRoomButton:
+                        let b = SecondaryButton()
+                        b.setTitle("Open Room", for: .normal)
+                        b.rx.controlEvent(.touchUpInside)
+                            .subscribe(onNext: action.action)
+                            .disposed(by: b.rx.disposeBag)
+                        self?.actionButtonsStackView.addArrangedSubview(b)
+                        
+                        b.snp.makeConstraints { $0.size.equalTo(CGSize(width: 254, height: 52)) }
+                        
+                    case .imageButton(let image):
+                        let button = UIButton(type: .custom)
+                        button.setImage(image, for: .normal)
+                        button.rx.controlEvent(.touchUpInside)
+                            .subscribe(onNext: action.action)
+                            .disposed(by: button.rx.disposeBag)
+                        self?.actionButtonsStackView.addArrangedSubview(button)
+                        
+                    case .actionSheetOption(let description):
+                        sheetActions.append( (description, action.action) )
+                        
+                    }
                     
                 }
                 
+                self?.avaliableSheetActions = sheetActions
             })
             .disposed(by: rx.disposeBag)
         
+    }
+    
+    override var prefersNavigationBarHidden: Bool {
+        return true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let top = photosCollectionView.frame.size.height - scrollableBackground.layer.cornerRadius
+        let bottom = actionContainer.bounds.size.height
         
         profileTableView.contentInset = .init(top: top,
-                                              left: 0, bottom: 0, right: 0)
+                                              left: 0, bottom: bottom, right: 0)
+        profileTableView.setContentOffset(.init(x: 0, y: -top), animated: true)
         
     }
- 
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        actionContainer.layer.sublayers!.first!.frame = actionContainer.bounds
+    }
+    
+    @IBAction func showOptions() {
+        
+        let actions: [UIAlertAction] = avaliableSheetActions.map { (name, action) in
+            UIAlertAction(title: name, style: .default, handler: { _ in action() })
+            } + [UIAlertAction(title: "Cancel", style: .cancel, handler: nil)]
+        
+        self.showDialog(title: "", text: "Pick an action",
+                        style: .actionSheet,
+                        actions: actions)
+        
+    }
+    
+    @IBAction func back() {
+        navigationController?.popViewController(animated: true)
+    }
     
 }
 
