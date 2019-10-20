@@ -211,7 +211,9 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
     }
     
-    var navigationHidden: Bool = false
+    override var prefersNavigationBarHidden: Bool {
+        return true
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -221,19 +223,10 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
         profileTableView.contentInset = .init(top: top,
                                               left: 0, bottom: bottom, right: 0)
-            
-        self.navigationHidden = self.navigationController!.isNavigationBarHidden
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         profileTableView.setContentOffset(.init(x: 0, y: -top), animated: true)
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(self.navigationHidden, animated: true)
-    }
- 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

@@ -25,37 +25,48 @@ extension EditProfileViewModel {
                 ////TODO: split separate texts into own translation tables instead of dot prefixing
                 ////usage of dot prefixes creates a lot of redundant prefix mentions in client code
                 let about = SectionModel(model: R.string.localizable.editProfileAbout(),
-                                         items: [Model.about(user.bio.about ?? "")])
+                                         items: [Model.expandable(text: (user.bio.about ?? ""),
+                                                                  placeholder: R.string.localizable.editProfileAbout(),
+                                                                  title: nil,
+                                                                  editAction: self.changeAbout)])
                 
                 let account = SectionModel(model: R.string.localizable.editProfileAccount(),
-                                           items: [Model.attribute(R.string.localizable.editProfileName(),
-                                                                   value: user.bio.name,
+                                           items: [Model.attribute(user.bio.name,
+                                                                   value: "",
+                                                                   image: R.image.profileName()!,
                                                                    editAction: nil),
-                                                   .attribute(R.string.localizable.editProfileAge(),
-                                                              value: user.bio.birthday.description,
+                                                   .attribute("\(user.bio.yearsOld) years",
+                                                              value: "",
+                                                              image: R.image.profileBirthday()!,
                                                               editAction: nil),
                                                    .attribute(R.string.localizable.editProfileBody(),
                                                               value: user.bio.gender.rawValue,
+                                                              image: R.image.profileGender()!,
                                                               editAction: self.changeGender),
                                                    .attribute(R.string.localizable.editProfileSexuaity(),
                                                               value: user.bio.sexuality.rawValue,
+                                                              image: R.image.profileSexuality()!,
                                                               editAction: self.changeSexuality),
                                                    .attribute(R.string.localizable.editProfileRelationship(),
                                                               value: user.bio.relationshipStatus.description,
-                                                              editAction: nil)
+                                                              image: R.image.profileRelationships()!,
+                                                              editAction: self.changeRelationship)
                     ])
                 
-                let community = SectionModel(model: R.string.localizable.editProfileAbout(),
+                let community = SectionModel(model: R.string.localizable.editProfilePrefs(),
                                          items:
                     [
                         Model.attribute("Active city",
                                         value: user.community.value?.name ?? "No community",
+                                        image: R.image.profileCommunity()!,
                                         editAction: self.changeActiveCity),
                         Model.attribute("Looking for",
                                         value: user.bio.lookingFor?.description ?? "Choose",
+                                        image: R.image.profileLookingFor()!,
                                         editAction: self.changeLookingFor),
                         Model.attribute("Expience",
                                         value: user.bio.expirience?.description ?? "Choose",
+                                        image: R.image.profileExpirience()!,
                                         editAction: self.changeExpirience),
                 ])
                 
@@ -66,16 +77,29 @@ extension EditProfileViewModel {
                 let questions = SectionModel(model: R.string.localizable.editProfileAnswers(),
                                          items:
                     [
-                        Model.about("\(q1)\n \(user.bio.answers[q1] ?? "")"),
-                        Model.about("\(q2)\n \(user.bio.answers[q2] ?? "")"),
-                        Model.about("\(q3)\n \(user.bio.answers[q3] ?? "")")
+                        Model.expandable(text: user.bio.answers[q1] ?? "",
+                            placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                            title: q1,
+                            editAction: { self.change(answer: $0, to: q1) }),
+                        
+                        Model.expandable(text: user.bio.answers[q2] ?? "",
+                                         placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         title: q2,
+                                         editAction: { self.change(answer: $0, to: q2) }),
+                        
+                        Model.expandable(text: user.bio.answers[q3] ?? "",
+                                         placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         title: q3,
+                                         editAction: { self.change(answer: $0, to: q3) }),
+                        
                 ])
                 
-                return [about, account, community, questions]
+                let footer = SectionModel(model: "",
+                                          items: [Model.footer])
+                    
+                return [about, account, community, questions, footer]
                 
             }
-        
-        
         
     }
     
@@ -123,8 +147,9 @@ struct EditProfileViewModel : MVVM_ViewModel {
     fileprivate let bag = DisposeBag()
  
     enum Model {
-        case about(String)
-        case attribute(String, value: String, editAction: (() -> Void)?)
+        case expandable(text: String, placeholder: String, title: String?, editAction: ((String?) -> Void)?)
+        case attribute(String, value: String, image: UIImage, editAction: (() -> Void)?)
+        case footer
     }
     
 }
@@ -133,10 +158,6 @@ extension EditProfileViewModel {
     
     func preview() {
         router.preview(user: User.current!.applied(editForm: form.value))
-    }
-    
-    func changed(about: String) {
-        updateForm { $0.about = about }
     }
     
     func changeLookingFor() {
@@ -167,26 +188,20 @@ extension EditProfileViewModel {
                                  mode: .picker) { x in self.updateForm { $0.sexuality = x } }
     }
     
+    func changeRelationship() {
+        router.presentRelationship(status: User.current!.applied(editForm: form.value).bio.relationshipStatus) { x in self.updateForm { $0.relationshipStatus = x } }
+    }
+    
     func changeActiveCity() {
         router.presentTeleport(form: form)
     }
+
+    func changeAbout(answer: String?) {
+        self.updateForm { $0.about = answer }
+    }
     
-    func cellClicked(ip: IndexPath) {
-        
-        if ip.section == 3 {
-            
-            let q = [User.Bio.PersonalQuestion.question1,
-                     User.Bio.PersonalQuestion.question2,
-                     User.Bio.PersonalQuestion.question3][ip.row]
-            
-            router.owner.showTextQuestionDialog(title: q, text: "") { (str) in
-                
-                self.updateForm { $0.answers[q] = str }
-                
-            }
-            
-        }
-        
+    func change(answer: String?, to question: String) {
+        self.updateForm { $0.answers[question] = answer }
     }
     
     private func updateForm(_ mapper: (inout EditProfileForm) -> Void ) {

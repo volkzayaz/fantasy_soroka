@@ -1,5 +1,5 @@
 //
-//  EditProfileAboutCell.swift
+//  EditProfileExpandableCell.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 9/2/19.
@@ -10,12 +10,15 @@ import UIKit
 import KMPlaceholderTextView
 import RxSwift
 
-class EditProfileAboutCell: UITableViewCell, UITextViewDelegate {
+class EditProfileExpandableCell: UITableViewCell, UITextViewDelegate {
 
+    @IBOutlet var stackTitleLabel: UILabel!
     @IBOutlet weak var expandableTextView: KMPlaceholderTextView!
     @IBOutlet weak var symbolsLeftLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
-    var viewModel: EditProfileViewModel!
+    var action: ((String?) -> Void)?
+    
     weak var tableView: UITableView?
     
     var maximumAboutChars: Int {
@@ -32,6 +35,10 @@ class EditProfileAboutCell: UITableViewCell, UITextViewDelegate {
             .bind(to: symbolsLeftLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
+    }
+    
+    func dropTitle() {
+        stackTitleLabel.removeFromSuperview()
     }
     
     func textView(_ textView: UITextView,
@@ -60,7 +67,16 @@ class EditProfileAboutCell: UITableViewCell, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        viewModel.changed(about: textView.text)
+        action?(textView.text.count == 0 ? nil : textView.text)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        if stackView.subviews.count == 2 {
+            stackView.insertArrangedSubview(stackTitleLabel, at: 0)
+        }
+        
     }
     
 }

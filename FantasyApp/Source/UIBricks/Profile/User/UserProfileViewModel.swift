@@ -41,7 +41,7 @@ extension UserProfileViewModel {
 
     var sections: Driver<[(String, [Row])]> {
         
-        let years = Calendar.current.dateComponents([.year], from: user.bio.birthday, to: Date()).year!
+        let years = user.bio.yearsOld
         var res = [("basic", [Row.basic(user.bio.name + ", \(years)", user.subscription.isSubscribed)])]
         
         if let x = user.bio.about {

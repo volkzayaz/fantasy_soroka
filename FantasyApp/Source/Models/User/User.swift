@@ -71,6 +71,10 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         
         typealias PersonalQuestion = [String: String]
         
+        var yearsOld: String {
+            return "\(Calendar.current.dateComponents([.year], from: birthday, to: Date()).year!)"
+        }
+        
     };
     
     struct Connections: Equatable, Codable {

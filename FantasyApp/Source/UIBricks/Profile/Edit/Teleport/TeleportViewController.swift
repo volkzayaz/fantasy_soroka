@@ -64,9 +64,12 @@ class TeleportViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         
         title = "Teleport"
-        navigationItem.leftBarButtonItem = .init(title: "Back", style: .plain,
+        
+        navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain,
                                                  target: self, action: Selector("back"))
     
+        view.addFantasyGradient()
+        
         tableView.estimatedSectionHeaderHeight = 84
         
         viewModel.dataSource

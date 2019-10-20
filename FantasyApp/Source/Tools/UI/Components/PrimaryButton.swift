@@ -57,8 +57,8 @@ public class PrimaryButton: UIButton {
         setupTransparencyMask()
     }
 
-    private let normalBackgroundColor = UIColor.primary
-    private let disabledBackgroundColor = UIColor.primaryDisabled
+    var normalBackgroundColor = UIColor.primary
+    var disabledBackgroundColor = UIColor.primaryDisabled
     private let highlightedBackgroundColor = UIColor.primaryHighlighted
 
     override init(frame: CGRect) {

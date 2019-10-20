@@ -21,26 +21,42 @@ class EditProfileViewController: UIViewController, MVVM_View {
             
             switch x {
                 
-            case .about(let x):
-                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileAboutCell,
+            case .expandable(let text, let placeholder, let maybeTitle, let action):
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileExpandableCell,
                                                          for: ip)!
                 
-                cell.expandableTextView.text = x
-                cell.viewModel = self.viewModel
+                cell.expandableTextView.text = text
+                cell.expandableTextView.placeholder = placeholder
+                cell.action = action
                 cell.tableView = tableView
+                
+                if let title = maybeTitle {
+                    cell.stackTitleLabel.text = title
+                } else {
+                    cell.dropTitle()
+                }
                 
                 return cell
                 
-            case .attribute(let name, let value, _):
+            case .attribute(let name, let value, let image, let maybeAction):
                 
                 let cell = tableView
                     .dequeueReusableCell(withIdentifier: R.reuseIdentifier.attributeEditProfileCell,
                                          for: ip)!
                 
-                cell.valueLabel.text = name
-                cell.attributeLabel.text = value
+                cell.attributeLabel.text = name
+                cell.valueLabel.text = value
+                cell.indicatorImage.image = image
+                cell.lockImage.isHidden = maybeAction != nil
+                cell.valueLabel.isHidden = maybeAction == nil
                 
                 return cell
+                
+            case .footer:
+                return tableView
+                .dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileFooterCell,
+                                     for: ip)!
+                
                 
             }
             
@@ -79,13 +95,19 @@ class EditProfileViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak tv = tableView] (x) in
+                tv?.deselectRow(at: x, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
+        
         tableView.rx.modelSelected(VM.Model.self)
             .subscribe(onNext: { (x) in
                 
                 switch x {
-                case .attribute(_, _, let editAction): editAction?()
+                case .attribute(_, _, _, let editAction): editAction?()
                     
-                case .about(_): break
+                case .expandable(_), .footer: break
                 }
                 
             })
@@ -95,14 +117,10 @@ class EditProfileViewController: UIViewController, MVVM_View {
     
 }
 
-extension EditProfileViewController: UIGestureRecognizerDelegate {
+extension EditProfileViewController {
 
     @objc func preview() {
         viewModel.preview()
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return  !(touch.view?.isDescendant(of: tableView) ?? false)
     }
     
     @IBAction func endEditing(_ sender: Any) {

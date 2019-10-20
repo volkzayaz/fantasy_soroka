@@ -48,4 +48,12 @@ struct EditProfileRouter : MVVM_Router {
         
     }
     
+    func presentRelationship(status: RelationshipStatus,
+                             callback: @escaping (RelationshipStatus) -> Void) {
+        let x = R.storyboard.userGateway.editRelationshipViewController()!
+        x.defaultStatus = status
+        x.callback = callback
+        owner.navigationController?.pushViewController(x, animated: true)
+    }
+    
 }

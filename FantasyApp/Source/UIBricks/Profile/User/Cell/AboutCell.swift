@@ -37,4 +37,5 @@ class UserProfileBasicCell: UITableViewCell {
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var likeIndicatorImageView: UIImageView!
+    
 }
