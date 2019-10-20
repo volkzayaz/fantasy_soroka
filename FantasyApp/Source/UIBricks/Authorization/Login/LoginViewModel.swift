@@ -16,7 +16,7 @@ extension LoginViewModel {
     var signinButtonEnabled: Driver<Bool> {
         return Driver.combineLatest(emailVar.asDriver(), passwordVar.asDriver()) { ($0, $1) }
             .map { (tuple) -> Bool in
-                return tuple.0.isValidEmail && tuple.1.count > 7
+                return tuple.0.isValidEmail && tuple.1.count > 0
         }
     }
 }

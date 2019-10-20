@@ -16,6 +16,7 @@ struct WelcomeRouterRouter : MVVM_Router {
     }
 
     func presentRegister() {
+
         let vc = R.storyboard.authorization.registrationViewController()!
         vc.viewModel = .init(router: .init(owner: vc))
 

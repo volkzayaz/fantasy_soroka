@@ -18,6 +18,11 @@ class FantasyNavigationController: UINavigationController, UINavigationControlle
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         navigationBar.tintColor = .white
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 18.0),
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+
         delegate = self
     }
 

@@ -14,7 +14,6 @@ import RxCocoa
 class WelcomeViewController: UIViewController, MVVM_View {
 
     var viewModel: WelcomeViewModel!
-
 }
 
 // MAKR:- Actions
@@ -22,6 +21,13 @@ class WelcomeViewController: UIViewController, MVVM_View {
 extension WelcomeViewController {
 
     @IBAction func register(_ sender: Any) {
+
+//        let pickerController = FantasyImagePicker.galleryImagePicker(presentationController: self) { (image) in
+////                     self.viewModel.photoChanged(photo: image)
+//                 }
+//
+//                 pickerController.present()
+
         viewModel.presentRegister()
     }
 

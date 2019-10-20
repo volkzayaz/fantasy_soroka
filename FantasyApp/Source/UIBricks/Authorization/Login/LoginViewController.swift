@@ -23,8 +23,8 @@ class LoginViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        emailTextField.text = "pete1@jackson.com"
-//        passwordTextField.text = "1234"
+        emailTextField.text = "pete1@jackson.com"
+        passwordTextField.text = "1234"
 
 
         viewModel.signinButtonEnabled

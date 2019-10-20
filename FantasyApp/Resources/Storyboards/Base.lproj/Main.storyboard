@@ -77,7 +77,7 @@
         <!--Profile-->
         <scene sceneID="9N4-Gg-9yA">
             <objects>
-                <navigationController id="l0T-vF-a2a" sceneMemberID="viewController">
+                <navigationController id="l0T-vF-a2a" customClass="TransparentNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="6eZ-8I-YIJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XOn-20-dvX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -94,7 +94,7 @@
         <!--Fantasy cards-->
         <scene sceneID="W3g-wp-wql">
             <objects>
-                <navigationController id="sAf-SH-0GH" sceneMemberID="viewController">
+                <navigationController id="sAf-SH-0GH" customClass="TransparentNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Fantasy cards" id="gEg-7m-vRc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b0M-zD-oFu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -108,11 +108,11 @@
             </objects>
             <point key="canvasLocation" x="1733" y="-13"/>
         </scene>
-        <!--Discover-->
+        <!--Fantasy Navigation Controller-->
         <scene sceneID="xSo-eD-Ten">
             <objects>
-                <navigationController id="XBn-ky-axQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" id="p9f-Nm-IKM"/>
+                <navigationController id="XBn-ky-axQ" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="search" selectedImage="searchSelected" id="p9f-Nm-IKM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="8vp-US-9xt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -207,5 +207,7 @@
     <resources>
         <image name="messages" width="40" height="40"/>
         <image name="messagesSelected" width="40" height="40"/>
+        <image name="search" width="40" height="30"/>
+        <image name="searchSelected" width="50" height="40"/>
     </resources>
 </document>
