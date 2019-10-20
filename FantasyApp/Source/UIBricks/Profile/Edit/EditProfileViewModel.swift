@@ -29,26 +29,34 @@ extension EditProfileViewModel {
                 
                 let account = SectionModel(model: R.string.localizable.editProfileAccount(),
                                            items: [Model.attribute(R.string.localizable.editProfileName(),
-                                                                   value: user.bio.name),
+                                                                   value: user.bio.name,
+                                                                   editAction: nil),
                                                    .attribute(R.string.localizable.editProfileAge(),
-                                                              value: user.bio.birthday.description),
+                                                              value: user.bio.birthday.description,
+                                                              editAction: nil),
                                                    .attribute(R.string.localizable.editProfileBody(),
-                                                              value: user.bio.gender.rawValue),
+                                                              value: user.bio.gender.rawValue,
+                                                              editAction: self.changeGender),
                                                    .attribute(R.string.localizable.editProfileSexuaity(),
-                                                              value: user.bio.sexuality.rawValue),
+                                                              value: user.bio.sexuality.rawValue,
+                                                              editAction: self.changeSexuality),
                                                    .attribute(R.string.localizable.editProfileRelationship(),
-                                                              value: user.bio.relationshipStatus.description)
+                                                              value: user.bio.relationshipStatus.description,
+                                                              editAction: nil)
                     ])
                 
                 let community = SectionModel(model: R.string.localizable.editProfileAbout(),
                                          items:
                     [
                         Model.attribute("Active city",
-                                        value: user.community.value?.name ?? "No community"),
+                                        value: user.community.value?.name ?? "No community",
+                                        editAction: self.changeActiveCity),
                         Model.attribute("Looking for",
-                                        value: user.bio.lookingFor?.description ?? "Choose"),
+                                        value: user.bio.lookingFor?.description ?? "Choose",
+                                        editAction: self.changeLookingFor),
                         Model.attribute("Expience",
-                                        value: user.bio.expirience?.description ?? "Choose"),
+                                        value: user.bio.expirience?.description ?? "Choose",
+                                        editAction: self.changeExpirience),
                 ])
                 
                 let q1 = User.Bio.PersonalQuestion.question1
@@ -116,7 +124,7 @@ struct EditProfileViewModel : MVVM_ViewModel {
  
     enum Model {
         case about(String)
-        case attribute(String, value: String)
+        case attribute(String, value: String, editAction: (() -> Void)?)
     }
     
 }
@@ -124,7 +132,6 @@ struct EditProfileViewModel : MVVM_ViewModel {
 extension EditProfileViewModel {
     
     func preview() {
-        
         router.preview(user: User.current!.applied(editForm: form.value))
     }
     
@@ -132,49 +139,39 @@ extension EditProfileViewModel {
         updateForm { $0.about = about }
     }
     
+    func changeLookingFor() {
+        router.presentSinglePick(title: R.string.localizable.editProfileChangeLookingForTitle(),
+                                 models: LookingFor.allCases,
+                                 defaultModel: User.current!.applied(editForm: form.value).bio.lookingFor,
+                                 mode: .table) { x in self.updateForm { $0.lookingFor = x } }
+    }
+    
+    func changeExpirience() {
+        router.presentSinglePick(title: R.string.localizable.editProfileChangeExpirienceTitle(),
+                                 models: Expirience.allCases,
+                                 defaultModel: User.current!.applied(editForm: form.value).bio.expirience,
+                                 mode: .table) { x in self.updateForm { $0.expirience = x } }
+    }
+    
+    func changeGender() {
+        router.presentSinglePick(title: R.string.localizable.editProfileChangeGenderTitle(),
+                                 models: Gender.allCases,
+                                 defaultModel: User.current!.applied(editForm: form.value).bio.gender,
+                                 mode: .picker) { x in self.updateForm { $0.gender = x } }
+    }
+    
+    func changeSexuality() {
+        router.presentSinglePick(title: R.string.localizable.editProfileChangeSexualityTitle(),
+                                 models: Sexuality.allCases,
+                                 defaultModel: User.current!.applied(editForm: form.value).bio.sexuality,
+                                 mode: .picker) { x in self.updateForm { $0.sexuality = x } }
+    }
+    
+    func changeActiveCity() {
+        router.presentTeleport(form: form)
+    }
+    
     func cellClicked(ip: IndexPath) {
-        
-        if ip.section == 2 && ip.row == 0 {
-            router.presentTeleport(form: form)
-        }
-        
-        if ip.section == 2 && ip.row == 1 {
-            
-            router.owner.showTextQuestionDialog(title: "Choose", text: "Looking for") { (str) in
-                
-                guard let int = Int(str), let value = LookingFor(rawValue: int) else {
-                    return
-                }
-                
-                self.updateForm { $0.lookingFor = value }
-                
-            }
-         
-        }
-        
-        if ip.section == 2 && ip.row == 2 {
-            
-            router.owner.showTextQuestionDialog(title: "Choose", text: "Expirience") { (str) in
-                
-                guard let int = Int(str), let value = Expirience(rawValue: int) else {
-                    return
-                }
-                
-                self.updateForm { $0.expirience = value }
-                
-            }
-         
-        }
-        
-        if ip.section == 0 && ip.row == 0 {
-            
-            router.owner.showTextQuestionDialog(title: "About", text: "") { (str) in
-                
-                self.updateForm { $0.about = str }
-                
-            }
-            
-        }
         
         if ip.section == 3 {
             

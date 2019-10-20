@@ -31,7 +31,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 
                 return cell
                 
-            case .attribute(let name, let value):
+            case .attribute(let name, let value, _):
                 
                 let cell = tableView
                     .dequeueReusableCell(withIdentifier: R.reuseIdentifier.attributeEditProfileCell,
@@ -79,9 +79,15 @@ class EditProfileViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
-        tableView.rx.itemSelected
-            .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.cellClicked(ip: x)
+        tableView.rx.modelSelected(VM.Model.self)
+            .subscribe(onNext: { (x) in
+                
+                switch x {
+                case .attribute(_, _, let editAction): editAction?()
+                    
+                case .about(_): break
+                }
+                
             })
             .disposed(by: rx.disposeBag)
         
@@ -89,10 +95,14 @@ class EditProfileViewController: UIViewController, MVVM_View {
     
 }
 
-extension EditProfileViewController {
+extension EditProfileViewController: UIGestureRecognizerDelegate {
 
     @objc func preview() {
         viewModel.preview()
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return  !(touch.view?.isDescendant(of: tableView) ?? false)
     }
     
     @IBAction func endEditing(_ sender: Any) {

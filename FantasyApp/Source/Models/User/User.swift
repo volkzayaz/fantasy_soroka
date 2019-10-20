@@ -236,7 +236,7 @@ enum RelationshipStatus: Equatable, Codable {
     
 }
 
-enum LookingFor: Int, Codable, Equatable {
+enum LookingFor: Int, Codable, Equatable, CaseIterable {
     
     case relationship = 0
     case someoneToPlayWith
@@ -260,7 +260,7 @@ enum LookingFor: Int, Codable, Equatable {
     
 }
 
-enum Expirience: Int, Codable, Equatable {
+enum Expirience: Int, Codable, Equatable, CaseIterable {
     
     case veryExpirienced = 0
     case somewhereInTheMiddle
@@ -288,4 +288,155 @@ extension User.Bio.PersonalQuestion {
     static let question1: String = "What are you looking for?"
     static let question2: String = "Facts about me that surprise people"
     static let question3: String = "Two truths and a lie"
+}
+
+
+extension User {
+    
+    static var daUser: User {
+        
+        ImageRetreiver.registerImage(image: UIImage(named: "ava.png")!,
+                                     forKey: "https://ava.com")
+        
+        ImageRetreiver.registerImage(image: UIImage(named: "photo1.png")!,
+                                     forKey: "https://photo1.com")
+        
+        ImageRetreiver.registerImage(image: UIImage(named: "photo2.png")!,
+                                     forKey: "https://photo2.com")
+        return User(id: UUID().uuidString,
+        bio: User.Bio(name: "Jacksonvillemandela Aguera perero Blanco marcelo",
+                      about: "I am beautifull girl with extraordinary fantasies and passion to flirt no matter a girl or guy! 🦄🌈",
+                      birthday: Date(timeIntervalSince1970: 12345678),
+                      gender: .female,
+                      sexuality: .queer,
+                      relationshipStatus: .single,
+                      photos: .init(avatar: .init(id: "x",
+                                                  url: "https://ava.com",
+                                                  thumbnailURL: "https://ava.com"),
+                                    public: .init(images: [
+                                        .init(id: "y",
+                                              url: "https://photo1.com",
+                                              thumbnailURL: "https://photo1.com")], id:" "),
+                                    private: .init(images: [
+                                        .init(id: "z",
+                                              url: "https://photo2.com",
+                                              thumbnailURL: "https://photo2.com")])),
+                      lookingFor: .friendship,
+                      expirience: .curious,
+                      answers: [
+                        "What?" : "That and that and that",
+                        "Wassup?" : "It's aight hommie, Imma go get us some bitches"
+        ]),
+        fantasies: .init(liked: [], disliked: [], purchasedCollections: []),
+        community: User.Community(value: nil,
+                                  changePolicy: .locationBased),
+        connections: .init(likeRequests: [],
+                           chatRequests: []),
+        searchPreferences: nil,
+        subscription: .init(status:
+            .init(endDate: Date(timeIntervalSinceNow: 1234))
+        ),
+        notificationSettings: NotificationSettings(),
+        roomsNotificationSettings: nil)
+        
+    }
+ 
+    static var daUser1: User {
+           
+           ImageRetreiver.registerImage(image: UIImage(named: "photo1.png")!,
+                                        forKey: "https://photo1.com")
+           
+           ImageRetreiver.registerImage(image: UIImage(named: "photo1.png")!,
+                                        forKey: "https://photo1.com")
+           
+           ImageRetreiver.registerImage(image: UIImage(named: "photo2.png")!,
+                                        forKey: "https://photo2.com")
+           return User(id: UUID().uuidString,
+           bio: User.Bio(name: "Nency",
+                         about: "I am beautifull girl with extraordinary fantasies and passion to flirt no matter a girl or guy! 🦄🌈",
+                         birthday: Date(timeIntervalSince1970: 12345678),
+                         gender: .female,
+                         sexuality: .queer,
+                         relationshipStatus: .single,
+                         photos: .init(avatar: .init(id: "x",
+                                                     url: "https://photo1.com",
+                                                     thumbnailURL: "https://photo1.com"),
+                                       public: .init(images: [
+                                           .init(id: "y",
+                                                 url: "https://photo1.com",
+                                                 thumbnailURL: "https://photo1.com")], id:" "),
+                                       private: .init(images: [
+                                           .init(id: "z",
+                                                 url: "https://photo2.com",
+                                                 thumbnailURL: "https://photo2.com")])),
+                         lookingFor: .friendship,
+                         expirience: .curious,
+                         answers: [
+                           "What?" : "That and that and that",
+                           "Wassup?" : "It's aight hommie, Imma go get us some bitches"
+           ]),
+           fantasies: .init(liked: [], disliked: [], purchasedCollections: []),
+           community: User.Community(value: nil,
+                                     changePolicy: .locationBased),
+           connections: .init(likeRequests: [],
+                              chatRequests: []),
+           searchPreferences: nil,
+           subscription: .init(status:
+               .init(endDate: Date(timeIntervalSinceNow: 1234))
+           ),
+           notificationSettings: NotificationSettings(),
+           roomsNotificationSettings: nil)
+           
+       }
+    
+    static var daUser2: User {
+           
+           ImageRetreiver.registerImage(image: UIImage(named: "photo1.png")!,
+                                        forKey: "https://photo1.png")
+           
+           ImageRetreiver.registerImage(image: UIImage(named: "photo1.png")!,
+                                        forKey: "https://photo1.com")
+           
+           ImageRetreiver.registerImage(image: UIImage(named: "photo2.png")!,
+                                        forKey: "https://photo2.com")
+           return User(id: UUID().uuidString,
+           bio: User.Bio(name: "Karen",
+                         about: "I am beautifull girl with extraordinary fantasies and passion to flirt no matter a girl or guy! 🦄🌈",
+                         birthday: Date(timeIntervalSince1970: 12345678),
+                         gender: .female,
+                         sexuality: .queer,
+                         relationshipStatus: .single,
+                         photos: .init(avatar: .init(id: "x",
+                                                     url: "https://photo2.com",
+                                                     thumbnailURL: "https://photo2.com"),
+                                       public: .init(images: [
+                                           .init(id: "y",
+                                                 url: "https://photo1.com",
+                                                 thumbnailURL: "https://photo1.com")], id:" "),
+                                       private: .init(images: [
+                                           .init(id: "z",
+                                                 url: "https://photo2.com",
+                                                 thumbnailURL: "https://photo2.com")])),
+                         lookingFor: .friendship,
+                         expirience: .curious,
+                         answers: [
+                           "What?" : "That and that and that",
+                           "Wassup?" : "It's aight hommie, Imma go get us some bitches"
+           ]),
+           fantasies: .init(liked: [], disliked: [], purchasedCollections: []),
+           community: User.Community(value: nil,
+                                     changePolicy: .locationBased),
+           connections: .init(likeRequests: [],
+                              chatRequests: []),
+           searchPreferences: nil,
+           subscription: .init(status:
+               .init(endDate: Date(timeIntervalSinceNow: 1234))
+           ),
+           notificationSettings: NotificationSettings(),
+           roomsNotificationSettings: nil)
+           
+       }
+    
+       
+    
 }

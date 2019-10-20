@@ -537,6 +537,129 @@
             </objects>
             <point key="canvasLocation" x="4443" y="737"/>
         </scene>
+        <!--Single Pick View Controller-->
+        <scene sceneID="1UY-Qe-v4C">
+            <objects>
+                <viewController storyboardIdentifier="SinglePickViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="g5R-rf-vDO" customClass="SinglePickViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b9c-Cr-BpL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eda-4s-I06">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="PO5-mN-B0P">
+                                <rect key="frame" x="0.0" y="116.5" width="414" height="745.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SinglePickTableCell" rowHeight="56" id="dQj-o8-rlp" customClass="SinglePickTableCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dQj-o8-rlp" id="sV2-2r-BdP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRc-qU-Z0t" customClass="TickButton" customModule="FantasyApp" customModuleProvider="target">
+                                                    <rect key="frame" x="364" y="11" width="34" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="uZv-K7-mni"/>
+                                                        <constraint firstAttribute="width" constant="34" id="zZ5-dA-DNJ"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Tick"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKa-Qb-bFu">
+                                                    <rect key="frame" x="20" y="19" width="344" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.28235294119999998" green="0.30588235289999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JRc-qU-Z0t" firstAttribute="centerY" secondItem="TKa-Qb-bFu" secondAttribute="centerY" id="Lkp-mO-3vT"/>
+                                                <constraint firstItem="TKa-Qb-bFu" firstAttribute="leading" secondItem="sV2-2r-BdP" secondAttribute="leading" constant="20" id="MuP-Ss-Bfb"/>
+                                                <constraint firstItem="JRc-qU-Z0t" firstAttribute="leading" secondItem="TKa-Qb-bFu" secondAttribute="trailing" id="e2V-r9-Di1"/>
+                                                <constraint firstItem="TKa-Qb-bFu" firstAttribute="centerY" secondItem="sV2-2r-BdP" secondAttribute="centerY" id="kXa-KN-oYr"/>
+                                                <constraint firstAttribute="trailing" secondItem="JRc-qU-Z0t" secondAttribute="trailing" constant="16" id="sBp-Re-Q0B"/>
+                                                <constraint firstItem="JRc-qU-Z0t" firstAttribute="leading" secondItem="TKa-Qb-bFu" secondAttribute="trailing" id="zDb-3S-ual"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="pickLabel" destination="TKa-Qb-bFu" id="0sB-Ur-SDy"/>
+                                            <outlet property="selectionButton" destination="JRc-qU-Z0t" id="oDg-KA-w3m"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="g5R-rf-vDO" id="u8J-Ia-tdP"/>
+                                    <outlet property="delegate" destination="g5R-rf-vDO" id="KkE-Sw-8hY"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSs-35-cXo">
+                                <rect key="frame" x="15" y="261" width="384" height="384"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" id="QJB-DN-qhh">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="384"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WSs-35-cXo" secondAttribute="height" id="WD6-YG-djH"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phP-Zt-beP" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <rect key="frame" x="80" y="785" width="254" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="kPI-up-ijq"/>
+                                    <constraint firstAttribute="width" constant="254" id="x1Y-Cg-slL"/>
+                                </constraints>
+                                <state key="normal" title="Save changes"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="g5R-rf-vDO" eventType="touchUpInside" id="29Q-HT-yjZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-M8-TYc">
+                                <rect key="frame" x="20" y="70" width="374" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <color key="textColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WSs-35-cXo" firstAttribute="centerX" secondItem="Sny-EB-naJ" secondAttribute="centerX" id="1Hc-2n-4u1"/>
+                            <constraint firstItem="PO5-mN-B0P" firstAttribute="top" secondItem="9Bl-M8-TYc" secondAttribute="bottom" constant="8" id="3JF-lV-Mea"/>
+                            <constraint firstItem="PO5-mN-B0P" firstAttribute="leading" secondItem="Sny-EB-naJ" secondAttribute="leading" id="7ER-Rx-qTr"/>
+                            <constraint firstItem="9Bl-M8-TYc" firstAttribute="leading" secondItem="Sny-EB-naJ" secondAttribute="leading" constant="20" id="8n5-3W-nAd"/>
+                            <constraint firstItem="PO5-mN-B0P" firstAttribute="trailing" secondItem="Sny-EB-naJ" secondAttribute="trailing" id="Chj-mD-o96"/>
+                            <constraint firstItem="WSs-35-cXo" firstAttribute="leading" secondItem="Sny-EB-naJ" secondAttribute="leading" constant="15" id="GDB-DG-DT1"/>
+                            <constraint firstItem="Sny-EB-naJ" firstAttribute="bottom" secondItem="phP-Zt-beP" secondAttribute="bottom" constant="25" id="ZDZ-dR-mqw"/>
+                            <constraint firstItem="phP-Zt-beP" firstAttribute="centerX" secondItem="Sny-EB-naJ" secondAttribute="centerX" id="aeu-ed-F5x"/>
+                            <constraint firstItem="eda-4s-I06" firstAttribute="top" secondItem="Sny-EB-naJ" secondAttribute="top" id="bOp-4d-5V8"/>
+                            <constraint firstItem="WSs-35-cXo" firstAttribute="centerY" secondItem="Sny-EB-naJ" secondAttribute="centerY" id="j4V-Rf-kEQ"/>
+                            <constraint firstItem="9Bl-M8-TYc" firstAttribute="top" secondItem="Sny-EB-naJ" secondAttribute="top" constant="26" id="jja-8I-0eF"/>
+                            <constraint firstItem="Sny-EB-naJ" firstAttribute="trailing" secondItem="9Bl-M8-TYc" secondAttribute="trailing" constant="20" id="oa6-Lv-Np6"/>
+                            <constraint firstItem="PO5-mN-B0P" firstAttribute="bottom" secondItem="Sny-EB-naJ" secondAttribute="bottom" id="qrJ-BI-HO1"/>
+                            <constraint firstItem="eda-4s-I06" firstAttribute="leading" secondItem="Sny-EB-naJ" secondAttribute="leading" id="ufM-ub-7Sb"/>
+                            <constraint firstItem="Sny-EB-naJ" firstAttribute="bottom" secondItem="eda-4s-I06" secondAttribute="bottom" id="vPZ-ar-thR"/>
+                            <constraint firstItem="Sny-EB-naJ" firstAttribute="trailing" secondItem="eda-4s-I06" secondAttribute="trailing" id="xho-QF-fHd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Sny-EB-naJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="eda-4s-I06" id="WxZ-vK-qqx"/>
+                        <outlet property="picker" destination="QJB-DN-qhh" id="ZxP-vA-RMp"/>
+                        <outlet property="pickerContainer" destination="WSs-35-cXo" id="fRo-Gc-yfz"/>
+                        <outlet property="saveButton" destination="phP-Zt-beP" id="5Ng-8b-rrg"/>
+                        <outlet property="tableView" destination="PO5-mN-B0P" id="mrv-42-Byi"/>
+                        <outlet property="titleLabel" destination="9Bl-M8-TYc" id="x33-IG-16S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="atL-Fv-vgd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4346.376811594203" y="1141.7410714285713"/>
+        </scene>
         <!--My Fantasies Settings View Controller-->
         <scene sceneID="Ntw-in-wEg">
             <objects>
@@ -751,6 +874,7 @@
                 <tapGestureRecognizer id="M2t-HE-7Ag">
                     <connections>
                         <action selector="endEditing:" destination="jOr-13-C53" id="5q5-0e-hDx"/>
+                        <outlet property="delegate" destination="jOr-13-C53" id="p1y-HJ-Jra"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

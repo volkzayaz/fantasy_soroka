@@ -169,6 +169,10 @@
 		73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */; };
 		73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */; };
 		73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */; };
+		73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC2F235C6E3100480E79 /* SinglePickRouter.swift */; };
+		73EEFC33235C6E3100480E79 /* SinglePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC30235C6E3100480E79 /* SinglePickViewController.swift */; };
+		73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */; };
+		73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
@@ -481,6 +485,10 @@
 		73EBBA76234E2BEC00B79121 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		73EBBA77234E2BEC00B79121 /* NotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationSettings.swift; sourceTree = "<group>"; };
+		73EEFC2F235C6E3100480E79 /* SinglePickRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickRouter.swift; sourceTree = "<group>"; };
+		73EEFC30235C6E3100480E79 /* SinglePickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickViewController.swift; sourceTree = "<group>"; };
+		73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickViewModel.swift; sourceTree = "<group>"; };
+		73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickTableCell.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		841681C822E999CA00FA9455 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -651,6 +659,7 @@
 		73097BFD231D3CEB00B71053 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				73EEFC2E235C6E1300480E79 /* SinglePick */,
 				7361F31C23328A03007B84B0 /* Teleport */,
 				73097C0D231D42F000B71053 /* ProfilePhotoCollection */,
 				73097C06231D3FB400B71053 /* Cell */,
@@ -667,6 +676,7 @@
 				73097C10231D447C00B71053 /* Photo */,
 				73097C09231D40B100B71053 /* EditProfileAboutCell.swift */,
 				73097C0B231D417B00B71053 /* AttributeEditProfileCell.swift */,
+				73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1544,6 +1554,16 @@
 			path = NotificationSettings;
 			sourceTree = "<group>";
 		};
+		73EEFC2E235C6E1300480E79 /* SinglePick */ = {
+			isa = PBXGroup;
+			children = (
+				73EEFC2F235C6E3100480E79 /* SinglePickRouter.swift */,
+				73EEFC30235C6E3100480E79 /* SinglePickViewController.swift */,
+				73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */,
+			);
+			path = SinglePick;
+			sourceTree = "<group>";
+		};
 		8416816522E96CD900FA9455 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -2273,12 +2293,14 @@
 				739F799823095C7E0045FCD7 /* FantasyDetailsRouter.swift in Sources */,
 				734C70C8232157C200ED2E91 /* CenteredCollectionViewLayout.swift in Sources */,
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
+				73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
+				73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */,
 				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				843B648F234F197B00E5639B /* RoomSettingsViewModel.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
@@ -2297,6 +2319,7 @@
 				7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */,
 				7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */,
 				843CF723234373610098C196 /* RoomResource.swift in Sources */,
+				73EEFC33235C6E3100480E79 /* SinglePickViewController.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */,
 				7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */,
@@ -2311,6 +2334,7 @@
 				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
+				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
