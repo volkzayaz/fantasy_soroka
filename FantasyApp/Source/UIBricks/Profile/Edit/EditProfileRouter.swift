@@ -27,7 +27,7 @@ struct EditProfileRouter : MVVM_Router {
     func presentTeleport(form: BehaviorRelay<EditProfileForm>) {
         
         let x = R.storyboard.user.teleportViewController()!
-        x.viewModel = .init(router: .init(owner: x), form: form)
+        x.viewModel = .init(router: .init(owner: x), response: .editForm(form))
         owner.navigationController?.pushViewController(x, animated: true)
         
     }

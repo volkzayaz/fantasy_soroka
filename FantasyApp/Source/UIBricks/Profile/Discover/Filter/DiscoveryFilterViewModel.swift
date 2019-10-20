@@ -60,6 +60,10 @@ extension DiscoveryFilterViewModel {
         updateForm { $0.age = $0.age.lowerBound..<x }
     }
     
+    func openTeleport() {
+        router.openTeleport()
+    }
+    
     func submit() {
         
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))

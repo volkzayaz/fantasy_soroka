@@ -15,18 +15,12 @@ struct DiscoveryFilterRouter : MVVM_Router {
         self.owner = owner
     }
     
-    /**
-     
-     func showNextModule(with data: String) {
-     
-        let nextViewController = owner.storyboard.instantiate()
-        let nextRouter = NextRouter(owner: nextViewController)
-        let nextViewModel = NextViewModel(router: nextRuter, data: data)
+    func openTeleport() {
         
-        nextViewController.viewModel = nextViewModel
-        owner.present(nextViewController)
-     }
-     
-     */
+        let x = R.storyboard.user.teleportViewController()!
+        x.viewModel = .init(router: .init(owner: x), response: .directApplication)
+        owner.navigationController?.pushViewController(x, animated: true)
+        
+    }
     
 }

@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gloriousUnicorn" translatesAutoresizingMaskIntoConstraints="NO" id="rIu-xk-JaF">
-                                <rect key="frame" x="-136" y="-93" width="686" height="1092"/>
+                                <rect key="frame" x="35.5" y="180" width="343" height="546"/>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJ3-t0-Xdm">
                                 <rect key="frame" x="0.0" y="494" width="414" height="368"/>
@@ -164,6 +164,9 @@
                                     <constraint firstItem="qJm-yW-M4e" firstAttribute="bottom" secondItem="MYB-a3-6Nd" secondAttribute="bottom" id="uym-fw-aQJ"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gatewaySubscriptionSuggestion" translatesAutoresizingMaskIntoConstraints="NO" id="Ewi-yV-GMe">
+                                <rect key="frame" x="77.5" y="240" width="259" height="152"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -176,6 +179,8 @@
                             <constraint firstItem="HuV-6u-lMV" firstAttribute="leading" secondItem="91Q-kF-4Fk" secondAttribute="trailing" constant="8" id="HXB-aI-d4b"/>
                             <constraint firstItem="SJ3-t0-Xdm" firstAttribute="trailing" secondItem="4h5-Jk-u16" secondAttribute="trailing" id="Maj-HT-bbL"/>
                             <constraint firstItem="HuV-6u-lMV" firstAttribute="top" secondItem="91Q-kF-4Fk" secondAttribute="top" id="OVE-Ny-gNh"/>
+                            <constraint firstItem="Ewi-yV-GMe" firstAttribute="centerX" secondItem="rIu-xk-JaF" secondAttribute="centerX" id="QeS-AE-Xwo"/>
+                            <constraint firstItem="Ewi-yV-GMe" firstAttribute="top" secondItem="rIu-xk-JaF" secondAttribute="top" constant="60" id="QpW-vH-cRh"/>
                             <constraint firstItem="SJ3-t0-Xdm" firstAttribute="bottom" secondItem="4h5-Jk-u16" secondAttribute="bottom" id="Swh-bN-oI9"/>
                             <constraint firstItem="SJ3-t0-Xdm" firstAttribute="leading" secondItem="4h5-Jk-u16" secondAttribute="leading" id="iJJ-7J-pRA"/>
                             <constraint firstItem="91Q-kF-4Fk" firstAttribute="top" secondItem="4h5-Jk-u16" secondAttribute="top" constant="20" id="n0q-rg-G1r"/>
@@ -190,6 +195,7 @@
                         <outlet property="actionsContainer" destination="SJ3-t0-Xdm" id="YcT-id-jc4"/>
                         <outlet property="nameLabel" destination="HuV-6u-lMV" id="QEf-TU-jZr"/>
                         <outlet property="profileAvatarImageView" destination="91Q-kF-4Fk" id="LSt-Xg-FL5"/>
+                        <outlet property="subscriptionSuggestionImageView" destination="Ewi-yV-GMe" id="WpK-yu-dfZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCq-cL-qpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1179,6 +1185,7 @@
         <image name="gatewayFantasies" width="53" height="42"/>
         <image name="gatewayInvite" width="30" height="40"/>
         <image name="gatewayRateUs" width="44" height="41"/>
+        <image name="gatewaySubscriptionSuggestion" width="259" height="152"/>
         <image name="gatewayTeleport" width="48" height="43"/>
         <image name="gloriousUnicorn" width="343" height="546"/>
         <image name="indicator" width="10" height="14"/>

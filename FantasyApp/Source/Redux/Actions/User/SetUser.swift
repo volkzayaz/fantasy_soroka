@@ -14,6 +14,10 @@ struct SetUser: Action {
     
     func perform(initialState: AppState) -> AppState {
         var state = initialState
+        
+        ///this state save should really belong elsewhere
+        SettingsStore.currentUser.value = user
+        
         state.currentUser = user
         return state
     }

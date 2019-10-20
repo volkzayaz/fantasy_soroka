@@ -125,10 +125,6 @@ struct EditProfileViewModel : MVVM_ViewModel {
                     .silentCatch(handler: router.owner)
             }
             .subscribe(onNext: { (user) in
-                
-                ///this state save should really belong elsewhere
-                SettingsStore.currentUser.value = user
-                
                 Dispatcher.dispatch(action: SetUser(user: user))
             })
             .disposed(by: bag)

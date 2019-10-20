@@ -17,6 +17,7 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     
     @IBOutlet weak var profileAvatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var subscriptionSuggestionImageView: UIImageView!
     
     @IBOutlet weak var actionsContainer: UIView! {
         didSet {
@@ -38,6 +39,10 @@ class UserGatewayViewController: UIViewController, MVVM_View {
             .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0)  }
             .map { $0 ?? R.image.noPhoto() }
             .drive(profileAvatarImageView.rx.image)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.isPremium
+            .drive(subscriptionSuggestionImageView.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
     }

@@ -17,9 +17,13 @@ extension UserManager {
         
         let updatedUser = User.current!.applied(editForm: form)
         
-        return updatedUser.toCurrentPFUser.rxSave()
-            .map { _ in updatedUser }
+        return save(user: updatedUser)
         
+    }
+    
+    static func save(user: User) -> Single<User> {
+        return user.toCurrentPFUser.rxSave()
+            .map { _ in user }
     }
     
     static func replaceAvatar(image: UIImage) -> Single<Photo> {
