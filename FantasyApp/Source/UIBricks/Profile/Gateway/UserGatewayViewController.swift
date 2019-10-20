@@ -42,6 +42,10 @@ class UserGatewayViewController: UIViewController, MVVM_View {
         
     }
     
+    override var prefersNavigationBarHidden: Bool {
+        return true
+    }
+    
 }
 
 extension UserGatewayViewController {

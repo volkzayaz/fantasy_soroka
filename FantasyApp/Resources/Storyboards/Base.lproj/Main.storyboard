@@ -60,9 +60,10 @@
         <!--Profile-->
         <scene sceneID="9N4-Gg-9yA">
             <objects>
-                <navigationController navigationBarHidden="YES" id="l0T-vF-a2a" sceneMemberID="viewController">
+                <navigationController id="l0T-vF-a2a" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="6eZ-8I-YIJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XOn-20-dvX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
