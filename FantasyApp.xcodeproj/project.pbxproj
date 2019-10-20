@@ -107,9 +107,6 @@
 		7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33623351F64007B84B0 /* ConnectionViewController.swift */; };
 		7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33723351F64007B84B0 /* ConnectionViewModel.swift */; };
 		736D235A235A057A00430863 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2359235A057A00430863 /* AboutCell.swift */; };
-		7374F6A3235B4117000D6D20 /* photo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7374F6A0235B4116000D6D20 /* photo1.png */; };
-		7374F6A4235B4117000D6D20 /* photo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7374F6A1235B4117000D6D20 /* photo2.png */; };
-		7374F6A5235B4117000D6D20 /* ava.png in Resources */ = {isa = PBXBuildFile; fileRef = 7374F6A2235B4117000D6D20 /* ava.png */; };
 		7374F6A8235B8435000D6D20 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7374F6A7235B8435000D6D20 /* ConnectionCell.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
@@ -425,9 +422,6 @@
 		7361F33623351F64007B84B0 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		7361F33723351F64007B84B0 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		736D2359235A057A00430863 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
-		7374F6A0235B4116000D6D20 /* photo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photo1.png; path = ../../../../../../../Desktop/photo1.png; sourceTree = "<group>"; };
-		7374F6A1235B4117000D6D20 /* photo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photo2.png; path = ../../../../../../../Desktop/photo2.png; sourceTree = "<group>"; };
-		7374F6A2235B4117000D6D20 /* ava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ava.png; path = ../../../../../../../Desktop/ava.png; sourceTree = "<group>"; };
 		7374F6A7235B8435000D6D20 /* ConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
@@ -916,9 +910,6 @@
 		7312B0AF22D744DF00DB0F36 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				7374F6A2235B4117000D6D20 /* ava.png */,
-				7374F6A0235B4116000D6D20 /* photo1.png */,
-				7374F6A1235B4117000D6D20 /* photo2.png */,
 				84C1D0602327D5A800648DE1 /* Chat.storyboard */,
 				7312B06322D7403300DB0F36 /* LaunchScreen.storyboard */,
 				7312B06522D7403300DB0F36 /* Main.storyboard */,
@@ -2041,7 +2032,6 @@
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
 				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
-				7374F6A3235B4117000D6D20 /* photo1.png in Resources */,
 				84C1D0322327B95300648DE1 /* Transsexual.png in Resources */,
 				841681E022E9AE6E00FA9455 /* SF-Pro-Text-Medium.otf in Resources */,
 				84C1D0382327B95300648DE1 /* Straight.png in Resources */,
@@ -2055,9 +2045,7 @@
 				841681DF22E9AE6E00FA9455 /* SF-Pro-Text-Regular.otf in Resources */,
 				73C96F172340A421002C3F8E /* UserGateway.storyboard in Resources */,
 				841681E522E9AE6E00FA9455 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
-				7374F6A4235B4117000D6D20 /* photo2.png in Resources */,
 				841681DE22E9AE6E00FA9455 /* SF-Pro-Text-Semibold.otf in Resources */,
-				7374F6A5235B4117000D6D20 /* ava.png in Resources */,
 				84C1D0352327B95300648DE1 /* Homoflexible.png in Resources */,
 				84C1D0372327B95300648DE1 /* Heteroflexible.png in Resources */,
 				84C1D0312327B95300648DE1 /* Lesbian.png in Resources */,
