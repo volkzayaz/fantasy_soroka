@@ -32,6 +32,12 @@ class MyFantasiesViewController: UIViewController, MVVM_View {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
 }
 
 extension MyFantasiesViewController {
