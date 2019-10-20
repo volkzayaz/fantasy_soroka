@@ -38,6 +38,7 @@ target 'FantasyApp' do
     pod 'Chatto', '~> 3.5'
     pod 'ChattoAdditions', '~> 3.5'
     pod 'iCarousel', '~> 1.8'
+    pod 'KMPlaceholderTextView'
 
 end
 

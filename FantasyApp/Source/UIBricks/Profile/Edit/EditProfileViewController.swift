@@ -25,7 +25,9 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileAboutCell,
                                                          for: ip)!
                 
-                cell.textLabel?.text = x
+                cell.expandableTextView.text = x
+                cell.viewModel = self.viewModel
+                cell.tableView = tableView
                 
                 return cell
                 
@@ -65,6 +67,8 @@ class EditProfileViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addFantasyGradient()
+        
         navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Preview",
                                                               style: .done,
                                                               target: self,
@@ -89,6 +93,10 @@ extension EditProfileViewController {
 
     @objc func preview() {
         viewModel.preview()
+    }
+    
+    @IBAction func endEditing(_ sender: Any) {
+        view.endEditing(true)
     }
     
 }

@@ -128,6 +128,10 @@ extension EditProfileViewModel {
         router.preview(user: User.current!.applied(editForm: form.value))
     }
     
+    func changed(about: String) {
+        updateForm { $0.about = about }
+    }
+    
     func cellClicked(ip: IndexPath) {
         
         if ip.section == 2 && ip.row == 0 {
