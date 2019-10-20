@@ -65,11 +65,18 @@ class EditProfileViewController: UIViewController, MVVM_View {
         })
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var photoContainerView: UIView! {
+        didSet {
+            photoContainerView.backgroundColor = .clear
+        }
+    }
     
     @IBOutlet weak var publicPhotoCollectionView: ProfilePhotoCollectionView! {
         didSet {
             publicPhotoCollectionView.viewModel = viewModel
             publicPhotoCollectionView.isPublic = true
+            publicPhotoCollectionView.backgroundColor = .clear
         }
     }
     
@@ -77,6 +84,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
         didSet {
             privatePhotoCollectionView.viewModel = viewModel
             privatePhotoCollectionView.isPublic = false
+            privatePhotoCollectionView.backgroundColor = .clear
         }
     }
     
@@ -84,6 +92,8 @@ class EditProfileViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         
         view.addFantasyGradient()
+        
+        title = "Profile"
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Preview",
                                                               style: .done,
@@ -113,12 +123,37 @@ class EditProfileViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        let height = photoContainerView.bounds.size.height
+        
+        tableView.rx.contentOffset
+            .map { [unowned self] offset in
+                
+                let inset: CGFloat = self.view.safeAreaInsets.top
+                let containerHeight: CGFloat = height
+                
+                return CGPoint(x: offset.x, y: max(-1 * (offset.y - inset - containerHeight), inset))
+            }
+            .subscribe(onNext: { [unowned self] (x) in
+                
+                self.backgroundView.frame = .init(origin: x,
+                                                  size: self.tableView.contentSize)
+                
+            })
+            .disposed(by: rx.disposeBag)
+        
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        
+        ///just rxing into contentOffset observable
+        tableView.contentOffset = CGPoint(x: tableView.contentOffset.x, y: tableView.contentOffset.y + 1)
     }
     
 }
 
-extension EditProfileViewController {
-
+extension EditProfileViewController: UIScrollViewDelegate {
+    
     @objc func preview() {
         viewModel.preview()
     }

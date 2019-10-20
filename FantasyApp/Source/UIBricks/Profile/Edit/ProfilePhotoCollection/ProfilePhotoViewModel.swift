@@ -13,7 +13,7 @@ import RxCocoa
 
 extension ProfilePhotoViewModel {
  
-    var deleteButtonHidden: Driver<Bool> {
+    var deleteButtonEnabled: Driver<Bool> {
         
         if isPublic && photoNumber == 0 {
             return .just(true)
