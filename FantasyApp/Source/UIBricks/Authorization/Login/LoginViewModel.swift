@@ -12,35 +12,24 @@ import RxSwift
 import RxCocoa
 
 extension LoginViewModel {
-    
-    /** Reference binding drivers that are going to be used in the corresponding view
-    
-    var text: Driver<String> {
-        return privateTextVar.asDriver().notNil()
+
+    var signinButtonEnabled: Driver<Bool> {
+        return Driver.combineLatest(emailVar.asDriver(), passwordVar.asDriver()) { ($0, $1) }
+            .map { (tuple) -> Bool in
+                return tuple.0.isValidEmail && tuple.1.count > 7
+        }
     }
- 
-     */
-    
 }
 
 struct LoginViewModel : MVVM_ViewModel {
-    
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
-    
+
+    fileprivate let emailVar = BehaviorRelay(value: "")
+    fileprivate let passwordVar = BehaviorRelay(value: "")
+    fileprivate let bag = DisposeBag()
+
     init(router: LoginRouter) {
         self.router = router
-        
-        /**
-         
-         Proceed with initialization here
-         
-         */
+
         
         /////progress indicator
         
@@ -53,11 +42,17 @@ struct LoginViewModel : MVVM_ViewModel {
     
     let router: LoginRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
-    fileprivate let bag = DisposeBag()
-    
 }
 
 extension LoginViewModel {
+
+    func emailChanged(email: String) {
+        emailVar.accept(email)
+    }
+
+    func passwordChanged(password: String) {
+        passwordVar.accept(password)
+    }
 
     func presentForgotPassword() {
         router.presentForgotPassword()
@@ -79,8 +74,6 @@ extension LoginViewModel {
         
     }
 
-    
-    
     func authorizeUsingFacebook() {
         
         AuthenticationManager.loginWithFacebook()

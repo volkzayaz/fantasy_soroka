@@ -41,8 +41,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
         didSet { configure(birthdayTextField) }
     }
 
-    @IBOutlet private weak var sexualityPicker: UIPickerView!
-
     @IBOutlet private weak var partnerBodyLabel: UILabel!
     @IBOutlet private weak var partnerBodyPickerView: UIPickerView!
     @IBOutlet private weak var soloPartnerButton: PrimaryButton! {
@@ -55,6 +53,10 @@ class RegistrationViewController: UIViewController, MVVM_View {
             couplePartnerButton.mode = .selector
         }
     }
+
+    // Sexuality section
+    @IBOutlet private weak var sexualityPicker: UIPickerView!
+    @IBOutlet weak var sexualityGradientView: SexualityGradientView!
 
     // Email section
     @IBOutlet private weak var emailTextField: UITextField!
@@ -85,7 +87,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     }
     
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet var buttonToKeybosrdConstraints: [NSLayoutConstraint]!
+    @IBOutlet var buttonToKeybosrdConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +98,29 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.scrollView.setContentOffset(.init(x: horizontalOffset, y: 0), animated: true)
             })
             .disposed(by: rx.disposeBag)
+
+        viewModel.showPasswordValidationAlert
+            .map { !$0 }
+            .drive(passwordValidationAlertView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.showEmaillValidationAlert
+            .map { !$0 }
+            .drive(emailValidationAlertView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.agreementButtonHidden
+            .map { !$0 }
+            .drive(stepForwardButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.agreementButtonHidden
+            .drive(agrementButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.forwardButtonEnabled
+               .drive(agrementButton.rx.isEnabled)
+               .disposed(by: rx.disposeBag)
 
         viewModel.forwardButtonEnabled
             .drive(stepForwardButton.rx.isEnabled)
@@ -154,16 +179,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
         let hide = NotificationCenter.default
             .rx.notification( UIResponder.keyboardWillHideNotification )
             .map(mapper)
-        
+
         Observable.of(show, hide)
             .merge()
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
-
-                    self.buttonToKeybosrdConstraints.forEach { (item) in
-                        item.constant += delta
-                    }
-
+                    self.buttonToKeybosrdConstraint.constant += delta
                     self.view.layoutIfNeeded()
                 })
             })
@@ -199,13 +220,15 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 ])
             }
             .disposed(by: rx.disposeBag)
-        
+
+        sexualityGradientView.sexuality = viewModel.defaultSexuality
         sexualityPicker.selectRow(data.firstIndex(of: viewModel.defaultSexuality)!,
                                   inComponent: 0, animated: false)
         
         sexualityPicker.rx.modelSelected(Sexuality.self)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.sexualityChanged(sexuality: x.first!)
+                self.sexualityGradientView.sexuality = x.first!
             })
             .disposed(by: rx.disposeBag)
         
@@ -312,9 +335,23 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
     
     @IBAction func changePhoto(_ sender: Any) {
-        FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
-            self.viewModel.photoChanged(photo: image)
-        }
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
+            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+                self.viewModel.photoChanged(photo: image)
+            }
+        }))
+
+        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
+            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+                self.viewModel.photoChanged(photo: image)
+            }
+        }))
+
+        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
+
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func backToSignIn(_ sender: Any) {

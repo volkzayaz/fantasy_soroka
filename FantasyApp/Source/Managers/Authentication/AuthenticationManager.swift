@@ -64,6 +64,26 @@ extension AuthenticationManager {
         return postAuthorizationParseMess(signal: x)
         
     }
+
+    static func requestPassword(with email: String) -> Single<Bool> {
+
+        let x: Observable<Bool> = Observable.create { (subscriber) -> Disposable in
+
+            PFUser.requestPasswordResetForEmail(inBackground: email) { (res, maybeError) in
+
+                if let e = maybeError {
+                    return subscriber.onError(e)
+                }
+
+                subscriber.onNext(true)
+                subscriber.onCompleted()
+
+            }
+            return Disposables.create()
+        }
+
+        return x.asSingle()
+    }
     
     static func login(with email: String, password: String) -> Single<User> {
         

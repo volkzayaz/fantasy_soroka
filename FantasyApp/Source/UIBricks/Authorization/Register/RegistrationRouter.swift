@@ -21,13 +21,15 @@ struct RegistrationRouter : MVVM_Router {
     
     func backToSignIn() {
         
-        guard let vc = owner.navigationController?.viewControllers.first as? LoginViewController else {
+        guard let vc = owner.navigationController?.viewControllers.first as? WelcomeViewController else {
             fatalErrorInDebug("Please reconsider your viewHierarchy. Registration Brick can't handle SignIn rout")
             return
         }
-        
-//        vc.presentSignIn()
-        dismiss()
+
+        let login = R.storyboard.authorization.loginViewController()!
+        login.viewModel = .init(router: .init(owner: vc))
+
+        owner.navigationController?.setViewControllers([vc, login], animated: true)
     }
     
 }
