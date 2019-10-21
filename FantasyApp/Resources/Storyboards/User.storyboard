@@ -136,25 +136,25 @@
                                 <rect key="frame" x="0.0" y="466" width="414" height="430"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileBasicCell" id="Dq0-x2-7Ev" customClass="UserProfileBasicCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="132"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileBasicCell" rowHeight="114" id="Dq0-x2-7Ev" customClass="UserProfileBasicCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dq0-x2-7Ev" id="bhY-BH-ubb">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Bvh-yh-UXm">
-                                                    <rect key="frame" x="16" y="16" width="290" height="100"/>
+                                                    <rect key="frame" x="16" y="16" width="290" height="82"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Name, age, badges..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iYc-1j-V9c">
-                                                            <rect key="frame" x="0.0" y="0.0" width="243" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="243" height="35.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member" translatesAutoresizingMaskIntoConstraints="NO" id="jI4-u7-b7f">
-                                                            <rect key="frame" x="0.0" y="50" width="80" height="50"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldMember" translatesAutoresizingMaskIntoConstraints="NO" id="jI4-u7-b7f">
+                                                            <rect key="frame" x="0.0" y="46.5" width="25" height="35.5"/>
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
@@ -179,7 +179,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileAboutCell" rowHeight="89" id="zwn-YO-vFS" customClass="UserProfileAboutCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="187.5" width="374" height="89"/>
+                                        <rect key="frame" x="20" y="169.5" width="374" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zwn-YO-vFS" id="Mr7-M9-zdL">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="89"/>
@@ -213,7 +213,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserProfileFantasyCell" textLabel="sEC-ix-mJG" style="IBUITableViewCellStyleDefault" id="Jov-CG-Jw6">
-                                        <rect key="frame" x="20" y="276.5" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="258.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jov-CG-Jw6" id="GLC-bZ-B3d">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -230,7 +230,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileAnswerCell" rowHeight="74" id="BA6-US-fF7" customClass="UserProfileAnswerCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="320.5" width="374" height="74"/>
+                                        <rect key="frame" x="20" y="302.5" width="374" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BA6-US-fF7" id="ofC-Xy-5PL">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
@@ -264,7 +264,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileBioCell" id="Nda-o9-L22" customClass="UserProfileBioCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="394.5" width="374" height="32"/>
+                                        <rect key="frame" x="20" y="376.5" width="374" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nda-o9-L22" id="uUG-RD-2Rc">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
@@ -834,9 +834,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="goldMember" width="25" height="25"/>
         <image name="likeIndicator" width="40" height="40"/>
         <image name="location" width="20" height="20"/>
-        <image name="member" width="40" height="40"/>
         <image name="profileBack" width="40" height="40"/>
         <image name="profileLookingFor" width="20" height="20"/>
         <image name="profileOption" width="40" height="40"/>
