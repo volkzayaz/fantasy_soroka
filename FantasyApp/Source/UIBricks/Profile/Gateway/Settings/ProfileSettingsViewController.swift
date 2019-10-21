@@ -15,23 +15,22 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
-    /**
-     *  Connect any IBOutlets here
-     *  @IBOutlet private weak var label: UILabel!
-     */
+    @IBOutlet weak var freeSubscriptionSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /**
-         *  Set up any bindings here
-         *  viewModel.labelText
-         *     .drive(label.rx.text)
-         *     .addDisposableTo(rx_disposeBag)
-         */
+        #if RELEASE
+        freeSubscriptionSwitch.isHidden = true
+        #endif
+        
+        freeSubscriptionSwitch.isOn = SettingsStore.freeSubscriptionSwitch.value
         
     }
     
+    @IBAction func freeSubscriptionSwitchChanged(_ sender: UISwitch) {
+        SettingsStore.freeSubscriptionSwitch.value = sender.isOn
+    }
 }
 
 extension ProfileSettingsViewController {

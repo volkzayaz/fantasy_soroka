@@ -24,4 +24,7 @@ extension SettingsStore {
     
     static var atLeastOnceLocation: Setting<Bool?> = Setting(key: "com.fantasyapp.iosclient.settings.atLeastOnceLocation",
                                                             initialValue: nil)
+    
+    static var freeSubscriptionSwitch: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.settings.freeSubscriptionSwitch",
+                                                               initialValue: false)
 }

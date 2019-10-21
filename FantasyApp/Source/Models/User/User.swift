@@ -133,6 +133,9 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         }
         
         var isSubscribed: Bool {
+            
+            if SettingsStore.freeSubscriptionSwitch.value { return true }
+            
             return (status?.endDate.timeIntervalSinceNow ?? -1) > 0
         }
         let status: Status?
