@@ -13,7 +13,11 @@ import RxSwift
 import RxCocoa
 
 extension RegistrationViewModel {
-    
+
+    var showUploadPhotoProblem: Driver<Bool> {
+           return showUploadPhotoProblemVar.asDriver()
+       }
+
     var progressViewMultiplier: Driver<CGFloat> {
         let divisor = Step.allCases.last!.rawValue
         return step.asDriver().map { CGFloat($0.rawValue) / CGFloat(divisor) }
@@ -108,9 +112,8 @@ extension RegistrationViewModel {
 struct RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate let form = BehaviorRelay(value: RegisterForm())
-    
     fileprivate let showNameLenghtAlertVar = BehaviorRelay(value: false)
-
+    fileprivate let showUploadPhotoProblemVar = BehaviorRelay(value: false)
     fileprivate let step = BehaviorRelay(value: Step.notice)
 
     
@@ -192,10 +195,13 @@ extension RegistrationViewModel {
             let image = form.value.selectedPhoto {
             photoChanged(photo: image)
         }
-
     }
     
-
+    func pickAnotherPhotoClick() {
+        updateForm { $0.selectedPhoto = nil }
+        back()
+        showUploadPhotoProblemVar.accept(false)
+    }
     
     func backToSignIn() {
         router.backToSignIn()
@@ -239,6 +245,8 @@ extension RegistrationViewModel {
     }
 
     func photoSelected(photo: UIImage) {
+        updateForm { $0.photo = nil }
+        showUploadPhotoProblemVar.accept(false)
         updateForm { $0.selectedPhoto = photo }
     }
     
@@ -248,7 +256,7 @@ extension RegistrationViewModel {
             .subscribe(onSuccess: { (_) in
                 self.updateForm { $0.photo = photo }
             }, onError: { (Error) in
-
+                self.showUploadPhotoProblemVar.accept(true)
             })
             .disposed(by: bag)
             

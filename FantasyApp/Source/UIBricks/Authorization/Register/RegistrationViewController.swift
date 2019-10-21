@@ -68,11 +68,13 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var passwordValidationAlertView: UIView!
 
     // Photo section
-    @IBOutlet private weak var photoInstructionBackgroundView: UIView! {
+    @IBOutlet private var photoInstructionBackgroundViews: [UIView]! {
         didSet {
-            photoInstructionBackgroundView.layer.cornerRadius = 15.0
-            photoInstructionBackgroundView.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
-            photoInstructionBackgroundView.layer.borderWidth = 1.0
+            photoInstructionBackgroundViews.forEach {
+                $0.layer.cornerRadius = 15.0
+                $0.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
+                $0.layer.borderWidth = 1.0
+            }
         }
     }
 
@@ -82,6 +84,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var sendingImageDescriptionLabel: UILabel!
     @IBOutlet private weak var uploadedPhotoImageView: UIImageView!
     @IBOutlet private weak var changeUploadedPhotoButton: UIButton!
+    @IBOutlet private weak var uploadPhotoProblemContainerView: UIView!
+    @IBOutlet private weak var uploadPhotoSuccessContainerView: UIView!
+    @IBOutlet private weak var uploadPhotoProblemImageView: UIImageView!
 
     // General
     @IBOutlet private weak var progressWidthConstraint: NSLayoutConstraint!
@@ -145,17 +150,28 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.selectedPhoto
-            .drive(photoImageView.rx.image)
+            .drive(onNext: { [unowned self] (image) in
+                self.photoImageView.image = image
+                self.uploadPhotoProblemImageView.image = image
+            })
             .disposed(by: rx.disposeBag)
 
         viewModel.photo
             .drive(onNext: { [unowned self] (image) in
                 self.uploadedPhotoImageView.image = image
-                self.uploadedPhotoImageView.isHidden = (image == nil)
                 self.sendingImageTitleLabel.text = (image == nil) ? "Adding Main Photo" : "Main Photo Added"
                 self.sendingImageDescriptionLabel.text = (image == nil) ? "Photo sending…" : "Your photo was sent"
             })
             .disposed(by: rx.disposeBag)
+
+        viewModel.showUploadPhotoProblem
+            .drive(onNext: { [unowned self] (flag) in
+                self.uploadPhotoSuccessContainerView.isHidden = flag
+                self.uploadPhotoProblemContainerView.isHidden = !flag
+                self.sendingImageTitleLabel.text = flag ? "Change Main Photo" : "Adding Main Photo"
+            })
+            .disposed(by: rx.disposeBag)
+
         
         viewModel.currentStep
             .drive(onNext: { [unowned self] (step) in
@@ -380,6 +396,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
 
     @IBAction func changeUploadedPhotoButtonClick(_ sender: Any) {
+        viewModel.pickAnotherPhotoClick()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
