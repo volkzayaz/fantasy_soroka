@@ -22,11 +22,13 @@ extension WelcomeViewController {
 
     @IBAction func register(_ sender: Any) {
 
-//        let pickerController = FantasyImagePicker.galleryImagePicker(presentationController: self) { (image) in
-////                     self.viewModel.photoChanged(photo: image)
-//                 }
+//        FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
 //
-//                 pickerController.present()
+//            FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
+////                self.viewModel.photoChanged(photo: image)
+//            }
+//
+//        }
 
         viewModel.presentRegister()
     }

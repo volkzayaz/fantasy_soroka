@@ -36,11 +36,11 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var genderPickerView: UIPickerView!
 
     // Birthday section
-
     @IBOutlet private weak var birthdayTextField: UITextField! {
         didSet { configure(birthdayTextField) }
     }
 
+     // Partner section
     @IBOutlet private weak var partnerBodyLabel: UILabel!
     @IBOutlet private weak var partnerBodyPickerView: UIPickerView!
     @IBOutlet private weak var soloPartnerButton: PrimaryButton! {
@@ -77,7 +77,13 @@ class RegistrationViewController: UIViewController, MVVM_View {
     }
 
     @IBOutlet private weak var photoImageView: UIImageView!
-    
+
+    @IBOutlet private weak var sendingImageTitleLabel: UILabel!
+    @IBOutlet private weak var sendingImageDescriptionLabel: UILabel!
+    @IBOutlet private weak var uploadedPhotoImageView: UIImageView!
+    @IBOutlet private weak var changeUploadedPhotoButton: UIButton!
+
+    // General
     @IBOutlet private weak var progressWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressView: UIView! {
         didSet {
@@ -140,6 +146,15 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         viewModel.selectedPhoto
             .drive(photoImageView.rx.image)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.photo
+            .drive(onNext: { [unowned self] (image) in
+                self.uploadedPhotoImageView.image = image
+                self.uploadedPhotoImageView.isHidden = (image == nil)
+                self.sendingImageTitleLabel.text = (image == nil) ? "Adding Main Photo" : "Main Photo Added"
+                self.sendingImageDescriptionLabel.text = (image == nil) ? "Photo sending…" : "Your photo was sent"
+            })
             .disposed(by: rx.disposeBag)
         
         viewModel.currentStep
@@ -300,6 +315,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.viewModel.confirmPasswordChanged(password: x ?? "")
             })
             .disposed(by: rx.disposeBag)
+
+        //// upload photo
+
     }
 }
 
@@ -337,20 +355,19 @@ extension RegistrationViewController: UIScrollViewDelegate {
     @IBAction func changePhoto(_ sender: Any) {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
         alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
             FantasyCameraViewController.present(on: self) { [unowned self] (image) in
-                self.viewModel.photoChanged(photo: image)
+                self.viewModel.photoSelected(photo: image)
             }
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
-
-            let pickerController = FantasyImagePicker.galleryImagePicker(presentationController: self) { (image) in
-                self.viewModel.photoChanged(photo: image)
+            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+                FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
+                    self.viewModel.photoSelected(photo: image)
+                }
             }
-
-            pickerController.present()
-
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
@@ -360,6 +377,9 @@ extension RegistrationViewController: UIScrollViewDelegate {
     
     @IBAction func backToSignIn(_ sender: Any) {
         viewModel.backToSignIn()
+    }
+
+    @IBAction func changeUploadedPhotoButtonClick(_ sender: Any) {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -150,9 +150,9 @@ extension FantasyCameraViewController: AVCapturePhotoCaptureDelegate {
         }
 
         FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
-            self.navigationController?.dismiss(animated: true, completion: {
+//            self.navigationController?.dismiss(animated: true, completion: {
                     c(image)
-            })
+//            })
         }
     }
 

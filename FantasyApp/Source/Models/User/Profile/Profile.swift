@@ -45,7 +45,8 @@ struct RegisterForm {
     var email: String?
     var password: String?
     var confirmPassword: String?
-    
+
+    var selectedPhoto: UIImage?
     var photo: UIImage?
     
     var toEditProfileForm: EditProfileForm {

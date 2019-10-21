@@ -133,17 +133,17 @@
                         <viewControllerLayoutGuide type="bottom" id="OXH-cl-rv5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UQw-k4-WmC" customClass="GradientBackgroundView" customModule="FantasyApp" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="3020" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="3355" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdF-1N-zRB">
-                                <rect key="frame" x="0.0" y="0.0" width="3020" height="700"/>
+                                <rect key="frame" x="0.0" y="0.0" width="3355" height="700"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iw3-35-FsF" userLabel="container1">
-                                        <rect key="frame" x="0.0" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="700"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-WB-V1r">
-                                                <rect key="frame" x="141.5" y="56.5" width="52.5" height="21"/>
+                                                <rect key="frame" x="160" y="56.5" width="52.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -160,7 +160,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VW4-0o-gat">
-                                                <rect key="frame" x="270.5" y="51.5" width="49" height="31"/>
+                                                <rect key="frame" x="308" y="51.5" width="49" height="31"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="Sign in">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -170,16 +170,16 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xe-rj-Te8" customClass="RoundedBackgroundView" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="88.5" width="335.5" height="611.5"/>
+                                                <rect key="frame" x="0.0" y="88.5" width="373" height="611.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are a ❤️-positive community" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkF-7d-Cnk">
-                                                        <rect key="frame" x="26" y="46" width="283.5" height="58.5"/>
+                                                        <rect key="frame" x="26" y="46" width="321" height="58.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBr-Gg-mey">
-                                                        <rect key="frame" x="23" y="118.5" width="289.5" height="294.5"/>
+                                                        <rect key="frame" x="23" y="118.5" width="327" height="312"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <string key="text">Notice disclaimer
 
@@ -189,7 +189,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXK-t0-Q2J" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="505.5" width="215.5" height="52"/>
+                                                        <rect key="frame" x="60" y="505.5" width="253" height="52"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="52" id="1x7-qO-kuc"/>
                                                         </constraints>
@@ -200,7 +200,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKk-Pe-RlO">
-                                                        <rect key="frame" x="68" y="428" width="244.5" height="52.5"/>
+                                                        <rect key="frame" x="68" y="445.5" width="282" height="35"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="I agree to the ">
                                                                 <attributes>
@@ -251,7 +251,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-6b-WDQ">
-                                                        <rect key="frame" x="23" y="428" width="30" height="30"/>
+                                                        <rect key="frame" x="23" y="445.5" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="ajn-6b-WDQ" secondAttribute="height" multiplier="1:1" id="PD1-L1-Ik2"/>
                                                             <constraint firstAttribute="width" constant="30" id="egM-lu-Za7"/>
@@ -263,14 +263,14 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8j-RO-PxU" customClass="TransparentGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="26" y="104.5" width="283.5" height="60"/>
+                                                        <rect key="frame" x="26" y="104.5" width="321" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="oa9-dz-V3v"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gd-ZA-yuL" customClass="TransparentGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="26" y="368" width="283.5" height="60"/>
+                                                        <rect key="frame" x="26" y="385.5" width="321" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="HCa-Mn-Cva"/>
@@ -315,7 +315,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqj-Tn-7U8" userLabel="container2">
-                                        <rect key="frame" x="335.5" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="373" y="0.0" width="372.5" height="700"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6q-vc-aWa">
                                                 <rect key="frame" x="10" y="57" width="20" height="20"/>
@@ -329,10 +329,10 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="X24-BB-8l2">
-                                                <rect key="frame" x="30" y="175.5" width="279.5" height="35"/>
+                                                <rect key="frame" x="30" y="175.5" width="316.5" height="35"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OQM-0W-OTI" customClass="TransparentTextField" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="279.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="316.5" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Uls-sY-VaY"/>
@@ -342,7 +342,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                                     </textField>
                                                     <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozA-8h-tsn">
-                                                        <rect key="frame" x="0.0" y="34" width="279.5" height="1"/>
+                                                        <rect key="frame" x="0.0" y="34" width="316.5" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="JIf-oU-ytk"/>
@@ -351,7 +351,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-i4-6eM">
-                                                <rect key="frame" x="30" y="110" width="279.5" height="29.5"/>
+                                                <rect key="frame" x="30" y="110" width="316.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -411,10 +411,10 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d44-LZ-0vC" userLabel="container3">
-                                        <rect key="frame" x="671" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="745.5" y="0.0" width="373" height="700"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcY-2P-nND">
-                                                <rect key="frame" x="8" y="242" width="320" height="216"/>
+                                                <rect key="frame" x="26.5" y="242" width="320" height="216"/>
                                             </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vP4-u8-FZO">
                                                 <rect key="frame" x="10" y="57" width="20" height="20"/>
@@ -445,7 +445,7 @@ Describe Yourself?</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-GX-bBp" userLabel="container4">
-                                        <rect key="frame" x="1006.5" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="1118.5" y="0.0" width="372.5" height="700"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5G-E4-aTA">
                                                 <rect key="frame" x="10" y="57" width="20" height="20"/>
@@ -459,16 +459,16 @@ Describe Yourself?</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s Your Birthday?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3B-Js-VCN">
-                                                <rect key="frame" x="30" y="110" width="279.5" height="29.5"/>
+                                                <rect key="frame" x="30" y="110" width="316.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Tyo-9Q-3Wu">
-                                                <rect key="frame" x="30" y="175.5" width="279.5" height="35"/>
+                                                <rect key="frame" x="30" y="175.5" width="316.5" height="35"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose the Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBC-q4-9Kg" customClass="TransparentTextField" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="279.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="316.5" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="kl7-Bg-YyD"/>
@@ -478,7 +478,7 @@ Describe Yourself?</string>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                     </textField>
                                                     <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMW-fe-4ST">
-                                                        <rect key="frame" x="0.0" y="34" width="279.5" height="1"/>
+                                                        <rect key="frame" x="0.0" y="34" width="316.5" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="q5C-sR-3HW"/>
@@ -498,7 +498,7 @@ Describe Yourself?</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxv-5y-syX" userLabel="container5">
-                                        <rect key="frame" x="1342" y="0.0" width="336" height="700"/>
+                                        <rect key="frame" x="1491" y="0.0" width="373" height="700"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Would You Describe Your Partner?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZi-ac-pEX">
                                                 <rect key="frame" x="30" y="281.5" width="266" height="17.5"/>
@@ -508,7 +508,7 @@ Describe Yourself?</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-uW-Yim">
-                                                <rect key="frame" x="8" y="299" width="320" height="216"/>
+                                                <rect key="frame" x="26.5" y="299" width="320" height="216"/>
                                             </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGH-5e-i8g">
                                                 <rect key="frame" x="10" y="57" width="20" height="20"/>
@@ -522,13 +522,13 @@ Describe Yourself?</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s Your Relationships Status?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUb-Ww-AEP">
-                                                <rect key="frame" x="30" y="110" width="280" height="58.5"/>
+                                                <rect key="frame" x="30" y="110" width="317" height="58.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqQ-6k-SzG" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="193.5" width="132.5" height="52"/>
+                                                <rect key="frame" x="30" y="193.5" width="151" height="52"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="ui5-CD-tfq"/>
                                                 </constraints>
@@ -542,7 +542,7 @@ Describe Yourself?</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrM-Ww-fHd" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="177.5" y="193.5" width="132.5" height="52"/>
+                                                <rect key="frame" x="196" y="193.5" width="151" height="52"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Couple">
@@ -572,19 +572,19 @@ Describe Yourself?</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3U-6q-EWJ" userLabel="container6">
-                                        <rect key="frame" x="1678" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="1864" y="0.0" width="372.5" height="700"/>
                                         <subviews>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blurBackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="qmj-oW-doZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="335.5" height="700"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="372.5" height="700"/>
                                             </imageView>
                                             <mtkView contentMode="scaleToFill" colorPixelFormat="BGRA8Unorm" depthStencilPixelFormat="Depth32Float" translatesAutoresizingMaskIntoConstraints="NO" id="sMU-nz-vLw" customClass="SexualityGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="335.5" height="700"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="372.5" height="700"/>
                                             </mtkView>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-QK-P5k">
-                                                <rect key="frame" x="7.5" y="242" width="320" height="216"/>
+                                                <rect key="frame" x="26.5" y="242" width="320" height="216"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your sexuality will be shown publicly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-tL-ubu">
-                                                <rect key="frame" x="30" y="151.5" width="279.5" height="17.5"/>
+                                                <rect key="frame" x="30" y="151.5" width="316.5" height="17.5"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -602,7 +602,7 @@ Describe Yourself?</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s Your Sexuality?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emI-xJ-IRu">
-                                                <rect key="frame" x="30" y="110" width="279.5" height="29.5"/>
+                                                <rect key="frame" x="30" y="110" width="316.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -629,7 +629,7 @@ Describe Yourself?</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWX-BB-QRt" userLabel="container7">
-                                        <rect key="frame" x="2013.5" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="2236.5" y="0.0" width="373" height="700"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1l-hR-QBt">
                                                 <rect key="frame" x="10" y="57" width="20" height="20"/>
@@ -643,10 +643,10 @@ Describe Yourself?</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="rMQ-m6-mol">
-                                                <rect key="frame" x="30" y="203" width="279.5" height="35"/>
+                                                <rect key="frame" x="30" y="203" width="317" height="35"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r49-X2-9ik" customClass="TransparentTextField" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="279.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="1di-YZ-cK8"/>
@@ -656,7 +656,7 @@ Describe Yourself?</string>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                     </textField>
                                                     <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q61-PG-M2S">
-                                                        <rect key="frame" x="0.0" y="34" width="279.5" height="1"/>
+                                                        <rect key="frame" x="0.0" y="34" width="317" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="8vq-pL-by7"/>
@@ -665,7 +665,7 @@ Describe Yourself?</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3y-FQ-avV">
-                                                <rect key="frame" x="30" y="110" width="279.5" height="29.5"/>
+                                                <rect key="frame" x="30" y="110" width="317" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -734,7 +734,7 @@ Describe Yourself?</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-rH-j8L" userLabel="container8">
-                                        <rect key="frame" x="2349" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="2609.5" y="0.0" width="372.5" height="700"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqg-mx-wcR">
                                                 <rect key="frame" x="10" y="57" width="20" height="20"/>
@@ -748,13 +748,13 @@ Describe Yourself?</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="VcR-FZ-LIC">
-                                                <rect key="frame" x="30" y="205" width="279.5" height="144"/>
+                                                <rect key="frame" x="30" y="205" width="316.5" height="144"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cI7-ki-qIR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="279.5" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="316.5" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-tg-UVT" customClass="TransparentTextField" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="279.5" height="27"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="316.5" height="27"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="27" id="Po7-dP-8jD"/>
@@ -764,7 +764,7 @@ Describe Yourself?</string>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWB-eg-eff">
-                                                                <rect key="frame" x="0.0" y="39" width="279.5" height="1"/>
+                                                                <rect key="frame" x="0.0" y="39" width="316.5" height="1"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="mfV-DB-BMR"/>
@@ -814,17 +814,17 @@ Describe Yourself?</string>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qb8-OM-QXS">
-                                                        <rect key="frame" x="0.0" y="104" width="279.5" height="40"/>
+                                                        <rect key="frame" x="0.0" y="104" width="316.5" height="40"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="soh-bV-9j1" customClass="TransparentTextField" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="279.5" height="27"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="316.5" height="27"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y7U-Hf-Q1B">
-                                                                <rect key="frame" x="0.0" y="39" width="279.5" height="1"/>
+                                                                <rect key="frame" x="0.0" y="39" width="316.5" height="1"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="d5w-Pa-eyy"/>
@@ -840,7 +840,7 @@ Describe Yourself?</string>
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2b-qK-jR7">
-                                                <rect key="frame" x="30" y="110" width="279.5" height="29.5"/>
+                                                <rect key="frame" x="30" y="110" width="316.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -866,16 +866,16 @@ Describe Yourself?</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9x-rs-nWX" userLabel="container9">
-                                        <rect key="frame" x="2684.5" y="0.0" width="335.5" height="700"/>
+                                        <rect key="frame" x="2982" y="0.0" width="373" height="700"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48S-Pj-NFg">
-                                                <rect key="frame" x="40" y="356.5" width="255.5" height="217.5"/>
+                                                <rect key="frame" x="40" y="356.5" width="293" height="217.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Dv-D7-ncN">
-                                                        <rect key="frame" x="15" y="15" width="225.5" height="164"/>
+                                                        <rect key="frame" x="15" y="15" width="263" height="146.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RNx-Xd-n15">
-                                                                <rect key="frame" x="0.0" y="0.0" width="225.5" height="17.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="263" height="17.5"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwu-35-X3g">
                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="16"/>
@@ -910,7 +910,7 @@ Describe Yourself?</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That must be you on photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5m-4s-aTr">
-                                                                        <rect key="frame" x="30" y="0.0" width="195.5" height="17.5"/>
+                                                                        <rect key="frame" x="30" y="0.0" width="233" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -918,7 +918,7 @@ Describe Yourself?</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WHW-4M-MO4">
-                                                                <rect key="frame" x="0.0" y="25.5" width="225.5" height="17.5"/>
+                                                                <rect key="frame" x="0.0" y="25.5" width="263" height="17.5"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDi-6p-9jb">
                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="16"/>
@@ -952,7 +952,7 @@ Describe Yourself?</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show your face" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d1-9u-j81">
-                                                                        <rect key="frame" x="30" y="0.0" width="195.5" height="17.5"/>
+                                                                        <rect key="frame" x="30" y="0.0" width="233" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -960,7 +960,7 @@ Describe Yourself?</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SSQ-Ia-Jbj">
-                                                                <rect key="frame" x="0.0" y="51" width="225.5" height="35"/>
+                                                                <rect key="frame" x="0.0" y="51" width="263" height="35"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4L-cg-4Ui">
                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="16"/>
@@ -994,7 +994,7 @@ Describe Yourself?</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't use low-quality photos or containing text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilB-XN-D2S">
-                                                                        <rect key="frame" x="30" y="0.0" width="195.5" height="35"/>
+                                                                        <rect key="frame" x="30" y="0.0" width="233" height="35"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1002,7 +1002,7 @@ Describe Yourself?</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="0tE-32-H92">
-                                                                <rect key="frame" x="0.0" y="94" width="225.5" height="70"/>
+                                                                <rect key="frame" x="0.0" y="94" width="263" height="52.5"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eat-E1-4oq">
                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="16"/>
@@ -1036,7 +1036,7 @@ Describe Yourself?</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prohibited photo depicts nudity, sex act, genitals, nipples, children, and other illegal content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3T0-BU-Hgf">
-                                                                        <rect key="frame" x="30" y="0.0" width="195.5" height="70"/>
+                                                                        <rect key="frame" x="30" y="0.0" width="233" height="52.5"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1088,7 +1088,7 @@ Describe Yourself?</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please follow the rules:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctf-Pu-QtY">
-                                                <rect key="frame" x="90.5" y="321.5" width="154.5" height="20"/>
+                                                <rect key="frame" x="109.5" y="321.5" width="154.5" height="20"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="tyO-D9-QHb"/>
@@ -1098,9 +1098,16 @@ Describe Yourself?</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-1C-QwZ">
-                                                <rect key="frame" x="107.5" y="175.5" width="120" height="120"/>
+                                                <rect key="frame" x="126.5" y="175.5" width="120" height="120"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginCameraImage" translatesAutoresizingMaskIntoConstraints="NO" id="5CC-X4-Ncn">
+                                                    <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginCameraImage" translatesAutoresizingMaskIntoConstraints="NO" id="F3j-pv-iFI">
+                                                        <rect key="frame" x="20" y="20" width="80" height="80"/>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="F3j-pv-iFI" secondAttribute="height" multiplier="1:1" id="l6c-Yv-Agn"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5CC-X4-Ncn">
                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -1120,8 +1127,11 @@ Describe Yourself?</string>
                                                     <constraint firstAttribute="trailing" secondItem="5CC-X4-Ncn" secondAttribute="trailing" id="HZx-H3-LOz"/>
                                                     <constraint firstAttribute="width" constant="120" id="Hx7-jp-vOU"/>
                                                     <constraint firstAttribute="width" secondItem="dWc-1C-QwZ" secondAttribute="height" multiplier="1:1" id="Q80-cl-yQy"/>
+                                                    <constraint firstItem="F3j-pv-iFI" firstAttribute="width" secondItem="F3j-pv-iFI" secondAttribute="height" multiplier="1:1" id="QzT-Zo-swh"/>
                                                     <constraint firstItem="5CC-X4-Ncn" firstAttribute="centerY" secondItem="dWc-1C-QwZ" secondAttribute="centerY" id="Rwd-Qs-YTe"/>
                                                     <constraint firstItem="5CC-X4-Ncn" firstAttribute="leading" secondItem="dWc-1C-QwZ" secondAttribute="leading" id="Snp-cK-lSc"/>
+                                                    <constraint firstItem="F3j-pv-iFI" firstAttribute="centerY" secondItem="dWc-1C-QwZ" secondAttribute="centerY" id="eaB-yx-yFY"/>
+                                                    <constraint firstItem="F3j-pv-iFI" firstAttribute="centerX" secondItem="dWc-1C-QwZ" secondAttribute="centerX" id="pMW-aQ-FYa"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1146,6 +1156,98 @@ Describe Yourself?</string>
                                             <constraint firstItem="ctf-Pu-QtY" firstAttribute="centerX" secondItem="Q9x-rs-nWX" secondAttribute="centerX" id="vJI-Ef-QGt"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayq-wO-RUB" userLabel="container10">
+                                        <rect key="frame" x="3355" y="0.0" width="373" height="700"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCF-Tc-RxV">
+                                                <rect key="frame" x="10" y="57" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="M4R-jd-Scn"/>
+                                                    <constraint firstAttribute="height" constant="20" id="mU8-H6-QAF"/>
+                                                </constraints>
+                                                <state key="normal" image="navigationBackButton"/>
+                                                <connections>
+                                                    <action selector="back:" destination="97H-h1-q95" eventType="touchUpInside" id="eC4-pi-Wz4"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adding Main Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wef-mM-tyh">
+                                                <rect key="frame" x="30" y="110" width="215" height="29.5"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo sending…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pW-xi-37u">
+                                                <rect key="frame" x="130" y="416" width="112.5" height="20"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="WdO-yx-6pC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGj-TW-b6t">
+                                                <rect key="frame" x="126.5" y="270" width="120" height="120"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-eb-12g">
+                                                        <rect key="frame" x="41.5" y="41.5" width="37" height="37"/>
+                                                        <color key="color" name="activityIndicatorColor"/>
+                                                    </activityIndicatorView>
+                                                    <imageView clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wjf-dT-FKX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="wjf-dT-FKX" secondAttribute="height" multiplier="1:1" id="VrJ-u4-eQH"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="265-CQ-sIZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="wjf-dT-FKX" secondAttribute="bottom" id="2Ib-hD-XWZ"/>
+                                                    <constraint firstItem="Eth-eb-12g" firstAttribute="centerY" secondItem="LGj-TW-b6t" secondAttribute="centerY" id="37t-Gv-DPD"/>
+                                                    <constraint firstAttribute="width" secondItem="LGj-TW-b6t" secondAttribute="height" multiplier="1:1" id="6DE-wC-Ula"/>
+                                                    <constraint firstItem="wjf-dT-FKX" firstAttribute="top" secondItem="LGj-TW-b6t" secondAttribute="top" id="F2d-rZ-OTd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wjf-dT-FKX" secondAttribute="trailing" id="MfB-tG-yre"/>
+                                                    <constraint firstItem="wjf-dT-FKX" firstAttribute="centerY" secondItem="LGj-TW-b6t" secondAttribute="centerY" id="WFZ-dQ-zAe"/>
+                                                    <constraint firstItem="wjf-dT-FKX" firstAttribute="leading" secondItem="LGj-TW-b6t" secondAttribute="leading" id="fwE-G0-ese"/>
+                                                    <constraint firstItem="wjf-dT-FKX" firstAttribute="centerX" secondItem="LGj-TW-b6t" secondAttribute="centerX" id="jIo-75-Ju0"/>
+                                                    <constraint firstItem="Eth-eb-12g" firstAttribute="centerX" secondItem="LGj-TW-b6t" secondAttribute="centerX" id="usz-rK-mUy"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="60"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-s9-OuA">
+                                                <rect key="frame" x="231.5" y="255" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="V2x-s9-OuA" secondAttribute="height" multiplier="1:1" id="5pl-aD-AMO"/>
+                                                    <constraint firstAttribute="width" constant="30" id="vXo-xu-SWX"/>
+                                                </constraints>
+                                                <state key="normal" image="profilePhotoChange">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="changeUploadedPhotoButtonClick:" destination="97H-h1-q95" eventType="touchUpInside" id="gxF-z6-KFZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="V2x-s9-OuA" firstAttribute="top" secondItem="wjf-dT-FKX" secondAttribute="top" constant="-15" id="6qd-gw-Yiw"/>
+                                            <constraint firstItem="SCF-Tc-RxV" firstAttribute="leading" secondItem="Ayq-wO-RUB" secondAttribute="leading" constant="10" id="EF8-pQ-u0B"/>
+                                            <constraint firstItem="wef-mM-tyh" firstAttribute="leading" secondItem="SCF-Tc-RxV" secondAttribute="leading" constant="20" id="GyF-Pr-B43"/>
+                                            <constraint firstItem="5pW-xi-37u" firstAttribute="centerX" secondItem="Ayq-wO-RUB" secondAttribute="centerX" id="HQj-1r-si8"/>
+                                            <constraint firstItem="5pW-xi-37u" firstAttribute="top" secondItem="LGj-TW-b6t" secondAttribute="bottom" constant="26" id="RbY-b4-zto"/>
+                                            <constraint firstItem="V2x-s9-OuA" firstAttribute="leading" secondItem="wjf-dT-FKX" secondAttribute="trailing" constant="-15" id="e2h-HQ-KRW"/>
+                                            <constraint firstItem="wef-mM-tyh" firstAttribute="top" secondItem="SCF-Tc-RxV" secondAttribute="bottom" constant="33" id="eu2-4p-3dc"/>
+                                            <constraint firstItem="LGj-TW-b6t" firstAttribute="centerX" secondItem="Ayq-wO-RUB" secondAttribute="centerX" id="g6v-xU-rbw"/>
+                                            <constraint firstItem="LGj-TW-b6t" firstAttribute="centerY" secondItem="Ayq-wO-RUB" secondAttribute="centerY" constant="-20" id="jsW-Pj-SGn"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -1160,8 +1262,11 @@ Describe Yourself?</string>
                                     <constraint firstItem="cqj-Tn-7U8" firstAttribute="top" secondItem="WdF-1N-zRB" secondAttribute="top" id="A9L-bM-4Z7"/>
                                     <constraint firstItem="cqj-Tn-7U8" firstAttribute="leading" secondItem="Iw3-35-FsF" secondAttribute="trailing" id="CP8-lf-QDp"/>
                                     <constraint firstItem="Kug-Eu-Qid" firstAttribute="centerY" secondItem="sGH-5e-i8g" secondAttribute="centerY" id="Etd-8b-X5f"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ayq-wO-RUB" secondAttribute="trailing" id="FeH-FV-FjB"/>
+                                    <constraint firstItem="Ayq-wO-RUB" firstAttribute="leading" secondItem="Q9x-rs-nWX" secondAttribute="trailing" id="Hbo-ha-jaa"/>
                                     <constraint firstItem="WBa-rH-j8L" firstAttribute="width" secondItem="cWX-BB-QRt" secondAttribute="width" id="Imx-NP-S9Y"/>
                                     <constraint firstItem="cWX-BB-QRt" firstAttribute="top" secondItem="xxv-5y-syX" secondAttribute="top" id="Jaz-nU-Fsd"/>
+                                    <constraint firstItem="Ayq-wO-RUB" firstAttribute="bottom" secondItem="Q9x-rs-nWX" secondAttribute="bottom" id="K9A-BM-5WX"/>
                                     <constraint firstItem="Iw3-35-FsF" firstAttribute="leading" secondItem="WdF-1N-zRB" secondAttribute="leading" id="LJr-ja-FEg"/>
                                     <constraint firstAttribute="bottom" secondItem="hc4-GX-bBp" secondAttribute="bottom" id="Ljx-ty-BAn"/>
                                     <constraint firstItem="d44-LZ-0vC" firstAttribute="bottom" secondItem="h3U-6q-EWJ" secondAttribute="bottom" id="MGF-ef-iwl"/>
@@ -1173,6 +1278,7 @@ Describe Yourself?</string>
                                     <constraint firstItem="h3U-6q-EWJ" firstAttribute="width" secondItem="hc4-GX-bBp" secondAttribute="width" id="UUi-5j-ztQ"/>
                                     <constraint firstItem="eok-Ij-K4k" firstAttribute="centerY" secondItem="Dqg-mx-wcR" secondAttribute="centerY" id="Uas-R2-ldZ"/>
                                     <constraint firstItem="hc4-GX-bBp" firstAttribute="width" secondItem="cqj-Tn-7U8" secondAttribute="width" id="WrL-t3-fm4"/>
+                                    <constraint firstItem="Ayq-wO-RUB" firstAttribute="top" secondItem="Q9x-rs-nWX" secondAttribute="top" id="WxJ-Uo-fHk"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="bottom" secondItem="WBa-rH-j8L" secondAttribute="bottom" id="Y6w-jA-3XD"/>
                                     <constraint firstItem="WBa-rH-j8L" firstAttribute="bottom" secondItem="cWX-BB-QRt" secondAttribute="bottom" id="Z8e-DV-Zqz"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="leading" secondItem="WBa-rH-j8L" secondAttribute="trailing" id="ciB-rQ-AnU"/>
@@ -1191,7 +1297,8 @@ Describe Yourself?</string>
                                     <constraint firstItem="hc4-GX-bBp" firstAttribute="top" secondItem="WdF-1N-zRB" secondAttribute="top" id="rcm-bu-F9N"/>
                                     <constraint firstItem="xxv-5y-syX" firstAttribute="top" secondItem="h3U-6q-EWJ" secondAttribute="top" id="skK-r5-KBz"/>
                                     <constraint firstItem="Q9x-rs-nWX" firstAttribute="width" secondItem="WBa-rH-j8L" secondAttribute="width" id="snK-Zu-TDq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Q9x-rs-nWX" secondAttribute="trailing" id="tC0-ze-F5v"/>
+                                    <constraint firstItem="SCF-Tc-RxV" firstAttribute="centerY" secondItem="eok-Ij-K4k" secondAttribute="centerY" id="uEA-49-hqB"/>
+                                    <constraint firstItem="Ayq-wO-RUB" firstAttribute="width" secondItem="Q9x-rs-nWX" secondAttribute="width" id="wkx-oF-eF9"/>
                                     <constraint firstItem="Dqg-mx-wcR" firstAttribute="centerY" secondItem="f1l-hR-QBt" secondAttribute="centerY" id="wqB-bP-h7h"/>
                                     <constraint firstItem="WBa-rH-j8L" firstAttribute="top" secondItem="cWX-BB-QRt" secondAttribute="top" id="xAx-9A-fmp"/>
                                     <constraint firstItem="cWX-BB-QRt" firstAttribute="leading" secondItem="h3U-6q-EWJ" secondAttribute="trailing" id="ypG-zr-3Vv"/>
@@ -1203,7 +1310,7 @@ Describe Yourself?</string>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-a6-CE4" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="1402" y="594" width="216" height="52"/>
+                                <rect key="frame" x="1551" y="594" width="253" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="U98-mk-TNy"/>
                                 </constraints>
@@ -1240,7 +1347,7 @@ Describe Yourself?</string>
                         <viewLayoutGuide key="safeArea" id="o7y-P8-LtY"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="3020" height="700"/>
+                    <size key="freeformSize" width="3355" height="700"/>
                     <connections>
                         <outlet property="agrementBackgroundRoundedView" destination="1Xe-rj-Te8" id="b25-De-nCG"/>
                         <outlet property="agrementButton" destination="MXK-t0-Q2J" id="o41-2E-8wB"/>
@@ -1248,6 +1355,7 @@ Describe Yourself?</string>
                         <outlet property="agrementTextView" destination="eBr-Gg-mey" id="86o-n9-XfC"/>
                         <outlet property="birthdayTextField" destination="mBC-q4-9Kg" id="McV-yD-xQw"/>
                         <outlet property="buttonToKeybosrdConstraint" destination="dpK-dV-LRi" id="2Ph-OD-g5E"/>
+                        <outlet property="changeUploadedPhotoButton" destination="V2x-s9-OuA" id="BXL-lK-6la"/>
                         <outlet property="confirmPasswordTextField" destination="soh-bV-9j1" id="gTu-oN-bKK"/>
                         <outlet property="couplePartnerButton" destination="QrM-Ww-fHd" id="L6u-5R-N5b"/>
                         <outlet property="emailTextField" destination="r49-X2-9ik" id="fyz-iH-SFY"/>
@@ -1263,11 +1371,14 @@ Describe Yourself?</string>
                         <outlet property="progressView" destination="0CI-Kx-HRX" id="8s4-qd-J0m"/>
                         <outlet property="progressWidthConstraint" destination="vn8-BF-tml" id="sry-go-CXU"/>
                         <outlet property="scrollView" destination="WdF-1N-zRB" id="BYK-yM-a6E"/>
+                        <outlet property="sendingImageDescriptionLabel" destination="5pW-xi-37u" id="4vR-SH-gjD"/>
+                        <outlet property="sendingImageTitleLabel" destination="wef-mM-tyh" id="FYG-o0-rmC"/>
                         <outlet property="sexualityGradientView" destination="sMU-nz-vLw" id="8a5-xR-qST"/>
                         <outlet property="sexualityPicker" destination="zFK-QK-P5k" id="4Eg-Wj-Jdx"/>
                         <outlet property="showNameLenghtAlertView" destination="2Cn-HX-00X" id="hph-l7-koe"/>
                         <outlet property="soloPartnerButton" destination="SqQ-6k-SzG" id="caW-qM-l2n"/>
                         <outlet property="stepForwardButton" destination="JO7-a6-CE4" id="rtg-5l-0Y8"/>
+                        <outlet property="uploadedPhotoImageView" destination="wjf-dT-FKX" id="t5C-pg-3SU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tP-KJ-D3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1277,7 +1388,7 @@ Describe Yourself?</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-147.82608695652175" y="648.21428571428567"/>
+            <point key="canvasLocation" x="-263.04347826086956" y="647.54464285714278"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="C17-qY-TpX">
@@ -1951,9 +2062,13 @@ face is in the frame</string>
         <image name="fantasyLogo" width="144" height="170"/>
         <image name="loginCameraImage" width="40" height="40"/>
         <image name="navigationBackButton" width="10" height="18"/>
+        <image name="profilePhotoChange" width="20" height="20"/>
         <image name="roundedCheckmark" width="35" height="35"/>
         <image name="takePhoto" width="66" height="66"/>
         <image name="textFieldError" width="16" height="16"/>
+        <namedColor name="activityIndicatorColor">
+            <color red="0.63137254901960782" green="0.52156862745098043" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="bgGradient1">
             <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

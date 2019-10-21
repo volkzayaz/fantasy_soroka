@@ -27,6 +27,8 @@ class FMPhotoImagePicker: ImagePicker, FMPhotoPickerViewControllerDelegate {
         
         var config = FMPhotoPickerConfig()
         config.selectMode = .single
+        config.availableCrops = [FMCrop.ratioCustom]
+        config.availableFilters = [FMFilter.None]
         
         let picker = FMPhotoPickerViewController(config: config)
         picker.delegate = FMPhotoImagePicker.delegate

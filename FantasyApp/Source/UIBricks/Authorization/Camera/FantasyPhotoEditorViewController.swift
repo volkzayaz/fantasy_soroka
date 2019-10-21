@@ -56,6 +56,8 @@ extension FantasyPhotoEditorViewController {
             return
         }
 
+        navigationController?.popViewController(animated: true)
+
         c(i)
     }
     

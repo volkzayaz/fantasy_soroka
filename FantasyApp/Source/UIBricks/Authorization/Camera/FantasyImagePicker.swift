@@ -6,9 +6,9 @@
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-open class FantasyImagePicker: NSObject {
+class FantasyImagePicker: NSObject {
 
     fileprivate let pickerController: UIImagePickerController
     private weak var owner: UIViewController?
@@ -23,20 +23,18 @@ open class FantasyImagePicker: NSObject {
     public init(presentationController: UIViewController,  completion: @escaping (UIImage) -> Void) {
 
         self.pickerController = UIImagePickerController()
-        self.pickerController.allowsEditing = true
-        self.pickerController.mediaTypes = ["public.image"]
-
         self.completion = completion
-
-        super.init()
-
-        self.pickerController.delegate = self
         self.owner = presentationController
+        super.init()
     }
 
     public func present() {
-        self.pickerController.modalPresentationStyle = .fullScreen
-        owner?.present(self.pickerController, animated: true)
+        pickerController.allowsEditing = false
+        pickerController.mediaTypes = ["public.image"]
+        pickerController.modalPresentationStyle = .fullScreen
+        pickerController.delegate = self
+
+        owner?.present(pickerController, animated: true)
     }
 
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
@@ -48,21 +46,17 @@ open class FantasyImagePicker: NSObject {
 
 //MARK:- UIImagePickerControllerDelegate
 
-extension FantasyImagePicker: UIImagePickerControllerDelegate {
+extension FantasyImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.pickerController(picker, didSelect: nil)
+        pickerController(picker, didSelect: nil)
     }
 
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else {
-            return self.pickerController(picker, didSelect: nil)
+            return pickerController(picker, didSelect: nil)
         }
-        self.pickerController(picker, didSelect: image)
+        pickerController(picker, didSelect: image)
     }
 }
-
-//MARK:- UINavigationControllerDelegate
-
-extension FantasyImagePicker: UINavigationControllerDelegate {}

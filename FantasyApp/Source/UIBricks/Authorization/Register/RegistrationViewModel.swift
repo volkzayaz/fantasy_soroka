@@ -60,8 +60,8 @@ extension RegistrationViewModel {
                 case .email:        return form.email?.isValidEmail ?? false
                 case .password:     return form.password == form.confirmPassword && form.password != nil && (form.password?.count ?? 0) > 7
                 
-                case .photo:        return form.photo != nil
-                    
+                case .photo:        return form.selectedPhoto != nil
+                case .addingPhoto:        return form.photo != nil
                 }
                     
             }
@@ -85,8 +85,12 @@ extension RegistrationViewModel {
             .map { dateFormatter.string(from: $0) }
     }
     
-    var selectedPhoto: Driver<UIImage> {
-        return form.asDriver().map { $0.photo ?? R.image.loginCameraImage()! }
+    var selectedPhoto: Driver<UIImage?> {
+        return form.asDriver().map { $0.selectedPhoto }
+    }
+
+    var photo: Driver<UIImage?> {
+        return form.asDriver().map { $0.photo }
     }
     
     var defaultGender: Gender { return .female }
@@ -137,7 +141,7 @@ struct RegistrationViewModel : MVVM_ViewModel {
         case email
         case password
         case photo
-        
+        case addingPhoto
     }
 }
 
@@ -182,6 +186,13 @@ extension RegistrationViewModel {
         }
         
         step.accept( next )
+
+        // start photo uploading
+        if step.value == .addingPhoto,
+            let image = form.value.selectedPhoto {
+            photoChanged(photo: image)
+        }
+
     }
     
 
@@ -226,14 +237,18 @@ extension RegistrationViewModel {
     func confirmPasswordChanged(password: String) {
         updateForm { $0.confirmPassword = password }
     }
+
+    func photoSelected(photo: UIImage) {
+        updateForm { $0.selectedPhoto = photo }
+    }
     
     func photoChanged(photo: UIImage) {
         
         ImageValidator.validate(image: photo)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { (_) in
+            .subscribe(onSuccess: { (_) in
                 self.updateForm { $0.photo = photo }
+            }, onError: { (Error) in
+
             })
             .disposed(by: bag)
             
