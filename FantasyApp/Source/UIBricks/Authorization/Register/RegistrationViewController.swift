@@ -338,15 +338,19 @@ extension RegistrationViewController: UIScrollViewDelegate {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
-            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+            FantasyCameraViewController.present(on: self) { [unowned self] (image) in
                 self.viewModel.photoChanged(photo: image)
             }
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
-            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+
+            let pickerController = FantasyImagePicker.galleryImagePicker(presentationController: self) { (image) in
                 self.viewModel.photoChanged(photo: image)
             }
+
+            pickerController.present()
+
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))

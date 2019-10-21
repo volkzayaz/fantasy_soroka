@@ -216,6 +216,8 @@
     <resources>
         <image name="messages" width="40" height="40"/>
         <image name="messagesSelected" width="40" height="40"/>
+        <image name="search" width="40" height="30"/>
+        <image name="searchSelected" width="50" height="40"/>
         <image name="navDiscovery" width="40" height="30"/>
         <image name="navDiscoverySelected" width="40" height="30"/>
         <image name="navFantasies" width="30" height="30"/>
