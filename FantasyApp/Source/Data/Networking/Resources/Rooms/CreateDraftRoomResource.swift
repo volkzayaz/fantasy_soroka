@@ -10,13 +10,13 @@ import Foundation
 import Moya
 
 struct CreateDraftRoomResource: AuthorizedAPIResource {
-    private let settings: Chat.RoomSettings
+    private let settings: Room.Settings
 
-    init(settings: Chat.RoomSettings) {
+    init(settings: Room.Settings) {
         self.settings = settings
     }
 
-    typealias responseType = Chat.Room
+    typealias responseType = Room
 
     var method: Moya.Method {
         return .post

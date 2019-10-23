@@ -14,14 +14,15 @@ import Chatto
 import ChattoAdditions
 
 class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
+    
     let router: ChatRouter
-    let room: Chat.Room
-    let messages = BehaviorRelay<[Chat.Message]>(value: [])
+    let room: Room
+    let messages = BehaviorRelay<[Room.Message]>(value: [])
     weak var delegate: ChatDataSourceDelegateProtocol?
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 
-    init(router: ChatRouter, room: Chat.Room) {
+    init(router: ChatRouter, room: Room) {
         self.router = router
         self.room = room
 
@@ -53,8 +54,9 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
 }
 
 extension ChatViewModel {
+    
     func loadMessages() {
-        ChatManager.getMessagesInRoom(room.id, offset: messages.value.count)
+        RoomManager.getMessagesInRoom(room.id, offset: messages.value.count)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak self] messages in
@@ -69,42 +71,33 @@ extension ChatViewModel {
     }
 
     func sendMessage(text: String) {
-        let message = Chat.Message(senderDisplayName: User.current!.bio.name,
-                                   senderId: AuthenticationManager.currentUser()!.id,
-                                   text: text,
-                                   objectId: nil,
-                                   roomId: room.id,
-                                   isRead: false,
-                                   createdAt: Date())
-        ChatManager.sendMessage(message, to: room).subscribe({ event in
+        let message = Room.Message(text: text,
+                                   from: User.current!,
+                                   in: room)
+                                   
+        RoomManager.sendMessage(message, to: room).subscribe({ event in
             // TODO: error handling
         }).disposed(by: bag)
     }
 
     func connect() {
-        ChatManager.connectToRoom(room).subscribe(onNext: { [weak self] event in
+        
+        RoomManager.subscribeTo(rooms: [room]).subscribe(onNext: { [weak self] (message, _) in
+            
             guard let self = self else { return }
-            var array: [Chat.Message] = self.messages.value
-            switch event {
-            case .messageAdded(let message):
-                array.append(message)
-            case .messageRemoved(let message):
-                array.removeAll { message.objectId == $0.objectId }
-            case .messageUpdated(let message):
-                if let index = array.firstIndex(where: { message.objectId == $0.objectId }) {
-                    array[index] = message
-                }
-            }
+            
+            var array: [Room.Message] = self.messages.value
+            array.append(message)
+            
             self.messages.accept(array)
+            
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
             }
+            
         }).disposed(by: bag)
-    }
-
-    func disconnect() {
-        ChatManager.disconnectFromRoom(room.id )
+        
     }
 
     private func prepareChatItems() -> [ChatItemProtocol] {
@@ -112,7 +105,7 @@ extension ChatViewModel {
         var adjustment = 0
         let array = messages.value
         // build message cell models
-        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
+        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text) }
         // build time separator cell models
         array.enumerated().forEach { index, message in
             if index == 0 || message.createdAt.compare(with: dateToCompare, by: .day) != 0 {
@@ -123,5 +116,40 @@ extension ChatViewModel {
             }
         }
         return result
+    }
+}
+
+enum Chat {}
+// MARK: - Cells
+extension Chat {
+    enum CellType: String {
+        case text = "text-chat-message"
+        case emoji = "emoji-chat-message"
+        case timeSeparator = "time-separator"
+        case acceptReject = "accept-reject"
+    }
+}
+
+// MARK: - Chatto
+extension Room.Message: MessageModelProtocol {
+    var isIncoming: Bool {
+        return senderId != User.current?.id
+    }
+
+    var date: Date {
+        return createdAt
+    }
+
+    var status: MessageStatus {
+        return .success
+    }
+
+    var type: ChatItemType {
+        return text.containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
+            Chat.CellType.text.rawValue
+    }
+
+    var uid: String {
+        return objectId ?? ""
     }
 }

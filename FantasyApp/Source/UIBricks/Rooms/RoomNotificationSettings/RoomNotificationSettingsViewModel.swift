@@ -12,13 +12,13 @@ import RxCocoa
 
 struct RoomNotificationSettingsViewModel: MVVM_ViewModel {
     let router: RoomNotificationSettingsRouter
-    let room: BehaviorRelay<Chat.Room>
+    let room: BehaviorRelay<Room>
 
     var currentSettings: RoomNotificationSettings? {
         return appStateSlice.currentUser!.roomsNotificationSettings?.first(where: { $0.roomId == room.value.id })
     }
 
-    init(router: RoomNotificationSettingsRouter, room: Chat.Room) {
+    init(router: RoomNotificationSettingsRouter, room: Room) {
         self.router = router
         self.room = BehaviorRelay(value: room)
     }

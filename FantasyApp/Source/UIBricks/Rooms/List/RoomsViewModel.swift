@@ -12,38 +12,61 @@ import RxCocoa
 import RxDataSources
 
 extension RoomsViewModel {
-    struct CellModel: IdentifiableType, Equatable {
-        let companionName: String
-        let updatedAt: String
-        let lastMessage: String
-        let identifier: String
-
-        var identity: String {
-            return identifier
-        }
+    
+    var dataSource: Driver<[AnimatableSectionModel<String, RoomCell>]> {
+        return appState.changesOf { $0.rooms }
+            .flatMapLatest { rooms -> Driver<[RoomCell]> in
+                
+                return RoomManager.latestMessageIn(rooms: rooms)
+                    .asDriver(onErrorJustReturn: [:])
+                    .map { messages in
+                        messages.map {
+                        RoomCell(room: $0.key, lastMessage: $0.value) }
+                    }
+                
+            }
+            .map { cells in
+                
+                let freezed = Dictionary(grouping: cells, by: { $0.room.freezeStatus == .frozen })
+                
+                return [
+                    AnimatableSectionModel(model: "Non Freezed rooms", items: freezed[false] ?? []),
+                    AnimatableSectionModel(model: "Freezed rooms", items: freezed[true] ?? [])
+                ]
+            }
     }
-
-    var dataSource: Driver<[AnimatableSectionModel<String, RoomsViewModel.CellModel>]> {
-        return rooms.map { rooms in
-            let models: [CellModel] = rooms?.filter { $0.status == .created }.map { room in
-                return CellModel(companionName: room.roomName ?? "",
-                                 updatedAt: (room.details?.updatedAt ?? Date()).toTimeAgoString(),
-                                 lastMessage: room.details?.lastMessage ?? "",
-                                 identifier: room.id)
-            } ?? []
-            return [AnimatableSectionModel(model: "", items: models)]
+    
+    struct RoomCell: IdentifiableType, Equatable {
+        let room: Room
+        let lastMessage: Room.Message?
+        
+        var identity: String {
+            return room.id
         }
     }
 }
 
 struct RoomsViewModel: MVVM_ViewModel {
-    var rooms: Driver<[Chat.Room]?> {
-        return appState.changesOf { $0.rooms }
-    }
-
+    
     init(router: RoomsRouter) {
         self.router = router
 
+        appState.changesOf { $0.reloadRoomsTriggerBecauseOfComplexFreezeLogic }
+            .filter { $0 }
+            .asObservable()
+            .flatMapFirst { [unowned i = indicator] _ -> Observable<[Room]> in
+                return RoomManager.getAllRooms()
+                    .asObservable()
+                    .trackView(viewIndicator: i)
+                    .silentCatch(handler: router.owner)
+            }
+            .subscribe(onNext: { (rooms: [Room]) in
+                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
+            })
+            .disposed(by: bag)
+        
+        Dispatcher.dispatch(action: TriggerRoomsRefresh())
+        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
@@ -55,30 +78,30 @@ struct RoomsViewModel: MVVM_ViewModel {
 }
 
 extension RoomsViewModel {
-    func roomTapped(_ model: RoomsViewModel.CellModel) {
-        guard let room = appStateSlice.rooms
-            .first(where: { $0.id == model.identifier }) else {
-                return
+    
+    func roomTapped(roomCell: RoomCell) {
+        
+        guard roomCell.room.freezeStatus != .frozen else {
+            return router.messagePresentable.presentMessage("This room is currently frozen, you can't use it at the moment. Upgrade to premium")
         }
-
-        router.roomTapped(room)
-    }
-
-    func fetchRooms() {
-        ChatManager.getAllRooms()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { _ in })
-            .disposed(by: bag)
+        
+        router.roomTapped(roomCell.room)
     }
 
     func createRoom() {
-        ChatManager.createDraftRoom()
+        
+        RoomManager.createDraftRoom()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { room in
                 self.router.showRoomSettings(room)
             })
             .disposed(by: bag)
+        
     }
+    
+    func refreshRooms() {
+        Dispatcher.dispatch(action: TriggerRoomsRefresh())
+    }
+    
 }

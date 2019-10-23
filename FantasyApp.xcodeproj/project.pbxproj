@@ -267,7 +267,7 @@
 		84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0642327D60100648DE1 /* RemoveRoom.swift */; };
 		84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0652327D60100648DE1 /* AddRooms.swift */; };
 		84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0662327D60100648DE1 /* UpdateRoom.swift */; };
-		84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* ChatManager.swift */; };
+		84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* RoomManager.swift */; };
 		84C1D06D2327D68100648DE1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06C2327D68100648DE1 /* Chat.swift */; };
 		84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */; };
 		84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */; };
@@ -592,7 +592,7 @@
 		84C1D0642327D60100648DE1 /* RemoveRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveRoom.swift; sourceTree = "<group>"; };
 		84C1D0652327D60100648DE1 /* AddRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRooms.swift; sourceTree = "<group>"; };
 		84C1D0662327D60100648DE1 /* UpdateRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRoom.swift; sourceTree = "<group>"; };
-		84C1D06A2327D63E00648DE1 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		84C1D06A2327D63E00648DE1 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		84C1D06C2327D68100648DE1 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
 		84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
@@ -1896,7 +1896,7 @@
 		84C1D0482327C4AE00648DE1 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				84C1D06A2327D63E00648DE1 /* ChatManager.swift */,
+				84C1D06A2327D63E00648DE1 /* RoomManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2464,7 +2464,7 @@
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
-				84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */,
+				84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
@@ -2679,7 +2679,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = CB48395Y6T;
+				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
@@ -2692,7 +2692,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = FantasyAppDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

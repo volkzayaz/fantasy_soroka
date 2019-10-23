@@ -7,17 +7,43 @@
 //
 
 import UIKit
+import RxSwift
 
 class RoomTableViewCell: UITableViewCell {
     @IBOutlet private (set) var nameLabel: UILabel!
     @IBOutlet private (set) var timeLabel: UILabel!
     @IBOutlet private (set) var lastMessageLabel: UILabel!
     @IBOutlet private var separator: UIView!
-
+    @IBOutlet weak var roomImageView: UIImageView!
+    
+    func set(model: RoomsViewModel.RoomCell) {
+        
+        let participant: Room.Participant = model.room.participants.first!
+        
+        nameLabel.text = participant.userSlice.name
+        timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
+        lastMessageLabel.text = model.lastMessage?.text ?? "new room"
+        
+        ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
+            .map { $0 ?? R.image.noPhoto() }
+            .drive(roomImageView.rx.image)
+            .disposed(by: disposeBag)
+        
+    }
+    
+    var disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configure()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
+    
 }
 
 private extension RoomTableViewCell {

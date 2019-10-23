@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 struct RoomsResource: AuthorizedAPIResource {
-    typealias responseType = [Chat.Room]
+    typealias responseType = [Room]
 
     var method: Moya.Method {
         return .get

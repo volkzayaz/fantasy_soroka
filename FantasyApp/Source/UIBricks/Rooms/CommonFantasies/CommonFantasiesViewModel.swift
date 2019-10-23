@@ -12,9 +12,9 @@ import RxCocoa
 
 struct CommonFantasiesViewModel: MVVM_ViewModel {
     let router: CommonFantasiesRouter
-    let room: Chat.Room
+    let room: Room
 
-    init(router: CommonFantasiesRouter, room: Chat.Room) {
+    init(router: CommonFantasiesRouter, room: Room) {
         self.router = router
         self.room = room
 

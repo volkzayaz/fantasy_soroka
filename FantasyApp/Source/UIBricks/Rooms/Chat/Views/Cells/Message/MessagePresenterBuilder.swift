@@ -20,7 +20,7 @@ open class MessagePresenterBuilder<ViewModelBuilderT, InteractionHandlerT>: Chat
     typealias ModelT = ViewModelBuilderT.ModelT
 
     public init(viewModelBuilder: ViewModelBuilderT,
-                interactionHandler: InteractionHandlerT,
+                interactionHandler: InteractionHandlerT?,
                 menuPresenter: TextMessageMenuItemPresenterProtocol? = TextMessageMenuItemPresenter()) {
         self.viewModelBuilder = viewModelBuilder
         self.interactionHandler = interactionHandler
@@ -28,7 +28,7 @@ open class MessagePresenterBuilder<ViewModelBuilderT, InteractionHandlerT>: Chat
     }
 
     private let viewModelBuilder: ViewModelBuilderT
-    private let interactionHandler: InteractionHandlerT
+    private let interactionHandler: InteractionHandlerT?
     private let menuPresenter: TextMessageMenuItemPresenterProtocol?
     private let layoutCache = NSCache<AnyObject, AnyObject>()
 

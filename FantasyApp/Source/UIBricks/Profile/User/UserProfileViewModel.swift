@@ -103,10 +103,10 @@ extension UserProfileViewModel {
                 }
                 
                 switch connection {
-                case .absent, .iRejected, .iWasRejected, .sameUser, .outgoing(_):
+                case .absent, .iRejected, .iWasRejected, .sameUser, .incomming(_):
                     return true
                     
-                case .incomming(_), .mutual(_):
+                case .outgoing(_), .mutual(_):
                     return false
                 }
                 
@@ -151,7 +151,7 @@ extension UserProfileViewModel {
                         .init(descriptior: .actionSheetOption("Reject invite"),
                               action: self.reject),
                         .init(descriptior: .openRoomButton,
-                              action: { self.present(room: room) })
+                              action: { self.present(roomRef: room) })
                     ]
                 
                 case .mutual(let room)?:
@@ -159,13 +159,13 @@ extension UserProfileViewModel {
                         .init(descriptior: .actionSheetOption("Unlike"),
                               action: self.unlike),
                         .init(descriptior: .openRoomButton,
-                              action: { self.present(room: room) })
+                              action: { self.present(roomRef: room) })
                     ]
                     
                 case .outgoing(let types, let room)?: ///waiting for response
                     
                     var res = [ RelationAction(descriptior: .imageButton(R.image.profileActionMessage()!),
-                                               action: { self.present(room: room) }) ]
+                                               action: { self.present(roomRef: room) }) ]
                         
                     if !types.contains(.like) {
                         res.append( .init(descriptior: .imageButton(R.image.profileActionLike()!),
@@ -315,7 +315,7 @@ extension UserProfileViewModel {
                     return
                 }
                 
-                self.present(room: room)
+                self.present(roomRef: room)
             })
             .bind(to: relationshipState)
         
@@ -348,8 +348,14 @@ extension UserProfileViewModel {
             .subscribe()
     }
     
-    func present(room: Chat.Room) {
-        router.present(room: room)
+    func present(roomRef: RoomRef) {
+        
+        RoomManager.getRoom(id: roomRef.id)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: self.router.present )
+            .disposed(by: bag)
+        
     }
     
 }

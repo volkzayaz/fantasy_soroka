@@ -23,6 +23,7 @@ extension ConnectionManager {
         
         return UpsertConnection(with: user, type: type)
             .rx.request.map { $0.toNative }
+        
     }
     
     static func likeBack(user: User) -> Single<Connection> {
@@ -31,16 +32,28 @@ extension ConnectionManager {
         
         return AcceptConnection(with: user, type: .like)
             .rx.request.map { $0.connection.toNative }
+            .do(onSuccess: { (_) in
+                ///complex freeze logic requires recalculating all rooms
+                Dispatcher.dispatch(action: TriggerRoomsRefresh())
+            })
     }
     
     static func reject(user: User) -> Single<Connection> {
         return RejectConnection(with: user)
             .rx.request.map { $0.connection.toNative }
+            .do(onSuccess: { (_) in
+                ///complex freeze logic requires recalculating all rooms
+                Dispatcher.dispatch(action: TriggerRoomsRefresh())
+            })
     }
     
     static func deleteConnection(with: User) -> Single<Void> {
         return DeleteConnection(with: with)
             .rx.request.map { _ in }
+            .do(onSuccess: { (_) in
+                ///complex freeze logic requires recalculating all rooms
+                Dispatcher.dispatch(action: TriggerRoomsRefresh())
+            })
     }
     
     static func connectionRequests(source: GetConnectionRequests.Source) -> Single<[ConnectedUser]> {
@@ -49,13 +62,13 @@ extension ConnectionManager {
             .flatMap { r in
                 
                 return User.query
-                    .whereKey("objectId", containedIn: r.map { $0._id })
+                    .whereKey("objectId", containedIn: r.map { $0.otherUserId })
                     .rx.fetchAllObjects()
                     .map { ($0, r) }
             }
             .map { (users, requests) in
                 
-                let connections = Dictionary(uniqueKeysWithValues: requests.map { ($0._id, $0.connection) })
+                let connections = Dictionary(uniqueKeysWithValues: requests.map { ($0.otherUserId, $0.connection) })
                 
                 return users.compactMap { pfUser in
                     
@@ -64,7 +77,7 @@ extension ConnectionManager {
                         return nil
                     }
                     
-                    let room: Chat.Room
+                    let room: RoomRef
                     let connectType: Set<ConnectionRequestType>
                     switch connection {
                     case .incomming(let request, let draftRoom):

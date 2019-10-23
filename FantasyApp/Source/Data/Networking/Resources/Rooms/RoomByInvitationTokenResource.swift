@@ -16,7 +16,7 @@ struct RoomByInvitationTokenResource: AuthorizedAPIResource {
         self.token = token
     }
 
-    typealias responseType = Chat.Room
+    typealias responseType = Room
 
     var method: Moya.Method {
         return .get
