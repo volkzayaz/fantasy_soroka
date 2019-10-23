@@ -12,12 +12,10 @@ import Parse
 import ChattoAdditions
 import Chatto
 
-// MARK: - Messages
-enum Chat {}
-extension Chat {
+extension Room {
 
     class Message: Equatable, IdentifiableType, ParsePresentable {
-        static func == (lhs: Chat.Message, rhs: Chat.Message) -> Bool {
+        static func == (lhs: Room.Message, rhs: Room.Message) -> Bool {
             return lhs.objectId == rhs.objectId && lhs.roomId == rhs.roomId
         }
 
@@ -66,126 +64,74 @@ extension Chat {
     }
 }
 
-// MARK: - Chatto
-extension Chat.Message: MessageModelProtocol {
-    var isIncoming: Bool {
-        return senderId != User.current?.id
-    }
-
-    var date: Date {
-        return createdAt
-    }
-
-    var status: MessageStatus {
-        return .success
-    }
-
-    var type: ChatItemType {
-        return text.containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
-            Chat.CellType.text.rawValue
-    }
-
-    var uid: String {
-        return objectId ?? ""
-    }
+struct RoomRef: Equatable {
+    let id: String
 }
 
-// MARK: - Cells
-extension Chat {
-    enum CellType: String {
-        case text = "text-chat-message"
-        case emoji = "emoji-chat-message"
-        case timeSeparator = "time-separator"
+struct Room: Codable, Equatable, IdentifiableType {
+    
+    let id: String
+    let ownerId: String
+    
+    var settings: Settings
+    
+    let status = Status.draft
+    
+    var roomName: String { return "hello" }
+    
+    var freezeStatus: FreezeStatus?
+    var participants = [Participant]()
+
+    // property are set during runtime
+    var notificationSettings: RoomNotificationSettings?
+    
+    var identity: String {
+        return id
     }
+    
 }
 
-// MARK: - Rooms
-extension Chat {
+extension Room {
     
-    struct RoomDetails: Equatable, IdentifiableType, ParsePresentable {
-        static var className: String {
-            return "Room"
-        }
-
-        var identity: String {
-            return objectId!
-        }
-
-        var objectId: String?
-        var backendId: String!
-        
-        
-        
-        ///the only two usefull entities here
-        var updatedAt: Date?
-        var lastMessage: String?
-    }
-
-    struct RoomRef: Equatable {
-        let id: String
-    }
-    
-    struct Room: Codable, Equatable, IdentifiableType {
-        
-        let id: String
-        let ownerId: String
-        
-        var settings: RoomSettings
-        
-        let status = RoomStatus.draft
-        
-        var roomName: String { return "hello" }
-        
-        var freezeStatus: RoomFreezeStatus?
-        var participants = [RoomParticipant]()
-
-        // property are set during runtime
-        var details: RoomDetails?
-        var notificationSettings: RoomNotificationSettings?
-        
-        var identity: String {
-            return id
-        }
-        
-    }
-
-    enum RoomFreezeStatus: String, Codable, Equatable {
+    enum FreezeStatus: String, Codable, Equatable {
         case frozen
         case unfrozen
         case unfrozenPaid
     }
 
-    struct RoomSettings: Codable, Equatable {
+    struct Settings: Codable, Equatable {
         var isClosedRoom = false
         var isHideCommonFantasies = false
         var isScreenShieldEnabled = false
         var sharedCollections: [String]
     }
 
-    struct RoomParticipant: Codable, Equatable, IdentifiableType {
+    struct Participant: Codable, Equatable, IdentifiableType {
         var identity: String {
             return _id!
         }
 
         var _id: String!
         var userId: String?
-        var status: RoomParticipantStatus = .accepted
+        var status = Status.accepted
         var invitationLink: String?
+        
+        enum Status: String, Codable, Equatable {
+            case invited
+            case accepted
+            case rejected
+        }
     }
 
-    enum RoomType: String, Codable, Equatable {
+    enum `Type`: String, Codable, Equatable {
         case `private`
         case `public`
     }
 
-    enum RoomStatus: String, Codable, Equatable {
+    enum Status: String, Codable, Equatable {
         case draft
         case created
     }
 
-    enum RoomParticipantStatus: String, Codable, Equatable {
-        case invited
-        case accepted
-        case rejected
-    }
 }
+

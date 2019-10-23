@@ -16,11 +16,11 @@ class RoomTableViewCell: UITableViewCell {
     @IBOutlet private var separator: UIView!
     @IBOutlet weak var roomImageView: UIImageView!
     
-    func set(model room: Chat.Room) {
+    func set(model room: Room) {
         
         nameLabel.text = room.roomName
-        timeLabel.text = (room.details?.updatedAt ?? Date()).toTimeAgoString()
-        lastMessageLabel.text = room.details?.lastMessage ?? ""
+//        timeLabel.text = (room.details?.updatedAt ?? Date()).toTimeAgoString()
+//        lastMessageLabel.text = room.details?.lastMessage ?? ""
 
 //            ImageRetreiver.imageForURLWithoutProgress(url: connection.user.bio.photos.avatar.url)
 //            .map { $0 ?? R.image.noPhoto() }

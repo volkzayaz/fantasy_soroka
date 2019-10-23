@@ -69,7 +69,7 @@ extension ConnectionViewModel {
         self.source.accept(source)
     }
     
-    func show(room: Chat.RoomRef) {
+    func show(room: RoomRef) {
         
         RoomManager.getRoom(id: room.id)
             .trackView(viewIndicator: indicator)

@@ -19,11 +19,11 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
     }
 
     let router: RoomDetailsRouter
-    let room: Chat.Room
+    let room: Room
     let page: BehaviorRelay<DetailsPage>
 
     init(router: RoomDetailsRouter,
-         room: Chat.Room,
+         room: Room,
          page: DetailsPage) {
         self.router = router
         self.room = room

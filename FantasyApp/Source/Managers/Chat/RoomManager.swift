@@ -12,24 +12,18 @@ import RxCocoa
 import Parse
 import ParseLiveQuery
 
-enum RoomManager {
-    enum ChatEvent {
-        case messageAdded(Chat.Message)
-        case messageRemoved(Chat.Message)
-        case messageUpdated(Chat.Message)
-    }
-}
+enum RoomManager {}
 
 extension RoomManager {
-    // MARK: - Messages
-    static func sendMessage(_ message: Chat.Message, to room: Chat.Room) -> Single<Void> {
+    
+    static func sendMessage(_ message: Room.Message, to room: Room) -> Single<Void> {
         return message.rxCreate().map { _ in }
     }
 
-    static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Single<[Chat.Message]> {
-        let query = PFQuery(className: Chat.Message.className)
-        query.whereKey("roomId", equalTo: roomId)
-        query.addAscendingOrder("createdAt")
+    static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Single<[Room.Message]> {
+        let query = Room.Message.query
+                        .whereKey("roomId", equalTo: roomId)
+                        .addAscendingOrder("createdAt")
         query.skip = offset
         query.limit = limit
 
@@ -37,25 +31,11 @@ extension RoomManager {
     }
 
     // MARK: - Rooms fetching
-    private static func getDetails(for rooms: [Chat.Room]) -> Single<[Chat.Room]> {
-        let query = PFQuery(className: Chat.RoomDetails.className)
-        query.whereKey("backendId", containedIn: rooms.map { $0.id })
-        return query.rx.fetchAll().map { (roomDetails: [Chat.RoomDetails]) in
-            let populatedRooms: [Chat.Room] = rooms.map { room in
-                var populatedRoom = room
-                populatedRoom.details = roomDetails.first(where: { $0.backendId == room.id })
-                return populatedRoom
-            }
-            return populatedRooms
-        }
-    }
-
-    // MARK: - Rooms fetching
-    private static func getNotificationSettings(for rooms: [Chat.Room]) -> Single<[Chat.Room]> {
+    private static func getNotificationSettings(for rooms: [Room]) -> Single<[Room]> {
         let query = PFQuery(className: RoomNotificationSettings.className)
         query.whereKey("roomId", containedIn: rooms.map { $0.id })
         return query.rx.fetchAll().map { (settings: [RoomNotificationSettings]) in
-            let populatedRooms: [Chat.Room] = rooms.map { room in
+            let populatedRooms: [Room] = rooms.map { room in
                 var populatedRoom = room
                 populatedRoom.notificationSettings = settings.first(where: { $0.roomId == room.id })
                 return populatedRoom
@@ -64,13 +44,9 @@ extension RoomManager {
         }
     }
 
-    static func getAllRooms() -> Single<[Chat.Room]> {
+    static func getAllRooms() -> Single<[Room]> {
         return RoomsResource().rx.request
-            .flatMap { rooms -> Single<[Chat.Room]> in
-                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
-                return getDetails(for: rooms)
-            }
-            .flatMap { rooms -> Single<[Chat.Room]> in
+            .flatMap { rooms -> Single<[Room]> in
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
                 return getNotificationSettings(for: rooms)
             }
@@ -79,70 +55,48 @@ extension RoomManager {
             })
     }
 
-    static func getRoom(id: String) -> Single<Chat.Room> {
+    static func getRoom(id: String) -> Single<Room> {
         
         if let room = appStateSlice.rooms.first(where: { $0.id == id }) {
             return .just(room)
         }
         
         return RoomResource(id: id).rx.request
-            .flatMap { room in
-                return getDetails(for: [room])
-            }
-            .map { $0.first! }
     }
 
     // MARK: - Room creation
-    static func createDraftRoom() -> Single<Chat.Room> {
-        let settings = Chat.RoomSettings(isClosedRoom: true,
+    static func createDraftRoom() -> Single<Room> {
+        let settings = Room.Settings(isClosedRoom: true,
                                          isHideCommonFantasies: false,
                                          isScreenShieldEnabled: false,
                                          sharedCollections: [])
         return CreateDraftRoomResource(settings: settings).rx.request
-            .asObservable()
-            .flatMapLatest { room -> Observable<Chat.Room> in
+            .flatMap { room -> Single<Room> in
                 Dispatcher.dispatch(action: AddRooms(rooms: [room]))
-                return createDraftRoomDetails(for: room).asObservable()
+                return createRoomNotificationSettings(for: room)
             }
-            .flatMapLatest { room -> Observable<Chat.Room> in
-                return createRoomNotificationSettings(for: room).asObservable()
+            .flatMap { room -> Single<Room> in
+                return inviteUser(nil, to: room.id)
             }
-            .flatMapLatest { room -> Observable<Chat.Room> in
-                return inviteUser(to: room.id).asObservable()
-            }.asSingle()
     }
 
-    static func createRoomWithUser(_ userId: String) -> Single<Chat.Room> {
-        let settings = Chat.RoomSettings(isClosedRoom: true,
+    static func createRoomWithUser(_ userId: String) -> Single<Room> {
+        let settings = Room.Settings(isClosedRoom: true,
                                          isHideCommonFantasies: false,
                                          isScreenShieldEnabled: false,
                                          sharedCollections: [])
         return CreateDraftRoomResource(settings: settings).rx.request
-            .asObservable()
-            .flatMapLatest { room -> Observable<Chat.Room> in
+            .flatMap { room in
                 Dispatcher.dispatch(action: AddRooms(rooms: [room]))
-                return createDraftRoomDetails(for: room).asObservable()
+                return inviteUser(userId, to: room.id)
             }
-            .flatMapLatest { room -> Observable<Chat.Room> in
-                return inviteUser(userId, to: room.id).asObservable()
-            }.asSingle()
     }
 
-    static func activateRoom(_ roomId: String) -> Single<Chat.Room> {
+    static func activateRoom(_ roomId: String) -> Single<Room> {
         return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
     }
 
-    // MARK: - Room Details (Parse)
-    private static func createDraftRoomDetails(for room: Chat.Room) -> Single<Chat.Room> {
-        let roomDetails = Chat.RoomDetails(objectId: nil,
-                                           backendId: room.id,
-                                           updatedAt: nil,
-                                           lastMessage: nil)
-                                           
-        return roomDetails.rxCreate().map { _ in return room }
-    }
-
-    private static func createRoomNotificationSettings(for room: Chat.Room) -> Single<Chat.Room> {
+    private static func createRoomNotificationSettings(for room: Room) -> Single<Room> {
         let roomSettings = RoomNotificationSettings(objectId: nil,
                                                    roomId: room.id,
                                                    newMessage: true,
@@ -153,66 +107,53 @@ extension RoomManager {
         }
     }
 
-    private static func updateLastMessage(_ message: Chat.Message, in room: Chat.Room) {
-        guard var details = room.details,
-            message.senderId == AuthenticationManager.currentUser()?.id else {
-                return
-        }
-
-        details.lastMessage = message.text
-
-        _ = details.rxSave().map { _ in }
-    }
-
     // MARK: - Invites
-    static func inviteUser(_ userId: String? = nil, to roomId: String) -> Single<Chat.Room> {
-        return InviteParticipantResource(roomId: roomId, userId: userId).rx.request.map { $0 }
+    static func inviteUser(_ userId: String? = nil, to roomId: String) -> Single<Room> {
+        return InviteParticipantResource(roomId: roomId, userId: userId).rx.request
     }
 
-    static func acceptInviteToRoom(_ invitationLink: String) -> Single<Chat.Room> {
+    static func acceptInviteToRoom(_ invitationLink: String) -> Single<Room> {
         return RoomByInvitationTokenResource(token: invitationLink).rx.request
             .asObservable()
-            .flatMapLatest { room -> Observable<Chat.Room> in
+            .flatMapLatest { room -> Observable<Room> in
                 return respondToInvite(in: room.id, status: .accepted).asObservable()
             }
             .asSingle()
     }
 
-    static func respondToInvite(in roomId: String, status: Chat.RoomParticipantStatus) -> Single<Chat.Room> {
+    static func respondToInvite(in roomId: String, status: Room.Participant.Status) -> Single<Room> {
         return RoomStatusResource(roomId: roomId, status: status).rx.request
     }
 
     // MARK: - Settings
-    static func updateRoomSettings(roomId: String, settings: Chat.RoomSettings) -> Single<Chat.Room> {
+    static func updateRoomSettings(roomId: String, settings: Room.Settings) -> Single<Room> {
         return UpdateRoomSettingsResource(roomId: roomId, settings: settings).rx.request
     }
 
-    // MARK: - Connect/disconnect
-    static func connectToRoom(_ room: Chat.Room) -> Observable<ChatEvent> {
+    ///Subscribe to new messages in room
+    static func subscribeTo(rooms: [Room]) -> Observable<(Room.Message, Room)> {
         
         return Observable.create { (subscriber) -> Disposable in
             
-            let query = PFQuery(className: Chat.Message.className)
+            let query = PFQuery(className: Room.Message.className)
             
             query.addDescendingOrder("updatedAt")
-            query.whereKey("roomId", equalTo: room.id)
+            query.whereKey("roomId", containedIn: rooms.map { $0.id })
 
             let subscription: Subscription<PFObject> = Client.shared.subscribe(query)
-            subscription.handleEvent { object, e in
-                var event: ChatEvent
-                switch e {
-                case .entered(let messageObject), .created(let messageObject):
-                    let message: Chat.Message = [messageObject].toCodable().first!
-                    event = .messageAdded(message)
-                    updateLastMessage(message, in: room)
-                case .deleted(let messageObject), .left(let messageObject):
-                    let message: Chat.Message = [messageObject].toCodable().first!
-                    event = .messageRemoved(message)
-                case .updated(let messageObject):
-                    let message: Chat.Message = [messageObject].toCodable().first!
-                    event = .messageUpdated(message)
+            
+            subscription.handleEvent { _, e in
+                
+                if case .created(let pfMessage) = e {
+                    
+                    let nativeMessage: Room.Message = pfMessage.toCodable()
+                    
+                    guard let room = rooms.first(where: { $0.id == nativeMessage.roomId }) else { return }
+                        
+                    subscriber.onNext( (nativeMessage, room) )
+                    
                 }
-                subscriber.onNext(event)
+                
             }
             
             subscription.handleError { (_, error) in

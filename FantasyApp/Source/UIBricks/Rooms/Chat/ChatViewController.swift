@@ -12,7 +12,7 @@ import ChattoAdditions
 import ScreenShieldKit
 
 class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteractionHandlerProtocol {
-    typealias ViewModelT = TextMessageViewModel<TextMessageModel<Chat.Message>>
+    typealias ViewModelT = TextMessageViewModel<TextMessageModel<Room.Message>>
     var viewModel: ChatViewModel!
 
     override func didMove(toParent parent: UIViewController?) {
@@ -29,8 +29,8 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
     }
 
     override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenterBuilder = MessagePresenterBuilder<TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>, ChatViewController>(
-            viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>(),
+        let textMessagePresenterBuilder = MessagePresenterBuilder<TextMessageViewModelDefaultBuilder<TextMessageModel<Room.Message>>, ChatViewController>(
+            viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Room.Message>>(),
             interactionHandler: nil /*passing self creates retain cycle*/
         )
 
@@ -41,13 +41,13 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
         ]
     }
 
-    func userDidTapOnFailIcon(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>, failIconView: UIView) {}
-    func userDidTapOnAvatar(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
-    func userDidTapOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
-    func userDidBeginLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
-    func userDidEndLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
-    func userDidSelectMessage(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
-    func userDidDeselectMessage(viewModel: TextMessageViewModel<TextMessageModel<Chat.Message>>) {}
+    func userDidTapOnFailIcon(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>, failIconView: UIView) {}
+    func userDidTapOnAvatar(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
+    func userDidTapOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
+    func userDidBeginLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
+    func userDidEndLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
+    func userDidSelectMessage(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
+    func userDidDeselectMessage(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
 }
 
 private extension ChatViewController {

@@ -16,13 +16,13 @@ import ChattoAdditions
 class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
     
     let router: ChatRouter
-    let room: Chat.Room
-    let messages = BehaviorRelay<[Chat.Message]>(value: [])
+    let room: Room
+    let messages = BehaviorRelay<[Room.Message]>(value: [])
     weak var delegate: ChatDataSourceDelegateProtocol?
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 
-    init(router: ChatRouter, room: Chat.Room) {
+    init(router: ChatRouter, room: Room) {
         self.router = router
         self.room = room
 
@@ -71,7 +71,7 @@ extension ChatViewModel {
     }
 
     func sendMessage(text: String) {
-        let message = Chat.Message(text: text,
+        let message = Room.Message(text: text,
                                    from: User.current!,
                                    in: room)
                                    
@@ -81,25 +81,23 @@ extension ChatViewModel {
     }
 
     func connect() {
-        RoomManager.connectToRoom(room).subscribe(onNext: { [weak self] event in
+        
+        RoomManager.subscribeTo(rooms: [room]).subscribe(onNext: { [weak self] (message, _) in
+            
             guard let self = self else { return }
-            var array: [Chat.Message] = self.messages.value
-            switch event {
-            case .messageAdded(let message):
-                array.append(message)
-            case .messageRemoved(let message):
-                array.removeAll { message.objectId == $0.objectId }
-            case .messageUpdated(let message):
-                if let index = array.firstIndex(where: { message.objectId == $0.objectId }) {
-                    array[index] = message
-                }
-            }
+            
+            var array: [Room.Message] = self.messages.value
+            array.append(message)
+            
             self.messages.accept(array)
+            
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
             }
+            
         }).disposed(by: bag)
+        
     }
 
     private func prepareChatItems() -> [ChatItemProtocol] {
@@ -118,5 +116,39 @@ extension ChatViewModel {
             }
         }
         return result
+    }
+}
+
+enum Chat {}
+// MARK: - Cells
+extension Chat {
+    enum CellType: String {
+        case text = "text-chat-message"
+        case emoji = "emoji-chat-message"
+        case timeSeparator = "time-separator"
+    }
+}
+
+// MARK: - Chatto
+extension Room.Message: MessageModelProtocol {
+    var isIncoming: Bool {
+        return senderId != User.current?.id
+    }
+
+    var date: Date {
+        return createdAt
+    }
+
+    var status: MessageStatus {
+        return .success
+    }
+
+    var type: ChatItemType {
+        return text.containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
+            Chat.CellType.text.rawValue
+    }
+
+    var uid: String {
+        return objectId ?? ""
     }
 }

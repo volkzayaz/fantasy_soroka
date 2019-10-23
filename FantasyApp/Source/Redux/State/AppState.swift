@@ -47,7 +47,7 @@ var appState: Driver<AppState> {
 
 struct AppState: Equatable {
     var currentUser: User?
-    var rooms: [Chat.Room] = []
+    var rooms: [Room] = []
     var fantasies: SwipeState
     
     struct SwipeState: Equatable {

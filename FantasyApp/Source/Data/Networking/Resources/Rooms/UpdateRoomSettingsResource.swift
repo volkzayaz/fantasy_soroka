@@ -11,14 +11,14 @@ import Moya
 
 struct UpdateRoomSettingsResource: AuthorizedAPIResource {
     private let roomId: String
-    private let settings: Chat.RoomSettings
+    private let settings: Room.Settings
 
-    init(roomId: String, settings: Chat.RoomSettings) {
+    init(roomId: String, settings: Room.Settings) {
         self.roomId = roomId
         self.settings = settings
     }
 
-    typealias responseType = Chat.Room
+    typealias responseType = Room
 
     var method: Moya.Method {
         return .put

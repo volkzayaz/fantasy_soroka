@@ -19,7 +19,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
             thumbnailURL: String,
             isAdmin: Bool,
             name: String,
-            status: Chat.RoomParticipantStatus?,
+            status: Room.Participant.Status?,
             identifier: String)
         case invite
 
@@ -35,7 +35,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 
     let router: RoomSettingsRouter
     let inviteLink = BehaviorRelay<String?>(value: nil)
-    let room: BehaviorRelay<Chat.Room>
+    let room: BehaviorRelay<Room>
     private let buo: BranchUniversalObject
     private let properties: BranchLinkProperties
     private let users = BehaviorRelay<[User]>(value: [User.current!])
@@ -60,7 +60,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         }
     }
 
-    init(router: RoomSettingsRouter, room: Chat.Room) {
+    init(router: RoomSettingsRouter, room: Room) {
         self.router = router
         self.room = BehaviorRelay(value: room)
         self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
@@ -114,7 +114,7 @@ extension RoomSettingsViewModel {
         }
     }
 
-    func securitySettingsViewModelFor(room: Chat.Room) -> RoomSettingsPremiumFeatureViewModel {
+    func securitySettingsViewModelFor(room: Room) -> RoomSettingsPremiumFeatureViewModel {
         let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
         let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
                         room.settings.isScreenShieldEnabled)]

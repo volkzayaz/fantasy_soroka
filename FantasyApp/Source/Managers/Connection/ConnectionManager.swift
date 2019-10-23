@@ -64,7 +64,7 @@ extension ConnectionManager {
                         return nil
                     }
                     
-                    let room: Chat.RoomRef
+                    let room: RoomRef
                     let connectType: Set<ConnectionRequestType>
                     switch connection {
                     case .incomming(let request, let draftRoom):

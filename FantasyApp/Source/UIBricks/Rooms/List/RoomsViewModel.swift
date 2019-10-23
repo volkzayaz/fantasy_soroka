@@ -13,7 +13,7 @@ import RxDataSources
 
 extension RoomsViewModel {
     
-    var dataSource: Driver<[AnimatableSectionModel<String, Chat.Room>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, Room>]> {
         return appState.changesOf { $0.rooms }
             .map { [AnimatableSectionModel(model: "", items: $0)] }
         
@@ -54,7 +54,7 @@ struct RoomsViewModel: MVVM_ViewModel {
 
 extension RoomsViewModel {
     
-    func roomTapped(_ room: Chat.Room) {
+    func roomTapped(_ room: Room) {
         router.roomTapped(room)
     }
 

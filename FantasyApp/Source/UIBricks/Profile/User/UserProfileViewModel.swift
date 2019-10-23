@@ -348,7 +348,7 @@ extension UserProfileViewModel {
             .subscribe()
     }
     
-    func present(roomRef: Chat.RoomRef) {
+    func present(roomRef: RoomRef) {
         
         RoomManager.getRoom(id: roomRef.id)
             .trackView(viewIndicator: indicator)
