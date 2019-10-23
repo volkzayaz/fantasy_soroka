@@ -31,7 +31,7 @@ target 'FantasyApp' do
     pod 'Branch'
     
     #ui
-    pod 'SnapKit', '~> 5.0'
+    pod 'SnapKit', '~> 4.2'
     pod 'Kingfisher', '~> 5.8'
     pod 'FMPhotoPicker', '~> 0.8'
     pod 'Koloda', '~> 5.0'
@@ -40,6 +40,7 @@ target 'FantasyApp' do
     pod 'iCarousel', '~> 1.8'
     pod 'KMPlaceholderTextView'
     pod 'MultiSlider', '~> 1.9.8'
+    pod 'SmoothPicker', '~> 1.1.3'
 end
 
 target 'FantasyAppTests' do

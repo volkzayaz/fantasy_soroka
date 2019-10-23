@@ -280,6 +280,8 @@
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
 		B739F8C6235EF5460043B02A /* SelectCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B739F8C5235EF5460043B02A /* SelectCityCell.swift */; };
 		B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */; };
+		B78074ED2360C4A70064CC17 /* SwitchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78074EC2360C4A70064CC17 /* SwitchableCell.swift */; };
+		B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */; };
 		B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C631234F92120017CE1A /* GradientBackgroundView.swift */; };
 		B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6342350D6C00017CE1A /* WelcomeRouter.swift */; };
 		B783C6382350D6C00017CE1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6352350D6C00017CE1A /* WelcomeViewController.swift */; };
@@ -289,8 +291,9 @@
 		B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */; };
 		B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */; };
 		B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6FA23521A11003A36BA /* TransparentTextField.swift */; };
+		B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BE954F2360B48E003432D4 /* SwipeView.swift */; };
+		B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BE95512360B4B3003432D4 /* SwipeView.xib */; };
 		B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */; };
-		B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */; };
 		B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */; };
 		B7FB55F7235EFDD000959018 /* AgeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB55F6235EFDD000959018 /* AgeSliderCell.swift */; };
 		B7FB55F9235EFE1700959018 /* SwipeableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB55F8235EFE1700959018 /* SwipeableCell.swift */; };
@@ -604,6 +607,8 @@
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
 		B739F8C5235EF5460043B02A /* SelectCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityCell.swift; sourceTree = "<group>"; };
 		B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		B78074EC2360C4A70064CC17 /* SwitchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchableCell.swift; sourceTree = "<group>"; };
+		B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRestrictionViewConrtoller.swift; sourceTree = "<group>"; };
 		B783C631234F92120017CE1A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		B783C6342350D6C00017CE1A /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
 		B783C6352350D6C00017CE1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -613,8 +618,9 @@
 		B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		B78BE6FA23521A11003A36BA /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
+		B7BE954F2360B48E003432D4 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		B7BE95512360B4B3003432D4 /* SwipeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeView.xib; sourceTree = "<group>"; };
 		B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGradientView.swift; sourceTree = "<group>"; };
-		B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBackgroundView.swift; sourceTree = "<group>"; };
 		B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCameraViewController.swift; sourceTree = "<group>"; };
 		B7FB55F6235EFDD000959018 /* AgeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSliderCell.swift; sourceTree = "<group>"; };
 		B7FB55F8235EFE1700959018 /* SwipeableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCell.swift; sourceTree = "<group>"; };
@@ -1125,6 +1131,7 @@
 		734C52982326A66100B54510 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				B7BE954E2360B422003432D4 /* UIComponents */,
 				B739F8C4235EF51C0043B02A /* Cell */,
 				734C52992326A6FD00B54510 /* DiscoveryFilterRouter.swift */,
 				734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */,
@@ -1483,6 +1490,7 @@
 		73E6010922E9C11500F767BF /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				B78074EE2360CE860064CC17 /* AgeRestriction */,
 				B7F84596235C93E700CC2A62 /* Camera */,
 				B78BE6F32351D392003A36BA /* ForgotPassword */,
 				73E6011322EC3A1E00F767BF /* Login */,
@@ -1599,7 +1607,6 @@
 				842A1A0023553BE400D0FE5A /* FantasyNavigationController.swift */,
 				B78BE6FA23521A11003A36BA /* TransparentTextField.swift */,
 				B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */,
-				B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */,
 				B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */,
 				B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */,
 			);
@@ -1918,11 +1925,20 @@
 		B739F8C4235EF51C0043B02A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				B739F8C5235EF5460043B02A /* SelectCityCell.swift */,
 				B7FB55F6235EFDD000959018 /* AgeSliderCell.swift */,
+				B739F8C5235EF5460043B02A /* SelectCityCell.swift */,
 				B7FB55F8235EFE1700959018 /* SwipeableCell.swift */,
+				B78074EC2360C4A70064CC17 /* SwitchableCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B78074EE2360CE860064CC17 /* AgeRestriction */ = {
+			isa = PBXGroup;
+			children = (
+				B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */,
+			);
+			path = AgeRestriction;
 			sourceTree = "<group>";
 		};
 		B783C6332350D6A60017CE1A /* Welcome */ = {
@@ -1943,6 +1959,15 @@
 				B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		B7BE954E2360B422003432D4 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B7BE954F2360B48E003432D4 /* SwipeView.swift */,
+				B7BE95512360B4B3003432D4 /* SwipeView.xib */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		B7F84596235C93E700CC2A62 /* Camera */ = {
@@ -2057,6 +2082,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */,
 				843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */,
 				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				7312B0D222D74FB200DB0F36 /* Appfile in Resources */,
@@ -2323,7 +2349,6 @@
 				843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				843B648D234F196E00E5639B /* RoomSettingsRouter.swift in Sources */,
-				B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
 				843B648D234F196E00E5639B /* RoomSettingsRouter.swift in Sources */,
@@ -2331,6 +2356,7 @@
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
 				73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */,
 				7379ED19230D3C5000E661A7 /* FantasyCollectionRouter.swift in Sources */,
+				B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */,
 				7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */,
 				84B8AD0222DCCC650026862E /* APIResource.swift in Sources */,
 				739F7993230952A70045FCD7 /* FantasySearchViewModel.swift in Sources */,
@@ -2377,6 +2403,7 @@
 				73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
 				73E6012B22EC5CFE00F767BF /* User.swift in Sources */,
+				B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */,
 				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
@@ -2470,6 +2497,7 @@
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,
 				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
+				B78074ED2360C4A70064CC17 /* SwitchableCell.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
 				B719B3E8235CF21000568D97 /* FantasyImagePicker.swift in Sources */,
 				73EBBA70234E046100B79121 /* PushManager.swift in Sources */,

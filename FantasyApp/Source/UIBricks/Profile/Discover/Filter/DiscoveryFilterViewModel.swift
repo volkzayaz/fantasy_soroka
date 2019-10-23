@@ -10,13 +10,76 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 extension DiscoveryFilterViewModel {
     
     var prefs: SearchPreferences {
         return form.value
     }
-    
+
+    var sections: Driver<[(String, [Row])]> {
+
+        var res = [("Teleport", [
+            Row.city("Madrid")
+        ])]
+
+        let genders = Gender.allCases.map { $0.rawValue }
+        let sexuality = Sexuality.allCases.map { $0.rawValue }
+
+        let partnerSection: (String, [Row]) = ("Partner", [
+            .partnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue),
+
+            .partnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue),
+            .age(from: 18, to: 81)
+        ])
+
+        let coupleSection: (String, [Row]) = ("Is couple?", [
+            .couple(false)
+        ])
+
+        let secondPartnerSection: (String, [Row]) = ("Second Partner", [
+            .secondPartnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue),
+
+            .secondPartnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue)
+        ])
+
+        res.append(partnerSection)
+        res.append(coupleSection)
+        res.append(secondPartnerSection)
+
+        return Driver.just(res)
+    }
+
+    enum Row: IdentifiableType, Equatable {
+        case city(String)
+        case partnerBody(title: String, description: String, list: [String], selected: String)
+        case partnerSexuality(title: String, description: String, list: [String], selected: String)
+        case age(from: Int, to: Int)
+        case couple(Bool)
+        case secondPartnerBody(title: String, description: String, list: [String], selected: String)
+        case secondPartnerSexuality(title: String, description: String, list: [String], selected: String)
+
+        var identity: String {
+            switch self {
+            case .city(let x):
+                return "city \(x)"
+            case .partnerBody(let x, let y, let list, let selected):
+                return "partnerBody \(x)"
+            case .partnerSexuality(let x, let y, let list, let selected):
+                return "bio \(y)"
+            case .age(let x, let y):
+                return "age \(x)"
+            case .couple(let q):
+                return "couple \(q)"
+            case .secondPartnerBody(let x, let y, let list, let selected):
+                return "secondPartnerBody \(x)"
+            case .secondPartnerSexuality(let x, let y, let list, let selected):
+                return "secondPartnerSexuality \(x)"
+
+            }
+        }
+    }
 }
 
 struct DiscoveryFilterViewModel : MVVM_ViewModel {
@@ -63,7 +126,11 @@ extension DiscoveryFilterViewModel {
     func openTeleport() {
         router.openTeleport()
     }
-    
+
+    func cancel() {
+        router.cancel()
+    }
+
     func submit() {
         
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))

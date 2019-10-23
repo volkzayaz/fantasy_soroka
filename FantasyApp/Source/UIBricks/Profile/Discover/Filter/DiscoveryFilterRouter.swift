@@ -22,5 +22,8 @@ struct DiscoveryFilterRouter : MVVM_Router {
         owner.navigationController?.pushViewController(x, animated: true)
         
     }
-    
+
+    func cancel() {
+        owner.navigationController?.dismiss(animated: true, completion: nil)
+    }
 }

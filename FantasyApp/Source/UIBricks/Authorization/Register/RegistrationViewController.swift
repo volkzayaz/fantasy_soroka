@@ -18,7 +18,11 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var stepForwardButton: UIButton!
 
     // Notice section
-    @IBOutlet private weak var agrementBackgroundRoundedView: UIView!
+    @IBOutlet private weak var agrementBackgroundRoundedView: UIView! {
+        didSet {
+            agrementBackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
     @IBOutlet private weak var agrementTextView: UITextView!
     @IBOutlet private weak var agrementLabel: UILabel! {
         didSet {

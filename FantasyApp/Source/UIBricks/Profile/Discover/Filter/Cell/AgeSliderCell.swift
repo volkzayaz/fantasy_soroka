@@ -7,18 +7,49 @@
 //
 
 import UIKit
+import MultiSlider
 
 class AgeSliderCell: UITableViewCell {
 
+    @IBOutlet weak var cellNameLabel: UILabel! {
+        didSet {
+            cellNameLabel.font = UIFont.regularFont(ofSize: 15)
+            cellNameLabel.textColor = R.color.textBlackColor()
+            cellNameLabel.text = "Age"
+        }
+    }
+
+    @IBOutlet weak var multiSlider: MultiSlider! {
+        didSet {
+            multiSlider.minimumValue = 18.0
+            multiSlider.maximumValue = 100.0
+            multiSlider.orientation = .horizontal
+            multiSlider.valueLabelPosition = .bottom
+            multiSlider.snapStepSize = 1.0
+
+            multiSlider.outerTrackColor = .gray
+            multiSlider.value = [30, 31]
+            multiSlider.tintColor = .purple
+            multiSlider.trackWidth = 11
+            multiSlider.showsThumbImageShadow = false
+            multiSlider.keepsDistanceBetweenThumbs = true
+
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//MARK:- Public
 
-        // Configure the view for the selected state
+extension AgeSliderCell {
+
+    public func setData(minValue: Int, maxValue: Int) {
+        multiSlider.value = [
+            CGFloat(minValue),
+            CGFloat(maxValue)
+        ]
     }
-
 }

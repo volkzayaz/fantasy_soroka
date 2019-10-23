@@ -9,6 +9,7 @@
 import Foundation
 
 extension UIView {
+
     func addFantasyGradient() {
         let gradientLayer = CAGradientLayer()
         
@@ -18,5 +19,24 @@ extension UIView {
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
         layer.insertSublayer(gradientLayer, at: 0)
     }
-    
+
+    func addFantasyTripleGradient() {
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+
+        let color1 = UIColor(named: "bgGradient1")!
+        let color2 = UIColor(named: "bgGradient2")!
+        let color3 = UIColor(named: "bgGradient3")!
+
+        gradientLayer.colors = [color1.cgColor, color2.cgColor, color3.cgColor]
+
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+
+    func addFantasyRoundedCorners() {
+        clipsToBounds = true
+        layer.cornerRadius = 20
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
 }
