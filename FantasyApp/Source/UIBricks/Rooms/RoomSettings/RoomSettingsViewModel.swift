@@ -48,7 +48,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
                     thumbnailURL: user.bio.photos.avatar.thumbnailURL,
                     isAdmin: self.room.value.ownerId == user.id,
                     name: user.bio.name,
-                    status: self.room.value.participants.first(where: { $0.userId == user.id })?.status,
+                    status: self.room.value.participants.first(where: { $0.userSlice.id == user.id })?.status,
                     identifier: user.id
                 )
             }
@@ -76,7 +76,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 
     private func generateInviteLink() {
         guard let invitationLink = room.value.participants
-            .first(where: { $0.userId != User.current?.id })?
+            .first(where: { $0.userSlice.id != User.current?.id })?
             .invitationLink else {
             return
         }
@@ -93,7 +93,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     }
 
     private func loadParticipants() {
-        Single.zip(room.value.participants.compactMap { $0.userId }.map { UserManager.getUser(id: $0) })
+        Single.zip(room.value.participants.compactMap { $0.userSlice.id }.map { UserManager.getUser(id: $0) })
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { users in

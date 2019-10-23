@@ -15,19 +15,23 @@ class RoomsActor {
     var query: PFQuery<PFObject>?
 
     init() {
+        
         appState.changesOf { $0.currentUser?.id }
             .drive(onNext: { [weak self] user in
             if user != nil {
                 self?.acceptRoomInviteIfNeeded()
             }
         }).disposed(by: bag)
+        
     }
 
     private func acceptRoomInviteIfNeeded() {
+        
         guard let sessionParams = Branch.getInstance()?.getLatestReferringParams() as? [String: AnyObject],
             let invitationLink = sessionParams["invitationLink"] as? String else {
                 return
         }
+        
         RoomManager.acceptInviteToRoom(invitationLink).subscribe({ [weak self] room in
             guard let self = self else { return }
 

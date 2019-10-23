@@ -16,16 +16,18 @@ class RoomTableViewCell: UITableViewCell {
     @IBOutlet private var separator: UIView!
     @IBOutlet weak var roomImageView: UIImageView!
     
-    func set(model room: Room) {
+    func set(model: RoomsViewModel.RoomCell) {
         
-        nameLabel.text = room.roomName
-//        timeLabel.text = (room.details?.updatedAt ?? Date()).toTimeAgoString()
-//        lastMessageLabel.text = room.details?.lastMessage ?? ""
-
-//            ImageRetreiver.imageForURLWithoutProgress(url: connection.user.bio.photos.avatar.url)
-//            .map { $0 ?? R.image.noPhoto() }
-//            .drive(avatarImageView.rx.image)
-//            .disposed(by: bag)
+        let participant: Room.Participant = model.room.participants.first!
+        
+        nameLabel.text = participant.userSlice.name
+        timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
+        lastMessageLabel.text = model.lastMessage?.text ?? "new room"
+        
+        ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
+            .map { $0 ?? R.image.noPhoto() }
+            .drive(roomImageView.rx.image)
+            .disposed(by: disposeBag)
         
     }
     

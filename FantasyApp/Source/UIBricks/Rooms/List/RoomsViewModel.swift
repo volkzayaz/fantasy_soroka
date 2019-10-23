@@ -13,10 +13,36 @@ import RxDataSources
 
 extension RoomsViewModel {
     
-    var dataSource: Driver<[AnimatableSectionModel<String, Room>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, RoomCell>]> {
         return appState.changesOf { $0.rooms }
-            .map { [AnimatableSectionModel(model: "", items: $0)] }
+            .flatMapLatest { rooms -> Driver<[RoomCell]> in
+                
+                return RoomManager.latestMessageIn(rooms: rooms)
+                    .asDriver(onErrorJustReturn: [:])
+                    .map { messages in
+                        messages.map {
+                        RoomCell(room: $0.key, lastMessage: $0.value) }
+                    }
+                
+            }
+            .map { cells in
+                
+                let freezed = Dictionary(grouping: cells, by: { $0.room.freezeStatus == .frozen })
+                
+                return [
+                    AnimatableSectionModel(model: "Non Freezed rooms", items: freezed[false]!),
+                    AnimatableSectionModel(model: "Freezed rooms", items: freezed[true]!)
+                ]
+            }
+    }
+    
+    struct RoomCell: IdentifiableType, Equatable {
+        let room: Room
+        let lastMessage: Room.Message?
         
+        var identity: String {
+            return room.id
+        }
     }
 }
 
@@ -24,23 +50,22 @@ struct RoomsViewModel: MVVM_ViewModel {
     
     init(router: RoomsRouter) {
         self.router = router
-//
-//        source = AppState.rooms
-//
-//        wipeReloadTriger = first + pull to refresh + marker on complex logic changed
-//
-        
-        ////dependency on allRooms with subscription to newMessage event, that updates UI
-        ///1. kill parse RoomDetails
-        ///2. Kill RoomActor's subscription
-        ///3. Create subscription on multiple rooms with propagating event (Message, Room)
-        
-        
-        RoomManager.getAllRooms()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { _ in })
+
+        appState.changesOf { $0.reloadRoomsTriggerBecauseOfComplexFreezeLogic }
+            .filter { $0 }
+            .asObservable()
+            .flatMapFirst { [unowned i = indicator] _ -> Observable<[Room]> in
+                return RoomManager.getAllRooms()
+                    .asObservable()
+                    .trackView(viewIndicator: i)
+                    .silentCatch(handler: router.owner)
+            }
+            .subscribe(onNext: { (rooms: [Room]) in
+                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
+            })
             .disposed(by: bag)
+        
+        Dispatcher.dispatch(action: TriggerRoomsRefresh())
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -54,8 +79,13 @@ struct RoomsViewModel: MVVM_ViewModel {
 
 extension RoomsViewModel {
     
-    func roomTapped(_ room: Room) {
-        router.roomTapped(room)
+    func roomTapped(roomCell: RoomCell) {
+        
+        guard roomCell.room.freezeStatus != .frozen else {
+            return router.messagePresentable.presentMessage("This room is currently frozen, you can't use it at the moment. Upgrade to premium")
+        }
+        
+        router.roomTapped(roomCell.room)
     }
 
     func createRoom() {
@@ -69,4 +99,9 @@ extension RoomsViewModel {
             .disposed(by: bag)
         
     }
+    
+    func refreshRooms() {
+        Dispatcher.dispatch(action: TriggerRoomsRefresh())
+    }
+    
 }

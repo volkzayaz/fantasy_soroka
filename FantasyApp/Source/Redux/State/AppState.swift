@@ -47,7 +47,10 @@ var appState: Driver<AppState> {
 
 struct AppState: Equatable {
     var currentUser: User?
+    
     var rooms: [Room] = []
+    var reloadRoomsTriggerBecauseOfComplexFreezeLogic = false
+    
     var fantasies: SwipeState
     
     struct SwipeState: Equatable {

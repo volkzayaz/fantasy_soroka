@@ -30,3 +30,31 @@ struct RoomResource: AuthorizedAPIResource {
         return .requestPlain
     }
 }
+
+struct DeletedRoomResource: AuthorizedAPIResource {
+    private let id: String
+
+    init(id: String) {
+        self.id = id
+    }
+
+    typealias responseType = Room
+
+    var method: Moya.Method {
+        return .get
+    }
+
+    var path: String {
+        return "/users/me/rooms/deleted"
+    }
+    
+    struct DeletedRoom {
+        let roomId: String
+    }
+
+    var task: Task {
+        return .requestPlain
+    }
+}
+
+

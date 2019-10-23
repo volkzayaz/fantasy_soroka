@@ -8,6 +8,7 @@
 
 import UIKit
 import Branch
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -68,7 +68,7 @@ struct RoomRef: Equatable {
     let id: String
 }
 
-struct Room: Codable, Equatable, IdentifiableType {
+struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     let id: String
     let ownerId: String
@@ -77,9 +77,7 @@ struct Room: Codable, Equatable, IdentifiableType {
     
     let status = Status.draft
     
-    var roomName: String { return "hello" }
-    
-    var freezeStatus: FreezeStatus?
+    let freezeStatus: FreezeStatus
     var participants = [Participant]()
 
     // property are set during runtime
@@ -87,6 +85,10 @@ struct Room: Codable, Equatable, IdentifiableType {
     
     var identity: String {
         return id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
 }
@@ -108,13 +110,34 @@ extension Room {
 
     struct Participant: Codable, Equatable, IdentifiableType {
         var identity: String {
-            return _id!
+            return  userId ?? invitationLink ?? ""
         }
-
-        var _id: String!
-        var userId: String?
+        
         var status = Status.accepted
-        var invitationLink: String?
+        
+        private let _id: String
+        private let userId: String?
+        private let userName: String?
+        private let avatarThumbnail: String?
+        let invitationLink: String?
+        
+        var userSlice: UserSlice {
+            
+            guard let userId = userId, let userName = userName, let avatarThumbnail = avatarThumbnail else {
+                fatalErrorInDebug("This Participant is not a valid user. Details \(self)")
+                return .init(id: "-1", name: "", avatarURL: "")
+            }
+
+            return .init(id: userId, name: userName, avatarURL: avatarThumbnail)
+            
+        }
+        
+        struct UserSlice {
+            let id: String
+            let name: String
+            let avatarURL: String
+        }
+        
         
         enum Status: String, Codable, Equatable {
             case invited

@@ -103,10 +103,10 @@ extension UserProfileViewModel {
                 }
                 
                 switch connection {
-                case .absent, .iRejected, .iWasRejected, .sameUser, .outgoing(_):
+                case .absent, .iRejected, .iWasRejected, .sameUser, .incomming(_):
                     return true
                     
-                case .incomming(_), .mutual(_):
+                case .outgoing(_), .mutual(_):
                     return false
                 }
                 

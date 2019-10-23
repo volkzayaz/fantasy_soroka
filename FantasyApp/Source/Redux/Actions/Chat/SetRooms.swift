@@ -15,6 +15,17 @@ struct SetRooms: Action {
     func perform(initialState: AppState) -> AppState {
         var state = initialState
         state.rooms = rooms
+        state.reloadRoomsTriggerBecauseOfComplexFreezeLogic = false
         return state
     }
+}
+
+struct TriggerRoomsRefresh: Action {
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        state.reloadRoomsTriggerBecauseOfComplexFreezeLogic = true
+        return state
+    }
+    
 }
