@@ -71,7 +71,6 @@ extension RoomManager {
                                          sharedCollections: [])
         return CreateDraftRoomResource(settings: settings).rx.request
             .flatMap { room -> Single<Room> in
-                Dispatcher.dispatch(action: AddRooms(rooms: [room]))
                 
                 let roomSettings = RoomNotificationSettings(objectId: nil,
                                                            roomId: room.id,

@@ -116,7 +116,7 @@ extension Room {
         var status = Status.accepted
         
         private let _id: String
-        private let userId: String?
+        let userId: String?
         private let userName: String?
         private let avatarThumbnail: String?
         let invitationLink: String?
