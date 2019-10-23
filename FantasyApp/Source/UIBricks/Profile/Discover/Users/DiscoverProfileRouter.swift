@@ -28,7 +28,12 @@ struct DiscoverProfileRouter : MVVM_Router {
         
         let x = R.storyboard.user.discoveryFilterViewController()!
         x.viewModel = .init(router: .init(owner: x))
-        owner.navigationController?.pushViewController(x, animated: true)
+
+        let nav = FantasyNavigationController(rootViewController: x)
+        nav.modalPresentationStyle = .fullScreen
+
+        owner.present(nav, animated: true, completion: nil)
+//        owner.navigationController?.pushViewController(x, animated: true)
         
     }
     

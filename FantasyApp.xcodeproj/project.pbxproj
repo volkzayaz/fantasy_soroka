@@ -278,6 +278,7 @@
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
+		B739F8C6235EF5460043B02A /* SelectCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B739F8C5235EF5460043B02A /* SelectCityCell.swift */; };
 		B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */; };
 		B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C631234F92120017CE1A /* GradientBackgroundView.swift */; };
 		B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6342350D6C00017CE1A /* WelcomeRouter.swift */; };
@@ -291,6 +292,8 @@
 		B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */; };
 		B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */; };
 		B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */; };
+		B7FB55F7235EFDD000959018 /* AgeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB55F6235EFDD000959018 /* AgeSliderCell.swift */; };
+		B7FB55F9235EFE1700959018 /* SwipeableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB55F8235EFE1700959018 /* SwipeableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -599,6 +602,7 @@
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePicker.swift; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
+		B739F8C5235EF5460043B02A /* SelectCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityCell.swift; sourceTree = "<group>"; };
 		B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		B783C631234F92120017CE1A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		B783C6342350D6C00017CE1A /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
@@ -612,6 +616,8 @@
 		B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGradientView.swift; sourceTree = "<group>"; };
 		B7EA8CA523538A4B00BE149E /* RoundedBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBackgroundView.swift; sourceTree = "<group>"; };
 		B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCameraViewController.swift; sourceTree = "<group>"; };
+		B7FB55F6235EFDD000959018 /* AgeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSliderCell.swift; sourceTree = "<group>"; };
+		B7FB55F8235EFE1700959018 /* SwipeableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -920,12 +926,12 @@
 		7312B0AF22D744DF00DB0F36 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				73097C04231D3D8200B71053 /* User.storyboard */,
 				84C1D0602327D5A800648DE1 /* Chat.storyboard */,
 				7312B06322D7403300DB0F36 /* LaunchScreen.storyboard */,
 				7312B06522D7403300DB0F36 /* Main.storyboard */,
 				73E6012122EC3A9600F767BF /* Authorization.storyboard */,
 				7322310B23040D79009DD37F /* FantasyCard.storyboard */,
-				73097C04231D3D8200B71053 /* User.storyboard */,
 				73C96F162340A421002C3F8E /* UserGateway.storyboard */,
 			);
 			path = Storyboards;
@@ -1119,6 +1125,7 @@
 		734C52982326A66100B54510 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				B739F8C4235EF51C0043B02A /* Cell */,
 				734C52992326A6FD00B54510 /* DiscoveryFilterRouter.swift */,
 				734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */,
 				734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */,
@@ -1908,6 +1915,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B739F8C4235EF51C0043B02A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B739F8C5235EF5460043B02A /* SelectCityCell.swift */,
+				B7FB55F6235EFDD000959018 /* AgeSliderCell.swift */,
+				B7FB55F8235EFE1700959018 /* SwipeableCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B783C6332350D6A60017CE1A /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -2266,6 +2283,7 @@
 				84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
+				B739F8C6235EF5460043B02A /* SelectCityCell.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
@@ -2322,6 +2340,7 @@
 				73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
+				B7FB55F9235EFE1700959018 /* SwipeableCell.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
@@ -2398,6 +2417,7 @@
 				842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */,
 				B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
+				B7FB55F7235EFDD000959018 /* AgeSliderCell.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
 				734C70C523214C7E00ED2E91 /* UserProfilePhotoCell.swift in Sources */,
