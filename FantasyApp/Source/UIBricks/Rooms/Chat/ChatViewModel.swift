@@ -126,6 +126,7 @@ extension Chat {
         case text = "text-chat-message"
         case emoji = "emoji-chat-message"
         case timeSeparator = "time-separator"
+        case acceptReject = "accept-reject"
     }
 }
 

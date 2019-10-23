@@ -30,8 +30,8 @@ extension RoomsViewModel {
                 let freezed = Dictionary(grouping: cells, by: { $0.room.freezeStatus == .frozen })
                 
                 return [
-                    AnimatableSectionModel(model: "Non Freezed rooms", items: freezed[false]!),
-                    AnimatableSectionModel(model: "Freezed rooms", items: freezed[true]!)
+                    AnimatableSectionModel(model: "Non Freezed rooms", items: freezed[false] ?? []),
+                    AnimatableSectionModel(model: "Freezed rooms", items: freezed[true] ?? [])
                 ]
             }
     }
