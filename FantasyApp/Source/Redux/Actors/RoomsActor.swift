@@ -68,7 +68,7 @@ class RoomsActor {
             let invitationLink = sessionParams["invitationLink"] as? String else {
                 return
         }
-        ChatManager.acceptInviteToRoom(invitationLink).subscribe({ [weak self] room in
+        RoomManager.acceptInviteToRoom(invitationLink).subscribe({ [weak self] room in
             guard let self = self else { return }
 
         }).disposed(by: bag)

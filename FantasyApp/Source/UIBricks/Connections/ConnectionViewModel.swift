@@ -71,7 +71,7 @@ extension ConnectionViewModel {
     
     func show(room: Chat.RoomRef) {
         
-        ChatManager.getRoom(id: room.id)
+        RoomManager.getRoom(id: room.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: self.router.show )

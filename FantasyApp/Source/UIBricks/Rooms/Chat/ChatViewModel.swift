@@ -56,7 +56,7 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
 extension ChatViewModel {
     
     func loadMessages() {
-        ChatManager.getMessagesInRoom(room.id, offset: messages.value.count)
+        RoomManager.getMessagesInRoom(room.id, offset: messages.value.count)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak self] messages in
@@ -75,13 +75,13 @@ extension ChatViewModel {
                                    from: User.current!,
                                    in: room)
                                    
-        ChatManager.sendMessage(message, to: room).subscribe({ event in
+        RoomManager.sendMessage(message, to: room).subscribe({ event in
             // TODO: error handling
         }).disposed(by: bag)
     }
 
     func connect() {
-        ChatManager.connectToRoom(room).subscribe(onNext: { [weak self] event in
+        RoomManager.connectToRoom(room).subscribe(onNext: { [weak self] event in
             guard let self = self else { return }
             var array: [Chat.Message] = self.messages.value
             switch event {
@@ -102,16 +102,12 @@ extension ChatViewModel {
         }).disposed(by: bag)
     }
 
-    func disconnect() {
-        ChatManager.disconnectFromRoom(room.id )
-    }
-
     private func prepareChatItems() -> [ChatItemProtocol] {
         var dateToCompare = Date()
         var adjustment = 0
         let array = messages.value
         // build message cell models
-        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text ?? "") }
+        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text) }
         // build time separator cell models
         array.enumerated().forEach { index, message in
             if index == 0 || message.createdAt.compare(with: dateToCompare, by: .day) != 0 {

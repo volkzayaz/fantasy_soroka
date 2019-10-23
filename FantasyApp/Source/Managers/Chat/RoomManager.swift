@@ -1,5 +1,5 @@
 //
-//  ChatManager.swift
+//  RoomManager.swift
 //  FantasyApp
 //
 //  Created by Borys Vynohradov on 10.09.2019.
@@ -12,16 +12,15 @@ import RxCocoa
 import Parse
 import ParseLiveQuery
 
-enum ChatManager {
+enum RoomManager {
     enum ChatEvent {
         case messageAdded(Chat.Message)
         case messageRemoved(Chat.Message)
         case messageUpdated(Chat.Message)
     }
-    private static var messagesQuery: PFQuery<PFObject> = PFQuery(className: Chat.Message.className)
 }
 
-extension ChatManager {
+extension RoomManager {
     // MARK: - Messages
     static func sendMessage(_ message: Chat.Message, to room: Chat.Room) -> Single<Void> {
         return message.rxCreate().map { _ in }
@@ -190,11 +189,15 @@ extension ChatManager {
 
     // MARK: - Connect/disconnect
     static func connectToRoom(_ room: Chat.Room) -> Observable<ChatEvent> {
+        
         return Observable.create { (subscriber) -> Disposable in
-            messagesQuery.addDescendingOrder("updatedAt")
-            messagesQuery.whereKey("roomId", equalTo: room.id)
+            
+            let query = PFQuery(className: Chat.Message.className)
+            
+            query.addDescendingOrder("updatedAt")
+            query.whereKey("roomId", equalTo: room.id)
 
-            let subscription: Subscription<PFObject> = Client.shared.subscribe(messagesQuery)
+            let subscription: Subscription<PFObject> = Client.shared.subscribe(query)
             subscription.handleEvent { object, e in
                 var event: ChatEvent
                 switch e {
@@ -211,15 +214,15 @@ extension ChatManager {
                 }
                 subscriber.onNext(event)
             }
+            
+            subscription.handleError { (_, error) in
+                subscriber.onError(error)
+            }
 
-            return Disposables.create()
+            return Disposables.create {
+                Client.shared.unsubscribe(query)
+            }
         }
     }
 
-    static func disconnectFromRoom(_ roomId: String) {
-        messagesQuery.addDescendingOrder("updatedAt")
-        messagesQuery.whereKey("roomId", equalTo: roomId)
-
-        Client.shared.unsubscribe(messagesQuery)
-    }
 }

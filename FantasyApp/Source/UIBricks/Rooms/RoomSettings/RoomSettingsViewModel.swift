@@ -132,7 +132,7 @@ extension RoomSettingsViewModel {
         
         roomSettings.isScreenShieldEnabled = isScreenShieldEnabled
         
-        ChatManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
+        RoomManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { updatedRoom in

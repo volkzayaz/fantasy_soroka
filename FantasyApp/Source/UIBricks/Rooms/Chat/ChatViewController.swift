@@ -20,10 +20,6 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
         configure()
     }
 
-    deinit {
-        viewModel.disconnect()
-    }
-
     override func createChatInputView() -> UIView {
         let chatInputView = ChatInputView(frame: .zero)
         chatInputView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,9 +29,9 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
     }
 
     override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenterBuilder = MessagePresenterBuilder(
+        let textMessagePresenterBuilder = MessagePresenterBuilder<TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>, ChatViewController>(
             viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Chat.Message>>(),
-            interactionHandler: self
+            interactionHandler: nil /*passing self creates retain cycle*/
         )
 
         return [
@@ -55,7 +51,7 @@ class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteract
 }
 
 private extension ChatViewController {
-    func configure() {
+    func configure() { 
         // TODO: uncomment this condition when ScreenShield testing is finished
         //if viewModel.room.settings?.isScreenShieldEnabled == true {
             setupScreenCaptureProtection()
@@ -68,7 +64,7 @@ private extension ChatViewController {
         guard let superview = view.superview else {
             return
         }
-        
+
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: superview.topAnchor),

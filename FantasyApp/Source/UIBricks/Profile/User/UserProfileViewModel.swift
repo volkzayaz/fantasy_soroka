@@ -350,7 +350,7 @@ extension UserProfileViewModel {
     
     func present(roomRef: Chat.RoomRef) {
         
-        ChatManager.getRoom(id: roomRef.id)
+        RoomManager.getRoom(id: roomRef.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: self.router.present )

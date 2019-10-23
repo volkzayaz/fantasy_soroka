@@ -36,7 +36,7 @@ struct RoomsViewModel: MVVM_ViewModel {
         ///3. Create subscription on multiple rooms with propagating event (Message, Room)
         
         
-        ChatManager.getAllRooms()
+        RoomManager.getAllRooms()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { _ in })
@@ -60,7 +60,7 @@ extension RoomsViewModel {
 
     func createRoom() {
         
-        ChatManager.createDraftRoom()
+        RoomManager.createDraftRoom()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { room in
