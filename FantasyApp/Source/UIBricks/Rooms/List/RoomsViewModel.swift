@@ -12,38 +12,36 @@ import RxCocoa
 import RxDataSources
 
 extension RoomsViewModel {
-    struct CellModel: IdentifiableType, Equatable {
-        let companionName: String
-        let updatedAt: String
-        let lastMessage: String
-        let identifier: String
-
-        var identity: String {
-            return identifier
-        }
-    }
-
-    var dataSource: Driver<[AnimatableSectionModel<String, RoomsViewModel.CellModel>]> {
-        return rooms.map { rooms in
-            let models: [CellModel] = rooms?.filter { $0.status == .created }.map { room in
-                return CellModel(companionName: room.roomName ?? "",
-                                 updatedAt: (room.details?.updatedAt ?? Date()).toTimeAgoString(),
-                                 lastMessage: room.details?.lastMessage ?? "",
-                                 identifier: room.id)
-            } ?? []
-            return [AnimatableSectionModel(model: "", items: models)]
-        }
+    
+    var dataSource: Driver<[AnimatableSectionModel<String, Chat.Room>]> {
+        return appState.changesOf { $0.rooms }
+            .map { [AnimatableSectionModel(model: "", items: $0)] }
+        
     }
 }
 
 struct RoomsViewModel: MVVM_ViewModel {
-    var rooms: Driver<[Chat.Room]?> {
-        return appState.changesOf { $0.rooms }
-    }
-
+    
     init(router: RoomsRouter) {
         self.router = router
-
+//
+//        source = AppState.rooms
+//
+//        wipeReloadTriger = first + pull to refresh + marker on complex logic changed
+//
+        
+        ////dependency on allRooms with subscription to newMessage event, that updates UI
+        ///1. kill parse RoomDetails
+        ///2. Kill RoomActor's subscription
+        ///3. Create subscription on multiple rooms with propagating event (Message, Room)
+        
+        
+        ChatManager.getAllRooms()
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { _ in })
+            .disposed(by: bag)
+        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
@@ -55,24 +53,13 @@ struct RoomsViewModel: MVVM_ViewModel {
 }
 
 extension RoomsViewModel {
-    func roomTapped(_ model: RoomsViewModel.CellModel) {
-        guard let room = appStateSlice.rooms
-            .first(where: { $0.id == model.identifier }) else {
-                return
-        }
-
+    
+    func roomTapped(_ room: Chat.Room) {
         router.roomTapped(room)
     }
 
-    func fetchRooms() {
-        ChatManager.getAllRooms()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { _ in })
-            .disposed(by: bag)
-    }
-
     func createRoom() {
+        
         ChatManager.createDraftRoom()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
@@ -80,5 +67,6 @@ extension RoomsViewModel {
                 self.router.showRoomSettings(room)
             })
             .disposed(by: bag)
+        
     }
 }

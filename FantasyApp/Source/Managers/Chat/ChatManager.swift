@@ -40,7 +40,7 @@ extension ChatManager {
     // MARK: - Rooms fetching
     private static func getDetails(for rooms: [Chat.Room]) -> Single<[Chat.Room]> {
         let query = PFQuery(className: Chat.RoomDetails.className)
-        query.whereKey("backendId", containedIn: rooms.map { $0.id! })
+        query.whereKey("backendId", containedIn: rooms.map { $0.id })
         return query.rx.fetchAll().map { (roomDetails: [Chat.RoomDetails]) in
             let populatedRooms: [Chat.Room] = rooms.map { room in
                 var populatedRoom = room
@@ -54,7 +54,7 @@ extension ChatManager {
     // MARK: - Rooms fetching
     private static func getNotificationSettings(for rooms: [Chat.Room]) -> Single<[Chat.Room]> {
         let query = PFQuery(className: RoomNotificationSettings.className)
-        query.whereKey("roomId", containedIn: rooms.map { $0.id! })
+        query.whereKey("roomId", containedIn: rooms.map { $0.id })
         return query.rx.fetchAll().map { (settings: [RoomNotificationSettings]) in
             let populatedRooms: [Chat.Room] = rooms.map { room in
                 var populatedRoom = room
@@ -66,26 +66,31 @@ extension ChatManager {
     }
 
     static func getAllRooms() -> Single<[Chat.Room]> {
-        return RoomsResource().rx.request.map { $0 }.asObservable()
-            .flatMapLatest { rooms -> Observable<[Chat.Room]> in
+        return RoomsResource().rx.request
+            .flatMap { rooms -> Single<[Chat.Room]> in
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
-                return getDetails(for: rooms).asObservable()
+                return getDetails(for: rooms)
             }
-            .flatMapLatest { rooms -> Observable<[Chat.Room]> in
+            .flatMap { rooms -> Single<[Chat.Room]> in
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
-                return getNotificationSettings(for: rooms).asObservable()
+                return getNotificationSettings(for: rooms)
             }
-            .asSingle()
             .do(onSuccess: { rooms in
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
             })
     }
 
-    static func getRoom(id: String) -> Single<Chat.Room?> {
-        return RoomResource(id: id).rx.request.map { $0 }.asObservable()
-            .flatMapLatest { room -> Observable<Chat.Room?> in
-                return getDetails(for: [room]).map { $0.first }.asObservable()
-            }.asSingle()
+    static func getRoom(id: String) -> Single<Chat.Room> {
+        
+        if let room = appStateSlice.rooms.first(where: { $0.id == id }) {
+            return .just(room)
+        }
+        
+        return RoomResource(id: id).rx.request
+            .flatMap { room in
+                return getDetails(for: [room])
+            }
+            .map { $0.first! }
     }
 
     // MARK: - Room creation
@@ -131,11 +136,10 @@ extension ChatManager {
     // MARK: - Room Details (Parse)
     private static func createDraftRoomDetails(for room: Chat.Room) -> Single<Chat.Room> {
         let roomDetails = Chat.RoomDetails(objectId: nil,
-                                           ownerId: AuthenticationManager.currentUser()!.id,
-                                           recipientId: nil,
+                                           backendId: room.id,
                                            updatedAt: nil,
-                                           lastMessage: nil,
-                                           backendId: room.id)
+                                           lastMessage: nil)
+                                           
         return roomDetails.rxCreate().map { _ in return room }
     }
 
@@ -188,7 +192,7 @@ extension ChatManager {
     static func connectToRoom(_ room: Chat.Room) -> Observable<ChatEvent> {
         return Observable.create { (subscriber) -> Disposable in
             messagesQuery.addDescendingOrder("updatedAt")
-            messagesQuery.whereKey("roomId", equalTo: room.id!)
+            messagesQuery.whereKey("roomId", equalTo: room.id)
 
             let subscription: Subscription<PFObject> = Client.shared.subscribe(messagesQuery)
             subscription.handleEvent { object, e in

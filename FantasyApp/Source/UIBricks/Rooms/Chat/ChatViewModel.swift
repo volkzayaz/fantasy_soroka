@@ -14,6 +14,7 @@ import Chatto
 import ChattoAdditions
 
 class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
+    
     let router: ChatRouter
     let room: Chat.Room
     let messages = BehaviorRelay<[Chat.Message]>(value: [])
@@ -53,6 +54,7 @@ class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
 }
 
 extension ChatViewModel {
+    
     func loadMessages() {
         ChatManager.getMessagesInRoom(room.id, offset: messages.value.count)
             .trackView(viewIndicator: indicator)
@@ -69,13 +71,10 @@ extension ChatViewModel {
     }
 
     func sendMessage(text: String) {
-        let message = Chat.Message(senderDisplayName: User.current!.bio.name,
-                                   senderId: AuthenticationManager.currentUser()!.id,
-                                   text: text,
-                                   objectId: nil,
-                                   roomId: room.id,
-                                   isRead: false,
-                                   createdAt: Date())
+        let message = Chat.Message(text: text,
+                                   from: User.current!,
+                                   in: room)
+                                   
         ChatManager.sendMessage(message, to: room).subscribe({ event in
             // TODO: error handling
         }).disposed(by: bag)

@@ -39,28 +39,29 @@ extension Chat {
             case createdAt
         }
 
-        var senderDisplayName: String?
-        let senderId: String
-        var text: String?
         var objectId: String?
+        
+        let senderDisplayName: String
+        let text: String
+        
+        let senderId: String
         let roomId: String
+        
         var isRead: Bool = false
+        
         let createdAt: Date
 
-        init(senderDisplayName: String?,
-             senderId: String,
-             text: String?,
-             objectId: String?,
-             roomId: String,
-             isRead: Bool = false,
-             createdAt: Date) {
-            self.senderDisplayName = senderDisplayName
-            self.senderId = senderId
+        init(text: String,
+             from user: User,
+             in room: Room) {
+             
+            self.senderDisplayName = user.bio.name
+            self.senderId = user.id
             self.text = text
-            self.objectId = objectId
-            self.roomId = roomId
-            self.isRead = isRead
-            self.createdAt = createdAt
+            
+            self.roomId = room.id
+            
+            self.createdAt = Date()
         }
     }
 }
@@ -80,7 +81,7 @@ extension Chat.Message: MessageModelProtocol {
     }
 
     var type: ChatItemType {
-        return (text ?? "").containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
+        return text.containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
             Chat.CellType.text.rawValue
     }
 
@@ -100,6 +101,7 @@ extension Chat {
 
 // MARK: - Rooms
 extension Chat {
+    
     struct RoomDetails: Equatable, IdentifiableType, ParsePresentable {
         static var className: String {
             return "Room"
@@ -110,32 +112,41 @@ extension Chat {
         }
 
         var objectId: String?
-        var ownerId: String!
-        var recipientId: String?
+        var backendId: String!
+        
+        
+        
+        ///the only two usefull entities here
         var updatedAt: Date?
         var lastMessage: String?
-        var backendId: String!
     }
 
-    struct Room: Codable, Equatable {
-        var id: String!
-        var ownerId: String!
-        var settings: RoomSettings?
-        var type = RoomType.public
-        var status = RoomStatus.created
-        var roomName: String?
+    struct RoomRef: Equatable {
+        let id: String
+    }
+    
+    struct Room: Codable, Equatable, IdentifiableType {
+        
+        let id: String
+        let ownerId: String
+        
+        var settings: RoomSettings
+        
+        let status = RoomStatus.draft
+        
+        var roomName: String { return "hello" }
+        
         var freezeStatus: RoomFreezeStatus?
         var participants = [RoomParticipant]()
-        var createdAt: String?
-        var updatedAt: String?
 
         // property are set during runtime
         var details: RoomDetails?
         var notificationSettings: RoomNotificationSettings?
         
-        init(id: String) {
-            self.id = id
+        var identity: String {
+            return id
         }
+        
     }
 
     enum RoomFreezeStatus: String, Codable, Equatable {
@@ -148,7 +159,7 @@ extension Chat {
         var isClosedRoom = false
         var isHideCommonFantasies = false
         var isScreenShieldEnabled = false
-        var sharedCollections: [String]?
+        var sharedCollections: [String]
     }
 
     struct RoomParticipant: Codable, Equatable, IdentifiableType {

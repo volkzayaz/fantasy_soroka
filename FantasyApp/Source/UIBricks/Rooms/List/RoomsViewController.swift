@@ -18,23 +18,23 @@ class RoomsViewController: UIViewController, MVVM_View {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var createRoomButton: SecondaryButton!
 
-    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, RoomsViewModel.CellModel>>(
+    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Chat.Room>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.roomTableViewCell,
                                                  for: indexPath)!
-        cell.nameLabel.text = model.companionName
-        cell.timeLabel.text = model.updatedAt
-        cell.lastMessageLabel.text = model.lastMessage
-
+            
+        cell.set(model: model)
+            
         return cell
     })
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addFantasyGradient()
+        
         configure()
-        viewModel.fetchRooms()
     }
 }
 
@@ -48,7 +48,7 @@ private extension RoomsViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
 
-        tableView.rx.modelSelected(RoomsViewModel.CellModel.self)
+        tableView.rx.modelSelected(Chat.Room.self)
             .subscribe(onNext: { [unowned self] cellModel in
             self.viewModel.roomTapped(cellModel)
         }).disposed(by: rx.disposeBag)

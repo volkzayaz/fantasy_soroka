@@ -49,13 +49,13 @@ extension ConnectionManager {
             .flatMap { r in
                 
                 return User.query
-                    .whereKey("objectId", containedIn: r.map { $0._id })
+                    .whereKey("objectId", containedIn: r.map { $0.otherUserId })
                     .rx.fetchAllObjects()
                     .map { ($0, r) }
             }
             .map { (users, requests) in
                 
-                let connections = Dictionary(uniqueKeysWithValues: requests.map { ($0._id, $0.connection) })
+                let connections = Dictionary(uniqueKeysWithValues: requests.map { ($0.otherUserId, $0.connection) })
                 
                 return users.compactMap { pfUser in
                     
@@ -64,7 +64,7 @@ extension ConnectionManager {
                         return nil
                     }
                     
-                    let room: Chat.Room
+                    let room: Chat.RoomRef
                     let connectType: Set<ConnectionRequestType>
                     switch connection {
                     case .incomming(let request, let draftRoom):

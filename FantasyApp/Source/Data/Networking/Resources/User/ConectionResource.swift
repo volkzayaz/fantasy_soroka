@@ -26,12 +26,12 @@ struct ConnectionResponse: Codable {
     
     var toNative: Connection {
         
-        var room: Chat.Room {
+        var room: Chat.RoomRef {
             guard let id = roomId else {
                 fatalError("Connection does not have assosiated roomId. Details: \(self)")
             }
             
-            return Chat.Room(id: id)
+            return Chat.RoomRef(id: id)
         }
         
         guard connectTypes.count > 0,
@@ -217,8 +217,17 @@ struct GetConnectionRequests: AuthorizedAPIResource {
     }
     
     struct Response: Codable {
-        let _id: String
         let connection: ConnectionResponse
+        
+        var otherUserId: String {
+            
+            if User.current!.id == connection.targetUserId {
+                return connection.userId
+            }
+            
+            return connection.targetUserId
+        }
+        
     }
     
     typealias responseType = [Response]

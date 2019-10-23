@@ -63,7 +63,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     init(router: RoomSettingsRouter, room: Chat.Room) {
         self.router = router
         self.room = BehaviorRelay(value: room)
-        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id!)")
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
         self.properties = BranchLinkProperties()
 
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
@@ -117,7 +117,7 @@ extension RoomSettingsViewModel {
     func securitySettingsViewModelFor(room: Chat.Room) -> RoomSettingsPremiumFeatureViewModel {
         let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
         let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
-                        room.settings?.isScreenShieldEnabled ?? false)]
+                        room.settings.isScreenShieldEnabled)]
         return RoomSettingsPremiumFeatureViewModel(
             title: R.string.localizable.roomSettingsSecurityTitle(),
             description: R.string.localizable.roomSettingsSecurityDescription(),
@@ -127,10 +127,11 @@ extension RoomSettingsViewModel {
     }
 
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
-        guard var roomSettings = room.value.settings else {
-            return
-        }
+        
+        var roomSettings = room.value.settings
+        
         roomSettings.isScreenShieldEnabled = isScreenShieldEnabled
+        
         ChatManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
