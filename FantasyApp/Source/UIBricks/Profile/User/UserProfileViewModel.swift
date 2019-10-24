@@ -353,7 +353,15 @@ extension UserProfileViewModel {
         RoomManager.getRoom(id: roomRef.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: self.router.present )
+            .subscribe(onNext: { room in
+                
+                guard room.freezeStatus != .frozen else {
+                    return self.router.messagePresentable.presentMessage(R.string.localizable.roomFrozenRoomUnreachable())
+                }
+                
+                self.router.present(room: room)
+                
+            })
             .disposed(by: bag)
         
     }

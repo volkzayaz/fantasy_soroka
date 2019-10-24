@@ -82,7 +82,7 @@ extension RoomsViewModel {
     func roomTapped(roomCell: RoomCell) {
         
         guard roomCell.room.freezeStatus != .frozen else {
-            return router.messagePresentable.presentMessage("This room is currently frozen, you can't use it at the moment. Upgrade to premium")
+            return router.messagePresentable.presentMessage(R.string.localizable.roomFrozenRoomUnreachable())
         }
         
         router.roomTapped(roomCell.room)
