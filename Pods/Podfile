@@ -16,8 +16,8 @@ target 'FantasyApp' do
     pod 'Parse', '1.17.2'
     pod 'ParseLiveQuery', '2.6.1'
     pod 'Parse/FacebookUtils'
-    pod 'FBSDKCoreKit', '4.44.1'
-    pod 'FBSDKLoginKit', '4.44.1'
+    pod 'FBSDKCoreKit', '4.40.0'
+    pod 'FBSDKLoginKit', '4.40.0'
     pod 'Moya', '13.0.1'
   
     pod 'RxCocoa', '~> 5.0'
