@@ -16,7 +16,12 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.estimatedRowHeight = 44.0
+        }
+    }
 
     lazy var sectionsTableDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, DiscoveryFilterViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, section) in
 
@@ -35,19 +40,30 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             cell.setData(title: title, description: description, list: list, selected: selected)
             return cell
 
-        case .age(let x, let y):
+        case .age(let from, let to):
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterAgeSliderCell, for: ip)!
-            cell.setData(minValue: x, maxValue: y)
+            cell.setData(minValue: from, maxValue: to)
             return cell
 
-        case .couple(let q):
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterSwipeableCell, for: ip)!
+        case .couple(let isOn):
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterSwitchableCell, for: ip)!
+            cell.setData(isOn: isOn)
             return cell
 
         }
 
     })
-    
+
+    let sectionsInfo: [(Int, CGFloat, String?)] = [
+        (0, 42.0, "Teleport"),
+        (1, 46.0, "Partner"),
+        (2, 11.0, nil),
+        (3, 11.0, nil),
+        (4, 32.0, nil),
+        (5, 46.0,"Second Partner"),
+        (6, 11.0, nil),
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,6 +75,8 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
             .disposed(by: rx.disposeBag)
 
+        tableView.rx.setDelegate(self)
+            .disposed(by: rx.disposeBag)
         
       
 //        if let x = [Gender.male: 1,
@@ -81,6 +99,31 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
       
     }
 
+}
+
+//MARK:- Actions
+
+extension DiscoveryFilterViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        guard let t = sectionsInfo[section].2 else {
+            return UIView()
+        }
+
+        let headerView = FilterSectionHeaderView()
+        headerView.setData(value: t)
+
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionsInfo[section].1
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
 }
 
 //MARK:- Actions

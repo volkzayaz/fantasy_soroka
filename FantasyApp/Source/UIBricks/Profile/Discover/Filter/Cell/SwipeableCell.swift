@@ -44,7 +44,7 @@ class SwipeableCell: UITableViewCell {
 
 extension SwipeableCell {
 
-    public func setData(title: String, description: String, list: [String], selected: String) {
+    public func setData(title: String, description: String?, list: [String], selected: String) {
         cellNameLabel.text = title
         cellDescriptionLabel.text = description
 

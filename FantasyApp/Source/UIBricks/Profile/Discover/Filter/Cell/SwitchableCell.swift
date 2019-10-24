@@ -14,17 +14,26 @@ class SwitchableCell: UITableViewCell {
         didSet {
             cellNameLabel.font = UIFont.regularFont(ofSize: 15)
             cellNameLabel.textColor = R.color.textBlackColor()
+             cellNameLabel.text = "Couple"
         }
     }
     @IBOutlet weak var ageSwitch: UISwitch! {
         didSet {
-            cellNameLabel.font = UIFont.regularFont(ofSize: 15)
-            cellNameLabel.textColor = R.color.textLightGrayColor()
+            ageSwitch.onTintColor = R.color.textPinkColor()
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+}
+
+//MARK:- Public
+
+extension SwitchableCell {
+
+    public func setData(isOn: Bool) {
+        ageSwitch.isOn = isOn
     }
 }

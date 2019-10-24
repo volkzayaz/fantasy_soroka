@@ -291,6 +291,8 @@
 		B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */; };
 		B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */; };
 		B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6FA23521A11003A36BA /* TransparentTextField.swift */; };
+		B7BD378523618C0100F6F6C4 /* FilterSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BD378323618C0100F6F6C4 /* FilterSectionHeaderView.xib */; };
+		B7BD378623618C0100F6F6C4 /* FilterSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD378423618C0100F6F6C4 /* FilterSectionHeaderView.swift */; };
 		B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BE954F2360B48E003432D4 /* SwipeView.swift */; };
 		B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BE95512360B4B3003432D4 /* SwipeView.xib */; };
 		B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */; };
@@ -618,6 +620,8 @@
 		B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		B78BE6FA23521A11003A36BA /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
+		B7BD378323618C0100F6F6C4 /* FilterSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterSectionHeaderView.xib; sourceTree = "<group>"; };
+		B7BD378423618C0100F6F6C4 /* FilterSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSectionHeaderView.swift; sourceTree = "<group>"; };
 		B7BE954F2360B48E003432D4 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		B7BE95512360B4B3003432D4 /* SwipeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeView.xib; sourceTree = "<group>"; };
 		B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGradientView.swift; sourceTree = "<group>"; };
@@ -1964,6 +1968,8 @@
 		B7BE954E2360B422003432D4 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				B7BD378423618C0100F6F6C4 /* FilterSectionHeaderView.swift */,
+				B7BD378323618C0100F6F6C4 /* FilterSectionHeaderView.xib */,
 				B7BE954F2360B48E003432D4 /* SwipeView.swift */,
 				B7BE95512360B4B3003432D4 /* SwipeView.xib */,
 			);
@@ -2085,6 +2091,7 @@
 				B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */,
 				843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */,
 				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
+				B7BD378523618C0100F6F6C4 /* FilterSectionHeaderView.xib in Resources */,
 				7312B0D222D74FB200DB0F36 /* Appfile in Resources */,
 				841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */,
 				841681E222E9AE6E00FA9455 /* SF-Pro-Text-RegularItalic.otf in Resources */,
@@ -2423,6 +2430,7 @@
 				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
+				B7BD378623618C0100F6F6C4 /* FilterSectionHeaderView.swift in Sources */,
 				73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */,
 				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
 				73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */,

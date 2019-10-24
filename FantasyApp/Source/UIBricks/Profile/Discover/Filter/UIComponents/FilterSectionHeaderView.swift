@@ -1,5 +1,5 @@
 //
-//  SwipeView.swift
+//  FilterSectionHeaderView.swift
 //  FantasyApp
 //
 //  Created by Anatoliy Afanasev on 23.10.2019.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class SwipeView: UIView {
+class FilterSectionHeaderView: UIView {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var label: UILabel! {
         didSet {
-            label.font = UIFont.regularFont(ofSize: 18)
+            label.font = UIFont.regularFont(ofSize: 25)
             label.textColor = R.color.textBlackColor()
         }
     }
@@ -47,9 +47,9 @@ class SwipeView: UIView {
 
 //MARK:- Public
 
-extension SwipeView {
+extension FilterSectionHeaderView {
 
-    public func setData(value:String) {
+    public func setData(value:String?) {
         label.text = value
     }
 }

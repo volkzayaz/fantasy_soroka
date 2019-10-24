@@ -20,45 +20,30 @@ extension DiscoveryFilterViewModel {
 
     var sections: Driver<[(String, [Row])]> {
 
-        var res = [("Teleport", [
-            Row.city("Madrid")
-        ])]
-
         let genders = Gender.allCases.map { $0.rawValue }
         let sexuality = Sexuality.allCases.map { $0.rawValue }
 
-        let partnerSection: (String, [Row]) = ("Partner", [
-            .partnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue),
-
-            .partnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue),
-            .age(from: 18, to: 81)
-        ])
-
-        let coupleSection: (String, [Row]) = ("Is couple?", [
-            .couple(false)
-        ])
-
-        let secondPartnerSection: (String, [Row]) = ("Second Partner", [
-            .secondPartnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue),
-
-            .secondPartnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue)
-        ])
-
-        res.append(partnerSection)
-        res.append(coupleSection)
-        res.append(secondPartnerSection)
+        var res: [(String, [Row])] = [
+            ("Teleport", [.city("Madrid")]),
+            ("PartnerBody", [.partnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue)]),
+            ("PartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue)]),
+            ("PartnerAge", [ .age(from: 18, to: 81)]),
+            ("Couple", [.couple(false)]),
+            ("SecondPartnerBody", [.partnerBody(title: "Body", description: nil, list: genders, selected: Gender.female.rawValue)]),
+            ("SecondPartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: nil, list: sexuality, selected: Sexuality.asexual.rawValue)])
+        ]
 
         return Driver.just(res)
     }
 
     enum Row: IdentifiableType, Equatable {
         case city(String)
-        case partnerBody(title: String, description: String, list: [String], selected: String)
-        case partnerSexuality(title: String, description: String, list: [String], selected: String)
+        case partnerBody(title: String, description: String?, list: [String], selected: String)
+        case partnerSexuality(title: String, description: String?, list: [String], selected: String)
         case age(from: Int, to: Int)
         case couple(Bool)
-        case secondPartnerBody(title: String, description: String, list: [String], selected: String)
-        case secondPartnerSexuality(title: String, description: String, list: [String], selected: String)
+        case secondPartnerBody(title: String, description: String?, list: [String], selected: String)
+        case secondPartnerSexuality(title: String, description: String?, list: [String], selected: String)
 
         var identity: String {
             switch self {

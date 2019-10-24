@@ -843,6 +843,29 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="77" estimatedRowHeight="77" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ob2-k7-K4Q">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="xcT-vH-HCH">
+                                    <rect key="frame" x="0.0" y="397.5" width="414" height="99"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbf-j9-oc2" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                            <rect key="frame" x="60" y="27" width="294" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="52" id="0yc-eU-tvH"/>
+                                            </constraints>
+                                            <state key="normal" title="Search"/>
+                                            <connections>
+                                                <action selector="apply:" destination="eeq-XE-CEU" eventType="touchUpInside" id="26W-Jb-MFm"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="fbf-j9-oc2" secondAttribute="bottom" constant="20" id="AoJ-b8-WDl"/>
+                                        <constraint firstItem="fbf-j9-oc2" firstAttribute="top" secondItem="xcT-vH-HCH" secondAttribute="top" constant="27" id="KTf-zk-lPa"/>
+                                        <constraint firstAttribute="trailing" secondItem="fbf-j9-oc2" secondAttribute="trailing" constant="60" id="N6T-HL-ZK4"/>
+                                        <constraint firstItem="fbf-j9-oc2" firstAttribute="leading" secondItem="xcT-vH-HCH" secondAttribute="leading" constant="60" id="Vln-mN-BSU"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="filterSelectCityCell" rowHeight="44" id="cV1-gw-fvz" customClass="SelectCityCell" customModule="FantasyApp" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="44"/>
@@ -889,30 +912,24 @@
                                             <outlet property="cityNameLabel" destination="Mhr-CS-l4y" id="23S-W5-fbT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterSwipeableCell" rowHeight="169" id="jzZ-vn-vbB" customClass="SwipeableCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="99.5" width="374" height="169"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="filterSwipeableCell" rowHeight="123" id="jzZ-vn-vbB" customClass="SwipeableCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="99.5" width="374" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jzZ-vn-vbB" id="Thx-gC-RM1">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="169"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="XhQ-MZ-9CG">
-                                                    <rect key="frame" x="16" y="16" width="350" height="84"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="XhQ-MZ-9CG">
+                                                    <rect key="frame" x="16" y="16" width="350" height="31"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yv2-g5-0TC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="22"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="22" id="Ylr-Qs-WkA"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="12.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJS-Wj-jFE">
-                                                            <rect key="frame" x="0.0" y="23" width="350" height="61"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="22" id="aan-UQ-XLD"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="18.5" width="350" height="12.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -920,10 +937,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0an-U8-NFT" customClass="SmoothPickerView" customModule="SmoothPicker">
-                                                    <rect key="frame" x="16" y="123" width="350" height="30"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <rect key="frame" x="16" y="63" width="350" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="e7Y-RP-xwj"/>
+                                                        <constraint firstAttribute="height" constant="44" id="e7Y-RP-xwj"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -934,7 +951,7 @@
                                                 <constraint firstItem="0an-U8-NFT" firstAttribute="trailing" secondItem="XhQ-MZ-9CG" secondAttribute="trailing" id="Qm0-Qt-nwg"/>
                                                 <constraint firstAttribute="bottom" secondItem="0an-U8-NFT" secondAttribute="bottom" constant="16" id="RAw-k9-NsE"/>
                                                 <constraint firstItem="0an-U8-NFT" firstAttribute="leading" secondItem="XhQ-MZ-9CG" secondAttribute="leading" id="qBy-z1-7aI"/>
-                                                <constraint firstItem="0an-U8-NFT" firstAttribute="top" secondItem="XhQ-MZ-9CG" secondAttribute="bottom" constant="23" id="roQ-wd-nO4"/>
+                                                <constraint firstItem="0an-U8-NFT" firstAttribute="top" secondItem="XhQ-MZ-9CG" secondAttribute="bottom" constant="16" id="roQ-wd-nO4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -943,11 +960,11 @@
                                             <outlet property="smoothPickerView" destination="0an-U8-NFT" id="kcH-il-R1e"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterAgeSliderCell" rowHeight="91" id="Uri-If-XzB" customClass="AgeSliderCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="268.5" width="374" height="91"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="filterAgeSliderCell" rowHeight="113" id="Uri-If-XzB" customClass="AgeSliderCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="222.5" width="374" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uri-If-XzB" id="XgI-Nk-EzX">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="91"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="113"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHA-QG-icI">
@@ -960,8 +977,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SH8-oY-yzR" customClass="MultiSlider" customModule="MultiSlider">
-                                                    <rect key="frame" x="16" y="39.5" width="342" height="45.5"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <rect key="frame" x="16" y="50" width="342" height="47"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="uTX-ge-XuU"/>
                                                     </constraints>
@@ -970,9 +987,9 @@
                                             <constraints>
                                                 <constraint firstItem="wHA-QG-icI" firstAttribute="top" secondItem="XgI-Nk-EzX" secondAttribute="top" constant="16" id="0XA-46-iRL"/>
                                                 <constraint firstItem="SH8-oY-yzR" firstAttribute="trailing" secondItem="wHA-QG-icI" secondAttribute="trailing" id="3gg-qI-oVX"/>
-                                                <constraint firstAttribute="bottom" secondItem="SH8-oY-yzR" secondAttribute="bottom" constant="6" id="FSL-bl-TOZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="SH8-oY-yzR" secondAttribute="bottom" constant="16" id="FSL-bl-TOZ"/>
                                                 <constraint firstItem="wHA-QG-icI" firstAttribute="leading" secondItem="XgI-Nk-EzX" secondAttribute="leading" constant="16" id="IeE-CC-Ckm"/>
-                                                <constraint firstItem="SH8-oY-yzR" firstAttribute="top" secondItem="wHA-QG-icI" secondAttribute="bottom" constant="5.5" id="SGo-Fp-dh6"/>
+                                                <constraint firstItem="SH8-oY-yzR" firstAttribute="top" secondItem="wHA-QG-icI" secondAttribute="bottom" constant="16" id="SGo-Fp-dh6"/>
                                                 <constraint firstAttribute="trailing" secondItem="wHA-QG-icI" secondAttribute="trailing" constant="16" id="pT1-cT-QQB"/>
                                                 <constraint firstItem="SH8-oY-yzR" firstAttribute="leading" secondItem="wHA-QG-icI" secondAttribute="leading" id="yuS-El-I9G"/>
                                             </constraints>
@@ -982,8 +999,8 @@
                                             <outlet property="multiSlider" destination="SH8-oY-yzR" id="6zq-mJ-a3E"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterSwitchableCell" rowHeight="44" id="Msi-S9-4ji" customClass="SwitchableCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="359.5" width="374" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="filterSwitchableCell" rowHeight="44" id="Msi-S9-4ji" customClass="SwitchableCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="335.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Msi-S9-4ji" id="wB1-Ia-9vK">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
