@@ -79,6 +79,15 @@ extension ChatViewModel {
             .subscribe({ event in
             // TODO: error handling
             }).disposed(by: bag)
+        
+        if room.peer.status == .invited {
+            
+            let _ = ConnectionManager.initiate(with: room.peer.userId!, type: .message)
+                .retry(2)
+                .subscribe()
+            
+        }
+        
     }
     
     func acceptRequest() {

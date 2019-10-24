@@ -120,7 +120,7 @@ struct UpsertConnection: AuthorizedAPIResource {
                                   encoding: JSONEncoding())
     }
     
-    let with: User
+    let with: UserIdentifier
     let type: ConnectionRequestType
 }
 

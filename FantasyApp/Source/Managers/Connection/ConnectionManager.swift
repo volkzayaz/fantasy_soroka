@@ -26,7 +26,7 @@ extension ConnectionManager {
             .map { $0?.toNative ?? .absent }
     }
     
-    static func initiate(with user: User, type: ConnectionRequestType) -> Single<Connection> {
+    static func initiate(with user: UserIdentifier, type: ConnectionRequestType) -> Single<Connection> {
         
         PushManager.sendPush(to: user, text: "\(User.current!.bio.name) is interested in you")
         
