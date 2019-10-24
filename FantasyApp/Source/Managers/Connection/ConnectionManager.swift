@@ -9,6 +9,15 @@
 import Foundation
 import RxSwift
 
+protocol UserIdentifier {
+    var id: String { get }
+}
+
+extension User: UserIdentifier {}
+extension String: UserIdentifier {
+    var id: String { return self }
+}
+
 enum ConnectionManager {}
 extension ConnectionManager {
     
@@ -26,7 +35,7 @@ extension ConnectionManager {
         
     }
     
-    static func likeBack(user: User) -> Single<Connection> {
+    static func likeBack(user: UserIdentifier) -> Single<Connection> {
         
         PushManager.sendPush(to: user, text: "\(User.current!.bio.name) accepted your room request")
         
@@ -38,7 +47,7 @@ extension ConnectionManager {
             })
     }
     
-    static func reject(user: User) -> Single<Connection> {
+    static func reject(user: UserIdentifier) -> Single<Connection> {
         return RejectConnection(with: user)
             .rx.request.map { $0.connection.toNative }
             .do(onSuccess: { (_) in

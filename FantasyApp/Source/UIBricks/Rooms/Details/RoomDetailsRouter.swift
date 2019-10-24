@@ -30,7 +30,7 @@ struct RoomDetailsRouter: MVVM_Router {
     func embedChat(in view: UIView) {
         let viewController = ChatViewController()
         let router = ChatRouter(owner: viewController)
-        viewController.viewModel = ChatViewModel(router: router, room: room)
+        viewController.viewModel = ChatViewModel(router: router, room: room, chattoDelegate: viewController)
         viewController.view.frame = view.bounds
         view.addSubview(viewController.view)
         owner.addChild(viewController)

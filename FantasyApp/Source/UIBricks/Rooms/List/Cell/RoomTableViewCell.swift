@@ -18,7 +18,7 @@ class RoomTableViewCell: UITableViewCell {
     
     func set(model: RoomsViewModel.RoomCell) {
         
-        let participant: Room.Participant = model.room.participants.first!
+        let participant: Room.Participant = model.room.peer
         
         nameLabel.text = participant.userSlice.name
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""

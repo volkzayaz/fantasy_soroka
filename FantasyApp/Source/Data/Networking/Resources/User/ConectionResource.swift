@@ -142,7 +142,7 @@ struct AcceptConnection: AuthorizedAPIResource {
                                   encoding: JSONEncoding())
     }
     
-    let with: User
+    let with: UserIdentifier
     let type: ConnectionRequestType
  
     struct AcceptConnectionResponse: Codable {
@@ -169,7 +169,7 @@ struct RejectConnection: AuthorizedAPIResource {
                                   encoding: JSONEncoding())
     }
     
-    let with: User
+    let with: UserIdentifier
     
     struct RejectConnectionResponse: Codable {
         let connection: ConnectionResponse
