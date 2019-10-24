@@ -28,10 +28,15 @@ extension DiscoveryFilterViewModel {
             ("PartnerBody", [.partnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue)]),
             ("PartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue)]),
             ("PartnerAge", [ .age(from: 18, to: 81)]),
-            ("Couple", [.couple(false)]),
-            ("SecondPartnerBody", [.partnerBody(title: "Body", description: nil, list: genders, selected: Gender.female.rawValue)]),
-            ("SecondPartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: nil, list: sexuality, selected: Sexuality.asexual.rawValue)])
+            ("Couple", [.couple(false)])
         ]
+
+        if (showSecondPartner) {
+            res.append(contentsOf: [
+            ("SecondPartnerBody", [.partnerBody(title: "Body", description: nil, list: genders, selected: Gender.female.rawValue)]),
+                      ("SecondPartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: nil, list: sexuality, selected: Sexuality.asexual.rawValue)])
+            ])
+        }
 
         return Driver.just(res)
     }
@@ -87,7 +92,9 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
     let router: DiscoveryFilterRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
+
+
+    fileprivate var showSecondPartner: Bool = false
 }
 
 extension DiscoveryFilterViewModel {
