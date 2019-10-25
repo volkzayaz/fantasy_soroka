@@ -95,22 +95,25 @@ extension UserProfileViewModel {
     }
     
     var likedStikerHidden: Driver<Bool> {
-        return relationshipState.asDriver()
-            .map { maybe in
-                
-                guard let connection = maybe else {
-                    return true
-                }
-                
-                switch connection {
-                case .absent, .iRejected, .iWasRejected, .sameUser, .incomming(_):
-                    return true
-                    
-                case .outgoing(_), .mutual(_):
-                    return false
-                }
-                
-            }
+        
+        return .just(true)
+        
+//        return relationshipState.asDriver()
+//            .map { maybe in
+//                
+//                guard let connection = maybe else {
+//                    return true
+//                }
+//                
+//                switch connection {
+//                case .absent, .iRejected, .iWasRejected, .sameUser, .incomming(_):
+//                    return true
+//                    
+//                case .outgoing(_), .mutual(_):
+//                    return false
+//                }
+//                
+//            }
     }
     
     var relationLabel: Driver<String> {
