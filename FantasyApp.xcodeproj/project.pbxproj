@@ -171,8 +171,12 @@
 		73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */; };
 		73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */; };
 		73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */; };
+		73F80CD22361E66E00212FCF /* ChattoMess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80CD12361E66E00212FCF /* ChattoMess.swift */; };
+		73F80CD52361EC2D00212FCF /* AcceptRejectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80CD42361EC2D00212FCF /* AcceptRejectCell.swift */; };
+		73F80CD72361ED0200212FCF /* AcceptRejectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F80CD62361ED0200212FCF /* AcceptRejectCell.xib */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */; };
+		841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */; };
 		8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416816622E96CF700FA9455 /* PrimaryButton.swift */; };
 		841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841681C822E999CA00FA9455 /* SecondaryButton.swift */; };
 		841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 841681CB22E9AE6B00FA9455 /* SF-Pro-Text-Thin.otf */; };
@@ -226,7 +230,6 @@
 		844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */; };
 		844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */; };
 		844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */; };
-		844CD705235F81B6004E6BA3 /* RoomSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */; };
 		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
 		846E5F7223634AE8001C3473 /* FantasyDeckItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
@@ -270,7 +273,7 @@
 		84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0642327D60100648DE1 /* RemoveRoom.swift */; };
 		84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0652327D60100648DE1 /* AddRooms.swift */; };
 		84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0662327D60100648DE1 /* UpdateRoom.swift */; };
-		84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* ChatManager.swift */; };
+		84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* RoomManager.swift */; };
 		84C1D06D2327D68100648DE1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06C2327D68100648DE1 /* Chat.swift */; };
 		84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */; };
 		84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */; };
@@ -494,6 +497,9 @@
 		73EEFC31235C6E3100480E79 /* SinglePickViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickViewModel.swift; sourceTree = "<group>"; };
 		73EEFC35235C70CE00480E79 /* SinglePickTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePickTableCell.swift; sourceTree = "<group>"; };
 		73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewController.swift; sourceTree = "<group>"; };
+		73F80CD12361E66E00212FCF /* ChattoMess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattoMess.swift; sourceTree = "<group>"; };
+		73F80CD42361EC2D00212FCF /* AcceptRejectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptRejectCell.swift; sourceTree = "<group>"; };
+		73F80CD62361ED0200212FCF /* AcceptRejectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AcceptRejectCell.xib; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FantasyDetailsViewController+Animations.swift"; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -592,7 +598,7 @@
 		84C1D0642327D60100648DE1 /* RemoveRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveRoom.swift; sourceTree = "<group>"; };
 		84C1D0652327D60100648DE1 /* AddRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRooms.swift; sourceTree = "<group>"; };
 		84C1D0662327D60100648DE1 /* UpdateRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRoom.swift; sourceTree = "<group>"; };
-		84C1D06A2327D63E00648DE1 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		84C1D06A2327D63E00648DE1 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		84C1D06C2327D68100648DE1 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
 		84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
@@ -1589,6 +1595,15 @@
 			path = Relationship;
 			sourceTree = "<group>";
 		};
+		73F80CD32361EC1200212FCF /* AcceptReject */ = {
+			isa = PBXGroup;
+			children = (
+				73F80CD42361EC2D00212FCF /* AcceptRejectCell.swift */,
+				73F80CD62361ED0200212FCF /* AcceptRejectCell.xib */,
+			);
+			path = AcceptReject;
+			sourceTree = "<group>";
+		};
 		8416816522E96CD900FA9455 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1665,6 +1680,7 @@
 		843CF7132342469E0098C196 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				73F80CD32361EC1200212FCF /* AcceptReject */,
 				843CF71923436A9C0098C196 /* Message */,
 				843CF714234246A20098C196 /* TimeSeparator */,
 			);
@@ -1759,6 +1775,7 @@
 				84AB4905232A2D0000F3609A /* ChatRouter.swift */,
 				84AB4904232A2D0000F3609A /* ChatViewController.swift */,
 				84AB4903232A2D0000F3609A /* ChatViewModel.swift */,
+				73F80CD12361E66E00212FCF /* ChattoMess.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1891,7 +1908,7 @@
 		84C1D0482327C4AE00648DE1 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				84C1D06A2327D63E00648DE1 /* ChatManager.swift */,
+				84C1D06A2327D63E00648DE1 /* RoomManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2057,6 +2074,7 @@
 				7312B0D322D74FB200DB0F36 /* Fastfile in Resources */,
 				73097C05231D3D8200B71053 /* User.storyboard in Resources */,
 				84C1D0392327B95300648DE1 /* Pansexual.png in Resources */,
+				73F80CD72361ED0200212FCF /* AcceptRejectCell.xib in Resources */,
 				841681E922E9AE6E00FA9455 /* SF-Pro-Text-ThinItalic.otf in Resources */,
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
@@ -2264,6 +2282,7 @@
 				842A19FD23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
+				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				843CF71F234370480098C196 /* CreateDraftRoomResource.swift in Sources */,
@@ -2343,6 +2362,7 @@
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
+				73F80CD22361E66E00212FCF /* ChattoMess.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
 				843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */,
 				B783C6382350D6C00017CE1A /* WelcomeViewController.swift in Sources */,
@@ -2364,6 +2384,7 @@
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
 				B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */,
+				73F80CD52361EC2D00212FCF /* AcceptRejectCell.swift in Sources */,
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
 				73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
@@ -2427,8 +2448,7 @@
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
-				844CD705235F81B6004E6BA3 /* RoomSettingsRouter.swift in Sources */,
-				84C1D06B2327D63E00648DE1 /* ChatManager.swift in Sources */,
+				84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
@@ -2643,7 +2663,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = CB48395Y6T;
+				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
@@ -2656,7 +2676,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = FantasyAppDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

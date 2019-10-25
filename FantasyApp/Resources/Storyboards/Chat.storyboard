@@ -81,6 +81,7 @@
                                         <connections>
                                             <outlet property="lastMessageLabel" destination="NRo-CG-ZRp" id="QcI-mt-8Kr"/>
                                             <outlet property="nameLabel" destination="cqo-Dv-0CM" id="CQ4-Ns-tcp"/>
+                                            <outlet property="roomImageView" destination="rbB-14-5Dn" id="CAr-2n-Mxr"/>
                                             <outlet property="separator" destination="Mlc-gS-LWC" id="dmP-sO-BBA"/>
                                             <outlet property="timeLabel" destination="DZg-TW-lfO" id="L1T-Pv-6mh"/>
                                         </connections>

@@ -15,69 +15,27 @@ class RoomsActor {
     var query: PFQuery<PFObject>?
 
     init() {
-        appState.changesOf { $0.currentUser }.drive(onNext: { [weak self] user in
+        
+        appState.changesOf { $0.currentUser?.id }
+            .drive(onNext: { [weak self] user in
             if user != nil {
-                self?.addSubscription()
                 self?.acceptRoomInviteIfNeeded()
-            } else {
-                self?.removeSubscription()
             }
         }).disposed(by: bag)
-    }
-
-    private func addSubscription() {
-        guard let userId = AuthenticationManager.currentUser()?.id else {
-            return
-        }
-
-        let predicate = NSPredicate(format: "ownerId == %@ OR recipientId == %@", userId, userId)
-        query = PFQuery(className: Chat.RoomDetails.className, predicate: predicate)
-        query!.addDescendingOrder("updatedAt")
-
-        let subscription: Subscription<PFObject> = Client.shared.subscribe(query!)
-        subscription.handleEvent { object, event in
-            switch event {
-            case .entered(let roomObject),
-                 .created(let roomObject),
-                 .updated(let roomObject):
-                let roomDetails: Chat.RoomDetails = [roomObject].toCodable().first!
-                guard var room = appStateSlice.rooms
-                    .first(where: { $0.id == roomDetails.backendId }) else {
-                        return
-                }
-                room.details = roomDetails
-
-               Dispatcher.dispatch(action: UpdateRoom(room: room))
-            case .deleted(let roomObject),
-                 .left(let roomObject):
-                let roomDetails: Chat.RoomDetails = [roomObject].toCodable().first!
-                guard var room = appStateSlice.rooms
-                     .first(where: { $0.id == roomDetails.backendId }) else {
-                         return
-                 }
-                 room.details = nil
-
-                Dispatcher.dispatch(action: UpdateRoom(room: room))
-            }
-        }
+        
     }
 
     private func acceptRoomInviteIfNeeded() {
+        
         guard let sessionParams = Branch.getInstance()?.getLatestReferringParams() as? [String: AnyObject],
             let invitationLink = sessionParams["invitationLink"] as? String else {
                 return
         }
-        ChatManager.acceptInviteToRoom(invitationLink).subscribe({ [weak self] room in
+        
+        RoomManager.acceptInviteToRoom(invitationLink).subscribe({ [weak self] room in
             guard let self = self else { return }
 
         }).disposed(by: bag)
-    }
-
-    private func removeSubscription() {
-        guard let query = query else {
-            return
-        }
-        Client.shared.unsubscribe(query)
     }
 
     private let bag = DisposeBag()

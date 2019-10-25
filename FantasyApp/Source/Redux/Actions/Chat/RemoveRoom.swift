@@ -10,7 +10,7 @@ import Foundation
 
 struct RemoveRoom: Action {
 
-    let room: Chat.Room
+    let room: Room
 
     func perform(initialState: AppState) -> AppState {
         var state = initialState

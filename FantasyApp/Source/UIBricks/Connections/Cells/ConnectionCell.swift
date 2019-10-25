@@ -19,6 +19,7 @@ class ConnectionCell: UICollectionViewCell {
         nameLabel.text = connection.user.bio.name
         
         ImageRetreiver.imageForURLWithoutProgress(url: connection.user.bio.photos.avatar.url)
+            .map { $0 ?? R.image.noPhoto() }
             .drive(avatarImageView.rx.image)
             .disposed(by: bag)
         

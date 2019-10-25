@@ -18,15 +18,15 @@ PODS:
     - Fabric (~> 1.10.2)
   - Differentiator (4.0.1)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (4.44.1):
+  - FBSDKCoreKit (4.40.0):
     - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.44.1):
+  - FBSDKLoginKit (4.40.0):
     - FBSDKCoreKit
   - FMPhotoPicker (0.8.2)
   - iCarousel (1.8.3)
-  - Kingfisher (5.8.3):
-    - Kingfisher/Core (= 5.8.3)
-  - Kingfisher/Core (5.8.3)
+  - Kingfisher (5.9.0):
+    - Kingfisher/Core (= 5.9.0)
+  - Kingfisher/Core (5.9.0)
   - KMPlaceholderTextView (1.4.0)
   - Koloda (5.0):
     - pop (~> 1.0)
@@ -78,8 +78,8 @@ DEPENDENCIES:
   - Chatto (~> 3.5)
   - ChattoAdditions (~> 3.5)
   - Crashlytics (~> 3.13)
-  - FBSDKCoreKit (= 4.44.1)
-  - FBSDKLoginKit (= 4.44.1)
+  - FBSDKCoreKit (= 4.40.0)
+  - FBSDKLoginKit (= 4.40.0)
   - FMPhotoPicker (~> 0.8)
   - iCarousel (~> 1.8)
   - Kingfisher (~> 5.8)
@@ -142,11 +142,11 @@ SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: a823ae35bdb60ebb8d7a7e51abe7c5d87d2bfced
-  FBSDKLoginKit: 54ae59987f2a8703021557c90a9aebb9e5c2bef6
+  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
+  FBSDKLoginKit: 7a1e411d46acc8834588eca437daf34de42e1d52
   FMPhotoPicker: abc6559e4cdcb84cc2fc2f62dcdbdeca7cacbf6c
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
+  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
@@ -165,6 +165,6 @@ SPEC CHECKSUMS:
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: b1fc5a7e56191a9d8f03e79b62dfc0124df049cd
+PODFILE CHECKSUM: 670ca7b15ae0ed484704881f98cafb5df52d4f39
 
 COCOAPODS: 1.8.3

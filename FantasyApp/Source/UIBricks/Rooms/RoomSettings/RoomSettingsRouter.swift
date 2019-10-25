@@ -15,7 +15,7 @@ struct RoomSettingsRouter: MVVM_Router {
         self.owner = owner
     }
 
-    func showNotificationSettings(for room: Chat.Room) {
+    func showNotificationSettings(for room: Room) {
         let vc = R.storyboard.chat.roomNotificationSettingsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room)

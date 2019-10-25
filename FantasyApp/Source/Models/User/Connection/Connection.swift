@@ -21,17 +21,17 @@ enum Connection {
 
     case sameUser ///I am not in connection with myself
     case absent
-    case incomming(request: Set<ConnectionRequestType>, draftRoom: Chat.Room)
-    case outgoing(request: Set<ConnectionRequestType>, draftRoom: Chat.Room)
+    case incomming(request: Set<ConnectionRequestType>, draftRoom: RoomRef)
+    case outgoing(request: Set<ConnectionRequestType>, draftRoom: RoomRef)
     case iRejected    ///Other user initiated it, but I don't want it
     case iWasRejected ///I initiated it, but other user doesn't want it
-    case mutual(room: Chat.Room)
+    case mutual(room: RoomRef)
     
 }
 
 struct ConnectedUser: Equatable, IdentifiableType {
     let user: User
-    let room: Chat.Room
+    let room: RoomRef
     let connectTypes: Set<ConnectionRequestType>
     
     var identity: String {

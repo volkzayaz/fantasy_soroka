@@ -12,6 +12,23 @@ import RxCocoa
 import Branch
 import RxDataSources
 
+extension RoomSettingsViewModel {
+    
+    func securitySettingsViewModelFor(room: Room) -> RoomSettingsPremiumFeatureViewModel {
+        
+        let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
+        let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
+                        room.settings.isScreenShieldEnabled)]
+        return RoomSettingsPremiumFeatureViewModel(
+            title: R.string.localizable.roomSettingsSecurityTitle(),
+            description: R.string.localizable.roomSettingsSecurityDescription(),
+            options: options,
+            isEnabled: isScreenShieldAvailable
+        )
+    }
+    
+}
+
 struct RoomSettingsViewModel: MVVM_ViewModel {
 
     enum CellModel: IdentifiableType, Equatable {
@@ -19,7 +36,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
             thumbnailURL: String,
             isAdmin: Bool,
             name: String,
-            status: Chat.RoomParticipantStatus?,
+            status: Room.Participant.Status?,
             identifier: String)
         case invite
 
@@ -35,7 +52,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 
     let router: RoomSettingsRouter
     let inviteLink = BehaviorRelay<String?>(value: nil)
-    let room: BehaviorRelay<Chat.Room>
+    let room: BehaviorRelay<Room>
     private let buo: BranchUniversalObject
     private let properties: BranchLinkProperties
     private let users = BehaviorRelay<[User]>(value: [User.current!])
@@ -60,10 +77,10 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         }
     }
 
-    init(router: RoomSettingsRouter, room: Chat.Room) {
+    init(router: RoomSettingsRouter, room: Room) {
         self.router = router
         self.room = BehaviorRelay(value: room)
-        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id!)")
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
         self.properties = BranchLinkProperties()
 
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
@@ -76,7 +93,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 
     private func generateInviteLink() {
         guard let invitationLink = room.value.participants
-            .first(where: { $0.userId != User.current?.id })?
+            .first(where: { $0.invitationLink != nil })?
             .invitationLink else {
             return
         }
@@ -106,6 +123,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 }
 
 extension RoomSettingsViewModel {
+    
     func shareLink() {
         buo.showShareSheet(with: properties,
                            andShareText: "Join my room!\n\(inviteLink.value ?? "")",
@@ -114,24 +132,13 @@ extension RoomSettingsViewModel {
         }
     }
 
-    func securitySettingsViewModelFor(room: Chat.Room) -> RoomSettingsPremiumFeatureViewModel {
-        let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
-        let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
-                        room.settings?.isScreenShieldEnabled ?? false)]
-        return RoomSettingsPremiumFeatureViewModel(
-            title: R.string.localizable.roomSettingsSecurityTitle(),
-            description: R.string.localizable.roomSettingsSecurityDescription(),
-            options: options,
-            isEnabled: isScreenShieldAvailable
-        )
-    }
-
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
-        guard var roomSettings = room.value.settings else {
-            return
-        }
+        
+        var roomSettings = room.value.settings
+        
         roomSettings.isScreenShieldEnabled = isScreenShieldEnabled
-        ChatManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
+        
+        RoomManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { updatedRoom in
@@ -142,5 +149,9 @@ extension RoomSettingsViewModel {
 
     func showNotificationSettings() {
         router.showNotificationSettings(for: room.value)
+    }
+    
+    func leaveRoom() {
+        //router.owner.navigationController?.popViewController(animated: true)
     }
 }

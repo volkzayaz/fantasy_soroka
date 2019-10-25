@@ -15,7 +15,7 @@ class ParticipantCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var statusLabelContainer: UIView!
     @IBOutlet private (set) var imageView: UIImageView!
 
-    var status: Chat.RoomParticipantStatus? {
+    var status: Room.Participant.Status? {
         didSet {
             guard let status = status else {
                 statusLabel.isHidden = true

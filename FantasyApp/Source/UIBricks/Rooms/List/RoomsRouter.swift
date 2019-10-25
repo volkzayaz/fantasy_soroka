@@ -15,7 +15,7 @@ struct RoomsRouter: MVVM_Router {
         self.owner = owner
     }
 
-    func roomTapped(_ room: Chat.Room) {
+    func roomTapped(_ room: Room) {
         let vc = R.storyboard.chat.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc, room: room),
                              room: room,
@@ -23,7 +23,7 @@ struct RoomsRouter: MVVM_Router {
         owner.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func showRoomSettings(_ room: Chat.Room) {
+    func showRoomSettings(_ room: Room) {
         let vc = R.storyboard.chat.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc, room: room),
                              room: room,

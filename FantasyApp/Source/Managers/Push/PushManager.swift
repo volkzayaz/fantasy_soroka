@@ -26,7 +26,7 @@ extension PushManager {
         let _ = PFInstallation.current()?.rxSave().retry(2).subscribe()
     }
     
-    static func sendPush(to user: User, text: String) {
+    static func sendPush(to user: UserIdentifier, text: String) {
 
         
 //        NSString *alertString = [NSString stringWithFormat:message, currentUser.realname];
