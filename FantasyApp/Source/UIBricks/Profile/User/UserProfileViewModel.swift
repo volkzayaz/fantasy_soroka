@@ -302,6 +302,15 @@ extension UserProfileViewModel {
         let _ = ConnectionManager.initiate(with: user, type: .like)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
+            .do(onNext: { (x) in
+                
+                guard case .outgoing(_, let room) = x else {
+                    fatalErrorInDebug("Expected connection = .outgoing(_, let room). Received \(x)")
+                    return
+                }
+                
+                self.present(roomRef: room)
+            })
             .bind(to: relationshipState)
         
     }
