@@ -82,7 +82,7 @@ private extension RoomDetailsViewController {
     @IBAction func selectPage(_ sender: UIButton) {
         if sender == settingsButton {
             viewModel.page.accept(.settings)
-         }else if sender == fantasiesButton {
+        } else if sender == fantasiesButton {
             viewModel.page.accept(.fantasies)
         } else if sender == chatButton {
             viewModel.page.accept(.chat)

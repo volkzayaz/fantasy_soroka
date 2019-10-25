@@ -19,10 +19,10 @@ class TickButton: UIButton {
         self.setImage(R.image.checkBoxNonActive(), for: .normal)
         self.setImage(R.image.checkBoxActive(), for: .selected)
         
-        self.addTarget(self, action: Selector("pip"), for: .touchUpInside)
+        self.addTarget(self, action: #selector(pip), for: .touchUpInside)
     }
     
-    @objc func pip() {
+    @objc private func pip() {
         isSelected = !isSelected
     }
     

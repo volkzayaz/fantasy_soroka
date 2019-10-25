@@ -19,6 +19,9 @@ extension Fantasy {
             case text
             case imageURL = "src"
             case isPaid
+            case likes
+            case dislikes
+            case blocks
             
             case isLikedByYou
             case isDislikedByYou
@@ -30,6 +33,9 @@ extension Fantasy {
         let text: String
         let imageURL: String
         let isPaid: Bool
+        let likes: Int
+        let dislikes: Int
+        let blocks: Int
         
         private let isLikedByYou: Bool
         private let isDislikedByYou: Bool

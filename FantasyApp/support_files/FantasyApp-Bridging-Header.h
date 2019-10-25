@@ -3,3 +3,4 @@
 //
 
 #import <Parse/Parse.h>
+#include "TargetConditionals.h"
