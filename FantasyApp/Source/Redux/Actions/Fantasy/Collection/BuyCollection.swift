@@ -18,14 +18,10 @@ struct BuyCollection: ActionCreator {
         
         state.currentUser?.fantasies.purchasedCollections.append(self.collection)
         
-        guard case .swipeCount(let swipesLeft) = state.fantasies.restriction else {
-            return .just(state)
-        }
-        
-        return Fantasy.Manager.fetchMainCards()
+        return Fantasy.Manager.fetchSwipesDeck()
             .asObservable()
-            .map { cards in
-                state.fantasies.cards = cards
+            .map { deck in
+                state.fantasiesDeck = deck
                 return state
         }
         

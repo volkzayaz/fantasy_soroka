@@ -90,20 +90,32 @@ extension Fantasy {
     
 }
 
-extension AppState.SwipeState.Restriction {
-    
-    mutating func decremet() {
+extension AppState.FantasiesDeck {
+
+    /*
+        returns - Bool.
+            False - state should be refreshed from server
+            True  - state is consistent with server
+     */
+    mutating func pop(card: Fantasy.Card) -> Bool {
         
-        guard case .swipeCount(let x) = self, x > 0 else {
-            return
+        guard case .cards(var x) = self, x.count > 0 else {
+            return true
         }
         
-        if x == 1 {
-            self = .waiting(till: Date(timeIntervalSinceNow: 3600 * 24))
-            return
+        guard let maybeIndex = x.firstIndex(of: card) else {
+            return false
         }
         
-        self = .swipeCount(x - 1)
+        x.remove(at: maybeIndex)
+        
+        guard x.count > 0 else {
+            self = .empty(till: Date(timeIntervalSinceNow: 3600 * 24))
+            return true
+        }
+        
+        self = .cards(x)
+        return true
         
     }
     

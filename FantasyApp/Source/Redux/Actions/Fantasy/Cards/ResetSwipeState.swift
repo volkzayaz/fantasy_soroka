@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct ResetSwipeRestriction: Action {
+struct ResetSwipeDeck: Action {
     
-    let restriction: AppState.SwipeState.Restriction
+    let deck: AppState.FantasiesDeck
     
     func perform(initialState: AppState) -> AppState {
         var state = initialState
-        state.fantasies.restriction = restriction
+        state.fantasiesDeck = deck
         return state
     }
     

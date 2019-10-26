@@ -25,8 +25,7 @@ func initAppState() -> Maybe<Void> {
     
     ///we can use network requests here as well if we want to delay application initialization
     _appState.accept(AppState(currentUser: AuthenticationManager.currentUser(),
-                              fantasies: .init(cards: [],
-                                               restriction: .swipeCount(0))))
+                              fantasiesDeck: .cards([])))
     
     let _ =
     NotificationCenter.default.rx.notification(UIApplication.willTerminateNotification)
@@ -51,21 +50,13 @@ struct AppState: Equatable {
     var rooms: [Room] = []
     var reloadRoomsTriggerBecauseOfComplexFreezeLogic = false
     
-    var fantasies: SwipeState
-    
+    var fantasiesDeck: FantasiesDeck
     var inviteDeeplink: InviteDeeplink?
     
-    struct SwipeState: Equatable {
-        var cards: [Fantasy.Card]
+    enum FantasiesDeck: Equatable {
         
-        var freeCards: [Fantasy.Card] { return cards.filter { $0.isFree } }
-        
-        enum Restriction: Equatable {
-            case swipeCount(Int)
-            case waiting(till: Date)
-        }
-
-        var restriction: Restriction
+        case cards([Fantasy.Card])
+        case empty(till: Date)
         
     };
     

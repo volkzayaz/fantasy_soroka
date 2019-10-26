@@ -67,11 +67,10 @@ struct FantasyCardInteraction: ActionCreator {
             ///Updating Main Deck state
             ///not neccesserily removes card
             ///could be a case that swiping stack does not contain liked\disliked card
+            var deckIsConsistent = false
             if self.shouldDecrement && self.card.isFree {
-                state.fantasies.cards.removeAll { $0 == self.card }
-                state.fantasies.restriction.decremet()
+                deckIsConsistent = state.fantasiesDeck.pop(card: self.card)
             }
-            
             
             ///Updating User preferences
             state.currentUser?.fantasies.liked.removeAll { $0 == self.card }
@@ -87,15 +86,13 @@ struct FantasyCardInteraction: ActionCreator {
             }
             
             ///Performing Smart Refresh of Main Deck
-            guard case .swipeCount(let swipesLeft) = state.fantasies.restriction,
-                  swipesLeft != state.fantasies.freeCards.count else {
+            if deckIsConsistent {
                 return .just(state)
             }
             
             return Fantasy.Manager.fetchMainCards().asObservable()
                 .map { cards in
-                    state.fantasies.cards = cards
-                    state.fantasies.restriction = .swipeCount(swipesLeft)
+                    state.fantasiesDeck = .cards(cards)
                 
                     return state
                 }

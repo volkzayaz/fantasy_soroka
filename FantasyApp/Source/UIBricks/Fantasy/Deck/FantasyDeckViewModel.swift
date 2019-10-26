@@ -17,10 +17,10 @@ extension FantasyDeckViewModel {
         case swipeCards, waiting
     }
     var mode: Driver<Mode> {
-        return appState.changesOf { $0.fantasies.restriction }
+        return appState.changesOf { $0.fantasiesDeck }
             .map { state in
                 
-                if case .swipeCount(_) = state {
+                if case .cards(_) = state {
                     return .swipeCards
                 }
                 return .waiting
@@ -29,9 +29,9 @@ extension FantasyDeckViewModel {
     
     var timeLeftText: Driver<String> {
         
-        return appState.changesOf { $0.fantasies.restriction }
+        return appState.changesOf { $0.fantasiesDeck }
             .map { x -> Date? in
-                if case .waiting(let date) = x {
+                if case .empty(let date) = x {
                     return date
                 }
                 return nil
@@ -55,7 +55,13 @@ extension FantasyDeckViewModel {
     }
     
     var cards: Driver<[Fantasy.Card]> {
-        return appState.changesOf { $0.fantasies.cards }
+        return appState.changesOf { $0.fantasiesDeck }
+            .map { deck in
+                switch deck {
+                case .cards(let cards): return cards
+                case .empty(_): return []
+                }
+            }
     }
     
 }

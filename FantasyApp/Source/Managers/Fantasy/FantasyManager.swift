@@ -21,21 +21,22 @@ extension Fantasy.Manager {
     2) we are limited for swiping til Date .waiting(Date)
     3) rarely, but some geeks might swipe through whole collection. No cards available anymore .cards( [] )
     */
-    static func fetchSwipeState() -> Single< AppState.SwipeState.Restriction > {
+    static func fetchSwipesDeck() -> Single< AppState.FantasiesDeck > {
         
-        return Fantasy.Request.SwipeState().rx.request
-            .map { res in
+        Single.zip(Fantasy.Request.SwipeState().rx.request,
+                   fetchMainCards())
+            .map { (swipeState, cards) in
                 
-                if res.amount > 0 {
-                    return .swipeCount(res.amount)
+                if cards.count > 0 {
+                    return .cards(cards)
                 }
                 
-                if let x = res.wouldBeUpdatedAt {
-                    return .waiting(till: x)
+                if let x = swipeState.wouldBeUpdatedAt {
+                    return .empty(till: x)
                 }
                 
                 fatalErrorInDebug("Server returned neither update date, nor available amount")
-                return .waiting(till: Date(timeIntervalSinceNow: 24 * 3600))
+                return .empty(till: Date(timeIntervalSinceNow: 24 * 3600))
             }
         
     }

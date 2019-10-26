@@ -94,6 +94,10 @@ extension RoomManager {
         return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
     }
     
+    static func deleteRoom(_ roomId: String) -> Single<Void> {
+        return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
+    }
+    
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {
         return InviteParticipantResource(roomId: roomId, userId: userId).rx.request
     }
@@ -101,7 +105,7 @@ extension RoomManager {
     static func assosiateSelfWith(roomRef: RoomRef, password: String) -> Single<Room> {
         return RoomStatusResource(roomRef: roomRef, password: password, status: .invited).rx.request
     }
-
+    
     // MARK: - Settings
     static func updateRoomSettings(roomId: String, settings: Room.Settings) -> Single<Room> {
         return UpdateRoomSettingsResource(roomId: roomId, settings: settings).rx.request

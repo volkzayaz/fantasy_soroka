@@ -44,20 +44,13 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         ///Alternativelly we can encode appState to disk and just restore it from there
         ///To keep syncing problems at min for now we'll fetch most info from server
         ///But for v2 we want to implement disk-first restoration policy
-        Fantasy.Manager.fetchSwipeState()
+        Fantasy.Manager.fetchSwipesDeck()
             //.trackView(viewIndicator: indicator)
             .subscribe(onSuccess: { x in
-                Dispatcher.dispatch(action: ResetSwipeRestriction(restriction: x))
+                Dispatcher.dispatch(action: ResetSwipeDeck(deck: x))
             })
             .disposed(by: bag)
-        
-        Fantasy.Manager.fetchMainCards()
-            //.trackView(viewIndicator: indicator)
-            .subscribe(onSuccess: { x in
-                Dispatcher.dispatch(action: StoreMainCards(cards: x))
-            })
-            .disposed(by: bag)
-        
+
         locationManager.rx.didChangeAuthorization
             .filter { $0.status != .denied && $0.status != .notDetermined }
             .subscribe(onNext: { (_) in
