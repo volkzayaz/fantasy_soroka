@@ -63,7 +63,6 @@
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
 		733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BA236452A0004EC466 /* InviteDeeplink.swift */; };
-		733F41BD23649DCB004EC466 /* Asset 1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 733F41BC23649DCB004EC466 /* Asset 1.svg */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -296,6 +295,7 @@
 		B783C6382350D6C00017CE1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6352350D6C00017CE1A /* WelcomeViewController.swift */; };
 		B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6362350D6C00017CE1A /* WelcomeViewModel.swift */; };
 		B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C63A2351BCB10017CE1A /* GradientLineView.swift */; };
+		B78893EF2364B18A00079C89 /* PinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78893EE2364B18A00079C89 /* PinkButton.swift */; };
 		B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F42351D3A3003A36BA /* ForgotPasswordRouter.swift */; };
 		B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */; };
 		B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */; };
@@ -398,7 +398,6 @@
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
 		733F41BA236452A0004EC466 /* InviteDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDeeplink.swift; sourceTree = "<group>"; };
-		733F41BC23649DCB004EC466 /* Asset 1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Asset 1.svg"; path = "../../../../../Desktop/Asset 1.svg"; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -632,6 +631,7 @@
 		B783C6352350D6C00017CE1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B783C6362350D6C00017CE1A /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		B783C63A2351BCB10017CE1A /* GradientLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLineView.swift; sourceTree = "<group>"; };
+		B78893EE2364B18A00079C89 /* PinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinkButton.swift; sourceTree = "<group>"; };
 		B78BE6F42351D3A3003A36BA /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
 		B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -762,7 +762,6 @@
 		7312B04222D73AD100DB0F36 /* FantasyApp */ = {
 			isa = PBXGroup;
 			children = (
-				733F41BC23649DCB004EC466 /* Asset 1.svg */,
 				843B648A234EAC4600E5639B /* FantasyApp.entitlements */,
 				7312B05E22D7403300DB0F36 /* Source */,
 				7312B06122D7403300DB0F36 /* Resources */,
@@ -1649,6 +1648,7 @@
 				B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */,
 				B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */,
 				B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */,
+				B78893EE2364B18A00079C89 /* PinkButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2137,7 +2137,6 @@
 				B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */,
 				843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */,
 				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
-				733F41BD23649DCB004EC466 /* Asset 1.svg in Resources */,
 				7312B0D222D74FB200DB0F36 /* Appfile in Resources */,
 				841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */,
 				841681E222E9AE6E00FA9455 /* SF-Pro-Text-RegularItalic.otf in Resources */,
@@ -2426,6 +2425,7 @@
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
+				B78893EF2364B18A00079C89 /* PinkButton.swift in Sources */,
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */,

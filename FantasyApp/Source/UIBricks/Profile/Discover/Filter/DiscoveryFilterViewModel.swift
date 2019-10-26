@@ -65,6 +65,10 @@ extension DiscoveryFilterViewModel {
         return form.value.couple != .single
     }
 
+    var age: Range<Int> {
+        return form.value.age
+    }
+
     var showTutorial: Bool {
         return !UserDefaults.standard.bool(forKey: StoreKeys.tutorial.rawValue)
     }
@@ -125,13 +129,8 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
 
 extension DiscoveryFilterViewModel {
 
-
-    func changeAgeFrom(x: Int) {
-        updateForm { $0.age = x..<$0.age.upperBound }
-    }
-    
-    func changeAgeTo(x: Int) {
-        updateForm { $0.age = $0.age.lowerBound..<x }
+    func changeAge(x: Range<Int>) {
+        updateForm { $0.age = x }
     }
 
     func changeCouple(x: RelationshipStatus) {

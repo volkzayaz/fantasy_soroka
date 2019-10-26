@@ -34,29 +34,31 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
             cityNotActiveView.addFantasyRoundedCorners()
         }
     }
-    @IBOutlet weak var notActiveCityNameLabel: UILabel!
-    @IBOutlet weak var notAllowButton: PrimaryButton! {
+    @IBOutlet weak var goToSettingsView: UIView! {
         didSet {
-            notAllowButton.addLightGrayColorStyle()
+            goToSettingsView.addFantasyRoundedCorners()
         }
     }
-    @IBOutlet weak var inviteFriendsButton: PrimaryButton! {
-        didSet {
-            inviteFriendsButton.addLightGrayColorStyle()
+    @IBOutlet weak var notActiveCityNameLabel: UILabel!
+
+
+    func enableFilter(_ enable: Bool) {
+
+        guard enable else {
+            navigationItem.rightBarButtonItem = nil
+            return
         }
+
+        let item = UIBarButtonItem(title: "Filters", style: .done, target: self, action: #selector(presentFilter))
+         item.applyFantasyAttributes()
+         navigationItem.rightBarButtonItem = item
     }
 
-    @IBOutlet weak var blurView: UIVisualEffectView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addFantasyTripleGradient()
 
-        let item = UIBarButtonItem(title: "Filters", style: .done, target: self, action: #selector(presentFilter))
-        item.applyFantasyAttributes()
-        navigationItem.rightBarButtonItem = item
-        
         viewModel.profiles
             .subscribe(onNext: { [weak self] (_) in
                 self?.profilesCarousel.reloadData()
@@ -68,16 +70,21 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 self.hideView(self.cityNotActiveView)
                 self.hideView(self.allowGeolocationView)
+                self.hideView(self.goToSettingsView)
+                self.enableFilter(false)
+
                 self.profilesCarousel.isHidden = true
 
                 switch mode {
                 case .profiles:
                     self.profilesCarousel.isHidden = false
+                    self.enableFilter(true)
                     
                 case .noLocationPermission:
-                    self.showView(self.allowGeolocationView)
+                    self.showView(self.goToSettingsView)
 
                 case .absentCommunity(let nearestCity):
+                    self.enableFilter(true)
                     self.showView(self.cityNotActiveView)
 
                     let cityName = nearestCity ?? "Your city"
@@ -85,9 +92,6 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 case .noSearchPreferences:
                     self.viewModel.presentFilter(.disableCancel)
-                    //                    self.locationMessageLabel.isHidden = false
-                    //                    self.locationMessageLabel.text = "Before we search, set your searching preferences"
-                    
                 }
                 
             })
@@ -136,6 +140,10 @@ extension DiscoverProfileViewController {
 
     @IBAction func joinActiveCityClick(_ sender: Any) {
         viewModel.joinActiveCity()
+    }
+
+    @IBAction func goToSettings(_ sender: Any) {
+        viewModel.goToSettings()
     }
 
     @objc func presentFilter() {

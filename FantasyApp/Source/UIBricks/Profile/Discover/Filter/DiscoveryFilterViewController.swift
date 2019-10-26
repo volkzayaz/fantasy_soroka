@@ -30,18 +30,17 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     @IBOutlet weak var partnerSexualityPicker: SmoothPickerView!
     @IBOutlet weak var ageSlider: MultiSlider! {
         didSet {
-            ageSlider.minimumValue = 18.0
-            ageSlider.maximumValue = 100.0
             ageSlider.orientation = .horizontal
             ageSlider.valueLabelPosition = .bottom
+            ageSlider.minimumValue = 0.0
+            ageSlider.maximumValue = 100.0
             ageSlider.snapStepSize = 1.0
-
-            ageSlider.outerTrackColor = .gray
-            ageSlider.value = [30, 31]
-            ageSlider.tintColor = .purple
-            ageSlider.trackWidth = 11
-            ageSlider.showsThumbImageShadow = false
+            ageSlider.trackWidth = 2
+            ageSlider.showsThumbImageShadow = true
             ageSlider.keepsDistanceBetweenThumbs = true
+            ageSlider.outerTrackColor = R.color.listBackgroundColor()
+            ageSlider.tintColor = R.color.textPinkColor()
+            ageSlider.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
         }
     }
 
@@ -75,6 +74,13 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             navigationItem.rightBarButtonItem = item
         }
 
+        secondPartnerSwitch.isOn = viewModel.isCouple
+        partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
+        partnerSexualityPicker.firstselectedItem =  viewModel.selectedPartnerSexuality
+        secondPartnerBodyPicker.firstselectedItem = viewModel.selectedSecondPartnerGenderIndex
+
+        ageSlider.value = [viewModel.age.lowerBound, viewModel.age.upperBound].map { CGFloat ($0) }
+
         // Input Data bindings
 
         let switchSignal =
@@ -99,11 +105,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
                 self.activeCityImageView.image = name != nil ? R.image.cityCheckImage() : nil
             })
             .disposed(by: rx.disposeBag)
-
-        secondPartnerSwitch.isOn = viewModel.isCouple
-        partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
-        partnerSexualityPicker.firstselectedItem =  viewModel.selectedPartnerSexuality
-        secondPartnerBodyPicker.firstselectedItem = viewModel.selectedSecondPartnerGenderIndex
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -130,6 +131,10 @@ extension DiscoveryFilterViewController {
 
     @objc func cancel() {
         viewModel.cancel()
+    }
+
+    @objc func sliderChanged(_ slider: MultiSlider) {
+        viewModel.changeAge(x: Int(slider.value.first!)..<Int(slider.value.last!))
     }
 
     @IBAction func apply(_ sender: Any) {

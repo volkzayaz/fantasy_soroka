@@ -59,8 +59,6 @@ extension DiscoverProfileViewModel {
             .notNil()
         
     }
-    
-    
 }
 
 struct DiscoverProfileViewModel : MVVM_ViewModel {
@@ -100,8 +98,9 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     let router: DiscoverProfileRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
 }
+
+//MARK:- Actions
 
 extension DiscoverProfileViewModel {
     
@@ -119,19 +118,25 @@ extension DiscoverProfileViewModel {
         router.presentFilter(mode)
     }
 
-    func allowLocationService() {
-    }
-
-
-    func notAllowLocationService() {
-
-    }
-
     func inviteFriends() {
 
     }
 
     func joinActiveCity() {
+
+    }
+
+    // Location
+
+    func goToSettings() {
+        UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+    }
+
+    func allowLocationService() {
+
+    }
+
+    func notAllowLocationService() {
 
     }
 }

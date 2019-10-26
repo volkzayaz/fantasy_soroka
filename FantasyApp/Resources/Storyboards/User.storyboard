@@ -411,56 +411,45 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search for Fantasy Match" id="cg0-BV-Umz"/>
                     <connections>
-                        <outlet property="allowGeolocationView" destination="FH2-xN-97a" id="lVS-QX-tHj"/>
-                        <outlet property="blurView" destination="CxL-fl-d6N" id="q93-tR-k87"/>
+                        <outlet property="allowGeolocationView" destination="Zsa-53-sF4" id="maa-yi-0I8"/>
                         <outlet property="cityNotActiveView" destination="OD3-RV-LXg" id="8KR-Fo-f1e"/>
-                        <outlet property="inviteFriendsButton" destination="tfk-hA-yJP" id="6gc-hG-OWp"/>
+                        <outlet property="goToSettingsView" destination="FH2-xN-97a" id="LSb-jE-aSi"/>
                         <outlet property="notActiveCityNameLabel" destination="ahz-f2-kFB" id="8Ou-1n-Znb"/>
-                        <outlet property="notAllowButton" destination="ovc-hg-aIw" id="MeG-vs-cGO"/>
                         <outlet property="profilesCarousel" destination="0Se-hg-s60" id="eVP-0o-vtQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmj-hS-riL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" id="CxL-fl-d6N">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="w5H-kb-KpN">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="regular"/>
-                </visualEffectView>
-                <view contentMode="scaleToFill" id="FH2-xN-97a">
+                <view contentMode="scaleToFill" id="Zsa-53-sF4">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchEnableLocationPlanetImage" translatesAutoresizingMaskIntoConstraints="NO" id="NTP-WC-nz5">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchEnableLocationPlanetImage" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-xQ-K8q">
                             <rect key="frame" x="-34" y="-140" width="440" height="600"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovc-hg-aIw" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhS-9e-RJJ" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="26" y="448" width="153.5" height="52"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="52" id="jHu-7q-6bS"/>
+                                <constraint firstAttribute="height" constant="52" id="QJQ-1h-EM9"/>
                             </constraints>
                             <state key="normal" title="Don’t Allow"/>
                             <connections>
-                                <action selector="notAllowLocationClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="9p1-CE-BQu"/>
+                                <action selector="notAllowLocationClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="7st-JG-we7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62n-ct-hIE" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STk-sG-XFG" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="192.5" y="448" width="153.5" height="52"/>
                             <state key="normal" title="Allow"/>
                             <connections>
-                                <action selector="allowLocationClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="KaO-dg-2PY"/>
+                                <action selector="allowLocationClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="XRA-HN-Yk2"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knowing your location helps us locate people around you. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAb-VS-Veo">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knowing your location helps us locate people around you. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mg-cK-nn2">
                             <rect key="frame" x="55" y="328.5" width="262" height="35"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                             <color key="textColor" name="textBlackColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Geolocation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwF-Ei-WcA">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Geolocation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKk-Wd-Rdv">
                             <rect key="frame" x="55" y="299.5" width="262" height="21"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                             <color key="textColor" name="textBlackColor"/>
@@ -469,21 +458,67 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="dAb-VS-Veo" firstAttribute="trailing" secondItem="fwF-Ei-WcA" secondAttribute="trailing" id="0FT-de-I4t"/>
-                        <constraint firstItem="ovc-hg-aIw" firstAttribute="height" secondItem="62n-ct-hIE" secondAttribute="height" id="BUb-1O-Of3"/>
-                        <constraint firstItem="NTP-WC-nz5" firstAttribute="centerY" secondItem="FH2-xN-97a" secondAttribute="centerY" constant="-100" id="EkI-HW-MZs"/>
-                        <constraint firstItem="dAb-VS-Veo" firstAttribute="top" secondItem="fwF-Ei-WcA" secondAttribute="bottom" constant="8" id="J2b-4Y-AAm"/>
-                        <constraint firstItem="NTP-WC-nz5" firstAttribute="centerX" secondItem="FH2-xN-97a" secondAttribute="centerX" id="NZZ-ED-kNV"/>
-                        <constraint firstItem="pIC-IN-BnV" firstAttribute="bottom" secondItem="ovc-hg-aIw" secondAttribute="bottom" constant="20" id="NjE-vE-Z0B"/>
-                        <constraint firstItem="62n-ct-hIE" firstAttribute="leading" secondItem="ovc-hg-aIw" secondAttribute="trailing" constant="13" id="Qxo-z1-R6d"/>
-                        <constraint firstItem="ovc-hg-aIw" firstAttribute="leading" secondItem="pIC-IN-BnV" secondAttribute="leading" constant="26" id="XBL-vA-wjo"/>
-                        <constraint firstItem="62n-ct-hIE" firstAttribute="bottom" secondItem="ovc-hg-aIw" secondAttribute="bottom" id="iSe-sN-3U6"/>
-                        <constraint firstItem="pIC-IN-BnV" firstAttribute="trailing" secondItem="62n-ct-hIE" secondAttribute="trailing" constant="26" id="kZX-Uv-yXV"/>
-                        <constraint firstItem="fwF-Ei-WcA" firstAttribute="centerY" secondItem="FH2-xN-97a" secondAttribute="centerY" constant="50" id="pQc-gF-dmk"/>
-                        <constraint firstItem="fwF-Ei-WcA" firstAttribute="leading" secondItem="pIC-IN-BnV" secondAttribute="leading" constant="55" id="prq-f3-bdD"/>
-                        <constraint firstItem="dAb-VS-Veo" firstAttribute="leading" secondItem="fwF-Ei-WcA" secondAttribute="leading" id="qlQ-VN-PVk"/>
-                        <constraint firstItem="62n-ct-hIE" firstAttribute="width" secondItem="ovc-hg-aIw" secondAttribute="width" id="qvf-ZA-uys"/>
-                        <constraint firstItem="pIC-IN-BnV" firstAttribute="trailing" secondItem="fwF-Ei-WcA" secondAttribute="trailing" constant="55" id="xg9-sP-uGY"/>
+                        <constraint firstItem="VXd-xQ-K8q" firstAttribute="centerX" secondItem="Zsa-53-sF4" secondAttribute="centerX" id="2s6-Ub-VSv"/>
+                        <constraint firstItem="STk-sG-XFG" firstAttribute="width" secondItem="yhS-9e-RJJ" secondAttribute="width" id="5Ar-EB-A6y"/>
+                        <constraint firstItem="yhS-9e-RJJ" firstAttribute="height" secondItem="STk-sG-XFG" secondAttribute="height" id="9UJ-0F-T8X"/>
+                        <constraint firstItem="4Mg-cK-nn2" firstAttribute="trailing" secondItem="TKk-Wd-Rdv" secondAttribute="trailing" id="Oix-sf-sAT"/>
+                        <constraint firstItem="TKk-Wd-Rdv" firstAttribute="centerY" secondItem="Zsa-53-sF4" secondAttribute="centerY" constant="50" id="Ytg-ty-j9s"/>
+                        <constraint firstItem="4Mg-cK-nn2" firstAttribute="top" secondItem="TKk-Wd-Rdv" secondAttribute="bottom" constant="8" id="aMa-IK-bHH"/>
+                        <constraint firstItem="V4y-09-1ii" firstAttribute="trailing" secondItem="STk-sG-XFG" secondAttribute="trailing" constant="26" id="ajY-SQ-ch1"/>
+                        <constraint firstItem="V4y-09-1ii" firstAttribute="trailing" secondItem="TKk-Wd-Rdv" secondAttribute="trailing" constant="55" id="eZG-gB-UWR"/>
+                        <constraint firstItem="STk-sG-XFG" firstAttribute="leading" secondItem="yhS-9e-RJJ" secondAttribute="trailing" constant="13" id="ebs-eG-pe0"/>
+                        <constraint firstItem="VXd-xQ-K8q" firstAttribute="centerY" secondItem="Zsa-53-sF4" secondAttribute="centerY" constant="-100" id="ir8-Yd-zc5"/>
+                        <constraint firstItem="STk-sG-XFG" firstAttribute="bottom" secondItem="yhS-9e-RJJ" secondAttribute="bottom" id="mHd-3f-wPQ"/>
+                        <constraint firstItem="yhS-9e-RJJ" firstAttribute="leading" secondItem="V4y-09-1ii" secondAttribute="leading" constant="26" id="ox2-vm-Yrj"/>
+                        <constraint firstItem="4Mg-cK-nn2" firstAttribute="leading" secondItem="TKk-Wd-Rdv" secondAttribute="leading" id="tMi-eE-XDR"/>
+                        <constraint firstItem="TKk-Wd-Rdv" firstAttribute="leading" secondItem="V4y-09-1ii" secondAttribute="leading" constant="55" id="uXX-rD-WrC"/>
+                        <constraint firstItem="V4y-09-1ii" firstAttribute="bottom" secondItem="yhS-9e-RJJ" secondAttribute="bottom" constant="20" id="vBb-9R-Klc"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="V4y-09-1ii"/>
+                </view>
+                <view contentMode="scaleToFill" id="FH2-xN-97a">
+                    <rect key="frame" x="0.0" y="0.0" width="372" height="597"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where Are You Now?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-tc-KZG">
+                            <rect key="frame" x="50" y="530.5" width="272" height="21"/>
+                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                            <color key="textColor" name="textBlackColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable your geolocation. Knowing your location helps us locate people around you. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJc-ok-4TX">
+                            <rect key="frame" x="50" y="559.5" width="272" height="52.5"/>
+                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                            <color key="textColor" name="textBlackColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchEnableLocationToSettings" translatesAutoresizingMaskIntoConstraints="NO" id="ZfR-Jd-ldB">
+                            <rect key="frame" x="-34" y="-81.5" width="440" height="600"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-Oy-unW" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                            <rect key="frame" x="60" y="525" width="252" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="518-sL-KWN"/>
+                            </constraints>
+                            <state key="normal" title="Go To Settings"/>
+                            <connections>
+                                <action selector="goToSettings:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="def-ad-1eu"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ZfR-Jd-ldB" firstAttribute="centerY" secondItem="FH2-xN-97a" secondAttribute="centerY" constant="-80" id="4CZ-gF-tEm"/>
+                        <constraint firstItem="aBF-tc-KZG" firstAttribute="leading" secondItem="pIC-IN-BnV" secondAttribute="leading" constant="50" id="9W5-dc-4rY"/>
+                        <constraint firstItem="pIC-IN-BnV" firstAttribute="trailing" secondItem="aBF-tc-KZG" secondAttribute="trailing" constant="50" id="Ed0-OG-7Ax"/>
+                        <constraint firstItem="ZfR-Jd-ldB" firstAttribute="centerX" secondItem="FH2-xN-97a" secondAttribute="centerX" id="JCT-YP-tLA"/>
+                        <constraint firstItem="aBF-tc-KZG" firstAttribute="top" secondItem="ZfR-Jd-ldB" secondAttribute="bottom" constant="12" id="MvM-5G-Jpu"/>
+                        <constraint firstItem="nmL-Oy-unW" firstAttribute="leading" secondItem="pIC-IN-BnV" secondAttribute="leading" constant="60" id="atj-YJ-r4T"/>
+                        <constraint firstItem="pIC-IN-BnV" firstAttribute="bottom" secondItem="nmL-Oy-unW" secondAttribute="bottom" constant="20" id="b6e-fZ-faA"/>
+                        <constraint firstItem="pIC-IN-BnV" firstAttribute="trailing" secondItem="nmL-Oy-unW" secondAttribute="trailing" constant="60" id="cNF-Fk-RuL"/>
+                        <constraint firstItem="nJc-ok-4TX" firstAttribute="leading" secondItem="aBF-tc-KZG" secondAttribute="leading" id="dsB-UZ-pem"/>
+                        <constraint firstItem="nJc-ok-4TX" firstAttribute="trailing" secondItem="aBF-tc-KZG" secondAttribute="trailing" id="gIp-Sp-gIC"/>
+                        <constraint firstItem="nJc-ok-4TX" firstAttribute="top" secondItem="aBF-tc-KZG" secondAttribute="bottom" constant="8" id="rPN-UT-ETP"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="pIC-IN-BnV"/>
                 </view>
@@ -998,7 +1033,7 @@ activated when it reaches</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xST-Oe-7Gr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1928.985507246377" y="-644.19642857142856"/>
+            <point key="canvasLocation" x="2165" y="-644"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="gao-4q-isq">

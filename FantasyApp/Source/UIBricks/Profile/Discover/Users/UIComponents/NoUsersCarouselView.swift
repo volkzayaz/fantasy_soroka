@@ -16,7 +16,6 @@ protocol NoUsersCarouselViewDelegate {
 class NoUsersCarouselView: UIView {
 
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var filtersButton: PrimaryButton!
 
     private var shadowLayer: CAShapeLayer?
 
@@ -40,16 +39,10 @@ class NoUsersCarouselView: UIView {
         addSubview(contentView)
 
         contentView.snp.makeConstraints { (make) in
-//            make.top.equalTo(self.snp.top)
-//            make.bottom.equalTo(self.snp.bottom)
-//            make.left.equalTo(self.snp_left)
-//            make.right.equalTo(self.snp_right)
             make.edges.equalTo(self)
-
         }
 
         setupShadow()
-        filtersButton.addLightGrayColorStyle()
     }
 
     private func loadViewFromNib() -> UIView {
