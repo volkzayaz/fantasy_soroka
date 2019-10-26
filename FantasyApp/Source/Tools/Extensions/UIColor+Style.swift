@@ -18,6 +18,9 @@ extension UIColor {
     static let gradient4 = UIColor(red: 212, green: 91, blue: 181)
     static let gradient5 = UIColor(red: 132, green: 185, blue: 215)
 
+    // MARK: - Fantasy Cards
+    static let fantasyCardBackground = UIColor(red: 16, green: 15, blue: 25)
+    static let preferenceButtonSelected = UIColor(red: 251, green: 238, blue: 247)
 
     // MARK: - Buttons
     static let shadow = UIColor(red: 199, green: 119, blue: 197)
@@ -29,6 +32,7 @@ extension UIColor {
     static let title = UIColor.white
     static let fantasyBlack = UIColor(red: 72, green: 78, blue: 94)
     static let basicGrey = UIColor(red: 175, green: 180, blue: 193)
+    static let fantasyLightGrey = UIColor(red: 247, green: 247, blue: 250)
     static let fantasyGrey = UIColor(red: 237, green: 237, blue: 241)
     static let fantasyPink = UIColor(red: 211, green: 100, blue: 177)
     static let fantasyRed = UIColor(red: 255, green: 79, blue: 79)

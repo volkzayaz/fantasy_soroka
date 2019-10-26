@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="1732" y="761"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Fantasy Navigation Controller-->
         <scene sceneID="W3g-wp-wql">
             <objects>
-                <navigationController id="sAf-SH-0GH" sceneMemberID="viewController">
+                <navigationController id="sAf-SH-0GH" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="navFantasies" selectedImage="navFantasySelected" id="gEg-7m-vRc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b0M-zD-oFu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -216,8 +216,6 @@
     <resources>
         <image name="messages" width="40" height="40"/>
         <image name="messagesSelected" width="40" height="40"/>
-        <image name="search" width="40" height="30"/>
-        <image name="searchSelected" width="50" height="40"/>
         <image name="navDiscovery" width="40" height="30"/>
         <image name="navDiscoverySelected" width="40" height="30"/>
         <image name="navFantasies" width="30" height="30"/>

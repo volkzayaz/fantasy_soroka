@@ -9,7 +9,6 @@
 import Foundation
 import Chatto
 import ChattoAdditions
-import ScreenShieldKit
 
 class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteractionHandlerProtocol {
     typealias ViewModelT = TextMessageViewModel<TextMessageModel<Room.Message>>
@@ -70,7 +69,6 @@ private extension ChatViewController {
         //}
         chatDataSource = viewModel.chattoMess
         chatItemsDecorator = ChatItemsDecorator()
-        collectionView?.backgroundColor = .white
 
         guard let superview = view.superview else {
             return
@@ -82,27 +80,6 @@ private extension ChatViewController {
             view.rightAnchor.constraint(equalTo: superview.rightAnchor),
             view.leftAnchor.constraint(equalTo: superview.leftAnchor),
             view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
-        ])
-    }
-
-    func setupScreenCaptureProtection() {
-        let containerView = SSKProtectedImageView(image: R.image.screenProtectionInactive())
-        let imageView = UIImageView(image: R.image.screenProtectionActive())
-        containerView.screenCaptureView.addSubview(imageView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.isUserInteractionEnabled = false
-        view.insertSubview(containerView, belowSubview: collectionView!)
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: view.topAnchor),
-            containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            imageView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
-            imageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
-            imageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
     }
 }

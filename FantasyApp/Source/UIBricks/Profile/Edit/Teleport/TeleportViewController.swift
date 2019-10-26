@@ -66,7 +66,7 @@ class TeleportViewController: UIViewController, MVVM_View {
         title = "Teleport"
         
         navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain,
-                                                 target: self, action: Selector("back"))
+                                                 target: self, action: #selector(back))
     
         view.addFantasyGradient()
         
