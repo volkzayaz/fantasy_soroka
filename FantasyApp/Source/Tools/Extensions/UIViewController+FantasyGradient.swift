@@ -10,13 +10,18 @@ import Foundation
 
 extension UIView {
 
-    func addFantasyGradient() {
+    func addFantasyGradient(roundCorners: Bool = false) {
         let gradientLayer = CAGradientLayer()
         
         gradientLayer.frame = bounds
         gradientLayer.colors = [UIColor.gradient2.cgColor, UIColor.gradient3.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        if roundCorners {
+            gradientLayer.cornerRadius = bounds.height / 2
+        }
+        
         layer.insertSublayer(gradientLayer, at: 0)
     }
 
@@ -39,4 +44,5 @@ extension UIView {
         layer.cornerRadius = 20
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
+
 }

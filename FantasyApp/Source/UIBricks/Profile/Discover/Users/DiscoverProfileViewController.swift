@@ -13,17 +13,50 @@ import RxCocoa
 
 import iCarousel
 
+extension PrimaryButton {
+    func addLightGrayColorStyle () {
+        backgroundColor = R.color.listBackgroundColor()
+                  tintColor = R.color.textPinkColor()
+                  titleFont = UIFont.regularFont(ofSize: 16)
+                  mode = .normal
+    }
+}
+
 class DiscoverProfileViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: DiscoverProfileViewModel! = DiscoverProfileViewModel(router: .init(owner: self))
     
-    @IBOutlet weak var locationMessageLabel: UILabel!
     @IBOutlet weak var profilesCarousel: iCarousel! {
         didSet {
             profilesCarousel.type = .custom
             profilesCarousel.isPagingEnabled = true
         }
     }
+
+    // Location section
+    @IBOutlet weak var allowGeolocationView: UIView! {
+        didSet {
+            allowGeolocationView.addFantasyRoundedCorners()
+        }
+    }
+    @IBOutlet weak var cityNotActiveView: UIView! {
+        didSet {
+            cityNotActiveView.addFantasyRoundedCorners()
+        }
+    }
+    @IBOutlet weak var notActiveCityNameLabel: UILabel!
+    @IBOutlet weak var notAllowButton: PrimaryButton! {
+        didSet {
+            notAllowButton.addLightGrayColorStyle()
+        }
+    }
+    @IBOutlet weak var inviteFriendsButton: PrimaryButton! {
+        didSet {
+            inviteFriendsButton.addLightGrayColorStyle()
+        }
+    }
+
+    @IBOutlet weak var blurView: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,30 +76,28 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         
         viewModel.mode
             .drive(onNext: { [unowned self] (mode) in
-                
-                [self.profilesCarousel, self.locationMessageLabel]
-                    .forEach { $0?.isHidden = true }
-                
+
+                self.hideView(self.cityNotActiveView)
+                self.hideView(self.allowGeolocationView)
+                self.profilesCarousel.isHidden = true
+
                 switch mode {
                 case .profiles:
                     self.profilesCarousel.isHidden = false
                     
                 case .noLocationPermission:
-                    self.locationMessageLabel.isHidden = false
-                    self.locationMessageLabel.text = "Can you share your location? We really need it"
-                    
+                    self.showView(self.allowGeolocationView)
+
                 case .absentCommunity(let nearestCity):
-                    self.locationMessageLabel.isHidden = false
-                    if let nearestCity = nearestCity {
-                        self.locationMessageLabel.text = "Fantasy is not yet available at \(nearestCity). Stay tuned, we'll soon be there"
-                    }
-                    else {
-                        self.locationMessageLabel.text = "We can't figure out where are you at the moment. Feel free to send us your City at fantasyapp@email.com. Or use teleport"
-                    }
-                    
+                    self.showView(self.cityNotActiveView)
+
+                    let cityName = nearestCity ?? "Your city"
+                    self.notActiveCityNameLabel.attributedText = NSAttributedString(string: "\(cityName) will be activated when it reaches")
+
                 case .noSearchPreferences:
-                    self.locationMessageLabel.isHidden = false
-                    self.locationMessageLabel.text = "Before we search, set your searching preferences"
+                    self.viewModel.presentFilter()
+//                    self.locationMessageLabel.isHidden = false
+//                    self.locationMessageLabel.text = "Before we search, set your searching preferences"
                     
                 }
                 
@@ -74,8 +105,52 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
     }
-    
 }
+
+// MARK:- Views Management
+
+extension DiscoverProfileViewController {
+
+    private func showView(_ viewToShow: UIView) {
+
+        view.addSubview(viewToShow)
+
+        viewToShow.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            make.left.equalTo(self.view.snp_left)
+            make.right.equalTo(self.view.snp_right)
+        }
+
+    }
+
+    private func hideView(_ view: UIView) {
+        view.removeFromSuperview()
+    }
+}
+
+// MARK:- Actions
+
+extension DiscoverProfileViewController {
+
+    @IBAction func notAllowLocationClick(_ sender: Any) {
+        viewModel.notAllowLocationService()
+    }
+
+    @IBAction func allowLocationClick(_ sender: Any) {
+        viewModel.allowLocationService()
+    }
+
+    @IBAction func inviteFriendsClick(_ sender: Any) {
+        viewModel.inviteFriends()
+    }
+
+    @IBAction func joinActiveCityClick(_ sender: Any) {
+        viewModel.joinActiveCity()
+    }
+}
+
+// MARK:- iCarouselDelegate
 
 extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource {
 
@@ -154,7 +229,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
- 
+
         guard let profile = viewModel.profiles.value[safe: index] else {
             return
         }

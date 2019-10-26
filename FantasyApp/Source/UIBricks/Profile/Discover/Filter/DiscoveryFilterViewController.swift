@@ -10,176 +10,182 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import RxDataSources
+
+import SmoothPicker
+import MultiSlider
+
 
 class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
 
-    @IBOutlet weak var tableView: UITableView! {
+    // City section
+    @IBOutlet weak var tutorialView: UIView!
+
+    // City section
+    @IBOutlet weak var cityLabel: UILabel!
+
+    // Partner section
+    @IBOutlet weak var partnerBodyPicker: SmoothPickerView!
+    @IBOutlet weak var partnerSexualityPicker: SmoothPickerView!
+    @IBOutlet weak var ageSlider: MultiSlider! {
         didSet {
-            tableView.rowHeight = UITableView.automaticDimension
-            tableView.estimatedRowHeight = 44.0
+            ageSlider.minimumValue = 18.0
+            ageSlider.maximumValue = 100.0
+            ageSlider.orientation = .horizontal
+            ageSlider.valueLabelPosition = .bottom
+            ageSlider.snapStepSize = 1.0
+
+            ageSlider.outerTrackColor = .gray
+            ageSlider.value = [30, 31]
+            ageSlider.tintColor = .purple
+            ageSlider.trackWidth = 11
+            ageSlider.showsThumbImageShadow = false
+            ageSlider.keepsDistanceBetweenThumbs = true
         }
     }
 
-    lazy var sectionsTableDataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, DiscoveryFilterViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, section) in
+    // Couple section
+    @IBOutlet weak var secondPartnerSwitch: UISwitch! {
+           didSet {
+               secondPartnerSwitch.onTintColor = R.color.textPinkColor()
+           }
+       }
 
-        switch section {
-        case .city(let x):
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterSelectCityCell, for: ip)!
-            cell.setData(value: x)
-            return cell
+    // Second partner section
+    @IBOutlet weak var secondPartnerBodyPicker: SmoothPickerView!
+    @IBOutlet weak var secondPartnerSexualityPicker: SmoothPickerView!
 
-        case .partnerBody(let title, let description, let list, let selected),
-             .partnerSexuality(let title, let description, let list, let selected),
-             .secondPartnerBody(let title, let description, let list, let selected),
-             .secondPartnerSexuality(let title, let description, let list, let selected):
-
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterSwipeableCell, for: ip)!
-            cell.setData(title: title, description: description, list: list, selected: selected)
-            return cell
-
-        case .age(let from, let to):
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterAgeSliderCell, for: ip)!
-            cell.setData(minValue: from, maxValue: to)
-            return cell
-
-        case .couple(let isOn):
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.filterSwitchableCell, for: ip)!
-            cell.setData(isOn: isOn)
-            return cell
-
+    // Common
+    @IBOutlet weak var secondPartnerStackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.addFantasyRoundedCorners()
+            scrollView.backgroundColor = R.color.listBackgroundColor()
         }
-
-    })
-
-    let sectionsInfo: [(Int, CGFloat, String?)] = [
-        (0, 42.0, "Teleport"),
-        (1, 46.0, "Partner"),
-        (2, 11.0, nil),
-        (3, 11.0, nil),
-        (4, 32.0, nil),
-        (5, 46.0,"Second Partner"),
-        (6, 11.0, nil),
-    ]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addFantasyTripleGradient()
-        tableView.addFantasyRoundedCorners()
 
-        viewModel.sections
-            .map { $0.map { AnimatableSectionModel(model: $0.0, items: $0.1) } }
-            .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
+        // Input Data bindings
+
+        let switchSignal =
+            secondPartnerSwitch.rx.isOn.asDriver()
+
+        switchSignal
+            .map { !$0 }
+            .drive(secondPartnerStackView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        tableView.rx.setDelegate(self)
+        switchSignal.drive(onNext: { [unowned self] (x) in
+            self.viewModel.changeCouple(x: x)
+        }).disposed(by: rx.disposeBag)
+
+        // Output Data bindings
+
+        viewModel.community
+            .map { $0?.name }
+            .drive(cityLabel.rx.text)
             .disposed(by: rx.disposeBag)
-        
-      
-//        if let x = [Gender.male: 1,
-//        Gender.female: 2,
-//        Gender.transgenderMale: 3,
-//        Gender.transgenderFemale: 4,
-//        Gender.nonBinary: 5][viewModel.prefs.gender] {
-//            genderTextField.text = String(x)
-//        }
-//
-//        if let x = [Sexuality.straight: 1,
-//        Sexuality.gay: 2,
-//        Sexuality.lesbian: 3,
-//        Sexuality.bisexual: 4][viewModel.prefs.sexuality] {
-//            sexualityTextField.text = String(x)
-//        }
-//
-//        ageFromTextField.text = String(viewModel.prefs.age.lowerBound)
-//        ageToTextField.text = String(viewModel.prefs.age.upperBound)
-      
+
+        secondPartnerSwitch.isOn = viewModel.isCouple
+        partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
+        partnerSexualityPicker.firstselectedItem =  viewModel.selectedPartnerSexuality
+        secondPartnerSexualityPicker.firstselectedItem = viewModel.selectedSecondPartnerSexuality
+        secondPartnerBodyPicker.firstselectedItem = viewModel.selectedSecondPartnerGender
     }
 
-}
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-//MARK:- Actions
+        if viewModel.showTutorial {
 
-extension DiscoveryFilterViewController: UITableViewDelegate {
+            guard let v = self.navigationController?.view else { return }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            v.addSubview(self.tutorialView)
 
-        guard let t = sectionsInfo[section].2 else {
-            return UIView()
+            tutorialView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+
+            viewModel.updateTutorial(true)
         }
-
-        let headerView = FilterSectionHeaderView()
-        headerView.setData(value: t)
-
-        return headerView
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionsInfo[section].1
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1.0
     }
 }
 
 //MARK:- Actions
 
 extension DiscoveryFilterViewController {
-
     @IBAction func cancel(_ sender: Any) {
         viewModel.cancel()
     }
 
     @IBAction func apply(_ sender: Any) {
         view.endEditing(true)
-
         viewModel.submit()
     }
-
     
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
     }
 
+    @IBAction func tutorialClose(_ sender: Any) {
+        tutorialView.removeFromSuperview()
+    }
+
+    @IBAction func tutorialGotIt(_ sender: Any) {
+        tutorialView.removeFromSuperview()
+    }
 }
 
-//
-//extension DiscoveryFilterViewController: UITextFieldDelegate {
-//
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//
-//        if textField == genderTextField {
-//
-//            if let gender = [1: Gender.male,
-//            2: Gender.female,
-//            3: Gender.transgenderMale,
-//            4: Gender.transgenderFemale,
-//            5: Gender.nonBinary][Int(textField.text ?? "") ?? 0] {
-//                viewModel.change(gender: gender)
-//            }
-//
-//        }
-//        else if textField == sexualityTextField {
-//
-//            if let sexuality = [1: Sexuality.straight,
-//                             2: Sexuality.gay,
-//                             3: Sexuality.lesbian,
-//                             4: Sexuality.bisexual][Int(textField.text ?? "") ?? 0] {
-//                viewModel.change(sexuality: sexuality)
-//            }
-//
-//        }
-//        else if textField == ageFromTextField {
-//            viewModel.changeAgeFrom(x: Int(textField.text ?? "") ?? 18)
-//        }
-//        else if textField == ageToTextField {
-//            viewModel.changeAgeTo(x: Int(textField.text ?? "") ?? 60)
-//        }
-//
-//        return true
-//    }
-//}
+//MARK:- SmoothPickerViewDelegate, SmoothPickerViewDataSource
+
+extension DiscoveryFilterViewController: SmoothPickerViewDelegate, SmoothPickerViewDataSource {
+
+    func didSelectItem(index: Int, view: UIView, pickerView: SmoothPickerView) {
+
+        guard let v = view as? SwipeView,
+            let d = v.data else  { return }
+
+        if pickerView == partnerBodyPicker {
+            viewModel.changePartnerGender(gender: d as! Gender)
+        } else if pickerView == partnerSexualityPicker  {
+            viewModel.changePartnerSexuality(sexuality: d as! Sexuality)
+        } else if pickerView == secondPartnerSexualityPicker {
+            viewModel.changeSecondPartnerSexuality(sexuality: d as! Sexuality)
+        } else if pickerView == secondPartnerBodyPicker {
+            viewModel.changeSecondPartnerGender(gender: d as! Gender)
+        }
+    }
+
+    func numberOfItems(pickerView: SmoothPickerView) -> Int {
+
+        if pickerView == partnerBodyPicker
+            || pickerView == secondPartnerBodyPicker {
+            return viewModel.bodiesCount
+        }
+
+        return viewModel.sexualityCount
+    }
+
+    func itemForIndex(index: Int, pickerView: SmoothPickerView) -> UIView {
+
+        let itemView = SwipeView(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
+
+        if pickerView == partnerBodyPicker
+            || pickerView == secondPartnerBodyPicker {
+
+            itemView.data = Gender.gender(by: index)
+
+            return itemView
+        }
+
+        itemView.data = Sexuality.sexuality(by: index)
+
+        return itemView
+    }
+
+}

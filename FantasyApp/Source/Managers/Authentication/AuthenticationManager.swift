@@ -112,6 +112,7 @@ extension AuthenticationManager {
             
             let permissions = ["public_profile", "email", "user_photos", "user_birthday"]
             
+            PFFacebookUtils.facebookLoginManager().loginBehavior = .web
             PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (maybeUser, maybeError) in
                 
                 if let e = maybeError {
@@ -120,6 +121,11 @@ extension AuthenticationManager {
                 
                 if maybeUser?.isNew ?? false {
                     return subscriber.onError( FantasyError.generic(description: R.string.localizable.authorizationNewFBUser()) )
+                }
+                
+                if maybeUser == nil && maybeError == nil {
+                    subscriber.onError( FantasyError.canceled )
+                    return
                 }
                 
                 subscriber.onNext( maybeUser! )

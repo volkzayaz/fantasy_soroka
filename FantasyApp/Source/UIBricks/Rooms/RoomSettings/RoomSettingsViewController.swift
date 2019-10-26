@@ -138,6 +138,6 @@ private extension RoomSettingsViewController {
     }
 
     @IBAction func leaveRoom() {
-
+        viewModel.leaveRoom()
     }
 }

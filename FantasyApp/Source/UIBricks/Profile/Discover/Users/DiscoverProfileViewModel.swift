@@ -118,7 +118,18 @@ extension DiscoverProfileViewModel {
     func presentFilter() {
         router.presentFilter( )
     }
-    
+
+    func allowLocationService() {
+    }
+
+    func notAllowLocationService() {
+    }
+
+    func inviteFriends() {
+        }
+
+    func joinActiveCity() {
+        }
 }
 
 

@@ -12,15 +12,19 @@ struct DiscoveryFilter: Equatable {
     
     let filter: SearchPreferences
     let community: Community
-    
+
 }
 
 struct SearchPreferences: Codable, Equatable {
     var age: Range<Int>
     var gender: Gender
     var sexuality: Sexuality
-    
+    var couple: Bool
+    var secondPartnerGender: Gender?
+    var secondPartnerSexuality: Sexuality?
+    var community: Community?
+
     static var `default`: SearchPreferences {
-        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .straight)
+        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .straight, couple: false)
     }
 }

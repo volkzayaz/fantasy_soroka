@@ -12,6 +12,23 @@ import RxCocoa
 import Branch
 import RxDataSources
 
+extension RoomSettingsViewModel {
+    
+    func securitySettingsViewModelFor(room: Room) -> RoomSettingsPremiumFeatureViewModel {
+        
+        let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
+        let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
+                        room.settings.isScreenShieldEnabled)]
+        return RoomSettingsPremiumFeatureViewModel(
+            title: R.string.localizable.roomSettingsSecurityTitle(),
+            description: R.string.localizable.roomSettingsSecurityDescription(),
+            options: options,
+            isEnabled: isScreenShieldAvailable
+        )
+    }
+    
+}
+
 struct RoomSettingsViewModel: MVVM_ViewModel {
 
     enum CellModel: IdentifiableType, Equatable {
@@ -106,24 +123,13 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 }
 
 extension RoomSettingsViewModel {
+    
     func shareLink() {
         buo.showShareSheet(with: properties,
                            andShareText: "Join my room!\n\(inviteLink.value ?? "")",
                            from: router.owner) { (activityType, completed) in
 
         }
-    }
-
-    func securitySettingsViewModelFor(room: Room) -> RoomSettingsPremiumFeatureViewModel {
-        let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
-        let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
-                        room.settings.isScreenShieldEnabled)]
-        return RoomSettingsPremiumFeatureViewModel(
-            title: R.string.localizable.roomSettingsSecurityTitle(),
-            description: R.string.localizable.roomSettingsSecurityDescription(),
-            options: options,
-            isEnabled: isScreenShieldAvailable
-        )
     }
 
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
@@ -143,5 +149,9 @@ extension RoomSettingsViewModel {
 
     func showNotificationSettings() {
         router.showNotificationSettings(for: room.value)
+    }
+    
+    func leaveRoom() {
+        //router.owner.navigationController?.popViewController(animated: true)
     }
 }

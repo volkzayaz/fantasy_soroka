@@ -19,9 +19,9 @@ PODS:
     - Fabric (~> 1.10.2)
   - Differentiator (4.0.1)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (4.44.1):
+  - FBSDKCoreKit (4.40.0):
     - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.44.1):
+  - FBSDKLoginKit (4.40.0):
     - FBSDKCoreKit
   - FMPhotoPicker (0.8.2)
   - iCarousel (1.8.3)
@@ -85,8 +85,8 @@ DEPENDENCIES:
   - Chatto (~> 3.5)
   - ChattoAdditions (~> 3.5)
   - Crashlytics (~> 3.13)
-  - FBSDKCoreKit (= 4.44.1)
-  - FBSDKLoginKit (= 4.44.1)
+  - FBSDKCoreKit (= 4.40.0)
+  - FBSDKLoginKit (= 4.40.0)
   - FMPhotoPicker (~> 0.8)
   - iCarousel (~> 1.8)
   - Kingfisher (~> 5.8)
@@ -156,8 +156,8 @@ SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: a823ae35bdb60ebb8d7a7e51abe7c5d87d2bfced
-  FBSDKLoginKit: 54ae59987f2a8703021557c90a9aebb9e5c2bef6
+  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
+  FBSDKLoginKit: 7a1e411d46acc8834588eca437daf34de42e1d52
   FMPhotoPicker: abc6559e4cdcb84cc2fc2f62dcdbdeca7cacbf6c
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
@@ -182,6 +182,6 @@ SPEC CHECKSUMS:
   SweeterSwift: 2708d1eea926546f8f6e8fea38ac8f5598ff00c7
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: 20260267ae4212679d444c0af72d0f4a586748a6
+PODFILE CHECKSUM: 1655c993bcf0cb8845b1c0cfb4ce9311bab80523
 
 COCOAPODS: 1.8.3

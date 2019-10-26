@@ -17,6 +17,9 @@ enum RoomManager {}
 extension RoomManager {
     
     static func sendMessage(_ message: Room.Message, to room: Room) -> Single<Void> {
+        
+        PushManager.sendPush(to: room.peer.userId!, text: "\(room.peer.userSlice.name) sent you a message" )
+        
         return message.rxCreate().map { _ in }
     }
 

@@ -78,8 +78,12 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     let status = Status.draft
     
     let freezeStatus: FreezeStatus
-    var participants = [Participant]()
+    var participants: [Participant]
 
+    var peer: Participant {
+        return participants.first(where: { $0.userId != User.current?.id })!
+    }
+    
     // property are set during runtime
     var notificationSettings: RoomNotificationSettings?
     

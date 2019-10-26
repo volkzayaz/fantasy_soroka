@@ -12,63 +12,83 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+extension Gender: SwipebleModel {
+
+    var name: String {
+        return self.rawValue
+    }
+
+   static func gender(by index: Int) -> Gender {
+       return allCases[index]
+    }
+
+    static func index(by gender: Gender) -> Int {
+        return allCases.firstIndex(of: gender) ?? 0
+    }
+}
+
+extension Sexuality: SwipebleModel {
+
+    var name: String {
+        return self.rawValue
+    }
+
+   static func sexuality(by index: Int) -> Sexuality {
+       return allCases[index]
+    }
+
+    static func index(by sexuality: Sexuality) -> Int {
+        return allCases.firstIndex(of: sexuality) ?? 0
+    }
+}
+
+
+private enum StoreKeys: String {
+    case tutorial = "kTutorialStoreKey"
+}
+
 extension DiscoveryFilterViewModel {
     
     var prefs: SearchPreferences {
         return form.value
     }
 
-    var sections: Driver<[(String, [Row])]> {
-
-        let genders = Gender.allCases.map { $0.rawValue }
-        let sexuality = Sexuality.allCases.map { $0.rawValue }
-
-        var res: [(String, [Row])] = [
-            ("Teleport", [.city("Madrid")]),
-            ("PartnerBody", [.partnerBody(title: "Body", description: "Whom are you looking for?", list: genders, selected: Gender.female.rawValue)]),
-            ("PartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: "How Would You Describe Your Partner?", list: sexuality, selected: Sexuality.asexual.rawValue)]),
-            ("PartnerAge", [ .age(from: 18, to: 81)]),
-            ("Couple", [.couple(false)])
-        ]
-
-        if (showSecondPartner) {
-            res.append(contentsOf: [
-            ("SecondPartnerBody", [.partnerBody(title: "Body", description: nil, list: genders, selected: Gender.female.rawValue)]),
-                      ("SecondPartnerSexuality", [ .partnerSexuality(title: "Sexuality", description: nil, list: sexuality, selected: Sexuality.asexual.rawValue)])
-            ])
-        }
-
-        return Driver.just(res)
+    var isCouple: Bool {
+        return form.value.couple
     }
 
-    enum Row: IdentifiableType, Equatable {
-        case city(String)
-        case partnerBody(title: String, description: String?, list: [String], selected: String)
-        case partnerSexuality(title: String, description: String?, list: [String], selected: String)
-        case age(from: Int, to: Int)
-        case couple(Bool)
-        case secondPartnerBody(title: String, description: String?, list: [String], selected: String)
-        case secondPartnerSexuality(title: String, description: String?, list: [String], selected: String)
+    var showTutorial: Bool {
+        return !UserDefaults.standard.bool(forKey: StoreKeys.tutorial.rawValue)
+    }
 
-        var identity: String {
-            switch self {
-            case .city(let x):
-                return "city \(x)"
-            case .partnerBody(let x, let y, let list, let selected):
-                return "partnerBody \(x)"
-            case .partnerSexuality(let x, let y, let list, let selected):
-                return "bio \(y)"
-            case .age(let x, let y):
-                return "age \(x)"
-            case .couple(let q):
-                return "couple \(q)"
-            case .secondPartnerBody(let x, let y, let list, let selected):
-                return "secondPartnerBody \(x)"
-            case .secondPartnerSexuality(let x, let y, let list, let selected):
-                return "secondPartnerSexuality \(x)"
+    var community: Driver<Community?> {
+        return form.asDriver().map { $0.community }
+    }
 
-            }
-        }
+    var selectedPartnerGender: Int {
+        return Gender.index(by: form.value.gender)
+    }
+
+    var selectedPartnerSexuality: Int {
+        return Sexuality.index(by: form.value.sexuality)
+    }
+
+    var selectedSecondPartnerGender: Int {
+        guard let x = form.value.secondPartnerGender else { return 0 }
+        return Gender.index(by: x)
+    }
+
+    var selectedSecondPartnerSexuality: Int {
+        guard let x = form.value.secondPartnerSexuality else {  return 0 }
+        return Sexuality.index(by: x)
+    }
+
+    var sexualityCount: Int {
+        return Sexuality.allCases.count
+    }
+
+    var bodiesCount: Int {
+        return Gender.allCases.count
     }
 }
 
@@ -98,21 +118,34 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
 }
 
 extension DiscoveryFilterViewModel {
-    
-    func change(gender: Gender) {
-        updateForm { $0.gender = gender }
-    }
-    
-    func change(sexuality: Sexuality) {
-        updateForm { $0.sexuality = sexuality }
-    }
-    
+
+
     func changeAgeFrom(x: Int) {
         updateForm { $0.age = x..<$0.age.upperBound }
     }
     
     func changeAgeTo(x: Int) {
         updateForm { $0.age = $0.age.lowerBound..<x }
+    }
+
+    func changeCouple(x: Bool) {
+        updateForm { $0.couple = x }
+    }
+
+    func changePartnerGender(gender: Gender) {
+        updateForm { $0.gender = gender }
+    }
+
+    func changePartnerSexuality(sexuality: Sexuality) {
+        updateForm { $0.sexuality = sexuality }
+    }
+
+    func changeSecondPartnerGender(gender: Gender) {
+        updateForm { $0.secondPartnerGender = gender }
+    }
+
+    func changeSecondPartnerSexuality(sexuality: Sexuality) {
+        updateForm { $0.secondPartnerSexuality = sexuality }
     }
     
     func openTeleport() {
@@ -124,10 +157,12 @@ extension DiscoveryFilterViewModel {
     }
 
     func submit() {
-        
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))
-        router.owner.navigationController?.popViewController(animated: true)
-        
+        router.owner.navigationController?.dismiss(animated: true, completion: nil)
+    }
+
+    func updateTutorial(_ presented: Bool) {
+        UserDefaults.standard.set(presented, forKey: StoreKeys.tutorial.rawValue)
     }
     
     private func updateForm(_ mapper: (inout SearchPreferences) -> Void ) {

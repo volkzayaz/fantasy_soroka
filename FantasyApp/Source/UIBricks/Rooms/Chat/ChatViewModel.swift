@@ -6,150 +6,111 @@
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
-import ParseLiveQuery
+
 import Chatto
-import ChattoAdditions
 
-class ChatViewModel: MVVM_ViewModel, ChatDataSourceProtocol {
+extension ChatViewModel {
     
-    let router: ChatRouter
-    let room: Room
-    let messages = BehaviorRelay<[Room.Message]>(value: [])
-    weak var delegate: ChatDataSourceDelegateProtocol?
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
-    fileprivate let bag = DisposeBag()
+    var inputEnabled: Driver<Bool> {
+        return inputEnabledRelay.asDriver()
+    }
+    
+}
 
-    init(router: ChatRouter, room: Room) {
+class ChatViewModel: MVVM_ViewModel {
+    
+    private(set) var room: Room
+    
+    let chattoMess: ChattoMess
+    
+    private let inputEnabledRelay: BehaviorRelay<Bool>
+    
+    init(router: ChatRouter, room: Room, chattoDelegate: ChatDataSourceDelegateProtocol) {
         self.router = router
         self.room = room
+        self.chattoMess =  {
+            let x = ChattoMess()
+            x.delegate = chattoDelegate
+            return x
+        }()
+        
+        chattoMess.includesAcceptReject = room.participants.contains { $0.status == .invited && $0.userId == User.current?.id }
+        
+        inputEnabledRelay = .init(value: !chattoMess.includesAcceptReject)
+        
+        RoomManager.getMessagesInRoom(room.id, offset: 0)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .flatMap { mes -> Observable<[Room.Message]> in
 
+                return RoomManager.subscribeTo(rooms: [room])
+                    .scan(mes, accumulator: { (res, messageInRoom) in res + [messageInRoom.0] })
+                    .startWith(mes)
+            }
+            .subscribe(onNext: { [weak self] messages in
+                guard let self = self else { return }
+
+                self.chattoMess.messages = messages
+            })
+            .disposed(by: bag)
+
+        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
-
-        loadMessages()
     }
 
-    func loadNext() {}
-    func adjustNumberOfMessages(preferredMaxCount: Int?, focusPosition: Double, completion: (Bool) -> Void) {}
-
-    func loadPrevious() {
-        //loadMessages()
-    }
-
-    var chatItems: [ChatItemProtocol] {
-        return prepareChatItems()
-    }
-
-    var hasMoreNext: Bool {
-        return false
-    }
-
-    var hasMorePrevious: Bool {
-        return true
-    }
+    let router: ChatRouter
+    fileprivate let indicator: ViewIndicator = ViewIndicator()
+    fileprivate let bag = DisposeBag()
+    
 }
 
 extension ChatViewModel {
     
-    func loadMessages() {
-        RoomManager.getMessagesInRoom(room.id, offset: messages.value.count)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [weak self] messages in
-                guard let self = self else { return }
-                var array = self.messages.value
-                array.append(contentsOf: messages)
-                self.messages.accept(messages)
-                self.connect()
-                self.delegate?.chatDataSourceDidUpdate(self, updateType: .firstLoad)
-            })
-            .disposed(by: bag)
-    }
-
     func sendMessage(text: String) {
         let message = Room.Message(text: text,
                                    from: User.current!,
                                    in: room)
                                    
-        RoomManager.sendMessage(message, to: room).subscribe({ event in
+        RoomManager.sendMessage(message, to: room)
+            .subscribe({ event in
             // TODO: error handling
-        }).disposed(by: bag)
-    }
-
-    func connect() {
+            }).disposed(by: bag)
         
-        RoomManager.subscribeTo(rooms: [room]).subscribe(onNext: { [weak self] (message, _) in
+        if room.peer.status == .invited {
             
-            guard let self = self else { return }
+            let _ = ConnectionManager.initiate(with: room.peer.userId!, type: .message)
+                .retry(2)
+                .subscribe()
             
-            var array: [Room.Message] = self.messages.value
-            array.append(message)
-            
-            self.messages.accept(array)
-            
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
-            }
-            
-        }).disposed(by: bag)
-        
-    }
-
-    private func prepareChatItems() -> [ChatItemProtocol] {
-        var dateToCompare = Date()
-        var adjustment = 0
-        let array = messages.value
-        // build message cell models
-        var result: [ChatItemProtocol] = messages.value.map { TextMessageModel(messageModel: $0, text: $0.text) }
-        // build time separator cell models
-        array.enumerated().forEach { index, message in
-            if index == 0 || message.createdAt.compare(with: dateToCompare, by: .day) != 0 {
-                let model = TimeSeparatorModel(uid: UUID().uuidString, date: message.createdAt.toWeekDayAndDateString())
-                result.insert(model, at: index + adjustment)
-                dateToCompare = message.createdAt
-                adjustment += 1
-            }
         }
-        return result
+        
     }
-}
-
-enum Chat {}
-// MARK: - Cells
-extension Chat {
-    enum CellType: String {
-        case text = "text-chat-message"
-        case emoji = "emoji-chat-message"
-        case timeSeparator = "time-separator"
-        case acceptReject = "accept-reject"
+    
+    func acceptRequest() {
+        let _ = ConnectionManager.likeBack(user: room.ownerId)
+            .subscribe()
+        
+        var x = room.participants.first!
+        x.status = .accepted
+        room.participants[0] = x
+        chattoMess.includesAcceptReject = false
+        inputEnabledRelay.accept(true)
     }
-}
-
-// MARK: - Chatto
-extension Room.Message: MessageModelProtocol {
-    var isIncoming: Bool {
-        return senderId != User.current?.id
+    
+    func rejectRequest() {
+        
+        ConnectionManager.reject(user: room.ownerId)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { _ in
+                self.router.owner.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
+        
     }
-
-    var date: Date {
-        return createdAt
-    }
-
-    var status: MessageStatus {
-        return .success
-    }
-
-    var type: ChatItemType {
-        return text.containsOnlyEmojis ? Chat.CellType.emoji.rawValue :
-            Chat.CellType.text.rawValue
-    }
-
-    var uid: String {
-        return objectId ?? ""
-    }
+    
 }

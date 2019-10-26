@@ -8,13 +8,17 @@
 
 import UIKit
 
+protocol SwipebleModel {
+    var name: String { get }
+}
+
 class SwipeView: UIView {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var label: UILabel! {
         didSet {
-            label.font = UIFont.regularFont(ofSize: 18)
-            label.textColor = R.color.textBlackColor()
+            label.font = normalFont
+            label.textColor = R.color.textLightGrayColor()
         }
     }
 
@@ -43,13 +47,23 @@ class SwipeView: UIView {
         let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         return nibView
     }
-}
 
-//MARK:- Public
+    var normalFont = UIFont.regularFont(ofSize: 18)
+    var selectedFont = UIFont.regularFont(ofSize: 22)
 
-extension SwipeView {
+    override func setSmoothSelected(_ selected: Bool) {
+        label.textColor = selected ? R.color.textPinkColor() : R.color.textLightGrayColor()
+        label.font = selected ? selectedFont : normalFont
+    }
 
-    public func setData(value:String) {
-        label.text = value
+    var data: SwipebleModel? {
+        didSet {
+            label.text = data?.name
+            label.sizeToFit()
+
+            var f = frame
+            f.size.width = label.bounds.width + 40
+            frame = f
+        }
     }
 }
