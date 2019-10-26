@@ -9,9 +9,9 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Branch (0.29.1):
-    - Branch/Core (= 0.29.1)
-  - Branch/Core (0.29.1)
+  - Branch (0.29.3):
+    - Branch/Core (= 0.29.3)
+  - Branch/Core (0.29.3)
   - Chatto (3.5.0)
   - ChattoAdditions (3.5.0):
     - Chatto
@@ -150,7 +150,7 @@ SPEC CHECKSUMS:
   AvailableHapticFeedback: 9b21b9f6d3e4566015988b5de35b40abefe6c09a
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
-  Branch: 3833f9691b0c874c81233362c929239c452f2ff0
+  Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
   Chatto: 3b4d5b8c56156dfa94caafc2bd4b3b42efb809a0
   ChattoAdditions: abd81bf223d15b4cdd82e23d675a2a286c150d56
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df

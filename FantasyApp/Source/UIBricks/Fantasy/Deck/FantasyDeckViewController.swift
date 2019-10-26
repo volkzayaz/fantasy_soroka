@@ -8,21 +8,26 @@
 
 import UIKit
 import Koloda
-
 import RxSwift
 import RxCocoa
-
 import SnapKit
 
 class FantasyDeckViewController: UIViewController, MVVM_View {
-    
+
+    private var animator = FantasyDetailsTransitionAnimator()
+
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
+
+    override var prefersNavigationBarHidden: Bool {
+        return true
+    }
     
     @IBOutlet weak var fanatasiesView: KolodaView! {
         didSet {
             fanatasiesView.dataSource = self
             fanatasiesView.countOfVisibleCards = 3
             fanatasiesView.delegate = self
+            fanatasiesView.backgroundCardsTopMargin = 0
         }
     }
     @IBOutlet weak var waitingView: UIView!
@@ -30,6 +35,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     
     ///TODO: refactor to RxColodaDatasource
     private var cardsProxy: [Fantasy.Card] = []
+    //private var selectedCardView:
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +73,9 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                 
             })
             .disposed(by: rx.disposeBag)
-        
+
+
+        view.addFantasyGradient()
     }
     
 }
@@ -89,41 +97,17 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
         return .default
     }
+
+    func kolodaShouldTransparentizeNextCard(_ koloda: KolodaView) -> Bool {
+        return false
+    }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        
-        let view = UIView()
-        view.backgroundColor = index % 2 == 0 ? .blue : .green
-
         let card = cardsProxy[index]
-        
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        
-        ImageRetreiver.imageForURLWithoutProgress(url: card.imageURL)
-            .drive(imageView.rx.image)
-            .disposed(by: imageView.rx.disposeBag)
-        
-        view.addSubview(imageView)
-        
-        imageView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        
-        let label = UILabel()
-        label.text = card.text
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        
-        
-        view.addSubview(label)
-        
-        label.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-        }
+        let view = FantasyDeckItemView(frame: koloda.bounds)
+        view.hasStory = !card.text.isEmpty
+        view.isPaid = card.isPaid
+        view.imageURL = card.imageURL
         
         return view
     }
@@ -141,10 +125,32 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        
         let card = cardsProxy[index]
         viewModel.cardTapped(card: card)
-        
     }
     
+}
+
+extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        animator.presenting = false
+        return animator
+    }
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let deckFrame = fanatasiesView.superview?.convert(fanatasiesView.frame, to: nil) else {
+            return animator
+        }
+
+        let ratio = fanatasiesView.frame.height / FantasyDetailsViewController.minBackgroundImageHeight
+        let originFrame = CGRect(x: (UIScreen.main.bounds.width - (UIScreen.main.bounds.width * ratio)) / 2.0,
+                                 y: (UIScreen.main.bounds.height - (UIScreen.main.bounds.height * ratio)) / 2.0,
+                                 width: UIScreen.main.bounds.width * ratio,
+                                 height: UIScreen.main.bounds.height * ratio)
+
+        animator.originFrame = originFrame
+        animator.presenting = true
+        
+        return animator
+    }
 }

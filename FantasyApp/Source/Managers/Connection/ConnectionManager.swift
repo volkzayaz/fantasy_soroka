@@ -104,7 +104,8 @@ extension ConnectionManager {
                     
                     return ConnectedUser(user: user,
                                          room: room,
-                                         connectTypes: connectType)
+                                         connectTypes: connectType,
+                                         source: source)
                 }
                  
             }

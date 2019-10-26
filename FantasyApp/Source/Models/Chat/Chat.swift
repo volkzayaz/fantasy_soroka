@@ -77,7 +77,7 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     let status = Status.draft
     
-    let freezeStatus: FreezeStatus
+    let freezeStatus: FreezeStatus?
     var participants: [Participant]
 
     var peer: Participant {

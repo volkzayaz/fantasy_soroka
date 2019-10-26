@@ -43,9 +43,7 @@ extension Configuration {
 
         // MARK: - Facebook
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
-        //FBSDKSettings.setAppID("1298342663520828") 
-        //PFFacebookUtils.facebookLoginManager().loginBehavior = .browser
-
+        
         // MARK: - Branch
         // unncomment to disable debug mode
         Branch.setUseTestBranchKey(true)
@@ -73,7 +71,7 @@ extension Configuration {
         PushManager.kickOff()
 
         // uncomment to test Branch Integration
-        // Branch.getInstance()?.validateSDKIntegration()
+        //Branch.getInstance()?.validateSDKIntegration()
     }
 
     private static func registerActors() {

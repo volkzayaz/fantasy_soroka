@@ -33,6 +33,7 @@ struct ConnectedUser: Equatable, IdentifiableType {
     let user: User
     let room: RoomRef
     let connectTypes: Set<ConnectionRequestType>
+    let source: GetConnectionRequests.Source
     
     var identity: String {
         return user.id
@@ -41,12 +42,21 @@ struct ConnectedUser: Equatable, IdentifiableType {
 
 extension ConnectionRequestType {
     
-    var requestImage: UIImage {
+    var incommingRequestImage: UIImage {
         switch self {
-        case .like:         return R.image.requestLike()!
-        case .message:      return R.image.requestMessage()!
-        case .sticker:      return R.image.requestSticker()!
-        case .inviteLink:   return R.image.requestLink()!
+        case .like:         return R.image.incommingRequestLike()!
+        case .message:      return R.image.incommingRequestMessage()!
+        case .sticker:      return R.image.incommingRequestSticker()!
+        case .inviteLink:   return R.image.incommingRequestLink()!
+        }
+    }
+    
+    var outgoingRequestImage: UIImage {
+        switch self {
+        case .like:         return R.image.outgoingRequestLike()!
+        case .message:      return R.image.outgoingRequestMessage()!
+        case .sticker:      return R.image.outgoingRequestSticker()!
+        case .inviteLink:   return R.image.outgoingRequestLink()!
         }
     }
     
