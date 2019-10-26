@@ -14,7 +14,6 @@ import RxCocoa
 import SmoothPicker
 import MultiSlider
 
-
 class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
@@ -24,6 +23,7 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
     // City section
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var activeCityImageView: UIImageView!
 
     // Partner section
     @IBOutlet weak var partnerBodyPicker: SmoothPickerView!
@@ -54,7 +54,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
     // Second partner section
     @IBOutlet weak var secondPartnerBodyPicker: SmoothPickerView!
-    @IBOutlet weak var secondPartnerSexualityPicker: SmoothPickerView!
 
     // Common
     @IBOutlet weak var secondPartnerStackView: UIStackView!
@@ -70,6 +69,12 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
         view.addFantasyTripleGradient()
 
+        if viewModel.showCancelButton {
+            let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
+            item.applyFantasyAttributes()
+            navigationItem.rightBarButtonItem = item
+        }
+
         // Input Data bindings
 
         let switchSignal =
@@ -81,21 +86,24 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
 
         switchSignal.drive(onNext: { [unowned self] (x) in
-            self.viewModel.changeCouple(x: x)
+            let c: RelationshipStatus = x ? .couple(partnerGender: self.viewModel.selectedSecondPartnerGender) : .single
+            self.viewModel.changeCouple(x: c)
         }).disposed(by: rx.disposeBag)
 
         // Output Data bindings
 
         viewModel.community
             .map { $0?.name }
-            .drive(cityLabel.rx.text)
+            .drive(onNext: { [unowned self] (name) in
+                self.cityLabel.text = name
+                self.activeCityImageView.image = name != nil ? R.image.cityCheckImage() : nil
+            })
             .disposed(by: rx.disposeBag)
 
         secondPartnerSwitch.isOn = viewModel.isCouple
         partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
         partnerSexualityPicker.firstselectedItem =  viewModel.selectedPartnerSexuality
-        secondPartnerSexualityPicker.firstselectedItem = viewModel.selectedSecondPartnerSexuality
-        secondPartnerBodyPicker.firstselectedItem = viewModel.selectedSecondPartnerGender
+        secondPartnerBodyPicker.firstselectedItem = viewModel.selectedSecondPartnerGenderIndex
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -119,7 +127,8 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 //MARK:- Actions
 
 extension DiscoveryFilterViewController {
-    @IBAction func cancel(_ sender: Any) {
+
+    @objc func cancel() {
         viewModel.cancel()
     }
 
@@ -154,10 +163,8 @@ extension DiscoveryFilterViewController: SmoothPickerViewDelegate, SmoothPickerV
             viewModel.changePartnerGender(gender: d as! Gender)
         } else if pickerView == partnerSexualityPicker  {
             viewModel.changePartnerSexuality(sexuality: d as! Sexuality)
-        } else if pickerView == secondPartnerSexualityPicker {
-            viewModel.changeSecondPartnerSexuality(sexuality: d as! Sexuality)
         } else if pickerView == secondPartnerBodyPicker {
-            viewModel.changeSecondPartnerGender(gender: d as! Gender)
+            viewModel.changeCouple(x: .couple(partnerGender: d as! Gender))
         }
     }
 

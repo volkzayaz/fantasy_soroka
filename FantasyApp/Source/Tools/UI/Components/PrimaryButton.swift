@@ -128,3 +128,15 @@ private extension PrimaryButton {
         }
     }
 }
+
+// MARK:- Button with Ligh gray bd and pink text
+
+extension PrimaryButton {
+
+    func addLightGrayColorStyle () {
+        backgroundColor = R.color.listBackgroundColor()
+        tintColor = R.color.textPinkColor()
+        titleFont = UIFont.regularFont(ofSize: 16)
+        mode = .normal
+    }
+}

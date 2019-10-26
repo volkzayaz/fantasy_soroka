@@ -19,12 +19,9 @@ struct SearchPreferences: Codable, Equatable {
     var age: Range<Int>
     var gender: Gender
     var sexuality: Sexuality
-    var couple: Bool
-    var secondPartnerGender: Gender?
-    var secondPartnerSexuality: Sexuality?
-    var community: Community?
+    var couple: RelationshipStatus
 
     static var `default`: SearchPreferences {
-        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .straight, couple: false)
+        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .straight, couple: .single)
     }
 }

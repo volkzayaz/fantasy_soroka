@@ -10,17 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-
 import iCarousel
-
-extension PrimaryButton {
-    func addLightGrayColorStyle () {
-        backgroundColor = R.color.listBackgroundColor()
-                  tintColor = R.color.textPinkColor()
-                  titleFont = UIFont.regularFont(ofSize: 16)
-                  mode = .normal
-    }
-}
 
 class DiscoverProfileViewController: UIViewController, MVVM_View {
     
@@ -62,11 +52,10 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         
         view.addFantasyTripleGradient()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(presentFilter))
+
+        let item = UIBarButtonItem(title: "Filters", style: .done, target: self, action: #selector(presentFilter))
+        item.applyFantasyAttributes()
+        navigationItem.rightBarButtonItem = item
         
         viewModel.profiles
             .subscribe(onNext: { [weak self] (_) in
@@ -95,9 +84,9 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     self.notActiveCityNameLabel.attributedText = NSAttributedString(string: "\(cityName) will be activated when it reaches")
 
                 case .noSearchPreferences:
-                    self.viewModel.presentFilter()
-//                    self.locationMessageLabel.isHidden = false
-//                    self.locationMessageLabel.text = "Before we search, set your searching preferences"
+                    self.viewModel.presentFilter(.disableCancel)
+                    //                    self.locationMessageLabel.isHidden = false
+                    //                    self.locationMessageLabel.text = "Before we search, set your searching preferences"
                     
                 }
                 
@@ -148,15 +137,15 @@ extension DiscoverProfileViewController {
     @IBAction func joinActiveCityClick(_ sender: Any) {
         viewModel.joinActiveCity()
     }
+
+    @objc func presentFilter() {
+        viewModel.presentFilter(.enableCancel)
+    }
 }
 
 // MARK:- iCarouselDelegate
 
 extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource {
-
-    @objc func presentFilter() {
-        viewModel.presentFilter()
-    }
     
     func numberOfItems(in carousel: iCarousel) -> Int {
         return viewModel.profiles.value.count + 1 /// 1 stands for "No new fantasy seekers today" placeholder
@@ -166,36 +155,20 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         
         guard let profile = viewModel.profiles.value[safe: index] else {
             
-            let noFantasySeekersPlaceholder = UIView()
-            
-            noFantasySeekersPlaceholder.backgroundColor = .blue
-            
-            let label = UILabel()
-            label.text = "No More Fantasy seekers. Invite friends or change filter"
-            label.sizeToFit()
-            
-            noFantasySeekersPlaceholder.addSubview(label)
-            
-            return noFantasySeekersPlaceholder
+            let v = NoUsersCarouselView(frame: carousel.bounds)
+            v.delegate = self
+
+            return v
         }
         
-        let view = UIView(frame: carousel.bounds)
-        
-        let label = UILabel()
-        label.text = profile.bio.name
-        label.sizeToFit()
-        
-        view.addSubview(label)
-        view.backgroundColor = index % 2 == 0 ? .red : .green
-        
+        let view = UserCarouselView(frame: carousel.bounds)
+        view.setUser(profile)
+
         return view
         
     }
     
-    func carousel(_ carousel: iCarousel,
-                  valueFor option: iCarouselOption,
-                  withDefault value: CGFloat) -> CGFloat {
-        
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
         case .wrap: return 0
         case .spacing: return 0.5
@@ -203,10 +176,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         case .radius: return 220
             
         default: return value
-            
         }
-
-        
     }
     
     func carousel(_ carousel: iCarousel,
@@ -238,4 +208,17 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         
     }
     
+}
+
+//MARK:- NoUsersCarouselViewDelegate
+
+extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
+
+    func inviteFriends() {
+        viewModel.inviteFriends()
+    }
+
+    func showFilters() {
+        viewModel.presentFilter(.enableCancel)
+    }
 }

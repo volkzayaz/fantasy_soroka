@@ -284,6 +284,11 @@
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
+		B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774AF23644F2D00A353CC /* UserCarouselView.swift */; };
+		B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B023644F2D00A353CC /* UserCarouselView.xib */; };
+		B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */; };
+		B73774B823647FE400A353CC /* NoUsersCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774B723647FE400A353CC /* NoUsersCarouselView.swift */; };
+		B73774BA23647FF600A353CC /* NoUsersCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B923647FF600A353CC /* NoUsersCarouselView.xib */; };
 		B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */; };
 		B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */; };
 		B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C631234F92120017CE1A /* GradientBackgroundView.swift */; };
@@ -615,6 +620,11 @@
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePicker.swift; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
+		B73774AF23644F2D00A353CC /* UserCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCarouselView.swift; sourceTree = "<group>"; };
+		B73774B023644F2D00A353CC /* UserCarouselView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCarouselView.xib; sourceTree = "<group>"; };
+		B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+FantasyFont.swift"; sourceTree = "<group>"; };
+		B73774B723647FE400A353CC /* NoUsersCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUsersCarouselView.swift; sourceTree = "<group>"; };
+		B73774B923647FF600A353CC /* NoUsersCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoUsersCarouselView.xib; sourceTree = "<group>"; };
 		B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRestrictionViewConrtoller.swift; sourceTree = "<group>"; };
 		B783C631234F92120017CE1A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -861,6 +871,7 @@
 				842A19FE235533E300D0FE5A /* UIView+RoundedCorners.swift */,
 				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
 				B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */,
+				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1130,6 +1141,7 @@
 		734C52972326A65700B54510 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				B73774AE23644F2D00A353CC /* UIComponents */,
 				734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */,
 				734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */,
 				734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */,
@@ -1944,6 +1956,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B73774AE23644F2D00A353CC /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B73774AF23644F2D00A353CC /* UserCarouselView.swift */,
+				B73774B023644F2D00A353CC /* UserCarouselView.xib */,
+				B73774B723647FE400A353CC /* NoUsersCarouselView.swift */,
+				B73774B923647FF600A353CC /* NoUsersCarouselView.xib */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 		B78074EE2360CE860064CC17 /* AgeRestriction */ = {
 			isa = PBXGroup;
 			children = (
@@ -2102,6 +2125,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73774BA23647FF600A353CC /* NoUsersCarouselView.xib in Resources */,
 				B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */,
 				843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */,
 				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
@@ -2125,6 +2149,7 @@
 				841681E322E9AE6E00FA9455 /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				7322310C23040D79009DD37F /* FantasyCard.storyboard in Resources */,
 				841681E622E9AE6E00FA9455 /* SF-Pro-Text-Bold.otf in Resources */,
+				B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */,
 				841681E722E9AE6E00FA9455 /* SF-Pro-Text-LightItalic.otf in Resources */,
 				7312B07422D7413C00DB0F36 /* Main.storyboard in Resources */,
 				84C1D03A2327B95300648DE1 /* Queer.png in Resources */,
@@ -2293,6 +2318,7 @@
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
 				73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */,
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
+				B73774B823647FE400A353CC /* NoUsersCarouselView.swift in Sources */,
 				7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */,
 				842A19FF235533E300D0FE5A /* UIView+RoundedCorners.swift in Sources */,
 				7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */,
@@ -2372,9 +2398,8 @@
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
 				843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
-				843B648D234F196E00E5639B /* RoomSettingsRouter.swift in Sources */,
-				B7EA8CA623538A4B00BE149E /* RoundedBackgroundView.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
+				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
@@ -2420,6 +2445,7 @@
 				B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */,
 				843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */,
 				7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */,
+				B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */,
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,

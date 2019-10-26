@@ -12,6 +12,15 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+enum FilterMode {
+    case enableCancel
+    case disableCancel
+}
+
+private enum StoreKeys: String {
+    case tutorial = "kTutorialStoreKey"
+}
+
 extension Gender: SwipebleModel {
 
     var name: String {
@@ -42,27 +51,22 @@ extension Sexuality: SwipebleModel {
     }
 }
 
-
-private enum StoreKeys: String {
-    case tutorial = "kTutorialStoreKey"
-}
-
 extension DiscoveryFilterViewModel {
     
     var prefs: SearchPreferences {
         return form.value
     }
 
+    var community: Driver<Community?> {
+        return appState.changesOf { $0.currentUser?.community.value }
+    }
+
     var isCouple: Bool {
-        return form.value.couple
+        return form.value.couple != .single
     }
 
     var showTutorial: Bool {
         return !UserDefaults.standard.bool(forKey: StoreKeys.tutorial.rawValue)
-    }
-
-    var community: Driver<Community?> {
-        return form.asDriver().map { $0.community }
     }
 
     var selectedPartnerGender: Int {
@@ -73,14 +77,12 @@ extension DiscoveryFilterViewModel {
         return Sexuality.index(by: form.value.sexuality)
     }
 
-    var selectedSecondPartnerGender: Int {
-        guard let x = form.value.secondPartnerGender else { return 0 }
-        return Gender.index(by: x)
+    var selectedSecondPartnerGender: Gender {
+        return form.value.couple.partnerGender ?? .male
     }
 
-    var selectedSecondPartnerSexuality: Int {
-        guard let x = form.value.secondPartnerSexuality else {  return 0 }
-        return Sexuality.index(by: x)
+    var selectedSecondPartnerGenderIndex: Int {
+        return Gender.index(by: selectedSecondPartnerGender)
     }
 
     var sexualityCount: Int {
@@ -90,14 +92,21 @@ extension DiscoveryFilterViewModel {
     var bodiesCount: Int {
         return Gender.allCases.count
     }
+
+    var showCancelButton: Bool {
+        return mode == .enableCancel
+    }
 }
 
 struct DiscoveryFilterViewModel : MVVM_ViewModel {
     
     fileprivate let form: BehaviorRelay<SearchPreferences>
-    
-    init(router: DiscoveryFilterRouter) {
+    fileprivate let mode: FilterMode
+
+    init(router: DiscoveryFilterRouter, mode: FilterMode) {
         self.router = router
+        self.mode = mode
+
         form = .init(value: User.current?.searchPreferences ?? .default)
         
         /////progress indicator
@@ -112,9 +121,6 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
     let router: DiscoveryFilterRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-
-
-    fileprivate var showSecondPartner: Bool = false
 }
 
 extension DiscoveryFilterViewModel {
@@ -128,7 +134,7 @@ extension DiscoveryFilterViewModel {
         updateForm { $0.age = $0.age.lowerBound..<x }
     }
 
-    func changeCouple(x: Bool) {
+    func changeCouple(x: RelationshipStatus) {
         updateForm { $0.couple = x }
     }
 
@@ -140,14 +146,6 @@ extension DiscoveryFilterViewModel {
         updateForm { $0.sexuality = sexuality }
     }
 
-    func changeSecondPartnerGender(gender: Gender) {
-        updateForm { $0.secondPartnerGender = gender }
-    }
-
-    func changeSecondPartnerSexuality(sexuality: Sexuality) {
-        updateForm { $0.secondPartnerSexuality = sexuality }
-    }
-    
     func openTeleport() {
         router.openTeleport()
     }

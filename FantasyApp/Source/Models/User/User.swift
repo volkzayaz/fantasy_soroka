@@ -230,6 +230,15 @@ enum RelationshipStatus: Equatable, Codable {
         
         fatalError("Can't decode RelationshipStatus from \(str)")
     }
+
+    var partnerGender: Gender? {
+        switch self {
+        case .single:
+            return nil
+        case .couple(let partnerGender):
+            return partnerGender
+        }
+    }
     
     var description: String {
         switch self {

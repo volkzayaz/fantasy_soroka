@@ -392,8 +392,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Se-hg-s60" customClass="iCarousel">
-                                <rect key="frame" x="40" y="84" width="334" height="793"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="25" y="49" width="364" height="798"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="sJw-Y8-Mmr" id="Hi6-DJ-kyS"/>
                                     <outlet property="delegate" destination="sJw-Y8-Mmr" id="fgT-Qf-oso"/>
@@ -402,10 +402,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0Se-hg-s60" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" constant="40" id="3sU-5R-DMQ"/>
-                            <constraint firstItem="0Se-hg-s60" firstAttribute="top" secondItem="jFF-Ap-2z8" secondAttribute="top" constant="40" id="Ybt-hl-pPv"/>
-                            <constraint firstItem="0Se-hg-s60" firstAttribute="bottom" secondItem="jFF-Ap-2z8" secondAttribute="bottom" constant="15" id="kE6-q2-baI"/>
-                            <constraint firstItem="jFF-Ap-2z8" firstAttribute="trailing" secondItem="0Se-hg-s60" secondAttribute="trailing" constant="40" id="zWz-Yf-8qa"/>
+                            <constraint firstItem="0Se-hg-s60" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" constant="25" id="3sU-5R-DMQ"/>
+                            <constraint firstItem="0Se-hg-s60" firstAttribute="top" secondItem="jFF-Ap-2z8" secondAttribute="top" constant="5" id="Ybt-hl-pPv"/>
+                            <constraint firstItem="0Se-hg-s60" firstAttribute="bottom" secondItem="jFF-Ap-2z8" secondAttribute="bottom" constant="-15" id="kE6-q2-baI"/>
+                            <constraint firstItem="jFF-Ap-2z8" firstAttribute="trailing" secondItem="0Se-hg-s60" secondAttribute="trailing" constant="25" id="zWz-Yf-8qa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jFF-Ap-2z8"/>
                     </view>
@@ -1005,14 +1005,14 @@ activated when it reaches</string>
             <objects>
                 <viewController storyboardIdentifier="DiscoveryFilterViewController" title="DiscoveryFilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iyx-6x-4MS" customClass="DiscoveryFilterViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xJl-An-r4I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehO-2K-TEg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1222"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="872"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="944.5"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="838.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="86.5"/>
@@ -1238,7 +1238,7 @@ activated when it reaches</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-Jj-sjy">
-                                                <rect key="frame" x="0.0" y="627" width="382" height="241.5"/>
+                                                <rect key="frame" x="0.0" y="627" width="382" height="135.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6er-11-nia">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="135.5"/>
@@ -1281,40 +1281,10 @@ activated when it reaches</string>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-2v-tlb" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="145.5" width="382" height="96"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sexuality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSm-pN-7y5">
-                                                                <rect key="frame" x="16" y="11" width="350" height="17.5"/>
-                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
-                                                                <color key="textColor" name="textBlackColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6CL-Ci-0wz" customClass="SmoothPickerView" customModule="SmoothPicker">
-                                                                <rect key="frame" x="0.0" y="39.5" width="382" height="45.5"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <connections>
-                                                                    <outlet property="dataSource" destination="iyx-6x-4MS" id="H59-dP-kMe"/>
-                                                                    <outlet property="delegate" destination="iyx-6x-4MS" id="iZw-ll-HdU"/>
-                                                                </connections>
-                                                            </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="6CL-Ci-0wz" secondAttribute="trailing" id="0hP-hy-AgB"/>
-                                                            <constraint firstAttribute="trailing" secondItem="vSm-pN-7y5" secondAttribute="trailing" constant="16" id="4L5-Ad-lCC"/>
-                                                            <constraint firstItem="vSm-pN-7y5" firstAttribute="top" secondItem="WJ9-2v-tlb" secondAttribute="top" constant="11" id="5uT-Ug-fdM"/>
-                                                            <constraint firstItem="6CL-Ci-0wz" firstAttribute="leading" secondItem="WJ9-2v-tlb" secondAttribute="leading" id="8hB-Ig-gc6"/>
-                                                            <constraint firstAttribute="height" constant="96" id="9IE-TA-Yk0"/>
-                                                            <constraint firstItem="vSm-pN-7y5" firstAttribute="leading" secondItem="WJ9-2v-tlb" secondAttribute="leading" constant="16" id="KTH-FR-dB2"/>
-                                                            <constraint firstItem="6CL-Ci-0wz" firstAttribute="top" secondItem="vSm-pN-7y5" secondAttribute="bottom" constant="11" id="byd-OX-GcQ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="6CL-Ci-0wz" secondAttribute="bottom" constant="11" id="mvk-J1-9zp"/>
-                                                        </constraints>
-                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KI-5a-fVt">
-                                                <rect key="frame" x="0.0" y="892.5" width="382" height="52"/>
+                                                <rect key="frame" x="0.0" y="786.5" width="382" height="52"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgN-eb-txH" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                                         <rect key="frame" x="60" y="0.0" width="262" height="52"/>
@@ -1357,22 +1327,16 @@ activated when it reaches</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y43-0j-N8t"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Filter" id="96O-VU-leN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="vO8-Vc-zMJ">
-                            <connections>
-                                <action selector="cancel:" destination="iyx-6x-4MS" id="aYS-7Q-Zau"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <size key="freeformSize" width="414" height="1300"/>
+                    <navigationItem key="navigationItem" title="Search Filter" id="96O-VU-leN"/>
+                    <size key="freeformSize" width="414" height="950"/>
                     <connections>
+                        <outlet property="activeCityImageView" destination="iLt-J4-MI5" id="Feo-sl-7em"/>
                         <outlet property="ageSlider" destination="Mdk-zv-GGl" id="bH9-aX-BCW"/>
                         <outlet property="cityLabel" destination="9NS-4E-Ebr" id="ykV-vp-kcs"/>
                         <outlet property="partnerBodyPicker" destination="A9S-yE-K6c" id="s2R-8P-acA"/>
                         <outlet property="partnerSexualityPicker" destination="1GV-YI-iYw" id="3fi-ni-sNP"/>
                         <outlet property="scrollView" destination="ehO-2K-TEg" id="ATe-Eo-rvT"/>
                         <outlet property="secondPartnerBodyPicker" destination="egU-Il-qSz" id="Bup-4Y-IeV"/>
-                        <outlet property="secondPartnerSexualityPicker" destination="6CL-Ci-0wz" id="SUV-bC-D5V"/>
                         <outlet property="secondPartnerStackView" destination="AQt-Jj-sjy" id="wXC-w3-xIY"/>
                         <outlet property="secondPartnerSwitch" destination="Yxx-aQ-Txl" id="sFO-MZ-fhX"/>
                         <outlet property="tutorialView" destination="TYG-Zf-Hsb" id="nbu-hv-xAz"/>

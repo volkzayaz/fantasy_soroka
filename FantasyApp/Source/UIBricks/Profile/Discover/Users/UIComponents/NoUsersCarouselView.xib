@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoUsersCarouselView" customModule="FantasyApp" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="SIV-6M-Ecc" id="56C-TN-KWj"/>
+                <outlet property="filtersButton" destination="73u-Ky-whm" id="WrP-oo-YhL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="SIV-6M-Ecc">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                    <rect key="frame" x="35" y="721" width="344" height="52"/>
+                    <state key="normal" title="Search Filter"/>
+                    <connections>
+                        <action selector="filters:" destination="-1" eventType="touchUpInside" id="a3J-bY-Ags"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                    <rect key="frame" x="35" y="785" width="344" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="9Zf-fe-XWl"/>
+                    </constraints>
+                    <state key="normal" title="Invite Friends"/>
+                    <connections>
+                        <action selector="inviteFriendsClick:" destination="-1" eventType="touchUpInside" id="vOp-aD-jwz"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0co-9d-b5U">
+                    <rect key="frame" x="62" y="427" width="290" height="42"/>
+                    <string key="text">No new 
+Fantasy-seekers today</string>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                    <color key="textColor" name="textBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic" translatesAutoresizingMaskIntoConstraints="NO" id="8Rn-Mn-8am">
+                    <rect key="frame" x="167" y="94" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8Rn-Mn-8am" secondAttribute="height" multiplier="1:1" id="QgY-2i-X71"/>
+                        <constraint firstAttribute="width" constant="80" id="umz-gm-xA8"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="73u-Ky-whm" firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" id="5iK-nM-iuz"/>
+                <constraint firstItem="n94-DS-DPf" firstAttribute="leading" secondItem="k6C-Fg-e7K" secondAttribute="leading" constant="35" id="6W4-RW-7io"/>
+                <constraint firstItem="n94-DS-DPf" firstAttribute="top" secondItem="73u-Ky-whm" secondAttribute="bottom" constant="12" id="Eqw-CW-oDn"/>
+                <constraint firstItem="0co-9d-b5U" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="G4g-WW-BpA"/>
+                <constraint firstItem="73u-Ky-whm" firstAttribute="height" secondItem="n94-DS-DPf" secondAttribute="height" id="M4y-Kh-835"/>
+                <constraint firstItem="73u-Ky-whm" firstAttribute="leading" secondItem="n94-DS-DPf" secondAttribute="leading" id="WaM-Z7-Hda"/>
+                <constraint firstItem="8Rn-Mn-8am" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="XKd-iz-INN"/>
+                <constraint firstItem="0co-9d-b5U" firstAttribute="centerY" secondItem="SIV-6M-Ecc" secondAttribute="centerY" id="do4-rB-3M2"/>
+                <constraint firstItem="8Rn-Mn-8am" firstAttribute="top" secondItem="k6C-Fg-e7K" secondAttribute="top" constant="50" id="onf-iV-i9g"/>
+                <constraint firstItem="0co-9d-b5U" firstAttribute="width" secondItem="SIV-6M-Ecc" secondAttribute="width" multiplier="0.7" id="skq-bL-eow"/>
+                <constraint firstItem="k6C-Fg-e7K" firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" constant="35" id="v1S-CY-fRM"/>
+                <constraint firstItem="k6C-Fg-e7K" firstAttribute="bottom" secondItem="n94-DS-DPf" secondAttribute="bottom" constant="25" id="vVO-YF-VyM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="k6C-Fg-e7K"/>
+            <point key="canvasLocation" x="46" y="68"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="basic" width="40" height="30"/>
+        <namedColor name="textBlackColor">
+            <color red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

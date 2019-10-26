@@ -24,10 +24,10 @@ struct DiscoverProfileRouter : MVVM_Router {
         
     }
     
-    func presentFilter() {
+    func presentFilter(_ mode: FilterMode) {
         
         let x = R.storyboard.user.discoveryFilterViewController()!
-        x.viewModel = .init(router: .init(owner: x))
+        x.viewModel = .init(router: .init(owner: x), mode: mode)
 
         let nav = FantasyNavigationController(rootViewController: x)
         nav.modalPresentationStyle = .fullScreen
