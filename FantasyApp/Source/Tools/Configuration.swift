@@ -50,7 +50,9 @@ extension Configuration {
         let branch = Branch.getInstance()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
             
-         })
+        })
+        // uncomment to test Branch Integration
+        Branch.getInstance()?.validateSDKIntegration()
 
         // MARK: - Logging
         if Environment.debug {
@@ -70,8 +72,6 @@ extension Configuration {
         ///Push registration
         PushManager.kickOff()
 
-        // uncomment to test Branch Integration
-        //Branch.getInstance()?.validateSDKIntegration()
     }
 
     private static func registerActors() {

@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fantasyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-Ic-CG7">
-                                <rect key="frame" x="135" y="363" width="144" height="170"/>
+                                <rect key="frame" x="63" y="278" width="288" height="340"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="bgGradient1"/>
