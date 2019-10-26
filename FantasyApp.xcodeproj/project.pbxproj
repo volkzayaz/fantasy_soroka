@@ -107,7 +107,7 @@
 		7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33623351F64007B84B0 /* ConnectionViewController.swift */; };
 		7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33723351F64007B84B0 /* ConnectionViewModel.swift */; };
 		736D235A235A057A00430863 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2359235A057A00430863 /* AboutCell.swift */; };
-		7374F6A8235B8435000D6D20 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7374F6A7235B8435000D6D20 /* ConnectionCell.swift */; };
+		7374F6A8235B8435000D6D20 /* IncommingConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7374F6A7235B8435000D6D20 /* IncommingConnectionCell.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
@@ -430,7 +430,7 @@
 		7361F33623351F64007B84B0 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		7361F33723351F64007B84B0 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		736D2359235A057A00430863 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
-		7374F6A7235B8435000D6D20 /* ConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
+		7374F6A7235B8435000D6D20 /* IncommingConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncommingConnectionCell.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
@@ -1282,7 +1282,7 @@
 		7374F6A6235B8419000D6D20 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7374F6A7235B8435000D6D20 /* ConnectionCell.swift */,
+				7374F6A7235B8435000D6D20 /* IncommingConnectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2279,7 +2279,7 @@
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
-				7374F6A8235B8435000D6D20 /* ConnectionCell.swift in Sources */,
+				7374F6A8235B8435000D6D20 /* IncommingConnectionCell.swift in Sources */,
 				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
 				84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
