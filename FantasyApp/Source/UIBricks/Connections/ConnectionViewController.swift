@@ -66,8 +66,6 @@ class ConnectionViewController: UIViewController, MVVM_View {
                 let layout = (self.collectionView.collectionViewLayout as! BaseFlowLayout)
                 let mode = sections.first?.items.first?.source ?? .outgoing
                 
-                guard layout.tableMode != mode else { return }
-                
                 self.collectionView.performBatchUpdates({
                     layout.tableMode = mode
                     (self.collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: self.view.bounds)
