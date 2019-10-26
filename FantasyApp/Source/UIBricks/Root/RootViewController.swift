@@ -26,7 +26,6 @@ class RootViewController: UINavigationController, MVVM_View {
                 case .mainApp:
                     let vc = R.storyboard.main.mainTabBarViewController()!
                     vc.viewModel = .init(router: .init(owner: vc))
-                    vc.selectedIndex = 1
                     self.setViewControllers([vc], animated: true)
                     
                 case .authentication:

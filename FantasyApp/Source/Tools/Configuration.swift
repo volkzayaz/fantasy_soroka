@@ -46,11 +46,22 @@ extension Configuration {
         
         // MARK: - Branch
         // unncomment to disable debug mode
-        Branch.setUseTestBranchKey(true)
+        //Branch.setUseTestBranchKey(true)
         let branch = Branch.getInstance()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+          
+            guard let identifier = params?["$canonical_identifier"] as? String,
+                identifier.starts(with: "room/"),
+                let accessToken = params?["inviteToken"] as? String else {
+                return
+            }
             
-         })
+            let roomId = String(identifier.dropFirst(5))
+            Dispatcher.dispatch(action: ChangeInviteDeeplink(inviteDeeplink: .init(roomRef: .init(id: roomId), password: accessToken)))
+            
+        })
+        // uncomment to test Branch Integration
+        //Branch.getInstance()?.validateSDKIntegration()
 
         // MARK: - Logging
         if Environment.debug {
@@ -70,14 +81,11 @@ extension Configuration {
         ///Push registration
         PushManager.kickOff()
 
-        // uncomment to test Branch Integration
-        //Branch.getInstance()?.validateSDKIntegration()
     }
 
     private static func registerActors() {
         let actors: [Any] = [
             UserPropertyActor(),
-            RoomsActor()
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }

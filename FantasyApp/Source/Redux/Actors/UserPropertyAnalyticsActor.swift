@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 import Crashlytics
+import Branch
 
 class UserPropertyActor {
     private let bag = DisposeBag()
@@ -34,6 +35,13 @@ class UserPropertyActor {
                 Crashlytics.sharedInstance().setUserIdentifier(user?.id)
                 Crashlytics.sharedInstance().setUserName(user?.bio.name)
                 
+                if let id = user?.id {
+                    Branch.getInstance()?.setIdentity(id)
+                } else {
+                    Branch.getInstance()?.logout()
+                }
+                
+            
             })
             .disposed(by: bag)
         

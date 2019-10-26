@@ -16,31 +16,33 @@ extension FantasySearchViewModel {
     
     var dataSource: Driver<[AnimatableSectionModel<String, Model>]> {
 
-        return searchQuery.asDriver().flatMapLatest { q -> Driver<([Fantasy.Card], Int)> in
-            
-            let swipeLimit = appState.changesOf { $0.fantasies.restriction }
-            
-            let query = Fantasy.Manager.searchFor(query: q).asDriver(onErrorJustReturn: [])
-                .debounce(.milliseconds(300))
-            
-            return Driver.combineLatest(query, swipeLimit) { (cards, restriction) in
-                    guard case .swipeCount(let x) = restriction else {
-                        return (cards, 0)
-                    }
-                    
-                    return (cards, x)
-                }
-            
-        }
-        .map { (cards, limit) in
-            
-            let models = cards.enumerated().map { (index, card) in
-                return Model(card: card, isBlurred: index >= limit)
-            }
-            
-            return [AnimatableSectionModel(model: "",
-                                           items: models)]
-        }
+        return .just([])
+        
+//        return searchQuery.asDriver().flatMapLatest { q -> Driver<([Fantasy.Card], Int)> in
+//
+//            let swipeLimit = appState.changesOf { $0.fantasies.restriction }
+//
+//            let query = Fantasy.Manager.searchFor(query: q).asDriver(onErrorJustReturn: [])
+//                .debounce(.milliseconds(300))
+//
+//            return Driver.combineLatest(query, swipeLimit) { (cards, restriction) in
+//                    guard case .swipeCount(let x) = restriction else {
+//                        return (cards, 0)
+//                    }
+//
+//                    return (cards, x)
+//                }
+//
+//        }
+//        .map { (cards, limit) in
+//
+//            let models = cards.enumerated().map { (index, card) in
+//                return Model(card: card, isBlurred: index >= limit)
+//            }
+//
+//            return [AnimatableSectionModel(model: "",
+//                                           items: models)]
+//        }
     }
     
     struct Model: IdentifiableType, Equatable {

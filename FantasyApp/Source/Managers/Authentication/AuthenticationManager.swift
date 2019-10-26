@@ -147,7 +147,6 @@ extension AuthenticationManager {
         SettingsStore.currentUser.value = nil
         SettingsStore.atLeastOnceLocation.value = nil
         PFUser.logOutInBackground(block: { _ in })
-        Branch.getInstance()?.logout()
     }
 
     private static func postAuthorizationParseMess( signal: Observable<PFUser> ) -> Single<User> {
@@ -159,7 +158,6 @@ extension AuthenticationManager {
             }
             .do(onSuccess: { (user) in
                 SettingsStore.currentUser.value = user
-                Branch.getInstance()?.setIdentity(user.id)
             })
         
     }

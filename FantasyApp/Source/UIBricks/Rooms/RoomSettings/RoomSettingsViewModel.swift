@@ -19,6 +19,7 @@ extension RoomSettingsViewModel {
         let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
         let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
                         room.settings.isScreenShieldEnabled)]
+        
         return RoomSettingsPremiumFeatureViewModel(
             title: R.string.localizable.roomSettingsSecurityTitle(),
             description: R.string.localizable.roomSettingsSecurityDescription(),
@@ -27,109 +28,100 @@ extension RoomSettingsViewModel {
         )
     }
     
+    var participantsDataSource: Driver<[AnimatableSectionModel<String, CellModel>]> {
+        
+        return room.asDriver().map { room in
+            
+            return [AnimatableSectionModel(model: "",
+                                           items: room.participants.enumerated()
+                                            .map { (i, x) -> CellModel in
+                                                
+                                                guard let _ = x.userId else {
+                                                    return .invite
+                                                }
+                                                
+                                                return .user(isAdmin: i == 0, participant: x)
+            })]
+            
+        }
+    }
+    
+    var intiteLinkShow: Driver<Void> {
+        return inviteLink.skip(1)
+            .asDriver(onErrorJustReturn: nil)
+            .filter { $0 != nil }
+            .map { _ in }
+    }
+    
 }
 
 struct RoomSettingsViewModel: MVVM_ViewModel {
 
     enum CellModel: IdentifiableType, Equatable {
-        case user(
-            thumbnailURL: String,
-            isAdmin: Bool,
-            name: String,
-            status: Room.Participant.Status?,
-            identifier: String)
+        case user(isAdmin: Bool, participant: Room.Participant)
         case invite
 
         var identity: String {
             switch self {
-            case .user(_, _, _, _, let identifier):
-                return identifier
-            default:
-                return UUID().uuidString
+                
+            case .user(_, let participant):
+                return participant.identity
+                
+            case .invite: return "invite"
+                
             }
         }
     }
 
-    let router: RoomSettingsRouter
-    let inviteLink = BehaviorRelay<String?>(value: nil)
     let room: BehaviorRelay<Room>
-    private let buo: BranchUniversalObject
-    private let properties: BranchLinkProperties
-    private let users = BehaviorRelay<[User]>(value: [User.current!])
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
-
-    var participantsDataSource: Driver<[AnimatableSectionModel<String, CellModel>]> {
-        return users.asDriver().map { users in
-            var models = users.map { user in
-                return CellModel.user(
-                    thumbnailURL: user.bio.photos.avatar.thumbnailURL,
-                    isAdmin: self.room.value.ownerId == user.id,
-                    name: user.bio.name,
-                    status: self.room.value.participants.first(where: { $0.userId == user.id })?.status,
-                    identifier: user.id
-                )
-            }
-
-            // Add placeholder item
-            if models.count == 1 { models.append(.invite) }
-
-            return [AnimatableSectionModel(model: "", items: models)]
-        }
-    }
-
+    
+    let inviteLink = BehaviorRelay<String?>(value: nil)
+    
+    private let buo: BranchUniversalObject?
+    
+    
     init(router: RoomSettingsRouter, room: Room) {
         self.router = router
         self.room = BehaviorRelay(value: room)
-        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
-        self.properties = BranchLinkProperties()
-
+        
+        if let invitationLink = room.participants.first(where: { $0.invitationLink != nil })?.invitationLink {
+        
+            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
+            buo?.title = "Fantasy"
+            buo?.contentDescription = "Join my room!"
+            buo?.publiclyIndex = true
+            buo?.locallyIndex = true
+            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
+            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
+                i.accept(url)
+            }
+            
+        }
+        else {
+            buo = nil
+        }
+        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
-
-        generateInviteLink()
-        loadParticipants()
+        
     }
-
-    private func generateInviteLink() {
-        guard let invitationLink = room.value.participants
-            .first(where: { $0.invitationLink != nil })?
-            .invitationLink else {
-            return
-        }
-        buo.title = "Fantasy"
-        buo.contentDescription = "Join my room!"
-        buo.publiclyIndex = true
-        buo.locallyIndex = true
-        buo.contentMetadata.customMetadata["invitationLink"] = invitationLink
-        properties.addControlParam("invitationLink", withValue: invitationLink)
-
-        buo.getShortUrl(with: properties) { (url, error) in
-            self.inviteLink.accept(url)
-        }
-    }
-
-    private func loadParticipants() {
-        Single.zip(room.value.participants.compactMap { $0.userId }.map { UserManager.getUser(id: $0) })
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { users in
-                self.users.accept(users.compactMap { $0 })
-            })
-            .disposed(by: bag)
-    }
-
+    
+    let router: RoomSettingsRouter
+    fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 }
 
 extension RoomSettingsViewModel {
-    
+
     func shareLink() {
-        buo.showShareSheet(with: properties,
-                           andShareText: "Join my room!\n\(inviteLink.value ?? "")",
-                           from: router.owner) { (activityType, completed) in
+        
+        buo?.showShareSheet(with: BranchLinkProperties(),
+                            andShareText: "Join my room!",
+                            from: router.owner) { (activityType, completed) in
 
         }
+        
     }
 
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
@@ -141,9 +133,7 @@ extension RoomSettingsViewModel {
         RoomManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { updatedRoom in
-                self.room.accept(updatedRoom)
-            })
+            .bind(to: room)
             .disposed(by: bag)
     }
 
@@ -152,6 +142,15 @@ extension RoomSettingsViewModel {
     }
     
     func leaveRoom() {
-        //router.owner.navigationController?.popViewController(animated: true)
+        
+        RoomManager.deleteRoom(room.value.id)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { (_) in
+                self.router.owner.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
+        
+        
     }
 }
