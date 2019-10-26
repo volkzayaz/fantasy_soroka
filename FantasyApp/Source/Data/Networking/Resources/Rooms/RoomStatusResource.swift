@@ -25,7 +25,8 @@ struct RoomStatusResource: AuthorizedAPIResource {
     }
 
     var task: Task {
-        return .requestParameters(parameters: ["status": status.rawValue],
+        return .requestParameters(parameters: ["status": status.rawValue,
+                                               "inviteToken": password],
                                   encoding: JSONEncoding())
     }
 }
