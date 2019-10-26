@@ -32,14 +32,17 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
 
         switch model {
-        case .user(let thumbnailURL, let isAdmin, let name, let status, _):
+            
+        case .user(let isAdmin, let participant):
             let cell = self.participantsCollectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.participantCollectionViewCell,
                                      for: indexPath)!
-            cell.nameLabel.text = name
+            
+            cell.nameLabel.text = participant.userSlice.name
             cell.adminLabel.isHidden = !isAdmin
-            cell.status = isAdmin ? nil : status
-            ImageRetreiver.imageForURLWithoutProgress(url: thumbnailURL)
+            cell.status = isAdmin ? nil : participant.status
+            
+            ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
                 .map { $0 ?? R.image.errorPhoto() }
                 .drive(cell.imageView.rx.image)
                 .disposed(by: self.rx.disposeBag)
@@ -56,6 +59,19 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        
+        self.inviteLabel?.removeFromSuperview()
+        self.inviteView?.removeFromSuperview()
+        
+        viewModel.intiteLinkShow
+            .drive(onNext: { [unowned self] (_) in
+                self.stackView.insertArrangedSubview(self.inviteLabel, at: 1)
+                self.stackView.insertArrangedSubview(self.inviteView, at: 2)
+                
+                self.stackView.setCustomSpacing(22, after: self.inviteView)
+            })
+            .disposed(by: rx.disposeBag)
+        
     }
 }
 
@@ -63,7 +79,6 @@ private extension RoomSettingsViewController {
     func configure() {
         stackView.setCustomSpacing(16, after: titleLabel)
         stackView.setCustomSpacing(10, after: inviteLabel)
-        stackView.setCustomSpacing(22, after: inviteView)
         stackView.setCustomSpacing(16, after: participantsLabel)
         stackView.setCustomSpacing(12, after: participantsCollectionView)
         stackView.setCustomSpacing(12, after: notificationsView)
