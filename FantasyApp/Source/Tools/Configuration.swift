@@ -50,10 +50,14 @@ extension Configuration {
         let branch = Branch.getInstance()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
-            guard let invitationLink = params?["invitationLink"] as? String else {
+            guard let identifier = params?["$canonical_identifier"] as? String,
+                identifier.starts(with: "room/"),
+                let accessToken = params?["inviteToken"] as? String else {
                 return
             }
-            Dispatcher.dispatch(action: ChangeInviteDeeplink(inviteToken: invitationLink))
+            
+            let roomId = String(identifier.dropFirst(5))
+            Dispatcher.dispatch(action: ChangeInviteDeeplink(inviteDeeplink: .init(roomRef: .init(id: roomId), password: accessToken)))
             
         })
         // uncomment to test Branch Integration

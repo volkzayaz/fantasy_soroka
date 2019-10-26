@@ -91,7 +91,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
             buo?.contentDescription = "Join my room!"
             buo?.publiclyIndex = true
             buo?.locallyIndex = true
-            buo?.contentMetadata.customMetadata["invitationLink"] = invitationLink
+            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
             buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
                 i.accept(url)
             }

@@ -53,7 +53,7 @@ struct AppState: Equatable {
     
     var fantasies: SwipeState
     
-    var inviteDeeplink: String?
+    var inviteDeeplink: InviteDeeplink?
     
     struct SwipeState: Equatable {
         var cards: [Fantasy.Card]
@@ -68,6 +68,11 @@ struct AppState: Equatable {
         var restriction: Restriction
         
     };
+    
+    struct InviteDeeplink: Equatable {
+        let roomRef: RoomRef
+        let password: String
+    }
     
 }
 

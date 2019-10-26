@@ -98,11 +98,8 @@ extension RoomManager {
         return InviteParticipantResource(roomId: roomId, userId: userId).rx.request
     }
 
-    static func acceptInviteToRoom(_ invitationLink: String) -> Single<Room> {
-        return RoomByInvitationTokenResource(token: invitationLink).rx.request
-//            .flatMap { room in
-//                return RoomStatusResource(roomId: room.id, status: .accepted).rx.request
-//            }
+    static func assosiateSelfWith(roomRef: RoomRef, password: String) -> Single<Room> {
+        return RoomStatusResource(roomRef: roomRef, password: password, status: .invited).rx.request
     }
 
     // MARK: - Settings

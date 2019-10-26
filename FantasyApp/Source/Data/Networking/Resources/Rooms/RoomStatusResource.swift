@@ -10,13 +10,9 @@ import Foundation
 import Moya
 
 struct RoomStatusResource: AuthorizedAPIResource {
-    private let roomId: String
-    private let status: Room.Participant.Status
-
-    init(roomId: String, status: Room.Participant.Status) {
-        self.roomId = roomId
-        self.status = status
-    }
+    let roomRef: RoomRef
+    let password: String
+    let status: Room.Participant.Status
 
     typealias responseType = Room
 
@@ -25,7 +21,7 @@ struct RoomStatusResource: AuthorizedAPIResource {
     }
 
     var path: String {
-        return "users/me/rooms/\(roomId)/invite/response"
+        return "users/me/rooms/\(roomRef.id)/invite/response"
     }
 
     var task: Task {

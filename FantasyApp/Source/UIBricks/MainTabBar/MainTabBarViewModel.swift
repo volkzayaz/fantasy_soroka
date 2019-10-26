@@ -77,7 +77,7 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             .notNil()
             .asObservable()
             .flatMap { [unowned i = indicator] x in
-                RoomManager.acceptInviteToRoom(x)
+                RoomManager.assosiateSelfWith(roomRef: x.roomRef, password: x.password)
                     .trackView(viewIndicator: i)
             }
             .subscribe(onNext: { (room) in

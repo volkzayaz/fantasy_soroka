@@ -10,11 +10,11 @@ import Foundation
 
 struct ChangeInviteDeeplink: Action {
     
-    let inviteToken: String?
+    let inviteDeeplink: AppState.InviteDeeplink?
     
     func perform(initialState: AppState) -> AppState {
         var state = initialState
-        state.inviteDeeplink = inviteToken
+        state.inviteDeeplink = inviteDeeplink
         return state
     }
     
