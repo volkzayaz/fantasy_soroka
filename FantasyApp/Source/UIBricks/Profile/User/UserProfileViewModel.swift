@@ -95,22 +95,25 @@ extension UserProfileViewModel {
     }
     
     var likedStikerHidden: Driver<Bool> {
-        return relationshipState.asDriver()
-            .map { maybe in
-                
-                guard let connection = maybe else {
-                    return true
-                }
-                
-                switch connection {
-                case .absent, .iRejected, .iWasRejected, .sameUser, .incomming(_):
-                    return true
-                    
-                case .outgoing(_), .mutual(_):
-                    return false
-                }
-                
-            }
+        
+        return .just(true)
+        
+//        return relationshipState.asDriver()
+//            .map { maybe in
+//                
+//                guard let connection = maybe else {
+//                    return true
+//                }
+//                
+//                switch connection {
+//                case .absent, .iRejected, .iWasRejected, .sameUser, .incomming(_):
+//                    return true
+//                    
+//                case .outgoing(_), .mutual(_):
+//                    return false
+//                }
+//                
+//            }
     }
     
     var relationLabel: Driver<String> {
@@ -299,6 +302,15 @@ extension UserProfileViewModel {
         let _ = ConnectionManager.initiate(with: user, type: .like)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
+            .do(onNext: { (x) in
+                
+                guard case .outgoing(_, let room) = x else {
+                    fatalErrorInDebug("Expected connection = .outgoing(_, let room). Received \(x)")
+                    return
+                }
+                
+                self.present(roomRef: room)
+            })
             .bind(to: relationshipState)
         
     }

@@ -1,5 +1,5 @@
 //
-//  ConnectionCell.swift
+//  IncommingConnectionCell.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 10/19/19.
@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class ConnectionCell: UICollectionViewCell {
+class IncommingConnectionCell: UICollectionViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var inviteTypeStackView: UIStackView!

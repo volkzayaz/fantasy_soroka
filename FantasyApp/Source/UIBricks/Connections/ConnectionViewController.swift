@@ -20,7 +20,7 @@ class ConnectionViewController: UIViewController, MVVM_View {
     
     lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ConnectedUser>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.connectionCell,
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.incommingConnectionCell,
                                           for: ip)!
         
         cell.set(connection: x)
@@ -48,6 +48,8 @@ class ConnectionViewController: UIViewController, MVVM_View {
         
         (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: "dos")
+        
         viewModel.requests
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
@@ -65,6 +67,16 @@ class ConnectionViewController: UIViewController, MVVM_View {
         
         viewModel.viewAppeared()
         gradientView.addFantasyGradient()
+    }
+
+    @objc func dos() {
+        let layout = collectionView.collectionViewLayout as! BaseFlowLayout
+        
+        self.collectionView.performBatchUpdates({
+            layout.tableMode = !layout.tableMode
+            (self.collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: self.view.bounds)
+        }, completion: nil)
+        
     }
     
 }
@@ -109,17 +121,28 @@ extension ConnectionViewController: UICollectionViewDelegateFlowLayout {
 
 class BaseFlowLayout: UICollectionViewFlowLayout {
     
+    var tableMode: Bool = false
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        itemSize = CGSize(width: 177.5, height: 190.5)
-        minimumInteritemSpacing = 17
-        
-        sectionInset = .init(top: 17, left: 17, bottom: 17, right: 17)
         
     }
     
     func configureFor(bounds: CGRect) {
+        
+        if tableMode {
+        
+            minimumInteritemSpacing = 0
+            sectionInset = .zero
+            itemSize = CGSize(width: bounds.size.width, height: 60)
+            
+            return;
+        }
+        
+        minimumInteritemSpacing = 17
+        
+        sectionInset = .init(top: 17, left: 17, bottom: 17, right: 17)
+
         
         let offset = minimumInteritemSpacing + sectionInset.left + sectionInset.right
         let viewWidth = bounds.width
