@@ -188,11 +188,11 @@ private extension FantasyDetailsViewController {
 
         likeButton.setTitle(reaction == .neutral ? R.string.localizable.fantasyCardLikeButton() : "",
                             for: .normal)
-        likeButton.backgroundColor = likeButton.isSelected ? .preferenceButtonSelected : .fantasyLightGrey
+        likeButton.backgroundColor = reaction == .like ? .preferenceButtonSelected : .fantasyLightGrey
 
         dislikeButton.setTitle(reaction == .neutral ? R.string.localizable.fantasyCardDislikeButton() : "",
                                for: .normal)
-        dislikeButton.backgroundColor = dislikeButton.isSelected ? .preferenceButtonSelected : .fantasyLightGrey
+        dislikeButton.backgroundColor = reaction == .dislike ? .preferenceButtonSelected : .fantasyLightGrey
 
         animatePreferenceChange(reaction)
     }
