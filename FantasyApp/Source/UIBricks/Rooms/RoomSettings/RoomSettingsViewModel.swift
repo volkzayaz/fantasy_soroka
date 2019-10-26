@@ -50,14 +50,15 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         }
     }
 
-    let router: RoomSettingsRouter
-    let inviteLink = BehaviorRelay<String?>(value: nil)
     let room: BehaviorRelay<Room>
+    
+    private let users = BehaviorRelay<[User]>(value: [User.current!])
+    
+
+    let inviteLink = BehaviorRelay<String?>(value: nil)
     private let buo: BranchUniversalObject
     private let properties: BranchLinkProperties
-    private let users = BehaviorRelay<[User]>(value: [User.current!])
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
-
+    
     var participantsDataSource: Driver<[AnimatableSectionModel<String, CellModel>]> {
         return users.asDriver().map { users in
             var models = users.map { user in
@@ -80,6 +81,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     init(router: RoomSettingsRouter, room: Room) {
         self.router = router
         self.room = BehaviorRelay(value: room)
+        
         self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
         self.properties = BranchLinkProperties()
 
@@ -90,7 +92,14 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         generateInviteLink()
         loadParticipants()
     }
+    
+    let router: RoomSettingsRouter
+    fileprivate let indicator: ViewIndicator = ViewIndicator()
+    fileprivate let bag = DisposeBag()
+}
 
+extension RoomSettingsViewModel {
+    
     private func generateInviteLink() {
         guard let invitationLink = room.value.participants
             .first(where: { $0.invitationLink != nil })?
@@ -118,11 +127,6 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
             })
             .disposed(by: bag)
     }
-
-    fileprivate let bag = DisposeBag()
-}
-
-extension RoomSettingsViewModel {
     
     func shareLink() {
         buo.showShareSheet(with: properties,

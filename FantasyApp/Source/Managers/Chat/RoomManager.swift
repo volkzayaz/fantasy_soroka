@@ -100,9 +100,9 @@ extension RoomManager {
 
     static func acceptInviteToRoom(_ invitationLink: String) -> Single<Room> {
         return RoomByInvitationTokenResource(token: invitationLink).rx.request
-            .flatMap { room in
-                return RoomStatusResource(roomId: room.id, status: .accepted).rx.request
-            }
+//            .flatMap { room in
+//                return RoomStatusResource(roomId: room.id, status: .accepted).rx.request
+//            }
     }
 
     // MARK: - Settings

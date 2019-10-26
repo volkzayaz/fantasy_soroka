@@ -45,15 +45,15 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         ///To keep syncing problems at min for now we'll fetch most info from server
         ///But for v2 we want to implement disk-first restoration policy
         Fantasy.Manager.fetchSwipeState()
-            .trackView(viewIndicator: indicator)
-            .subscribe(onNext: { x in
+            //.trackView(viewIndicator: indicator)
+            .subscribe(onSuccess: { x in
                 Dispatcher.dispatch(action: ResetSwipeRestriction(restriction: x))
             })
             .disposed(by: bag)
         
         Fantasy.Manager.fetchMainCards()
-            .trackView(viewIndicator: indicator)
-            .subscribe(onNext: { x in
+            //.trackView(viewIndicator: indicator)
+            .subscribe(onSuccess: { x in
                 Dispatcher.dispatch(action: StoreMainCards(cards: x))
             })
             .disposed(by: bag)
@@ -69,9 +69,22 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
-                //h?.setLoadingStatus(loading)
+                h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+        
+        appState.changesOf { $0.inviteDeeplink }
+            .notNil()
+            .asObservable()
+            .flatMap { [unowned i = indicator] x in
+                RoomManager.acceptInviteToRoom(x)
+                    .trackView(viewIndicator: i)
+            }
+            .subscribe(onNext: { (room) in
+                router.presentRoomSettings(room: room)
+            })
+            .disposed(by: bag)
+        
     }
     
     let router: MainTabBarRouter

@@ -74,7 +74,9 @@ extension ConnectionViewModel {
         RoomManager.getRoom(id: room.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: self.router.show )
+            .subscribe(onNext: { room in
+                self.router.show(room: room, page: .chat)
+            })
             .disposed(by: bag)
         
     }

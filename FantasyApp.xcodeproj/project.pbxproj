@@ -62,6 +62,7 @@
 		7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7222ED9A8C00495843 /* User+Parse.swift */; };
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
+		733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BA236452A0004EC466 /* InviteDeeplink.swift */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -269,7 +270,6 @@
 		84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */; };
 		84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */; };
 		84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0602327D5A800648DE1 /* Chat.storyboard */; };
-		84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0622327D5E500648DE1 /* RoomsActor.swift */; };
 		84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0642327D60100648DE1 /* RemoveRoom.swift */; };
 		84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0652327D60100648DE1 /* AddRooms.swift */; };
 		84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0662327D60100648DE1 /* UpdateRoom.swift */; };
@@ -388,6 +388,7 @@
 		7334CC7222ED9A8C00495843 /* User+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Parse.swift"; sourceTree = "<group>"; };
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
+		733F41BA236452A0004EC466 /* InviteDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDeeplink.swift; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -594,7 +595,6 @@
 		84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientView.swift; sourceTree = "<group>"; };
 		84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientRenderer.swift; sourceTree = "<group>"; };
 		84C1D0602327D5A800648DE1 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		84C1D0622327D5E500648DE1 /* RoomsActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsActor.swift; sourceTree = "<group>"; };
 		84C1D0642327D60100648DE1 /* RemoveRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveRoom.swift; sourceTree = "<group>"; };
 		84C1D0652327D60100648DE1 /* AddRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRooms.swift; sourceTree = "<group>"; };
 		84C1D0662327D60100648DE1 /* UpdateRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRoom.swift; sourceTree = "<group>"; };
@@ -1092,6 +1092,14 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		733F41B923645290004EC466 /* Deeplink */ = {
+			isa = PBXGroup;
+			children = (
+				733F41BA236452A0004EC466 /* InviteDeeplink.swift */,
+			);
+			path = Deeplink;
+			sourceTree = "<group>";
+		};
 		7343D8662358C45F00FC1816 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1396,6 +1404,7 @@
 		7390015722E1E79600260198 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				733F41B923645290004EC466 /* Deeplink */,
 				84C1D04B2327C65800648DE1 /* Chat */,
 				732231202305671B009DD37F /* Fantasy */,
 				73E4C3A122F08E9800BB71B4 /* Community */,
@@ -1472,7 +1481,6 @@
 		73E4C39E22F088E500BB71B4 /* Actors */ = {
 			isa = PBXGroup;
 			children = (
-				84C1D0622327D5E500648DE1 /* RoomsActor.swift */,
 				840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */,
 				84AB83C92303E3BC004CC171 /* ActorsLocator.swift */,
 			);
@@ -2250,6 +2258,7 @@
 			files = (
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
+				733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */,
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
@@ -2292,7 +2301,6 @@
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
 				7374F6A8235B8435000D6D20 /* ConnectionCells.swift in Sources */,
 				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
-				84C1D0632327D5E500648DE1 /* RoomsActor.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,

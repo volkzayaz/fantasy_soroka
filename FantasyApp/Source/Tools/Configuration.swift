@@ -46,13 +46,18 @@ extension Configuration {
         
         // MARK: - Branch
         // unncomment to disable debug mode
-        Branch.setUseTestBranchKey(true)
+        //Branch.setUseTestBranchKey(true)
         let branch = Branch.getInstance()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+          
+            guard let invitationLink = params?["invitationLink"] as? String else {
+                return
+            }
+            Dispatcher.dispatch(action: ChangeInviteDeeplink(inviteToken: invitationLink))
             
         })
         // uncomment to test Branch Integration
-        Branch.getInstance()?.validateSDKIntegration()
+        //Branch.getInstance()?.validateSDKIntegration()
 
         // MARK: - Logging
         if Environment.debug {
@@ -77,7 +82,6 @@ extension Configuration {
     private static func registerActors() {
         let actors: [Any] = [
             UserPropertyActor(),
-            RoomsActor()
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }

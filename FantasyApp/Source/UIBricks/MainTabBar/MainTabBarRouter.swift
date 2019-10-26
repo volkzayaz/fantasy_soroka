@@ -10,23 +10,17 @@ import UIKit
 
 struct MainTabBarRouter : MVVM_Router {
     
-    unowned private(set) var owner: UIViewController
-    init(owner: UIViewController) {
+    unowned private(set) var owner: UITabBarController
+    init(owner: UITabBarController) {
         self.owner = owner
     }
     
-    /**
-     
-     func showNextModule(with data: String) {
-     
-        let nextViewController = owner.storyboard.instantiate()
-        let nextRouter = NextRouter(owner: nextViewController)
-        let nextViewModel = NextViewModel(router: nextRuter, data: data)
+    func presentRoomSettings(room: Room) {
         
-        nextViewController.viewModel = nextViewModel
-        owner.present(nextViewController)
-     }
-     
-     */
+        owner.selectedIndex = 2
+        let notificationController = (owner.viewControllers![2] as! UINavigationController).viewControllers.first! as! ConnectionViewController
+        notificationController.viewModel.router.show(room: room, page: .settings)
+        
+    }
     
 }
