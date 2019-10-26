@@ -13,15 +13,7 @@ class FantasyNavigationController: UINavigationController, UINavigationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationBar.backgroundColor = .clear
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = true
-        navigationBar.tintColor = .white
-        navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 18.0),
-            NSAttributedString.Key.foregroundColor: UIColor.white
-        ]
+        navigationBar.applyFantasyStyling()
 
         delegate = self
     }
@@ -43,4 +35,18 @@ extension UIViewController {
         return false
     }
     
+}
+
+extension UINavigationBar {
+    func applyFantasyStyling() {
+        backgroundColor = .clear
+        setBackgroundImage(UIImage(), for: .default)
+        shadowImage = UIImage()
+        isTranslucent = true
+        tintColor = .white
+        titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 18.0),
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+    }
 }

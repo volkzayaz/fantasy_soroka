@@ -27,12 +27,14 @@ extension FantasyDetailsViewController {
     }
 
     func animateDisappearance() {
+        gradientBackgroundView.isHidden = true
         backgroundView.isHidden = true
         scrollView.setContentOffset(.zero, animated: true)
         UIView.animate(withDuration: 0.3,
                        delay: 0.0,
                        options: .curveEaseOut,
                        animations: {
+            self.titleLabel.alpha = 0.0
             self.closeButton.alpha = 0.0
             self.optionButton.alpha = 0.0
         }) { [weak self] _ in
@@ -46,6 +48,7 @@ extension FantasyDetailsViewController {
                        delay: 0.0,
                        options: .curveEaseIn,
                        animations: {
+            self.titleLabel.alpha = 1.0
             self.closeButton.alpha = 1.0
             self.optionButton.alpha = 1.0
         }) { [weak self] _ in
@@ -65,7 +68,7 @@ extension FantasyDetailsViewController {
             let height = max(size.height, FantasyDetailsViewController.minBackgroundImageHeight)
             self.backgroundImageWidth.constant = width
             self.backgroundImageHeight.constant = min(height, UIScreen.main.bounds.height)
-            self.view.layoutIfNeeded()
+            self.backgroundImageView.layoutIfNeeded()
         })
     }
 

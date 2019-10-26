@@ -18,6 +18,10 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         return true
     }
 
+    // TODO: Combine like+dislike+labels into one separate UI component
+    @IBOutlet private (set) var navigationBar: UINavigationBar!
+    @IBOutlet private (set) var titleLabel: UILabel!
+    @IBOutlet private (set) var gradientBackgroundView: UIView!
     @IBOutlet private (set) var backgroundView: UIView!
     @IBOutlet private (set) var scrollView: UIScrollView!
     @IBOutlet private (set) var stackView: UIStackView!
@@ -52,7 +56,8 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     static let minBackgroundImageHeight: CGFloat = 482.0
     static let initialScrollViewOffsetY: CGFloat = 450.0
     private var isZoomingBlocked = false
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,14 +83,19 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 // MARK: - Configuration
 private extension FantasyDetailsViewController {
     func configureStyling() {
+        navigationBar.applyFantasyStyling()
         scrollView.delegate = self
+        scrollView.scrollsToTop = false
         scrollView.contentInsetAdjustmentBehavior = .never
 
+        gradientBackgroundView.isHidden = true
+        gradientBackgroundView.addFantasyGradient()
         view.backgroundColor = .clear
         backgroundView.backgroundColor = .fantasyCardBackground
         backgroundView.isHidden = true
         closeButton.alpha = 0.0
         optionButton.alpha = 0.0
+        titleLabel.alpha = 0.0
 
         backgroundImageWidth.constant = FantasyDetailsViewController.minBackgroundImageWidth
         backgroundImageHeight.constant = FantasyDetailsViewController.minBackgroundImageHeight
@@ -103,6 +113,10 @@ private extension FantasyDetailsViewController {
          likeButton,
          dislikeButton,
          shareButton].forEach { $0?.layer.cornerRadius = ($0?.frame.height ?? 0.0) / 2.0 }
+
+        titleLabel.text = R.string.localizable.fantasyCardTitle()
+        titleLabel.textColor = .title
+        titleLabel.font = .boldFont(ofSize: 18)
 
         descriptionTitleLabel.text = R.string.localizable.fantasyCardStoryTitle()
         descriptionTitleLabel.textColor = .fantasyBlack
@@ -214,7 +228,9 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard !isZoomingBlocked else { return }
 
-        configureBackButton()
+        configureNavigationBarButtons()
+        configureBackground()
+
         let expectedHeight = UIScreen.main.bounds.height * (scrollView.frame.height - scrollView.contentOffset.y) /
             scrollView.frame.height
         let expectedWidth = expectedHeight * FantasyDetailsViewController.minBackgroundImageWidth /
@@ -222,11 +238,24 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
         animateCardScale(toSize: CGSize(width: expectedWidth, height: expectedHeight))
     }
 
-    private func configureBackButton() {
+    private func configureNavigationBarButtons() {
         if scrollView.contentOffset.y == 0 {
             closeButton.setImage(R.image.cardDetailsClose(), for: .normal)
+            optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
+        } else if scrollView.contentOffset.y >= scrollView.frame.height - navigationBar.frame.maxY {
+            closeButton.setImage(R.image.navigationBackButton(), for: .normal)
+            optionButton.setImage(R.image.cardDetailsOptionPlain(), for: .normal)
         } else {
             closeButton.setImage(R.image.cardDetailsBack(), for: .normal)
+            optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
+        }
+    }
+
+    private func configureBackground() {
+        if scrollView.contentOffset.y >= scrollView.frame.height - navigationBar.frame.maxY    {
+            gradientBackgroundView.isHidden = false
+        } else {
+            gradientBackgroundView.isHidden = true
         }
     }
 }
