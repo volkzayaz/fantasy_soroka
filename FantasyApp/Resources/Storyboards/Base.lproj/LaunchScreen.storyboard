@@ -17,25 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="olg-La-WaX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fantasyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-Ic-CG7">
-                                <rect key="frame" x="63" y="278" width="288" height="340"/>
+                                <rect key="frame" x="135" y="363" width="144" height="170"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="bgGradient1"/>
                         <constraints>
+                            <constraint firstItem="olg-La-WaX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="48S-2g-6Nt"/>
                             <constraint firstItem="GXp-Ic-CG7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ah4-wf-dJ1"/>
+                            <constraint firstItem="olg-La-WaX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="V3e-vp-dtd"/>
                             <constraint firstItem="GXp-Ic-CG7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ckB-Ex-BiX"/>
+                            <constraint firstAttribute="bottom" secondItem="olg-La-WaX" secondAttribute="bottom" id="dqQ-FX-wkm"/>
+                            <constraint firstItem="olg-La-WaX" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ePJ-v9-Tg0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
         <image name="fantasyLogo" width="144" height="170"/>
+        <image name="launchBackground" width="375" height="667"/>
         <namedColor name="bgGradient1">
             <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

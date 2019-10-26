@@ -20,12 +20,26 @@ class ConnectionViewController: UIViewController, MVVM_View {
     
     lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ConnectedUser>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.incommingConnectionCell,
-                                          for: ip)!
+        if x.source == .outgoing {
+            
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.outgoingConnectionCell,
+                                              for: ip)!
+            
+            cell.set(connection: x)
+            
+            return cell
+            
+        }
+        else {
         
-        cell.set(connection: x)
-        
-        return cell
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.incommingConnectionCell,
+                                              for: ip)!
+            
+            cell.set(connection: x)
+            
+            return cell
+            
+        }
         
     })
     @IBOutlet weak var gradientView: UIView!
@@ -46,11 +60,20 @@ class ConnectionViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: "dos")
-        
         viewModel.requests
+            .do(onNext: { [unowned self] (sections) in
+
+                let layout = (self.collectionView.collectionViewLayout as! BaseFlowLayout)
+                let mode = sections.first?.items.first?.source ?? .outgoing
+                
+                guard layout.tableMode != mode else { return }
+                
+                self.collectionView.performBatchUpdates({
+                    layout.tableMode = mode
+                    (self.collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: self.view.bounds)
+                }, completion: nil)
+                
+            })
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
     
@@ -67,16 +90,6 @@ class ConnectionViewController: UIViewController, MVVM_View {
         
         viewModel.viewAppeared()
         gradientView.addFantasyGradient()
-    }
-
-    @objc func dos() {
-        let layout = collectionView.collectionViewLayout as! BaseFlowLayout
-        
-        self.collectionView.performBatchUpdates({
-            layout.tableMode = !layout.tableMode
-            (self.collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: self.view.bounds)
-        }, completion: nil)
-        
     }
     
 }
@@ -121,29 +134,25 @@ extension ConnectionViewController: UICollectionViewDelegateFlowLayout {
 
 class BaseFlowLayout: UICollectionViewFlowLayout {
     
-    var tableMode: Bool = false
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-    }
+    var tableMode: GetConnectionRequests.Source = .outgoing
     
     func configureFor(bounds: CGRect) {
         
-        if tableMode {
+        if tableMode == .outgoing {
         
             minimumInteritemSpacing = 0
-            sectionInset = .zero
-            itemSize = CGSize(width: bounds.size.width, height: 60)
+            minimumLineSpacing = 0
+            sectionInset = .init(top: 40, left: 0, bottom: 40, right: 0)
+            itemSize = CGSize(width: bounds.size.width, height: 77)
             
             return;
         }
         
         minimumInteritemSpacing = 17
+        minimumLineSpacing = 17
         
         sectionInset = .init(top: 17, left: 17, bottom: 17, right: 17)
 
-        
         let offset = minimumInteritemSpacing + sectionInset.left + sectionInset.right
         let viewWidth = bounds.width
         let lineWidth = offset + 2 * itemSize.width

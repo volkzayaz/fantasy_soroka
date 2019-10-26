@@ -24,9 +24,9 @@ PODS:
     - FBSDKCoreKit
   - FMPhotoPicker (0.8.2)
   - iCarousel (1.8.3)
-  - Kingfisher (5.9.0):
-    - Kingfisher/Core (= 5.9.0)
-  - Kingfisher/Core (5.9.0)
+  - Kingfisher (5.8.3):
+    - Kingfisher/Core (= 5.8.3)
+  - Kingfisher/Core (5.8.3)
   - KMPlaceholderTextView (1.4.0)
   - Koloda (5.0):
     - pop (~> 1.0)
@@ -146,7 +146,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 7a1e411d46acc8834588eca437daf34de42e1d52
   FMPhotoPicker: abc6559e4cdcb84cc2fc2f62dcdbdeca7cacbf6c
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
+  Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
