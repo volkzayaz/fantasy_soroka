@@ -213,6 +213,9 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qem-2N-8hc">
                                                 <rect key="frame" x="1125" y="0.0" width="375" height="617"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <segue destination="adO-Ag-Suy" kind="embed" identifier="FantasiesViewController" id="hWp-8t-ewJ"/>
+                                                </connections>
                                             </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -273,6 +276,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cqf-tm-JBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3917" y="1485"/>
+        </scene>
+        <!--FantasiesViewController-->
+        <scene sceneID="jot-q1-Qe4">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="FantasiesViewController" storyboardName="FantasyCard" referencedIdentifier="FantasiesViewController" id="adO-Ag-Suy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JVS-Un-2Tt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4681" y="1484"/>
         </scene>
         <!--Room Settings View Controller-->
         <scene sceneID="STb-gT-Slg">
@@ -657,7 +668,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I1b-fT-rIH" firstAttribute="top" secondItem="Bv4-Ab-e8P" secondAttribute="top" constant="16" id="0gh-Ws-H29"/>
                             <constraint firstItem="I1b-fT-rIH" firstAttribute="leading" secondItem="Bv4-Ab-e8P" secondAttribute="leading" constant="16" id="DWk-FB-tqZ"/>

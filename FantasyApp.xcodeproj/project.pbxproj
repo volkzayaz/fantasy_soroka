@@ -68,6 +68,7 @@
 		733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CB2365EFB4004EC466 /* MultiSlider+Internal.swift */; };
 		733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */; };
 		733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CD2365EFB4004EC466 /* MultiSlider.swift */; };
+		733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D223660397004EC466 /* FantasyDeckProvider.swift */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -408,6 +409,7 @@
 		733F41CB2365EFB4004EC466 /* MultiSlider+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiSlider+Internal.swift"; sourceTree = "<group>"; };
 		733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSliderExtensions.swift; sourceTree = "<group>"; };
 		733F41CD2365EFB4004EC466 /* MultiSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSlider.swift; sourceTree = "<group>"; };
+		733F41D223660397004EC466 /* FantasyDeckProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckProvider.swift; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -1473,6 +1475,7 @@
 				7322310F23040DB6009DD37F /* FantasyDeckViewController.swift */,
 				846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */,
 				7322311023040DB6009DD37F /* FantasyDeckViewModel.swift */,
+				733F41D223660397004EC466 /* FantasyDeckProvider.swift */,
 			);
 			path = Deck;
 			sourceTree = "<group>";
@@ -2405,6 +2408,7 @@
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */,
 				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
+				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
