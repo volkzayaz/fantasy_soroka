@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 
 import SmoothPicker
-import MultiSlider
 
 class DiscoveryFilterViewController: UIViewController, MVVM_View {
     

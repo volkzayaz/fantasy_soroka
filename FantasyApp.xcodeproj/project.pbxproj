@@ -64,6 +64,11 @@
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
 		733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BA236452A0004EC466 /* InviteDeeplink.swift */; };
 		733F41C02364AE88004EC466 /* MonetizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BF2364AE88004EC466 /* MonetizationViewController.swift */; };
+		733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */; };
+		733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CB2365EFB4004EC466 /* MultiSlider+Internal.swift */; };
+		733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */; };
+		733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CD2365EFB4004EC466 /* MultiSlider.swift */; };
+		733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D223660397004EC466 /* FantasyDeckProvider.swift */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -402,6 +407,11 @@
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
 		733F41BA236452A0004EC466 /* InviteDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDeeplink.swift; sourceTree = "<group>"; };
 		733F41BF2364AE88004EC466 /* MonetizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetizationViewController.swift; sourceTree = "<group>"; };
+		733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiSlider+Drag.swift"; sourceTree = "<group>"; };
+		733F41CB2365EFB4004EC466 /* MultiSlider+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiSlider+Internal.swift"; sourceTree = "<group>"; };
+		733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSliderExtensions.swift; sourceTree = "<group>"; };
+		733F41CD2365EFB4004EC466 /* MultiSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSlider.swift; sourceTree = "<group>"; };
+		733F41D223660397004EC466 /* FantasyDeckProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckProvider.swift; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -830,6 +840,7 @@
 		7312B07022D740AC00DB0F36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				733F41C12365EF53004EC466 /* MultiSlider */,
 				84C1D03D2327B95F00648DE1 /* Metal */,
 				8416816522E96CD900FA9455 /* Components */,
 				7390014B22E1B84D00260198 /* ImageRetreiver.swift */,
@@ -1132,6 +1143,17 @@
 				733F41BF2364AE88004EC466 /* MonetizationViewController.swift */,
 			);
 			path = Monetization;
+			sourceTree = "<group>";
+		};
+		733F41C12365EF53004EC466 /* MultiSlider */ = {
+			isa = PBXGroup;
+			children = (
+				733F41CD2365EFB4004EC466 /* MultiSlider.swift */,
+				733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */,
+				733F41CB2365EFB4004EC466 /* MultiSlider+Internal.swift */,
+				733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */,
+			);
+			path = MultiSlider;
 			sourceTree = "<group>";
 		};
 		7343D8662358C45F00FC1816 /* cells */ = {
@@ -1458,6 +1480,7 @@
 				7322310F23040DB6009DD37F /* FantasyDeckViewController.swift */,
 				846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */,
 				7322311023040DB6009DD37F /* FantasyDeckViewModel.swift */,
+				733F41D223660397004EC466 /* FantasyDeckProvider.swift */,
 			);
 			path = Deck;
 			sourceTree = "<group>";
@@ -2359,6 +2382,7 @@
 				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
 				B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
+				733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */,
 				73EBBA5C234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift in Sources */,
 				7361F32123328A16007B84B0 /* TeleportViewController.swift in Sources */,
 				844CD6F9235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift in Sources */,
@@ -2386,10 +2410,12 @@
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
+				733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */,
 				73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */,
 				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
+				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
@@ -2523,6 +2549,7 @@
 				B7C24875236380A90097BD2A /* SearchLocationRestrictedViewController.swift in Sources */,
 				842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */,
 				B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */,
+				733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
@@ -2579,6 +2606,7 @@
 				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
 				B719B3E8235CF21000568D97 /* FantasyImagePicker.swift in Sources */,
+				733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */,
 				73EBBA70234E046100B79121 /* PushManager.swift in Sources */,
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,
 				7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */,

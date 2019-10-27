@@ -22,6 +22,13 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         return true
     }
     
+    @IBOutlet weak var mutualCardContainer: UIView! {
+        didSet {
+            mutualCardContainer.alpha = 0
+        }
+    }
+    @IBOutlet weak var tinyCardImageView: UIImageView!
+    
     @IBOutlet weak var fanatasiesView: KolodaView! {
         didSet {
             fanatasiesView.dataSource = self
@@ -68,12 +75,33 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                     self.cardsProxy = newState
                     self.fanatasiesView.resetCurrentCardIndex()
                     return
-                    
+                     
                 }
                 
             })
             .disposed(by: rx.disposeBag)
 
+        viewModel.mutualCardTrigger
+            .drive(onNext: { [unowned self] (x) in
+                
+                let url = x.imageURL
+                
+                ImageRetreiver.imageForURLWithoutProgress(url: url)
+                    .drive(self.tinyCardImageView.rx.image)
+                    .disposed(by: self.tinyCardImageView.rx.disposeBag)
+                
+                UIView.animate(withDuration: 0.5) {
+                    self.mutualCardContainer.alpha = 1
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        UIView.animate(withDuration: 0.5) {
+                            self.mutualCardContainer.alpha = 0
+                        }
+                    }
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
 
         view.addFantasyGradient()
     }

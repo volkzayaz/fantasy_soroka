@@ -86,3 +86,46 @@ extension Fantasy.Manager {
     }
     
 }
+
+extension Fantasy.Manager {
+    
+    static func fetchSwipesDeck(in room: Room) -> Single< AppState.FantasiesDeck > {
+        
+        return Fantasy.Request.FetchRoomCards(room: room).rx.request
+            .map { (cards) in
+                
+                if cards.count > 0 {
+                    return .cards(cards)
+                }
+                
+                return .empty(till: Date(timeIntervalSinceNow: 24 * 3600))
+                
+            }
+        
+    }
+    
+    static func like(card: Fantasy.Card, in room: Room) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
+        return Fantasy.Request.ReactOnRoomCard(reaction: .like,
+                                               card: card,
+                                               room: room)
+            .rx.request
+            .do(onSuccess: { (x) in
+                if x.isMutual {
+                    PushManager.sendPush(to: room.peer.userSlice.id, text: "New mutual card with \(User.current!.bio.name)")
+                }
+            })
+    }
+    
+    static func dislike(card: Fantasy.Card, in room: Room) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
+        return Fantasy.Request.ReactOnRoomCard(reaction: .dislike,
+                                               card: card,
+                                               room: room)
+            .rx.request
+            
+    }
+    
+    static func mutualCards(in room: Room) -> Single<[Fantasy.Card]> {
+        return Fantasy.Request.MutualRoomCards(room: room).rx.request
+    }
+    
+}

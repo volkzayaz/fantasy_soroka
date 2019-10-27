@@ -133,12 +133,5 @@ extension UserManager {
         }
         
     }
-
-    static func getUser(id: String) -> Single<User?> {
-        return User.query
-            .whereKey("objectId", equalTo: id )
-            .rx.fetchFirstObject()
-            .map { try? User(pfUser: $0 as! PFUser) }
-    }
     
 }
