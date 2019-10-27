@@ -46,7 +46,7 @@ extension Date {
         formatter.maximumUnitCount = 1
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
         let timeString = formatter.string(from: self, to: Date())
-
+        
         return timeString != nil ? R.string.localizable.generalAgo(timeString!) :
             R.string.localizable.generalJustNow()
     }
