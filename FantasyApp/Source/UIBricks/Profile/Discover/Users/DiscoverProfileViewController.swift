@@ -50,8 +50,8 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         }
 
         let item = UIBarButtonItem(title: "Filters", style: .done, target: self, action: #selector(presentFilter))
-         item.applyFantasyAttributes()
-         navigationItem.rightBarButtonItem = item
+        item.applyFantasyAttributes()
+        navigationItem.rightBarButtonItem = item
     }
 
     override func viewDidLoad() {
@@ -79,7 +79,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 case .profiles:
                     self.profilesCarousel.isHidden = false
                     self.enableFilter(true)
-                    
+
                 case .noLocationPermission:
                     self.showView(self.goToSettingsView)
 
@@ -88,7 +88,12 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     self.showView(self.cityNotActiveView)
 
                     let cityName = nearestCity ?? "Your city"
-                    self.notActiveCityNameLabel.attributedText = NSAttributedString(string: "\(cityName) will be activated when it reaches")
+                    let text = "\(cityName) will be activated when it reaches"
+                    let attr = NSMutableAttributedString(string: text)
+
+                    attr.addAttribute(NSAttributedString.Key.foregroundColor, value: R.color.textPinkColor()!,
+                                      range: NSMakeRange(0, cityName.count))
+                    self.notActiveCityNameLabel.attributedText = attr
 
                 case .noSearchPreferences:
                     self.viewModel.presentFilter(.disableCancel)
@@ -192,7 +197,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
                   baseTransform transform: CATransform3D) -> CATransform3D {
         let MAX_SCALE: Float = 1
         let MAX_Shift: Float = 25
-        let distance: Float = 40
+        let distance: Float = 20
         
         let shift: Float = fminf(1, fmaxf(-1, Float(offset)))
         let scale: CGFloat = CGFloat(1 + (1 - abs(shift)) * (MAX_SCALE - 1))

@@ -301,10 +301,10 @@
 		B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */; };
 		B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */; };
 		B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6FA23521A11003A36BA /* TransparentTextField.swift */; };
+		B7B03BB52365DFA8000F42A6 /* TransparentSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B03BB42365DFA8000F42A6 /* TransparentSideView.swift */; };
 		B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BE954F2360B48E003432D4 /* SwipeView.swift */; };
 		B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BE95512360B4B3003432D4 /* SwipeView.xib */; };
 		B7C24875236380A90097BD2A /* SearchLocationRestrictedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C24874236380A90097BD2A /* SearchLocationRestrictedViewController.swift */; };
-		B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */; };
 		B7EE6C102362DD1F00510255 /* ListRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE6C0F2362DD1F00510255 /* ListRoundedView.swift */; };
 		B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */; };
 /* End PBXBuildFile section */
@@ -638,10 +638,10 @@
 		B78BE6F52351D3A3003A36BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		B78BE6FA23521A11003A36BA /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
+		B7B03BB42365DFA8000F42A6 /* TransparentSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentSideView.swift; sourceTree = "<group>"; };
 		B7BE954F2360B48E003432D4 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		B7BE95512360B4B3003432D4 /* SwipeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeView.xib; sourceTree = "<group>"; };
 		B7C24874236380A90097BD2A /* SearchLocationRestrictedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationRestrictedViewController.swift; sourceTree = "<group>"; };
-		B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGradientView.swift; sourceTree = "<group>"; };
 		B7EE6C0F2362DD1F00510255 /* ListRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRoundedView.swift; sourceTree = "<group>"; };
 		B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1656,7 +1656,6 @@
 				844A3ED622EEA25300E06665 /* ErrorView.swift */,
 				842A1A0023553BE400D0FE5A /* FantasyNavigationController.swift */,
 				B78BE6FA23521A11003A36BA /* TransparentTextField.swift */,
-				B7EA8CA32353310E00BE149E /* TransparentGradientView.swift */,
 				B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */,
 				B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */,
 				B78893EE2364B18A00079C89 /* PinkButton.swift */,
@@ -2020,6 +2019,7 @@
 				B7EE6C0F2362DD1F00510255 /* ListRoundedView.swift */,
 				B7BE954F2360B48E003432D4 /* SwipeView.swift */,
 				B7BE95512360B4B3003432D4 /* SwipeView.xib */,
+				B7B03BB42365DFA8000F42A6 /* TransparentSideView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -2504,7 +2504,6 @@
 				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
-				B7EA8CA42353310E00BE149E /* TransparentGradientView.swift in Sources */,
 				B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
@@ -2535,6 +2534,7 @@
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
+				B7B03BB52365DFA8000F42A6 /* TransparentSideView.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
 				84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
@@ -2751,7 +2751,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = JDQD36FDTW;
+				DEVELOPMENT_TEAM = CB48395Y6T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
@@ -2764,7 +2764,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev";
+				PROVISIONING_PROFILE_SPECIFIER = FantasyAppDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

@@ -178,16 +178,67 @@
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBr-Gg-mey">
-                                                        <rect key="frame" x="23" y="118.5" width="327" height="312"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBr-Gg-mey">
+                                                        <rect key="frame" x="23" y="118.5" width="327" height="307"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <string key="text">Notice disclaimer
+                                                        <attributedString key="attributedText">
+                                                            <fragment>
+                                                                <mutableString key="content">This app is built with mindful intimacy in mind. We understand that everyone has many fantasies. We also understand that people aren’t ready to open up to just anyone. It's all about the right people. 
 
-Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <color key="textColor" name="textBlackColor"/>
-                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+Talking about relationships and sex requires civility. Be kind, respectful, and decent or you will be blocked. Report any violations you may see in the app. Let’s build a mindful community together!
+
+We follow FOSTA / SESTA bills strictly and strive to fight against online sex trafficking. If you find any online sex trafficking activity in the app, please report it or reach out to </mutableString>
+                                                                <attributes>
+                                                                    <color key="NSColor" name="textBlackColor"/>
+                                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="report@fantasyapp.com">
+                                                                <attributes>
+                                                                    <color key="NSColor" name="textBlackColor"/>
+                                                                    <font key="NSFont" size="14" name="SFMono-Regular"/>
+                                                                    <url key="NSLink" string="http://report@fantasyapp.com"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content=" immediately.">
+                                                                <attributes>
+                                                                    <color key="NSColor" name="textBlackColor"/>
+                                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="97H-h1-q95" id="fd2-Hf-5Pd"/>
+                                                        </connections>
                                                     </textView>
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKu-Q9-aW0" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="23" y="400.5" width="327" height="25"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="oiU-co-Uzn"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isVertical" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T31-fv-dDn" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="23" y="118.5" width="327" height="25"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="9XA-uF-ZSz"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isVertical" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXK-t0-Q2J" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                                         <rect key="frame" x="60" y="505.5" width="253" height="52"/>
                                                         <constraints>
@@ -199,59 +250,8 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                             <action selector="stepForward:" destination="97H-h1-q95" eventType="touchUpInside" id="gfK-Kf-D0f"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKk-Pe-RlO">
-                                                        <rect key="frame" x="68" y="445.5" width="282" height="35"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="I agree to the ">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Terms of Service">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=", ">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Privacy Policy">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" and ">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Fantasy Community Rules">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=".">
-                                                                <attributes>
-                                                                    <color key="NSColor" name="textBlackColor"/>
-                                                                    <font key="NSFont" size="15" name="SFMono-Regular"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-6b-WDQ">
-                                                        <rect key="frame" x="23" y="445.5" width="30" height="30"/>
+                                                        <rect key="frame" x="23" y="450.5" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="ajn-6b-WDQ" secondAttribute="height" multiplier="1:1" id="PD1-L1-Ik2"/>
                                                             <constraint firstAttribute="width" constant="30" id="egM-lu-Za7"/>
@@ -262,44 +262,42 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                             <action selector="termsAgreementClick:" destination="97H-h1-q95" eventType="touchUpInside" id="Qus-Uv-Gxp"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8j-RO-PxU" customClass="TransparentGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="26" y="104.5" width="321" height="60"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ5-WY-Uq8">
+                                                        <rect key="frame" x="68" y="450.5" width="282" height="40"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="oa9-dz-V3v"/>
+                                                            <constraint firstAttribute="height" constant="40" id="q92-Sn-93s"/>
                                                         </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gd-ZA-yuL" customClass="TransparentGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="26" y="385.5" width="321" height="60"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="HCa-Mn-Cva"/>
-                                                        </constraints>
-                                                    </view>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="97H-h1-q95" id="K9z-px-jN7"/>
+                                                        </connections>
+                                                    </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="eBr-Gg-mey" firstAttribute="leading" secondItem="1Xe-rj-Te8" secondAttribute="leading" constant="23" id="7uN-co-nT0"/>
                                                     <constraint firstItem="dkF-7d-Cnk" firstAttribute="leading" secondItem="1Xe-rj-Te8" secondAttribute="leading" constant="26" id="ALc-Du-mgT"/>
-                                                    <constraint firstItem="8Gd-ZA-yuL" firstAttribute="trailing" secondItem="c8j-RO-PxU" secondAttribute="trailing" id="HBW-ZL-5hM"/>
-                                                    <constraint firstItem="oKk-Pe-RlO" firstAttribute="top" secondItem="eBr-Gg-mey" secondAttribute="bottom" constant="15" id="KCU-49-uYD"/>
                                                     <constraint firstItem="eBr-Gg-mey" firstAttribute="top" secondItem="dkF-7d-Cnk" secondAttribute="bottom" constant="14" id="Kmb-Eg-aI5"/>
                                                     <constraint firstItem="ajn-6b-WDQ" firstAttribute="leading" secondItem="eBr-Gg-mey" secondAttribute="leading" id="Lnf-mZ-KvY"/>
-                                                    <constraint firstItem="c8j-RO-PxU" firstAttribute="trailing" secondItem="dkF-7d-Cnk" secondAttribute="trailing" id="NyF-jM-DUB"/>
-                                                    <constraint firstItem="8Gd-ZA-yuL" firstAttribute="height" secondItem="c8j-RO-PxU" secondAttribute="height" id="PFQ-YS-fvz"/>
                                                     <constraint firstItem="dkF-7d-Cnk" firstAttribute="top" secondItem="1Xe-rj-Te8" secondAttribute="top" constant="46" id="QnM-Hi-5zC"/>
-                                                    <constraint firstItem="c8j-RO-PxU" firstAttribute="top" secondItem="dkF-7d-Cnk" secondAttribute="bottom" id="TPJ-zt-5nd"/>
                                                     <constraint firstAttribute="trailing" secondItem="eBr-Gg-mey" secondAttribute="trailing" constant="23" id="W86-7n-dds"/>
-                                                    <constraint firstItem="oKk-Pe-RlO" firstAttribute="top" secondItem="8Gd-ZA-yuL" secondAttribute="bottom" id="WEe-kI-JzS"/>
                                                     <constraint firstAttribute="trailing" secondItem="MXK-t0-Q2J" secondAttribute="trailing" constant="60" id="XGo-sz-sep"/>
-                                                    <constraint firstItem="oKk-Pe-RlO" firstAttribute="trailing" secondItem="eBr-Gg-mey" secondAttribute="trailing" id="dvf-p0-jpz"/>
-                                                    <constraint firstItem="MXK-t0-Q2J" firstAttribute="top" secondItem="oKk-Pe-RlO" secondAttribute="bottom" constant="25" id="i4h-4k-JDF"/>
-                                                    <constraint firstItem="c8j-RO-PxU" firstAttribute="leading" secondItem="dkF-7d-Cnk" secondAttribute="leading" id="jG4-KJ-HjQ"/>
-                                                    <constraint firstItem="oKk-Pe-RlO" firstAttribute="leading" secondItem="ajn-6b-WDQ" secondAttribute="trailing" constant="15" id="jae-1W-6kR"/>
+                                                    <constraint firstItem="vJ5-WY-Uq8" firstAttribute="leading" secondItem="ajn-6b-WDQ" secondAttribute="trailing" constant="15" id="XHr-dD-4UV"/>
+                                                    <constraint firstItem="T31-fv-dDn" firstAttribute="trailing" secondItem="eBr-Gg-mey" secondAttribute="trailing" id="YK3-Lf-gIK"/>
+                                                    <constraint firstItem="ajn-6b-WDQ" firstAttribute="top" secondItem="vJ5-WY-Uq8" secondAttribute="top" id="YnM-Ej-Mb3"/>
+                                                    <constraint firstItem="vJ5-WY-Uq8" firstAttribute="top" secondItem="eBr-Gg-mey" secondAttribute="bottom" constant="25" id="bfA-Er-yTt"/>
+                                                    <constraint firstItem="vJ5-WY-Uq8" firstAttribute="trailing" secondItem="eBr-Gg-mey" secondAttribute="trailing" id="dOw-NQ-LwM"/>
+                                                    <constraint firstItem="MXK-t0-Q2J" firstAttribute="top" secondItem="vJ5-WY-Uq8" secondAttribute="bottom" constant="15" id="egC-Us-VQg"/>
+                                                    <constraint firstItem="eKu-Q9-aW0" firstAttribute="trailing" secondItem="eBr-Gg-mey" secondAttribute="trailing" id="hR6-ba-acX"/>
+                                                    <constraint firstItem="T31-fv-dDn" firstAttribute="top" secondItem="eBr-Gg-mey" secondAttribute="top" id="iiK-c8-kyX"/>
+                                                    <constraint firstItem="T31-fv-dDn" firstAttribute="leading" secondItem="eBr-Gg-mey" secondAttribute="leading" id="mbT-f6-4y2"/>
                                                     <constraint firstItem="MXK-t0-Q2J" firstAttribute="leading" secondItem="1Xe-rj-Te8" secondAttribute="leading" constant="60" id="nwb-Eb-fVt"/>
-                                                    <constraint firstItem="ajn-6b-WDQ" firstAttribute="top" secondItem="oKk-Pe-RlO" secondAttribute="top" id="qWb-rz-VCU"/>
                                                     <constraint firstAttribute="trailing" secondItem="dkF-7d-Cnk" secondAttribute="trailing" constant="26" id="rKV-nh-7hQ"/>
-                                                    <constraint firstItem="8Gd-ZA-yuL" firstAttribute="leading" secondItem="c8j-RO-PxU" secondAttribute="leading" id="ux8-PE-YA0"/>
+                                                    <constraint firstItem="eKu-Q9-aW0" firstAttribute="leading" secondItem="eBr-Gg-mey" secondAttribute="leading" id="zMl-os-JP5"/>
+                                                    <constraint firstItem="eKu-Q9-aW0" firstAttribute="bottom" secondItem="eBr-Gg-mey" secondAttribute="bottom" id="zSi-qP-ewg"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -350,7 +348,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-i4-6eM">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Your Name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-i4-6eM">
                                                 <rect key="frame" x="30" y="110" width="316.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -475,7 +473,10 @@ Describe Yourself?</string>
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="97H-h1-q95" id="MOk-5a-MJg"/>
+                                                        </connections>
                                                     </textField>
                                                     <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMW-fe-4ST">
                                                         <rect key="frame" x="0.0" y="34" width="316.5" height="1"/>
@@ -1646,7 +1647,7 @@ Describe Yourself?</string>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-a6-CE4" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="1551" y="594" width="253" height="52"/>
+                                <rect key="frame" x="1551" y="628" width="253" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="U98-mk-TNy"/>
                                 </constraints>
@@ -1677,7 +1678,7 @@ Describe Yourself?</string>
                             <constraint firstAttribute="trailing" secondItem="WdF-1N-zRB" secondAttribute="trailing" id="S2a-jk-GAG"/>
                             <constraint firstItem="WdF-1N-zRB" firstAttribute="top" secondItem="UQw-k4-WmC" secondAttribute="top" id="Syy-O6-fOB"/>
                             <constraint firstItem="0CI-Kx-HRX" firstAttribute="top" secondItem="o7y-P8-LtY" secondAttribute="top" id="dhd-h0-uUg"/>
-                            <constraint firstItem="o7y-P8-LtY" firstAttribute="bottom" secondItem="JO7-a6-CE4" secondAttribute="bottom" constant="20" id="dpK-dV-LRi"/>
+                            <constraint firstAttribute="bottom" secondItem="JO7-a6-CE4" secondAttribute="bottom" constant="20" id="dpK-dV-LRi"/>
                             <constraint firstItem="0CI-Kx-HRX" firstAttribute="leading" secondItem="o7y-P8-LtY" secondAttribute="leading" id="pJF-tK-bvf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o7y-P8-LtY"/>
@@ -1687,8 +1688,7 @@ Describe Yourself?</string>
                     <connections>
                         <outlet property="agrementBackgroundRoundedView" destination="1Xe-rj-Te8" id="b25-De-nCG"/>
                         <outlet property="agrementButton" destination="MXK-t0-Q2J" id="o41-2E-8wB"/>
-                        <outlet property="agrementLabel" destination="oKk-Pe-RlO" id="CIC-ng-zUA"/>
-                        <outlet property="agrementTextView" destination="eBr-Gg-mey" id="86o-n9-XfC"/>
+                        <outlet property="agrementTextView" destination="eBr-Gg-mey" id="VKB-lG-dvL"/>
                         <outlet property="birthdayTextField" destination="mBC-q4-9Kg" id="McV-yD-xQw"/>
                         <outlet property="buttonToKeybosrdConstraint" destination="dpK-dV-LRi" id="2Ph-OD-g5E"/>
                         <outlet property="changeUploadedPhotoButton" destination="V2x-s9-OuA" id="BXL-lK-6la"/>
@@ -1713,6 +1713,7 @@ Describe Yourself?</string>
                         <outlet property="showNameLenghtAlertView" destination="2Cn-HX-00X" id="hph-l7-koe"/>
                         <outlet property="soloPartnerButton" destination="SqQ-6k-SzG" id="caW-qM-l2n"/>
                         <outlet property="stepForwardButton" destination="JO7-a6-CE4" id="rtg-5l-0Y8"/>
+                        <outlet property="termsTextView" destination="vJ5-WY-Uq8" id="yB6-99-SlQ"/>
                         <outlet property="uploadPhotoProblemContainerView" destination="cJu-2T-VWZ" id="6pe-hU-2Xy"/>
                         <outlet property="uploadPhotoProblemImageView" destination="r25-pP-dUW" id="RaJ-sl-spe"/>
                         <outlet property="uploadPhotoSuccessContainerView" destination="sWH-da-w1o" id="nNa-6v-ijp"/>
@@ -1739,7 +1740,7 @@ Describe Yourself?</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62G-WT-wJL" userLabel="container1">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAD-yS-Lp9">
                                         <rect key="frame" x="169" y="11" width="76" height="21"/>
@@ -1748,19 +1749,19 @@ Describe Yourself?</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffm-vR-GF0" customClass="RoundedBackgroundView" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="43" width="414" height="775"/>
+                                        <rect key="frame" x="0.0" y="43" width="414" height="809"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="21+" translatesAutoresizingMaskIntoConstraints="NO" id="I9j-oY-oOb">
-                                                <rect key="frame" x="16" y="242.5" width="382" height="160"/>
+                                                <rect key="frame" x="16" y="259.5" width="382" height="160"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Come back in 43 days" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-dI-MDd">
-                                                <rect key="frame" x="132" y="512.5" width="150.5" height="17.5"/>
+                                                <rect key="frame" x="132" y="529.5" width="150.5" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                 <color key="textColor" name="textBlackColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To join Fantasy you need to be at least 21 years old" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5D3-JG-2yf">
-                                                <rect key="frame" x="60" y="459.5" width="294" height="42"/>
+                                                <rect key="frame" x="60" y="476.5" width="294" height="42"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                                 <color key="textColor" name="textBlackColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1792,7 +1793,7 @@ Describe Yourself?</string>
                         <constraints>
                             <constraint firstItem="62G-WT-wJL" firstAttribute="top" secondItem="qRj-OU-ESl" secondAttribute="top" id="9m8-wf-Jco"/>
                             <constraint firstItem="qRj-OU-ESl" firstAttribute="trailing" secondItem="62G-WT-wJL" secondAttribute="trailing" id="AXu-lO-KgM"/>
-                            <constraint firstItem="qRj-OU-ESl" firstAttribute="bottom" secondItem="62G-WT-wJL" secondAttribute="bottom" id="IEb-Fl-X6s"/>
+                            <constraint firstAttribute="bottom" secondItem="62G-WT-wJL" secondAttribute="bottom" id="IEb-Fl-X6s"/>
                             <constraint firstItem="62G-WT-wJL" firstAttribute="leading" secondItem="qRj-OU-ESl" secondAttribute="leading" id="Zln-vO-4Xv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qRj-OU-ESl"/>
@@ -1883,7 +1884,7 @@ Describe Yourself?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kf-8p-tgP" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="60" y="786" width="294" height="56"/>
+                                <rect key="frame" x="60" y="820" width="294" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="oJA-V2-Fpq"/>
@@ -1937,7 +1938,7 @@ Describe Yourself?</string>
                             <constraint firstItem="9kf-8p-tgP" firstAttribute="leading" secondItem="YLX-bJ-Bnh" secondAttribute="leading" constant="60" id="jLf-an-fXp"/>
                             <constraint firstItem="OgC-Rr-pZH" firstAttribute="leading" secondItem="Nl1-O0-wOg" secondAttribute="leading" id="qGb-TG-4dR"/>
                             <constraint firstItem="YLX-bJ-Bnh" firstAttribute="trailing" secondItem="Z95-C1-cmH" secondAttribute="trailing" constant="25" id="syL-db-cdW"/>
-                            <constraint firstItem="YLX-bJ-Bnh" firstAttribute="bottom" secondItem="9kf-8p-tgP" secondAttribute="bottom" constant="20" id="szc-xM-OyZ"/>
+                            <constraint firstAttribute="bottom" secondItem="9kf-8p-tgP" secondAttribute="bottom" constant="20" id="szc-xM-OyZ"/>
                             <constraint firstItem="Z95-C1-cmH" firstAttribute="top" secondItem="Nl1-O0-wOg" secondAttribute="bottom" constant="36" id="yUK-cH-qbH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YLX-bJ-Bnh"/>
@@ -2009,7 +2010,7 @@ Describe Yourself?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0F-eb-NGH" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="60" y="786" width="294" height="56"/>
+                                <rect key="frame" x="60" y="820" width="294" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="t0j-nU-CfU"/>
@@ -2162,7 +2163,7 @@ Describe Yourself?</string>
                             <constraint firstItem="VuX-xg-y1G" firstAttribute="top" secondItem="hdX-Kb-u2N" secondAttribute="bottom" constant="12" id="Lue-ry-yc3"/>
                             <constraint firstItem="Zmd-zD-JH1" firstAttribute="bottom" secondItem="nzY-Qc-KOS" secondAttribute="bottom" id="OTO-gv-Av2"/>
                             <constraint firstItem="rSm-iL-P8J" firstAttribute="top" secondItem="VuX-xg-y1G" secondAttribute="bottom" constant="36" id="YxI-Lt-jQX"/>
-                            <constraint firstItem="2q5-vZ-dE2" firstAttribute="bottom" secondItem="B0F-eb-NGH" secondAttribute="bottom" constant="20" id="bQM-L6-2s3"/>
+                            <constraint firstAttribute="bottom" secondItem="B0F-eb-NGH" secondAttribute="bottom" constant="20" id="bQM-L6-2s3"/>
                             <constraint firstItem="nzY-Qc-KOS" firstAttribute="top" secondItem="FDO-bR-3gg" secondAttribute="top" id="bvj-PS-zsr"/>
                             <constraint firstAttribute="bottom" secondItem="nzY-Qc-KOS" secondAttribute="bottom" id="c1r-D9-gNK"/>
                             <constraint firstItem="2q5-vZ-dE2" firstAttribute="trailing" secondItem="hdX-Kb-u2N" secondAttribute="trailing" constant="26" id="eBq-Sn-NrG"/>

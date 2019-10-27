@@ -199,6 +199,16 @@ enum Gender: String, CaseIterable, Equatable, Codable {
     case female
     case transgenderFemale = "FtM"
     case nonBinary
+
+    var pretty: String {
+        switch self {
+        case .transgenderMale: return "Transgender Male"
+        case .male: return "Male"
+        case .female: return "Female"
+        case .transgenderFemale: return "Transgender Female"
+        case .nonBinary: return "Non-binary"
+        }
+    }
     
 }
 
