@@ -43,7 +43,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     }
 }
 
-private extension RoomDetailsViewController {
+extension RoomDetailsViewController {
     func configure() {
         settingsButton.setTitle(R.string.localizable.roomDetailsSettings(), for: .normal)
         settingsButton.mode = .selector
@@ -57,8 +57,7 @@ private extension RoomDetailsViewController {
         viewModel.router.embedSettings(in: settingsContainerView)
         viewModel.router.embedChat(in: chatContainerView)
         viewModel.router.embedCommonFantasies(in: commonFantasiesContainerView)
-        viewModel.router.embedPlay(in: playContainerView)
-
+        
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.gradient3.cgColor,
                                 UIColor.gradient2.cgColor,
@@ -90,4 +89,17 @@ private extension RoomDetailsViewController {
             viewModel.page.accept(.play)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "FantasiesViewController" {
+            
+            let vc = segue.destination as! FantasyDeckViewController
+            vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
+                                                provider: RoomsDeckProvider(room: viewModel.room))
+            
+        }
+        
+    }
+    
 }

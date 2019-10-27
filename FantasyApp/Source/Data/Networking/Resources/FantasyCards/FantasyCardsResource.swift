@@ -158,3 +158,80 @@ extension Fantasy.Request {
 }
 
 
+extension Fantasy.Request {
+    
+    struct FetchRoomCards: AuthorizedAPIResource {
+        
+        let room: Room
+     
+        typealias responseType = [Fantasy.Card]
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/users/me/rooms/\(room.id)/fantasy-cards"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+    
+    struct ReactOnRoomCard: AuthorizedAPIResource {
+        
+        let reaction: Fantasy.Card.Reaction
+        let card: Fantasy.Card
+        let room: Room
+        
+        typealias responseType = MutualIndicator
+        
+        var method: Moya.Method {
+            return .post
+        }
+        
+        struct MutualIndicator: Codable {
+            let isMutual: Bool
+        }
+        
+        var path: String {
+            switch reaction {
+            case .like   : return "/users/me/rooms/\(room.id)/fantasy-cards/\(card.id)/like"
+            case .dislike: return "/users/me/rooms/\(room.id)/fantasy-cards/\(card.id)/dislike"
+                
+            case .neutral, .block:
+                fatalError("Unsupported operation")
+                
+            }
+            
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+    
+    struct MutualRoomCards: AuthorizedAPIResource {
+        
+        let room: Room
+        
+        typealias responseType = [Fantasy.Card]
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/users/me/rooms/\(room.id)/common"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+    
+}

@@ -17,7 +17,7 @@ extension FantasyDeckViewModel {
         case swipeCards, waiting
     }
     var mode: Driver<Mode> {
-        return appState.changesOf { $0.fantasiesDeck }
+        return provider.cardsChange
             .map { state in
                 
                 if case .cards(_) = state {
@@ -29,7 +29,7 @@ extension FantasyDeckViewModel {
     
     var timeLeftText: Driver<String> {
         
-        return appState.changesOf { $0.fantasiesDeck }
+        return provider.cardsChange
             .map { x -> Date? in
                 if case .empty(let date) = x {
                     return date
@@ -40,14 +40,7 @@ extension FantasyDeckViewModel {
             .flatMapLatest { date in
         
                 return Driver<Int>.interval(.seconds(1)).map { _ in
-                    
-                    let secondsTillEnd = Int(date.timeIntervalSinceNow)
-                    
-                    let hours   =  secondsTillEnd / 3600
-                    let minutes = (secondsTillEnd % 3600) / 60
-                    let seconds = (secondsTillEnd % 3600) % 60
-                    
-                    return "\(hours):\(minutes):\(seconds)"
+                    return date.toTimerString()
                 }
                 
             }
@@ -55,7 +48,7 @@ extension FantasyDeckViewModel {
     }
     
     var cards: Driver<[Fantasy.Card]> {
-        return appState.changesOf { $0.fantasiesDeck }
+        return provider.cardsChange
             .map { deck in
                 switch deck {
                 case .cards(let cards): return cards
@@ -64,20 +57,21 @@ extension FantasyDeckViewModel {
             }
     }
     
+    var mutualCardTrigger: Driver<Fantasy.Card> {
+        return cardTrigger.asDriver().notNil()
+    }
+    
 }
 
 struct FantasyDeckViewModel : MVVM_ViewModel {
     
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
+    let provider: FantasyDeckProvier
+
+    fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     
-    init(router: FantasyDeckRouter) {
+    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
         self.router = router
+        self.provider = provider
         
         /////progress indicator
         
@@ -92,27 +86,16 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     
+
 }
 
 extension FantasyDeckViewModel {
     
     enum SwipeDirection { case left, right, down }
     func swiped(card: Fantasy.Card, direction: SwipeDirection) {
-        
-        switch direction {
-        case .left:
-            Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: true))
-            
-        case .right:
-            Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: true))
-            
-        case .down:
-            ///don't really know what should happen here for now
-            //fatalError("Implement me")
-            break
-            
+        provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
+            x.accept(card)
         }
-        
     }
     
     func searchTapped() {

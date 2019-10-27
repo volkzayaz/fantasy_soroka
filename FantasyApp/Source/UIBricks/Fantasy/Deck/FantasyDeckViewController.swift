@@ -17,10 +17,13 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     private var animator = FantasyDetailsTransitionAnimator()
 
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
-
-    override var prefersNavigationBarHidden: Bool {
-        return true
+    
+    @IBOutlet weak var mutualCardContainer: UIView! {
+        didSet {
+            mutualCardContainer.alpha = 0
+        }
     }
+    @IBOutlet weak var tinyCardImageView: UIImageView!
     
     @IBOutlet weak var fanatasiesView: KolodaView! {
         didSet {
@@ -31,7 +34,11 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         }
     }
     @IBOutlet weak var waitingView: UIView!
+    @IBOutlet weak var timeLimitDecsriptionLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var subsbcriptionLabel: UILabel!
+    @IBOutlet weak var subscribeButton: SecondaryButton!
+
     
     ///TODO: refactor to RxColodaDatasource
     private var cardsProxy: [Fantasy.Card] = []
@@ -48,7 +55,14 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.timeLeftText
-            .drive(timeLeftLabel.rx.text)
+            .drive(onNext: { [weak self] text in
+                let string = R.string.localizable.fantasyDeckTimeLeftLabel(text)
+                let attributedString = NSMutableAttributedString(string: string)
+                attributedString.addAttribute(.foregroundColor,
+                                              value: UIColor.fantasyPink,
+                                              range: (string as NSString).range(of: text))
+                self?.timeLeftLabel.attributedText = attributedString
+            })
             .disposed(by: rx.disposeBag)
         
         viewModel.cards
@@ -68,24 +82,73 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                     self.cardsProxy = newState
                     self.fanatasiesView.resetCurrentCardIndex()
                     return
-                    
+                     
                 }
                 
             })
             .disposed(by: rx.disposeBag)
 
+        viewModel.mutualCardTrigger
+            .drive(onNext: { [unowned self] (x) in
+                
+                let url = x.imageURL
+                
+                ImageRetreiver.imageForURLWithoutProgress(url: url)
+                    .drive(self.tinyCardImageView.rx.image)
+                    .disposed(by: self.tinyCardImageView.rx.disposeBag)
+                
+                UIView.animate(withDuration: 0.5) {
+                    self.mutualCardContainer.alpha = 1
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        UIView.animate(withDuration: 0.5) {
+                            self.mutualCardContainer.alpha = 0
+                        }
+                    }
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
 
-        view.addFantasyGradient()
+        configureStyling()
     }
     
 }
 
 private extension FantasyDeckViewController {
-    
+    // MARK: - Actions
     @IBAction func searchTapped(_ sender: Any) {
         viewModel.searchTapped()
     }
-    
+
+    @IBAction func subscribeTapped(_ sender: Any) {
+
+    }
+
+    // MARK: - Configuration
+    func configureStyling() {
+        title = R.string.localizable.fantasyDeckTitle()
+
+        view.addFantasyGradient()
+
+        waitingView.roundCorners([.topLeft, .topRight], radius: 20.0)
+        waitingView.backgroundColor = .primary
+
+        timeLeftLabel.font = .boldFont(ofSize: 18)
+        timeLeftLabel.numberOfLines = 0
+        timeLeftLabel.textColor = .fantasyBlack
+
+        timeLimitDecsriptionLabel.text = R.string.localizable.fantasyDeckTimeLimitDescription()
+        timeLimitDecsriptionLabel.font = .boldFont(ofSize: 18)
+        timeLimitDecsriptionLabel.textColor = .fantasyBlack
+        timeLimitDecsriptionLabel.numberOfLines = 0
+
+        subscribeButton.setTitle(R.string.localizable.fantasyDeckSubscriptionButton(), for: .normal)
+
+        subsbcriptionLabel.text = R.string.localizable.fantasyDeckSubscriptionLabel()
+        subsbcriptionLabel.font = .regularFont(ofSize: 15)
+        subsbcriptionLabel.textColor = .basicGrey
+    }
 }
 
 extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
@@ -138,10 +201,6 @@ extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard let deckFrame = fanatasiesView.superview?.convert(fanatasiesView.frame, to: nil) else {
-            return animator
-        }
-
         let ratio = fanatasiesView.frame.height / FantasyDetailsViewController.minBackgroundImageHeight
         let originFrame = CGRect(x: (UIScreen.main.bounds.width - (UIScreen.main.bounds.width * ratio)) / 2.0,
                                  y: (UIScreen.main.bounds.height - (UIScreen.main.bounds.height * ratio)) / 2.0,

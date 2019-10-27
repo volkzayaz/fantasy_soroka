@@ -1,7 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
   - Amplitude-iOS (4.8.2)
-  - AvailableHapticFeedback (1.0.2)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -36,9 +35,6 @@ PODS:
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
-  - MultiSlider (1.9.8):
-    - AvailableHapticFeedback
-    - SweeterSwift
   - Parse (1.17.2):
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
@@ -76,7 +72,6 @@ PODS:
     - SnapKit (~> 4.2.0)
   - SnapKit (4.2.0)
   - Starscream (3.0.6)
-  - SweeterSwift (1.0.5)
   - SwiftyStoreKit (0.15.0)
 
 DEPENDENCIES:
@@ -93,7 +88,6 @@ DEPENDENCIES:
   - KMPlaceholderTextView
   - Koloda (~> 5.0)
   - Moya (= 13.0.1)
-  - MultiSlider (~> 1.9.8)
   - Parse (= 1.17.2)
   - Parse/FacebookUtils
   - ParseLiveQuery (= 2.6.1)
@@ -109,7 +103,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Amplitude-iOS
-    - AvailableHapticFeedback
     - Bolts
     - Bolts-Swift
     - Branch
@@ -126,7 +119,6 @@ SPEC REPOS:
     - KMPlaceholderTextView
     - Koloda
     - Moya
-    - MultiSlider
     - Parse
     - ParseLiveQuery
     - pop
@@ -141,13 +133,11 @@ SPEC REPOS:
     - SmoothPicker
     - SnapKit
     - Starscream
-    - SweeterSwift
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Amplitude-iOS: 46c8e6e65c49bb1ad1909a9add1a68e1f8562b3f
-  AvailableHapticFeedback: 9b21b9f6d3e4566015988b5de35b40abefe6c09a
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
   Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
@@ -164,7 +154,6 @@ SPEC CHECKSUMS:
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
-  MultiSlider: f1b9151e8d54654fd8c6527c9b9327902b50941b
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   ParseLiveQuery: 75166799bc5090d2583bb9992ea3d0d7be48e217
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
@@ -179,9 +168,8 @@ SPEC CHECKSUMS:
   SmoothPicker: a3f4b3c3a95fff73f20d526856aeff2c32696375
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
-  SweeterSwift: 2708d1eea926546f8f6e8fea38ac8f5598ff00c7
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: 1655c993bcf0cb8845b1c0cfb4ce9311bab80523
+PODFILE CHECKSUM: e6f4d20b23a94a7dc3226c36aadb2281aca75f02
 
 COCOAPODS: 1.8.3

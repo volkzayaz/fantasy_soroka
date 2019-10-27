@@ -19,7 +19,7 @@ public class SecondaryButton: UIButton {
         }
     }
 
-    public var titleFont: UIFont = .regularFont(ofSize: 16) {
+    public var titleFont: UIFont = .boldFont(ofSize: 16) {
         didSet {
             titleLabel?.font = titleFont
         }

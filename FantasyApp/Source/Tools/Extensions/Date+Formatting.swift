@@ -46,9 +46,18 @@ extension Date {
         formatter.maximumUnitCount = 1
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
         let timeString = formatter.string(from: self, to: Date())
-
+        
         return timeString != nil ? R.string.localizable.generalAgo(timeString!) :
             R.string.localizable.generalJustNow()
+    }
+
+    func toTimerString() -> String {
+        let formatter = Date.componentsFormatter
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+
+        return formatter.string(from: timeIntervalSinceNow) ?? ""
     }
 
     func distance(from date: Date, in component: Calendar.Component) -> Int {

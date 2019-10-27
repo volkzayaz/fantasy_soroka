@@ -23,9 +23,9 @@ extension Fantasy {
             case dislikes
             case blocks
             
-            case isLikedByYou
-            case isDislikedByYou
-            case isBlockedByYou
+//            case isLikedByYou
+//            case isDislikedByYou
+//            case isBlockedByYou
             
         }
         
@@ -37,14 +37,14 @@ extension Fantasy {
         let dislikes: Int
         let blocks: Int
         
-        private let isLikedByYou: Bool
-        private let isDislikedByYou: Bool
-        private let isBlockedByYou: Bool
+//        private let isLikedByYou: Bool
+//        private let isDislikedByYou: Bool
+//        private let isBlockedByYou: Bool
         
         var reaction: Reaction {
-            if isLikedByYou { return .like }
-            if isDislikedByYou { return .dislike }
-            if isBlockedByYou { return .block }
+//            if isLikedByYou { return .like }
+//            if isDislikedByYou { return .dislike }
+//            if isBlockedByYou { return .block }
             
             return .neutral
         }

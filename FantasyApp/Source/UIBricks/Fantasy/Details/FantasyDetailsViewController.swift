@@ -24,13 +24,12 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private (set) var gradientBackgroundView: UIView!
     @IBOutlet private (set) var backgroundView: UIView!
     @IBOutlet private (set) var scrollView: UIScrollView!
-    @IBOutlet private (set) var stackView: UIStackView!
+    @IBOutlet private (set) var stackView: FantasyStackView!
     @IBOutlet private (set) var backgroundImageView: UIImageView!
-    @IBOutlet private (set) var contentView: UIView!
     @IBOutlet private (set) var descriptionView: UIView!
     @IBOutlet private (set) var descriptionTitleLabel: UILabel!
     @IBOutlet private (set) var descriptionLabel: UILabel!
-    @IBOutlet private (set) var readMoreButton: UIButton!
+    @IBOutlet private (set) var descriptionButton: UIButton!
     @IBOutlet private (set) var likeButton: UIButton!
     @IBOutlet private (set) var likeLabel: UILabel!
     @IBOutlet private (set) var likesCountLabel: UILabel!
@@ -51,11 +50,13 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private (set) var equalButtonsWidth: NSLayoutConstraint!
     @IBOutlet private (set) var likeSelectedWidth: NSLayoutConstraint!
     @IBOutlet private (set) var dislikeSelectedWidth: NSLayoutConstraint!
+    @IBOutlet private (set) var collapsedDescriptionHeight: NSLayoutConstraint!
 
     static let minBackgroundImageWidth: CGFloat = 323.0
     static let minBackgroundImageHeight: CGFloat = 482.0
     static let initialScrollViewOffsetY: CGFloat = 450.0
     private var isZoomingBlocked = false
+    private var isFirstAppearance = true
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -76,7 +77,17 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-       animateAppearance()
+        guard isFirstAppearance else { return }
+        animateAppearance()
+        isFirstAppearance = false
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard isFirstAppearance else { return }
+        descriptionLabel.text = viewModel.description
+        descriptionButton.isHidden = !descriptionLabel.isTruncated
     }
 }
 
@@ -100,16 +111,15 @@ private extension FantasyDetailsViewController {
         backgroundImageWidth.constant = FantasyDetailsViewController.minBackgroundImageWidth
         backgroundImageHeight.constant = FantasyDetailsViewController.minBackgroundImageHeight
         backgroundImageView.contentMode = .scaleAspectFill
-        
-        contentView.roundCorners([.topLeft, .topRight], radius: 20.0)
-        contentView.backgroundColor = .fantasyLightGrey
+
+        stackView.backgroundColor = .fantasyLightGrey
 
         [descriptionView,
          preferenceView,
          collectionsView,
          backgroundImageView].forEach { $0?.layer.cornerRadius = 16.0 }
 
-        [readMoreButton,
+        [descriptionButton,
          likeButton,
          dislikeButton,
          shareButton].forEach { $0?.layer.cornerRadius = ($0?.frame.height ?? 0.0) / 2.0 }
@@ -122,14 +132,15 @@ private extension FantasyDetailsViewController {
         descriptionTitleLabel.textColor = .fantasyBlack
         descriptionTitleLabel.font = .boldFont(ofSize: 25)
 
-        descriptionLabel.text = viewModel.description
+        descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .fantasyBlack
         descriptionLabel.font = .regularFont(ofSize: 15)
 
-        readMoreButton.setTitle(R.string.localizable.fantasyCardReadMoreButton(), for: .normal)
-        readMoreButton.backgroundColor = .fantasyLightGrey
-        readMoreButton.setTitleColor(.fantasyPink, for: .normal)
-        readMoreButton.titleLabel?.font = .boldFont(ofSize: 14)
+        descriptionButton.setTitle(R.string.localizable.fantasyCardReadMoreButton(), for: .normal)
+        descriptionButton.setTitle(R.string.localizable.fantasyCardShowLessButton(), for: .selected)
+        descriptionButton.backgroundColor = .fantasyLightGrey
+        descriptionButton.setTitleColor(.fantasyPink, for: .normal)
+        descriptionButton.titleLabel?.font = .boldFont(ofSize: 14)
 
         preferenceTitleLabel.text = R.string.localizable.fantasyCardPreferenceTitle()
         preferenceTitleLabel.textColor = .fantasyBlack
@@ -162,11 +173,11 @@ private extension FantasyDetailsViewController {
         dislikeLabel.textColor = .fantasyPink
         dislikeLabel.font = .boldFont(ofSize: 16)
 
-        dislikesCountLabel.text = R.string.localizable.fantasyCardPreferenceCountTitle("\(viewModel!.dislikesCount)")
+        dislikesCountLabel.text = R.string.localizable.fantasyCardPreferenceCountTitle(viewModel.dislikesCount)
         dislikesCountLabel.textColor = .fantasyBlack
         dislikesCountLabel.font = .regularFont(ofSize: 16)
 
-        likesCountLabel.text = R.string.localizable.fantasyCardPreferenceCountTitle("\(viewModel!.likesCount)")
+        likesCountLabel.text = R.string.localizable.fantasyCardPreferenceCountTitle(viewModel.likesCount)
         likesCountLabel.textColor = .fantasyBlack
         likesCountLabel.font = .regularFont(ofSize: 16)
     }
@@ -220,6 +231,11 @@ private extension FantasyDetailsViewController {
 
     @IBAction func zoomCard(_ sender: Any) {
         animateContentOffsetChange(contentOffset: .zero)
+    }
+
+    @IBAction func expandOrCollapseStory(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        collapsedDescriptionHeight.isActive = !sender.isSelected
     }
 }
 
