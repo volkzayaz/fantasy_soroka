@@ -51,6 +51,15 @@ extension Date {
             R.string.localizable.generalJustNow()
     }
 
+    func toTimerString() -> String {
+        let formatter = Date.componentsFormatter
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+
+        return formatter.string(from: timeIntervalSinceNow) ?? ""
+    }
+
     func distance(from date: Date, in component: Calendar.Component) -> Int {
         return Calendar.current.dateComponents([component], from: self, to: date).value(for: component) ?? 0
     }

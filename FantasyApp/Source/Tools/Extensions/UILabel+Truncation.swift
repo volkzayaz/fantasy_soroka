@@ -2,7 +2,7 @@
 //  UILabel+Truncation.swift
 //  FantasyApp
 //
-//  Created by Admin on 27.10.2019.
+//  Created by Borys Vynohradov on 27.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

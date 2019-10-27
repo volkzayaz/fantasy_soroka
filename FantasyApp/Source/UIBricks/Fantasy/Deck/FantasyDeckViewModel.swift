@@ -40,14 +40,7 @@ extension FantasyDeckViewModel {
             .flatMapLatest { date in
         
                 return Driver<Int>.interval(.seconds(1)).map { _ in
-                    
-                    let secondsTillEnd = Int(date.timeIntervalSinceNow)
-                    
-                    let hours   =  secondsTillEnd / 3600
-                    let minutes = (secondsTillEnd % 3600) / 60
-                    let seconds = (secondsTillEnd % 3600) % 60
-                    
-                    return "\(hours):\(minutes):\(seconds)"
+                    return date.toTimerString()
                 }
                 
             }

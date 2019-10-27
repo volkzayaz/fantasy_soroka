@@ -45,7 +45,7 @@ extension UINavigationBar {
         isTranslucent = true
         tintColor = .white
         titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 18.0),
+            NSAttributedString.Key.font: UIFont.boldFont(ofSize: 18.0),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
     }
