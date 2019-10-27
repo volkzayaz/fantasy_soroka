@@ -232,6 +232,8 @@
 		844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */; };
 		844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */; };
 		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
+		846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B49D92365FC180087B7DF /* UILabel+Truncation.swift */; };
+		846B4A1C23661EAE0087B7DF /* FantasyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */; };
 		846E5F7223634AE8001C3473 /* FantasyDeckItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
 		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
@@ -567,6 +569,8 @@
 		844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomNotificationSettings.swift; sourceTree = "<group>"; };
 		844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomSettingsRouter.swift; sourceTree = "<group>"; };
 		84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePresenterBuilder.swift; sourceTree = "<group>"; };
+		846B49D92365FC180087B7DF /* UILabel+Truncation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncation.swift"; sourceTree = "<group>"; };
+		846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyStackView.swift; sourceTree = "<group>"; };
 		846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckItemView.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
 		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
@@ -869,6 +873,7 @@
 				843B6483234E5B4D00E5639B /* Date+Formatting.swift */,
 				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
 				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
+				846B49D92365FC180087B7DF /* UILabel+Truncation.swift */,
 				734C70BA23213D9200ED2E91 /* Collection+Safe.swift */,
 				84AB4909232A7D7800F3609A /* String+Emojis.swift */,
 				842A19FE235533E300D0FE5A /* UIView+RoundedCorners.swift */,
@@ -1660,6 +1665,7 @@
 				B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */,
 				B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */,
 				B78893EE2364B18A00079C89 /* PinkButton.swift */,
+				846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2364,6 +2370,7 @@
 				7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */,
 				842A19FD23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
+				846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
@@ -2554,6 +2561,7 @@
 				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
 				84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */,
+				846B4A1C23661EAE0087B7DF /* FantasyStackView.swift in Sources */,
 				73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */,
 				B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,

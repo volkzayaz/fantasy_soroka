@@ -88,8 +88,10 @@
 "fantasy.card.title" = "Fantasy";
 "fantasy.card.story.title" = "Story";
 "fantasy.card.read.more.button" = "Read More";
+"fantasy.card.show.less.button" = "Show Less";
 "fantasy.card.preference.title" = "Preference";
-"fantasy.card.preference.count.title" = "By you and %@ people";
+"fantasy.card.preference.count.prefix" = "By you and";
+"fantasy.card.preference.count.suffix" = "people";
 "fantasy.card.like.button" = "Like";
 "fantasy.card.liked.title" = "Liked";
 "fantasy.card.dislike.button" = "Dislike";
