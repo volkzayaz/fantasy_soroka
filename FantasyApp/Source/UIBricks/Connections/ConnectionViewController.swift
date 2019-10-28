@@ -132,7 +132,7 @@ extension ConnectionViewController: UICollectionViewDelegateFlowLayout {
 
 class BaseFlowLayout: UICollectionViewFlowLayout {
     
-    var tableMode: GetConnectionRequests.Source = .outgoing
+    var tableMode: GetConnectionRequests.Source = .incomming
     
     func configureFor(bounds: CGRect) {
         
@@ -145,6 +145,8 @@ class BaseFlowLayout: UICollectionViewFlowLayout {
             
             return;
         }
+        
+        itemSize = .init(width: 300, height: 300)
         
         minimumInteritemSpacing = 17
         minimumLineSpacing = 17

@@ -36,20 +36,4 @@ struct RoomDetailsRouter: MVVM_Router {
         owner.addChild(viewController)
         viewController.didMove(toParent: owner)
     }
-
-    func embedCommonFantasies(in view: UIView) {
-        let viewController = R.storyboard.chat.commonFantasiesViewController()!
-        let router = CommonFantasiesRouter(owner: viewController)
-        viewController.viewModel = CommonFantasiesViewModel(router: router, room: room)
-        viewController.view.frame = view.bounds
-        view.addSubview(viewController.view)
-        owner.addChild(viewController)
-        viewController.didMove(toParent: owner)
-    }
-
-    func embedPlay(in view: UIView) {
-
-        
-        
-    }
 }

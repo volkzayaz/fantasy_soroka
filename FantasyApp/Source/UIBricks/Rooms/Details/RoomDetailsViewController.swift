@@ -56,7 +56,6 @@ extension RoomDetailsViewController {
 
         viewModel.router.embedSettings(in: settingsContainerView)
         viewModel.router.embedChat(in: chatContainerView)
-        viewModel.router.embedCommonFantasies(in: commonFantasiesContainerView)
         
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.gradient3.cgColor,
@@ -97,6 +96,23 @@ extension RoomDetailsViewController {
             let vc = segue.destination as! FantasyDeckViewController
             vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
                                                 provider: RoomsDeckProvider(room: viewModel.room))
+            
+        }
+        else if segue.identifier == R.segue.roomDetailsViewController.showCommonFantasies.identifier {
+            
+            let vc = segue.destination as! FantasyListViewController
+            
+            let room = viewModel.room
+            let provider = viewModel.page
+                .filter { $0 == .fantasies }
+                .flatMapLatest { _ in
+                    Fantasy.Manager.mutualCards(in: room)
+                }
+                .asDriver(onErrorJustReturn: [])
+            
+            vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
+                                                cardsProvider: provider,
+                                                title: "Mutual Fantasies")
             
         }
         

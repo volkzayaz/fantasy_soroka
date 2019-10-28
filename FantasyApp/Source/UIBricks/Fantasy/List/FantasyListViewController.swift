@@ -14,16 +14,19 @@ import RxDataSources
 
 class FantasyListViewController: UIViewController, MVVM_View {
     
+    private var animator = FantasyDetailsTransitionAnimator()
+    
     var viewModel: FantasyListViewModel!
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionTitleLabel: UILabel!
     
-    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Card>>(configureCell: { [unowned self] (_, tableView, ip, x) in
+    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Card>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.regularFantasyCell,
-                                                 for: ip)!
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyListCell,
+                                          for: ip)!
         
-        cell.textLabel?.text = x.text
+        cell.setCard(fantasy: x)
         
         return cell
         
@@ -31,12 +34,16 @@ class FantasyListViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
+        
+        collectionTitleLabel.text = viewModel.title
+        
         viewModel.dataSource
-            .drive(tableView.rx.items(dataSource: dataSource))
+            .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
-        tableView.rx.modelSelected(Fantasy.Card.self)
+        collectionView.rx.modelSelected(Fantasy.Card.self)
             .subscribe(onNext: { [unowned self] x in
                 self.viewModel.cardTapped(card: x)
             })
@@ -61,4 +68,29 @@ private extension FantasyListViewController {
  
     */
     
+}
+
+
+extension FantasyListViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        animator.presenting = false
+        return animator
+    }
+
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        let ratio = view.frame.height / FantasyDetailsViewController.minBackgroundImageHeight
+        let originFrame = CGRect(x: (UIScreen.main.bounds.width - (UIScreen.main.bounds.width * ratio)) / 2.0,
+                                 y: (UIScreen.main.bounds.height - (UIScreen.main.bounds.height * ratio)) / 2.0,
+                                 width: UIScreen.main.bounds.width * ratio,
+                                 height: UIScreen.main.bounds.height * ratio)
+
+        animator.originFrame = originFrame
+        animator.presenting = true
+        
+        return animator
+    }
 }

@@ -205,6 +205,9 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-Bc-6DD">
                                                 <rect key="frame" x="375" y="0.0" width="375" height="617"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <segue destination="RuG-rX-KSV" kind="embed" identifier="show common fantasies" id="CZr-Zy-dso"/>
+                                                </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfW-yr-Y6j">
                                                 <rect key="frame" x="750" y="0.0" width="375" height="617"/>
@@ -284,6 +287,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVS-Un-2Tt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4681" y="1484"/>
+        </scene>
+        <!--FantasyListViewController-->
+        <scene sceneID="8id-f6-1UV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FantasyCard" referencedIdentifier="FantasyListViewController" id="RuG-rX-KSV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h9N-Lw-aO7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4690" y="1417"/>
         </scene>
         <!--Room Settings View Controller-->
         <scene sceneID="STb-gT-Slg">

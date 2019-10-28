@@ -49,7 +49,8 @@ extension MyFantasiesReactionHistoryViewController {
             
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
-                                                cardsProvider: provider)
+                                                cardsProvider: provider,
+                                                title: "")
                 
             
         }
