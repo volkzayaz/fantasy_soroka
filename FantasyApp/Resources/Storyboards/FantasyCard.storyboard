@@ -593,12 +593,20 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Klo-24-IdH">
                                                     <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyQ-QS-IJO" customClass="SSKProtectedImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Klo-24-IdH" firstAttribute="leading" secondItem="Dzu-kB-nsV" secondAttribute="leading" id="Azy-b8-fkg"/>
                                                 <constraint firstAttribute="trailing" secondItem="Klo-24-IdH" secondAttribute="trailing" id="Ffn-Ja-rZd"/>
                                                 <constraint firstItem="Klo-24-IdH" firstAttribute="top" secondItem="Dzu-kB-nsV" secondAttribute="top" id="JR3-r7-BSa"/>
                                                 <constraint firstAttribute="bottom" secondItem="Klo-24-IdH" secondAttribute="bottom" id="NuD-NP-fSv"/>
+                                                <constraint firstAttribute="bottom" secondItem="CyQ-QS-IJO" secondAttribute="bottom" id="T3I-6o-8nf"/>
+                                                <constraint firstItem="CyQ-QS-IJO" firstAttribute="leading" secondItem="Dzu-kB-nsV" secondAttribute="leading" id="f6t-Uf-cTS"/>
+                                                <constraint firstItem="CyQ-QS-IJO" firstAttribute="top" secondItem="Dzu-kB-nsV" secondAttribute="top" id="gGq-eF-jDY"/>
+                                                <constraint firstAttribute="trailing" secondItem="CyQ-QS-IJO" secondAttribute="trailing" id="wC6-8e-m9f"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="305" height="266"/>
@@ -609,6 +617,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="cardImageView" destination="Klo-24-IdH" id="9wE-X0-5wc"/>
+                                            <outlet property="protectedImageView" destination="CyQ-QS-IJO" id="d71-c6-GpG"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

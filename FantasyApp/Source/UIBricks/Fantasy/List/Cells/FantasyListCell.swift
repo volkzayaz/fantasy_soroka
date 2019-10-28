@@ -9,16 +9,27 @@
 import Foundation
 import RxSwift
 
+import ScreenShieldKit
+
 class FantasyListCell: UICollectionViewCell {
     
     @IBOutlet weak var cardImageView: UIImageView!
+    
+    @IBOutlet weak var protectedImageView: SSKProtectedImageView! {
+        didSet {
+            protectedImageView.resizeMode = .scaleAspectFill
+        }
+    }
     
     var disposeBag = DisposeBag()
     
     func setCard(fantasy: Fantasy.Card) {
     
         ImageRetreiver.imageForURLWithoutProgress(url: fantasy.imageURL)
-            .drive(cardImageView.rx.image)
+            .drive(onNext: { [unowned self] x in
+                
+                self.protectedImageView.image = x
+            })
             .disposed(by: rx.disposeBag)    
         
     }

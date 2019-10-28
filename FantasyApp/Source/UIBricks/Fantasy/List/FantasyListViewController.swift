@@ -14,8 +14,6 @@ import RxDataSources
 
 class FantasyListViewController: UIViewController, MVVM_View {
     
-    private var animator = FantasyDetailsTransitionAnimator()
-    
     var viewModel: FantasyListViewModel!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -43,9 +41,14 @@ class FantasyListViewController: UIViewController, MVVM_View {
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
-        collectionView.rx.modelSelected(Fantasy.Card.self)
-            .subscribe(onNext: { [unowned self] x in
-                self.viewModel.cardTapped(card: x)
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] ip in
+                
+                let model: Fantasy.Card = try! self.collectionView.rx.model(at: ip)
+                let sourceRect = self.collectionView.convert(self.collectionView.cellForItem(at: ip)!.frame,
+                                                            to: self.view)
+                
+                self.viewModel.cardTapped(card: model, sourceFrame: sourceRect)
             })
             .disposed(by: rx.disposeBag)
     }
@@ -74,23 +77,19 @@ private extension FantasyListViewController {
 extension FantasyListViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        animator.presenting = false
-        return animator
+        viewModel.animator.presenting = false
+        return viewModel.animator
     }
 
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        let ratio = view.frame.height / FantasyDetailsViewController.minBackgroundImageHeight
-        let originFrame = CGRect(x: (UIScreen.main.bounds.width - (UIScreen.main.bounds.width * ratio)) / 2.0,
-                                 y: (UIScreen.main.bounds.height - (UIScreen.main.bounds.height * ratio)) / 2.0,
-                                 width: UIScreen.main.bounds.width * ratio,
-                                 height: UIScreen.main.bounds.height * ratio)
+        let originFrame = viewModel.animator.sourceFrame
 
-        animator.originFrame = originFrame
-        animator.presenting = true
+        viewModel.animator.originFrame = originFrame
+        viewModel.animator.presenting = true
         
-        return animator
+        return viewModel.animator
     }
 }

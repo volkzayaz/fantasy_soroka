@@ -105,7 +105,6 @@ class ChatItemsDecorator: ChatItemsDecoratorProtocol {
             )
         )
         return chatItems
-            //+ [AcceptRejectModel()])
             .map { DecoratedChatItem(chatItem: $0, decorationAttributes: attributes)}
     }
     

@@ -30,6 +30,8 @@ struct FantasyListViewModel : MVVM_ViewModel {
     fileprivate let cards: Driver<[Fantasy.Card]>
     let title: String
     
+    let animator = FantasyDetailsTransitionAnimator()
+    
     init(router: FantasyListRouter, cards: [Fantasy.Card]) {
         self.init(router: router, cardsProvider: .just(cards), title: "")
     }
@@ -56,7 +58,8 @@ struct FantasyListViewModel : MVVM_ViewModel {
 
 extension FantasyListViewModel {
     
-    func cardTapped(card: Fantasy.Card) {
+    func cardTapped(card: Fantasy.Card, sourceFrame: CGRect) {
+        animator.sourceFrame = sourceFrame
         router.cardTapped(card: card)
     }
 
