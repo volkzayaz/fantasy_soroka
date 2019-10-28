@@ -64,6 +64,7 @@ class FantasyDeckItemView: UIView {
 
         paidCardView.layer.cornerRadius = paidCardView.frame.height / 2.0
         storyView.layer.cornerRadius = storyView.frame.height / 2.0
+        gradientLayer.frame = bounds
     }
 }
 
@@ -80,7 +81,6 @@ private extension FantasyDeckItemView {
 
         storyView.addSubview(storyLabel)
 
-        gradientLayer.frame = bounds
         imageView.layer.addSublayer(gradientLayer)
 
         [imageView,
@@ -131,6 +131,8 @@ private extension FantasyDeckItemView {
     func configureStyling() {
         layer.cornerRadius = 16.0
         clipsToBounds = true
+
+        imageView.contentMode = .scaleAspectFill
 
         paidCardView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
         paidCardView.clipsToBounds = true

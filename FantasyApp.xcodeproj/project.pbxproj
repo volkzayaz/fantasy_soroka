@@ -241,6 +241,8 @@
 		846B4A1C23661EAE0087B7DF /* FantasyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */; };
 		846E5F7223634AE8001C3473 /* FantasyDeckItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */; };
 		84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */; };
+		849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D3FA32366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift */; };
+		849D3FA62366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849D3FA52366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib */; };
 		849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E85E82328C89E0025462F /* RoomTableViewCell.swift */; };
 		84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */; };
 		84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */; };
@@ -583,6 +585,8 @@
 		846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyStackView.swift; sourceTree = "<group>"; };
 		846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckItemView.swift; sourceTree = "<group>"; };
 		84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+TextVisibility.swift"; sourceTree = "<group>"; };
+		849D3FA32366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		849D3FA52366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FantasyCollectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		849E85E82328C89E0025462F /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewController.swift; sourceTree = "<group>"; };
 		84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -1498,6 +1502,7 @@
 		739F799423095C730045FCD7 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				849D3FA22366AE97001CEBCA /* Cells */,
 				739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */,
 				739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */,
 				841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */,
@@ -1816,6 +1821,22 @@
 			path = RoomNotificationSettings;
 			sourceTree = "<group>";
 		};
+		849D3FA22366AE97001CEBCA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				849D3FA32366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift */,
+				849D3FA52366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		849D3FA72366C19F001CEBCA /* FantasyCollections */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FantasyCollections;
+			sourceTree = "<group>";
+		};
 		84AB48FA232A16AA00F3609A /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1884,6 +1905,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				849D3FA72366C19F001CEBCA /* FantasyCollections */,
 				73C96F202340B046002C3F8E /* Album */,
 				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				843CF71B23436B570098C196 /* Rooms */,
@@ -2191,6 +2213,7 @@
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
 				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
+				849D3FA62366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib in Resources */,
 				84C1D0322327B95300648DE1 /* Transsexual.png in Resources */,
 				841681E022E9AE6E00FA9455 /* SF-Pro-Text-Medium.otf in Resources */,
 				84C1D0382327B95300648DE1 /* Straight.png in Resources */,
@@ -2574,6 +2597,7 @@
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
+				849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */,
 				84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */,
 				B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */,
 				73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */,
