@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -134,7 +133,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="Test" translatesAutoresizingMaskIntoConstraints="NO" id="o9J-DO-8Ss">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9J-DO-8Ss">
                                 <rect key="frame" x="26" y="92.5" width="323" height="482"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="482" id="KNR-8j-uHu"/>
@@ -151,7 +150,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pgg-sS-IxQ" customClass="FantasyStackView" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="667" width="375" height="902"/>
+                                        <rect key="frame" x="0.0" y="667" width="375" height="906"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPb-x0-w4w">
                                                 <rect key="frame" x="16" y="0.0" width="343" height="25"/>
@@ -343,7 +342,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFe-Ra-cWv">
-                                                <rect key="frame" x="16" y="473" width="343" height="312"/>
+                                                <rect key="frame" x="16" y="473" width="343" height="316"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lT5-LM-SCO">
                                                         <rect key="frame" x="16" y="16" width="311" height="32"/>
@@ -354,43 +353,34 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ooe-p4-lRG">
-                                                        <rect key="frame" x="16" y="64" width="311" height="232"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ooe-p4-lRG">
+                                                        <rect key="frame" x="16" y="64" width="327" height="242"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="232" id="wGT-PD-tjw"/>
+                                                            <constraint firstAttribute="height" constant="242" id="wGT-PD-tjw"/>
                                                         </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AIO-Uo-9dk">
-                                                            <size key="itemSize" width="50" height="50"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="AIO-Uo-9dk">
+                                                            <size key="itemSize" width="156" height="232"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
-                                                        <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Xl6-zR-Lwm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BZP-e5-fyF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                </collectionViewCellContentView>
-                                                            </collectionViewCell>
-                                                        </cells>
+                                                        <cells/>
                                                     </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="lT5-LM-SCO" firstAttribute="top" secondItem="eFe-Ra-cWv" secondAttribute="top" constant="16" id="2Du-W1-7QZ"/>
                                                     <constraint firstItem="lT5-LM-SCO" firstAttribute="leading" secondItem="eFe-Ra-cWv" secondAttribute="leading" constant="16" id="5Ld-IU-syt"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Ooe-p4-lRG" secondAttribute="bottom" constant="16" id="ISb-Lo-Qth"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ooe-p4-lRG" secondAttribute="bottom" constant="10" id="ISb-Lo-Qth"/>
                                                     <constraint firstItem="Ooe-p4-lRG" firstAttribute="top" secondItem="lT5-LM-SCO" secondAttribute="bottom" constant="16" id="TJ9-GC-kwf"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Ooe-p4-lRG" secondAttribute="trailing" constant="16" id="cNd-an-U2n"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ooe-p4-lRG" secondAttribute="trailing" id="cNd-an-U2n"/>
                                                     <constraint firstItem="Ooe-p4-lRG" firstAttribute="leading" secondItem="eFe-Ra-cWv" secondAttribute="leading" constant="16" id="e4N-Pb-Fru"/>
                                                     <constraint firstAttribute="trailing" secondItem="lT5-LM-SCO" secondAttribute="trailing" constant="16" id="jBv-s0-JZd"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWM-mI-MrG">
-                                                <rect key="frame" x="16" y="801" width="343" height="101"/>
+                                                <rect key="frame" x="16" y="805" width="343" height="101"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ae-Ny-mfF">
                                                         <rect key="frame" x="44.5" y="20" width="254" height="52"/>
@@ -817,7 +807,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Test" width="187.5" height="280"/>
         <image name="cardDetailsBack" width="40" height="40"/>
         <image name="cardDetailsOption" width="40" height="40"/>
         <image name="dislike" width="25" height="24"/>

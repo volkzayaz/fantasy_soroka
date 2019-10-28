@@ -10,6 +10,7 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 extension FantasyDetailsViewModel {
     
@@ -51,6 +52,36 @@ struct FantasyDetailsViewModel: MVVM_ViewModel {
 }
 
 extension FantasyDetailsViewModel {
+
+    struct CellModel: IdentifiableType, Equatable {
+        var identity: String {
+            return uid
+        }
+
+        let uid: String
+        let isPaid: Bool
+        let title: String
+        let cardsCount: Int
+        let imageURL: String
+    }
+
+    var collectionsDataSource: Driver<[AnimatableSectionModel<String, CellModel>]> {
+        return Fantasy.Manager.fetchCollections()
+            .silentCatch(handler: router.owner)
+            .asDriver(onErrorJustReturn: [])
+            .map { collections in
+                return [AnimatableSectionModel(model: "",
+                                               items: collections.map { collection in
+
+                    return CellModel.init(uid: UUID().uuidString,
+                                          isPaid: collection.productId != nil,
+                                          title: collection.name,
+                                          cardsCount: collection.cardsCount,
+                                          imageURL: collection.imageURL)
+
+            })]
+        }
+    }
     
     func likeCard() {
         var reaction = currentState.value
@@ -89,5 +120,4 @@ extension FantasyDetailsViewModel {
     func close() {
         router.close()
     }
-    
 }

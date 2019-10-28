@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class FantasyDetailsViewController: UIViewController, MVVM_View {
     
@@ -58,6 +59,22 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     private var isZoomingBlocked = false
     private var isFirstAppearance = true
 
+    lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource
+        <AnimatableSectionModel<String, FantasyDetailsViewModel.CellModel>>(
+        configureCell: { [unowned self] (_, tableView, indexPath, model) in
+            let cell = self.collectionView
+                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
+                                     for: indexPath)!
+
+            cell.fantasiesCount = model.cardsCount
+            cell.imageURL = model.imageURL
+            cell.title = model.title
+            cell.isPaid = model.isPaid
+
+            return cell
+        }
+    )
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +86,12 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         viewModel.currentState.asDriver().drive(onNext: { [weak self] reaction in
             self?.configurePreferenceState(reaction)
         }).disposed(by: rx.disposeBag)
+
+        viewModel.collectionsDataSource
+            .drive(collectionView.rx.items(dataSource: collectionsDataSource))
+            .disposed(by: rx.disposeBag)
+
+        collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
 
         configureStyling()
         configurePreferenceState(viewModel.currentState.value)
