@@ -40,7 +40,8 @@ extension RoomSettingsViewModel {
                                                     return .invite
                                                 }
                                                 
-                                                return .user(isAdmin: i == 0, participant: x)
+                                                return .user(isAdmin: x.userId == room.ownerId,
+                                                             participant: x)
             })]
             
         }
@@ -139,6 +140,18 @@ extension RoomSettingsViewModel {
 
     func showNotificationSettings() {
         router.showNotificationSettings(for: room.value)
+    }
+    
+    func showParticipant(participant: Room.Participant) {
+        
+        UserManager.getUser(id: participant.userSlice.id)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { (user) in
+                self.router.showUser(user: user)
+            })
+            .disposed(by: bag)
+        
     }
     
     func leaveRoom() {

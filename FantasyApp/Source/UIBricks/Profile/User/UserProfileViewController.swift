@@ -117,6 +117,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
             scrollableBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
     }
+    @IBOutlet weak var optionsButton: UIButton!
     
     @IBOutlet weak var actionContainer: UIView! {
         didSet {
@@ -130,7 +131,11 @@ class UserProfileViewController: UIViewController, MVVM_View {
         }
     }
     
-    private var avaliableSheetActions: [(String, () -> Void)] = []
+    private var avaliableSheetActions: [(String, () -> Void)] = [] {
+        didSet {
+            optionsButton.isHidden = avaliableSheetActions.count == 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -33,12 +33,12 @@ extension RoomsViewModel {
                 
                 if let x = freezed[false] {
                     results.append(AnimatableSectionModel(model: "Non Freezed rooms",
-                                                          items: x)
+                                                          items: x))
                 }
                 
                 if let x = freezed[true] {
                     results.append(AnimatableSectionModel(model: "Freezed rooms",
-                                                          items: x)
+                                                          items: x))
                 }
                 
                 return results

@@ -77,6 +77,9 @@ extension RoomDetailsViewController {
     }
     
     @IBAction func selectPage(_ sender: UIButton) {
+        
+        view.endEditing(true)
+        
         if sender == fantasiesButton {
             viewModel.page.accept(.fantasies)
         } else if sender == chatButton {

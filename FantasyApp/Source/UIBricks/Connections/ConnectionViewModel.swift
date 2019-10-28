@@ -20,7 +20,7 @@ extension ConnectionViewModel {
             .flatMapLatest { [unowned i = indicator,
                               unowned o = router.owner] (_, source) in
                 return ConnectionManager.connectionRequests(source: source)
-                    .trackView(viewIndicator: i)
+                    //.trackView(viewIndicator: i)
                     .silentCatch(handler: o)
                     .asDriver(onErrorJustReturn: [])
             }
