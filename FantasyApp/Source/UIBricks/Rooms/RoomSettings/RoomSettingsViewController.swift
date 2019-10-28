@@ -73,6 +73,12 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        view.roundCorners([.topLeft, .topRight], radius: 20)
+    }
 }
 
 private extension RoomSettingsViewController {

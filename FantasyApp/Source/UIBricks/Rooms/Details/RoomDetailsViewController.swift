@@ -12,11 +12,9 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     var viewModel: RoomDetailsViewModel!
 
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var settingsButton: PrimaryButton!
     @IBOutlet private var fantasiesButton: PrimaryButton!
     @IBOutlet private var chatButton: PrimaryButton!
     @IBOutlet private var playButton: PrimaryButton!
-    @IBOutlet private var settingsContainerView: UIView!
     @IBOutlet private var chatContainerView: UIView!
     @IBOutlet private var commonFantasiesContainerView: UIView!
     @IBOutlet private var playContainerView: UIView!
@@ -37,16 +35,15 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         scrollView.isHidden = false
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        settingsContainerView.roundCorners([.topLeft, .topRight], radius: 20)
-    }
 }
 
 extension RoomDetailsViewController {
     func configure() {
-        settingsButton.setTitle(R.string.localizable.roomDetailsSettings(), for: .normal)
-        settingsButton.mode = .selector
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.roomDetailsSettings(),
+                                                            style: .plain,
+                                                            target: self, action: Selector("showActions"))
+        
         chatButton.setTitle(R.string.localizable.roomDetailsChat(), for: .normal)
         chatButton.mode = .selector
         playButton.setTitle(R.string.localizable.roomDetailsPlay(), for: .normal)
@@ -54,7 +51,6 @@ extension RoomDetailsViewController {
         fantasiesButton.setTitle(R.string.localizable.roomDetailsFantasies(), for: .normal)
         fantasiesButton.mode = .selector
 
-        viewModel.router.embedSettings(in: settingsContainerView)
         viewModel.router.embedChat(in: chatContainerView)
         
         gradientLayer.frame = view.bounds
@@ -71,16 +67,17 @@ extension RoomDetailsViewController {
                           height: scrollView.bounds.height)
         scrollView.scrollRectToVisible(rect, animated: animated)
 
-        settingsButton.isSelected = page == .settings
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
         playButton.isSelected = page == .play
     }
 
+    @objc func showActions() {
+        viewModel.showSettins()
+    }
+    
     @IBAction func selectPage(_ sender: UIButton) {
-        if sender == settingsButton {
-            viewModel.page.accept(.settings)
-        } else if sender == fantasiesButton {
+        if sender == fantasiesButton {
             viewModel.page.accept(.fantasies)
         } else if sender == chatButton {
             viewModel.page.accept(.chat)

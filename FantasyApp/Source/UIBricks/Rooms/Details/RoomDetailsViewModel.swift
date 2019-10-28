@@ -12,7 +12,6 @@ import RxCocoa
 
 struct RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
-        case settings
         case fantasies
         case chat
         case play
@@ -29,4 +28,12 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
         self.room = room
         self.page = BehaviorRelay(value: page)
     }
+}
+
+extension RoomDetailsViewModel {
+    
+    func showSettins() {
+        router.showSettings()
+    }
+    
 }

@@ -99,6 +99,7 @@
 		7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */; };
 		7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */; };
 		7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */; };
+		735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735481CF2367705A009132A2 /* UIView+EmptyData.swift */; };
 		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
 		7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3152332301F007B84B0 /* UpdateCommunity.swift */; };
 		7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */; };
@@ -445,6 +446,7 @@
 		7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayRouter.swift; sourceTree = "<group>"; };
 		7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewController.swift; sourceTree = "<group>"; };
 		7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewModel.swift; sourceTree = "<group>"; };
+		735481CF2367705A009132A2 /* UIView+EmptyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EmptyData.swift"; sourceTree = "<group>"; };
 		7361F31323322BC5007B84B0 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
 		7361F3152332301F007B84B0 /* UpdateCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommunity.swift; sourceTree = "<group>"; };
 		7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+rx.swift"; sourceTree = "<group>"; };
@@ -846,6 +848,7 @@
 		7312B07022D740AC00DB0F36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				735481CF2367705A009132A2 /* UIView+EmptyData.swift */,
 				733F41C12365EF53004EC466 /* MultiSlider */,
 				84C1D03D2327B95F00648DE1 /* Metal */,
 				8416816522E96CD900FA9455 /* Components */,
@@ -2453,6 +2456,7 @@
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
+				735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */,
 				7390015022E1B8D000260198 /* Setting.swift in Sources */,
 				84C1D06D2327D68100648DE1 /* Chat.swift in Sources */,
 				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,

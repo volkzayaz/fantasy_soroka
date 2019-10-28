@@ -75,6 +75,11 @@ class ConnectionViewController: UIViewController, MVVM_View {
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
     
+        collectionView.bindEmptyStateTo = viewModel.requests.map { data in
+            EmptyState(isEmpty: data.first!.items.count == 0,
+                       emptyView: UIImageView(image: R.image.connectionsPlaceholder()!))
+        }
+        
         collectionView.rx.modelSelected(ConnectedUser.self)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.show(room: x.room)

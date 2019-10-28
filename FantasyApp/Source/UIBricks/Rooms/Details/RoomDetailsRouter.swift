@@ -17,14 +17,13 @@ struct RoomDetailsRouter: MVVM_Router {
         self.room = room
     }
 
-    func embedSettings(in view: UIView) {
+    func showSettings() {
+        
         let viewController = R.storyboard.chat.roomSettingsViewController()!
         let router = RoomSettingsRouter(owner: viewController)
         viewController.viewModel = RoomSettingsViewModel(router: router, room: room)
-        viewController.view.frame = view.bounds
-        view.addSubview(viewController.view)
-        owner.addChild(viewController)
-        viewController.didMove(toParent: owner)
+        owner.present(viewController, animated: true, completion: nil)
+        
     }
 
     func embedChat(in view: UIView) {
