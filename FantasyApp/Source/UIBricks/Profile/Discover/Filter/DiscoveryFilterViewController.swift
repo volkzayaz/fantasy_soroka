@@ -13,6 +13,7 @@ import RxCocoa
 
 import SmoothPicker
 
+
 class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
@@ -29,13 +30,14 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     @IBOutlet weak var partnerSexualityPicker: SmoothPickerView!
     @IBOutlet weak var ageSlider: MultiSlider! {
         didSet {
+            ageSlider.thumbImage = R.image.sliderThumbImage()
             ageSlider.orientation = .horizontal
             ageSlider.valueLabelPosition = .bottom
-            ageSlider.minimumValue = 0.0
+            ageSlider.minimumValue = 21.0
             ageSlider.maximumValue = 100.0
             ageSlider.snapStepSize = 1.0
             ageSlider.trackWidth = 2
-            ageSlider.showsThumbImageShadow = true
+            ageSlider.showsThumbImageShadow = false
             ageSlider.keepsDistanceBetweenThumbs = true
             ageSlider.outerTrackColor = R.color.listBackgroundColor()
             ageSlider.tintColor = R.color.textPinkColor()
@@ -45,10 +47,10 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
     // Couple section
     @IBOutlet weak var secondPartnerSwitch: UISwitch! {
-           didSet {
-               secondPartnerSwitch.onTintColor = R.color.textPinkColor()
-           }
-       }
+        didSet {
+            secondPartnerSwitch.onTintColor = R.color.textPinkColor()
+        }
+    }
 
     // Second partner section
     @IBOutlet weak var secondPartnerBodyPicker: SmoothPickerView!
@@ -96,7 +98,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         }).disposed(by: rx.disposeBag)
 
         // Output Data bindings
-
         viewModel.community
             .map { $0?.name }
             .drive(onNext: { [unowned self] (name) in
@@ -104,6 +105,12 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
                 self.activeCityImageView.image = name != nil ? R.image.cityCheckImage() : nil
             })
             .disposed(by: rx.disposeBag)
+
+        // apply text color and fonts to slider labels
+        ageSlider.valueLabels.forEach {
+            $0.font = UIFont.regularFont(ofSize: 15)
+            $0.textColor = R.color.textBlackColor()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

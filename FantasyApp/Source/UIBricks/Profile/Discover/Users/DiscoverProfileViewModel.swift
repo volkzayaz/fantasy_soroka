@@ -123,7 +123,7 @@ extension DiscoverProfileViewModel {
     }
 
     func joinActiveCity() {
-
+        router.openTeleport()
     }
 
     // Location

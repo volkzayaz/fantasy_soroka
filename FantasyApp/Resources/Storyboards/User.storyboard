@@ -530,7 +530,7 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFantasyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4wd-sf-EWY">
                             <rect key="frame" x="106" y="94" width="160" height="90.5"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-hA-yJP" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-hA-yJP" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="60" y="378" width="252" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="HUk-Si-k54"/>
@@ -1045,7 +1045,7 @@ activated when it reaches</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehO-2K-TEg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="872"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
                                         <rect key="frame" x="16" y="20" width="382" height="838.5"/>
@@ -1152,17 +1152,45 @@ activated when it reaches</string>
                                                                             <outlet property="delegate" destination="iyx-6x-4MS" id="W9I-EE-0xt"/>
                                                                         </connections>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5R-rx-HWa" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="68" width="80" height="44"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="80" id="ONW-U8-Yiu"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                                <integer key="value" value="0"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDZ-AC-4KM" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="302" y="68" width="80" height="44"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                                <integer key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="A9S-yE-K6c" secondAttribute="bottom" constant="11" id="8Gr-hx-70r"/>
+                                                                    <constraint firstItem="z5R-rx-HWa" firstAttribute="height" secondItem="A9S-yE-K6c" secondAttribute="height" id="9WT-Ih-0Rr"/>
                                                                     <constraint firstItem="A9S-yE-K6c" firstAttribute="leading" secondItem="lHi-3I-88t" secondAttribute="leading" id="BWf-oG-Fdg"/>
                                                                     <constraint firstItem="Rug-h3-Yph" firstAttribute="leading" secondItem="lHi-3I-88t" secondAttribute="leading" constant="16" id="KlF-cm-TSX"/>
                                                                     <constraint firstItem="A9S-yE-K6c" firstAttribute="top" secondItem="Rug-h3-Yph" secondAttribute="bottom" constant="3" id="LCw-Jy-gs9"/>
+                                                                    <constraint firstItem="iDZ-AC-4KM" firstAttribute="trailing" secondItem="A9S-yE-K6c" secondAttribute="trailing" id="OSf-HG-reE"/>
+                                                                    <constraint firstItem="z5R-rx-HWa" firstAttribute="centerY" secondItem="A9S-yE-K6c" secondAttribute="centerY" id="ZcO-ll-Vfc"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Rug-h3-Yph" secondAttribute="trailing" id="aDd-cO-eKf"/>
+                                                                    <constraint firstItem="iDZ-AC-4KM" firstAttribute="height" secondItem="z5R-rx-HWa" secondAttribute="height" id="bSA-3y-HMd"/>
+                                                                    <constraint firstItem="z5R-rx-HWa" firstAttribute="leading" secondItem="lHi-3I-88t" secondAttribute="leading" id="fX0-Rc-ulS"/>
                                                                     <constraint firstAttribute="trailing" secondItem="A9S-yE-K6c" secondAttribute="trailing" id="hPb-Mi-Fia"/>
                                                                     <constraint firstItem="Rug-h3-Yph" firstAttribute="top" secondItem="lHi-3I-88t" secondAttribute="top" constant="16" id="mPH-c0-JiS"/>
+                                                                    <constraint firstItem="iDZ-AC-4KM" firstAttribute="width" secondItem="z5R-rx-HWa" secondAttribute="width" id="q1z-B5-vZ3"/>
                                                                     <constraint firstAttribute="height" constant="123" id="qyG-ef-QpC"/>
+                                                                    <constraint firstItem="iDZ-AC-4KM" firstAttribute="centerY" secondItem="z5R-rx-HWa" secondAttribute="centerY" id="sBT-MK-iQN"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -1201,16 +1229,45 @@ activated when it reaches</string>
                                                                             <outlet property="delegate" destination="iyx-6x-4MS" id="oad-to-H41"/>
                                                                         </connections>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXg-I3-SWV" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="68" width="80" height="44"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="80" id="dOw-6P-1kA"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                                <integer key="value" value="0"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIM-q2-7Lp" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="302" y="68" width="80" height="44"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                                <integer key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="bIM-q2-7Lp" firstAttribute="bottom" secondItem="dXg-I3-SWV" secondAttribute="bottom" id="4lQ-yn-Vyf"/>
                                                                     <constraint firstItem="1GV-YI-iYw" firstAttribute="top" secondItem="ZnJ-HZ-z2b" secondAttribute="bottom" constant="3" id="4rx-Jy-VUd"/>
                                                                     <constraint firstAttribute="trailing" secondItem="1GV-YI-iYw" secondAttribute="trailing" id="9lv-Xd-Nmi"/>
                                                                     <constraint firstAttribute="height" constant="123" id="OAh-P7-zkF"/>
                                                                     <constraint firstItem="1GV-YI-iYw" firstAttribute="leading" secondItem="P3Y-JS-oLB" secondAttribute="leading" id="cmL-Zy-irc"/>
+                                                                    <constraint firstItem="bIM-q2-7Lp" firstAttribute="top" secondItem="dXg-I3-SWV" secondAttribute="top" id="hyw-eY-1Cq"/>
                                                                     <constraint firstItem="ZnJ-HZ-z2b" firstAttribute="leading" secondItem="P3Y-JS-oLB" secondAttribute="leading" constant="16" id="jFc-9S-iPI"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ZnJ-HZ-z2b" secondAttribute="trailing" id="jLb-5H-yaW"/>
+                                                                    <constraint firstItem="bIM-q2-7Lp" firstAttribute="trailing" secondItem="1GV-YI-iYw" secondAttribute="trailing" id="ofg-BY-zZ9"/>
+                                                                    <constraint firstItem="dXg-I3-SWV" firstAttribute="leading" secondItem="1GV-YI-iYw" secondAttribute="leading" id="onw-dh-bL2"/>
+                                                                    <constraint firstItem="dXg-I3-SWV" firstAttribute="bottom" secondItem="1GV-YI-iYw" secondAttribute="bottom" id="qIb-56-IXJ"/>
                                                                     <constraint firstItem="ZnJ-HZ-z2b" firstAttribute="top" secondItem="P3Y-JS-oLB" secondAttribute="top" constant="16" id="qXZ-a1-Nbn"/>
+                                                                    <constraint firstItem="bIM-q2-7Lp" firstAttribute="height" secondItem="dXg-I3-SWV" secondAttribute="height" id="tF5-ce-4UW"/>
+                                                                    <constraint firstItem="bIM-q2-7Lp" firstAttribute="width" secondItem="dXg-I3-SWV" secondAttribute="width" id="v7b-2H-0AT"/>
+                                                                    <constraint firstItem="dXg-I3-SWV" firstAttribute="top" secondItem="1GV-YI-iYw" secondAttribute="top" id="w9V-10-QDz"/>
                                                                     <constraint firstAttribute="bottom" secondItem="1GV-YI-iYw" secondAttribute="bottom" constant="11" id="yrX-Sf-vj3"/>
                                                                 </constraints>
                                                             </view>
@@ -1218,7 +1275,7 @@ activated when it reaches</string>
                                                                 <rect key="frame" x="0.0" y="135" width="382" height="113"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejk-h8-EkV">
-                                                                        <rect key="frame" x="16" y="16" width="366" height="18"/>
+                                                                        <rect key="frame" x="16" y="16" width="350" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="18" id="HYu-zM-0Uo"/>
                                                                         </constraints>
@@ -1226,20 +1283,19 @@ activated when it reaches</string>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdk-zv-GGl" customClass="MultiSlider" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="45" width="366" height="57"/>
+                                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mdk-zv-GGl" customClass="MultiSlider" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="16" y="45" width="350" height="57"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="113" id="0Sh-Nn-cjn"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Ejk-h8-EkV" secondAttribute="trailing" id="4vC-lQ-hTg"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Ejk-h8-EkV" secondAttribute="trailing" constant="16" id="4vC-lQ-hTg"/>
                                                                     <constraint firstItem="Mdk-zv-GGl" firstAttribute="trailing" secondItem="Ejk-h8-EkV" secondAttribute="trailing" id="OXR-KT-JGK"/>
                                                                     <constraint firstItem="Ejk-h8-EkV" firstAttribute="top" secondItem="APh-yI-HPq" secondAttribute="top" constant="16" id="WYx-bi-o6M"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="Mdk-zv-GGl" secondAttribute="bottom" constant="11" id="cfQ-ct-Npu"/>
+                                                                    <constraint firstItem="Mdk-zv-GGl" firstAttribute="centerY" secondItem="APh-yI-HPq" secondAttribute="centerY" id="daz-Ol-1VG"/>
                                                                     <constraint firstItem="Ejk-h8-EkV" firstAttribute="leading" secondItem="APh-yI-HPq" secondAttribute="leading" constant="16" id="h4q-I2-xdB"/>
-                                                                    <constraint firstItem="Mdk-zv-GGl" firstAttribute="top" secondItem="Ejk-h8-EkV" secondAttribute="bottom" constant="11" id="seX-0U-j5F"/>
                                                                     <constraint firstItem="Mdk-zv-GGl" firstAttribute="leading" secondItem="Ejk-h8-EkV" secondAttribute="leading" id="t7K-l1-Fxd"/>
                                                                 </constraints>
                                                             </view>
@@ -1302,17 +1358,45 @@ activated when it reaches</string>
                                                                             <outlet property="delegate" destination="iyx-6x-4MS" id="OKh-Tc-h5t"/>
                                                                         </connections>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2J-iQ-ozP" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="38.5" width="80" height="46.5"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="80" id="Zuw-Op-aaU"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                                <integer key="value" value="0"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tY-Ad-NRt" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="302" y="38.5" width="80" height="46.5"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="direction">
+                                                                                <integer key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="egU-Il-qSz" secondAttribute="trailing" id="7yG-HU-Vad"/>
+                                                                    <constraint firstItem="P2J-iQ-ozP" firstAttribute="leading" secondItem="egU-Il-qSz" secondAttribute="leading" id="Mfk-ra-Qwi"/>
+                                                                    <constraint firstItem="9tY-Ad-NRt" firstAttribute="top" secondItem="egU-Il-qSz" secondAttribute="top" id="T6s-mw-uNt"/>
                                                                     <constraint firstItem="ZcN-kD-la2" firstAttribute="top" secondItem="M3R-VX-lKE" secondAttribute="top" constant="11" id="UWK-TK-EOh"/>
                                                                     <constraint firstItem="ZcN-kD-la2" firstAttribute="leading" secondItem="M3R-VX-lKE" secondAttribute="leading" constant="16" id="W7D-s6-iUK"/>
                                                                     <constraint firstAttribute="bottom" secondItem="egU-Il-qSz" secondAttribute="bottom" constant="11" id="akT-Lp-xNE"/>
+                                                                    <constraint firstItem="9tY-Ad-NRt" firstAttribute="trailing" secondItem="egU-Il-qSz" secondAttribute="trailing" id="btS-Yj-aWw"/>
+                                                                    <constraint firstItem="P2J-iQ-ozP" firstAttribute="bottom" secondItem="egU-Il-qSz" secondAttribute="bottom" id="cpu-RM-Hpz"/>
                                                                     <constraint firstItem="egU-Il-qSz" firstAttribute="top" secondItem="ZcN-kD-la2" secondAttribute="bottom" constant="10" id="ei7-ID-4de"/>
                                                                     <constraint firstItem="egU-Il-qSz" firstAttribute="leading" secondItem="M3R-VX-lKE" secondAttribute="leading" id="fhG-Yd-fcV"/>
+                                                                    <constraint firstItem="9tY-Ad-NRt" firstAttribute="width" secondItem="P2J-iQ-ozP" secondAttribute="width" id="gqc-t0-2qe"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ZcN-kD-la2" secondAttribute="trailing" constant="16" id="hDU-US-tJV"/>
+                                                                    <constraint firstItem="P2J-iQ-ozP" firstAttribute="top" secondItem="egU-Il-qSz" secondAttribute="top" id="i2c-Pf-i6H"/>
                                                                     <constraint firstAttribute="height" constant="96" id="n1Z-58-aTh"/>
+                                                                    <constraint firstItem="9tY-Ad-NRt" firstAttribute="bottom" secondItem="egU-Il-qSz" secondAttribute="bottom" id="wYE-TB-eBH"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -1359,7 +1443,7 @@ activated when it reaches</string>
                             <constraint firstItem="Y43-0j-N8t" firstAttribute="trailing" secondItem="ehO-2K-TEg" secondAttribute="trailing" id="3zX-Lh-Aez"/>
                             <constraint firstItem="ehO-2K-TEg" firstAttribute="top" secondItem="Y43-0j-N8t" secondAttribute="top" id="5cu-4s-UrA"/>
                             <constraint firstItem="ehO-2K-TEg" firstAttribute="leading" secondItem="Y43-0j-N8t" secondAttribute="leading" id="UeE-42-0Eb"/>
-                            <constraint firstItem="Y43-0j-N8t" firstAttribute="bottom" secondItem="ehO-2K-TEg" secondAttribute="bottom" id="hkB-JY-Aqy"/>
+                            <constraint firstAttribute="bottom" secondItem="ehO-2K-TEg" secondAttribute="bottom" id="hkB-JY-Aqy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y43-0j-N8t"/>
                     </view>
@@ -1482,7 +1566,7 @@ us locate people around you. </string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3022" y="-644"/>
+            <point key="canvasLocation" x="2852" y="-761"/>
         </scene>
     </scenes>
     <resources>

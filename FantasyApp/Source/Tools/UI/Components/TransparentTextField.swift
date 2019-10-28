@@ -23,9 +23,10 @@ class TransparentTextField: UITextField {
         clearButton.addTarget(self, action: #selector(clear), for: .touchUpInside)
         clearButton.setImage(R.image.textFieldClear(), for: .normal)
 
-        showPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchDown)
-        showPasswordButton.addTarget(self, action: #selector(hidePassword), for: .touchUpInside)
+        showPasswordButton.addTarget(self, action: #selector(showPassword), for: .touchUpInside)
         showPasswordButton.setImage(R.image.showPassword(), for: .normal)
+        showPasswordButton.setImage(R.image.hidePassword(), for: .selected)
+
 
         let list =  (isSecureTextEntry == true) ? [showPasswordButton, clearButton] : [clearButton]
         let stack = UIStackView(arrangedSubviews: list)
@@ -44,18 +45,13 @@ class TransparentTextField: UITextField {
 
     @objc func clear() {
         text = nil
+        showPasswordButton.isSelected = false
+        isSecureTextEntry = true
     }
 
     @objc func showPassword() {
-        isSecureTextEntry = false
-
-
-        print("touchDown")
-    }
-
-    @objc func hidePassword() {
-        isSecureTextEntry = true
-        print("touchUpOutside")
+        isSecureTextEntry = showPasswordButton.isSelected
+        showPasswordButton.isSelected =  !showPasswordButton.isSelected
     }
 }
 

@@ -33,8 +33,11 @@ struct DiscoverProfileRouter : MVVM_Router {
         nav.modalPresentationStyle = .fullScreen
 
         owner.present(nav, animated: true, completion: nil)
-//        owner.navigationController?.pushViewController(x, animated: true)
-        
     }
-    
+
+    func openTeleport() {
+        let x = R.storyboard.user.teleportViewController()!
+        x.viewModel = .init(router: .init(owner: x), response: .directApplication)
+        owner.navigationController?.pushViewController(x, animated: true)
+    }
 }

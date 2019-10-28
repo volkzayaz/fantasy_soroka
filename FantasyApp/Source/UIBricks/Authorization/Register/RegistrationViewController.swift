@@ -11,6 +11,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+extension StringProtocol {
+    func nsRange(from range: Range<Index>) -> NSRange {
+        return .init(range, in: self)
+    }
+}
+
 class RegistrationViewController: UIViewController, MVVM_View {
     
     var viewModel: RegistrationViewModel!
@@ -23,10 +29,49 @@ class RegistrationViewController: UIViewController, MVVM_View {
             agrementBackgroundRoundedView.addFantasyRoundedCorners()
         }
     }
-    @IBOutlet private weak var agrementTextView: UITextView!
-    @IBOutlet private weak var agrementLabel: UILabel! {
+    @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementLabel.font = UIFont.regularFont(ofSize: 15)
+            agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+
+            let text = agrementTextView.text ?? ""
+            let attr = NSMutableAttributedString(string: text)
+
+            attr.addAttributes([
+                         .link : "mailto:report@fantasyapp.com",
+                         .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "report@fantasyapp.com")!))
+            agrementTextView.attributedText = attr
+            agrementTextView.font = UIFont.regularFont(ofSize: 15)
+            agrementTextView.textColor = R.color.textBlackColor()
+            agrementTextView.tintColor = R.color.textPinkColor()
+        }
+    }
+
+    @IBOutlet private weak var termsTextView: UITextView! {
+        didSet {
+            let text = "I agree to the Terms of Service, Privacy Policy and Fantasy Community Rules."
+            let attr = NSMutableAttributedString(string: text)
+
+            attr.addAttributes([
+                .link : viewModel.termsUrl,
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "Terms of Service")!))
+
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+
+            attr.addAttributes([
+                .link : viewModel.communityRulesUrl,
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "Fantasy Community Rules")!))
+
+            termsTextView.attributedText = attr
+            termsTextView.font = UIFont.regularFont(ofSize: 15)
+            termsTextView.textColor = R.color.textBlackColor()
+            termsTextView.tintColor = R.color.textBlackColor()
+            termsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
 
@@ -203,7 +248,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
             let from = (n.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.origin.y
             
             let duration = n.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! CGFloat
-            
             return (duration, from - to)
         }
         
@@ -220,6 +264,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
                     self.buttonToKeybosrdConstraint.constant += delta
+
+                    let current = self.buttonToKeybosrdConstraint.constant
+                    self.buttonToKeybosrdConstraint.constant = current >= 20.0 ? current : 20.0
                     self.view.layoutIfNeeded()
                 })
             })
@@ -273,7 +320,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(genders)
             .bind(to: genderPickerView.rx.itemAttributedTitles) { _, item in
-                return NSAttributedString(string: item.rawValue,
+                return NSAttributedString(string: item.pretty,
                   attributes: [
                     NSAttributedString.Key.foregroundColor: UIColor.white,
                     NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
@@ -294,7 +341,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(genders)
             .bind(to: partnerBodyPickerView.rx.itemAttributedTitles) { _, item in
-                 return NSAttributedString(string: item.rawValue,
+                 return NSAttributedString(string: item.pretty,
                                  attributes: [
                                    NSAttributedString.Key.foregroundColor: UIColor.white,
                                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
@@ -335,9 +382,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.viewModel.confirmPasswordChanged(password: x ?? "")
             })
             .disposed(by: rx.disposeBag)
-
-        //// upload photo
-
     }
 }
 
@@ -419,6 +463,39 @@ private extension RegistrationViewController {
         picker.maximumDate = Date()
         picker.date = Date(timeIntervalSince1970: 0)
         birthdayTextField.inputView = picker
+        birthdayTextField.allowsEditingTextAttributes = false
     }
 
 }
+
+//MARK:- UITextFieldDelegate
+
+extension RegistrationViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.birthdayTextField {
+                   return false
+               }
+               return true
+    }
+}
+
+
+//MARK:- UITextViewDelegate
+
+extension RegistrationViewController: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+
+//        guard textView == termsTextView else { return false }
+
+        guard UIApplication.shared.canOpenURL(URL) else {
+            return false
+        }
+
+        UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+        return true
+    }
+
+}
+
