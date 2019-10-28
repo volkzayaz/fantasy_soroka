@@ -57,11 +57,11 @@
             </objects>
             <point key="canvasLocation" x="2367" y="761"/>
         </scene>
-        <!--Profile-->
+        <!--Fantasy Navigation Controller-->
         <scene sceneID="9N4-Gg-9yA">
             <objects>
                 <navigationController id="l0T-vF-a2a" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="6eZ-8I-YIJ"/>
+                    <tabBarItem key="tabBarItem" title="" id="6eZ-8I-YIJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XOn-20-dvX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

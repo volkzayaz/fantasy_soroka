@@ -36,6 +36,12 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        viewModel.profileTabImage
+            .drive(onNext: { [unowned self] (image) in
+                self.tabBar.items!.last!.image = image
+            })
+            .disposed(by: rx.disposeBag)
+        
     }
     
 }
