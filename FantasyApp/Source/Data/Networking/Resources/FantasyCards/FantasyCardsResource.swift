@@ -225,7 +225,7 @@ extension Fantasy.Request {
         }
         
         var path: String {
-            return "/users/me/rooms/\(room.id)/common"
+            return "/users/me/rooms/\(room.id)/fantasy-cards/common"
         }
         
         var task: Task {

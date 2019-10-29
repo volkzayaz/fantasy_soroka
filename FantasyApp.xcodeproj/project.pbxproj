@@ -69,6 +69,7 @@
 		733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */; };
 		733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CD2365EFB4004EC466 /* MultiSlider.swift */; };
 		733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D223660397004EC466 /* FantasyDeckProvider.swift */; };
+		733F41D923675732004EC466 /* FantasyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D823675732004EC466 /* FantasyListCell.swift */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -98,6 +99,7 @@
 		7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */; };
 		7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */; };
 		7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */; };
+		735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735481CF2367705A009132A2 /* UIView+EmptyData.swift */; };
 		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
 		7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3152332301F007B84B0 /* UpdateCommunity.swift */; };
 		7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */; };
@@ -415,6 +417,7 @@
 		733F41CC2365EFB4004EC466 /* MultiSliderExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSliderExtensions.swift; sourceTree = "<group>"; };
 		733F41CD2365EFB4004EC466 /* MultiSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSlider.swift; sourceTree = "<group>"; };
 		733F41D223660397004EC466 /* FantasyDeckProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckProvider.swift; sourceTree = "<group>"; };
+		733F41D823675732004EC466 /* FantasyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListCell.swift; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +447,7 @@
 		7353BDE622EC98D6001D46A6 /* UserGatewayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayRouter.swift; sourceTree = "<group>"; };
 		7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewController.swift; sourceTree = "<group>"; };
 		7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewModel.swift; sourceTree = "<group>"; };
+		735481CF2367705A009132A2 /* UIView+EmptyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EmptyData.swift"; sourceTree = "<group>"; };
 		7361F31323322BC5007B84B0 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
 		7361F3152332301F007B84B0 /* UpdateCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommunity.swift; sourceTree = "<group>"; };
 		7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+rx.swift"; sourceTree = "<group>"; };
@@ -846,6 +850,7 @@
 		7312B07022D740AC00DB0F36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				735481CF2367705A009132A2 /* UIView+EmptyData.swift */,
 				733F41C12365EF53004EC466 /* MultiSlider */,
 				84C1D03D2327B95F00648DE1 /* Metal */,
 				8416816522E96CD900FA9455 /* Components */,
@@ -1163,6 +1168,14 @@
 			path = MultiSlider;
 			sourceTree = "<group>";
 		};
+		733F41D72367571F004EC466 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				733F41D823675732004EC466 /* FantasyListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7343D8662358C45F00FC1816 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1370,6 +1383,7 @@
 		7379ECFA2309713200E661A7 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				733F41D72367571F004EC466 /* Cells */,
 				7379ECFB2309714100E661A7 /* FantasyListRouter.swift */,
 				7379ECFC2309714100E661A7 /* FantasyListViewController.swift */,
 				7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */,
@@ -2445,6 +2459,7 @@
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
+				735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */,
 				7390015022E1B8D000260198 /* Setting.swift in Sources */,
 				84C1D06D2327D68100648DE1 /* Chat.swift in Sources */,
 				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,
@@ -2482,6 +2497,7 @@
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
 				73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */,
+				733F41D923675732004EC466 /* FantasyListCell.swift in Sources */,
 				7379ED19230D3C5000E661A7 /* FantasyCollectionRouter.swift in Sources */,
 				B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */,
 				7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */,

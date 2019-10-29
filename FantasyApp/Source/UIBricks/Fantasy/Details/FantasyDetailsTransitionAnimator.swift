@@ -12,6 +12,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
     private let durationExpanding = 0.4
     private let durationClosing = 0.5
 
+    var sourceFrame: CGRect = .zero
+    
     var originFrame = CGRect.zero
     var presenting = true
 

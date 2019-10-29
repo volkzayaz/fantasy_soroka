@@ -16,14 +16,15 @@ class FantasyListViewController: UIViewController, MVVM_View {
     
     var viewModel: FantasyListViewModel!
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionTitleLabel: UILabel!
     
-    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Card>>(configureCell: { [unowned self] (_, tableView, ip, x) in
+    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Card>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.regularFantasyCell,
-                                                 for: ip)!
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyListCell,
+                                          for: ip)!
         
-        cell.textLabel?.text = x.text
+        cell.setCard(fantasy: x)
         
         return cell
         
@@ -31,14 +32,23 @@ class FantasyListViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
+        
+        collectionTitleLabel.text = viewModel.title
+        
         viewModel.dataSource
-            .drive(tableView.rx.items(dataSource: dataSource))
+            .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
-        tableView.rx.modelSelected(Fantasy.Card.self)
-            .subscribe(onNext: { [unowned self] x in
-                self.viewModel.cardTapped(card: x)
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] ip in
+                
+                let model: Fantasy.Card = try! self.collectionView.rx.model(at: ip)
+                let sourceRect = self.collectionView.convert(self.collectionView.cellForItem(at: ip)!.frame,
+                                                            to: self.view)
+                
+                self.viewModel.cardTapped(card: model, sourceFrame: sourceRect)
             })
             .disposed(by: rx.disposeBag)
     }
@@ -61,4 +71,25 @@ private extension FantasyListViewController {
  
     */
     
+}
+
+
+extension FantasyListViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        viewModel.animator.presenting = false
+        return viewModel.animator
+    }
+
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        let originFrame = viewModel.animator.sourceFrame
+
+        viewModel.animator.originFrame = originFrame
+        viewModel.animator.presenting = true
+        
+        return viewModel.animator
+    }
 }

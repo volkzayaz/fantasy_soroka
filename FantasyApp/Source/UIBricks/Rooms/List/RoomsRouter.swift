@@ -27,8 +27,9 @@ struct RoomsRouter: MVVM_Router {
         let vc = R.storyboard.chat.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc, room: room),
                              room: room,
-                             page: .settings)
+                             page: .chat)
         owner.navigationController?.pushViewController(vc, animated: true)
+        vc.viewModel.showSettins()
     }
 
     func close() {
