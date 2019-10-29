@@ -9,14 +9,15 @@
 import Foundation
 
 class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    private let durationExpanding = 0.4
-    private let durationClosing = 0.5
+    static let durationExpanding = 0.4
+    static let durationClosing = 0.5
 
     var originFrame = CGRect.zero
     var presenting = true
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return presenting ? durationExpanding : durationClosing
+        return presenting ? FantasyDetailsTransitionAnimator.durationExpanding :
+            FantasyDetailsTransitionAnimator.durationClosing
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -45,7 +46,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
 
         // background color animation
         UIView.animate(
-            withDuration: presenting ? durationExpanding : durationClosing,
+            withDuration: presenting ? FantasyDetailsTransitionAnimator.durationExpanding :
+                FantasyDetailsTransitionAnimator.durationClosing,
             delay: 0.0,
             options: presenting ? .curveEaseIn : .curveEaseOut,
             animations: {
@@ -55,7 +57,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
 
         // view transition
         UIView.animate(
-            withDuration: presenting ? durationExpanding : durationClosing,
+            withDuration: presenting ? FantasyDetailsTransitionAnimator.durationExpanding :
+                FantasyDetailsTransitionAnimator.durationClosing,
             delay: 0.0,
             usingSpringWithDamping: presenting ? 0.5 : 0.5,
             initialSpringVelocity: presenting ? 0.5 : 2.0,

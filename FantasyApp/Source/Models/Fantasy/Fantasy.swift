@@ -17,6 +17,7 @@ extension Fantasy {
         enum CodingKeys: String, CodingKey {
             case id
             case text
+            case story
             case imageURL = "src"
             case isPaid
             case likes
@@ -31,6 +32,7 @@ extension Fantasy {
         
         let id: String
         let text: String
+        let story: String
         let imageURL: String
         let isPaid: Bool
         let likes: Int
@@ -56,7 +58,7 @@ extension Fantasy {
         }
         
         var identity: String {
-            return text
+            return id
         }
         
         enum Reaction: Int, Codable {
@@ -68,7 +70,9 @@ extension Fantasy {
         
         enum CodingKeys: String, CodingKey {
             case id
-            case name = "description"
+            case title
+            case details
+            case whatsInside
             case imageURL = "src"
             case cardsCount = "size"
             case isPurchased
@@ -76,7 +80,9 @@ extension Fantasy {
         }
         
         let id: String
-        let name: String
+        let title: String
+        let details: String
+        let whatsInside: String
         let imageURL: String
         let cardsCount: Int
         

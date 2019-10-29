@@ -2,7 +2,7 @@
 //  FantasyCollectionCollectionViewCell.swift
 //  FantasyApp
 //
-//  Created by Admin on 28.10.2019.
+//  Created by Borys Vynohradov on 28.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

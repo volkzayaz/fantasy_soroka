@@ -23,7 +23,7 @@ class FantasyCollectionViewController: UIViewController, MVVM_View {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.simpleCollectionCell,
                                                  for: ip)!
         
-        cell.textLabel?.text = x.name
+        cell.textLabel?.text = x.title
         cell.detailTextLabel?.text = "\(x.cardsCount) cards. Bought = \(x.isPurchased)"
         
         return cell

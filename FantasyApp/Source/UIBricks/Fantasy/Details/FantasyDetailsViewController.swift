@@ -19,6 +19,19 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         return true
     }
 
+    var isZoomed: Bool {
+        return scrollView.contentOffset.y == 0 &&
+            backgroundImageLeftMargin.constant == FantasyDetailsViewController.minBackgroundImageMargin &&
+            backgroundImageRightMargin.constant == FantasyDetailsViewController.minBackgroundImageMargin
+    }
+
+    // MARK: - Layout-related constants
+    static let backgroundImageMargin: CGFloat = 26.0
+    static let minBackgroundImageMargin: CGFloat = 16.0
+    static let initialScrollViewRatio: CGFloat = 1 / 3
+    static let backgroundImageAspectRatio: CGFloat = 375.0 / 560.0
+
+    // MARK: - Outlets
     // TODO: Combine like+dislike+labels into one separate UI component
     @IBOutlet private (set) var navigationBar: UINavigationBar!
     @IBOutlet private (set) var titleLabel: UILabel!
@@ -46,16 +59,16 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private (set) var closeButton: UIButton!
     @IBOutlet private (set) var optionButton: UIButton!
 
-    @IBOutlet private (set) var backgroundImageWidth: NSLayoutConstraint!
-    @IBOutlet private (set) var backgroundImageHeight: NSLayoutConstraint!
+    @IBOutlet private (set) var backgroundImageLeftMargin: NSLayoutConstraint!
+    @IBOutlet private (set) var backgroundImageRightMargin: NSLayoutConstraint!
+    @IBOutlet private (set) var backgroundImageCenterY: NSLayoutConstraint!
     @IBOutlet private (set) var equalButtonsWidth: NSLayoutConstraint!
     @IBOutlet private (set) var likeSelectedWidth: NSLayoutConstraint!
     @IBOutlet private (set) var dislikeSelectedWidth: NSLayoutConstraint!
     @IBOutlet private (set) var collapsedDescriptionHeight: NSLayoutConstraint!
+    @IBOutlet private (set) var zoomedBackgroundConstratint: NSLayoutConstraint!
+    @IBOutlet private (set) var unzoomedBackgroundConstratint: NSLayoutConstraint!
 
-    static let minBackgroundImageWidth: CGFloat = 323.0
-    static let minBackgroundImageHeight: CGFloat = 482.0
-    static let initialScrollViewOffsetY: CGFloat = 450.0
     private var isZoomingBlocked = false
     private var isFirstAppearance = true
 
@@ -93,6 +106,11 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
 
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(closeOnSwipe))
+        swipeRecognizer.direction = .down
+        swipeRecognizer.delegate = self
+        view.addGestureRecognizer(swipeRecognizer)
+
         configureStyling()
         configurePreferenceState(viewModel.currentState.value)
     }
@@ -120,6 +138,7 @@ private extension FantasyDetailsViewController {
         navigationBar.applyFantasyStyling()
         scrollView.delegate = self
         scrollView.scrollsToTop = false
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
 
         gradientBackgroundView.isHidden = true
@@ -127,12 +146,11 @@ private extension FantasyDetailsViewController {
         view.backgroundColor = .clear
         backgroundView.backgroundColor = .fantasyCardBackground
         backgroundView.isHidden = true
+        stackView.isHidden = true
         closeButton.alpha = 0.0
         optionButton.alpha = 0.0
         titleLabel.alpha = 0.0
 
-        backgroundImageWidth.constant = FantasyDetailsViewController.minBackgroundImageWidth
-        backgroundImageHeight.constant = FantasyDetailsViewController.minBackgroundImageHeight
         backgroundImageView.contentMode = .scaleAspectFill
 
         stackView.backgroundColor = .fantasyLightGrey
@@ -243,17 +261,17 @@ private extension FantasyDetailsViewController {
     }
 
     @IBAction func close(_ sender: Any) {
-        if scrollView.contentOffset.y == 0 {
-            animateContentOffsetChange(contentOffset:
-                CGPoint(x: 0, y: FantasyDetailsViewController.initialScrollViewOffsetY))
+        if isZoomed {
+            isZoomingBlocked = false
+            animateUnzoom()
         } else {
-            isZoomingBlocked = true
             animateDisappearance()
         }
     }
 
     @IBAction func zoomCard(_ sender: Any) {
-        animateContentOffsetChange(contentOffset: .zero)
+        isZoomingBlocked = true
+        animateZoom()
     }
 
     @IBAction func expandOrCollapseStory(_ sender: UIButton) {
@@ -265,23 +283,20 @@ private extension FantasyDetailsViewController {
 // MARK: - Scrolling
 extension FantasyDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard !isZoomingBlocked else { return }
-
         configureNavigationBarButtons()
         configureBackground()
 
-        let expectedHeight = UIScreen.main.bounds.height * (scrollView.frame.height - scrollView.contentOffset.y) /
-            scrollView.frame.height
-        let expectedWidth = expectedHeight * FantasyDetailsViewController.minBackgroundImageWidth /
-            FantasyDetailsViewController.minBackgroundImageHeight
-        animateCardScale(toSize: CGSize(width: expectedWidth, height: expectedHeight))
+        guard !isZoomingBlocked else { return }
+
+        configureCardLayout()
     }
 
     private func configureNavigationBarButtons() {
-        if scrollView.contentOffset.y == 0 {
+        if isZoomed {
             closeButton.setImage(R.image.cardDetailsClose(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
-        } else if scrollView.contentOffset.y >= scrollView.frame.height - navigationBar.frame.maxY {
+        } else if scrollView.contentOffset.y >= scrollView.frame.height *
+            unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY {
             closeButton.setImage(R.image.navigationBackButton(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOptionPlain(), for: .normal)
         } else {
@@ -291,10 +306,38 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     }
 
     private func configureBackground() {
-        if scrollView.contentOffset.y >= scrollView.frame.height - navigationBar.frame.maxY    {
+        let minY = scrollView.frame.height * unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY
+        if scrollView.contentOffset.y >= minY {
             gradientBackgroundView.isHidden = false
         } else {
             gradientBackgroundView.isHidden = true
         }
     }
+
+    private func configureCardLayout() {
+        let cap = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        if scrollView.contentOffset.y < cap {
+            backgroundImageCenterY.constant = min(0, scrollView.contentOffset.y - cap +
+                backgroundImageView.frame.height / 3)
+        }
+    }
+}
+
+// MARK: - Swipe to close
+extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
+
+    @objc func closeOnSwipe() {
+        if scrollView.contentOffset.y == 0 {
+            animateDisappearance()
+        }
+    }
+
 }
