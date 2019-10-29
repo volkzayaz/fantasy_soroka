@@ -57,11 +57,8 @@ struct FantasyListViewModel : MVVM_ViewModel {
 }
 
 extension FantasyListViewModel {
-    
     func cardTapped(card: Fantasy.Card, sourceFrame: CGRect) {
-        animator.sourceFrame = sourceFrame
+        animator.originFrame = sourceFrame
         router.cardTapped(card: card)
     }
-
-    
 }

@@ -11,8 +11,6 @@ import Foundation
 class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     static let durationExpanding = 0.4
     static let durationClosing = 0.5
-
-    var sourceFrame: CGRect = .zero
     
     var originFrame = CGRect.zero
     var presenting = true
@@ -23,6 +21,14 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let ratio = originFrame.width / (UIScreen.main.bounds.width -
+            2.0 * FantasyDetailsViewController.backgroundImageMargin)
+        let width = originFrame.width + (2.0 * FantasyDetailsViewController.backgroundImageMargin * ratio)
+        let height = UIScreen.main.bounds.height * ratio
+        let originX = originFrame.origin.x - FantasyDetailsViewController.backgroundImageMargin * ratio
+        let originY = originFrame.origin.y - (height - originFrame.height) / 2.0
+        let sourceFrame = CGRect(x: originX, y: originY, width: width, height: height)
+
         let containerView = transitionContext.containerView
 
         guard let detailView = presenting ? transitionContext.view(forKey: .to)
@@ -30,8 +36,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
             return
         }
 
-        let initialFrame = presenting ? originFrame : detailView.frame
-        let finalFrame = presenting ? detailView.frame : originFrame
+        let initialFrame = presenting ? sourceFrame : detailView.frame
+        let finalFrame = presenting ? detailView.frame : sourceFrame
         let xScaleFactor = presenting ? initialFrame.width / finalFrame.width : finalFrame.width / initialFrame.width
         let yScaleFactor = presenting ? initialFrame.height / finalFrame.height : finalFrame.height / initialFrame.height
         let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)

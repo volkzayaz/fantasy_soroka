@@ -206,14 +206,7 @@ extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let ratio = fantasiesView.frame.width / (UIScreen.main.bounds.width - 2.0 * FantasyDetailsViewController.backgroundImageMargin)
-        let width = fantasiesView.frame.width + (2.0 * FantasyDetailsViewController.backgroundImageMargin * ratio)
-        let height = UIScreen.main.bounds.height * ratio
-        let originX = fantasiesView.frame.origin.x - FantasyDetailsViewController.backgroundImageMargin * ratio
-        let originY = fantasiesView.frame.origin.y - (height - fantasiesView.frame.height) / 2.0
-        let originFrame = CGRect(x: originX, y: originY, width: width, height: height)
-
-        animator.originFrame = originFrame
+        animator.originFrame = fantasiesView.frame
         animator.presenting = true
 
         if let view =  fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {

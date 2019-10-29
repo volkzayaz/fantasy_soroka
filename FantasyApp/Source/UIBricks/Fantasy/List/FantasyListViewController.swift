@@ -46,7 +46,7 @@ class FantasyListViewController: UIViewController, MVVM_View {
                 
                 let model: Fantasy.Card = try! self.collectionView.rx.model(at: ip)
                 let sourceRect = self.collectionView.convert(self.collectionView.cellForItem(at: ip)!.frame,
-                                                            to: self.view)
+                                                            to: nil)
                 
                 self.viewModel.cardTapped(card: model, sourceFrame: sourceRect)
             })
@@ -84,12 +84,7 @@ extension FantasyListViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        let originFrame = viewModel.animator.sourceFrame
-
-        viewModel.animator.originFrame = originFrame
         viewModel.animator.presenting = true
-        
         return viewModel.animator
     }
 }
