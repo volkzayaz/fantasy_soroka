@@ -24,23 +24,11 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     }
 
     // Location section
-    @IBOutlet weak var allowGeolocationView: UIView! {
-        didSet {
-            allowGeolocationView.addFantasyRoundedCorners()
-        }
-    }
-    @IBOutlet weak var cityNotActiveView: UIView! {
-        didSet {
-            cityNotActiveView.addFantasyRoundedCorners()
-        }
-    }
-    @IBOutlet weak var goToSettingsView: UIView! {
-        didSet {
-            goToSettingsView.addFantasyRoundedCorners()
-        }
-    }
+    @IBOutlet weak var noFilterView: UIView!
+    @IBOutlet weak var allowGeolocationView: UIView!
+    @IBOutlet weak var cityNotActiveView: UIView!
+    @IBOutlet weak var goToSettingsView: UIView!
     @IBOutlet weak var notActiveCityNameLabel: UILabel!
-
 
     func enableFilter(_ enable: Bool) {
 
@@ -56,7 +44,12 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // configure UI
+        noFilterView.addFantasyRoundedCorners()
+        goToSettingsView.addFantasyRoundedCorners()
+        cityNotActiveView.addFantasyRoundedCorners()
+        allowGeolocationView.addFantasyRoundedCorners()
         view.addFantasyTripleGradient()
 
         viewModel.profiles
@@ -71,20 +64,20 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 self.hideView(self.cityNotActiveView)
                 self.hideView(self.allowGeolocationView)
                 self.hideView(self.goToSettingsView)
-                self.enableFilter(false)
+                self.hideView(self.noFilterView)
+                self.enableFilter(true)
 
                 self.profilesCarousel.isHidden = true
 
                 switch mode {
                 case .profiles:
                     self.profilesCarousel.isHidden = false
-                    self.enableFilter(true)
 
                 case .noLocationPermission:
+                    self.enableFilter(false)
                     self.showView(self.goToSettingsView)
 
                 case .absentCommunity(let nearestCity):
-                    self.enableFilter(true)
                     self.showView(self.cityNotActiveView)
 
                     let cityName = nearestCity ?? "Your city"
@@ -96,7 +89,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     self.notActiveCityNameLabel.attributedText = attr
 
                 case .noSearchPreferences:
-                    self.viewModel.presentFilter(.disableCancel)
+                    self.showView(self.noFilterView)
                 }
                 
             })
@@ -151,8 +144,12 @@ extension DiscoverProfileViewController {
         viewModel.goToSettings()
     }
 
+    @IBAction func filtersClick(_ sender: Any) {
+        viewModel.presentFilter()
+    }
+
     @objc func presentFilter() {
-        viewModel.presentFilter(.enableCancel)
+        viewModel.presentFilter()
     }
 }
 
@@ -192,19 +189,19 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         }
     }
     
-    func carousel(_ carousel: iCarousel,
-                  itemTransformForOffset offset: CGFloat,
-                  baseTransform transform: CATransform3D) -> CATransform3D {
+    func carousel(_ carousel: iCarousel, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
+
         let MAX_SCALE: Float = 1
         let MAX_Shift: Float = 25
-        let distance: Float = 20
-        
+        let distance: Float = 40
+        let multiplier: CGFloat = 1.0
+
         let shift: Float = fminf(1, fmaxf(-1, Float(offset)))
         let scale: CGFloat = CGFloat(1 + (1 - abs(shift)) * (MAX_SCALE - 1))
         let z:     Float = -fminf(1, abs(Float(offset))) * distance
         
         let newTransform = CATransform3DTranslate(transform,
-                                                  offset * carousel.itemWidth + CGFloat(shift * MAX_Shift),
+                                                  offset * (carousel.itemWidth * multiplier) + CGFloat(shift * MAX_Shift),
                                                   0,
                                                   CGFloat(z));
         return CATransform3DScale(newTransform, scale, scale, scale);
@@ -232,6 +229,6 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
     }
 
     func showFilters() {
-        viewModel.presentFilter(.enableCancel)
+        viewModel.presentFilter()
     }
 }

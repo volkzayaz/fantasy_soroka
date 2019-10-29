@@ -12,45 +12,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-enum FilterMode {
-    case enableCancel
-    case disableCancel
-}
-
-private enum StoreKeys: String {
-    case tutorial = "kTutorialStoreKey"
-}
-
-extension Gender: SwipebleModel {
-
-    var name: String {
-        return self.pretty
-    }
-
-   static func gender(by index: Int) -> Gender {
-       return allCases[index]
-    }
-
-    static func index(by gender: Gender) -> Int {
-        return allCases.firstIndex(of: gender) ?? 0
-    }
-}
-
-extension Sexuality: SwipebleModel {
-
-    var name: String {
-        return self.rawValue
-    }
-
-   static func sexuality(by index: Int) -> Sexuality {
-       return allCases[index]
-    }
-
-    static func index(by sexuality: Sexuality) -> Int {
-        return allCases.firstIndex(of: sexuality) ?? 0
-    }
-}
-
 extension DiscoveryFilterViewModel {
     
     var prefs: SearchPreferences {
@@ -67,10 +28,6 @@ extension DiscoveryFilterViewModel {
 
     var age: Range<Int> {
         return form.value.age
-    }
-
-    var showTutorial: Bool {
-        return !UserDefaults.standard.bool(forKey: StoreKeys.tutorial.rawValue)
     }
 
     var selectedPartnerGender: Int {
@@ -97,19 +54,17 @@ extension DiscoveryFilterViewModel {
         return Gender.allCases.count
     }
 
-    var showCancelButton: Bool {
-        return mode == .enableCancel
+    var showLocationSection: Driver<Bool> {
+        return appState.map { $0.currentUser?.searchPreferences != nil }
     }
 }
 
 struct DiscoveryFilterViewModel : MVVM_ViewModel {
     
     fileprivate let form: BehaviorRelay<SearchPreferences>
-    fileprivate let mode: FilterMode
 
-    init(router: DiscoveryFilterRouter, mode: FilterMode) {
+    init(router: DiscoveryFilterRouter) {
         self.router = router
-        self.mode = mode
 
         form = .init(value: User.current?.searchPreferences ?? .default)
         
@@ -158,10 +113,6 @@ extension DiscoveryFilterViewModel {
         router.owner.navigationController?.dismiss(animated: true, completion: nil)
     }
 
-    func updateTutorial(_ presented: Bool) {
-        UserDefaults.standard.set(presented, forKey: StoreKeys.tutorial.rawValue)
-    }
-    
     private func updateForm(_ mapper: (inout SearchPreferences) -> Void ) {
         var x = form.value
         mapper(&x)

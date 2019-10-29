@@ -16,64 +16,77 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoUsersCarouselView" customModule="FantasyApp" customModuleProvider="target">
             <connections>
-                <outlet property="contentView" destination="SIV-6M-Ecc" id="56C-TN-KWj"/>
+                <outlet property="contentView" destination="iVJ-jX-weT" id="iJy-te-33k"/>
+                <outlet property="secondaryContentView" destination="SIV-6M-Ecc" id="Td5-cI-VJi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="SIV-6M-Ecc">
+        <view contentMode="scaleToFill" id="iVJ-jX-weT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
-                    <rect key="frame" x="35" y="721" width="344" height="52"/>
-                    <state key="normal" title="Search Filter"/>
-                    <connections>
-                        <action selector="filters:" destination="-1" eventType="touchUpInside" id="a3J-bY-Ags"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
-                    <rect key="frame" x="35" y="785" width="344" height="52"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="52" id="9Zf-fe-XWl"/>
-                    </constraints>
-                    <state key="normal" title="Invite Friends"/>
-                    <connections>
-                        <action selector="inviteFriendsClick:" destination="-1" eventType="touchUpInside" id="vOp-aD-jwz"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0co-9d-b5U">
-                    <rect key="frame" x="62" y="427" width="290" height="42"/>
-                    <string key="text">No new 
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIV-6M-Ecc">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
+                            <rect key="frame" x="35" y="677" width="344" height="52"/>
+                            <state key="normal" title="Search Filter"/>
+                            <connections>
+                                <action selector="filters:" destination="-1" eventType="touchUpInside" id="a3J-bY-Ags"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                            <rect key="frame" x="35" y="741" width="344" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="9Zf-fe-XWl"/>
+                            </constraints>
+                            <state key="normal" title="Invite Friends"/>
+                            <connections>
+                                <action selector="inviteFriendsClick:" destination="-1" eventType="touchUpInside" id="vOp-aD-jwz"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0co-9d-b5U">
+                            <rect key="frame" x="62" y="388" width="290" height="42"/>
+                            <string key="text">No new 
 Fantasy-seekers today</string>
-                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
-                    <color key="textColor" name="textBlackColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic" translatesAutoresizingMaskIntoConstraints="NO" id="8Rn-Mn-8am">
-                    <rect key="frame" x="167" y="94" width="80" height="80"/>
+                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                            <color key="textColor" name="textBlackColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic" translatesAutoresizingMaskIntoConstraints="NO" id="8Rn-Mn-8am">
+                            <rect key="frame" x="167" y="50" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="8Rn-Mn-8am" secondAttribute="height" multiplier="1:1" id="QgY-2i-X71"/>
+                                <constraint firstAttribute="width" constant="80" id="umz-gm-xA8"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="8Rn-Mn-8am" secondAttribute="height" multiplier="1:1" id="QgY-2i-X71"/>
-                        <constraint firstAttribute="width" constant="80" id="umz-gm-xA8"/>
+                        <constraint firstItem="73u-Ky-whm" firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" id="5iK-nM-iuz"/>
+                        <constraint firstItem="n94-DS-DPf" firstAttribute="leading" secondItem="SIV-6M-Ecc" secondAttribute="leading" constant="35" id="6W4-RW-7io"/>
+                        <constraint firstItem="n94-DS-DPf" firstAttribute="top" secondItem="73u-Ky-whm" secondAttribute="bottom" constant="12" id="Eqw-CW-oDn"/>
+                        <constraint firstItem="0co-9d-b5U" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="G4g-WW-BpA"/>
+                        <constraint firstItem="73u-Ky-whm" firstAttribute="height" secondItem="n94-DS-DPf" secondAttribute="height" id="M4y-Kh-835"/>
+                        <constraint firstItem="73u-Ky-whm" firstAttribute="leading" secondItem="n94-DS-DPf" secondAttribute="leading" id="WaM-Z7-Hda"/>
+                        <constraint firstItem="8Rn-Mn-8am" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="XKd-iz-INN"/>
+                        <constraint firstItem="0co-9d-b5U" firstAttribute="centerY" secondItem="SIV-6M-Ecc" secondAttribute="centerY" id="do4-rB-3M2"/>
+                        <constraint firstItem="8Rn-Mn-8am" firstAttribute="top" secondItem="SIV-6M-Ecc" secondAttribute="top" constant="50" id="onf-iV-i9g"/>
+                        <constraint firstItem="0co-9d-b5U" firstAttribute="width" secondItem="SIV-6M-Ecc" secondAttribute="width" multiplier="0.7" id="skq-bL-eow"/>
+                        <constraint firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" constant="35" id="v1S-CY-fRM"/>
+                        <constraint firstAttribute="bottom" secondItem="n94-DS-DPf" secondAttribute="bottom" constant="25" id="vVO-YF-VyM"/>
                     </constraints>
-                </imageView>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="73u-Ky-whm" firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" id="5iK-nM-iuz"/>
-                <constraint firstItem="n94-DS-DPf" firstAttribute="leading" secondItem="k6C-Fg-e7K" secondAttribute="leading" constant="35" id="6W4-RW-7io"/>
-                <constraint firstItem="n94-DS-DPf" firstAttribute="top" secondItem="73u-Ky-whm" secondAttribute="bottom" constant="12" id="Eqw-CW-oDn"/>
-                <constraint firstItem="0co-9d-b5U" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="G4g-WW-BpA"/>
-                <constraint firstItem="73u-Ky-whm" firstAttribute="height" secondItem="n94-DS-DPf" secondAttribute="height" id="M4y-Kh-835"/>
-                <constraint firstItem="73u-Ky-whm" firstAttribute="leading" secondItem="n94-DS-DPf" secondAttribute="leading" id="WaM-Z7-Hda"/>
-                <constraint firstItem="8Rn-Mn-8am" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="XKd-iz-INN"/>
-                <constraint firstItem="0co-9d-b5U" firstAttribute="centerY" secondItem="SIV-6M-Ecc" secondAttribute="centerY" id="do4-rB-3M2"/>
-                <constraint firstItem="8Rn-Mn-8am" firstAttribute="top" secondItem="k6C-Fg-e7K" secondAttribute="top" constant="50" id="onf-iV-i9g"/>
-                <constraint firstItem="0co-9d-b5U" firstAttribute="width" secondItem="SIV-6M-Ecc" secondAttribute="width" multiplier="0.7" id="skq-bL-eow"/>
-                <constraint firstItem="k6C-Fg-e7K" firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" constant="35" id="v1S-CY-fRM"/>
-                <constraint firstItem="k6C-Fg-e7K" firstAttribute="bottom" secondItem="n94-DS-DPf" secondAttribute="bottom" constant="25" id="vVO-YF-VyM"/>
+                <constraint firstItem="kDw-MZ-0uD" firstAttribute="bottom" secondItem="SIV-6M-Ecc" secondAttribute="bottom" id="6zg-4e-j8R"/>
+                <constraint firstItem="SIV-6M-Ecc" firstAttribute="top" secondItem="kDw-MZ-0uD" secondAttribute="top" id="ASn-hi-iGK"/>
+                <constraint firstItem="SIV-6M-Ecc" firstAttribute="leading" secondItem="kDw-MZ-0uD" secondAttribute="leading" id="lPa-qL-5la"/>
+                <constraint firstItem="SIV-6M-Ecc" firstAttribute="trailing" secondItem="kDw-MZ-0uD" secondAttribute="trailing" id="rHe-qG-4uT"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="k6C-Fg-e7K"/>
-            <point key="canvasLocation" x="46" y="68"/>
+            <viewLayoutGuide key="safeArea" id="kDw-MZ-0uD"/>
+            <point key="canvasLocation" x="42.028985507246382" y="714.50892857142856"/>
         </view>
     </objects>
     <resources>

@@ -14,6 +14,8 @@ import RxSwift
 class UserCarouselView: UIView {
 
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var secondaryContentView: UIView!
+
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var starImageView: UIImageView!
@@ -24,7 +26,7 @@ class UserCarouselView: UIView {
 
     private var bag = DisposeBag()
     private let gradientLayer = CAGradientLayer()
-    private var shadowLayer: CAShapeLayer?
+    private let corner: CGFloat = 20.0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,8 +40,8 @@ class UserCarouselView: UIView {
 
     private func nibSetup() {
         contentView = loadViewFromNib()
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 20
+        secondaryContentView.clipsToBounds = true
+        secondaryContentView.layer.cornerRadius = corner
 
         addSubview(contentView)
 
@@ -62,16 +64,12 @@ class UserCarouselView: UIView {
     }
 
     private func setupShadow() {
-        if let layer = shadowLayer {
-            layer.removeFromSuperlayer()
-        }
-        shadowLayer = CAShapeLayer()
-        shadowLayer!.fillColor = UIColor.white.cgColor
-        shadowLayer!.shadowRadius = 20
-        shadowLayer!.shadowOpacity = 0.5
-        shadowLayer!.shadowColor = UIColor.shadow.cgColor
-        shadowLayer!.shadowOffset = CGSize(width: 9.0, height: 6.0)
-        contentView.layer.insertSublayer(shadowLayer!, at: 0)
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.7
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        contentView.layer.shadowRadius = 10
+        contentView.layer.shouldRasterize = true
+        contentView.layer.rasterizationScale = UIScreen.main.scale
     }
 
     private func setupTransparentGradient() {
@@ -85,6 +83,7 @@ class UserCarouselView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         gradientLayer.frame = transparentGradienView.bounds
+        contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: corner).cgPath
     }
 }
 

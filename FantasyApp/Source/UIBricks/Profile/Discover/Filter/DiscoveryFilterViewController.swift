@@ -19,9 +19,7 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     var viewModel: DiscoveryFilterViewModel!
 
     // City section
-    @IBOutlet weak var tutorialView: UIView!
-
-    // City section
+    @IBOutlet weak var citySectionView: UIView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var activeCityImageView: UIImageView!
 
@@ -69,11 +67,9 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
         view.addFantasyTripleGradient()
 
-        if viewModel.showCancelButton {
-            let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
-            item.applyFantasyAttributes()
-            navigationItem.rightBarButtonItem = item
-        }
+        let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
+        item.applyFantasyAttributes()
+        navigationItem.rightBarButtonItem = item
 
         secondPartnerSwitch.isOn = viewModel.isCouple
         partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
@@ -106,27 +102,15 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
 
+        viewModel.showLocationSection
+            .map { !$0 }
+            .drive(citySectionView.rx.isHidden)
+        .disposed(by: rx.disposeBag)
+
         // apply text color and fonts to slider labels
         ageSlider.valueLabels.forEach {
             $0.font = UIFont.regularFont(ofSize: 15)
             $0.textColor = R.color.textBlackColor()
-        }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if viewModel.showTutorial {
-
-            guard let v = self.navigationController?.view else { return }
-
-            v.addSubview(self.tutorialView)
-
-            tutorialView.snp.makeConstraints { (make) in
-                make.edges.equalToSuperview()
-            }
-
-            viewModel.updateTutorial(true)
         }
     }
 }
@@ -150,14 +134,6 @@ extension DiscoveryFilterViewController {
     
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
-    }
-
-    @IBAction func tutorialClose(_ sender: Any) {
-        tutorialView.removeFromSuperview()
-    }
-
-    @IBAction func tutorialGotIt(_ sender: Any) {
-        tutorialView.removeFromSuperview()
     }
 }
 

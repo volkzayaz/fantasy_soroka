@@ -415,11 +415,74 @@
                         <outlet property="allowGeolocationView" destination="Zsa-53-sF4" id="maa-yi-0I8"/>
                         <outlet property="cityNotActiveView" destination="OD3-RV-LXg" id="8KR-Fo-f1e"/>
                         <outlet property="goToSettingsView" destination="FH2-xN-97a" id="LSb-jE-aSi"/>
+                        <outlet property="noFilterView" destination="TYG-Zf-Hsb" id="9qf-Ph-JVZ"/>
                         <outlet property="notActiveCityNameLabel" destination="ahz-f2-kFB" id="8Ou-1n-Znb"/>
                         <outlet property="profilesCarousel" destination="0Se-hg-s60" id="eVP-0o-vtQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmj-hS-riL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="TYG-Zf-Hsb">
+                    <rect key="frame" x="0.0" y="0.0" width="416" height="736"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-sN-oGh">
+                            <rect key="frame" x="0.0" y="165" width="416" height="406"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFiltersOnboardingImage" translatesAutoresizingMaskIntoConstraints="NO" id="U19-mA-Ylg">
+                                    <rect key="frame" x="128" y="40" width="160" height="160"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
+                                    <rect key="frame" x="154.5" y="212" width="107" height="21"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4h-iy-14o">
+                                    <rect key="frame" x="62.5" y="239" width="291" height="35"/>
+                                    <string key="text">Knowing your location helps
+us locate people around you. </string>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-wA-1Tr" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="354" width="296" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="52" id="IZF-hA-1p5"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                    <state key="normal" title="Filter">
+                                        <color key="titleColor" name="textPinkColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="filtersClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="ZAF-W7-MDr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="bgW-SP-S2b" firstAttribute="top" secondItem="U19-mA-Ylg" secondAttribute="bottom" constant="12" id="503-0o-kEo"/>
+                                <constraint firstItem="D4h-iy-14o" firstAttribute="top" secondItem="bgW-SP-S2b" secondAttribute="bottom" constant="6" id="6lj-qd-2ks"/>
+                                <constraint firstItem="Oub-wA-1Tr" firstAttribute="top" secondItem="D4h-iy-14o" secondAttribute="bottom" constant="80" id="DF0-ta-vdj"/>
+                                <constraint firstItem="U19-mA-Ylg" firstAttribute="top" secondItem="ePp-sN-oGh" secondAttribute="top" constant="40" id="RI5-zn-g1f"/>
+                                <constraint firstItem="U19-mA-Ylg" firstAttribute="centerX" secondItem="ePp-sN-oGh" secondAttribute="centerX" id="UIK-eg-lm7"/>
+                                <constraint firstItem="D4h-iy-14o" firstAttribute="width" secondItem="ePp-sN-oGh" secondAttribute="width" multiplier="0.7" id="YaW-7S-ACg"/>
+                                <constraint firstAttribute="trailing" secondItem="Oub-wA-1Tr" secondAttribute="trailing" constant="60" id="gBE-yV-o51"/>
+                                <constraint firstItem="bgW-SP-S2b" firstAttribute="centerX" secondItem="ePp-sN-oGh" secondAttribute="centerX" id="lKN-GP-5je"/>
+                                <constraint firstAttribute="bottom" secondItem="Oub-wA-1Tr" secondAttribute="bottom" id="lR6-y9-7ym"/>
+                                <constraint firstItem="D4h-iy-14o" firstAttribute="centerX" secondItem="bgW-SP-S2b" secondAttribute="centerX" id="wyb-Ds-SZi"/>
+                                <constraint firstItem="Oub-wA-1Tr" firstAttribute="leading" secondItem="ePp-sN-oGh" secondAttribute="leading" constant="60" id="zQB-uT-lfk"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ePp-sN-oGh" firstAttribute="centerY" secondItem="TYG-Zf-Hsb" secondAttribute="centerY" id="LmO-D4-tPD"/>
+                        <constraint firstItem="XPq-QD-zDz" firstAttribute="trailing" secondItem="ePp-sN-oGh" secondAttribute="trailing" id="P31-vK-Ro6"/>
+                        <constraint firstItem="ePp-sN-oGh" firstAttribute="leading" secondItem="XPq-QD-zDz" secondAttribute="leading" id="VBK-Ad-sHc"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="XPq-QD-zDz"/>
+                </view>
                 <view contentMode="scaleToFill" id="Zsa-53-sF4">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1034,7 +1097,7 @@ activated when it reaches</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xST-Oe-7Gr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2165" y="-644"/>
+            <point key="canvasLocation" x="2851" y="-662"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="gao-4q-isq">
@@ -1453,120 +1516,23 @@ activated when it reaches</string>
                         <outlet property="activeCityImageView" destination="iLt-J4-MI5" id="Feo-sl-7em"/>
                         <outlet property="ageSlider" destination="Mdk-zv-GGl" id="bH9-aX-BCW"/>
                         <outlet property="cityLabel" destination="9NS-4E-Ebr" id="ykV-vp-kcs"/>
+                        <outlet property="citySectionView" destination="BIM-HY-Gw2" id="lkG-i8-c1M"/>
                         <outlet property="partnerBodyPicker" destination="A9S-yE-K6c" id="s2R-8P-acA"/>
                         <outlet property="partnerSexualityPicker" destination="1GV-YI-iYw" id="3fi-ni-sNP"/>
                         <outlet property="scrollView" destination="ehO-2K-TEg" id="ATe-Eo-rvT"/>
                         <outlet property="secondPartnerBodyPicker" destination="egU-Il-qSz" id="Bup-4Y-IeV"/>
                         <outlet property="secondPartnerStackView" destination="AQt-Jj-sjy" id="wXC-w3-xIY"/>
                         <outlet property="secondPartnerSwitch" destination="Yxx-aQ-Txl" id="sFO-MZ-fhX"/>
-                        <outlet property="tutorialView" destination="TYG-Zf-Hsb" id="nbu-hv-xAz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6o-Fy-0Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="TYG-Zf-Hsb">
-                    <rect key="frame" x="0.0" y="0.0" width="416" height="736"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psh-Py-t6O">
-                            <rect key="frame" x="0.0" y="44" width="416" height="658"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfn-TK-r5A">
-                                    <rect key="frame" x="158" y="501" width="100" height="152"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="100" id="tOC-M8-qRg"/>
-                                    </constraints>
-                                    <state key="normal" image="searchFiltersOnboardingCloseImage">
-                                        <color key="titleColor" name="textPinkColor"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="tutorialClose:" destination="iyx-6x-4MS" eventType="touchUpInside" id="a26-Nq-AbU"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="zfn-TK-r5A" firstAttribute="centerX" secondItem="Psh-Py-t6O" secondAttribute="centerX" id="7hV-Wx-KJA"/>
-                                <constraint firstAttribute="bottom" secondItem="zfn-TK-r5A" secondAttribute="bottom" constant="5" id="GNI-sP-Ikx"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-sN-oGh" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                            <rect key="frame" x="36" y="196" width="344" height="344"/>
-                            <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFiltersOnboardingImage" translatesAutoresizingMaskIntoConstraints="NO" id="U19-mA-Ylg">
-                                    <rect key="frame" x="92" y="40" width="160" height="160"/>
-                                </imageView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mr9-Qi-AU9">
-                                    <rect key="frame" x="0.0" y="292" width="344" height="52"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-wA-1Tr">
-                                            <rect key="frame" x="151" y="10" width="42" height="32"/>
-                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
-                                            <state key="normal" title="Got it">
-                                                <color key="titleColor" name="textPinkColor"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="tutorialGotIt:" destination="iyx-6x-4MS" eventType="touchUpInside" id="fxd-NQ-gIn"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="Oub-wA-1Tr" firstAttribute="centerX" secondItem="Mr9-Qi-AU9" secondAttribute="centerX" id="DpZ-JV-uhW"/>
-                                        <constraint firstItem="Oub-wA-1Tr" firstAttribute="centerY" secondItem="Mr9-Qi-AU9" secondAttribute="centerY" id="RZz-X2-3Lg"/>
-                                        <constraint firstAttribute="height" constant="52" id="lNb-dH-1AX"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
-                                    <rect key="frame" x="118.5" y="212" width="107" height="21"/>
-                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
-                                    <color key="textColor" name="textBlackColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4h-iy-14o">
-                                    <rect key="frame" x="51.5" y="239" width="241" height="35"/>
-                                    <string key="text">Knowing your location helps
-us locate people around you. </string>
-                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
-                                    <color key="textColor" name="textBlackColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="ePp-sN-oGh" secondAttribute="height" multiplier="1:1" id="1lQ-vM-rP6"/>
-                                <constraint firstItem="bgW-SP-S2b" firstAttribute="top" secondItem="U19-mA-Ylg" secondAttribute="bottom" constant="12" id="503-0o-kEo"/>
-                                <constraint firstItem="D4h-iy-14o" firstAttribute="top" secondItem="bgW-SP-S2b" secondAttribute="bottom" constant="6" id="6lj-qd-2ks"/>
-                                <constraint firstItem="Mr9-Qi-AU9" firstAttribute="leading" secondItem="ePp-sN-oGh" secondAttribute="leading" id="IZ9-4L-Nld"/>
-                                <constraint firstItem="U19-mA-Ylg" firstAttribute="top" secondItem="ePp-sN-oGh" secondAttribute="top" constant="40" id="RI5-zn-g1f"/>
-                                <constraint firstItem="U19-mA-Ylg" firstAttribute="centerX" secondItem="ePp-sN-oGh" secondAttribute="centerX" id="UIK-eg-lm7"/>
-                                <constraint firstItem="D4h-iy-14o" firstAttribute="width" secondItem="ePp-sN-oGh" secondAttribute="width" multiplier="0.7" id="YaW-7S-ACg"/>
-                                <constraint firstItem="bgW-SP-S2b" firstAttribute="centerX" secondItem="ePp-sN-oGh" secondAttribute="centerX" id="lKN-GP-5je"/>
-                                <constraint firstAttribute="trailing" secondItem="Mr9-Qi-AU9" secondAttribute="trailing" id="sya-0n-yQG"/>
-                                <constraint firstItem="D4h-iy-14o" firstAttribute="centerX" secondItem="bgW-SP-S2b" secondAttribute="centerX" id="wyb-Ds-SZi"/>
-                                <constraint firstAttribute="bottom" secondItem="Mr9-Qi-AU9" secondAttribute="bottom" id="y7a-9S-MIl"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="zfn-TK-r5A" firstAttribute="top" secondItem="ePp-sN-oGh" secondAttribute="bottom" constant="5" id="0PZ-jA-iMT"/>
-                        <constraint firstItem="ePp-sN-oGh" firstAttribute="centerY" secondItem="TYG-Zf-Hsb" secondAttribute="centerY" id="LmO-D4-tPD"/>
-                        <constraint firstItem="Psh-Py-t6O" firstAttribute="top" secondItem="XPq-QD-zDz" secondAttribute="top" id="ORY-UB-bSJ"/>
-                        <constraint firstItem="XPq-QD-zDz" firstAttribute="trailing" secondItem="ePp-sN-oGh" secondAttribute="trailing" constant="36" id="P31-vK-Ro6"/>
-                        <constraint firstItem="XPq-QD-zDz" firstAttribute="bottom" secondItem="Psh-Py-t6O" secondAttribute="bottom" id="SFh-wL-RHl"/>
-                        <constraint firstItem="ePp-sN-oGh" firstAttribute="leading" secondItem="XPq-QD-zDz" secondAttribute="leading" constant="36" id="VBK-Ad-sHc"/>
-                        <constraint firstItem="XPq-QD-zDz" firstAttribute="trailing" secondItem="Psh-Py-t6O" secondAttribute="trailing" id="dqE-Ay-zbd"/>
-                        <constraint firstItem="Psh-Py-t6O" firstAttribute="leading" secondItem="XPq-QD-zDz" secondAttribute="leading" id="i2Y-ah-avq"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="XPq-QD-zDz"/>
-                </view>
                 <tapGestureRecognizer id="mQ4-UL-CRG">
                     <connections>
                         <action selector="openTeleport:" destination="iyx-6x-4MS" id="Nd1-uv-Ist"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2852" y="-761"/>
+            <point key="canvasLocation" x="3675" y="-645"/>
         </scene>
     </scenes>
     <resources>
@@ -1589,7 +1555,6 @@ us locate people around you. </string>
         <image name="searchEnableLocationPlanetImage" width="220" height="300"/>
         <image name="searchEnableLocationToSettings" width="220" height="300"/>
         <image name="searchFantasyLogo" width="80" height="80"/>
-        <image name="searchFiltersOnboardingCloseImage" width="52" height="52"/>
         <image name="searchFiltersOnboardingImage" width="80" height="80"/>
         <image name="secret" width="80" height="80"/>
         <image name="stub" width="476" height="462"/>
