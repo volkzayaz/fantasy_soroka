@@ -94,7 +94,7 @@ extension RoomManager {
     }
     
     static func deleteRoom(_ roomId: String) -> Single<Void> {
-        return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
+        return DeleteRoomResource(roomId: roomId).rx.request.map { _ in }
     }
     
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {
