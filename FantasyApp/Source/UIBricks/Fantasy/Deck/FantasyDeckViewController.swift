@@ -97,12 +97,12 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                     .drive(self.tinyCardImageView.rx.image)
                     .disposed(by: self.tinyCardImageView.rx.disposeBag)
                 
-                UIView.animate(withDuration: 0.5) {
-                    self.mutualCardContainer.alpha = 1
+                UIView.animate(withDuration: 0.5) { [weak self] in
+                    self?.mutualCardContainer.alpha = 1
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         UIView.animate(withDuration: 0.5) {
-                            self.mutualCardContainer.alpha = 0
+                            self?.mutualCardContainer.alpha = 0
                         }
                     }
                 }
@@ -127,8 +127,8 @@ private extension FantasyDeckViewController {
 
     // MARK: - Configuration
     func configureStyling() {
-        title = R.string.localizable.fantasyDeckTitle()
-
+        navigationItem.title = R.string.localizable.fantasyDeckTitle()
+        
         view.addFantasyGradient()
 
         waitingView.roundCorners([.topLeft, .topRight], radius: 20.0)

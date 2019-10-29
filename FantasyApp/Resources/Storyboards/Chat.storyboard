@@ -189,7 +189,7 @@
                                 <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-66-hhp">
-                                        <rect key="frame" x="0.0" y="0.0" width="1125" height="617"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="750" height="617"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-Bc-6DD">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
@@ -202,23 +202,14 @@
                                                 <rect key="frame" x="375" y="0.0" width="375" height="617"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qem-2N-8hc">
-                                                <rect key="frame" x="750" y="0.0" width="375" height="617"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <segue destination="adO-Ag-Suy" kind="embed" identifier="FantasiesViewController" id="hWp-8t-ewJ"/>
-                                                </connections>
-                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="qem-2N-8hc" secondAttribute="trailing" id="658-CX-o3X"/>
                                             <constraint firstItem="pfW-yr-Y6j" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="79c-Kw-uW6"/>
                                             <constraint firstItem="3pl-Bc-6DD" firstAttribute="leading" secondItem="zxQ-66-hhp" secondAttribute="leading" id="GTS-sx-Dki"/>
                                             <constraint firstItem="pfW-yr-Y6j" firstAttribute="leading" secondItem="3pl-Bc-6DD" secondAttribute="trailing" id="M5i-K7-O3v"/>
                                             <constraint firstItem="3pl-Bc-6DD" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="RfW-2m-dsg"/>
-                                            <constraint firstItem="qem-2N-8hc" firstAttribute="leading" secondItem="pfW-yr-Y6j" secondAttribute="trailing" id="rha-al-FHd"/>
-                                            <constraint firstItem="qem-2N-8hc" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="xfv-6k-fpK"/>
+                                            <constraint firstAttribute="trailing" secondItem="pfW-yr-Y6j" secondAttribute="trailing" id="Ser-2d-7Pg"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -231,8 +222,6 @@
                                     <constraint firstItem="3pl-Bc-6DD" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="ElS-pQ-g2A"/>
                                     <constraint firstItem="3pl-Bc-6DD" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="Glb-9F-NiQ"/>
                                     <constraint firstItem="zxQ-66-hhp" firstAttribute="leading" secondItem="5tj-zr-HlS" secondAttribute="leading" id="I4P-vs-i2q"/>
-                                    <constraint firstItem="qem-2N-8hc" firstAttribute="width" secondItem="5tj-zr-HlS" secondAttribute="width" id="OLG-pD-W1B"/>
-                                    <constraint firstItem="qem-2N-8hc" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="ZmI-vT-BKA"/>
                                     <constraint firstAttribute="bottom" secondItem="zxQ-66-hhp" secondAttribute="bottom" id="feN-Ms-aP9"/>
                                     <constraint firstItem="pfW-yr-Y6j" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="x2u-NC-SFI"/>
                                 </constraints>
@@ -255,7 +244,6 @@
                         <outlet property="commonFantasiesContainerView" destination="3pl-Bc-6DD" id="OHk-Nt-AQQ"/>
                         <outlet property="fantasiesButton" destination="wJX-Ru-CPj" id="hLa-YL-PRE"/>
                         <outlet property="playButton" destination="qoL-7K-BCs" id="fX4-dX-51p"/>
-                        <outlet property="playContainerView" destination="qem-2N-8hc" id="H4N-YS-xR2"/>
                         <outlet property="scrollView" destination="5tj-zr-HlS" id="epG-Oh-X0I"/>
                     </connections>
                 </viewController>
@@ -263,21 +251,13 @@
             </objects>
             <point key="canvasLocation" x="3917" y="1485"/>
         </scene>
-        <!--FantasiesViewController-->
-        <scene sceneID="jot-q1-Qe4">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="FantasiesViewController" storyboardName="FantasyCard" referencedIdentifier="FantasiesViewController" id="adO-Ag-Suy" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JVS-Un-2Tt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4681" y="1484"/>
-        </scene>
         <!--FantasyListViewController-->
         <scene sceneID="8id-f6-1UV">
             <objects>
                 <viewControllerPlaceholder storyboardName="FantasyCard" referencedIdentifier="FantasyListViewController" id="RuG-rX-KSV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9N-Lw-aO7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4690" y="1417"/>
+            <point key="canvasLocation" x="4656" y="1484"/>
         </scene>
         <!--Room Settings View Controller-->
         <scene sceneID="STb-gT-Slg">

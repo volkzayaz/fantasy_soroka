@@ -69,7 +69,7 @@ extension RoomDetailsViewController {
 
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
-        playButton.isSelected = page == .play
+        
     }
 
     @objc func showActions() {
@@ -85,20 +85,15 @@ extension RoomDetailsViewController {
         } else if sender == chatButton {
             viewModel.page.accept(.chat)
         } else {
-            viewModel.page.accept(.play)
+            
+            viewModel.showPlay()
+            
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "FantasiesViewController" {
-            
-            let vc = segue.destination as! FantasyDeckViewController
-            vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
-                                                provider: RoomsDeckProvider(room: viewModel.room))
-            
-        }
-        else if segue.identifier == R.segue.roomDetailsViewController.showCommonFantasies.identifier {
+        if segue.identifier == R.segue.roomDetailsViewController.showCommonFantasies.identifier {
             
             let vc = segue.destination as! FantasyListViewController
             

@@ -36,4 +36,8 @@ extension RoomDetailsViewModel {
         router.showSettings()
     }
     
+    func showPlay() {
+        router.showPlay(room: room)
+    }
+    
 }

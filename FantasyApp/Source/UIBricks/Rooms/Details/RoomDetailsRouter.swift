@@ -25,6 +25,15 @@ struct RoomDetailsRouter: MVVM_Router {
         owner.present(viewController, animated: true, completion: nil)
         
     }
+    
+    func showPlay(room: Room) {
+        
+        let vc = R.storyboard.fantasyCard.fantasiesViewController()!
+        vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
+                                            provider: RoomsDeckProvider(room: room))
+        owner.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 
     func embedChat(in view: UIView) {
         let viewController = ChatViewController()
