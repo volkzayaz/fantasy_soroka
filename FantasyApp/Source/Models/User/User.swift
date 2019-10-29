@@ -192,6 +192,22 @@ enum Sexuality: String, CaseIterable, Equatable, Codable {
     
 }
 
+extension Sexuality: SwipebleModel {
+
+    var name: String {
+        return self.rawValue
+    }
+
+   static func sexuality(by index: Int) -> Sexuality {
+       return allCases[index]
+    }
+
+    static func index(by sexuality: Sexuality) -> Int {
+        return allCases.firstIndex(of: sexuality) ?? 0
+    }
+}
+
+
 enum Gender: String, CaseIterable, Equatable, Codable {
     
     case transgenderMale = "MtF"
@@ -199,7 +215,31 @@ enum Gender: String, CaseIterable, Equatable, Codable {
     case female
     case transgenderFemale = "FtM"
     case nonBinary
-    
+
+    var pretty: String {
+        switch self {
+        case .transgenderMale: return "Transgender Male"
+        case .male: return "Male"
+        case .female: return "Female"
+        case .transgenderFemale: return "Transgender Female"
+        case .nonBinary: return "Non-binary"
+        }
+    }
+}
+
+extension Gender: SwipebleModel {
+
+    var name: String {
+        return self.pretty
+    }
+
+   static func gender(by index: Int) -> Gender {
+       return allCases[index]
+    }
+
+    static func index(by gender: Gender) -> Int {
+        return allCases.firstIndex(of: gender) ?? 0
+    }
 }
 
 enum RelationshipStatus: Equatable, Codable {

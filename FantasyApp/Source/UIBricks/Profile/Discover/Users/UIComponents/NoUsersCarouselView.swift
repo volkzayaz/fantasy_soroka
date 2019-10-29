@@ -16,10 +16,10 @@ protocol NoUsersCarouselViewDelegate {
 class NoUsersCarouselView: UIView {
 
     @IBOutlet weak var contentView: UIView!
-
-    private var shadowLayer: CAShapeLayer?
+    @IBOutlet weak var secondaryContentView: UIView!
 
     var delegate: NoUsersCarouselViewDelegate?
+    private let corner: CGFloat = 20.0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,8 +33,8 @@ class NoUsersCarouselView: UIView {
 
     private func nibSetup() {
         contentView = loadViewFromNib()
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 20
+        secondaryContentView.clipsToBounds = true
+        secondaryContentView.layer.cornerRadius = corner
 
         addSubview(contentView)
 
@@ -53,16 +53,17 @@ class NoUsersCarouselView: UIView {
     }
 
     private func setupShadow() {
-        if let layer = shadowLayer {
-            layer.removeFromSuperlayer()
-        }
-        shadowLayer = CAShapeLayer()
-        shadowLayer!.fillColor = UIColor.white.cgColor
-        shadowLayer!.shadowRadius = 20
-        shadowLayer!.shadowOpacity = 0.5
-        shadowLayer!.shadowColor = UIColor.shadow.cgColor
-        shadowLayer!.shadowOffset = CGSize(width: 9.0, height: 6.0)
-        layer.insertSublayer(shadowLayer!, at: 0)
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.7
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        contentView.layer.shadowRadius = 10
+        contentView.layer.shouldRasterize = true
+        contentView.layer.rasterizationScale = UIScreen.main.scale
+    }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: corner).cgPath
     }
 }
 

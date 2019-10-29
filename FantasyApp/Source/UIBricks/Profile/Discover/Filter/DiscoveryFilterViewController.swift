@@ -13,14 +13,13 @@ import RxCocoa
 
 import SmoothPicker
 
+
 class DiscoveryFilterViewController: UIViewController, MVVM_View {
     
     var viewModel: DiscoveryFilterViewModel!
 
     // City section
-    @IBOutlet weak var tutorialView: UIView!
-
-    // City section
+    @IBOutlet weak var citySectionView: UIView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var activeCityImageView: UIImageView!
 
@@ -29,13 +28,14 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     @IBOutlet weak var partnerSexualityPicker: SmoothPickerView!
     @IBOutlet weak var ageSlider: MultiSlider! {
         didSet {
+            ageSlider.thumbImage = R.image.sliderThumbImage()
             ageSlider.orientation = .horizontal
             ageSlider.valueLabelPosition = .bottom
-            ageSlider.minimumValue = 0.0
+            ageSlider.minimumValue = 21.0
             ageSlider.maximumValue = 100.0
             ageSlider.snapStepSize = 1.0
             ageSlider.trackWidth = 2
-            ageSlider.showsThumbImageShadow = true
+            ageSlider.showsThumbImageShadow = false
             ageSlider.keepsDistanceBetweenThumbs = true
             ageSlider.outerTrackColor = R.color.listBackgroundColor()
             ageSlider.tintColor = R.color.textPinkColor()
@@ -45,10 +45,10 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
     // Couple section
     @IBOutlet weak var secondPartnerSwitch: UISwitch! {
-           didSet {
-               secondPartnerSwitch.onTintColor = R.color.textPinkColor()
-           }
-       }
+        didSet {
+            secondPartnerSwitch.onTintColor = R.color.textPinkColor()
+        }
+    }
 
     // Second partner section
     @IBOutlet weak var secondPartnerBodyPicker: SmoothPickerView!
@@ -67,11 +67,9 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
         view.addFantasyTripleGradient()
 
-        if viewModel.showCancelButton {
-            let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
-            item.applyFantasyAttributes()
-            navigationItem.rightBarButtonItem = item
-        }
+        let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
+        item.applyFantasyAttributes()
+        navigationItem.rightBarButtonItem = item
 
         secondPartnerSwitch.isOn = viewModel.isCouple
         partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
@@ -96,7 +94,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         }).disposed(by: rx.disposeBag)
 
         // Output Data bindings
-
         viewModel.community
             .map { $0?.name }
             .drive(onNext: { [unowned self] (name) in
@@ -104,22 +101,16 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
                 self.activeCityImageView.image = name != nil ? R.image.cityCheckImage() : nil
             })
             .disposed(by: rx.disposeBag)
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        viewModel.showLocationSection
+            .map { !$0 }
+            .drive(citySectionView.rx.isHidden)
+        .disposed(by: rx.disposeBag)
 
-        if viewModel.showTutorial {
-
-            guard let v = self.navigationController?.view else { return }
-
-            v.addSubview(self.tutorialView)
-
-            tutorialView.snp.makeConstraints { (make) in
-                make.edges.equalToSuperview()
-            }
-
-            viewModel.updateTutorial(true)
+        // apply text color and fonts to slider labels
+        ageSlider.valueLabels.forEach {
+            $0.font = UIFont.regularFont(ofSize: 15)
+            $0.textColor = R.color.textBlackColor()
         }
     }
 }
@@ -143,14 +134,6 @@ extension DiscoveryFilterViewController {
     
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
-    }
-
-    @IBAction func tutorialClose(_ sender: Any) {
-        tutorialView.removeFromSuperview()
-    }
-
-    @IBAction func tutorialGotIt(_ sender: Any) {
-        tutorialView.removeFromSuperview()
     }
 }
 

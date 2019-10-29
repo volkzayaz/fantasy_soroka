@@ -36,7 +36,7 @@ class FantasyCameraViewController: UIViewController {
 
         super.viewDidLoad()
 
-        captureSession.sessionPreset = AVCaptureSession.Preset.medium
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
 
         configureInput()
 
@@ -149,10 +149,10 @@ extension FantasyCameraViewController: AVCapturePhotoCaptureDelegate {
             return
         }
 
-        FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
-//            self.navigationController?.dismiss(animated: true, completion: {
-                    c(image)
-//            })
+        let fixedOrientationImage = image.fixedOrientation()
+        FantasyPhotoEditorViewController.present(on: self, image: fixedOrientationImage) { [unowned self] (image) in
+            c(image)
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
 

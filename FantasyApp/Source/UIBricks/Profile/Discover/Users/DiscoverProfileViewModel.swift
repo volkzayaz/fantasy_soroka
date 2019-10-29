@@ -114,16 +114,19 @@ extension DiscoverProfileViewModel {
         router.presentProfile(profile)
     }
     
-    func presentFilter(_ mode: FilterMode) {
-        router.presentFilter(mode)
+    func presentFilter() {
+        router.presentFilter()
     }
 
     func inviteFriends() {
-
+        router.invite(
+            ["SEXUAL WELLNESS FOR YOUR MIND",
+             NSURL(string: "https://fantasy.test-app.link/yGM6FT9n80")!
+        ])
     }
 
     func joinActiveCity() {
-
+        router.openTeleport()
     }
 
     // Location

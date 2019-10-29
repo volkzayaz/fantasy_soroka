@@ -18,7 +18,7 @@ extension RoomManager {
     
     static func sendMessage(_ message: Room.Message, to room: Room) -> Single<Void> {
         
-        PushManager.sendPush(to: room.peer.userId!, text: "\(room.peer.userSlice.name) sent you a message" )
+        PushManager.sendPush(to: room.peer.userId!, text: "\(User.current!.bio.name) sent you a message" )
         
         return message.rxCreate().map { _ in }
     }
@@ -32,7 +32,6 @@ extension RoomManager {
 
         return query.rx.fetchAll()
     }
-
 
     static func getAllRooms() -> Single<[Room]> {
         
@@ -95,7 +94,7 @@ extension RoomManager {
     }
     
     static func deleteRoom(_ roomId: String) -> Single<Void> {
-        return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
+        return DeleteRoomResource(roomId: roomId).rx.request.map { _ in }
     }
     
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {

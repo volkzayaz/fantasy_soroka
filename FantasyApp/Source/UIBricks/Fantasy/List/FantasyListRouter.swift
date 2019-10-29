@@ -10,7 +10,7 @@ import UIKit
 
 struct FantasyListRouter : MVVM_Router {
     
-    unowned private(set) var owner: FantasyListViewController
+    unowned let owner: FantasyListViewController
     init(owner: FantasyListViewController) {
         self.owner = owner
     }
@@ -18,8 +18,10 @@ struct FantasyListRouter : MVVM_Router {
     func cardTapped(card: Fantasy.Card) {
         
         let vc = R.storyboard.fantasyCard.fantasyDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), card: card, shouldDecrement: false)
-        owner.navigationController?.pushViewController(vc, animated: true)
+        vc.viewModel = .init(router: .init(owner: vc), card: card, shouldDecrement: true)
+        vc.modalPresentationStyle = .overFullScreen
+        vc.transitioningDelegate = owner
+        owner.navigationController?.present(vc, animated: true, completion: nil)
         
     }
     

@@ -19,7 +19,7 @@ struct MainTabBarRouter : MVVM_Router {
         
         owner.selectedIndex = 2
         let notificationController = (owner.viewControllers![2] as! UINavigationController).viewControllers.first! as! ConnectionViewController
-        notificationController.viewModel.router.show(room: room, page: .settings)
+        notificationController.viewModel.router.show(room: room, page: .chat)
         
     }
     

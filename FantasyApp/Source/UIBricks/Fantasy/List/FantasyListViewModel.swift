@@ -28,14 +28,18 @@ extension FantasyListViewModel {
 struct FantasyListViewModel : MVVM_ViewModel {
     
     fileprivate let cards: Driver<[Fantasy.Card]>
+    let title: String
+    
+    let animator = FantasyDetailsTransitionAnimator()
     
     init(router: FantasyListRouter, cards: [Fantasy.Card]) {
-        self.init(router: router, cardsProvider: .just(cards))
+        self.init(router: router, cardsProvider: .just(cards), title: "")
     }
     
-    init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>) {
+    init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>, title: String) {
         self.router = router
         self.cards = cardsProvider
+        self.title = title
         
         /////progress indicator
         
@@ -54,7 +58,8 @@ struct FantasyListViewModel : MVVM_ViewModel {
 
 extension FantasyListViewModel {
     
-    func cardTapped(card: Fantasy.Card) {
+    func cardTapped(card: Fantasy.Card, sourceFrame: CGRect) {
+        animator.sourceFrame = sourceFrame
         router.cardTapped(card: card)
     }
 

@@ -10,6 +10,7 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 extension MainTabBarViewModel {
     
@@ -31,6 +32,15 @@ extension MainTabBarViewModel {
         
     }
  
+    var profileTabImage: Driver<UIImage> {
+        return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL ?? "" }
+            .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0) }
+            .map { $0 ?? R.image.noPhoto()! }
+            .map { RoundCornerImageProcessor(cornerRadius: 15, targetSize: .init(width: 30, height: 30))
+                .process(item: ImageProcessItem.image($0), options: [])! }
+            .map { $0.withRenderingMode(.alwaysOriginal) }
+    }
+    
 }
 
 struct MainTabBarViewModel : MVVM_ViewModel {

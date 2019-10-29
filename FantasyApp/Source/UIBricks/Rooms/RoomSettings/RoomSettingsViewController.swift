@@ -72,6 +72,24 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
+            .subscribe(onNext: { [unowned self] (x) in
+                
+                if case .user(_, let participant) = x {
+                    self.viewModel.showParticipant(participant: participant)
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        view.roundCorners([.topLeft, .topRight], radius: 20)
+        
+        
     }
 }
 

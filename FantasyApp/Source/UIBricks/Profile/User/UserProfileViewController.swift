@@ -117,6 +117,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
             scrollableBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
     }
+    @IBOutlet weak var optionsButton: UIButton!
     
     @IBOutlet weak var actionContainer: UIView! {
         didSet {
@@ -130,13 +131,19 @@ class UserProfileViewController: UIViewController, MVVM_View {
         }
     }
     
-    private var avaliableSheetActions: [(String, () -> Void)] = []
+    private var avaliableSheetActions: [(String, () -> Void)] = [] {
+        didSet {
+            optionsButton.isHidden = avaliableSheetActions.count == 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         profileTableView.rx.contentOffset
-            .map { CGPoint(x: $0.x, y: -1 * ($0.y - 44)) }
+            .map { [unowned self] offset in
+                return CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top))
+            }
             .subscribe(onNext: { [unowned self] (x) in
                 
                 self.scrollableBackground.frame = .init(origin: x,

@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 
 class RegistrationViewController: UIViewController, MVVM_View {
+    var imagePicker: FantasyImagePickerController?
+
     
     var viewModel: RegistrationViewModel!
 
@@ -23,10 +25,49 @@ class RegistrationViewController: UIViewController, MVVM_View {
             agrementBackgroundRoundedView.addFantasyRoundedCorners()
         }
     }
-    @IBOutlet private weak var agrementTextView: UITextView!
-    @IBOutlet private weak var agrementLabel: UILabel! {
+    @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementLabel.font = UIFont.regularFont(ofSize: 15)
+            agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+
+            let text = agrementTextView.text ?? ""
+            let attr = NSMutableAttributedString(attributedString: agrementTextView.attributedText)
+
+            attr.addAttributes([
+                .link : viewModel.reportUrl,
+                         .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com ")!))
+            agrementTextView.attributedText = attr
+            agrementTextView.font = UIFont.regularFont(ofSize: 15)
+            agrementTextView.textColor = R.color.textBlackColor()
+            agrementTextView.tintColor = R.color.textPinkColor()
+        }
+    }
+
+    @IBOutlet private weak var termsTextView: UITextView! {
+        didSet {
+            let text = "I agree to the Terms of Service, Privacy Policy and Fantasy Community Rules."
+            let attr = NSMutableAttributedString(string: text)
+
+            attr.addAttributes([
+                .link : viewModel.termsUrl,
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "Terms of Service")!))
+
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+
+            attr.addAttributes([
+                .link : viewModel.communityRulesUrl,
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "Fantasy Community Rules")!))
+
+            termsTextView.attributedText = attr
+            termsTextView.font = UIFont.regularFont(ofSize: 15)
+            termsTextView.textColor = R.color.textBlackColor()
+            termsTextView.tintColor = R.color.textBlackColor()
+            termsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
 
@@ -88,6 +129,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var sendingImageDescriptionLabel: UILabel!
     @IBOutlet private weak var uploadedPhotoImageView: UIImageView!
     @IBOutlet private weak var changeUploadedPhotoButton: UIButton!
+    @IBOutlet private weak var changeUploadedPhotoBottomButton: UIButton!
     @IBOutlet private weak var uploadPhotoProblemContainerView: UIView!
     @IBOutlet private weak var uploadPhotoSuccessContainerView: UIView!
     @IBOutlet private weak var uploadPhotoProblemImageView: UIImageView!
@@ -124,14 +166,22 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(emailValidationAlertView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        viewModel.agreementButtonHidden
+        // buttons management
+        viewModel.showContinueButton
             .map { !$0 }
             .drive(stepForwardButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        viewModel.agreementButtonHidden
+        viewModel.showAgreementButton
+             .map { !$0 }
             .drive(agrementButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
+
+        viewModel.showChangePhotoButton
+             .map { !$0 }
+            .drive(changeUploadedPhotoBottomButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        // --
 
         viewModel.forwardButtonEnabled
                .drive(agrementButton.rx.isEnabled)
@@ -203,7 +253,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
             let from = (n.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.origin.y
             
             let duration = n.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! CGFloat
-            
             return (duration, from - to)
         }
         
@@ -220,6 +269,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
                     self.buttonToKeybosrdConstraint.constant += delta
+
+                    let current = self.buttonToKeybosrdConstraint.constant
+                    self.buttonToKeybosrdConstraint.constant = current >= 20.0 ? current : 20.0
                     self.view.layoutIfNeeded()
                 })
             })
@@ -273,7 +325,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(genders)
             .bind(to: genderPickerView.rx.itemAttributedTitles) { _, item in
-                return NSAttributedString(string: item.rawValue,
+                return NSAttributedString(string: item.pretty,
                   attributes: [
                     NSAttributedString.Key.foregroundColor: UIColor.white,
                     NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
@@ -294,7 +346,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(genders)
             .bind(to: partnerBodyPickerView.rx.itemAttributedTitles) { _, item in
-                 return NSAttributedString(string: item.rawValue,
+                 return NSAttributedString(string: item.pretty,
                                  attributes: [
                                    NSAttributedString.Key.foregroundColor: UIColor.white,
                                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
@@ -335,9 +387,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.viewModel.confirmPasswordChanged(password: x ?? "")
             })
             .disposed(by: rx.disposeBag)
-
-        //// upload photo
-
     }
 }
 
@@ -371,7 +420,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
         }
         
     }
-    
+
     @IBAction func changePhoto(_ sender: Any) {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -383,11 +432,21 @@ extension RegistrationViewController: UIScrollViewDelegate {
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
-            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+
+            self.imagePicker = FantasyImagePickerController(presentationController: self) { [unowned self](image) in
                 FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
                     self.viewModel.photoSelected(photo: image)
                 }
+                self.imagePicker = nil
             }
+
+            self.imagePicker?.present()
+
+            //            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+//                FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
+//                    self.viewModel.photoSelected(photo: image)
+//                }
+//            }
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
@@ -400,10 +459,14 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
 
     @IBAction func changeUploadedPhotoButtonClick(_ sender: Any) {
-        viewModel.pickAnotherPhotoClick()
+//        viewModel.pickAnotherPhotoClick()
+        changePhoto(sender)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        guard scrollView == self.scrollView else { return }
+
         let x = scrollView.frame.size.width * (scrollView.contentOffset.x + scrollView.frame.size.width) / scrollView.contentSize.width
         progressWidthConstraint.constant = x
     }
@@ -419,6 +482,37 @@ private extension RegistrationViewController {
         picker.maximumDate = Date()
         picker.date = Date(timeIntervalSince1970: 0)
         birthdayTextField.inputView = picker
+        birthdayTextField.allowsEditingTextAttributes = false
     }
 
 }
+
+//MARK:- UITextFieldDelegate
+
+extension RegistrationViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.birthdayTextField {
+                   return false
+               }
+               return true
+    }
+}
+
+
+//MARK:- UITextViewDelegate
+
+extension RegistrationViewController: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+
+        guard UIApplication.shared.canOpenURL(URL) else {
+            return false
+        }
+
+        UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+        return true
+    }
+
+}
+

@@ -24,17 +24,34 @@ struct DiscoverProfileRouter : MVVM_Router {
         
     }
     
-    func presentFilter(_ mode: FilterMode) {
+    func presentFilter() {
         
         let x = R.storyboard.user.discoveryFilterViewController()!
-        x.viewModel = .init(router: .init(owner: x), mode: mode)
+        x.viewModel = .init(router: .init(owner: x))
 
         let nav = FantasyNavigationController(rootViewController: x)
         nav.modalPresentationStyle = .fullScreen
 
         owner.present(nav, animated: true, completion: nil)
-//        owner.navigationController?.pushViewController(x, animated: true)
-        
     }
-    
+
+    func openTeleport() {
+        let x = R.storyboard.user.teleportViewController()!
+        x.viewModel = .init(router: .init(owner: x), response: .directApplication)
+        owner.navigationController?.pushViewController(x, animated: true)
+    }
+
+
+    func invite(_ items: [Any]) {
+        
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: items, applicationActivities: nil)
+
+        activityViewController.popoverPresentationController?.sourceView = owner.view
+        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.unknown
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+
+        owner.present(activityViewController, animated: true, completion: nil)
+    }
+
 }
