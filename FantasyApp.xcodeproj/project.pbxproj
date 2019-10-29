@@ -293,7 +293,8 @@
 		84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE118B23413045007EAFE6 /* ChatInputView.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
-		B719B3E8235CF21000568D97 /* FantasyImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */; };
+		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
+		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
 		B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774AF23644F2D00A353CC /* UserCarouselView.swift */; };
 		B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B023644F2D00A353CC /* UserCarouselView.xib */; };
@@ -641,7 +642,8 @@
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
-		B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePicker.swift; sourceTree = "<group>"; };
+		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
+		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
 		B73774AF23644F2D00A353CC /* UserCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCarouselView.swift; sourceTree = "<group>"; };
 		B73774B023644F2D00A353CC /* UserCarouselView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCarouselView.xib; sourceTree = "<group>"; };
@@ -900,6 +902,7 @@
 				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
 				B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */,
 				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
+				B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2101,7 +2104,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */,
-				B719B3E7235CF21000568D97 /* FantasyImagePicker.swift */,
+				B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */,
 				B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */,
 			);
 			path = Camera;
@@ -2611,6 +2614,7 @@
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
 				84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
+				B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
 				849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */,
@@ -2645,7 +2649,7 @@
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,
 				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
-				B719B3E8235CF21000568D97 /* FantasyImagePicker.swift in Sources */,
+				B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */,
 				733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */,
 				73EBBA70234E046100B79121 /* PushManager.swift in Sources */,
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,

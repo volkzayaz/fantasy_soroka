@@ -24,7 +24,7 @@ private enum StoreKeys: String {
 extension Gender: SwipebleModel {
 
     var name: String {
-        return self.rawValue
+        return self.pretty
     }
 
    static func gender(by index: Int) -> Gender {
