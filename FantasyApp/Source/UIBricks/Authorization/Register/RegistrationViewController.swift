@@ -11,13 +11,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension StringProtocol {
-    func nsRange(from range: Range<Index>) -> NSRange {
-        return .init(range, in: self)
-    }
-}
-
 class RegistrationViewController: UIViewController, MVVM_View {
+    var imagePicker: FantasyImagePickerController?
+
     
     var viewModel: RegistrationViewModel!
 
@@ -31,15 +27,15 @@ class RegistrationViewController: UIViewController, MVVM_View {
     }
     @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+            agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
 
             let text = agrementTextView.text ?? ""
-            let attr = NSMutableAttributedString(string: text)
+            let attr = NSMutableAttributedString(attributedString: agrementTextView.attributedText)
 
             attr.addAttributes([
-                         .link : "mailto:report@fantasyapp.com",
+                .link : viewModel.reportUrl,
                          .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "report@fantasyapp.com")!))
+                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com ")!))
             agrementTextView.attributedText = attr
             agrementTextView.font = UIFont.regularFont(ofSize: 15)
             agrementTextView.textColor = R.color.textBlackColor()
@@ -133,6 +129,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var sendingImageDescriptionLabel: UILabel!
     @IBOutlet private weak var uploadedPhotoImageView: UIImageView!
     @IBOutlet private weak var changeUploadedPhotoButton: UIButton!
+    @IBOutlet private weak var changeUploadedPhotoBottomButton: UIButton!
     @IBOutlet private weak var uploadPhotoProblemContainerView: UIView!
     @IBOutlet private weak var uploadPhotoSuccessContainerView: UIView!
     @IBOutlet private weak var uploadPhotoProblemImageView: UIImageView!
@@ -169,14 +166,22 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(emailValidationAlertView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        viewModel.agreementButtonHidden
+        // buttons management
+        viewModel.showContinueButton
             .map { !$0 }
             .drive(stepForwardButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        viewModel.agreementButtonHidden
+        viewModel.showAgreementButton
+             .map { !$0 }
             .drive(agrementButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
+
+        viewModel.showChangePhotoButton
+             .map { !$0 }
+            .drive(changeUploadedPhotoBottomButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        // --
 
         viewModel.forwardButtonEnabled
                .drive(agrementButton.rx.isEnabled)
@@ -415,7 +420,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
         }
         
     }
-    
+
     @IBAction func changePhoto(_ sender: Any) {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -427,11 +432,21 @@ extension RegistrationViewController: UIScrollViewDelegate {
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
-            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+
+            self.imagePicker = FantasyImagePickerController(presentationController: self) { [unowned self](image) in
                 FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
                     self.viewModel.photoSelected(photo: image)
                 }
+                self.imagePicker = nil
             }
+
+            self.imagePicker?.present()
+
+            //            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
+//                FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
+//                    self.viewModel.photoSelected(photo: image)
+//                }
+//            }
         }))
 
         alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
@@ -444,10 +459,14 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
 
     @IBAction func changeUploadedPhotoButtonClick(_ sender: Any) {
-        viewModel.pickAnotherPhotoClick()
+//        viewModel.pickAnotherPhotoClick()
+        changePhoto(sender)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        guard scrollView == self.scrollView else { return }
+
         let x = scrollView.frame.size.width * (scrollView.contentOffset.x + scrollView.frame.size.width) / scrollView.contentSize.width
         progressWidthConstraint.constant = x
     }
@@ -486,8 +505,6 @@ extension RegistrationViewController: UITextFieldDelegate {
 extension RegistrationViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-
-//        guard textView == termsTextView else { return false }
 
         guard UIApplication.shared.canOpenURL(URL) else {
             return false

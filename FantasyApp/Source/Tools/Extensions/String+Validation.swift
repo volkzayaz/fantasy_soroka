@@ -16,5 +16,10 @@ extension String {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self)
     }
+}
 
+extension StringProtocol {
+    func nsRange(from range: Range<Index>) -> NSRange {
+        return .init(range, in: self)
+    }
 }

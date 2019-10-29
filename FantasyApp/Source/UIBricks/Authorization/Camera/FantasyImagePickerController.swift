@@ -8,27 +8,25 @@
 
 import UIKit
 
-class FantasyImagePicker: NSObject {
+class FantasyImagePickerController: NSObject {
 
-    fileprivate let pickerController: UIImagePickerController
     private weak var owner: UIViewController?
     private var completion: ((UIImage) -> Void)
 
-    static func galleryImagePicker(presentationController: UIViewController,  completion: @escaping (UIImage) -> Void) -> FantasyImagePicker {
-        let p = FantasyImagePicker(presentationController: presentationController, completion: completion)
-        p.pickerController.sourceType = .photoLibrary
-        return p
+    static func galleryImagePicker(presentationController: UIViewController,  completion: @escaping (UIImage) -> Void) {
+        let p = FantasyImagePickerController(presentationController: presentationController, completion: completion)
+        p.present()
     }
 
     public init(presentationController: UIViewController,  completion: @escaping (UIImage) -> Void) {
-
-        self.pickerController = UIImagePickerController()
         self.completion = completion
         self.owner = presentationController
         super.init()
     }
 
     public func present() {
+        let pickerController = UIImagePickerController()
+        pickerController.sourceType = .photoLibrary
         pickerController.allowsEditing = false
         pickerController.mediaTypes = ["public.image"]
         pickerController.modalPresentationStyle = .fullScreen
@@ -36,17 +34,17 @@ class FantasyImagePicker: NSObject {
 
         owner?.present(pickerController, animated: true)
     }
-
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
         controller.dismiss(animated: true) {
-            self.completion(image!)
+            guard let i = image else { return }
+            self.completion(i)
         }
     }
 }
 
 //MARK:- UIImagePickerControllerDelegate
 
-extension FantasyImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension FantasyImagePickerController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         pickerController(picker, didSelect: nil)
@@ -54,9 +52,10 @@ extension FantasyImagePicker: UIImagePickerControllerDelegate, UINavigationContr
 
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
+        guard let image = info[.originalImage] as? UIImage else {
             return pickerController(picker, didSelect: nil)
         }
         pickerController(picker, didSelect: image)
     }
 }
+

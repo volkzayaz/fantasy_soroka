@@ -42,9 +42,19 @@ extension RegistrationViewModel {
             .map { ($0.password?.count ?? 0) < 8 && ($0.password?.count ?? 0) > 0}
     }
 
-    var agreementButtonHidden: Driver<Bool> {
+    var showContinueButton: Driver<Bool> {
+        return Driver.combineLatest(showAgreementButton, showChangePhotoButton)
+            .map { !$0.0 && !$0.1 }
+    }
+
+    var showAgreementButton: Driver<Bool> {
         return step.asDriver()
-            .map { $0 != .notice }
+            .map { $0 == .notice }
+    }
+
+    var showChangePhotoButton: Driver<Bool> {
+        return Driver.merge([step.asDriver().map { $0 == .addingPhoto},
+                             showUploadPhotoProblem])
     }
 
 
@@ -106,7 +116,11 @@ extension RegistrationViewModel {
 
     var showNameLenghtAlert: Driver<Bool> {
         return form.asDriver().map { $0.name.count }
-            .map { $0 > 0 && $0 <= 2 }
+            .map { $0 > 0 && $0 <= 1 }
+    }
+
+    var reportUrl: String {
+        return "https://feedback.fantasyapp.com/"
     }
 
     var termsUrl: String {
@@ -205,14 +219,8 @@ extension RegistrationViewModel {
         // start photo uploading
         if step.value == .addingPhoto,
             let image = form.value.selectedPhoto {
-            photoChanged(photo: image)
+            photoSelected(photo: image)
         }
-    }
-    
-    func pickAnotherPhotoClick() {
-        updateForm { $0.selectedPhoto = nil }
-        back()
-        showUploadPhotoProblemVar.accept(false)
     }
     
     func backToSignIn() {
@@ -261,6 +269,13 @@ extension RegistrationViewModel {
         updateForm { $0.photo = nil }
         showUploadPhotoProblemVar.accept(false)
         updateForm { $0.selectedPhoto = photo }
+
+        if step.value == .addingPhoto {
+            photoChanged(photo: photo)
+            return
+        }
+
+        forward()
     }
     
     func photoChanged(photo: UIImage) {
@@ -268,6 +283,7 @@ extension RegistrationViewModel {
         ImageValidator.validate(image: photo)
             .subscribe(onSuccess: { (_) in
                 self.updateForm { $0.photo = photo }
+                self.showUploadPhotoProblemVar.accept(false)
             }, onError: { (Error) in
                 self.showUploadPhotoProblemVar.accept(true)
             })

@@ -12,14 +12,18 @@ import RxSwift
 import RxCocoa
 
 extension WelcomeViewModel {
-    
-    /** Reference binding drivers that are going to be used in the corresponding view
 
-     var text: Driver<String> {
-     return privateTextVar.asDriver().notNil()
-     }
+    var termsUrl: String {
+        return "https://fantasyapp.com/en/terms-and-conditions/"
+    }
 
-     */
+    var privacyUrl: String {
+        return "https://fantasyapp.com/en/privacy-policy/"
+    }
+
+    var communityRulesUrl: String {
+        return "https://fantasyapp.com/en/community-rules/"
+    }
 
 }
 
