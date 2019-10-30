@@ -18,7 +18,10 @@ extension RoomManager {
     
     static func sendMessage(_ message: Room.Message, to room: Room) -> Single<Void> {
         
-        PushManager.sendPush(to: room.peer.userId!, text: "\(User.current!.bio.name) sent you a message" )
+        if let id = room.peer.userId {
+            PushManager.sendPush(to: id,
+                                 text: "\(User.current!.bio.name) sent you a message" )
+        }
         
         return message.rxCreate().map { _ in }
     }
