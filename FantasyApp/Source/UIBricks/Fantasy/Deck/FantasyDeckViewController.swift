@@ -25,12 +25,12 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     }
     @IBOutlet weak var tinyCardImageView: UIImageView!
     
-    @IBOutlet weak var fanatasiesView: KolodaView! {
+    @IBOutlet weak var fantasiesView: KolodaView! {
         didSet {
-            fanatasiesView.dataSource = self
-            fanatasiesView.countOfVisibleCards = 3
-            fanatasiesView.delegate = self
-            fanatasiesView.backgroundCardsTopMargin = 0
+            fantasiesView.dataSource = self
+            fantasiesView.countOfVisibleCards = 3
+            fantasiesView.delegate = self
+            fantasiesView.backgroundCardsTopMargin = 0
         }
     }
     @IBOutlet weak var waitingView: UIView!
@@ -50,7 +50,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         viewModel.mode
             .drive(onNext: { [unowned self] mode in
                 self.waitingView.isHidden = mode == .swipeCards
-                self.fanatasiesView.isHidden = mode == .waiting
+                self.fantasiesView.isHidden = mode == .waiting
             })
             .disposed(by: rx.disposeBag)
         
@@ -68,19 +68,19 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         viewModel.cards
             .drive(onNext: { [unowned self] (newState) in
                 
-                let from = self.fanatasiesView.currentCardIndex
+                let from = self.fantasiesView.currentCardIndex
                 let internalState = self.cardsProxy.suffix(from: from)
                 
                 guard internalState.count == newState.count else {
                     self.cardsProxy = newState
-                    self.fanatasiesView.resetCurrentCardIndex()
+                    self.fantasiesView.resetCurrentCardIndex()
                     return
                 }
                 
                 for (new, old) in zip(newState, internalState) where new != old {
                     
                     self.cardsProxy = newState
-                    self.fanatasiesView.resetCurrentCardIndex()
+                    self.fantasiesView.resetCurrentCardIndex()
                     return
                      
                 }
@@ -154,7 +154,7 @@ private extension FantasyDeckViewController {
 extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
-        return nil
+        return FantasyDeckItemOverlayView()
     }
     
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -168,7 +168,7 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let card = cardsProxy[index]
         let view = FantasyDeckItemView(frame: koloda.bounds)
-        view.hasStory = !card.text.isEmpty
+        view.hasStory = !card.story.isEmpty
         view.isPaid = card.isPaid
         view.imageURL = card.imageURL
         
@@ -197,18 +197,21 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
 extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         animator.presenting = false
+
+        if let view = fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
+            view.animateAppearance()
+        }
+
         return animator
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let ratio = fanatasiesView.frame.height / FantasyDetailsViewController.minBackgroundImageHeight
-        let originFrame = CGRect(x: (UIScreen.main.bounds.width - (UIScreen.main.bounds.width * ratio)) / 2.0,
-                                 y: (UIScreen.main.bounds.height - (UIScreen.main.bounds.height * ratio)) / 2.0,
-                                 width: UIScreen.main.bounds.width * ratio,
-                                 height: UIScreen.main.bounds.height * ratio)
-
-        animator.originFrame = originFrame
+        animator.originFrame = fantasiesView.frame
         animator.presenting = true
+
+        if let view =  fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
+            view.animateDisappearance()
+        }
         
         return animator
     }

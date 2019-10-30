@@ -66,6 +66,50 @@ class FantasyDeckItemView: UIView {
         storyView.layer.cornerRadius = storyView.frame.height / 2.0
         gradientLayer.frame = bounds
     }
+
+    func animateDisappearance() {
+        storyView.alpha = 1.0
+        shareButton.alpha = 1.0
+        paidCardView.alpha = 1.0
+        UIView.animate(withDuration: 0.2,
+                       delay: FantasyDetailsTransitionAnimator.durationExpanding,
+                       options: .curveEaseIn,
+                       animations: {
+            self.storyView.alpha = 0.0
+            self.shareButton.alpha = 0.0
+            self.paidCardView.alpha = 0.0
+        })
+
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 1.0
+        animation.toValue = 0.0
+        animation.duration = 0.2
+        animation.beginTime = CACurrentMediaTime() + FantasyDetailsTransitionAnimator.durationExpanding
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        gradientLayer.add(animation, forKey: "fade")
+    }
+
+    func animateAppearance() {
+        storyView.alpha = 0.0
+        shareButton.alpha = 0.0
+        paidCardView.alpha = 0.0
+        UIView.animate(withDuration: 0.2,
+                       delay: FantasyDetailsTransitionAnimator.durationClosing,
+                       options: .curveEaseIn,
+                       animations: {
+            self.storyView.alpha = 1.0
+            self.shareButton.alpha = 1.0
+            self.paidCardView.alpha = 1.0
+        })
+
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 0.2
+        animation.beginTime = CACurrentMediaTime() + FantasyDetailsTransitionAnimator.durationClosing
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        gradientLayer.add(animation, forKey: "fade")
+    }
 }
 
 private extension FantasyDeckItemView {
@@ -129,7 +173,7 @@ private extension FantasyDeckItemView {
     }
 
     func configureStyling() {
-        layer.cornerRadius = 16.0
+        layer.cornerRadius = 14.0
         clipsToBounds = true
 
         imageView.contentMode = .scaleAspectFill

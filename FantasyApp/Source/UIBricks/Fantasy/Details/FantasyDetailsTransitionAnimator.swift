@@ -9,19 +9,26 @@
 import Foundation
 
 class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    private let durationExpanding = 0.4
-    private let durationClosing = 0.5
-
-    var sourceFrame: CGRect = .zero
+    static let durationExpanding = 0.4
+    static let durationClosing = 0.5
     
     var originFrame = CGRect.zero
     var presenting = true
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return presenting ? durationExpanding : durationClosing
+        return presenting ? FantasyDetailsTransitionAnimator.durationExpanding :
+            FantasyDetailsTransitionAnimator.durationClosing
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let ratio = originFrame.width / (UIScreen.main.bounds.width -
+            2.0 * FantasyDetailsViewController.backgroundImageMargin)
+        let width = originFrame.width + (2.0 * FantasyDetailsViewController.backgroundImageMargin * ratio)
+        let height = UIScreen.main.bounds.height * ratio
+        let originX = originFrame.origin.x - FantasyDetailsViewController.backgroundImageMargin * ratio
+        let originY = originFrame.origin.y - (height - originFrame.height) / 2.0
+        let sourceFrame = CGRect(x: originX, y: originY, width: width, height: height)
+
         let containerView = transitionContext.containerView
 
         guard let detailView = presenting ? transitionContext.view(forKey: .to)
@@ -29,8 +36,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
             return
         }
 
-        let initialFrame = presenting ? originFrame : detailView.frame
-        let finalFrame = presenting ? detailView.frame : originFrame
+        let initialFrame = presenting ? sourceFrame : detailView.frame
+        let finalFrame = presenting ? detailView.frame : sourceFrame
         let xScaleFactor = presenting ? initialFrame.width / finalFrame.width : finalFrame.width / initialFrame.width
         let yScaleFactor = presenting ? initialFrame.height / finalFrame.height : finalFrame.height / initialFrame.height
         let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
@@ -47,7 +54,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
 
         // background color animation
         UIView.animate(
-            withDuration: presenting ? durationExpanding : durationClosing,
+            withDuration: presenting ? FantasyDetailsTransitionAnimator.durationExpanding :
+                FantasyDetailsTransitionAnimator.durationClosing,
             delay: 0.0,
             options: presenting ? .curveEaseIn : .curveEaseOut,
             animations: {
@@ -57,7 +65,8 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
 
         // view transition
         UIView.animate(
-            withDuration: presenting ? durationExpanding : durationClosing,
+            withDuration: presenting ? FantasyDetailsTransitionAnimator.durationExpanding :
+                FantasyDetailsTransitionAnimator.durationClosing,
             delay: 0.0,
             usingSpringWithDamping: presenting ? 0.5 : 0.5,
             initialSpringVelocity: presenting ? 0.5 : 2.0,

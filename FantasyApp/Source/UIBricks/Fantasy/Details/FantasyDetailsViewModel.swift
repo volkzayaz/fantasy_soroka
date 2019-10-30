@@ -14,7 +14,7 @@ import RxDataSources
 
 extension FantasyDetailsViewModel {
     
-    var description: String { return card.text }
+    var description: String { return card.story }
     var dislikesCount: Int { return card.dislikes }
     var likesCount: Int { return card.likes }
     var imageURL: String { return card.imageURL }
@@ -70,16 +70,15 @@ extension FantasyDetailsViewModel {
             .silentCatch(handler: router.owner)
             .asDriver(onErrorJustReturn: [])
             .map { collections in
-                return [AnimatableSectionModel(model: "",
-                                               items: collections.map { collection in
+                let items = collections.filter { !$0.isPurchased }.map { collection in
+                        return CellModel.init(uid: UUID().uuidString,
+                                              isPaid: collection.productId != nil,
+                                              title: collection.title,
+                                              cardsCount: collection.cardsCount,
+                                              imageURL: collection.imageURL)
+                }
 
-                    return CellModel.init(uid: UUID().uuidString,
-                                          isPaid: collection.productId != nil,
-                                          title: collection.name,
-                                          cardsCount: collection.cardsCount,
-                                          imageURL: collection.imageURL)
-
-            })]
+                return [AnimatableSectionModel(model: "", items: items)]
         }
     }
     

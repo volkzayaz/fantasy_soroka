@@ -265,6 +265,7 @@
 		84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD0D22DCCD200026862E /* Avatar.swift */; };
 		84B8AD1022DCD5600026862E /* APIProvider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD0F22DCD5600026862E /* APIProvider+Rx.swift */; };
 		84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8AD1122DCD5800026862E /* ResponseProgress.swift */; };
+		84BE526E2367636C00FD362F /* FantasyDeckItemOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE526D2367636C00FD362F /* FantasyDeckItemOverlayView.swift */; };
 		84C1D0302327B95300648DE1 /* Sapiosexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0222327B95300648DE1 /* Sapiosexual.png */; };
 		84C1D0312327B95300648DE1 /* Lesbian.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0232327B95300648DE1 /* Lesbian.png */; };
 		84C1D0322327B95300648DE1 /* Transsexual.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0242327B95300648DE1 /* Transsexual.png */; };
@@ -612,6 +613,7 @@
 		84B8AD0D22DCCD200026862E /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		84B8AD0F22DCD5600026862E /* APIProvider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIProvider+Rx.swift"; sourceTree = "<group>"; };
 		84B8AD1122DCD5800026862E /* ResponseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProgress.swift; sourceTree = "<group>"; };
+		84BE526D2367636C00FD362F /* FantasyDeckItemOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckItemOverlayView.swift; sourceTree = "<group>"; };
 		84C1D0222327B95300648DE1 /* Sapiosexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sapiosexual.png; sourceTree = "<group>"; };
 		84C1D0232327B95300648DE1 /* Lesbian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lesbian.png; sourceTree = "<group>"; };
 		84C1D0242327B95300648DE1 /* Transsexual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Transsexual.png; sourceTree = "<group>"; };
@@ -1500,6 +1502,7 @@
 				7322310E23040DB6009DD37F /* FantasyDeckRouter.swift */,
 				7322310F23040DB6009DD37F /* FantasyDeckViewController.swift */,
 				846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */,
+				84BE526D2367636C00FD362F /* FantasyDeckItemOverlayView.swift */,
 				7322311023040DB6009DD37F /* FantasyDeckViewModel.swift */,
 				733F41D223660397004EC466 /* FantasyDeckProvider.swift */,
 			);
@@ -2564,6 +2567,7 @@
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
+				84BE526E2367636C00FD362F /* FantasyDeckItemOverlayView.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */,
 				84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */,
@@ -2829,7 +2833,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2842,9 +2846,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2873,6 +2878,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc";
@@ -2958,6 +2964,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc";
