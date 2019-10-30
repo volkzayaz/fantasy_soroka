@@ -113,4 +113,11 @@ extension FantasyDetailsViewController {
 
         animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: offsetY))
     }
+
+    func collapseStoryAnimated() {
+        animateContentOffsetChange(contentOffset: .zero)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.collapsedDescriptionHeight.isActive = true
+        }
+    }
 }

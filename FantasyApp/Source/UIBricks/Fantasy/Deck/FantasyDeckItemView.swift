@@ -173,7 +173,7 @@ private extension FantasyDeckItemView {
     }
 
     func configureStyling() {
-        layer.cornerRadius = 14.0
+        layer.cornerRadius = 23.0
         clipsToBounds = true
 
         imageView.contentMode = .scaleAspectFill

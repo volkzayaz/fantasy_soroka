@@ -77,9 +77,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         viewModel.collectionsCountText.drive(collectionsCountLabel.rx.attributedText).disposed(by: rx.disposeBag)
         
         viewModel.cards.drive(onNext: { [unowned self] (newState) in
-            self.cardsButton.isEnabled = true
-            self.collectionsButton.isEnabled = true
-
             let from = self.fantasiesView.currentCardIndex
             let internalState = self.cardsProxy.suffix(from: from)
 
@@ -177,11 +174,9 @@ private extension FantasyDeckViewController {
         collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
         collectionsButton.mode = .selector
         collectionsButton.isSelected = false
-        collectionsButton.isEnabled = false
         cardsButton.setTitle(R.string.localizable.fantasyDeckCardsButton(), for: .normal)
         cardsButton.mode = .selector
         cardsButton.isSelected = true
-        cardsButton.isEnabled = false
 
         waitingView.roundCorners([.topLeft, .topRight], radius: 20.0)
         waitingView.backgroundColor = .primary
