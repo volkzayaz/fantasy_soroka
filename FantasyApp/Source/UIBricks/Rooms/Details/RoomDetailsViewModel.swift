@@ -10,6 +10,19 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+extension RoomDetailsViewModel {
+    
+    var title: String {
+        
+        guard let peer = room.participants.first(where: { $0.userId != User.current?.id }), peer.userId != nil else {
+            return "Draft Room"
+        }
+        
+        return "Room with \(peer.userSlice.name)"
+    }
+    
+}
+
 struct RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
         case fantasies

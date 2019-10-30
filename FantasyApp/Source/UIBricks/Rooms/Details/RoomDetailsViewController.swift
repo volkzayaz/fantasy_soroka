@@ -27,6 +27,8 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
+        
+        navigationItem.title = viewModel.title
     }
 
     override func viewDidAppear(_ animated: Bool) {
