@@ -35,14 +35,17 @@ class RoomsViewController: UIViewController, MVVM_View {
         cell.set(model: model)
             
         return cell
-    }, titleForHeaderInSection: { dataSource, index in
-        return dataSource.sectionModels[index].model
-    })
+    }
+//        , titleForHeaderInSection: { dataSource, index in
+//        return dataSource.sectionModels[index].model
+//    }
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addFantasyGradient()
+        navigationItem.title = "Rooms"
         
         configure()
     }

@@ -47,7 +47,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     @IBOutlet weak var collectionView: UICollectionView!
 
     lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource
-        <AnimatableSectionModel<String, FantasyCollectionCellModel>>(
+    <AnimatableSectionModel<String, Fantasy.Collection>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
             let cell = self.collectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
@@ -56,7 +56,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             cell.fantasiesCount = model.cardsCount
             cell.imageURL = model.imageURL
             cell.title = model.title
-            cell.isPaid = model.isPaid
+            cell.isPaid = model.productId != nil
 
             return cell
         }
@@ -119,7 +119,20 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(collectionView.rx.items(dataSource: collectionsDataSource))
             .disposed(by: rx.disposeBag)
 
-        configureCollectionViewLayout()
+        collectionView.rx.modelSelected(Fantasy.Collection.self)
+            .subscribe(onNext: { [unowned self] (x) in
+                self.viewModel.show(collection: x)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let margin: CGFloat = 10.0
+        let width = (collectionView.frame.size.width - margin) / 2.0
+        layout.itemSize = CGSize(width: width,
+                                 height: width / Fantasy.LayoutConstants.cardAspectRatio)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10.0
+
         configureStyling()
     }
     

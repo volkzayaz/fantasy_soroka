@@ -13,17 +13,9 @@ import RxDataSources
 
 extension FantasyDeckViewModel {
 
-    var collectionsDataSource: Driver<[AnimatableSectionModel<String, FantasyCollectionCellModel>]> {
+    var collectionsDataSource: Driver<[AnimatableSectionModel<String, Fantasy.Collection>]> {
         return collectionsTrigger.asDriver().map { collections in
-            let items = collections.filter { !$0.isPurchased }.map { collection in
-                    return FantasyCollectionCellModel.init(uid: UUID().uuidString,
-                                                           isPaid: collection.productId != nil,
-                                                           title: collection.title,
-                                                           cardsCount: collection.cardsCount,
-                                                           imageURL: collection.imageURL)
-            }
-
-            return [AnimatableSectionModel(model: "", items: items)]
+            return [AnimatableSectionModel(model: "", items: collections.filter { !$0.isPurchased })]
         }
     }
     
@@ -114,7 +106,11 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
 
-        loadCollections()
+        Fantasy.Manager.fetchCollections()
+            .silentCatch(handler: router.owner)
+            .bind(to: collectionsTrigger)
+            .disposed(by: bag)
+
     }
     
     let router: FantasyDeckRouter
@@ -142,12 +138,8 @@ extension FantasyDeckViewModel {
         router.cardTapped(card: card)
     }
 
-    func loadCollections() {
-        Fantasy.Manager.fetchCollections()
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { collections in
-                self.collectionsTrigger.accept(collections)
-            })
-            .disposed(by: bag)
+    func show(collection: Fantasy.Collection) {
+        router.show(collection: collection)
     }
+    
 }

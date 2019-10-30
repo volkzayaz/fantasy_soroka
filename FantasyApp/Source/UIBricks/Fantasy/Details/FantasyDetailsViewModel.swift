@@ -19,6 +19,15 @@ extension FantasyDetailsViewModel {
     var likesCount: Int { return card.likes }
     var imageURL: String { return card.imageURL }
 
+    var collectionsDataSource: Driver<[AnimatableSectionModel<String, Fantasy.Collection>]> {
+        return Fantasy.Manager.fetchCollections()
+            .silentCatch(handler: router.owner)
+            .asDriver(onErrorJustReturn: [])
+            .map { collections in
+                return [AnimatableSectionModel(model: "", items: collections.filter { !$0.isPurchased })]
+        }
+    }
+    
 }
 
 struct FantasyDetailsViewModel: MVVM_ViewModel {
@@ -45,29 +54,23 @@ struct FantasyDetailsViewModel: MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 
-    private func determineFlipUpAction() {
+    struct CellModel: IdentifiableType, Equatable {
+        var identity: String {
+            return uid
+        }
 
+        let uid: String
+        let isPaid: Bool
+        let title: String
+        let cardsCount: Int
+        let imageURL: String
+        
+        let collection: Fantasy.Collection
     }
     
 }
 
 extension FantasyDetailsViewModel {
-    var collectionsDataSource: Driver<[AnimatableSectionModel<String, FantasyCollectionCellModel>]> {
-        return Fantasy.Manager.fetchCollections()
-            .silentCatch(handler: router.owner)
-            .asDriver(onErrorJustReturn: [])
-            .map { collections in
-                let items = collections.filter { !$0.isPurchased }.map { collection in
-                        return FantasyCollectionCellModel.init(uid: UUID().uuidString,
-                                                               isPaid: collection.productId != nil,
-                                                               title: collection.title,
-                                                               cardsCount: collection.cardsCount,
-                                                               imageURL: collection.imageURL)
-                }
-
-                return [AnimatableSectionModel(model: "", items: items)]
-        }
-    }
     
     func likeCard() {
         var reaction = currentState.value
@@ -106,4 +109,9 @@ extension FantasyDetailsViewModel {
     func close() {
         router.close()
     }
+    
+    func show(collection: Fantasy.Collection) {
+        router.show(collection: collection)
+    }
+    
 }

@@ -31,7 +31,14 @@ struct RoomDetailsRouter: MVVM_Router {
         let vc = R.storyboard.fantasyCard.fantasiesViewController()!
         vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
                                             provider: RoomsDeckProvider(room: room))
+        
         owner.navigationController?.pushViewController(vc, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            vc.collectionsButton.isHidden = true
+            vc.cardsButton.isHidden = true
+            vc.title = "Fantasies with \(room.peer.userSlice.name)"
+        }
         
     }
 
@@ -44,4 +51,5 @@ struct RoomDetailsRouter: MVVM_Router {
         owner.addChild(viewController)
         viewController.didMove(toParent: owner)
     }
+    
 }

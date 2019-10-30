@@ -21,7 +21,20 @@ struct FantasyDeckRouter : MVVM_Router {
         vc.viewModel = .init(router: .init(owner: vc), card: card, shouldDecrement: true)
         vc.modalPresentationStyle = .overFullScreen
         vc.transitioningDelegate = owner
+        
         owner.navigationController?.present(vc, animated: true, completion: nil)
         
     }
+    
+    func show(collection: Fantasy.Collection) {
+        
+        let vc = R.storyboard.fantasyCard.fantasyCollectionDetailsViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), collection: collection)
+        let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
+        
+    }
+    
 }

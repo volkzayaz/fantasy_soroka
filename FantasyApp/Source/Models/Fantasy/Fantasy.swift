@@ -85,7 +85,6 @@ extension Fantasy {
         let whatsInside: String
         let imageURL: String
         let cardsCount: Int
-        
         let isPurchased: Bool
         let productId: String? ///absence of ProductID means product is free
         
