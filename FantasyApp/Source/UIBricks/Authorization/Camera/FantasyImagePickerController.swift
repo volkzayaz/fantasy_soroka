@@ -55,7 +55,10 @@ extension FantasyImagePickerController: UIImagePickerControllerDelegate, UINavig
         guard let image = info[.originalImage] as? UIImage else {
             return pickerController(picker, didSelect: nil)
         }
-        pickerController(picker, didSelect: image)
+
+        let fixedOrientationImage = image.fixedOrientation()
+
+        pickerController(picker, didSelect: fixedOrientationImage)
     }
 }
 
