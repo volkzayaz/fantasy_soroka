@@ -679,7 +679,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl3-8M-dDU">
-                                <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <state key="normal" image="profileBack"/>
                                 <connections>
                                     <action selector="popBack:" destination="OfO-JC-MZH" eventType="touchUpInside" id="Gt4-oZ-BQk"/>
@@ -1164,7 +1164,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy3-0H-x0L">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
+                                        <rect key="frame" x="0.0" y="16" width="375" height="608"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The daily limit has been reached" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDI-4a-eZ1">
                                                 <rect key="frame" x="87.5" y="36" width="200" height="43"/>
@@ -1176,7 +1176,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tt-tc-sIf">
-                                                <rect key="frame" x="20" y="202.5" width="335" height="219.5"/>
+                                                <rect key="frame" x="20" y="194.5" width="335" height="219.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8af-bQ-cKA">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="219.5"/>
@@ -1235,7 +1235,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Cy3-0H-x0L" secondAttribute="trailing" id="2L8-kj-Apf"/>
                                     <constraint firstAttribute="trailing" secondItem="83H-HO-uhm" secondAttribute="trailing" constant="36" id="NSP-if-EVT"/>
-                                    <constraint firstItem="Cy3-0H-x0L" firstAttribute="top" secondItem="HPK-WY-9qU" secondAttribute="top" id="cSO-zC-9wP"/>
+                                    <constraint firstItem="Cy3-0H-x0L" firstAttribute="top" secondItem="HPK-WY-9qU" secondAttribute="top" constant="16" id="cSO-zC-9wP"/>
                                     <constraint firstItem="83H-HO-uhm" firstAttribute="leading" secondItem="HPK-WY-9qU" secondAttribute="leading" constant="36" id="heV-wN-FjQ"/>
                                     <constraint firstAttribute="bottom" secondItem="Cy3-0H-x0L" secondAttribute="bottom" id="j0p-p2-2Hg"/>
                                     <constraint firstItem="83H-HO-uhm" firstAttribute="centerY" secondItem="HPK-WY-9qU" secondAttribute="centerY" id="v2u-sq-c59"/>
