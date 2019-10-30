@@ -280,6 +280,7 @@ private extension FantasyDetailsViewController {
         if isZoomed {
             isZoomingBlocked = false
             animateUnzoom()
+            configureNavigationBarButtons()
         } else {
             animateDisappearance()
         }
@@ -288,6 +289,7 @@ private extension FantasyDetailsViewController {
     @IBAction func zoomCard(_ sender: Any) {
         isZoomingBlocked = true
         animateZoom()
+        configureNavigationBarButtons()
     }
 
     @IBAction func expandOrCollapseStory(_ sender: UIButton) {
