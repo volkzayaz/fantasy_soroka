@@ -52,30 +52,17 @@ struct FantasyDetailsViewModel: MVVM_ViewModel {
 }
 
 extension FantasyDetailsViewModel {
-
-    struct CellModel: IdentifiableType, Equatable {
-        var identity: String {
-            return uid
-        }
-
-        let uid: String
-        let isPaid: Bool
-        let title: String
-        let cardsCount: Int
-        let imageURL: String
-    }
-
-    var collectionsDataSource: Driver<[AnimatableSectionModel<String, CellModel>]> {
+    var collectionsDataSource: Driver<[AnimatableSectionModel<String, FantasyCollectionCellModel>]> {
         return Fantasy.Manager.fetchCollections()
             .silentCatch(handler: router.owner)
             .asDriver(onErrorJustReturn: [])
             .map { collections in
                 let items = collections.filter { !$0.isPurchased }.map { collection in
-                        return CellModel.init(uid: UUID().uuidString,
-                                              isPaid: collection.productId != nil,
-                                              title: collection.title,
-                                              cardsCount: collection.cardsCount,
-                                              imageURL: collection.imageURL)
+                        return FantasyCollectionCellModel.init(uid: UUID().uuidString,
+                                                               isPaid: collection.productId != nil,
+                                                               title: collection.title,
+                                                               cardsCount: collection.cardsCount,
+                                                               imageURL: collection.imageURL)
                 }
 
                 return [AnimatableSectionModel(model: "", items: items)]

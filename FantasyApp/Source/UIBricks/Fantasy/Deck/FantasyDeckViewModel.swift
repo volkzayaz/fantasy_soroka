@@ -7,15 +7,30 @@
 //
 
 import Foundation
-
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 extension FantasyDeckViewModel {
+
+    var collectionsDataSource: Driver<[AnimatableSectionModel<String, FantasyCollectionCellModel>]> {
+        return collectionsTrigger.asDriver().map { collections in
+            let items = collections/*.filter { !$0.isPurchased }*/.map { collection in
+                    return FantasyCollectionCellModel.init(uid: UUID().uuidString,
+                                                           isPaid: collection.productId != nil,
+                                                           title: collection.title,
+                                                           cardsCount: collection.cardsCount,
+                                                           imageURL: collection.imageURL)
+            }
+
+            return [AnimatableSectionModel(model: "", items: items)]
+        }
+    }
     
     enum Mode {
         case swipeCards, waiting
     }
+
     var mode: Driver<Mode> {
         return provider.cardsChange
             .map { state in
@@ -27,7 +42,7 @@ extension FantasyDeckViewModel {
             }
     }
     
-    var timeLeftText: Driver<String> {
+    var timeLeftText: Driver<NSAttributedString> {
         
         return provider.cardsChange
             .map { x -> Date? in
@@ -40,11 +55,30 @@ extension FantasyDeckViewModel {
             .flatMapLatest { date in
         
                 return Driver<Int>.interval(.seconds(1)).map { _ in
-                    return date.toTimerString()
+                    let string = date.toTimeLeftString()
+                    let attributedString = NSMutableAttributedString(string: string)
+                    attributedString.addAttribute(.foregroundColor,
+                                                  value: UIColor.fantasyPink,
+                                                  range: (string as NSString).range(of: string))
+                    return attributedString
                 }
                 
             }
         
+    }
+
+    var collectionsCountText: Driver<NSAttributedString> {
+        return collectionsTrigger.asDriver().map { collections in
+            let count = collections/*.filter { !$0.isPurchased }*/.count
+            let string = R.string.localizable.fantasyDeckCollectionsCount(count)
+            let attributedString = NSMutableAttributedString(string: string)
+            attributedString.addAttribute(
+                .foregroundColor,
+                value: UIColor.fantasyPink,
+                range: (string as NSString).range(of: "\(count)")
+            )
+            return attributedString
+        }
     }
     
     var cards: Driver<[Fantasy.Card]> {
@@ -68,18 +102,19 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     let provider: FantasyDeckProvier
 
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
+    fileprivate let collectionsTrigger = BehaviorRelay<[Fantasy.Collection]>(value: [])
     
     init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
         self.router = router
         self.provider = provider
-        
-        /////progress indicator
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+
+        loadCollections()
     }
     
     let router: FantasyDeckRouter
@@ -92,17 +127,27 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
 extension FantasyDeckViewModel {
     
     enum SwipeDirection { case left, right, down }
+
     func swiped(card: Fantasy.Card, direction: SwipeDirection) {
         provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
             x.accept(card)
         }
     }
-    
-    func searchTapped() {
-        router.searchTapped()
+
+    func subscribeTapped() {
+
     }
     
     func cardTapped(card: Fantasy.Card) {
         router.cardTapped(card: card)
+    }
+
+    func loadCollections() {
+        Fantasy.Manager.fetchCollections()
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { collections in
+                self.collectionsTrigger.accept(collections)
+            })
+            .disposed(by: bag)
     }
 }

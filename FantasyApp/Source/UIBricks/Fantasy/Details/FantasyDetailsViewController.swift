@@ -73,7 +73,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     private var isFirstAppearance = true
 
     lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource
-        <AnimatableSectionModel<String, FantasyDetailsViewModel.CellModel>>(
+        <AnimatableSectionModel<String, FantasyCollectionCellModel>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
             let cell = self.collectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,

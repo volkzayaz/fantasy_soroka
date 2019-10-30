@@ -219,8 +219,6 @@
 		843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 843B648A234EAC4600E5639B /* FantasyApp.entitlements */; };
 		843B648F234F197B00E5639B /* RoomSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B648E234F197B00E5639B /* RoomSettingsViewModel.swift */; };
 		843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6490234F198500E5639B /* RoomSettingsViewController.swift */; };
-		843B6494235051DA00E5639B /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843B649223504DE000E5639B /* ScreenShieldKit.framework */; };
-		843B6495235051DA00E5639B /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 843B649223504DE000E5639B /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		843CF712234246900098C196 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */; };
 		843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF715234249420098C196 /* TimeSeparatorModel.swift */; };
 		843CF71823424AE00098C196 /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */; };
@@ -292,6 +290,8 @@
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 		84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE118B23413045007EAFE6 /* ChatInputView.swift */; };
+		84F94E102369853A00BC8C51 /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */; };
+		84F94E112369853A00BC8C51 /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -339,7 +339,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				843B6495235051DA00E5639B /* ScreenShieldKit.framework in Embed Frameworks */,
+				84F94E112369853A00BC8C51 /* ScreenShieldKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,7 +567,6 @@
 		843B648A234EAC4600E5639B /* FantasyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FantasyApp.entitlements; sourceTree = "<group>"; };
 		843B648E234F197B00E5639B /* RoomSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsViewModel.swift; sourceTree = "<group>"; };
 		843B6490234F198500E5639B /* RoomSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsViewController.swift; sourceTree = "<group>"; };
-		843B649223504DE000E5639B /* ScreenShieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenShieldKit.framework; sourceTree = "<group>"; };
 		843CF711234246900098C196 /* TimeSeparatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		843CF715234249420098C196 /* TimeSeparatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorModel.swift; sourceTree = "<group>"; };
 		843CF71723424AE00098C196 /* TimeSeparatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeparatorPresenter.swift; sourceTree = "<group>"; };
@@ -640,6 +639,7 @@
 		84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsRouter.swift; sourceTree = "<group>"; };
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
 		84EE118B23413045007EAFE6 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenShieldKit.framework; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -677,7 +677,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				843B6494235051DA00E5639B /* ScreenShieldKit.framework in Frameworks */,
+				84F94E102369853A00BC8C51 /* ScreenShieldKit.framework in Frameworks */,
 				23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -811,8 +811,8 @@
 		7312B05E22D7403300DB0F36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */,
 				7330FBA72358C630008C08CF /* ReusableUI */,
-				843B649223504DE000E5639B /* ScreenShieldKit.framework */,
 				7390015222E1E6F800260198 /* Redux */,
 				7312B07522D741D500DB0F36 /* UIBricks */,
 				7312B0B722D745DF00DB0F36 /* Managers */,
@@ -2829,7 +2829,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
@@ -2861,7 +2860,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
@@ -2947,7 +2945,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;

@@ -8,6 +8,19 @@
 
 import UIKit
 import RxSwift
+import RxDataSources
+
+struct FantasyCollectionCellModel: IdentifiableType, Equatable {
+    var identity: String {
+        return uid
+    }
+
+    let uid: String
+    let isPaid: Bool
+    let title: String
+    let cardsCount: Int
+    let imageURL: String
+}
 
 class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var imageView: UIImageView!

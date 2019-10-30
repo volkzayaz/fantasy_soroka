@@ -11,7 +11,23 @@ import Foundation
 extension Date {
 
     // MARK: - Formatters
-    private static let componentsFormatter = DateComponentsFormatter()
+    private static let timeAgoComponentsFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
+        formatter.maximumUnitCount = 1
+        formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
+
+        return formatter
+    }()
+
+    private static let timeLeftComponentsFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+
+        return formatter
+    }()
 
     private static let hoursAndMinutesDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -41,21 +57,15 @@ extension Date {
     }
 
     func toTimeAgoString() -> String {
-        let formatter = Date.componentsFormatter
-        formatter.unitsStyle = .short
-        formatter.maximumUnitCount = 1
-        formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
+        let formatter = Date.timeAgoComponentsFormatter
         let timeString = formatter.string(from: self, to: Date())
         
         return timeString != nil ? R.string.localizable.generalAgo(timeString!) :
             R.string.localizable.generalJustNow()
     }
 
-    func toTimerString() -> String {
-        let formatter = Date.componentsFormatter
-        formatter.unitsStyle = .positional
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.zeroFormattingBehavior = [.pad]
+    func toTimeLeftString() -> String {
+        let formatter = Date.timeLeftComponentsFormatter
 
         return formatter.string(from: timeIntervalSinceNow) ?? ""
     }

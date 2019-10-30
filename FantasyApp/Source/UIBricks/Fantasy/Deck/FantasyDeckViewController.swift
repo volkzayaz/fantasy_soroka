@@ -11,6 +11,7 @@ import Koloda
 import RxSwift
 import RxCocoa
 import SnapKit
+import RxDataSources
 
 class FantasyDeckViewController: UIViewController, MVVM_View {
 
@@ -33,82 +34,98 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             fantasiesView.backgroundCardsTopMargin = 0
         }
     }
+    @IBOutlet weak var cardsView: UIView!
+    @IBOutlet weak var collectionsView: UIView!
     @IBOutlet weak var waitingView: UIView!
     @IBOutlet weak var timeLimitDecsriptionLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
     @IBOutlet weak var subsbcriptionLabel: UILabel!
     @IBOutlet weak var subscribeButton: SecondaryButton!
+    @IBOutlet weak var cardsButton: PrimaryButton!
+    @IBOutlet weak var collectionsButton: PrimaryButton!
+    @IBOutlet weak var collectionsCountLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
 
-    
+    lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource
+        <AnimatableSectionModel<String, FantasyCollectionCellModel>>(
+        configureCell: { [unowned self] (_, tableView, indexPath, model) in
+            let cell = self.collectionView
+                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
+                                     for: indexPath)!
+
+            cell.fantasiesCount = model.cardsCount
+            cell.imageURL = model.imageURL
+            cell.title = model.title
+            cell.isPaid = model.isPaid
+
+            return cell
+        }
+    )
+
     ///TODO: refactor to RxColodaDatasource
     private var cardsProxy: [Fantasy.Card] = []
-    //private var selectedCardView:
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        viewModel.mode
-            .drive(onNext: { [unowned self] mode in
-                self.waitingView.isHidden = mode == .swipeCards
-                self.fantasiesView.isHidden = mode == .waiting
-            })
-            .disposed(by: rx.disposeBag)
+        viewModel.mode.drive(onNext: { [unowned self] mode in
+            self.waitingView.isHidden = mode == .swipeCards
+            self.fantasiesView.isHidden = mode == .waiting
+        }).disposed(by: rx.disposeBag)
         
-        viewModel.timeLeftText
-            .drive(onNext: { [weak self] text in
-                let string = R.string.localizable.fantasyDeckTimeLeftLabel(text)
-                let attributedString = NSMutableAttributedString(string: string)
-                attributedString.addAttribute(.foregroundColor,
-                                              value: UIColor.fantasyPink,
-                                              range: (string as NSString).range(of: text))
-                self?.timeLeftLabel.attributedText = attributedString
-            })
-            .disposed(by: rx.disposeBag)
+        viewModel.timeLeftText.drive(timeLeftLabel.rx.attributedText).disposed(by: rx.disposeBag)
+        viewModel.collectionsCountText.drive(collectionsCountLabel.rx.attributedText).disposed(by: rx.disposeBag)
         
-        viewModel.cards
-            .drive(onNext: { [unowned self] (newState) in
-                
-                let from = self.fantasiesView.currentCardIndex
-                let internalState = self.cardsProxy.suffix(from: from)
-                
-                guard internalState.count == newState.count else {
-                    self.cardsProxy = newState
-                    self.fantasiesView.resetCurrentCardIndex()
-                    return
-                }
-                
-                for (new, old) in zip(newState, internalState) where new != old {
-                    
-                    self.cardsProxy = newState
-                    self.fantasiesView.resetCurrentCardIndex()
-                    return
-                     
-                }
-                
-            })
-            .disposed(by: rx.disposeBag)
+        viewModel.cards.drive(onNext: { [unowned self] (newState) in
+            self.cardsButton.isEnabled = true
+            self.collectionsButton.isEnabled = true
 
-        viewModel.mutualCardTrigger
-            .drive(onNext: { [unowned self] (x) in
+            let from = self.fantasiesView.currentCardIndex
+            let internalState = self.cardsProxy.suffix(from: from)
+
+            guard internalState.count == newState.count else {
+                self.cardsProxy = newState
+                self.fantasiesView.resetCurrentCardIndex()
+                return
+            }
+
+            for (new, old) in zip(newState, internalState) where new != old {
+                self.cardsProxy = newState
+                self.fantasiesView.resetCurrentCardIndex()
+                return
+            }
                 
-                let url = x.imageURL
-                
-                ImageRetreiver.imageForURLWithoutProgress(url: url)
-                    .drive(self.tinyCardImageView.rx.image)
-                    .disposed(by: self.tinyCardImageView.rx.disposeBag)
-                
-                UIView.animate(withDuration: 0.5) { [weak self] in
-                    self?.mutualCardContainer.alpha = 1
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        UIView.animate(withDuration: 0.5) {
-                            self?.mutualCardContainer.alpha = 0
-                        }
+        }).disposed(by: rx.disposeBag)
+
+        viewModel.mutualCardTrigger.drive(onNext: { [unowned self] (x) in
+            let url = x.imageURL
+
+            ImageRetreiver.imageForURLWithoutProgress(url: url)
+                .drive(self.tinyCardImageView.rx.image)
+                .disposed(by: self.tinyCardImageView.rx.disposeBag)
+
+            UIView.animate(withDuration: 0.5) { [weak self] in
+                self?.mutualCardContainer.alpha = 1
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    UIView.animate(withDuration: 0.5) {
+                        self?.mutualCardContainer.alpha = 0
                     }
                 }
-                
-            })
+            }
+        }).disposed(by: rx.disposeBag)
+
+        viewModel.collectionsDataSource
+            .drive(collectionView.rx.items(dataSource: collectionsDataSource))
             .disposed(by: rx.disposeBag)
+
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let margin: CGFloat = 10.0
+        let width = (collectionView.frame.size.width - margin) / 2.0
+        layout.itemSize = CGSize(width: width,
+                                 height: width / FantasyDetailsViewController.backgroundImageAspectRatio)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10.0
 
         configureStyling()
     }
@@ -117,12 +134,22 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
 private extension FantasyDeckViewController {
     // MARK: - Actions
-    @IBAction func searchTapped(_ sender: Any) {
-        viewModel.searchTapped()
-    }
-
     @IBAction func subscribeTapped(_ sender: Any) {
 
+    }
+
+    @IBAction private func cardsTapped() {
+        collectionsButton.isSelected = false
+        cardsButton.isSelected = true
+        cardsView.isHidden = false
+        collectionsView.isHidden = true
+    }
+
+    @IBAction private func collectionsTapped() {
+        collectionsButton.isSelected = true
+        cardsButton.isSelected = false
+        cardsView.isHidden = true
+        collectionsView.isHidden = false
     }
 
     // MARK: - Configuration
@@ -131,12 +158,24 @@ private extension FantasyDeckViewController {
         
         view.addFantasyGradient()
 
+        collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
+        collectionsButton.mode = .selector
+        collectionsButton.isSelected = false
+        collectionsButton.isEnabled = false
+        cardsButton.setTitle(R.string.localizable.fantasyDeckCardsButton(), for: .normal)
+        cardsButton.mode = .selector
+        cardsButton.isSelected = true
+        cardsButton.isEnabled = false
+
         waitingView.roundCorners([.topLeft, .topRight], radius: 20.0)
         waitingView.backgroundColor = .primary
 
         timeLeftLabel.font = .boldFont(ofSize: 18)
         timeLeftLabel.numberOfLines = 0
         timeLeftLabel.textColor = .fantasyBlack
+
+        collectionsCountLabel.font = .boldFont(ofSize: 15)
+        collectionsCountLabel.textColor = .fantasyBlack
 
         timeLimitDecsriptionLabel.text = R.string.localizable.fantasyDeckTimeLimitDescription()
         timeLimitDecsriptionLabel.font = .boldFont(ofSize: 18)
@@ -206,10 +245,10 @@ extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        animator.originFrame = fantasiesView.frame
+        animator.originFrame = fantasiesView.superview?.convert(fantasiesView.frame, to: nil) ?? .zero
         animator.presenting = true
 
-        if let view =  fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
+        if let view = fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
             view.animateDisappearance()
         }
         
