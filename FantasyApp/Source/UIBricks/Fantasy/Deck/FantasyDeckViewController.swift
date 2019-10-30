@@ -119,14 +119,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(collectionView.rx.items(dataSource: collectionsDataSource))
             .disposed(by: rx.disposeBag)
 
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let margin: CGFloat = 10.0
-        let width = (collectionView.frame.size.width - margin) / 2.0
-        layout.itemSize = CGSize(width: width,
-                                 height: width / FantasyDetailsViewController.backgroundImageAspectRatio)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10.0
-
+        configureCollectionViewLayout()
         configureStyling()
     }
     
@@ -153,6 +146,16 @@ private extension FantasyDeckViewController {
     }
 
     // MARK: - Configuration
+    func configureCollectionViewLayout() {
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let margin: CGFloat = 10.0
+        let width = (collectionView.frame.size.width - margin) / 2.0
+        layout.itemSize = CGSize(width: width,
+                                 height: width / Fantasy.LayoutConstants.cardAspectRatio)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10.0
+    }
+
     func configureStyling() {
         navigationItem.title = R.string.localizable.fantasyDeckTitle()
         

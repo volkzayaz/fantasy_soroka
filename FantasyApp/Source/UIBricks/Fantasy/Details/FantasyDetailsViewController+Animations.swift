@@ -52,14 +52,18 @@ extension FantasyDetailsViewController {
                        delay: 0.0,
                        options: .curveEaseIn,
                        animations: {
+            self.zoomedBackgroundConstratint.isActive = false
+            self.unzoomedBackgroundConstratint.isActive = true
             self.titleLabel.alpha = 1.0
             self.closeButton.alpha = 1.0
             self.optionButton.alpha = 1.0
         }) { [weak self] _ in
             guard let self = self else { return }
             self.stackView.isHidden = false
-            self.animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: self.scrollView.frame.height *
-                FantasyDetailsViewController.initialScrollViewRatio))
+            let expectedOffsetY = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+            let offsetY = self.scrollView.contentSize.height >= self.scrollView.frame.size.height + expectedOffsetY ?
+                expectedOffsetY : self.scrollView.contentSize.height - self.scrollView.frame.size.height
+            self.animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: offsetY))
         }
     }
 
@@ -82,12 +86,12 @@ extension FantasyDetailsViewController {
             self.unzoomedBackgroundConstratint.isActive = false
             self.zoomedBackgroundConstratint.isActive = true
             self.backgroundImageCenterY.constant = 0
-            self.backgroundImageLeftMargin.constant = FantasyDetailsViewController.minBackgroundImageMargin
-            self.backgroundImageRightMargin.constant = FantasyDetailsViewController.minBackgroundImageMargin
+            self.backgroundImageLeftMargin.constant = Fantasy.LayoutConstants.minBackgroundImageMargin
+            self.backgroundImageRightMargin.constant = Fantasy.LayoutConstants.minBackgroundImageMargin
             self.view.layoutIfNeeded()
         })
 
-        self.scrollView.setContentOffset(.zero, animated: true)
+        scrollView.setContentOffset(.zero, animated: true)
     }
 
     func animateUnzoom() {
@@ -98,12 +102,15 @@ extension FantasyDetailsViewController {
             self.zoomedBackgroundConstratint.isActive = false
             self.unzoomedBackgroundConstratint.isActive = true
             self.backgroundImageCenterY.constant = 0
-            self.backgroundImageLeftMargin.constant = FantasyDetailsViewController.backgroundImageMargin
-            self.backgroundImageRightMargin.constant = FantasyDetailsViewController.backgroundImageMargin
+            self.backgroundImageLeftMargin.constant = Fantasy.LayoutConstants.backgroundImageMargin
+            self.backgroundImageRightMargin.constant = Fantasy.LayoutConstants.backgroundImageMargin
             self.view.layoutIfNeeded()
         })
 
-        let offsetY = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        let expectedOffsetY = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        let offsetY = scrollView.contentSize.height >= scrollView.frame.size.height + expectedOffsetY ?
+            expectedOffsetY : scrollView.contentSize.height - scrollView.frame.size.height
+
         animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: offsetY))
     }
 }

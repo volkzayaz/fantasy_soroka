@@ -15,7 +15,7 @@ extension FantasyDeckViewModel {
 
     var collectionsDataSource: Driver<[AnimatableSectionModel<String, FantasyCollectionCellModel>]> {
         return collectionsTrigger.asDriver().map { collections in
-            let items = collections/*.filter { !$0.isPurchased }*/.map { collection in
+            let items = collections.filter { !$0.isPurchased }.map { collection in
                     return FantasyCollectionCellModel.init(uid: UUID().uuidString,
                                                            isPaid: collection.productId != nil,
                                                            title: collection.title,
@@ -69,7 +69,7 @@ extension FantasyDeckViewModel {
 
     var collectionsCountText: Driver<NSAttributedString> {
         return collectionsTrigger.asDriver().map { collections in
-            let count = collections/*.filter { !$0.isPurchased }*/.count
+            let count = collections.filter { !$0.isPurchased }.count
             let string = R.string.localizable.fantasyDeckCollectionsCount(count)
             let attributedString = NSMutableAttributedString(string: string)
             attributedString.addAttribute(

@@ -22,10 +22,10 @@ class FantasyDetailsTransitionAnimator: NSObject, UIViewControllerAnimatedTransi
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let ratio = originFrame.width / (UIScreen.main.bounds.width -
-            2.0 * FantasyDetailsViewController.backgroundImageMargin)
-        let width = originFrame.width + (2.0 * FantasyDetailsViewController.backgroundImageMargin * ratio)
+            2.0 * Fantasy.LayoutConstants.backgroundImageMargin)
+        let width = originFrame.width + (2.0 * Fantasy.LayoutConstants.backgroundImageMargin * ratio)
         let height = UIScreen.main.bounds.height * ratio
-        let originX = originFrame.origin.x - FantasyDetailsViewController.backgroundImageMargin * ratio
+        let originX = originFrame.origin.x - Fantasy.LayoutConstants.backgroundImageMargin * ratio
         let originY = originFrame.origin.y - (height - originFrame.height) / 2.0
         let sourceFrame = CGRect(x: originX, y: originY, width: width, height: height)
 

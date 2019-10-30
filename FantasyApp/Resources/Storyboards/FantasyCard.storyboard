@@ -149,7 +149,7 @@
                                             <action selector="zoomCard:" destination="N1n-eG-0ux" eventType="touchUpInside" id="sV6-uS-za4"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pgg-sS-IxQ" customClass="FantasyStackView" customModule="FantasyApp" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pgg-sS-IxQ" customClass="FantasyStackView" customModule="FantasyApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="533.5" width="375" height="906"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPb-x0-w4w">
@@ -418,7 +418,7 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="btl-2o-Izu"/>
+                                        <exclude reference="dZx-Bu-fpk"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -528,6 +528,7 @@
                             <constraint firstItem="6Id-55-adl" firstAttribute="trailing" secondItem="qVp-KI-NDh" secondAttribute="trailing" id="EOl-zr-BP9"/>
                             <constraint firstItem="67D-ww-QPD" firstAttribute="leading" secondItem="AZg-yI-Bgb" secondAttribute="leading" id="Izb-df-vdq"/>
                             <constraint firstItem="o9J-DO-8Ss" firstAttribute="centerX" secondItem="AZg-yI-Bgb" secondAttribute="centerX" id="JcS-em-3YH"/>
+                            <constraint firstItem="YC5-Z0-wau" firstAttribute="bottom" secondItem="KWM-mI-MrG" secondAttribute="bottom" priority="250" id="LgK-TD-3Sj"/>
                             <constraint firstAttribute="trailing" secondItem="d2Z-NG-tY3" secondAttribute="trailing" id="Skg-Lm-Ts4"/>
                             <constraint firstItem="6Id-55-adl" firstAttribute="leading" secondItem="qVp-KI-NDh" secondAttribute="leading" id="WBE-2h-Ncd"/>
                             <constraint firstAttribute="bottom" secondItem="d2Z-NG-tY3" secondAttribute="bottom" id="YSt-Kx-4iK"/>

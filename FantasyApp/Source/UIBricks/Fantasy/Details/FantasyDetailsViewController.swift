@@ -11,6 +11,15 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+extension Fantasy {
+    struct LayoutConstants {
+        static let cardAspectRatio: CGFloat = 375.0 / 560.0
+        static let minCornerRadius: CGFloat = 12.0
+        static let backgroundImageMargin: CGFloat = 26.0
+        static let minBackgroundImageMargin: CGFloat = 16.0
+    }
+}
+
 class FantasyDetailsViewController: UIViewController, MVVM_View {
     
     var viewModel: FantasyDetailsViewModel!
@@ -21,15 +30,11 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 
     var isZoomed: Bool {
         return scrollView.contentOffset.y == 0 &&
-            backgroundImageLeftMargin.constant == FantasyDetailsViewController.minBackgroundImageMargin &&
-            backgroundImageRightMargin.constant == FantasyDetailsViewController.minBackgroundImageMargin
+            backgroundImageLeftMargin.constant == Fantasy.LayoutConstants.minBackgroundImageMargin &&
+            backgroundImageRightMargin.constant == Fantasy.LayoutConstants.minBackgroundImageMargin
     }
 
-    // MARK: - Layout-related constants
-    static let backgroundImageMargin: CGFloat = 26.0
-    static let minBackgroundImageMargin: CGFloat = 16.0
     static let initialScrollViewRatio: CGFloat = 1 / 3
-    static let backgroundImageAspectRatio: CGFloat = 375.0 / 560.0
 
     // MARK: - Outlets
     // TODO: Combine like+dislike+labels into one separate UI component
@@ -100,9 +105,12 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
             self?.configurePreferenceState(reaction)
         }).disposed(by: rx.disposeBag)
 
-        viewModel.collectionsDataSource
-            .drive(collectionView.rx.items(dataSource: collectionsDataSource))
-            .disposed(by: rx.disposeBag)
+        viewModel.collectionsDataSource.map { [weak self] model in
+            self?.collectionsView.isHidden = (model.first?.items.count ?? 0) == 0
+            return model
+        }
+        .drive(collectionView.rx.items(dataSource: collectionsDataSource))
+        .disposed(by: rx.disposeBag)
 
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
 
@@ -127,6 +135,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         super.viewDidLayoutSubviews()
 
         guard isFirstAppearance else { return }
+        descriptionView.isHidden = viewModel.description.isEmpty
         descriptionLabel.text = viewModel.description
         descriptionButton.isHidden = !descriptionLabel.isTruncated
     }
@@ -282,6 +291,7 @@ private extension FantasyDetailsViewController {
 
 // MARK: - Scrolling
 extension FantasyDetailsViewController: UIScrollViewDelegate {
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         configureNavigationBarButtons()
         configureBackground()
@@ -339,5 +349,4 @@ extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
             animateDisappearance()
         }
     }
-
 }
