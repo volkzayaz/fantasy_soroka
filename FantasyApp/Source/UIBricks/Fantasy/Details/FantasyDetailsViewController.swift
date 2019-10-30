@@ -173,8 +173,9 @@ private extension FantasyDetailsViewController {
 
         [descriptionView,
          preferenceView,
-         collectionsView,
-         backgroundImageView].forEach { $0?.layer.cornerRadius = 16.0 }
+         collectionsView].forEach { $0?.layer.cornerRadius = 16.0 }
+
+        backgroundImageView.layer.cornerRadius = 25.0
 
         [descriptionButton,
          likeButton,
@@ -294,7 +295,11 @@ private extension FantasyDetailsViewController {
 
     @IBAction func expandOrCollapseStory(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        collapsedDescriptionHeight.isActive = !sender.isSelected
+        if sender.isSelected {
+            collapsedDescriptionHeight.isActive = false
+        } else {
+            collapseStoryAnimated()
+        }
     }
 }
 
@@ -314,7 +319,7 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
         if isZoomed {
             closeButton.setImage(R.image.cardDetailsClose(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
-        } else if scrollView.contentOffset.y >= scrollView.frame.height *
+        } else if scrollView.contentOffset.y >= scrollView.bounds.height *
             unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY {
             closeButton.setImage(R.image.navigationBackButton(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOptionPlain(), for: .normal)
@@ -325,7 +330,7 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     }
 
     private func configureBackground() {
-        let minY = scrollView.frame.height * unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY
+        let minY = scrollView.bounds.height * unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY
         if scrollView.contentOffset.y >= minY {
             gradientBackgroundView.isHidden = false
         } else {
@@ -345,7 +350,8 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
 // MARK: - Swipe to close
 extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
