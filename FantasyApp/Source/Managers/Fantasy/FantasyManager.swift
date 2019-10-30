@@ -59,6 +59,10 @@ extension Fantasy.Manager {
         return Fantasy.Request.Collection().rx.request
             .map { $0.filter { $0.productId != nil } }
     }
+    
+    static func fetchCollectionsCards(collection: Fantasy.Collection) -> Single< [Fantasy.Card] > {
+        return Fantasy.Request.CollectionCards(collection: collection).rx.request
+    }
  
     static func like(card: Fantasy.Card) -> Single<Void> {
         return Fantasy.Request.ReactOnCard(reaction: .like,

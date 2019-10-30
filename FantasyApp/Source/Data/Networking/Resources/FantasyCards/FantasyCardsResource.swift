@@ -74,6 +74,26 @@ extension Fantasy.Request {
         
     }
     
+    struct CollectionCards: AuthorizedAPIResource {
+        
+        let collection: Fantasy.Collection
+        
+        typealias responseType = [Fantasy.Card]
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/fantasy-collections/\(collection.id)/cards"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+    
     struct FetchCards: AuthorizedAPIResource {
         
         enum ReactionType {

@@ -130,6 +130,9 @@
 		7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */; };
 		7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */; };
 		7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED20230D54A100E661A7 /* PurchaseManager.swift */; };
+		738A181623696FF300C54C8A /* FantasyCollectionDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */; };
+		738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */; };
+		738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */; };
 		7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014B22E1B84D00260198 /* ImageRetreiver.swift */; };
 		7390015022E1B8D000260198 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014E22E1B8D000260198 /* Setting.swift */; };
 		7390015122E1B8D000260198 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014F22E1B8D000260198 /* SettingsStore.swift */; };
@@ -479,6 +482,9 @@
 		7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionViewModel.swift; sourceTree = "<group>"; };
 		7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCollection.swift; sourceTree = "<group>"; };
 		7379ED20230D54A100E661A7 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsRouter.swift; sourceTree = "<group>"; };
+		738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsViewController.swift; sourceTree = "<group>"; };
+		738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsViewModel.swift; sourceTree = "<group>"; };
 		7390014B22E1B84D00260198 /* ImageRetreiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRetreiver.swift; sourceTree = "<group>"; };
 		7390014E22E1B8D000260198 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		7390014F22E1B8D000260198 /* SettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
@@ -1424,9 +1430,8 @@
 		7379ED15230D3C3D00E661A7 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */,
-				7379ED17230D3C5000E661A7 /* FantasyCollectionViewController.swift */,
-				7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */,
+				738A181023696FCF00C54C8A /* Details */,
+				738A180F23696FC200C54C8A /* List */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -1445,6 +1450,26 @@
 				7379ED20230D54A100E661A7 /* PurchaseManager.swift */,
 			);
 			path = Purchase;
+			sourceTree = "<group>";
+		};
+		738A180F23696FC200C54C8A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */,
+				7379ED17230D3C5000E661A7 /* FantasyCollectionViewController.swift */,
+				7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		738A181023696FCF00C54C8A /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */,
+				738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */,
+				738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		7390014D22E1B8B500260198 /* KeyValue */ = {
@@ -2497,6 +2522,7 @@
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
+				738A181623696FF300C54C8A /* FantasyCollectionDetailsRouter.swift in Sources */,
 				734C70B92321355F00ED2E91 /* EditProfilePhoto.swift in Sources */,
 				7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */,
 				73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */,
@@ -2578,12 +2604,14 @@
 				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
 				73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
+				738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */,
 				842A1A0323553CC900D0FE5A /* UIViewController+FantasyGradient.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */,
+				738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
 				844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */,
