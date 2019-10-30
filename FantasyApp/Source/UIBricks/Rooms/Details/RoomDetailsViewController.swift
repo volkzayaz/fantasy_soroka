@@ -17,7 +17,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private var playButton: PrimaryButton!
     @IBOutlet private var chatContainerView: UIView!
     @IBOutlet private var commonFantasiesContainerView: UIView!
-    @IBOutlet private var playContainerView: UIView!
+    
     private var gradientLayer = CAGradientLayer()
 
     override func viewDidLoad() {
@@ -61,6 +61,9 @@ extension RoomDetailsViewController {
     }
 
     func selectPage(_ page: RoomDetailsViewModel.DetailsPage, animated: Bool = true) {
+        
+        commonFantasiesContainerView.subviews.first?.isHidden = false
+        
         let rect = CGRect(x: scrollView.bounds.width * CGFloat(page.rawValue),
                           y: 0,
                           width: scrollView.bounds.width,
