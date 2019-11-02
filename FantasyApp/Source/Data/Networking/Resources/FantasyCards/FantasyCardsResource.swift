@@ -29,7 +29,7 @@ extension Fantasy.Request {
         }
         
         var path: String {
-            return "/api/v1/fantasy-cards/deck"
+            return "/fantasy-cards/deck"
         }
         
         var task: Task {

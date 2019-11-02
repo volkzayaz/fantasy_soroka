@@ -23,7 +23,8 @@ extension Fantasy.Manager {
     */
     static func fetchSwipesDeck() -> Single< AppState.FantasiesDeck > {
         
-        Fantasy.Request.SwipeState().rx.request
+        return Fantasy.Request.SwipeState()
+            .rx.request
             .map { (response) in
                 
                 if response.cards.count > 0 {
