@@ -18,7 +18,7 @@ extension Fantasy.Request {
     struct SwipeState: AuthorizedAPIResource {
         
         struct Response: Codable {
-            let amount: Int
+            let cards: [Fantasy.Card]
             let wouldBeUpdatedAt: Date?
         }
         
@@ -29,7 +29,7 @@ extension Fantasy.Request {
         }
         
         var path: String {
-            return "users/me/swipe-state"
+            return "/api/v1/fantasy-cards/deck"
         }
         
         var task: Task {
@@ -184,7 +184,17 @@ extension Fantasy.Request {
         
         let room: Room
      
-        typealias responseType = [Fantasy.Card]
+        typealias responseType = Response
+        
+        struct Response: Codable {
+            let cards: [Fantasy.Card]
+            let deckState: DeckState
+            
+            struct DeckState: Codable {
+                let wouldBeUpdatedAt: Date
+            }
+            
+        }
         
         var method: Moya.Method {
             return .get
