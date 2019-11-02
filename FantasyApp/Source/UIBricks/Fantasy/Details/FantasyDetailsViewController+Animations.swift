@@ -35,8 +35,8 @@ extension FantasyDetailsViewController {
                        options: .curveEaseOut,
                        animations: {
             self.backgroundImageCenterY.constant = 0
-            self.unzoomedBackgroundConstratint.isActive = false
-            self.zoomedBackgroundConstratint.isActive = true
+            self.unzoomedBackgroundConstraint.isActive = false
+            self.zoomedBackgroundConstraint.isActive = true
             self.titleLabel.alpha = 0.0
             self.closeButton.alpha = 0.0
             self.optionButton.alpha = 0.0
@@ -52,8 +52,8 @@ extension FantasyDetailsViewController {
                        delay: 0.0,
                        options: .curveEaseIn,
                        animations: {
-            self.zoomedBackgroundConstratint.isActive = false
-            self.unzoomedBackgroundConstratint.isActive = true
+            self.zoomedBackgroundConstraint.isActive = false
+            self.unzoomedBackgroundConstraint.isActive = true
             self.titleLabel.alpha = 1.0
             self.closeButton.alpha = 1.0
             self.optionButton.alpha = 1.0
@@ -83,8 +83,8 @@ extension FantasyDetailsViewController {
                        delay: 0.0,
                        options: .curveEaseIn,
                        animations: {
-            self.unzoomedBackgroundConstratint.isActive = false
-            self.zoomedBackgroundConstratint.isActive = true
+            self.unzoomedBackgroundConstraint.isActive = false
+            self.zoomedBackgroundConstraint.isActive = true
             self.backgroundImageCenterY.constant = 0
             self.backgroundImageLeftMargin.constant = Fantasy.LayoutConstants.minBackgroundImageMargin
             self.backgroundImageRightMargin.constant = Fantasy.LayoutConstants.minBackgroundImageMargin
@@ -99,8 +99,8 @@ extension FantasyDetailsViewController {
                        delay: 0.0,
                        options: .curveEaseOut,
                        animations: {
-            self.zoomedBackgroundConstratint.isActive = false
-            self.unzoomedBackgroundConstratint.isActive = true
+            self.zoomedBackgroundConstraint.isActive = false
+            self.unzoomedBackgroundConstraint.isActive = true
             self.backgroundImageCenterY.constant = 0
             self.backgroundImageLeftMargin.constant = Fantasy.LayoutConstants.backgroundImageMargin
             self.backgroundImageRightMargin.constant = Fantasy.LayoutConstants.backgroundImageMargin

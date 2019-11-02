@@ -14,7 +14,6 @@ import RxDataSources
 extension Fantasy {
     struct LayoutConstants {
         static let cardAspectRatio: CGFloat = 375.0 / 560.0
-        static let minCornerRadius: CGFloat = 12.0
         static let backgroundImageMargin: CGFloat = 26.0
         static let minBackgroundImageMargin: CGFloat = 16.0
     }
@@ -71,8 +70,8 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private (set) var likeSelectedWidth: NSLayoutConstraint!
     @IBOutlet private (set) var dislikeSelectedWidth: NSLayoutConstraint!
     @IBOutlet private (set) var collapsedDescriptionHeight: NSLayoutConstraint!
-    @IBOutlet private (set) var zoomedBackgroundConstratint: NSLayoutConstraint!
-    @IBOutlet private (set) var unzoomedBackgroundConstratint: NSLayoutConstraint!
+    @IBOutlet private (set) var zoomedBackgroundConstraint: NSLayoutConstraint!
+    @IBOutlet private (set) var unzoomedBackgroundConstraint: NSLayoutConstraint!
 
     private var isZoomingBlocked = false
     private var isFirstAppearance = true
@@ -126,6 +125,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         swipeRecognizer.delegate = self
         view.addGestureRecognizer(swipeRecognizer)
 
+        configureBackgroundConstratints()
         configureStyling()
         configurePreferenceState(viewModel.currentState.value)
     }
@@ -239,6 +239,14 @@ private extension FantasyDetailsViewController {
         likesCountLabel.textColor = .fantasyBlack
         likesCountLabel.font = .regularFont(ofSize: 16)
     }
+    
+    func configureBackgroundConstratints() {
+        let cardHeight = (UIScreen.main.bounds.width - (2 * Fantasy.LayoutConstants.backgroundImageMargin)) /
+            Fantasy.LayoutConstants.cardAspectRatio
+        zoomedBackgroundConstraint.constant = UIScreen.main.bounds.height
+        unzoomedBackgroundConstraint.constant = UIScreen.main.bounds.height - (
+            UIScreen.main.bounds.height - cardHeight - 50)
+    }
 
     func configurePreferenceState(_ reaction: Fantasy.Card.Reaction) {
         switch reaction {
@@ -280,6 +288,7 @@ private extension FantasyDetailsViewController {
     @IBAction func close(_ sender: Any) {
         if isZoomed {
             isZoomingBlocked = false
+            scrollView.isScrollEnabled = true
             animateUnzoom()
             configureNavigationBarButtons()
         } else {
@@ -289,6 +298,7 @@ private extension FantasyDetailsViewController {
 
     @IBAction func zoomCard(_ sender: Any) {
         isZoomingBlocked = true
+        scrollView.isScrollEnabled = false
         animateZoom()
         configureNavigationBarButtons()
     }
@@ -320,7 +330,7 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
             closeButton.setImage(R.image.cardDetailsClose(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
         } else if scrollView.contentOffset.y >= scrollView.bounds.height *
-            unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY {
+            unzoomedBackgroundConstraint.multiplier - navigationBar.frame.maxY {
             closeButton.setImage(R.image.navigationBackButton(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOptionPlain(), for: .normal)
         } else {
@@ -330,7 +340,7 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     }
 
     private func configureBackground() {
-        let minY = scrollView.bounds.height * unzoomedBackgroundConstratint.multiplier - navigationBar.frame.maxY
+        let minY = scrollView.bounds.height * unzoomedBackgroundConstraint.multiplier - navigationBar.frame.maxY
         if scrollView.contentOffset.y >= minY {
             gradientBackgroundView.isHidden = false
         } else {
