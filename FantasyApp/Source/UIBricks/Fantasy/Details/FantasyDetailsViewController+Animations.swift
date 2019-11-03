@@ -60,7 +60,7 @@ extension FantasyDetailsViewController {
         }) { [weak self] _ in
             guard let self = self else { return }
             self.stackView.isHidden = false
-            let expectedOffsetY = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+            let expectedOffsetY = self.view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
             let offsetY = self.scrollView.contentSize.height >= self.scrollView.frame.size.height + expectedOffsetY ?
                 expectedOffsetY : self.scrollView.contentSize.height - self.scrollView.frame.size.height
             self.animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: offsetY))
@@ -107,7 +107,7 @@ extension FantasyDetailsViewController {
             self.view.layoutIfNeeded()
         })
 
-        let expectedOffsetY = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        let expectedOffsetY = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
         let offsetY = scrollView.contentSize.height >= scrollView.frame.size.height + expectedOffsetY ?
             expectedOffsetY : scrollView.contentSize.height - scrollView.frame.size.height
 

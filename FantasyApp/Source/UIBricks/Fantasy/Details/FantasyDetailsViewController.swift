@@ -241,11 +241,11 @@ private extension FantasyDetailsViewController {
     }
     
     func configureBackgroundConstratints() {
-        let cardHeight = (UIScreen.main.bounds.width - (2 * Fantasy.LayoutConstants.backgroundImageMargin)) /
+        let cardHeight = (view.bounds.width - (2 * Fantasy.LayoutConstants.backgroundImageMargin)) /
             Fantasy.LayoutConstants.cardAspectRatio
-        zoomedBackgroundConstraint.constant = UIScreen.main.bounds.height
-        unzoomedBackgroundConstraint.constant = UIScreen.main.bounds.height - (
-            UIScreen.main.bounds.height - cardHeight - 50)
+        zoomedBackgroundConstraint.constant = view.bounds.height
+        unzoomedBackgroundConstraint.constant = view.bounds.height - (
+            view.bounds.height - cardHeight - 50)
     }
 
     func configurePreferenceState(_ reaction: Fantasy.Card.Reaction) {
@@ -349,7 +349,7 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     }
 
     private func configureCardLayout() {
-        let cap = UIScreen.main.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        let cap = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
         if scrollView.contentOffset.y < cap {
             backgroundImageCenterY.constant = min(0, scrollView.contentOffset.y - cap +
                 backgroundImageView.frame.height / 3)
