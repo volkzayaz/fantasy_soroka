@@ -24,16 +24,17 @@ class FantasyListCell: UICollectionViewCell {
     var disposeBag = DisposeBag()
     
     func setCard(fantasy: Fantasy.Card) {
-    
+
         ImageRetreiver.imageForURLWithoutProgress(url: fantasy.imageURL)
             .drive(onNext: { [unowned self] x in
+                
                 if appStateSlice.currentUser?.subscription.isSubscribed == true {
                     self.protectedImageView.image = x
                 } else {
                     self.cardImageView.image = x
                 }
             })
-            .disposed(by: rx.disposeBag)    
+            .disposed(by: rx.disposeBag)
         
     }
     

@@ -90,9 +90,9 @@ struct FantasyCardInteraction: ActionCreator {
                 return .just(state)
             }
             
-            return Fantasy.Manager.fetchMainCards().asObservable()
-                .map { cards in
-                    state.fantasiesDeck = .cards(cards)
+            return Fantasy.Manager.fetchSwipesDeck().asObservable()
+                .map { deck in
+                    state.fantasiesDeck = deck
                 
                     return state
                 }
