@@ -13,38 +13,17 @@ import ScreenShieldKit
 
 class FantasyListCell: UICollectionViewCell {
     
-    @IBOutlet weak var cardImageView: UIImageView!
+    @IBOutlet weak var protectedImageView: ProtectedImageView!
     
-    @IBOutlet weak var protectedImageView: SSKProtectedImageView! {
-        didSet {
-            protectedImageView.resizeMode = .scaleAspectFill
-        }
-    }
-    
-    var disposeBag = DisposeBag()
-    
-    func setCard(fantasy: Fantasy.Card) {
-
-        ImageRetreiver.imageForURLWithoutProgress(url: fantasy.imageURL)
-            .drive(onNext: { [unowned self] x in
-                
-                if appStateSlice.currentUser?.subscription.isSubscribed == true {
-                    self.protectedImageView.image = x
-                } else {
-                    self.cardImageView.image = x
-                }
-            })
-            .disposed(by: rx.disposeBag)
-        
+    func set(protectedCard: ProtectedEntity<Fantasy.Card>) {
+        protectedImageView.set(imageURL: protectedCard.entity.imageURL,
+                               isProtected: protectedCard.isProtected)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        cardImageView.image = nil
-        protectedImageView.image = nil
-        
-        disposeBag = DisposeBag()
+        protectedImageView.reset()
     }
     
 }

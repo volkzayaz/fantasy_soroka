@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lVj-KC-ORv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lVj-KC-ORv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -604,19 +604,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyQ-QS-IJO" customClass="SSKProtectedImageView">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyQ-QS-IJO" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Klo-24-IdH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Klo-24-IdH" firstAttribute="leading" secondItem="Dzu-kB-nsV" secondAttribute="leading" id="Azy-b8-fkg"/>
-                                                <constraint firstAttribute="trailing" secondItem="Klo-24-IdH" secondAttribute="trailing" id="Ffn-Ja-rZd"/>
-                                                <constraint firstItem="Klo-24-IdH" firstAttribute="top" secondItem="Dzu-kB-nsV" secondAttribute="top" id="JR3-r7-BSa"/>
-                                                <constraint firstAttribute="bottom" secondItem="Klo-24-IdH" secondAttribute="bottom" id="NuD-NP-fSv"/>
                                                 <constraint firstAttribute="bottom" secondItem="CyQ-QS-IJO" secondAttribute="bottom" id="T3I-6o-8nf"/>
                                                 <constraint firstItem="CyQ-QS-IJO" firstAttribute="leading" secondItem="Dzu-kB-nsV" secondAttribute="leading" id="f6t-Uf-cTS"/>
                                                 <constraint firstItem="CyQ-QS-IJO" firstAttribute="top" secondItem="Dzu-kB-nsV" secondAttribute="top" id="gGq-eF-jDY"/>
@@ -630,7 +623,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="cardImageView" destination="Klo-24-IdH" id="9wE-X0-5wc"/>
                                             <outlet property="protectedImageView" destination="CyQ-QS-IJO" id="d71-c6-GpG"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1094,9 +1086,10 @@
                                                                 <constraint firstItem="y0w-UI-b3C" firstAttribute="leading" secondItem="yiZ-5b-uwX" secondAttribute="leading" constant="8" id="vJE-9f-gvG"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8og-mx-BjP">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1c-L0-HNX" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        </imageView>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7v6-pj-nzj">
                                                             <rect key="frame" x="12" y="19" width="26" height="19"/>
                                                             <constraints>
@@ -1118,13 +1111,13 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="7v6-pj-nzj" firstAttribute="top" secondItem="93Y-fg-LZX" secondAttribute="bottom" constant="4" id="3QA-IX-x4I"/>
-                                                        <constraint firstItem="8og-mx-BjP" firstAttribute="top" secondItem="A0u-0p-2QK" secondAttribute="top" id="6yi-fy-nK9"/>
                                                         <constraint firstAttribute="bottom" secondItem="7v6-pj-nzj" secondAttribute="bottom" constant="12" id="8pO-ff-G5c"/>
-                                                        <constraint firstAttribute="trailing" secondItem="8og-mx-BjP" secondAttribute="trailing" id="AcS-Nq-3Qj"/>
                                                         <constraint firstItem="yiZ-5b-uwX" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" constant="12" id="Px7-tZ-BrQ"/>
-                                                        <constraint firstItem="8og-mx-BjP" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" id="Qc4-tR-MvM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="n1c-L0-HNX" secondAttribute="trailing" id="RNv-ea-DHn"/>
                                                         <constraint firstItem="yiZ-5b-uwX" firstAttribute="top" secondItem="A0u-0p-2QK" secondAttribute="top" constant="12" id="RT4-IP-1Sp"/>
-                                                        <constraint firstAttribute="bottom" secondItem="8og-mx-BjP" secondAttribute="bottom" id="YUq-LO-Z6J"/>
+                                                        <constraint firstAttribute="bottom" secondItem="n1c-L0-HNX" secondAttribute="bottom" id="VRz-4a-6tW"/>
+                                                        <constraint firstItem="n1c-L0-HNX" firstAttribute="top" secondItem="A0u-0p-2QK" secondAttribute="top" id="Wfi-4c-M8L"/>
+                                                        <constraint firstItem="n1c-L0-HNX" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" id="YUL-To-u2w"/>
                                                         <constraint firstAttribute="trailing" secondItem="93Y-fg-LZX" secondAttribute="trailing" constant="12" id="mgC-uw-amt"/>
                                                         <constraint firstItem="7v6-pj-nzj" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" constant="12" id="phq-We-HvC"/>
                                                         <constraint firstItem="93Y-fg-LZX" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" constant="12" id="w06-0O-izD"/>
@@ -1133,7 +1126,7 @@
                                                 </collectionViewCellContentView>
                                                 <connections>
                                                     <outlet property="fantasiesCountLabel" destination="7v6-pj-nzj" id="1KL-2M-T9q"/>
-                                                    <outlet property="imageView" destination="8og-mx-BjP" id="8JC-sH-n07"/>
+                                                    <outlet property="imageView" destination="n1c-L0-HNX" id="fCy-bq-Q4W"/>
                                                     <outlet property="paidImageView" destination="y0w-UI-b3C" id="mIs-ej-38J"/>
                                                     <outlet property="paidLabel" destination="RPw-ie-TTJ" id="gdA-my-Zwq"/>
                                                     <outlet property="paidView" destination="yiZ-5b-uwX" id="1Sg-yv-SDh"/>

@@ -15,7 +15,7 @@ extension FantasyDeckViewModel {
 
     var collectionsDataSource: Driver<[AnimatableSectionModel<String, Fantasy.Collection>]> {
         return collectionsTrigger.asDriver().map { collections in
-            return [AnimatableSectionModel(model: "", items: collections.filter { !$0.isPurchased })]
+            return [AnimatableSectionModel(model: "", items: collections)]
         }
     }
     

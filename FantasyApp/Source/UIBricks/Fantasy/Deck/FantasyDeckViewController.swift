@@ -54,7 +54,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                                      for: indexPath)!
 
             cell.fantasiesCount = model.cardsCount
-            cell.imageURL = model.imageURL
+            cell.set(imageURL: model.imageURL)
             cell.title = model.title
             cell.isPaid = model.productId != nil
 

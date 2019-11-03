@@ -78,7 +78,12 @@ extension Fantasy.Request {
         
         let collection: Fantasy.Collection
         
-        typealias responseType = [Fantasy.Card]
+        typealias responseType = Response
+        
+        struct Response: Codable {
+            let availableCards: [Fantasy.Card]
+            let totalCount: Int
+        }
         
         var method: Moya.Method {
             return .get

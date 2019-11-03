@@ -23,15 +23,14 @@ struct FantasyCollectionCellModel: IdentifiableType, Equatable {
 }
 
 class FantasyCollectionCollectionViewCell: UICollectionViewCell {
-    @IBOutlet private var imageView: UIImageView!
+    
+    @IBOutlet private var imageView: ProtectedImageView!
     @IBOutlet private var paidView: UIView!
     @IBOutlet private var paidLabel: UILabel!
     @IBOutlet private var paidImageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var fantasiesCountLabel: UILabel!
     private var gradientLayer = CAGradientLayer()
-
-    private var disposeBag = DisposeBag()
 
     var title: String = "" {
         didSet {
@@ -51,18 +50,10 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    var imageURL: String? {
-        didSet {
-            guard let imageURL = imageURL else {
-                imageView.image = nil
-                return
-            }
-            ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
-                .drive(imageView.rx.image)
-                .disposed(by: disposeBag)
-        }
+    func set(imageURL: String) {
+        imageView.set(imageURL: imageURL, isProtected: true)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureStyling()
@@ -71,9 +62,8 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        imageView.image = nil
         paidView.isHidden = true
-        disposeBag = DisposeBag()
+        imageView.reset()
     }
 
     override func layoutSubviews() {

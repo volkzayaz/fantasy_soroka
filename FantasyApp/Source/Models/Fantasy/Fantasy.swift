@@ -95,6 +95,16 @@ extension Fantasy {
     
 }
 
+struct ProtectedEntity<T: IdentifiableType & Equatable>: IdentifiableType, Equatable {
+    let entity: T
+    let isProtected: Bool
+
+    var identity: T.Identity {
+        return entity.identity
+    }
+    
+}
+
 extension AppState.FantasiesDeck {
 
     /*

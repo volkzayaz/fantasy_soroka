@@ -19,12 +19,12 @@ class FantasyListViewController: UIViewController, MVVM_View {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionTitleLabel: UILabel!
     
-    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Card>>(configureCell: { [unowned self] (_, cv, ip, x) in
+    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ProtectedEntity<Fantasy.Card>>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
         let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyListCell,
                                           for: ip)!
         
-        cell.setCard(fantasy: x)
+        cell.set(protectedCard: x)
         
         return cell
         
@@ -44,11 +44,12 @@ class FantasyListViewController: UIViewController, MVVM_View {
         collectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] ip in
                 
-                let model: Fantasy.Card = try! self.collectionView.rx.model(at: ip)
+                let model: ProtectedEntity<Fantasy.Card> = try! self.collectionView.rx.model(at: ip)
                 let sourceRect = self.collectionView.convert(self.collectionView.cellForItem(at: ip)!.frame,
                                                             to: nil)
                 
-                self.viewModel.cardTapped(card: model, sourceFrame: sourceRect)
+                self.viewModel.cardTapped(card: model.entity,
+                                          sourceFrame: sourceRect)
             })
             .disposed(by: rx.disposeBag)
     }

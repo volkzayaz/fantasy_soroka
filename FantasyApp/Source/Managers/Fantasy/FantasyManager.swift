@@ -58,6 +58,7 @@ extension Fantasy.Manager {
     
     static func fetchCollectionsCards(collection: Fantasy.Collection) -> Single< [Fantasy.Card] > {
         return Fantasy.Request.CollectionCards(collection: collection).rx.request
+            .map { $0.availableCards }
     }
  
     static func like(card: Fantasy.Card) -> Single<Void> {

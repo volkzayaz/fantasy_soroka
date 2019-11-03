@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxCocoa
 
 struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
@@ -143,6 +144,16 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         struct Status: Codable, Equatable {
             let endDate: Date
         }
+        
+    }
+    
+    
+    static var changesOfSubscriptionStatus: Driver<Bool> {
+        
+        return Driver.combineLatest(
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed },
+            SettingsStore.freeSubscriptionSwitch.observable.asSharedSequence(onErrorJustReturn: false)
+        ) { x, y in (x ?? false || y) }
         
     }
     
