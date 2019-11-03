@@ -82,26 +82,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEi-7j-x2U" customClass="GradientLineView" customModule="FantasyApp" customModuleProvider="target">
+                            <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEi-7j-x2U" customClass="GradientLineView" customModule="FantasyApp" customModuleProvider="target">
                                 <rect key="frame" x="60" y="756" width="294" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="IbE-Gf-pLE"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rYX-qO-Ttn">
-                                <rect key="frame" x="30" y="774" width="354" height="68"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="Pz1-Rd-qAK"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="FOA-WO-XM8" id="6Gn-AZ-sD3"/>
-                                </connections>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.24313725489999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -109,9 +96,7 @@
                             <constraint firstItem="JEi-7j-x2U" firstAttribute="leading" secondItem="GId-hn-I78" secondAttribute="leading" constant="60" id="64j-GQ-PP4"/>
                             <constraint firstItem="0CS-IC-BOv" firstAttribute="top" secondItem="GId-hn-I78" secondAttribute="top" constant="107" id="914-dq-SyJ"/>
                             <constraint firstItem="GId-hn-I78" firstAttribute="trailing" secondItem="fSN-cn-P1L" secondAttribute="trailing" constant="16" id="9d5-9y-tJv"/>
-                            <constraint firstItem="rYX-qO-Ttn" firstAttribute="top" secondItem="JEi-7j-x2U" secondAttribute="bottom" constant="17" id="CnP-Gg-ZaA"/>
                             <constraint firstItem="3Ot-vD-Al1" firstAttribute="top" secondItem="7xy-r2-dJw" secondAttribute="bottom" constant="50" id="ItE-i8-e32"/>
-                            <constraint firstItem="GId-hn-I78" firstAttribute="trailing" secondItem="rYX-qO-Ttn" secondAttribute="trailing" constant="30" id="Jsm-yg-CQR"/>
                             <constraint firstAttribute="trailing" secondItem="7xy-r2-dJw" secondAttribute="trailing" constant="52" id="ML6-DJ-ga3"/>
                             <constraint firstItem="GId-hn-I78" firstAttribute="trailing" secondItem="JEi-7j-x2U" secondAttribute="trailing" constant="60" id="QDT-jw-1wB"/>
                             <constraint firstItem="10s-tg-JLq" firstAttribute="top" secondItem="REm-5i-h73" secondAttribute="bottom" constant="12" id="VIW-KM-7NB"/>
@@ -119,20 +104,15 @@
                             <constraint firstItem="REm-5i-h73" firstAttribute="top" secondItem="3Ot-vD-Al1" secondAttribute="bottom" constant="16" id="eN3-tP-eEZ"/>
                             <constraint firstItem="10s-tg-JLq" firstAttribute="centerX" secondItem="cD5-EU-L4e" secondAttribute="centerX" id="gU2-vY-123"/>
                             <constraint firstItem="fSN-cn-P1L" firstAttribute="top" secondItem="GId-hn-I78" secondAttribute="top" constant="10" id="gZo-4r-8tE"/>
-                            <constraint firstItem="rYX-qO-Ttn" firstAttribute="leading" secondItem="GId-hn-I78" secondAttribute="leading" constant="30" id="iJP-r0-12V"/>
                             <constraint firstItem="REm-5i-h73" firstAttribute="centerX" secondItem="3Ot-vD-Al1" secondAttribute="centerX" id="kBf-Zo-U8l"/>
                             <constraint firstItem="GId-hn-I78" firstAttribute="trailing" secondItem="3Ot-vD-Al1" secondAttribute="trailing" constant="60" id="mZW-Ke-szd"/>
                             <constraint firstItem="3Ot-vD-Al1" firstAttribute="leading" secondItem="GId-hn-I78" secondAttribute="leading" constant="60" id="qXa-sI-sBr"/>
                             <constraint firstItem="JEi-7j-x2U" firstAttribute="top" relation="greaterThanOrEqual" secondItem="10s-tg-JLq" secondAttribute="bottom" constant="10" id="rGm-le-DnC"/>
-                            <constraint firstItem="GId-hn-I78" firstAttribute="bottom" secondItem="rYX-qO-Ttn" secondAttribute="bottom" constant="20" id="u2F-cm-jcS"/>
                             <constraint firstItem="7xy-r2-dJw" firstAttribute="top" secondItem="0CS-IC-BOv" secondAttribute="bottom" constant="40" id="v1V-nX-Sx3"/>
                             <constraint firstItem="3Ot-vD-Al1" firstAttribute="centerX" secondItem="7xy-r2-dJw" secondAttribute="centerX" id="ziu-ne-g2p"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GId-hn-I78"/>
                     </view>
-                    <connections>
-                        <outlet property="termsTextView" destination="rYX-qO-Ttn" id="MMD-4y-S3v"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBH-0s-bZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
