@@ -98,6 +98,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     enum CellModel: IdentifiableType, Equatable {
         case user(isAdmin: Bool, participant: Room.Participant)
         case invite
+        case waiting
 
         var identity: String {
             switch self {
@@ -106,6 +107,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
                 return participant.identity
                 
             case .invite: return "invite"
+            case .waiting: return "waiting"
                 
             }
         }

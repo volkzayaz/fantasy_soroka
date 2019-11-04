@@ -52,7 +52,21 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             let cell = self.participantsCollectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.inviteParticipantCollectionViewCell,
                                      for: indexPath)!
+            
+            cell.setMode(isWaiting: false)
+            
             return cell
+            
+        case .waiting:
+            
+            let cell = self.participantsCollectionView
+                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.inviteParticipantCollectionViewCell,
+                                     for: indexPath)!
+            
+            cell.setMode(isWaiting: true)
+            
+            return cell
+            
         }
     })
 
