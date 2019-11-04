@@ -84,8 +84,8 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
         return participants.first(where: { $0.userId != User.current?.id })!
     }
     
-    // property are set during runtime
-    var notificationSettings: RoomNotificationSettings?
+    // property set during runtime
+    var notificationSettings: NotificationSettings!
     
     var identity: String {
         return id
@@ -110,6 +110,23 @@ extension Room {
         var isHideCommonFantasies = false
         var isScreenShieldEnabled = false
         var sharedCollections: [String]
+    }
+    
+    struct NotificationSettings: Codable, Equatable, ParsePresentable {
+
+        static var className: String {
+            return "RoomNotificationSettings"
+        }
+
+        var objectId: String?
+
+        ///these names are actually keys on Parse Table,
+        ///so be accurate when chaning them
+        var roomId: String!
+        var newMessage: Bool = true
+        var newFantasyMatch: Bool = true
+
+
     }
 
     struct Participant: Codable, Equatable, IdentifiableType {

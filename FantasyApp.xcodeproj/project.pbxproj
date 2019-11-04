@@ -241,7 +241,6 @@
 		844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */; };
 		844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */; };
 		844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */; };
-		844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */; };
 		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
 		846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B49D92365FC180087B7DF /* UILabel+Truncation.swift */; };
 		846B4A1C23661EAE0087B7DF /* FantasyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */; };
@@ -286,9 +285,6 @@
 		84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */; };
 		84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */; };
 		84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0602327D5A800648DE1 /* Chat.storyboard */; };
-		84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0642327D60100648DE1 /* RemoveRoom.swift */; };
-		84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0652327D60100648DE1 /* AddRooms.swift */; };
-		84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0662327D60100648DE1 /* UpdateRoom.swift */; };
 		84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* RoomManager.swift */; };
 		84C1D06D2327D68100648DE1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06C2327D68100648DE1 /* Chat.swift */; };
 		84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */; };
@@ -592,7 +588,6 @@
 		844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsRouter.swift; sourceTree = "<group>"; };
 		844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomNotificationSettings.swift; sourceTree = "<group>"; };
-		844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomNotificationSettings.swift; sourceTree = "<group>"; };
 		844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomSettingsRouter.swift; sourceTree = "<group>"; };
 		84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePresenterBuilder.swift; sourceTree = "<group>"; };
 		846B49D92365FC180087B7DF /* UILabel+Truncation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncation.swift"; sourceTree = "<group>"; };
@@ -638,9 +633,6 @@
 		84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientView.swift; sourceTree = "<group>"; };
 		84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientRenderer.swift; sourceTree = "<group>"; };
 		84C1D0602327D5A800648DE1 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		84C1D0642327D60100648DE1 /* RemoveRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveRoom.swift; sourceTree = "<group>"; };
-		84C1D0652327D60100648DE1 /* AddRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRooms.swift; sourceTree = "<group>"; };
-		84C1D0662327D60100648DE1 /* UpdateRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRoom.swift; sourceTree = "<group>"; };
 		84C1D06A2327D63E00648DE1 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		84C1D06C2327D68100648DE1 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
@@ -2056,11 +2048,7 @@
 			isa = PBXGroup;
 			children = (
 				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
-				84C1D0652327D60100648DE1 /* AddRooms.swift */,
-				84C1D0642327D60100648DE1 /* RemoveRoom.swift */,
-				84C1D0662327D60100648DE1 /* UpdateRoom.swift */,
 				844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */,
-				844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2589,7 +2577,6 @@
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
 				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
-				84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
 				734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */,
@@ -2605,7 +2592,6 @@
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
 				73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */,
-				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
 				73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */,
@@ -2636,7 +2622,6 @@
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,
 				7361F32F2334F442007B84B0 /* ConnectionManager.swift in Sources */,
-				84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */,
 				73E6011F22EC3A4000F767BF /* LoginViewController.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
@@ -2672,7 +2657,6 @@
 				73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */,
 				B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,
-				844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */,
 				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,
 				843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,

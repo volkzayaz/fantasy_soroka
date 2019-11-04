@@ -25,20 +25,4 @@ struct NotificationSettings: Codable, Equatable, ParsePresentable {
     
 }
 
-struct RoomNotificationSettings: Codable, Equatable, ParsePresentable {
-
-    static var className: String {
-        return "RoomNotificationSettings"
-    }
-
-    var objectId: String?
-
-    ///these names are actually keys on Parse Table,
-    ///so be accurate when chaning them
-    var roomId: String!
-    var newMessage: Bool = true
-    var newFantasyMatch: Bool = true
-
-
-}
 

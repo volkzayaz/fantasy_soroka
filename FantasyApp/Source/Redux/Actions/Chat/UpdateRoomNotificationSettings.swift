@@ -2,36 +2,28 @@
 //  UpdateRoomNotificationSettings.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 19.10.2019.
+//  Created by Vlad Soroka on 19.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
-struct UpdateRoomNotificationSettings: ActionCreator {
+struct UpdateNotificationSettingsIn: ActionCreator {
 
-    let roomId: String
-    let mapper: (inout RoomNotificationSettings) -> Void
+    let room: Room
 
     func perform(initialState: AppState) -> Observable<AppState> {
 
-        guard var settings = initialState.currentUser?.roomsNotificationSettings?
-            .first(where: { $0.roomId == roomId }) else {
+        guard let i = initialState.rooms.firstIndex(of: room) else {
+            fatalErrorInDebug("Can't update settings of room that is not in the rooms list")
             return .just(initialState)
         }
-
-        mapper(&settings)
-
-        ///stakeholders wanna save changes right away
-        return settings.pfObject.rxSave()
+        
+        return room.notificationSettings.pfObject.rxSave()
             .map { _ in
                 var state = initialState
-                if let index = state.currentUser?.roomsNotificationSettings?
-                    .firstIndex(where: { $0.roomId == self.roomId }) {
-                     state.currentUser?.roomsNotificationSettings?[index] = settings
-                }
-
+                state.rooms[i] = self.room
                 return state
             }
             .catchErrorJustReturn(initialState)

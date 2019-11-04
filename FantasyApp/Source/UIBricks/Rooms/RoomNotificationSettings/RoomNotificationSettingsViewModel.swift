@@ -11,28 +11,38 @@ import RxSwift
 import RxCocoa
 
 struct RoomNotificationSettingsViewModel: MVVM_ViewModel {
+    
     let router: RoomNotificationSettingsRouter
-    let room: BehaviorRelay<Room>
+    let room: Room
 
-    var currentSettings: RoomNotificationSettings? {
-        return appStateSlice.currentUser!.roomsNotificationSettings?.first(where: { $0.roomId == room.value.id })
+    var currentSettings: Room.NotificationSettings {
+        return room.notificationSettings
     }
 
     init(router: RoomNotificationSettingsRouter, room: Room) {
         self.router = router
-        self.room = BehaviorRelay(value: room)
+        self.room = room
     }
 }
 
 extension RoomNotificationSettingsViewModel {
+    
     func changeMessageSettings(state: Bool) {
-        Dispatcher.dispatch(action: UpdateRoomNotificationSettings(roomId: room.value.id,
-                                                                   mapper: { $0.newMessage = state }))
+        
+        var r = room
+        r.notificationSettings.newMessage = state
+        
+        Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
+        
     }
 
     func changeCommonFantasySettings(state: Bool) {
-        Dispatcher.dispatch(action: UpdateRoomNotificationSettings(roomId: room.value.id,
-                                                                   mapper: { $0.newFantasyMatch = state }))
+        
+        var r = room
+        r.notificationSettings.newFantasyMatch = state
+        
+        Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
+        
     }
 
 }

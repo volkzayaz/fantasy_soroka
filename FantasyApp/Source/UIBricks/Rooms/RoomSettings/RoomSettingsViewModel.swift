@@ -58,28 +58,11 @@ extension RoomSettingsViewModel {
 
 struct RoomSettingsViewModel: MVVM_ViewModel {
 
-    enum CellModel: IdentifiableType, Equatable {
-        case user(isAdmin: Bool, participant: Room.Participant)
-        case invite
-
-        var identity: String {
-            switch self {
-                
-            case .user(_, let participant):
-                return participant.identity
-                
-            case .invite: return "invite"
-                
-            }
-        }
-    }
-
     let room: BehaviorRelay<Room>
     
     let inviteLink = BehaviorRelay<String?>(value: nil)
     
     private let buo: BranchUniversalObject?
-    
     
     init(router: RoomSettingsRouter, room: Room) {
         self.router = router
@@ -111,6 +94,22 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     let router: RoomSettingsRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
+    
+    enum CellModel: IdentifiableType, Equatable {
+        case user(isAdmin: Bool, participant: Room.Participant)
+        case invite
+
+        var identity: String {
+            switch self {
+                
+            case .user(_, let participant):
+                return participant.identity
+                
+            case .invite: return "invite"
+                
+            }
+        }
+    }
 }
 
 extension RoomSettingsViewModel {
