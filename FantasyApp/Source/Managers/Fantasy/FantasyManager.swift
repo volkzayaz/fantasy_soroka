@@ -23,15 +23,15 @@ extension Fantasy.Manager {
     */
     static func fetchSwipesDeck() -> Single< AppState.FantasiesDeck > {
         
-        Single.zip(Fantasy.Request.SwipeState().rx.request,
-                   fetchMainCards())
-            .map { (swipeState, cards) in
+        return Fantasy.Request.SwipeState()
+            .rx.request
+            .map { (response) in
                 
-                if cards.count > 0 {
-                    return .cards(cards)
+                if response.cards.count > 0 {
+                    return .cards(response.cards)
                 }
                 
-                if let x = swipeState.wouldBeUpdatedAt {
+                if let x = response.wouldBeUpdatedAt {
                     return .empty(till: x)
                 }
                 
@@ -39,10 +39,6 @@ extension Fantasy.Manager {
                 return .empty(till: Date(timeIntervalSinceNow: 24 * 3600))
             }
         
-    }
-    
-    static func fetchMainCards() -> Single< [Fantasy.Card] > {
-        return Fantasy.Request.Deck().rx.request
     }
     
     static func searchFor(query: String) -> Single< [Fantasy.Card] > {
@@ -98,8 +94,8 @@ extension Fantasy.Manager {
         return Fantasy.Request.FetchRoomCards(room: room).rx.request
             .map { (cards) in
                 
-                if cards.count > 0 {
-                    return .cards(cards)
+                if cards.cards.count > 0 {
+                    return .cards(cards.cards)
                 }
                 
                 return .empty(till: Date(timeIntervalSinceNow: 24 * 3600))
