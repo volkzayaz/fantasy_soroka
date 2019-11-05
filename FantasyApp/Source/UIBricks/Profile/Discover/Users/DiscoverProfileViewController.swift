@@ -45,6 +45,16 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        let s = NSMutableAttributedString(string: "Search for Fantasy Match", attributes: [.font : UIFont.boldFont(ofSize: 18), .foregroundColor: UIColor.white])
+
+        s.addAttributes([.font : UIFont.regularFont(ofSize: 18)], range: NSRange(location: 7, length: 3 ))
+
+        let label = UILabel()
+        label.attributedText = s
+
+        navigationItem.titleView = label
+
         // configure UI
         noFilterView.addFantasyRoundedCorners()
         goToSettingsView.addFantasyRoundedCorners()
@@ -89,6 +99,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     self.notActiveCityNameLabel.attributedText = attr
 
                 case .noSearchPreferences:
+                    self.enableFilter(false)
                     self.showView(self.noFilterView)
                 }
                 
@@ -177,7 +188,11 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         return view
         
     }
-    
+
+    func carouselItemWidth(_ carousel: iCarousel) -> CGFloat {
+        return CGFloat(UIScreen.main.bounds.size.width * 0.875)
+    }
+
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
         case .wrap: return 0
@@ -193,7 +208,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
 
         let MAX_SCALE: Float = 1
         let MAX_Shift: Float = 25
-        let distance: Float = 40
+        let distance: Float = 32
         let multiplier: CGFloat = 1.0
 
         let shift: Float = fminf(1, fmaxf(-1, Float(offset)))

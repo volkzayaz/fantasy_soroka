@@ -16,6 +16,10 @@ extension String {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self)
     }
+
+    var isValidUsernameLenght: Bool {
+        return count >= 2
+    }
 }
 
 extension StringProtocol {

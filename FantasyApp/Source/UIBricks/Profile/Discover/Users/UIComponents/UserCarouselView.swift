@@ -52,7 +52,7 @@ class UserCarouselView: UIView {
             make.right.equalTo(self.snp_right)
         }
 
-        setupShadow()
+//        setupShadow()
         setupTransparentGradient()
     }
 

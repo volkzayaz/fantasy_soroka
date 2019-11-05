@@ -422,14 +422,57 @@ We follow FOSTA / SESTA bills strictly and strive to fight against online sex tr
                                                     <constraint firstAttribute="bottom" secondItem="ITU-0d-oQb" secondAttribute="bottom" id="yYN-8D-ZAK"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ti-rv-gfy">
+                                                <rect key="frame" x="30" y="220.5" width="219" height="28"/>
+                                                <subviews>
+                                                    <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-I6-DNH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="219" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textFieldError" translatesAutoresizingMaskIntoConstraints="NO" id="CJv-hg-tuc">
+                                                        <rect key="frame" x="6" y="6" width="16" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="CJv-hg-tuc" secondAttribute="height" multiplier="1:1" id="c6Q-8B-fdN"/>
+                                                            <constraint firstAttribute="width" constant="16" id="eva-yX-qBa"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username already in use" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfw-SJ-rNj">
+                                                        <rect key="frame" x="28" y="0.0" width="166" height="28"/>
+                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="WHc-I6-DNH" firstAttribute="leading" secondItem="8Ti-rv-gfy" secondAttribute="leading" id="EJu-cj-2oN"/>
+                                                    <constraint firstAttribute="bottom" secondItem="WHc-I6-DNH" secondAttribute="bottom" id="PZN-ax-ZyX"/>
+                                                    <constraint firstAttribute="height" constant="28" id="bu9-xl-VO2"/>
+                                                    <constraint firstItem="Wfw-SJ-rNj" firstAttribute="top" secondItem="8Ti-rv-gfy" secondAttribute="top" id="hp9-AP-T8Z"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wfw-SJ-rNj" secondAttribute="trailing" constant="25" id="hxl-9G-ti6"/>
+                                                    <constraint firstItem="Wfw-SJ-rNj" firstAttribute="leading" secondItem="CJv-hg-tuc" secondAttribute="trailing" constant="6" id="kB4-rg-OIf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WHc-I6-DNH" secondAttribute="trailing" id="kbj-Ih-tPT"/>
+                                                    <constraint firstItem="CJv-hg-tuc" firstAttribute="centerY" secondItem="Wfw-SJ-rNj" secondAttribute="centerY" id="lL0-Uu-E7Y"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Wfw-SJ-rNj" secondAttribute="bottom" id="oCw-ka-Pkt"/>
+                                                    <constraint firstItem="WHc-I6-DNH" firstAttribute="top" secondItem="8Ti-rv-gfy" secondAttribute="top" id="td6-6g-1Ru"/>
+                                                    <constraint firstItem="CJv-hg-tuc" firstAttribute="leading" secondItem="8Ti-rv-gfy" secondAttribute="leading" constant="6" id="yyV-lN-slv"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="b3Z-i4-6eM" firstAttribute="leading" secondItem="p6q-vc-aWa" secondAttribute="leading" constant="20" id="65d-HL-oLV"/>
+                                            <constraint firstItem="8Ti-rv-gfy" firstAttribute="leading" secondItem="X24-BB-8l2" secondAttribute="leading" id="DXG-s3-ICa"/>
                                             <constraint firstAttribute="trailing" secondItem="b3Z-i4-6eM" secondAttribute="trailing" constant="26" id="IKz-cV-yl7"/>
                                             <constraint firstItem="2Cn-HX-00X" firstAttribute="leading" secondItem="X24-BB-8l2" secondAttribute="leading" id="NIM-Lh-NhV"/>
                                             <constraint firstItem="X24-BB-8l2" firstAttribute="trailing" secondItem="b3Z-i4-6eM" secondAttribute="trailing" id="SHT-Hk-elh"/>
                                             <constraint firstItem="2Cn-HX-00X" firstAttribute="top" secondItem="X24-BB-8l2" secondAttribute="bottom" constant="10" id="Ufn-Z9-7PN"/>
                                             <constraint firstItem="b3Z-i4-6eM" firstAttribute="top" secondItem="p6q-vc-aWa" secondAttribute="bottom" constant="33" id="inR-vo-YP0"/>
+                                            <constraint firstItem="8Ti-rv-gfy" firstAttribute="top" secondItem="X24-BB-8l2" secondAttribute="bottom" constant="10" id="jS4-Pz-6hs"/>
                                             <constraint firstItem="p6q-vc-aWa" firstAttribute="leading" secondItem="cqj-Tn-7U8" secondAttribute="leading" constant="10" id="qqw-ZR-oTL"/>
                                             <constraint firstItem="X24-BB-8l2" firstAttribute="leading" secondItem="b3Z-i4-6eM" secondAttribute="leading" id="u45-GC-BV9"/>
                                             <constraint firstItem="X24-BB-8l2" firstAttribute="top" secondItem="b3Z-i4-6eM" secondAttribute="bottom" constant="36" id="v5X-cL-jgO"/>
@@ -739,6 +782,47 @@ Describe Yourself?</string>
                                                     <constraint firstAttribute="trailing" secondItem="kQX-6q-dyf" secondAttribute="trailing" id="qvb-mL-arS"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTe-rD-UZm">
+                                                <rect key="frame" x="30" y="248" width="186.5" height="28"/>
+                                                <subviews>
+                                                    <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1G8-vX-jcV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="186.5" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textFieldError" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-zX-hDn">
+                                                        <rect key="frame" x="6" y="6" width="16" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="16" id="IDj-zy-rY4"/>
+                                                            <constraint firstAttribute="width" secondItem="idQ-zX-hDn" secondAttribute="height" multiplier="1:1" id="xke-Zg-oxL"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email already in use" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOS-7P-tYf">
+                                                        <rect key="frame" x="28" y="0.0" width="133.5" height="28"/>
+                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="1G8-vX-jcV" firstAttribute="top" secondItem="lTe-rD-UZm" secondAttribute="top" id="2D6-i4-OcX"/>
+                                                    <constraint firstItem="idQ-zX-hDn" firstAttribute="leading" secondItem="lTe-rD-UZm" secondAttribute="leading" constant="6" id="3Jc-0H-mDv"/>
+                                                    <constraint firstItem="BOS-7P-tYf" firstAttribute="top" secondItem="lTe-rD-UZm" secondAttribute="top" id="UUE-jC-t7F"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BOS-7P-tYf" secondAttribute="trailing" constant="25" id="WIp-xi-ONc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1G8-vX-jcV" secondAttribute="bottom" id="bR3-Jk-STB"/>
+                                                    <constraint firstItem="BOS-7P-tYf" firstAttribute="leading" secondItem="idQ-zX-hDn" secondAttribute="trailing" constant="6" id="bbW-Wf-3Vg"/>
+                                                    <constraint firstItem="idQ-zX-hDn" firstAttribute="centerY" secondItem="BOS-7P-tYf" secondAttribute="centerY" id="fSX-Je-rSV"/>
+                                                    <constraint firstItem="1G8-vX-jcV" firstAttribute="leading" secondItem="lTe-rD-UZm" secondAttribute="leading" id="v20-fD-Ao3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1G8-vX-jcV" secondAttribute="trailing" id="w4A-1P-afP"/>
+                                                    <constraint firstAttribute="height" constant="28" id="xhE-t4-Jkj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="BOS-7P-tYf" secondAttribute="bottom" id="zWh-u2-vvO"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will send you an activation link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nj-RQ-dHp">
                                                 <rect key="frame" x="30" y="151.5" width="229" height="17.5"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -750,6 +834,7 @@ Describe Yourself?</string>
                                         <constraints>
                                             <constraint firstItem="f1l-hR-QBt" firstAttribute="leading" secondItem="cWX-BB-QRt" secondAttribute="leading" constant="10" id="6GO-52-cji"/>
                                             <constraint firstItem="e3y-FQ-avV" firstAttribute="leading" secondItem="f1l-hR-QBt" secondAttribute="leading" constant="20" id="D13-0y-xdy"/>
+                                            <constraint firstItem="lTe-rD-UZm" firstAttribute="top" secondItem="rMQ-m6-mol" secondAttribute="bottom" constant="10" id="IoC-Vw-Alq"/>
                                             <constraint firstItem="1nj-RQ-dHp" firstAttribute="top" secondItem="e3y-FQ-avV" secondAttribute="bottom" constant="12" id="LJ3-p5-Tor"/>
                                             <constraint firstItem="1nj-RQ-dHp" firstAttribute="leading" secondItem="e3y-FQ-avV" secondAttribute="leading" id="S0k-U7-gRx"/>
                                             <constraint firstItem="rMQ-m6-mol" firstAttribute="top" secondItem="1nj-RQ-dHp" secondAttribute="bottom" constant="34" id="Uke-DP-6df"/>
@@ -759,6 +844,7 @@ Describe Yourself?</string>
                                             <constraint firstAttribute="trailing" secondItem="e3y-FQ-avV" secondAttribute="trailing" constant="26" id="r4S-dg-H4R"/>
                                             <constraint firstItem="1d5-f3-k6d" firstAttribute="leading" secondItem="rMQ-m6-mol" secondAttribute="leading" id="tfv-Hs-MNd"/>
                                             <constraint firstItem="rMQ-m6-mol" firstAttribute="leading" secondItem="e3y-FQ-avV" secondAttribute="leading" id="wOj-vU-rB2"/>
+                                            <constraint firstItem="lTe-rD-UZm" firstAttribute="leading" secondItem="rMQ-m6-mol" secondAttribute="leading" id="yLu-3f-Sdy"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-rH-j8L" userLabel="container8">
@@ -1735,6 +1821,7 @@ Describe Yourself?</string>
                         <outlet property="changeUploadedPhotoButton" destination="V2x-s9-OuA" id="BXL-lK-6la"/>
                         <outlet property="confirmPasswordTextField" destination="soh-bV-9j1" id="gTu-oN-bKK"/>
                         <outlet property="couplePartnerButton" destination="QrM-Ww-fHd" id="L6u-5R-N5b"/>
+                        <outlet property="emailExistWarningView" destination="lTe-rD-UZm" id="Jq3-ze-s1I"/>
                         <outlet property="emailTextField" destination="r49-X2-9ik" id="fyz-iH-SFY"/>
                         <outlet property="emailValidationAlertView" destination="1d5-f3-k6d" id="K2y-FS-rrD"/>
                         <outlet property="genderPickerView" destination="ZcY-2P-nND" id="fVK-qD-TQ2"/>
@@ -1759,6 +1846,7 @@ Describe Yourself?</string>
                         <outlet property="uploadPhotoProblemImageView" destination="r25-pP-dUW" id="RaJ-sl-spe"/>
                         <outlet property="uploadPhotoSuccessContainerView" destination="sWH-da-w1o" id="nNa-6v-ijp"/>
                         <outlet property="uploadedPhotoImageView" destination="wjf-dT-FKX" id="t5C-pg-3SU"/>
+                        <outlet property="usernameExistWarningView" destination="8Ti-rv-gfy" id="zAf-zS-BXm"/>
                         <outletCollection property="photoInstructionBackgroundViews" destination="48S-Pj-NFg" collectionClass="NSMutableArray" id="vgd-xE-2Xe"/>
                         <outletCollection property="photoInstructionBackgroundViews" destination="Cqb-Ri-Qa1" collectionClass="NSMutableArray" id="NFJ-ci-m7U"/>
                     </connections>

@@ -425,28 +425,28 @@
                     <rect key="frame" x="0.0" y="0.0" width="416" height="736"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-sN-oGh">
-                            <rect key="frame" x="0.0" y="165" width="416" height="406"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-sN-oGh">
+                            <rect key="frame" x="0.0" y="102.5" width="416" height="531"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFiltersOnboardingImage" translatesAutoresizingMaskIntoConstraints="NO" id="U19-mA-Ylg">
-                                    <rect key="frame" x="128" y="40" width="160" height="160"/>
+                                    <rect key="frame" x="-12" y="40" width="440" height="600"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
-                                    <rect key="frame" x="154.5" y="212" width="107" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
+                                    <rect key="frame" x="154.5" y="352" width="107" height="21"/>
                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                     <color key="textColor" name="textBlackColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4h-iy-14o">
-                                    <rect key="frame" x="62.5" y="239" width="291" height="35"/>
-                                    <string key="text">Knowing your location helps
-us locate people around you. </string>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4h-iy-14o">
+                                    <rect key="frame" x="62.5" y="381" width="291" height="36"/>
+                                    <string key="text">Choose whom you want
+to search for.</string>
                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                     <color key="textColor" name="textBlackColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-wA-1Tr" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                    <rect key="frame" x="60" y="354" width="296" height="52"/>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-wA-1Tr" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="459" width="296" height="52"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="52" id="IZF-hA-1p5"/>
                                     </constraints>
@@ -461,15 +461,15 @@ us locate people around you. </string>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="bgW-SP-S2b" firstAttribute="top" secondItem="U19-mA-Ylg" secondAttribute="bottom" constant="12" id="503-0o-kEo"/>
-                                <constraint firstItem="D4h-iy-14o" firstAttribute="top" secondItem="bgW-SP-S2b" secondAttribute="bottom" constant="6" id="6lj-qd-2ks"/>
-                                <constraint firstItem="Oub-wA-1Tr" firstAttribute="top" secondItem="D4h-iy-14o" secondAttribute="bottom" constant="80" id="DF0-ta-vdj"/>
+                                <constraint firstItem="bgW-SP-S2b" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U19-mA-Ylg" secondAttribute="bottom" priority="999" constant="12" id="503-0o-kEo"/>
+                                <constraint firstItem="D4h-iy-14o" firstAttribute="top" secondItem="bgW-SP-S2b" secondAttribute="bottom" constant="8" id="6lj-qd-2ks"/>
+                                <constraint firstItem="Oub-wA-1Tr" firstAttribute="top" secondItem="D4h-iy-14o" secondAttribute="bottom" constant="42" id="DF0-ta-vdj"/>
                                 <constraint firstItem="U19-mA-Ylg" firstAttribute="top" secondItem="ePp-sN-oGh" secondAttribute="top" constant="40" id="RI5-zn-g1f"/>
                                 <constraint firstItem="U19-mA-Ylg" firstAttribute="centerX" secondItem="ePp-sN-oGh" secondAttribute="centerX" id="UIK-eg-lm7"/>
                                 <constraint firstItem="D4h-iy-14o" firstAttribute="width" secondItem="ePp-sN-oGh" secondAttribute="width" multiplier="0.7" id="YaW-7S-ACg"/>
                                 <constraint firstAttribute="trailing" secondItem="Oub-wA-1Tr" secondAttribute="trailing" constant="60" id="gBE-yV-o51"/>
                                 <constraint firstItem="bgW-SP-S2b" firstAttribute="centerX" secondItem="ePp-sN-oGh" secondAttribute="centerX" id="lKN-GP-5je"/>
-                                <constraint firstAttribute="bottom" secondItem="Oub-wA-1Tr" secondAttribute="bottom" id="lR6-y9-7ym"/>
+                                <constraint firstAttribute="bottom" secondItem="Oub-wA-1Tr" secondAttribute="bottom" constant="20" id="lR6-y9-7ym"/>
                                 <constraint firstItem="D4h-iy-14o" firstAttribute="centerX" secondItem="bgW-SP-S2b" secondAttribute="centerX" id="wyb-Ds-SZi"/>
                                 <constraint firstItem="Oub-wA-1Tr" firstAttribute="leading" secondItem="ePp-sN-oGh" secondAttribute="leading" constant="60" id="zQB-uT-lfk"/>
                             </constraints>
@@ -655,7 +655,7 @@ activated when it reaches</string>
                     <viewLayoutGuide key="safeArea" id="tHd-TV-2jB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1190" y="-644"/>
+            <point key="canvasLocation" x="-401" y="-602"/>
         </scene>
         <!--Teleport View Controller-->
         <scene sceneID="xhR-gA-pls">
@@ -1555,7 +1555,7 @@ activated when it reaches</string>
         <image name="searchEnableLocationPlanetImage" width="220" height="300"/>
         <image name="searchEnableLocationToSettings" width="220" height="300"/>
         <image name="searchFantasyLogo" width="80" height="80"/>
-        <image name="searchFiltersOnboardingImage" width="80" height="80"/>
+        <image name="searchFiltersOnboardingImage" width="220" height="300"/>
         <image name="secret" width="80" height="80"/>
         <image name="stub" width="476" height="462"/>
         <namedColor name="textBlackColor">

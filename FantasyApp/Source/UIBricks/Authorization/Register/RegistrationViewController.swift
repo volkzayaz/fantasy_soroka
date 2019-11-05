@@ -76,6 +76,8 @@ class RegistrationViewController: UIViewController, MVVM_View {
     // Name section
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var showNameLenghtAlertView: UIView!
+    @IBOutlet private weak var usernameExistWarningView: UIView!
+
 
     // Gender section
     @IBOutlet private weak var genderPickerView: UIPickerView!
@@ -106,6 +108,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     // Email section
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var emailValidationAlertView: UIView!
+    @IBOutlet private weak var emailExistWarningView: UIView!
 
     // Password section
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -164,6 +167,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
         viewModel.showEmaillValidationAlert
             .map { !$0 }
             .drive(emailValidationAlertView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.showEmailExistWarning
+            .map { !$0 }
+            .drive(emailExistWarningView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.showUsernameExistWarning
+            .map { !$0 }
+            .drive(usernameExistWarningView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
         // buttons management
@@ -280,6 +293,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         ////Name
         
         nameTextField.rx.text
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.nameChanged(name: x ?? "")
             })
@@ -366,6 +380,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         ////email
         
         emailTextField.rx.text
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .skip(1)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.emailChanged(email: x ?? "")
