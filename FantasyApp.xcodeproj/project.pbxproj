@@ -306,6 +306,7 @@
 		B73774B823647FE400A353CC /* NoUsersCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774B723647FE400A353CC /* NoUsersCarouselView.swift */; };
 		B73774BA23647FF600A353CC /* NoUsersCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B923647FF600A353CC /* NoUsersCarouselView.xib */; };
 		B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */; };
+		B772E3552378221B0093B63B /* FantasyLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B772E3542378221B0093B63B /* FantasyLoadingView.swift */; };
 		B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */; };
 		B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C631234F92120017CE1A /* GradientBackgroundView.swift */; };
 		B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6342350D6C00017CE1A /* WelcomeRouter.swift */; };
@@ -659,6 +660,7 @@
 		B73774B723647FE400A353CC /* NoUsersCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUsersCarouselView.swift; sourceTree = "<group>"; };
 		B73774B923647FF600A353CC /* NoUsersCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoUsersCarouselView.xib; sourceTree = "<group>"; };
 		B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		B772E3542378221B0093B63B /* FantasyLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyLoadingView.swift; sourceTree = "<group>"; };
 		B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRestrictionViewConrtoller.swift; sourceTree = "<group>"; };
 		B783C631234F92120017CE1A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		B783C6342350D6C00017CE1A /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
@@ -952,6 +954,7 @@
 				7312B08922D7422100DB0F36 /* SpinnerView.swift */,
 				7312B08A22D7422100DB0F36 /* UIView+ProgressIndicator.swift */,
 				7312B08B22D7422100DB0F36 /* ProgressAnimatable.swift */,
+				B772E3542378221B0093B63B /* FantasyLoadingView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -2626,6 +2629,7 @@
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
+				B772E3552378221B0093B63B /* FantasyLoadingView.swift in Sources */,
 				734C70C523214C7E00ED2E91 /* UserProfilePhotoCell.swift in Sources */,
 				841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */,
 				844C84F323509C4C00BDC60F /* InviteParticipantCollectionViewCell.swift in Sources */,

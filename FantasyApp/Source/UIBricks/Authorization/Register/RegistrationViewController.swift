@@ -456,15 +456,9 @@ extension RegistrationViewController: UIScrollViewDelegate {
             }
 
             self.imagePicker?.present()
-
-            //            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
-            //                FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
-            //                    self.viewModel.photoSelected(photo: image)
-            //                }
-            //            }
         }))
 
-        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
 
         present(alert, animated: true, completion: nil)
     }
@@ -514,12 +508,12 @@ extension RegistrationViewController: UITextFieldDelegate {
         if let text = textField.text,
             let textRange = Range(range, in: text) {
 
-            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            let x = text.replacingCharacters(in: textRange, with: string)
 
             let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
-            let result = regex?.firstMatch(in: updatedText, options: [], range: NSMakeRange(0, updatedText.count)) == nil
+            let result = regex?.firstMatch(in: x, options: [], range: NSMakeRange(0, x.count)) == nil
 
-            return updatedText.first != " " && updatedText.suffix(2) != "  " && result
+            return x.first != " " && x.suffix(2) != "  " && result && x.count <= 18
         }
 
         return true
