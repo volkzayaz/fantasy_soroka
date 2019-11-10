@@ -75,13 +75,15 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     var settings: Settings
     
-    let status = Status.draft
-    
     let freezeStatus: FreezeStatus?
     var participants: [Participant]
 
     var peer: Participant {
         return participants.first(where: { $0.userId != User.current?.id })!
+    }
+    
+    var me: Participant {
+        return participants.first(where: { $0.userId == User.current?.id })!
     }
     
     // property set during runtime
@@ -93,6 +95,12 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    var isDraftRoom: Bool {
+        return participants.reduce(into: false) { result, participant in
+            result = result || participant.status == .invited
+        }
     }
     
 }
@@ -125,7 +133,6 @@ extension Room {
         var roomId: String!
         var newMessage: Bool = true
         var newFantasyMatch: Bool = true
-
 
     }
 
@@ -165,16 +172,6 @@ extension Room {
             case accepted
             case rejected
         }
-    }
-
-    enum `Type`: String, Codable, Equatable {
-        case `private`
-        case `public`
-    }
-
-    enum Status: String, Codable, Equatable {
-        case draft
-        case created
     }
 
 }

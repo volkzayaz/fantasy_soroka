@@ -21,13 +21,13 @@ extension ChatViewModel {
 
 class ChatViewModel: MVVM_ViewModel {
     
-    private(set) var room: Room
+    private let room: SharedRoomResource
     
     let chattoMess: ChattoMess
     
     private let inputEnabledRelay: BehaviorRelay<Bool>
     
-    init(router: ChatRouter, room: Room, chattoDelegate: ChatDataSourceDelegateProtocol) {
+    init(router: ChatRouter, room: SharedRoomResource, chattoDelegate: ChatDataSourceDelegateProtocol) {
         self.router = router
         self.room = room
         self.chattoMess =  {
@@ -36,16 +36,16 @@ class ChatViewModel: MVVM_ViewModel {
             return x
         }()
         
-        chattoMess.includesAcceptReject = room.participants.contains { $0.status == .invited && $0.userId == User.current?.id }
+        chattoMess.includesAcceptReject = room.value.participants.contains { $0.status == .invited && $0.userId == User.current?.id }
         
         inputEnabledRelay = .init(value: !chattoMess.includesAcceptReject)
         
-        RoomManager.getMessagesInRoom(room.id, offset: 0)
+        RoomManager.getMessagesInRoom(room.value.id, offset: 0)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .flatMap { mes -> Observable<[Room.Message]> in
 
-                return RoomManager.subscribeTo(rooms: [room])
+                return RoomManager.subscribeTo(rooms: [room.value])
                     .scan(mes, accumulator: { (res, messageInRoom) in res + [messageInRoom.0] })
                     .startWith(mes)
             }
@@ -71,18 +71,19 @@ class ChatViewModel: MVVM_ViewModel {
 extension ChatViewModel {
     
     func sendMessage(text: String) {
+        
         let message = Room.Message(text: text,
                                    from: User.current!,
-                                   in: room)
+                                   in: room.value)
                                    
-        RoomManager.sendMessage(message, to: room)
+        RoomManager.sendMessage(message, to: room.value)
             .subscribe({ event in
             // TODO: error handling
             }).disposed(by: bag)
         
-        if room.peer.status == .invited {
+        if room.value.peer.status == .invited {
             
-            let _ = ConnectionManager.initiate(with: room.peer.userId!, type: .message)
+            let _ = ConnectionManager.initiate(with: room.value.peer.userId!, type: .message)
                 .retry(2)
                 .subscribe()
             
@@ -91,19 +92,26 @@ extension ChatViewModel {
     }
     
     func acceptRequest() {
-        let _ = ConnectionManager.likeBack(user: room.ownerId)
-            .subscribe()
         
-        var x = room.participants.first!
+        ///mutation
+        var updatedRoom = room.value
+        var x = updatedRoom.me
         x.status = .accepted
-        room.participants[0] = x
+        let i = updatedRoom.participants.firstIndex { $0.userId == x.userId }!
+        updatedRoom.participants[i] = x
+        room.accept(updatedRoom)
+        
+        ///reaction. Should be in inits bindings ;)
         chattoMess.includesAcceptReject = false
         inputEnabledRelay.accept(true)
+        
+        let _ = ConnectionManager.likeBack(user: room.value.ownerId)
+            .subscribe()
     }
     
     func rejectRequest() {
         
-        ConnectionManager.reject(user: room.ownerId)
+        ConnectionManager.reject(user: room.value.ownerId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { _ in

@@ -77,38 +77,35 @@ extension RoomManager {
                                      sharedCollections: [])
         
         return CreateDraftRoomResource(settings: settings).rx.request
-            .flatMap { room -> Single<Room> in
+            .flatMap { room -> Single<(Room, Room.NotificationSettings)> in
                 
                 let roomSettings = Room.NotificationSettings(objectId: nil,
                                                            roomId: room.id,
                                                            newMessage: true,
                                                            newFantasyMatch: true)
-                return roomSettings.rxCreate().map { settings in
-                    var r = room
-                    r.notificationSettings = settings
-                    return r
-                }
+                
+                return Single.zip(inviteUser(nil, to: room.id),
+                                  roomSettings.rxCreate())
                 
             }
-            .flatMap { room -> Single<Room> in
-                return inviteUser(nil, to: room.id)
+            .map { room, settings in
+                var r = room
+                r.notificationSettings = settings
+                return r
             }
+            
     }
 
-    static func activateRoom(_ roomId: String) -> Single<Room> {
-        return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
-    }
-    
-    static func deleteRoom(_ roomId: String) -> Single<Void> {
-        return DeleteRoomResource(roomId: roomId).rx.request.map { _ in }
-    }
-    
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {
         return InviteParticipantResource(roomId: roomId, userId: userId).rx.request
     }
 
     static func assosiateSelfWith(roomRef: RoomRef, password: String) -> Single<Room> {
         return RoomStatusResource(roomRef: roomRef, password: password, status: .invited).rx.request
+    }
+    
+    static func deleteRoom(_ roomId: String) -> Single<Void> {
+        return DeleteRoomResource(roomId: roomId).rx.request.map { _ in }
     }
     
     // MARK: - Settings

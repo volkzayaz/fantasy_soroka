@@ -42,14 +42,17 @@ class InviteParticipantCollectionViewCell: UICollectionViewCell {
             animation.autoreverses = false
             imageView.layer.add(animation, forKey: "rotate")
             
+            titleLabel.text = "Waiting"
+            
         }
         else {
             
             imageView.layer.removeAllAnimations()
             imageView.image = R.image.invite()
+
+            titleLabel.text = "Add"
             
         }
-        
         
     }
     

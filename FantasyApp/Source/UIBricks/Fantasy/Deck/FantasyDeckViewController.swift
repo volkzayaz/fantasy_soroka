@@ -178,7 +178,7 @@ private extension FantasyDeckViewController {
         cardsButton.mode = .selector
         cardsButton.isSelected = true
 
-        waitingView.roundCorners([.topLeft, .topRight], radius: 20.0)
+        waitingView.addFantasyRoundedCorners()
         waitingView.backgroundColor = .primary
 
         timeLeftLabel.font = .boldFont(ofSize: 18)
