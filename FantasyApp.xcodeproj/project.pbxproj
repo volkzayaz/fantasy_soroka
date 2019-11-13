@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
+		67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */; };
 		73097BF9231D39D800B71053 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* Profile.swift */; };
 		73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */; };
 		73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BFF231D3CFB00B71053 /* EditProfileViewController.swift */; };
@@ -356,6 +357,7 @@
 		45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
 		58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsPreferenceSelector.swift; sourceTree = "<group>"; };
 		73097BF8231D39D800B71053 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		73097BFF231D3CFB00B71053 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -699,6 +701,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67E88EFF237C350C0020382F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6807B3DC917F8545520D3233 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1547,6 +1557,7 @@
 		739F799423095C730045FCD7 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				67E88EFF237C350C0020382F /* View */,
 				849D3FA22366AE97001CEBCA /* Cells */,
 				739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */,
 				739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */,
@@ -2464,6 +2475,7 @@
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
+				67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */,
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,

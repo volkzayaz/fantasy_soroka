@@ -9,23 +9,6 @@
 import Foundation
 
 extension FantasyDetailsViewController {
-    func animatePreferenceChange(_ reaction: Fantasy.Card.Reaction) {
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: {
-            self.equalButtonsWidth.isActive = reaction == .neutral
-            self.likeSelectedWidth.isActive = reaction != .like
-            self.dislikeSelectedWidth.isActive = reaction != .dislike
-            self.view.layoutIfNeeded()
-        }) { [weak self] _ in
-            self?.dislikeLabel.isHidden = reaction != .dislike
-            self?.dislikesCountLabel.isHidden = reaction != .dislike
-            self?.likeLabel.isHidden = reaction != .like
-            self?.likesCountLabel.isHidden = reaction != .like
-        }
-    }
-
     func animateDisappearance() {
         gradientBackgroundView.isHidden = true
         backgroundView.isHidden = true
@@ -40,6 +23,7 @@ extension FantasyDetailsViewController {
             self.titleLabel.alpha = 0.0
             self.closeButton.alpha = 0.0
             self.optionButton.alpha = 0.0
+            self.shareButton.alpha = 0.0
             self.view.layoutIfNeeded()
         }) { [weak self] _ in
             self?.viewModel.close()
@@ -57,6 +41,7 @@ extension FantasyDetailsViewController {
             self.titleLabel.alpha = 1.0
             self.closeButton.alpha = 1.0
             self.optionButton.alpha = 1.0
+            self.shareButton.alpha = 1.0
         }) { [weak self] _ in
             guard let self = self else { return }
             self.stackView.isHidden = false
@@ -67,7 +52,7 @@ extension FantasyDetailsViewController {
         }
     }
 
-    private func animateContentOffsetChange(contentOffset: CGPoint) {
+    func animateContentOffsetChange(contentOffset: CGPoint) {
         UIView.animate(withDuration: 0.3,
                        delay: 0.0,
                        usingSpringWithDamping: 0.8,

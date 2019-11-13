@@ -36,7 +36,6 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     static let initialScrollViewRatio: CGFloat = 1 / 3
 
     // MARK: - Outlets
-    // TODO: Combine like+dislike+labels into one separate UI component
     @IBOutlet private (set) var navigationBar: UINavigationBar!
     @IBOutlet private (set) var titleLabel: UILabel!
     @IBOutlet private (set) var gradientBackgroundView: UIView!
@@ -49,26 +48,19 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private (set) var descriptionLabel: UILabel!
     @IBOutlet private (set) var descriptionButton: UIButton!
     @IBOutlet private (set) var likeButton: UIButton!
-    @IBOutlet private (set) var likeLabel: UILabel!
-    @IBOutlet private (set) var likesCountLabel: UILabel!
-    @IBOutlet private (set) var dislikeButton: UIButton!
-    @IBOutlet private (set) var dislikeLabel: UILabel!
-    @IBOutlet private (set) var dislikesCountLabel: UILabel!
+    @IBOutlet private (set) var preferenceSelector: FantasyDetailsPreferenceSelector!
     @IBOutlet private (set) var preferenceView: UIView!
     @IBOutlet private (set) var preferenceTitleLabel: UILabel!
     @IBOutlet private (set) var collectionsView: UIView!
     @IBOutlet private (set) var collectionsTitleLabel: UILabel!
     @IBOutlet private (set) var collectionView: UICollectionView!
-    @IBOutlet private (set) var shareButton: UIButton!
+    @IBOutlet private (set) var shareButton: SecondaryButton!
     @IBOutlet private (set) var closeButton: UIButton!
     @IBOutlet private (set) var optionButton: UIButton!
 
     @IBOutlet private (set) var backgroundImageLeftMargin: NSLayoutConstraint!
     @IBOutlet private (set) var backgroundImageRightMargin: NSLayoutConstraint!
     @IBOutlet private (set) var backgroundImageCenterY: NSLayoutConstraint!
-    @IBOutlet private (set) var equalButtonsWidth: NSLayoutConstraint!
-    @IBOutlet private (set) var likeSelectedWidth: NSLayoutConstraint!
-    @IBOutlet private (set) var dislikeSelectedWidth: NSLayoutConstraint!
     @IBOutlet private (set) var collapsedDescriptionHeight: NSLayoutConstraint!
     @IBOutlet private (set) var zoomedBackgroundConstraint: NSLayoutConstraint!
     @IBOutlet private (set) var unzoomedBackgroundConstraint: NSLayoutConstraint!
@@ -101,7 +93,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
                    .disposed(by: backgroundImageView.rx.disposeBag)
 
         viewModel.currentState.asDriver().drive(onNext: { [weak self] reaction in
-            self?.configurePreferenceState(reaction)
+            self?.preferenceSelector.reaction = reaction
         }).disposed(by: rx.disposeBag)
 
         viewModel.collectionsDataSource.map { [weak self] model in
@@ -117,6 +109,16 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
                 self.viewModel.show(collection: x)
             })
             .disposed(by: rx.disposeBag)
+        
+        preferenceSelector.didPressLike = { [weak self] in
+            self?.viewModel.likeCard()
+        }
+        
+        preferenceSelector.didPressDislike = { [weak self] in
+            self?.viewModel.dislikeCard()
+        }
+        preferenceSelector.likesCount = viewModel.likesCount
+        preferenceSelector.dislikesCount = viewModel.dislikesCount
             
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
 
@@ -127,7 +129,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 
         configureBackgroundConstratints()
         configureStyling()
-        configurePreferenceState(viewModel.currentState.value)
+        preferenceSelector.reaction = viewModel.currentState.value
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -166,6 +168,7 @@ private extension FantasyDetailsViewController {
         closeButton.alpha = 0.0
         optionButton.alpha = 0.0
         titleLabel.alpha = 0.0
+        shareButton.alpha = 0.0
 
         backgroundImageView.contentMode = .scaleAspectFill
 
@@ -177,10 +180,7 @@ private extension FantasyDetailsViewController {
 
         backgroundImageView.layer.cornerRadius = 25.0
 
-        [descriptionButton,
-         likeButton,
-         dislikeButton,
-         shareButton].forEach { $0?.layer.cornerRadius = ($0?.frame.height ?? 0.0) / 2.0 }
+        descriptionButton.layer.cornerRadius = descriptionButton.frame.height / 2.0 
 
         titleLabel.text = R.string.localizable.fantasyCardTitle()
         titleLabel.textColor = .title
@@ -204,40 +204,11 @@ private extension FantasyDetailsViewController {
         preferenceTitleLabel.textColor = .fantasyBlack
         preferenceTitleLabel.font = .boldFont(ofSize: 25)
 
-        likeButton.setTitle(R.string.localizable.fantasyCardLikeButton(), for: .normal)
-        likeButton.backgroundColor = .fantasyLightGrey
-        likeButton.setTitleColor(.fantasyPink, for: .normal)
-        likeButton.titleLabel?.font = .boldFont(ofSize: 16)
-
-        dislikeButton.setTitle(R.string.localizable.fantasyCardDislikeButton(), for: .normal)
-        dislikeButton.backgroundColor = .fantasyLightGrey
-        dislikeButton.setTitleColor(.fantasyPink, for: .normal)
-        dislikeButton.titleLabel?.font = .boldFont(ofSize: 16)
-
         collectionsTitleLabel.text = R.string.localizable.fantasyCardCollectionsTitle()
         collectionsTitleLabel.textColor = .fantasyBlack
         collectionsTitleLabel.font = .boldFont(ofSize: 25)
 
         shareButton.setTitle(R.string.localizable.fantasyCardShareButton(), for: .normal)
-        shareButton.backgroundColor = .fantasyGrey
-        shareButton.setTitleColor(.fantasyPink, for: .normal)
-        shareButton.titleLabel?.font = .boldFont(ofSize: 16)
-
-        likeLabel.text = R.string.localizable.fantasyCardLikedTitle()
-        likeLabel.textColor = .fantasyPink
-        likeLabel.font = .boldFont(ofSize: 16)
-
-        dislikeLabel.text = R.string.localizable.fantasyCardDislikedTitle()
-        dislikeLabel.textColor = .fantasyPink
-        dislikeLabel.font = .boldFont(ofSize: 16)
-
-        dislikesCountLabel.text = R.string.localizable.fantasyCardPreferenceCountTitle(viewModel.dislikesCount)
-        dislikesCountLabel.textColor = .fantasyBlack
-        dislikesCountLabel.font = .regularFont(ofSize: 16)
-
-        likesCountLabel.text = R.string.localizable.fantasyCardPreferenceCountTitle(viewModel.likesCount)
-        likesCountLabel.textColor = .fantasyBlack
-        likesCountLabel.font = .regularFont(ofSize: 16)
     }
     
     func configureBackgroundConstratints() {
@@ -247,44 +218,10 @@ private extension FantasyDetailsViewController {
         unzoomedBackgroundConstraint.constant = view.bounds.height - (
             view.bounds.height - cardHeight - 50)
     }
-
-    func configurePreferenceState(_ reaction: Fantasy.Card.Reaction) {
-        switch reaction {
-        case .like:
-            dislikeLabel.isHidden = true
-            dislikesCountLabel.isHidden = true
-        case .dislike:
-            likeLabel.isHidden = true
-            likesCountLabel.isHidden = true
-        default:
-            dislikeLabel.isHidden = true
-            dislikesCountLabel.isHidden = true
-            likeLabel.isHidden = true
-            likesCountLabel.isHidden = true
-        }
-
-        likeButton.setTitle(reaction == .neutral ? R.string.localizable.fantasyCardLikeButton() : "",
-                            for: .normal)
-        likeButton.backgroundColor = reaction == .like ? .preferenceButtonSelected : .fantasyLightGrey
-
-        dislikeButton.setTitle(reaction == .neutral ? R.string.localizable.fantasyCardDislikeButton() : "",
-                               for: .normal)
-        dislikeButton.backgroundColor = reaction == .dislike ? .preferenceButtonSelected : .fantasyLightGrey
-
-        animatePreferenceChange(reaction)
-    }
 }
 
 // MARK: - Actions
 private extension FantasyDetailsViewController {
-    @IBAction func likeCard(_ sender: Any) {
-        viewModel.likeCard()
-    }
-
-    @IBAction func dislikeCard(_ sender: Any) {
-        viewModel.dislikeCard()
-    }
-
     @IBAction func close(_ sender: Any) {
         if isZoomed {
             isZoomingBlocked = false
@@ -315,7 +252,6 @@ private extension FantasyDetailsViewController {
 
 // MARK: - Scrolling
 extension FantasyDetailsViewController: UIScrollViewDelegate {
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         configureNavigationBarButtons()
         configureBackground()
@@ -324,13 +260,32 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
 
         configureCardLayout()
     }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let areaRadius = view.bounds.height / 5
+        let topAreaRange = 0 ... view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius
+        let centerAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius ...
+            view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio + areaRadius
+        let bottomAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio + areaRadius ...
+            scrollView.contentSize.height
+        if centerAreaRange.contains(targetContentOffset.pointee.y) {
+            targetContentOffset.pointee.y = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        } else if topAreaRange.contains(targetContentOffset.pointee.y) {
+            targetContentOffset.pointee.y = 0
+        } else if bottomAreaRange.contains(targetContentOffset.pointee.y) {
+            targetContentOffset.pointee.y = scrollView.contentSize.height - scrollView.bounds.height < 0 ? 0 :
+                scrollView.contentSize.height - scrollView.bounds.height
+        }
+    }
 
     private func configureNavigationBarButtons() {
         if isZoomed {
             closeButton.setImage(R.image.cardDetailsClose(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
-        } else if scrollView.contentOffset.y >= scrollView.bounds.height *
-            unzoomedBackgroundConstraint.multiplier - navigationBar.frame.maxY {
+        } else if scrollView.contentOffset.y >=
+            unzoomedBackgroundConstraint.constant - navigationBar.frame.maxY {
             closeButton.setImage(R.image.navigationBackButton(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOptionPlain(), for: .normal)
         } else {
@@ -340,8 +295,8 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     }
 
     private func configureBackground() {
-        let minY = scrollView.bounds.height * unzoomedBackgroundConstraint.multiplier - navigationBar.frame.maxY
-        if scrollView.contentOffset.y >= minY {
+        if scrollView.contentOffset.y >=
+            unzoomedBackgroundConstraint.constant - navigationBar.frame.maxY {
             gradientBackgroundView.isHidden = false
         } else {
             gradientBackgroundView.isHidden = true
@@ -359,7 +314,6 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
 
 // MARK: - Swipe to close
 extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
-
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
