@@ -31,7 +31,7 @@ extension Fantasy.Manager {
                     return .cards(response.cards)
                 }
                 
-                if let x = response.wouldBeUpdatedAt {
+                if let x = response.deckState.wouldBeUpdatedAt {
                     return .empty(till: x)
                 }
                 
@@ -99,7 +99,7 @@ extension Fantasy.Manager {
                     return .cards(cards.cards)
                 }
                 
-                return .empty(till: Date(timeIntervalSinceNow: 24 * 3600))
+                return .empty(till: cards.deckState.wouldBeUpdatedAt)
                 
             }
         

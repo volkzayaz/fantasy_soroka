@@ -1048,92 +1048,7 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="26"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FantasyCollectionCollectionViewCell" id="huY-5e-UGP" customClass="FantasyCollectionCollectionViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="A0u-0p-2QK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiZ-5b-uwX">
-                                                            <rect key="frame" x="12" y="12" width="61" height="20"/>
-                                                            <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paidCollection" translatesAutoresizingMaskIntoConstraints="NO" id="y0w-UI-b3C">
-                                                                    <rect key="frame" x="8" y="4" width="10" height="12"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="12" id="igP-bR-ywO"/>
-                                                                        <constraint firstAttribute="width" constant="10" id="qBh-jq-cjE"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPw-ie-TTJ">
-                                                                    <rect key="frame" x="22" y="2.5" width="31" height="15"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="15" id="WMy-k4-jGM"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                            <constraints>
-                                                                <constraint firstItem="RPw-ie-TTJ" firstAttribute="leading" secondItem="y0w-UI-b3C" secondAttribute="trailing" constant="4" id="Iim-Qz-93h"/>
-                                                                <constraint firstAttribute="height" constant="20" id="PSr-qw-jan"/>
-                                                                <constraint firstItem="y0w-UI-b3C" firstAttribute="centerY" secondItem="yiZ-5b-uwX" secondAttribute="centerY" id="nNp-dr-2uG"/>
-                                                                <constraint firstAttribute="trailing" secondItem="RPw-ie-TTJ" secondAttribute="trailing" constant="8" id="qgD-zf-ArO"/>
-                                                                <constraint firstItem="RPw-ie-TTJ" firstAttribute="centerY" secondItem="yiZ-5b-uwX" secondAttribute="centerY" id="tm0-03-8fh"/>
-                                                                <constraint firstItem="y0w-UI-b3C" firstAttribute="leading" secondItem="yiZ-5b-uwX" secondAttribute="leading" constant="8" id="vJE-9f-gvG"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1c-L0-HNX" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7v6-pj-nzj">
-                                                            <rect key="frame" x="12" y="19" width="26" height="19"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="19" id="mxy-Tj-xNX"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93Y-fg-LZX">
-                                                            <rect key="frame" x="12" y="-4" width="26" height="19"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="19" id="32Q-Zc-g1W"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="7v6-pj-nzj" firstAttribute="top" secondItem="93Y-fg-LZX" secondAttribute="bottom" constant="4" id="3QA-IX-x4I"/>
-                                                        <constraint firstAttribute="bottom" secondItem="7v6-pj-nzj" secondAttribute="bottom" constant="12" id="8pO-ff-G5c"/>
-                                                        <constraint firstItem="yiZ-5b-uwX" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" constant="12" id="Px7-tZ-BrQ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="n1c-L0-HNX" secondAttribute="trailing" id="RNv-ea-DHn"/>
-                                                        <constraint firstItem="yiZ-5b-uwX" firstAttribute="top" secondItem="A0u-0p-2QK" secondAttribute="top" constant="12" id="RT4-IP-1Sp"/>
-                                                        <constraint firstAttribute="bottom" secondItem="n1c-L0-HNX" secondAttribute="bottom" id="VRz-4a-6tW"/>
-                                                        <constraint firstItem="n1c-L0-HNX" firstAttribute="top" secondItem="A0u-0p-2QK" secondAttribute="top" id="Wfi-4c-M8L"/>
-                                                        <constraint firstItem="n1c-L0-HNX" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" id="YUL-To-u2w"/>
-                                                        <constraint firstAttribute="trailing" secondItem="93Y-fg-LZX" secondAttribute="trailing" constant="12" id="mgC-uw-amt"/>
-                                                        <constraint firstItem="7v6-pj-nzj" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" constant="12" id="phq-We-HvC"/>
-                                                        <constraint firstItem="93Y-fg-LZX" firstAttribute="leading" secondItem="A0u-0p-2QK" secondAttribute="leading" constant="12" id="w06-0O-izD"/>
-                                                        <constraint firstAttribute="trailing" secondItem="7v6-pj-nzj" secondAttribute="trailing" constant="12" id="zgN-50-3iT"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
-                                                <connections>
-                                                    <outlet property="fantasiesCountLabel" destination="7v6-pj-nzj" id="1KL-2M-T9q"/>
-                                                    <outlet property="imageView" destination="n1c-L0-HNX" id="fCy-bq-Q4W"/>
-                                                    <outlet property="paidImageView" destination="y0w-UI-b3C" id="mIs-ej-38J"/>
-                                                    <outlet property="paidLabel" destination="RPw-ie-TTJ" id="gdA-my-Zwq"/>
-                                                    <outlet property="paidView" destination="yiZ-5b-uwX" id="1Sg-yv-SDh"/>
-                                                    <outlet property="titleLabel" destination="93Y-fg-LZX" id="HKT-aM-qk2"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1354,7 +1269,6 @@
         <image name="cardDetailsOption" width="40" height="40"/>
         <image name="dislike" width="25" height="24"/>
         <image name="like" width="25" height="24"/>
-        <image name="paidCollection" width="10" height="12"/>
         <image name="profileBack" width="40" height="40"/>
         <image name="scrollIndicator" width="20" height="20"/>
         <image name="timer" width="80" height="80"/>

@@ -32,11 +32,17 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             fantasiesView.countOfVisibleCards = 3
             fantasiesView.delegate = self
             fantasiesView.backgroundCardsTopMargin = 0
+            fantasiesView.isHidden = true
         }
     }
+
+    @IBOutlet weak var waitingView: UIView! {
+        didSet { waitingView.isHidden = true }
+    }
+
     @IBOutlet weak var cardsView: UIView!
     @IBOutlet weak var collectionsView: UIView!
-    @IBOutlet weak var waitingView: UIView!
+    
     @IBOutlet weak var timeLimitDecsriptionLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
     @IBOutlet weak var subsbcriptionLabel: UILabel!
@@ -44,7 +50,11 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     @IBOutlet weak var cardsButton: PrimaryButton!
     @IBOutlet weak var collectionsButton: PrimaryButton!
     @IBOutlet weak var collectionsCountLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
+        }
+    }
 
     lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource
     <AnimatableSectionModel<String, Fantasy.Collection>>(
@@ -73,8 +83,13 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             self.fantasiesView.isHidden = mode == .waiting
         }).disposed(by: rx.disposeBag)
         
-        viewModel.timeLeftText.drive(timeLeftLabel.rx.attributedText).disposed(by: rx.disposeBag)
-        viewModel.collectionsCountText.drive(collectionsCountLabel.rx.attributedText).disposed(by: rx.disposeBag)
+        viewModel.timeLeftText
+            .drive(timeLeftLabel.rx.attributedText)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.collectionsCountText
+            .drive(collectionsCountLabel.rx.attributedText)
+            .disposed(by: rx.disposeBag)
         
         viewModel.cards.drive(onNext: { [unowned self] (newState) in
             let from = self.fantasiesView.currentCardIndex

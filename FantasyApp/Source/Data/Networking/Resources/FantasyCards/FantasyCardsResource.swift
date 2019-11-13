@@ -19,7 +19,12 @@ extension Fantasy.Request {
         
         struct Response: Codable {
             let cards: [Fantasy.Card]
-            let wouldBeUpdatedAt: Date?
+            let deckState: DeckState
+            
+            struct DeckState: Codable {
+                let wouldBeUpdatedAt: Date?
+            }
+            
         }
         
         typealias responseType = Response
