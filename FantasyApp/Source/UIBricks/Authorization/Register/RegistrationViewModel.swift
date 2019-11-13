@@ -142,8 +142,30 @@ struct RegistrationViewModel : MVVM_ViewModel {
     fileprivate let showUsernameExistVar = BehaviorRelay(value: false)
     fileprivate let showEmailExistVar = BehaviorRelay(value: false)
     
+    fileprivate let emailRelay = BehaviorRelay<String?>(value: nil)
+    
     init(router: RegistrationRouter) {
         self.router = router
+
+        let updateEmail = self.updateForm
+        
+        emailRelay.notNil()
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .filter { $0.isValidEmail }
+            .flatMapLatest { (email) -> Single<Bool> in
+                
+                let clearEmail = email.trimmingCharacters(in: .whitespaces)
+                
+                return AuthenticationManager.isUnique(email: clearEmail)
+                    .do(onSuccess: { (isValid) in
+                        if isValid {
+                            updateEmail { $0.email = email }
+                        }
+                    })
+            }
+            .map { !$0 }
+            .bind(to: showEmailExistVar)
+            .disposed(by: bag)
         
         /////progress indicator
         
@@ -231,21 +253,24 @@ extension RegistrationViewModel {
     }
 
     func nameChanged(name: String) {
-
+        
         let clearName = name.trimmingCharacters(in: .whitespaces)
 
-        Observable.just(clearName)
-//            .filter { $0.isValidUsernameLenght }
-            .flatMap { self.validateName(name: $0) }
-            .subscribe(onNext: { (isValid) in
+                Observable.just(clearName)
+        //            .filter { $0.isValidUsernameLenght }
+        //            .flatMap { self.validateName(name: $0) }
+                    .subscribe(onNext: { (_) in
 
-                // show that username not valid
-                self.showUsernameExistVar.accept(!isValid)
+                        let isValid = true
+                        
+                        // show that username not valid
+                        self.showUsernameExistVar.accept(!isValid)
 
-                if isValid {
-                    self.updateForm { $0.name = clearName }
-                }
-            }).disposed(by: bag)
+                        if isValid {
+                            self.updateForm { $0.name = clearName }
+                        }
+                    }).disposed(by: bag)
+        
     }
     
     func birthdayChanged(date: Date) {
@@ -265,19 +290,7 @@ extension RegistrationViewModel {
     }
     
     func emailChanged(email: String) {
-        let clearEmail = email.trimmingCharacters(in: .whitespaces)
-
-        Observable.just(clearEmail)
-//            .filter { $0.isValidEmail }
-            .flatMap { self.validateEmail(email: $0) }
-            .subscribe(onNext: { (isValid) in
-                // show that user not valid
-                 self.showEmailExistVar.accept(!isValid)
-
-                if isValid {
-                    self.updateForm { $0.email = clearEmail }
-                }
-            }).disposed(by: bag)
+        emailRelay.accept(email)
     }
     
     func passwordChanged(password: String) {
@@ -320,12 +333,4 @@ extension RegistrationViewModel {
         form.accept(x)
     }
 
-    // Validations
-    func validateName(name: String?)-> Observable<Bool> {
-        return Observable.just(true)
-    }
-
-    func validateEmail(email: String?)-> Observable<Bool> {
-        return Observable.just(true)
-    }
 }
