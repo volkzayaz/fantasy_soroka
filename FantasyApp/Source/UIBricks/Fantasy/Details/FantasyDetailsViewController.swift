@@ -272,11 +272,14 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
             scrollView.contentSize.height
         if centerAreaRange.contains(targetContentOffset.pointee.y) {
             targetContentOffset.pointee.y = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+            shareButton.isHidden = false
         } else if topAreaRange.contains(targetContentOffset.pointee.y) {
             targetContentOffset.pointee.y = 0
+            shareButton.isHidden = true
         } else if bottomAreaRange.contains(targetContentOffset.pointee.y) {
             targetContentOffset.pointee.y = scrollView.contentSize.height - scrollView.bounds.height < 0 ? 0 :
                 scrollView.contentSize.height - scrollView.bounds.height
+            shareButton.isHidden = false
         }
     }
 

@@ -525,6 +525,7 @@
                             <constraint firstItem="d2Z-NG-tY3" firstAttribute="leading" secondItem="AZg-yI-Bgb" secondAttribute="leading" id="ADW-Jd-PXo"/>
                             <constraint firstAttribute="bottom" secondItem="67D-ww-QPD" secondAttribute="bottom" id="AS1-dI-BHn"/>
                             <constraint firstItem="qVp-KI-NDh" firstAttribute="trailing" secondItem="YC5-Z0-wau" secondAttribute="trailing" id="CC0-cJ-PQw"/>
+                            <constraint firstAttribute="bottom" secondItem="5Ae-Ny-mfF" secondAttribute="bottom" constant="29" id="CIR-5h-Jde"/>
                             <constraint firstItem="6Id-55-adl" firstAttribute="trailing" secondItem="qVp-KI-NDh" secondAttribute="trailing" id="EOl-zr-BP9"/>
                             <constraint firstItem="67D-ww-QPD" firstAttribute="leading" secondItem="AZg-yI-Bgb" secondAttribute="leading" id="Izb-df-vdq"/>
                             <constraint firstItem="o9J-DO-8Ss" firstAttribute="centerX" secondItem="AZg-yI-Bgb" secondAttribute="centerX" id="JcS-em-3YH"/>
@@ -539,7 +540,6 @@
                             <constraint firstItem="67D-ww-QPD" firstAttribute="top" secondItem="AZg-yI-Bgb" secondAttribute="top" id="q28-F6-VHa"/>
                             <constraint firstItem="qVp-KI-NDh" firstAttribute="leading" secondItem="YC5-Z0-wau" secondAttribute="leading" id="qq1-ii-80P"/>
                             <constraint firstItem="6Id-55-adl" firstAttribute="bottom" secondItem="qVp-KI-NDh" secondAttribute="bottom" id="vRI-z8-jVT"/>
-                            <constraint firstItem="YC5-Z0-wau" firstAttribute="bottom" secondItem="5Ae-Ny-mfF" secondAttribute="bottom" constant="29" id="xWE-Dx-KRh"/>
                             <constraint firstItem="5Ae-Ny-mfF" firstAttribute="centerX" secondItem="AZg-yI-Bgb" secondAttribute="centerX" id="xZy-9e-eas"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YC5-Z0-wau"/>
