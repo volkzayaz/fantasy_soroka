@@ -139,6 +139,15 @@ extension AuthenticationManager {
         return postAuthorizationParseMess(signal: x)
     }
  
+    static func isUnique(email: String)-> Single<Bool> {
+        
+        return User.query
+            .whereKey("email", equalTo: email)
+            .rx.fetchFirstObject()
+            .map { $0 == nil }
+        
+    }
+    
     static func currentUser() -> User? {
         return SettingsStore.currentUser.value
     }

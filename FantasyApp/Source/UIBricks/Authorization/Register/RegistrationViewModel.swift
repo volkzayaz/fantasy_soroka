@@ -57,7 +57,6 @@ extension RegistrationViewModel {
                              showUploadPhotoProblem])
     }
 
-
     var forwardButtonEnabled: Driver<Bool> {
         return Driver.combineLatest(step.asDriver(), form.asDriver()) { ($0, $1) }
             .map { (step, form) -> Bool in
@@ -66,7 +65,7 @@ extension RegistrationViewModel {
                     
                     ///apply validations here
                 case .notice:       return form.agreementTick
-                case .name:         return form.name.count >= 2
+                case .name:         return form.name.isValidUsernameLenght
                 case .birthday:     return form.brithdate != nil
                 case .sexuality:    return true
                 case .gender:       return true
@@ -119,32 +118,54 @@ extension RegistrationViewModel {
             .map { $0 > 0 && $0 <= 1 }
     }
 
-    var reportUrl: String {
-        return "https://feedback.fantasyapp.com/"
+    var showUsernameExistWarning: Driver<Bool> {
+        return showUsernameExistVar.asDriver()
     }
 
-    var termsUrl: String {
-        return "https://fantasyapp.com/en/terms-and-conditions/"
+    var showEmailExistWarning: Driver<Bool> {
+        return showEmailExistVar.asDriver()
     }
 
-    var privacyUrl: String {
-        return "https://fantasyapp.com/en/privacy-policy/"
-    }
-
-    var communityRulesUrl: String {
-        return "https://fantasyapp.com/en/community-rules/"
-    }
+    var reportUrl: String { return "https://feedback.fantasyapp.com/" }
+    var termsUrl: String { return "https://fantasyapp.com/en/terms-and-conditions/" }
+    var privacyUrl: String { return "https://fantasyapp.com/en/privacy-policy/" }
+    var communityRulesUrl: String { return "https://fantasyapp.com/en/community-rules/" }
 }
 
 struct RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate let form = BehaviorRelay(value: RegisterForm())
-    fileprivate let showUploadPhotoProblemVar = BehaviorRelay(value: false)
     fileprivate let step = BehaviorRelay(value: Step.notice)
 
+    // forms with errors
+    fileprivate let showUploadPhotoProblemVar = BehaviorRelay(value: false)
+    fileprivate let showUsernameExistVar = BehaviorRelay(value: false)
+    fileprivate let showEmailExistVar = BehaviorRelay(value: false)
+    
+    fileprivate let emailRelay = BehaviorRelay<String?>(value: nil)
     
     init(router: RegistrationRouter) {
         self.router = router
+
+        let updateEmail = self.updateForm
+        
+        emailRelay.notNil()
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .filter { $0.isValidEmail }
+            .flatMapLatest { (email) -> Single<Bool> in
+                
+                let clearEmail = email.trimmingCharacters(in: .whitespaces)
+                
+                return AuthenticationManager.isUnique(email: clearEmail)
+                    .do(onSuccess: { (isValid) in
+                        if isValid {
+                            updateEmail { $0.email = email }
+                        }
+                    })
+            }
+            .map { !$0 }
+            .bind(to: showEmailExistVar)
+            .disposed(by: bag)
         
         /////progress indicator
         
@@ -230,10 +251,26 @@ extension RegistrationViewModel {
     func agreementChanged(agrred: Bool) {
         updateForm { $0.agreementTick = agrred }
     }
-    
+
     func nameChanged(name: String) {
+        
         let clearName = name.trimmingCharacters(in: .whitespaces)
-        updateForm { $0.name = clearName }
+
+                Observable.just(clearName)
+        //            .filter { $0.isValidUsernameLenght }
+        //            .flatMap { self.validateName(name: $0) }
+                    .subscribe(onNext: { (_) in
+
+                        let isValid = true
+                        
+                        // show that username not valid
+                        self.showUsernameExistVar.accept(!isValid)
+
+                        if isValid {
+                            self.updateForm { $0.name = clearName }
+                        }
+                    }).disposed(by: bag)
+        
     }
     
     func birthdayChanged(date: Date) {
@@ -253,8 +290,7 @@ extension RegistrationViewModel {
     }
     
     func emailChanged(email: String) {
-        let clearEmail = email.trimmingCharacters(in: .whitespaces)
-        updateForm { $0.email = clearEmail }
+        emailRelay.accept(email)
     }
     
     func passwordChanged(password: String) {
@@ -296,5 +332,5 @@ extension RegistrationViewModel {
         mapper(&x)
         form.accept(x)
     }
-    
+
 }

@@ -75,8 +75,6 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     var settings: Settings
     
-    let status = Status.draft
-    
     let freezeStatus: FreezeStatus?
     var participants: [Participant]
 
@@ -84,8 +82,12 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
         return participants.first(where: { $0.userId != User.current?.id })!
     }
     
-    // property are set during runtime
-    var notificationSettings: RoomNotificationSettings?
+    var me: Participant {
+        return participants.first(where: { $0.userId == User.current?.id })!
+    }
+    
+    // property set during runtime
+    var notificationSettings: NotificationSettings!
     
     var identity: String {
         return id
@@ -93,6 +95,12 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    var isDraftRoom: Bool {
+        return participants.reduce(into: false) { result, participant in
+            result = result || participant.status == .invited
+        }
     }
     
 }
@@ -110,6 +118,22 @@ extension Room {
         var isHideCommonFantasies = false
         var isScreenShieldEnabled = false
         var sharedCollections: [String]
+    }
+    
+    struct NotificationSettings: Codable, Equatable, ParsePresentable {
+
+        static var className: String {
+            return "RoomNotificationSettings"
+        }
+
+        var objectId: String?
+
+        ///these names are actually keys on Parse Table,
+        ///so be accurate when chaning them
+        var roomId: String!
+        var newMessage: Bool = true
+        var newFantasyMatch: Bool = true
+
     }
 
     struct Participant: Codable, Equatable, IdentifiableType {
@@ -148,16 +172,6 @@ extension Room {
             case accepted
             case rejected
         }
-    }
-
-    enum `Type`: String, Codable, Equatable {
-        case `private`
-        case `public`
-    }
-
-    enum Status: String, Codable, Equatable {
-        case draft
-        case created
     }
 
 }

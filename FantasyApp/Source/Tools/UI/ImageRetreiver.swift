@@ -87,7 +87,7 @@ struct ImageRetreiver {
                 if let image = maybeImage {
                     return Observable.just((image, 1, true))
                 }
-
+                
                 return Observable.create { observer in
                     
                     let imageLoadRequest = Alamofire.request(request)

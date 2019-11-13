@@ -112,10 +112,8 @@ extension User {
         searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
-        connections = .init(likeRequests: [], chatRequests: [])
         subscription = subscriptionStatus ?? .init(status: nil)
         notificationSettings = notifSettings ?? NotificationSettings()
-        roomsNotificationSettings = []
     }
     
     ////we can edit only a subset of exisitng user properties to Parse
@@ -137,7 +135,6 @@ extension User {
             "belongsTo"                 : community.value?.pfObject as Any,
             "communityChangePolicy"     : community.changePolicy.rawValue,
             "notificationSettings"      : notificationSettings.pfObject,
-            "roomsNotificationSettings" : (roomsNotificationSettings ?? []).map { $0.pfObject }
         ] as [String : Any]
         
         switch bio.relationshipStatus {

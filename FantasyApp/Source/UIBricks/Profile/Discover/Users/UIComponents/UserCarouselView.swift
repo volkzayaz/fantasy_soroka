@@ -16,7 +16,7 @@ class UserCarouselView: UIView {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var secondaryContentView: UIView!
 
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: ProtectedImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var starImageView: UIImageView!
     @IBOutlet weak var labelCardNumber: UILabel!
@@ -52,7 +52,7 @@ class UserCarouselView: UIView {
             make.right.equalTo(self.snp_right)
         }
 
-        setupShadow()
+//        setupShadow()
         setupTransparentGradient()
     }
 
@@ -101,9 +101,10 @@ extension UserCarouselView {
         labelCardNumber.text = "\(cardCount)"
         starImageView.isHidden = !data.subscription.isSubscribed
 
-        ImageRetreiver.imageForURLWithoutProgress(url: data.bio.photos.avatar.url)
-            .map { $0 ?? R.image.noPhoto() }
-            .drive(profileImageView.rx.image)
-            .disposed(by: bag)
+        profileImageView.reset()
+        profileImageView.set(imageURL: data.bio.photos.avatar.url,
+                             isProtected: true,
+                             errorPlaceholder: R.image.noPhoto())
+        
     }
 }

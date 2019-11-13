@@ -47,7 +47,6 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private (set) var descriptionTitleLabel: UILabel!
     @IBOutlet private (set) var descriptionLabel: UILabel!
     @IBOutlet private (set) var descriptionButton: UIButton!
-    @IBOutlet private (set) var likeButton: UIButton!
     @IBOutlet private (set) var preferenceSelector: FantasyDetailsPreferenceSelector!
     @IBOutlet private (set) var preferenceView: UIView!
     @IBOutlet private (set) var preferenceTitleLabel: UILabel!
@@ -76,7 +75,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
                                      for: indexPath)!
 
             cell.fantasiesCount = model.cardsCount
-            cell.imageURL = model.imageURL
+            cell.set(imageURL: model.imageURL)
             cell.title = model.title
             cell.isPaid = model.productId != nil
 

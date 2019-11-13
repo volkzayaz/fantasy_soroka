@@ -110,5 +110,5 @@ extension Driver where Element == AppState {
     func changesOf<T: Equatable>( mapper: @escaping (AppState) -> T) -> SharedSequence<SharedSequence.SharingStrategy, T> {
         return map(mapper).distinctUntilChanged()
     }
-    
+
 }

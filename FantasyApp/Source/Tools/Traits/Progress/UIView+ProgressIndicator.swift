@@ -66,9 +66,7 @@ extension UIView {
     }
     
     fileprivate class ProgressContainer: UIView {
-
         var progressLabel: UILabel!
-        
     }
 
     fileprivate var progressView: ProgressContainer {
@@ -76,39 +74,40 @@ extension UIView {
         if let pv = self.subviews.filter({ $0.tag == self.progressViewHash }).first as? ProgressContainer {
             return pv
         }
-    
+
+        let fantasyLoadingView = FantasyLoadingView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        fantasyLoadingView.starAnimation()
+
         let container = ProgressContainer()
         container.isUserInteractionEnabled = true
         container.alpha = 0;
         container.tag = self.progressViewHash;
-        
+
         let dimmedView = UIView();
         dimmedView.backgroundColor = UIColor.black
         dimmedView.alpha = 0.5;
-        
-        let spinner = SpinnerView()
-        
+
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        
+
         container.addSubview(dimmedView)
-        container.addSubview(spinner)
+        container.addSubview(fantasyLoadingView)
         container.addSubview(label)
         self.addSubview(container)
-        
+
         container.progressLabel = label
         
         if self is UIScrollView {
             positionOnScrollView(container: container,
                                  dimmedView: dimmedView,
-                                 spinner: spinner,
+                                 spinner: fantasyLoadingView,
                                  label: label)
         }
         else {
             positionOnStaticView(container: container,
                                  dimmedView: dimmedView,
-                                 spinner: spinner,
+                                 spinner: fantasyLoadingView,
                                  label: label)
         }
         
@@ -117,7 +116,7 @@ extension UIView {
  
     private func positionOnScrollView(container: UIView,
                                       dimmedView: UIView,
-                                      spinner: SpinnerView,
+                                      spinner: UIView,
                                       label: UILabel) {
         
         guard let scrollView = self as? UIScrollView else {
@@ -145,10 +144,12 @@ extension UIView {
     
     private func positionOnStaticView(container: UIView,
                                       dimmedView: UIView,
-                                      spinner: SpinnerView,
+                                      spinner: UIView,
                                       label: UILabel) {
         spinner.snp.makeConstraints { make in
             make.center.equalTo(container)
+            make.height.equalTo(spinner.bounds.size.height)
+            make.width.equalTo(spinner.bounds.size.width)
         }
         
         label.snp.makeConstraints { make in

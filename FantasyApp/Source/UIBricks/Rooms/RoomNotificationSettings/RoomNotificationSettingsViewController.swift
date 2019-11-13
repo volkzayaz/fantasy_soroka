@@ -42,10 +42,10 @@ private extension RoomNotificationSettingsViewController {
         separator.backgroundColor = .fantasySeparator
 
         newMessageSwitch.onTintColor = .fantasyPink
-        newMessageSwitch.isOn = viewModel.currentSettings?.newFantasyMatch ?? true
+        newMessageSwitch.isOn = viewModel.currentSettings.newFantasyMatch
 
         newCommonFantasySwitch.onTintColor = .fantasyPink
-        newCommonFantasySwitch.isOn = viewModel.currentSettings?.newMessage ?? true
+        newCommonFantasySwitch.isOn = viewModel.currentSettings.newMessage
     }
 
     @IBAction func newCommonFantasySettingsChanged(_ sender: Any) {

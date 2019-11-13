@@ -17,19 +17,20 @@ struct RoomsRouter: MVVM_Router {
 
     func roomTapped(_ room: Room) {
         let vc = R.storyboard.chat.roomDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc, room: room),
+        vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
                              page: .chat)
         owner.navigationController?.pushViewController(vc, animated: true)
     }
 
     func showRoomSettings(_ room: Room) {
-        let vc = R.storyboard.chat.roomDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc, room: room),
-                             room: room,
-                             page: .chat)
-        owner.navigationController?.pushViewController(vc, animated: true)
-        vc.viewModel.showSettins()
+        
+        let vc = R.storyboard.chat.roomSettingsViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), room: SharedRoomResource(value: room))
+        
+        let container = FantasyNavigationController(rootViewController: vc)
+        owner.present(container, animated: true, completion: nil)
+        
     }
 
     func close() {
