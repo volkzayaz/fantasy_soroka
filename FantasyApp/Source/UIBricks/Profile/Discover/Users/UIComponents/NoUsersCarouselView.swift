@@ -42,7 +42,7 @@ class NoUsersCarouselView: UIView {
             make.edges.equalTo(self)
         }
 
-        setupShadow()
+//        setupShadow()
     }
 
     private func loadViewFromNib() -> UIView {

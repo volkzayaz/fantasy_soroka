@@ -10,15 +10,25 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+class BDTransparentTextField: TransparentTextField {
+
+    func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+        return false
+    }
+}
+
 class TransparentTextField: UITextField {
 
     let clearButton = UIButton()
     let showPasswordButton = UIButton()
+    var isSecureTextEntryVar: Bool = false
 
     fileprivate let bag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        isSecureTextEntryVar = isSecureTextEntry
 
         clearButton.addTarget(self, action: #selector(clear), for: .touchUpInside)
         clearButton.setImage(R.image.textFieldClear(), for: .normal)
@@ -28,7 +38,7 @@ class TransparentTextField: UITextField {
         showPasswordButton.setImage(R.image.hidePassword(), for: .selected)
 
 
-        let list =  (isSecureTextEntry == true) ? [showPasswordButton, clearButton] : [clearButton]
+        let list =  isSecureTextEntryVar ? [showPasswordButton, clearButton] : [clearButton]
         let stack = UIStackView(arrangedSubviews: list)
         stack.spacing = 12.0
         rightView = stack
@@ -44,9 +54,12 @@ class TransparentTextField: UITextField {
     }
 
     @objc func clear() {
-        text = nil
+        self.text = ""
         showPasswordButton.isSelected = false
-        isSecureTextEntry = true
+
+        if isSecureTextEntryVar {
+            isSecureTextEntry = true
+        }
     }
 
     @objc func showPassword() {

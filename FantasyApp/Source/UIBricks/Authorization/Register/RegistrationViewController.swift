@@ -34,8 +34,8 @@ class RegistrationViewController: UIViewController, MVVM_View {
 
             attr.addAttributes([
                 .link : viewModel.reportUrl,
-                         .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com ")!))
+                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com")!))
             agrementTextView.attributedText = attr
             agrementTextView.font = UIFont.regularFont(ofSize: 15)
             agrementTextView.textColor = R.color.textBlackColor()
@@ -76,6 +76,8 @@ class RegistrationViewController: UIViewController, MVVM_View {
     // Name section
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var showNameLenghtAlertView: UIView!
+    @IBOutlet private weak var usernameExistWarningView: UIView!
+
 
     // Gender section
     @IBOutlet private weak var genderPickerView: UIPickerView!
@@ -85,7 +87,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         didSet { configure(birthdayTextField) }
     }
 
-     // Partner section
+    // Partner section
     @IBOutlet private weak var partnerBodyLabel: UILabel!
     @IBOutlet private weak var partnerBodyPickerView: UIPickerView!
     @IBOutlet private weak var soloPartnerButton: PrimaryButton! {
@@ -106,6 +108,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     // Email section
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var emailValidationAlertView: UIView!
+    @IBOutlet private weak var emailExistWarningView: UIView!
 
     // Password section
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -166,6 +169,16 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(emailValidationAlertView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
+        viewModel.showEmailExistWarning
+            .map { !$0 }
+            .drive(emailExistWarningView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.showUsernameExistWarning
+            .map { !$0 }
+            .drive(usernameExistWarningView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+
         // buttons management
         viewModel.showContinueButton
             .map { !$0 }
@@ -173,19 +186,19 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
 
         viewModel.showAgreementButton
-             .map { !$0 }
+            .map { !$0 }
             .drive(agrementButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
         viewModel.showChangePhotoButton
-             .map { !$0 }
+            .map { !$0 }
             .drive(changeUploadedPhotoBottomButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
         // --
 
         viewModel.forwardButtonEnabled
-               .drive(agrementButton.rx.isEnabled)
-               .disposed(by: rx.disposeBag)
+            .drive(agrementButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
 
         viewModel.forwardButtonEnabled
             .drive(stepForwardButton.rx.isEnabled)
@@ -278,8 +291,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         ////Name
-        
+
         nameTextField.rx.text
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.nameChanged(name: x ?? "")
             })
@@ -301,12 +315,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
         Observable.just(data)
             .bind(to: sexualityPicker.rx.itemAttributedTitles) { _, item in
                 return NSAttributedString(string: item.rawValue,
-                  attributes: [
-                    NSAttributedString.Key.foregroundColor: UIColor.white,
-                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
+                                          attributes: [
+                                            NSAttributedString.Key.foregroundColor: UIColor.white,
+                                            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
                 ])
-            }
-            .disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
 
         sexualityGradientView.sexuality = viewModel.defaultSexuality
         sexualityPicker.selectRow(data.firstIndex(of: viewModel.defaultSexuality)!,
@@ -326,12 +340,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
         Observable.just(genders)
             .bind(to: genderPickerView.rx.itemAttributedTitles) { _, item in
                 return NSAttributedString(string: item.pretty,
-                  attributes: [
-                    NSAttributedString.Key.foregroundColor: UIColor.white,
-                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
+                                          attributes: [
+                                            NSAttributedString.Key.foregroundColor: UIColor.white,
+                                            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
                 ])
-            }
-            .disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         genderPickerView.selectRow(genders.firstIndex(of: viewModel.defaultGender)!,
                                    inComponent: 0, animated: false)
@@ -346,13 +360,13 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(genders)
             .bind(to: partnerBodyPickerView.rx.itemAttributedTitles) { _, item in
-                 return NSAttributedString(string: item.pretty,
-                                 attributes: [
-                                   NSAttributedString.Key.foregroundColor: UIColor.white,
-                                   NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
-                               ])
-            }
-            .disposed(by: rx.disposeBag)
+                return NSAttributedString(string: item.pretty,
+                                          attributes: [
+                                            NSAttributedString.Key.foregroundColor: UIColor.white,
+                                            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
+                ])
+        }
+        .disposed(by: rx.disposeBag)
         
         partnerBodyPickerView.selectRow(genders.firstIndex(of: viewModel.defaultGender)!,
                                         inComponent: 0, animated: false)
@@ -366,6 +380,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         ////email
         
         emailTextField.rx.text
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .skip(1)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.emailChanged(email: x ?? "")
@@ -441,15 +456,9 @@ extension RegistrationViewController: UIScrollViewDelegate {
             }
 
             self.imagePicker?.present()
-
-            //            FMPhotoImagePicker.present(on: self) { [unowned self] (image) in
-//                FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
-//                    self.viewModel.photoSelected(photo: image)
-//                }
-//            }
         }))
 
-        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
 
         present(alert, animated: true, completion: nil)
     }
@@ -459,7 +468,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
     }
 
     @IBAction func changeUploadedPhotoButtonClick(_ sender: Any) {
-//        viewModel.pickAnotherPhotoClick()
+        //        viewModel.pickAnotherPhotoClick()
         changePhoto(sender)
     }
     
@@ -492,11 +501,37 @@ private extension RegistrationViewController {
 extension RegistrationViewController: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == self.birthdayTextField {
-                   return false
-               }
-               return true
+
+        guard textField != self.birthdayTextField else { return false }
+        guard textField == self.nameTextField else { return true }
+
+        if let text = textField.text,
+            let textRange = Range(range, in: text) {
+
+            let x = text.replacingCharacters(in: textRange, with: string)
+
+            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
+            let result = regex?.firstMatch(in: x, options: [], range: NSMakeRange(0, x.count)) == nil
+
+            return x.first != " " && x.suffix(2) != "  " && result && x.count <= 18
+        }
+
+        return true
     }
+
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField == self.birthdayTextField {
+//            return false
+//        }
+//
+//        if textField == self.nameTextField {
+//            let range = string.rangeOfCharacter(from: NSCharacterSet.whitespacesAndNewlines)
+//
+//            return range == nil
+//        }
+//
+//        return true
+//    }
 }
 
 
