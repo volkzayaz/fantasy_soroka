@@ -1308,6 +1308,9 @@ Describe Yourself?</string>
                                                                 <integer key="value" value="60"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="muf-hp-VD3" appends="YES" id="HgO-EN-I1j"/>
+                                                        </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPV-TN-t3W">
                                                         <rect key="frame" x="216.5" y="0.0" width="30" height="30"/>
@@ -1648,6 +1651,9 @@ Describe Yourself?</string>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="wjf-dT-FKX" secondAttribute="height" multiplier="1:1" id="VrJ-u4-eQH"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="A8H-Fn-fUh" appends="YES" id="Kga-yZ-s7v"/>
+                                                                </connections>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1858,6 +1864,16 @@ Describe Yourself?</string>
                 <tapGestureRecognizer id="7U5-i6-Q7e">
                     <connections>
                         <action selector="changePhoto:" destination="97H-h1-q95" id="etz-kE-FnA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="muf-hp-VD3">
+                    <connections>
+                        <action selector="changeUploadedPhotoButtonClick:" destination="97H-h1-q95" id="h3o-5B-fH1"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="A8H-Fn-fUh">
+                    <connections>
+                        <action selector="changeUploadedPhotoButtonClick:" destination="97H-h1-q95" id="lBK-TD-G1p"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -35,7 +35,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             attr.addAttributes([
                 .link : viewModel.reportUrl,
                 .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com ")!))
+                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com")!))
             agrementTextView.attributedText = attr
             agrementTextView.font = UIFont.regularFont(ofSize: 15)
             agrementTextView.textColor = R.color.textBlackColor()
