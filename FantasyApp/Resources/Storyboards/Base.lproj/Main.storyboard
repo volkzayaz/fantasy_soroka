@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rD1-8M-Box">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rD1-8M-Box">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -143,8 +143,8 @@
                         <color key="selectedImageTintColor" red="0.86150974035263062" green="0.47359281778335571" blue="0.74149644374847412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="XBn-ky-axQ" kind="relationship" relationship="viewControllers" id="Vye-b6-AeV"/>
                         <segue destination="sAf-SH-0GH" kind="relationship" relationship="viewControllers" id="aN5-Lf-cbO"/>
+                        <segue destination="XBn-ky-axQ" kind="relationship" relationship="viewControllers" id="Vye-b6-AeV"/>
                         <segue destination="AGp-U5-2Fc" kind="relationship" relationship="viewControllers" id="5Rz-Vz-lua"/>
                         <segue destination="NlQ-0E-WzG" kind="relationship" relationship="viewControllers" id="Hwd-5G-js6"/>
                         <segue destination="l0T-vF-a2a" kind="relationship" relationship="viewControllers" id="oUH-Nh-sa2"/>

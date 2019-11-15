@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +11,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FantasyCollectionCollectionViewCell" id="Dlb-Mc-pkH" customClass="FantasyCollectionCollectionViewCell" customModule="FantasyApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="156" height="232"/>
+            <rect key="frame" x="0.0" y="0.0" width="184" height="243"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GrN-Ev-XXI">
-                <rect key="frame" x="0.0" y="0.0" width="156" height="232"/>
+                <rect key="frame" x="0.0" y="0.0" width="184" height="243"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xAJ-Ik-iBQ">
-                        <rect key="frame" x="0.0" y="0.0" width="156" height="232"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcO-65-YXF" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="184" height="243"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Noc-Rv-VqL">
                         <rect key="frame" x="12" y="12" width="64" height="20"/>
                         <subviews>
@@ -48,42 +49,43 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aA1-g7-JLK">
-                        <rect key="frame" x="12" y="202" width="132" height="18"/>
+                        <rect key="frame" x="12" y="213" width="160" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcm-x2-gnr">
-                        <rect key="frame" x="12" y="180" width="132" height="18"/>
+                        <rect key="frame" x="12" y="191" width="160" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="xAJ-Ik-iBQ" secondAttribute="bottom" id="8NF-m4-bgp"/>
+                    <constraint firstAttribute="trailing" secondItem="RcO-65-YXF" secondAttribute="trailing" id="5g8-Sp-iz7"/>
+                    <constraint firstAttribute="bottom" secondItem="RcO-65-YXF" secondAttribute="bottom" id="9cU-Kk-47W"/>
+                    <constraint firstItem="RcO-65-YXF" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="9td-I5-kO6"/>
                     <constraint firstItem="aA1-g7-JLK" firstAttribute="top" secondItem="Tcm-x2-gnr" secondAttribute="bottom" constant="4" id="Dh5-JX-eVa"/>
+                    <constraint firstItem="RcO-65-YXF" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" id="HKP-BM-qVU"/>
                     <constraint firstAttribute="trailing" secondItem="Tcm-x2-gnr" secondAttribute="trailing" constant="12" id="IXC-4Q-cIB"/>
-                    <constraint firstItem="xAJ-Ik-iBQ" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="Pei-NC-vpt"/>
                     <constraint firstItem="aA1-g7-JLK" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="QGx-2L-GYn"/>
                     <constraint firstItem="Tcm-x2-gnr" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="UTy-pE-9yz"/>
-                    <constraint firstAttribute="trailing" secondItem="xAJ-Ik-iBQ" secondAttribute="trailing" id="b02-4q-JlY"/>
                     <constraint firstAttribute="bottom" secondItem="aA1-g7-JLK" secondAttribute="bottom" constant="12" id="g93-5G-LCe"/>
-                    <constraint firstItem="xAJ-Ik-iBQ" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" id="gCK-fU-E5u"/>
                     <constraint firstItem="Noc-Rv-VqL" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" constant="12" id="gaD-6y-cfO"/>
                     <constraint firstItem="Noc-Rv-VqL" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="wXd-r3-2KE"/>
                     <constraint firstAttribute="trailing" secondItem="aA1-g7-JLK" secondAttribute="trailing" constant="12" id="ydK-X7-FgB"/>
                 </constraints>
             </collectionViewCellContentView>
+            <size key="customSize" width="184" height="243"/>
             <connections>
                 <outlet property="fantasiesCountLabel" destination="aA1-g7-JLK" id="UJ4-6b-XdE"/>
-                <outlet property="imageView" destination="xAJ-Ik-iBQ" id="NBs-og-rHy"/>
+                <outlet property="imageView" destination="RcO-65-YXF" id="e0b-sC-blV"/>
                 <outlet property="paidImageView" destination="W1q-8j-ypv" id="3NE-U5-8Z5"/>
                 <outlet property="paidLabel" destination="YSl-Oc-2bI" id="0TX-cv-AbJ"/>
                 <outlet property="paidView" destination="Noc-Rv-VqL" id="K9Q-It-OFO"/>
                 <outlet property="titleLabel" destination="Tcm-x2-gnr" id="tcb-Zj-tNt"/>
             </connections>
-            <point key="canvasLocation" x="23" y="40"/>
+            <point key="canvasLocation" x="42.028985507246382" y="43.191964285714285"/>
         </collectionViewCell>
     </objects>
     <resources>

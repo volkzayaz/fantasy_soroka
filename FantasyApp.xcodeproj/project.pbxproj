@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
+		67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */; };
 		73097BF9231D39D800B71053 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* Profile.swift */; };
 		73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */; };
 		73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BFF231D3CFB00B71053 /* EditProfileViewController.swift */; };
@@ -100,6 +101,10 @@
 		7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */; };
 		7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */; };
 		735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735481CF2367705A009132A2 /* UIView+EmptyData.swift */; };
+		7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; };
+		7355B518236F1BAB00A540B1 /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */; };
+		73570A79237169350097430B /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73570A78237169350097430B /* UIView+Rx.swift */; };
 		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
 		7361F3162332301F007B84B0 /* UpdateCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3152332301F007B84B0 /* UpdateCommunity.swift */; };
 		7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */; };
@@ -213,7 +218,6 @@
 		84268C2B2360EE7A00E43197 /* FantasyDetailsTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84268C2A2360EE7A00E43197 /* FantasyDetailsTransitionAnimator.swift */; };
 		842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A19F92354FF5800D0FE5A /* RoomByInvitationTokenResource.swift */; };
 		842A19FD23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A19FC23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift */; };
-		842A19FF235533E300D0FE5A /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A19FE235533E300D0FE5A /* UIView+RoundedCorners.swift */; };
 		842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A1A0023553BE400D0FE5A /* FantasyNavigationController.swift */; };
 		842A1A0323553CC900D0FE5A /* UIViewController+FantasyGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */; };
 		843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6483234E5B4D00E5639B /* Date+Formatting.swift */; };
@@ -238,7 +242,6 @@
 		844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */; };
 		844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */; };
 		844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */; };
-		844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */; };
 		84551D052345C08B00114EE3 /* MessagePresenterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */; };
 		846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B49D92365FC180087B7DF /* UILabel+Truncation.swift */; };
 		846B4A1C23661EAE0087B7DF /* FantasyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */; };
@@ -283,9 +286,6 @@
 		84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */; };
 		84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */; };
 		84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0602327D5A800648DE1 /* Chat.storyboard */; };
-		84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0642327D60100648DE1 /* RemoveRoom.swift */; };
-		84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0652327D60100648DE1 /* AddRooms.swift */; };
-		84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0662327D60100648DE1 /* UpdateRoom.swift */; };
 		84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* RoomManager.swift */; };
 		84C1D06D2327D68100648DE1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06C2327D68100648DE1 /* Chat.swift */; };
 		84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */; };
@@ -293,8 +293,6 @@
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 		84EE118C23413045007EAFE6 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE118B23413045007EAFE6 /* ChatInputView.swift */; };
-		84F94E102369853A00BC8C51 /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */; };
-		84F94E112369853A00BC8C51 /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -348,7 +346,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				84F94E112369853A00BC8C51 /* ScreenShieldKit.framework in Embed Frameworks */,
+				7355B518236F1BAB00A540B1 /* ScreenShieldKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +360,7 @@
 		45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
 		58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsPreferenceSelector.swift; sourceTree = "<group>"; };
 		73097BF8231D39D800B71053 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		73097BFF231D3CFB00B71053 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -458,6 +457,9 @@
 		7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewController.swift; sourceTree = "<group>"; };
 		7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewModel.swift; sourceTree = "<group>"; };
 		735481CF2367705A009132A2 /* UIView+EmptyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EmptyData.swift"; sourceTree = "<group>"; };
+		7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenShieldKit.framework; sourceTree = "<group>"; };
+		7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedImageView.swift; sourceTree = "<group>"; };
+		73570A78237169350097430B /* UIView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		7361F31323322BC5007B84B0 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
 		7361F3152332301F007B84B0 /* UpdateCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommunity.swift; sourceTree = "<group>"; };
 		7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+rx.swift"; sourceTree = "<group>"; };
@@ -570,7 +572,6 @@
 		84268C2A2360EE7A00E43197 /* FantasyDetailsTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsTransitionAnimator.swift; sourceTree = "<group>"; };
 		842A19F92354FF5800D0FE5A /* RoomByInvitationTokenResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomByInvitationTokenResource.swift; sourceTree = "<group>"; };
 		842A19FC23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsPremiumFeatureView.swift; sourceTree = "<group>"; };
-		842A19FE235533E300D0FE5A /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
 		842A1A0023553BE400D0FE5A /* FantasyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyNavigationController.swift; sourceTree = "<group>"; };
 		842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FantasyGradient.swift"; sourceTree = "<group>"; };
 		843B6483234E5B4D00E5639B /* Date+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
@@ -595,7 +596,6 @@
 		844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsRouter.swift; sourceTree = "<group>"; };
 		844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomNotificationSettings.swift; sourceTree = "<group>"; };
-		844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomNotificationSettings.swift; sourceTree = "<group>"; };
 		844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomSettingsRouter.swift; sourceTree = "<group>"; };
 		84551D042345C08B00114EE3 /* MessagePresenterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePresenterBuilder.swift; sourceTree = "<group>"; };
 		846B49D92365FC180087B7DF /* UILabel+Truncation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncation.swift"; sourceTree = "<group>"; };
@@ -641,9 +641,6 @@
 		84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientView.swift; sourceTree = "<group>"; };
 		84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientRenderer.swift; sourceTree = "<group>"; };
 		84C1D0602327D5A800648DE1 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		84C1D0642327D60100648DE1 /* RemoveRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveRoom.swift; sourceTree = "<group>"; };
-		84C1D0652327D60100648DE1 /* AddRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRooms.swift; sourceTree = "<group>"; };
-		84C1D0662327D60100648DE1 /* UpdateRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRoom.swift; sourceTree = "<group>"; };
 		84C1D06A2327D63E00648DE1 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		84C1D06C2327D68100648DE1 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
@@ -651,7 +648,6 @@
 		84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsRouter.swift; sourceTree = "<group>"; };
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
 		84EE118B23413045007EAFE6 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
-		84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenShieldKit.framework; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -695,7 +691,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F94E102369853A00BC8C51 /* ScreenShieldKit.framework in Frameworks */,
+				7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */,
 				23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +707,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67E88EFF237C350C0020382F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6807B3DC917F8545520D3233 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +824,7 @@
 		7312B05C22D7403300DB0F36 /* support_files */ = {
 			isa = PBXGroup;
 			children = (
+				7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */,
 				7312B0D622D7516900DB0F36 /* FantasyApp-Bridging-Header.h */,
 				7312B05D22D7403300DB0F36 /* Info.plist */,
 			);
@@ -829,7 +834,6 @@
 		7312B05E22D7403300DB0F36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				84F94E0E2369832300BC8C51 /* ScreenShieldKit.framework */,
 				7330FBA72358C630008C08CF /* ReusableUI */,
 				7390015222E1E6F800260198 /* Redux */,
 				7312B07522D741D500DB0F36 /* UIBricks */,
@@ -877,6 +881,7 @@
 				7390014B22E1B84D00260198 /* ImageRetreiver.swift */,
 				7312B07122D740AC00DB0F36 /* R.generated.swift */,
 				7353BDDA22EC8BFF001D46A6 /* ImagePicker.swift */,
+				73570A78237169350097430B /* UIView+Rx.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -918,7 +923,6 @@
 				846B49D92365FC180087B7DF /* UILabel+Truncation.swift */,
 				734C70BA23213D9200ED2E91 /* Collection+Safe.swift */,
 				84AB4909232A7D7800F3609A /* String+Emojis.swift */,
-				842A19FE235533E300D0FE5A /* UIView+RoundedCorners.swift */,
 				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
 				B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */,
 				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
@@ -1126,6 +1130,7 @@
 			isa = PBXGroup;
 			children = (
 				7330FBA82358C63E008C08CF /* TickButton.swift */,
+				7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -1562,6 +1567,7 @@
 		739F799423095C730045FCD7 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				67E88EFF237C350C0020382F /* View */,
 				849D3FA22366AE97001CEBCA /* Cells */,
 				739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */,
 				739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */,
@@ -2068,11 +2074,7 @@
 			isa = PBXGroup;
 			children = (
 				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
-				84C1D0652327D60100648DE1 /* AddRooms.swift */,
-				84C1D0642327D60100648DE1 /* RemoveRoom.swift */,
-				84C1D0662327D60100648DE1 /* UpdateRoom.swift */,
 				844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */,
-				844CD700235A821A004E6BA3 /* AddRoomNotificationSettings.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2465,7 +2467,6 @@
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
 				B73774B823647FE400A353CC /* NoUsersCarouselView.swift in Sources */,
 				7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */,
-				842A19FF235533E300D0FE5A /* UIView+RoundedCorners.swift in Sources */,
 				7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */,
 				844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */,
 				841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */,
@@ -2492,8 +2493,10 @@
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
+				67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */,
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
+				7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				843CF71F234370480098C196 /* CreateDraftRoomResource.swift in Sources */,
 				B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */,
@@ -2542,6 +2545,7 @@
 				734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */,
 				73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */,
 				734C529323266CE100B54510 /* DiscoveryManager.swift in Sources */,
+				73570A79237169350097430B /* UIView+Rx.swift in Sources */,
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
 				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
@@ -2613,7 +2617,6 @@
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
 				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
-				84C1D0672327D60100648DE1 /* RemoveRoom.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
 				734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */,
@@ -2630,7 +2633,6 @@
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
 				73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */,
-				84C1D0692327D60100648DE1 /* UpdateRoom.swift in Sources */,
 				73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */,
@@ -2664,7 +2666,6 @@
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,
 				7361F32F2334F442007B84B0 /* ConnectionManager.swift in Sources */,
-				84C1D0682327D60100648DE1 /* AddRooms.swift in Sources */,
 				73E6011F22EC3A4000F767BF /* LoginViewController.swift in Sources */,
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
@@ -2700,7 +2701,6 @@
 				73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */,
 				B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,
-				844CD701235A821A004E6BA3 /* AddRoomNotificationSettings.swift in Sources */,
 				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,
 				843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
@@ -2898,6 +2898,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
+					"$(PROJECT_DIR)/FantasyApp/support_files",
 				);
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2929,6 +2930,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
+					"$(PROJECT_DIR)/FantasyApp/support_files",
 				);
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3014,6 +3016,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FantasyApp/Source",
+					"$(PROJECT_DIR)/FantasyApp/support_files",
 				);
 				INFOPLIST_FILE = FantasyApp/support_files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

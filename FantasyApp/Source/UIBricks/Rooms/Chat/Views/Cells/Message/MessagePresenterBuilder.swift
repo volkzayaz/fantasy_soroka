@@ -32,9 +32,7 @@ open class MessagePresenterBuilder<ViewModelBuilderT, InteractionHandlerT>: Chat
     private let menuPresenter: TextMessageMenuItemPresenterProtocol?
     private let layoutCache = NSCache<AnyObject, AnyObject>()
 
-    private lazy var sizingCell: TextMessageCollectionViewCell = {
-        return TextMessageCollectionViewCell.sizingCell()
-    }()
+    private var sizingCell = TextMessageCollectionViewCell.sizingCell()
 
     open func canHandleChatItem(_ chatItem: ChatItemProtocol) -> Bool {
         return self.viewModelBuilder.canCreateViewModel(fromModel: chatItem)

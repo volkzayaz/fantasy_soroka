@@ -14,11 +14,11 @@ import RxDataSources
 
 extension RoomSettingsViewModel {
     
-    func securitySettingsViewModelFor(room: Room) -> RoomSettingsPremiumFeatureViewModel {
+    var securitySettingsViewModel: RoomSettingsPremiumFeatureViewModel {
         
         let isScreenShieldAvailable = User.current?.subscription.isSubscribed ?? false
         let options = [(R.string.localizable.roomSettingsSecurityOptionScreenShield(),
-                        room.settings.isScreenShieldEnabled)]
+                        room.value.settings.isScreenShieldEnabled)]
         
         return RoomSettingsPremiumFeatureViewModel(
             title: R.string.localizable.roomSettingsSecurityTitle(),
@@ -30,64 +30,69 @@ extension RoomSettingsViewModel {
     
     var participantsDataSource: Driver<[AnimatableSectionModel<String, CellModel>]> {
         
-        return room.asDriver().map { room in
+        return cells.asDriver().map { cells in
             
             return [AnimatableSectionModel(model: "",
-                                           items: room.participants.enumerated()
-                                            .map { (i, x) -> CellModel in
-                                                
-                                                guard let _ = x.userId else {
-                                                    return .invite
-                                                }
-                                                
-                                                return .user(isAdmin: x.userId == room.ownerId,
-                                                             participant: x)
-            })]
+                                           items: cells)]
             
         }
     }
     
-    var intiteLinkShow: Driver<Void> {
-        return inviteLink.skip(1)
-            .asDriver(onErrorJustReturn: nil)
-            .filter { $0 != nil }
-            .map { _ in }
+    var intiteLinkHidden: Driver<Bool> {
+        return inviteLink.asDriver().map { $0 == nil }
+    }
+    
+    var destructiveButtonTitle: Driver<String?> {
+        
+        return room.asDriver()
+            .map { room in
+                
+                if room.isDraftRoom {
+                    return nil
+                }
+
+                return room.ownerId == User.current?.id ?
+                    "Delete Room" :
+                    "Leave Room"
+            }
+        
+    }
+    
+    var title: Driver<String> {
+        
+        return room.asDriver()
+            .map { room in
+                
+                let isNewRoom = room.isDraftRoom
+                
+                return isNewRoom ? "New Room Settings" : "Room Settings"
+
+            }
+        
     }
     
 }
 
 struct RoomSettingsViewModel: MVVM_ViewModel {
 
-    enum CellModel: IdentifiableType, Equatable {
-        case user(isAdmin: Bool, participant: Room.Participant)
-        case invite
-
-        var identity: String {
-            switch self {
-                
-            case .user(_, let participant):
-                return participant.identity
-                
-            case .invite: return "invite"
-                
-            }
-        }
-    }
-
-    let room: BehaviorRelay<Room>
+    private let room: SharedRoomResource
     
     let inviteLink = BehaviorRelay<String?>(value: nil)
     
+    private let cells: BehaviorRelay<[CellModel]>
     private let buo: BranchUniversalObject?
     
-    
-    init(router: RoomSettingsRouter, room: Room) {
+    init(router: RoomSettingsRouter, room: SharedRoomResource) {
         self.router = router
-        self.room = BehaviorRelay(value: room)
+        self.room = room
         
-        if let invitationLink = room.participants.first(where: { $0.invitationLink != nil })?.invitationLink {
+        let maybeLink = room.value.participants.first(where: { participant in
+            participant.status == .invited && participant.invitationLink != nil
+        })?.invitationLink
         
-            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
+        if let invitationLink = maybeLink {
+        
+            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
             buo?.title = "Fantasy"
             buo?.contentDescription = "Join my room!"
             buo?.publiclyIndex = true
@@ -102,6 +107,18 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
             buo = nil
         }
         
+        cells = BehaviorRelay(value: room.value.participants.enumerated()
+                                        .map { (i, x) -> CellModel in
+                                            
+                                            guard let _ = x.userId else {
+                                                return .invite
+                                            }
+                                            
+                                            return .user(isAdmin: x.userId == room.value.ownerId,
+                                                         participant: x)
+        })
+        
+        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
@@ -111,6 +128,24 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
     let router: RoomSettingsRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
+    
+    enum CellModel: IdentifiableType, Equatable {
+        case user(isAdmin: Bool, participant: Room.Participant)
+        case invite
+        case waiting
+
+        var identity: String {
+            switch self {
+                
+            case .user(_, let participant):
+                return participant.identity
+                
+            case .invite: return "invite"
+            case .waiting: return "waiting"
+                
+            }
+        }
+    }
 }
 
 extension RoomSettingsViewModel {
@@ -122,7 +157,24 @@ extension RoomSettingsViewModel {
                             from: router.owner) { (activityType, completed) in
 
         }
+     
+        swapToWaiting()
+    }
+    
+    func copyClicked() {
+        UIPasteboard.general.string = inviteLink.value
         
+        swapToWaiting()
+    }
+    
+    private func swapToWaiting() {
+        cells.accept(cells.value.map { x in
+            if case .invite = x {
+                return .waiting
+            }
+            
+            return x
+        })
     }
 
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
@@ -134,12 +186,15 @@ extension RoomSettingsViewModel {
         RoomManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .bind(to: room)
+            .subscribe()
             .disposed(by: bag)
     }
 
     func showNotificationSettings() {
-        router.showNotificationSettings(for: room.value)
+        
+        router.owner.showMessage(title: "Waiting", text: "Ждем Кирилла, чтобы расширил модель RoomSettings")
+        
+        //router.showNotificationSettings(for: room)
     }
     
     func showParticipant(participant: Room.Participant) {

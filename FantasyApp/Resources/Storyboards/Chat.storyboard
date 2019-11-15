@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -206,6 +206,9 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfW-yr-Y6j">
                                                 <rect key="frame" x="375" y="0.0" width="375" height="617"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <segue destination="U5E-JI-E2l" kind="embed" identifier="show chat" id="ZRH-mf-Ssu"/>
+                                                </connections>
                                             </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,6 +266,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9N-Lw-aO7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4656" y="1484"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="oB6-zg-Vwu">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U5E-JI-E2l" customClass="ChatViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nG0-FH-boz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Avl-O8-pTW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CGC-kD-kkD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5434" y="1507"/>
         </scene>
         <!--Room Settings View Controller-->
         <scene sceneID="STb-gT-Slg">
@@ -527,9 +545,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jwq-Xy-2Dd" firstAttribute="leading" secondItem="DXU-40-4vV" secondAttribute="leading" id="Eid-Wn-hoF"/>
-                            <constraint firstItem="jwq-Xy-2Dd" firstAttribute="bottom" secondItem="DXU-40-4vV" secondAttribute="bottom" id="Mpf-EA-8bX"/>
+                            <constraint firstItem="jwq-Xy-2Dd" firstAttribute="bottom" secondItem="Ly8-e3-xfl" secondAttribute="bottom" id="Mpf-EA-8bX"/>
                             <constraint firstAttribute="trailing" secondItem="jwq-Xy-2Dd" secondAttribute="trailing" id="j1j-fG-g2h"/>
-                            <constraint firstItem="jwq-Xy-2Dd" firstAttribute="top" secondItem="Ly8-e3-xfl" secondAttribute="top" id="q5O-bJ-Tat"/>
+                            <constraint firstItem="jwq-Xy-2Dd" firstAttribute="top" secondItem="DXU-40-4vV" secondAttribute="top" id="q5O-bJ-Tat"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DXU-40-4vV"/>
                     </view>
@@ -632,7 +650,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I1b-fT-rIH" firstAttribute="top" secondItem="Bv4-Ab-e8P" secondAttribute="top" constant="16" id="0gh-Ws-H29"/>
                             <constraint firstItem="I1b-fT-rIH" firstAttribute="leading" secondItem="Bv4-Ab-e8P" secondAttribute="leading" constant="16" id="DWk-FB-tqZ"/>

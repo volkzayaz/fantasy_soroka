@@ -41,11 +41,11 @@ extension RoomManager {
         return RoomsResource().rx.request
             .flatMap { rooms -> Single<[Room]> in
                 
-                return RoomNotificationSettings.query
+                return Room.NotificationSettings.query
                     .whereKey("roomId", containedIn: rooms.map { $0.id })
                     .rx
                     .fetchAll()
-                    .map { (settings: [RoomNotificationSettings]) in
+                    .map { (settings: [Room.NotificationSettings]) in
                         let populatedRooms: [Room] = rooms.map { room in
                             var populatedRoom = room
                             populatedRoom.notificationSettings = settings.first(where: { $0.roomId == room.id })
@@ -70,42 +70,42 @@ extension RoomManager {
 
     // MARK: - Room creation
     static func createDraftRoom() -> Single<Room> {
+        
         let settings = Room.Settings(isClosedRoom: true,
-                                         isHideCommonFantasies: false,
-                                         isScreenShieldEnabled: false,
-                                         sharedCollections: [])
+                                     isHideCommonFantasies: false,
+                                     isScreenShieldEnabled: false,
+                                     sharedCollections: [])
+        
         return CreateDraftRoomResource(settings: settings).rx.request
-            .flatMap { room -> Single<Room> in
+            .flatMap { room -> Single<(Room, Room.NotificationSettings)> in
                 
-                let roomSettings = RoomNotificationSettings(objectId: nil,
+                let roomSettings = Room.NotificationSettings(objectId: nil,
                                                            roomId: room.id,
                                                            newMessage: true,
                                                            newFantasyMatch: true)
-                return roomSettings.rxCreate().map { settings in
-                    Dispatcher.dispatch(action: AddRoomNotificationSettings(settings: settings))
-                    return room
-                }
+                
+                return Single.zip(inviteUser(nil, to: room.id),
+                                  roomSettings.rxCreate())
                 
             }
-            .flatMap { room -> Single<Room> in
-                return inviteUser(nil, to: room.id)
+            .map { room, settings in
+                var r = room
+                r.notificationSettings = settings
+                return r
             }
+            
     }
 
-    static func activateRoom(_ roomId: String) -> Single<Room> {
-        return ActivateRoomResource(roomId: roomId).rx.request.map { $0 }
-    }
-    
-    static func deleteRoom(_ roomId: String) -> Single<Void> {
-        return DeleteRoomResource(roomId: roomId).rx.request.map { _ in }
-    }
-    
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {
         return InviteParticipantResource(roomId: roomId, userId: userId).rx.request
     }
 
     static func assosiateSelfWith(roomRef: RoomRef, password: String) -> Single<Room> {
         return RoomStatusResource(roomRef: roomRef, password: password, status: .invited).rx.request
+    }
+    
+    static func deleteRoom(_ roomId: String) -> Single<Void> {
+        return DeleteRoomResource(roomId: roomId).rx.request.map { _ in }
     }
     
     // MARK: - Settings

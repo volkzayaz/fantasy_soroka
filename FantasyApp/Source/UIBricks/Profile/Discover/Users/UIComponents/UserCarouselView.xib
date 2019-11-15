@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                 <outlet property="labelCardNumber" destination="OGC-ZZ-aMx" id="1MS-9B-sGA"/>
                 <outlet property="labelName" destination="9Lh-Ic-UDZ" id="Pmq-Fn-2GF"/>
                 <outlet property="labelPhotoNumber" destination="ugK-ar-DMg" id="7ic-dx-8nP"/>
-                <outlet property="profileImageView" destination="Yqy-fA-AL8" id="yy0-ct-3VE"/>
+                <outlet property="profileImageView" destination="H8E-uj-vxO" id="jtt-D0-cHh"/>
                 <outlet property="secondaryContentView" destination="pIG-z3-LB1" id="xMR-TN-uYm"/>
                 <outlet property="starImageView" destination="0bt-ke-Gfq" id="HH7-3o-qh0"/>
                 <outlet property="transparentGradienView" destination="Xco-1m-LHy" id="ymN-0h-xvW"/>
@@ -33,9 +33,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIG-z3-LB1">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yqy-fA-AL8">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H8E-uj-vxO" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                        </imageView>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xco-1m-LHy">
                             <rect key="frame" x="0.0" y="409" width="414" height="409"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,16 +100,16 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Yqy-fA-AL8" secondAttribute="trailing" id="0nq-FU-LIg"/>
-                        <constraint firstItem="Xco-1m-LHy" firstAttribute="trailing" secondItem="Yqy-fA-AL8" secondAttribute="trailing" id="16Q-c1-pg2"/>
+                        <constraint firstItem="Xco-1m-LHy" firstAttribute="leading" secondItem="H8E-uj-vxO" secondAttribute="leading" id="26c-cn-ZA9"/>
                         <constraint firstAttribute="bottom" secondItem="4n2-xe-Wvp" secondAttribute="bottom" constant="15" id="3O6-oS-Tpe"/>
-                        <constraint firstAttribute="bottom" secondItem="Yqy-fA-AL8" secondAttribute="bottom" id="A5f-Ka-yDj"/>
-                        <constraint firstItem="Yqy-fA-AL8" firstAttribute="top" secondItem="pIG-z3-LB1" secondAttribute="top" id="Wwt-Zo-AR5"/>
-                        <constraint firstItem="Xco-1m-LHy" firstAttribute="height" secondItem="Yqy-fA-AL8" secondAttribute="height" multiplier="0.5" id="aFx-Da-6lD"/>
-                        <constraint firstItem="Xco-1m-LHy" firstAttribute="leading" secondItem="Yqy-fA-AL8" secondAttribute="leading" id="ahW-f9-QXs"/>
-                        <constraint firstItem="Yqy-fA-AL8" firstAttribute="leading" secondItem="pIG-z3-LB1" secondAttribute="leading" id="eBA-Zs-qVw"/>
-                        <constraint firstItem="Xco-1m-LHy" firstAttribute="bottom" secondItem="Yqy-fA-AL8" secondAttribute="bottom" id="gOA-hw-9Ak"/>
+                        <constraint firstItem="H8E-uj-vxO" firstAttribute="top" secondItem="pIG-z3-LB1" secondAttribute="top" id="5Do-zW-6pc"/>
+                        <constraint firstItem="Xco-1m-LHy" firstAttribute="bottom" secondItem="H8E-uj-vxO" secondAttribute="bottom" id="Jqx-9m-Lma"/>
+                        <constraint firstItem="Xco-1m-LHy" firstAttribute="trailing" secondItem="H8E-uj-vxO" secondAttribute="trailing" id="eln-f3-ocl"/>
+                        <constraint firstItem="Xco-1m-LHy" firstAttribute="height" secondItem="H8E-uj-vxO" secondAttribute="height" multiplier="0.5" id="kEX-gj-t3A"/>
                         <constraint firstAttribute="trailing" secondItem="4n2-xe-Wvp" secondAttribute="trailing" constant="15" id="myn-j4-Trw"/>
+                        <constraint firstAttribute="trailing" secondItem="H8E-uj-vxO" secondAttribute="trailing" id="oxd-VC-us5"/>
+                        <constraint firstAttribute="bottom" secondItem="H8E-uj-vxO" secondAttribute="bottom" id="x3e-w7-s21"/>
+                        <constraint firstItem="H8E-uj-vxO" firstAttribute="leading" secondItem="pIG-z3-LB1" secondAttribute="leading" id="x94-FG-CxS"/>
                         <constraint firstItem="4n2-xe-Wvp" firstAttribute="leading" secondItem="pIG-z3-LB1" secondAttribute="leading" constant="15" id="z2Y-6u-Kwn"/>
                     </constraints>
                 </view>

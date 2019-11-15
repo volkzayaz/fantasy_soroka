@@ -29,6 +29,16 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         }).disposed(by: rx.disposeBag)
         
         navigationItem.title = viewModel.title
+        
+        viewModel.navigationEnabled
+            .drive(onNext: { [unowned self] (x) in
+                self.playButton.isEnabled = x
+                self.fantasiesButton.isEnabled = x
+                self.chatButton.isEnabled = x
+                
+                self.navigationItem.rightBarButtonItem?.isEnabled = x
+            })
+            .disposed(by: rx.disposeBag)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -53,8 +63,6 @@ extension RoomDetailsViewController {
         fantasiesButton.setTitle(R.string.localizable.roomDetailsFantasies(), for: .normal)
         fantasiesButton.mode = .selector
 
-        viewModel.router.embedChat(in: chatContainerView)
-        
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.gradient3.cgColor,
                                 UIColor.gradient2.cgColor,
@@ -102,7 +110,7 @@ extension RoomDetailsViewController {
             
             let vc = segue.destination as! FantasyListViewController
             
-            let room = viewModel.room
+            let room = viewModel.room.value
             let provider = viewModel.page
                 .filter { $0 == .fantasies }
                 .flatMapLatest { _ in
@@ -113,6 +121,13 @@ extension RoomDetailsViewController {
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: provider,
                                                 title: "Mutual Fantasies")
+            
+        }
+        else if segue.identifier == R.segue.roomDetailsViewController.showChat.identifier {
+            
+            let vc = segue.destination as! ChatViewController
+            vc.viewModel = ChatViewModel(router: .init(owner: vc),
+                                         room: viewModel.room, chattoDelegate: vc)
             
         }
         

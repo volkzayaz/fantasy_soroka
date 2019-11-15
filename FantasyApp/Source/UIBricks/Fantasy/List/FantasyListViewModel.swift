@@ -14,20 +14,26 @@ import RxDataSources
 
 extension FantasyListViewModel {
 
-    var dataSource: Driver<[AnimatableSectionModel<String, Fantasy.Card>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, ProtectedEntity<Fantasy.Card>>]> {
         
-        return cards.map { x in
-            return [AnimatableSectionModel(model: "",
-                                           items: x)]
-        }
+        return Driver.combineLatest(
+            User.changesOfSubscriptionStatus,
+            provider
+        )
+        .map { isSubscribed, cards in
             
+            return [AnimatableSectionModel(model: "",
+                                           items:  cards.map { ProtectedEntity(entity: $0,
+                                                                               isProtected: isSubscribed)})]
+        }
         
     }
+    
 }
 
 struct FantasyListViewModel : MVVM_ViewModel {
     
-    fileprivate let cards: Driver<[Fantasy.Card]>
+    fileprivate let provider: Driver<[Fantasy.Card]>
     let title: String
     
     let animator = FantasyDetailsTransitionAnimator()
@@ -38,7 +44,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
     
     init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>, title: String) {
         self.router = router
-        self.cards = cardsProvider
+        self.provider = cardsProvider
         self.title = title
         
         /////progress indicator

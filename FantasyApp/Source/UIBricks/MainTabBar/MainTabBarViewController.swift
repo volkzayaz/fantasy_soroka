@@ -18,8 +18,6 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedIndex = 1
-        
         viewModel.locationRequestHidden
             .drive(onNext: { [unowned self] (hidden) in
                 

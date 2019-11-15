@@ -14,14 +14,23 @@ extension RoomDetailsViewModel {
     
     var title: String {
         
-        guard let peer = room.participants.first(where: { $0.userId != User.current?.id }), peer.userId != nil else {
+        guard let peer = room.value.participants.first(where: { $0.userId != User.current?.id }), peer.userId != nil else {
             return "Draft Room"
         }
         
         return "Room with \(peer.userSlice.name)"
     }
     
+    var navigationEnabled: Driver<Bool> {
+        return room.asDriver()
+            .map { $0.isDraftRoom == false }
+    }
+    
 }
+
+///RoomResource is shared between different RoomDetails screens (Settings, Chat, Container as of 10.11.2019)
+///It is not designed to be shared outised of RoomDetails stack
+typealias SharedRoomResource = BehaviorRelay<Room>
 
 struct RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
@@ -31,14 +40,14 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
     }
 
     let router: RoomDetailsRouter
-    let room: Room
+    let room: SharedRoomResource
     let page: BehaviorRelay<DetailsPage>
 
     init(router: RoomDetailsRouter,
          room: Room,
          page: DetailsPage) {
         self.router = router
-        self.room = room
+        self.room = BehaviorRelay(value: room)
         self.page = BehaviorRelay(value: page)
     }
 }
@@ -46,11 +55,11 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
 extension RoomDetailsViewModel {
     
     func showSettins() {
-        router.showSettings()
+        router.showSettings(room: room)
     }
     
     func showPlay() {
-        router.showPlay(room: room)
+        router.showPlay(room: room.value)
     }
     
 }

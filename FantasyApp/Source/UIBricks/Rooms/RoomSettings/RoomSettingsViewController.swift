@@ -52,7 +52,21 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             let cell = self.participantsCollectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.inviteParticipantCollectionViewCell,
                                      for: indexPath)!
+            
+            cell.setMode(isWaiting: false)
+            
             return cell
+            
+        case .waiting:
+            
+            let cell = self.participantsCollectionView
+                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.inviteParticipantCollectionViewCell,
+                                     for: indexPath)!
+            
+            cell.setMode(isWaiting: true)
+            
+            return cell
+            
         }
     })
 
@@ -60,56 +74,90 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         configure()
         
-        self.inviteLabel?.removeFromSuperview()
-        self.inviteView?.removeFromSuperview()
+        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
         
-        viewModel.intiteLinkShow
-            .drive(onNext: { [unowned self] (_) in
-                self.stackView.insertArrangedSubview(self.inviteLabel, at: 1)
-                self.stackView.insertArrangedSubview(self.inviteView, at: 2)
-                
-                self.stackView.setCustomSpacing(22, after: self.inviteView)
-            })
+        viewModel.intiteLinkHidden
+            .drive(inviteView.rx.hidden(in: stackView))
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.intiteLinkHidden
+            .drive(inviteLabel.rx.hidden(in: stackView))
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.inviteLink.asDriver()
+            .drive(inviteLinkLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.title.asDriver()
+            .drive(titleLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.destructiveButtonTitle
+            .drive(leaveRoomButton.rx.title(for: .normal))
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.destructiveButtonTitle
+            .map { $0 == nil }
+            .drive(leaveRoomButton.rx.hidden(in: stackView))
             .disposed(by: rx.disposeBag)
         
         participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
             .subscribe(onNext: { [unowned self] (x) in
                 
-                if case .user(_, let participant) = x {
+                switch x {
+                case .user(_, let participant):
                     self.viewModel.showParticipant(participant: participant)
+                    
+                case .invite:
+                    self.viewModel.shareLink()
+                    
+                case .waiting:
+                    break;
+                    
                 }
                 
             })
             .disposed(by: rx.disposeBag)
+
+        viewModel.participantsDataSource
+            .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
+            .disposed(by: rx.disposeBag)
+
+        securitySettingsView.didChangeOptions = { [weak self] options in
+            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
+        }
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(RoomSettingsViewController.close))
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        view.roundCorners([.topLeft, .topRight], radius: 20)
-        
-        
+    @objc func close() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 private extension RoomSettingsViewController {
     func configure() {
+        view.addFantasyGradient()
+        
         stackView.setCustomSpacing(16, after: titleLabel)
         stackView.setCustomSpacing(10, after: inviteLabel)
+        stackView.setCustomSpacing(22, after: inviteView)
         stackView.setCustomSpacing(16, after: participantsLabel)
         stackView.setCustomSpacing(12, after: participantsCollectionView)
         stackView.setCustomSpacing(12, after: notificationsView)
         stackView.setCustomSpacing(26, after: securitySettingsView)
-
+        
         scrollView.backgroundColor = .messageBackground
-        stackView.backgroundColor = .messageBackground
+        scrollView.addFantasyRoundedCorners()
         inviteView.backgroundColor = .white
         
         titleLabel.font = .boldFont(ofSize: 25)
         titleLabel.textColor = .fantasyBlack
-        titleLabel.text = R.string.localizable.roomCreationTitle()
-
+        
         inviteLabel.font = .boldFont(ofSize: 15)
         inviteLabel.textColor = .fantasyBlack
         inviteLabel.text = R.string.localizable.roomCreationInvite()
@@ -124,13 +172,9 @@ private extension RoomSettingsViewController {
 
         inviteLinkLabel.font = .regularFont(ofSize: 15)
         inviteLinkLabel.textColor = .basicGrey
-        viewModel.inviteLink.asDriver().drive(onNext: { [weak self] link in
-            self?.inviteLinkLabel.text = link
-        }).disposed(by: rx.disposeBag)
-
+        
         copyLinkButton.setTitle(R.string.localizable.roomCreationInviteCopy(), for: .normal)
 
-        leaveRoomButton.setTitle(R.string.localizable.roomSettingsLeaveRoom(), for: .normal)
         leaveRoomButton.setTitleColor(.fantasyRed, for: .normal)
         leaveRoomButton.titleLabel?.font = .mediumFont(ofSize: 15)
         leaveRoomButton.backgroundColor = .white
@@ -139,31 +183,11 @@ private extension RoomSettingsViewController {
         inviteView.layer.cornerRadius = 12.0
         notificationsView.layer.cornerRadius = 12.0
 
-        securitySettingsView.didChangeOptions = { [weak self] options in
-            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
-        }
 
-        viewModel.participantsDataSource
-            .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
-            .disposed(by: rx.disposeBag)
-
-        viewModel.room.asDriver().drive(onNext: { [weak self] room in
-            self?.securitySettingsView.viewModel = self?.viewModel.securitySettingsViewModelFor(room: room)
-        }).disposed(by: rx.disposeBag)
-
-        participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
-            .subscribe(onNext: { [unowned self] cellModel in
-                switch cellModel {
-                case .invite:
-                    self.viewModel.shareLink()
-                default:
-                    break
-                }
-        }).disposed(by: rx.disposeBag)
     }
 
     @IBAction func copyLink() {
-        UIPasteboard.general.string = viewModel.inviteLink.value
+        viewModel.copyClicked()
     }
 
     @IBAction func editNotificationSettings() {

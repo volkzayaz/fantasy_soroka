@@ -74,12 +74,9 @@ extension Moya.Response {
         let value: T
     }
     
-    private static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.locale = enUSPosixLocale
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        dateFormatter.calendar = Calendar(identifier: .gregorian)
+    private static let dateFormatter: ISO8601DateFormatter = {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return dateFormatter
     }()
     
@@ -90,7 +87,10 @@ extension Moya.Response {
         ///while Moya's default behaviour in such case is Error
         
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted( Moya.Response.dateFormatter )
+        decoder.dateDecodingStrategy = .custom { (decoder) -> Date in
+            let string = try (try decoder.singleValueContainer()).decode(String.self)
+            return Moya.Response.dateFormatter.date(from: string)!
+        }
         
         guard data.count > 0 else {
             
