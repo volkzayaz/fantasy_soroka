@@ -10,6 +10,12 @@ import Foundation
 
 class FantasyDeckItemView: UIView {
 
+    var showTutorial: Bool = false {
+        didSet {
+            tutorialView.isHidden = !showTutorial
+        }
+    }
+
     var isPaid: Bool = false {
         didSet {
             paidCardView.isHidden = !isPaid
@@ -35,6 +41,8 @@ class FantasyDeckItemView: UIView {
     }
 
     private let imageView = UIImageView(frame: .zero)
+
+    private let tutorialView = UIView(frame: .zero)
 
     private let paidCardView = UIView(frame: .zero)
     private let paidCardLabel = UILabel(frame: .zero)

@@ -18,10 +18,13 @@ struct DiscoverProfileRouter : MVVM_Router {
     
     func presentProfile(_ profile: Profile) {
     
-        let x = R.storyboard.user.userProfileViewController()!
-        x.viewModel = .init(router: .init(owner: x), user: profile)
-        owner.navigationController?.pushViewController(x, animated: true)
-        
+        let vc = R.storyboard.user.userProfileViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), user: profile)
+        vc.modalPresentationStyle = .overFullScreen
+        vc.transitioningDelegate = owner
+
+//        owner.navigationController?.present(vc, animated: true, completion: nil)
+        owner.navigationController?.pushViewController(vc, animated: true)
     }
     
     func presentFilter() {

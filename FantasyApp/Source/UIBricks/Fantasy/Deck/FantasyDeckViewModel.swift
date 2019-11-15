@@ -143,3 +143,11 @@ extension FantasyDeckViewModel {
     }
     
 }
+
+//MARK:- Tutorial
+
+extension FantasyDeckViewModel {
+    var showTutorial: Bool {
+        return true;
+    }
+}

@@ -13,7 +13,9 @@ import RxCocoa
 import iCarousel
 
 class DiscoverProfileViewController: UIViewController, MVVM_View {
-    
+
+    private var animator = DiscoverProfileRouterTransitionAnimator()
+
     lazy var viewModel: DiscoverProfileViewModel! = DiscoverProfileViewModel(router: .init(owner: self))
     
     @IBOutlet weak var profilesCarousel: iCarousel! {
@@ -245,5 +247,28 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
 
     func showFilters() {
         viewModel.presentFilter()
+    }
+}
+
+extension DiscoverProfileViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        animator.presenting = false
+
+//        if let view = fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
+//            view.animateAppearance()
+//        }
+
+        return animator
+    }
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        animator.originFrame = fantasiesView.superview?.convert(fantasiesView.frame, to: nil) ?? .zero
+        animator.presenting = true
+
+//        if let view = fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
+//            view.animateDisappearance()
+//        }
+
+        return animator
     }
 }

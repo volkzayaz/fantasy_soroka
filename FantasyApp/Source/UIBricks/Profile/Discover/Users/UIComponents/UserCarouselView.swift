@@ -107,3 +107,30 @@ extension UserCarouselView {
             .disposed(by: bag)
     }
 }
+
+// MARK:- Animation Transition
+
+extension UserCarouselView {
+
+    func animateAppearance() {
+//        storyView.alpha = 0.0
+//        shareButton.alpha = 0.0
+//        paidCardView.alpha = 0.0
+        UIView.animate(withDuration: 0.2,
+                       delay: DiscoverProfileRouterTransitionAnimator.durationClosing,
+                       options: .curveEaseIn,
+                       animations: {
+//            self.storyView.alpha = 1.0
+//            self.shareButton.alpha = 1.0
+//            self.paidCardView.alpha = 1.0
+        })
+
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 0.2
+        animation.beginTime = CACurrentMediaTime() + DiscoverProfileRouterTransitionAnimator.durationClosing
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        gradientLayer.add(animation, forKey: "fade")
+    }
+}
