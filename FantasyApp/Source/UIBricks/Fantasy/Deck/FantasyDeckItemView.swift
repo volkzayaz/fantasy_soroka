@@ -7,12 +7,25 @@
 //
 
 import Foundation
+import SnapKit
 
 class FantasyDeckItemView: UIView {
 
     var showTutorial: Bool = false {
         didSet {
-            tutorialView.isHidden = !showTutorial
+
+            guard showTutorial else { return }
+
+            let v = FantasyDeckTutorialView.instance
+            v.tutorialComplited = {
+                v.removeFromSuperview()
+            }
+
+            addSubview(v)
+
+            v.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
     }
 
@@ -41,9 +54,6 @@ class FantasyDeckItemView: UIView {
     }
 
     private let imageView = UIImageView(frame: .zero)
-
-    private let tutorialView = UIView(frame: .zero)
-
     private let paidCardView = UIView(frame: .zero)
     private let paidCardLabel = UILabel(frame: .zero)
     private let paidCardImageView = UIImageView(frame: .zero)

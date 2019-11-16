@@ -10,7 +10,6 @@ import UIKit
 import Koloda
 import RxSwift
 import RxCocoa
-import SnapKit
 import RxDataSources
 
 class FantasyDeckViewController: UIViewController, MVVM_View {
@@ -231,13 +230,6 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-
-        guard !viewModel.showTutorial, index == 0 else {
-            let view = FantasyDeckTutorialView.instance
-            view.frame = koloda.bounds
-            return view
-        }
-
         let card = cardsProxy[index]
         let view = FantasyDeckItemView(frame: koloda.bounds)
         view.hasStory = !card.story.isEmpty
@@ -248,7 +240,7 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return cardsProxy.count + (viewModel.showTutorial ? 1 : 0)
+        return cardsProxy.count
     }
  
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {

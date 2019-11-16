@@ -141,13 +141,14 @@ extension FantasyDeckViewModel {
     func show(collection: Fantasy.Collection) {
         router.show(collection: collection)
     }
-    
 }
 
 //MARK:- Tutorial
 
 extension FantasyDeckViewModel {
     var showTutorial: Bool {
-        return true;
+        let v = SettingsStore.showFantasyCardTutorial.value
+        SettingsStore.showFantasyCardTutorial.value = false
+        return v
     }
 }

@@ -7,38 +7,25 @@
 //
 
 import UIKit
-import MetalKit
 
 class FantasyDeckTutorialView: UIView {
 
-    @IBOutlet weak var mtkView: MTKView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var button: UIButton!
 
-    private static func createSlides() -> [FantasyDeckTutorialSlide] {
+    private var page: Int = 0
 
-        let slide1 = FantasyDeckTutorialSlide.instance
-        slide1.image.image = UIImage(named: "fantasyTutorialSwipeLeft")
-        slide1.label.text = "Swipe left to dislike a card"
+    var tutorialComplited: (() -> Void)?
 
-        let slide2 = FantasyDeckTutorialSlide.instance
-        slide2.image.image = UIImage(named: "fantasyTutorialSwipeRight")
-        slide2.label.text = "Swipe right to like a card"
-
-        let slide3 = FantasyDeckTutorialSlide.instance
-        slide3.image.image = UIImage(named: "fantasyTutorialTap")
-        slide3.label.text = "Tap the card to open it"
-
-        return [slide1, slide2, slide3]
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
     }
 
-    private let slides = FantasyDeckTutorialView.createSlides()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        configureLayout()
-        configureStyling()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configure()
     }
 
     static var instance: FantasyDeckTutorialView {
@@ -46,36 +33,31 @@ class FantasyDeckTutorialView: UIView {
           return v
       }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        let b = bounds
-        scrollView.frame = CGRect(x: 0, y: 0, width: b.width, height: b.height)
-        scrollView.contentSize = CGSize(width: b.width * CGFloat(slides.count), height: b.height)
-        scrollView.isPagingEnabled = true
-
-        for i in 0 ..< slides.count {
-            slides[i].frame = CGRect(x: b.width * CGFloat(i), y: 0, width: b.width, height: b.height)
-        }
+    private  func configure() {
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
+//MARK:- Actions
+
 extension FantasyDeckTutorialView {
 
-    func configureLayout() {
-        backgroundColor = UIColor.green
-        translatesAutoresizingMaskIntoConstraints = false
+    @IBAction func next(_ sender: Any) {
 
-        pageControl.numberOfPages = slides.count
-        pageControl.currentPage = 0
-
-        for i in 0 ..< slides.count {
-            scrollView.addSubview(slides[i])
+        guard  page < 2 else {
+            tutorialComplited?()
+            return
         }
-    }
 
-    func configureStyling() {
-        layer.cornerRadius = 23.0
-        clipsToBounds = true
+        let width :CGFloat = scrollView.bounds.width
+        let horizontalOffset: CGFloat = width * CGFloat(page + 1)
+        scrollView.setContentOffset(.init(x: horizontalOffset, y: 0), animated: true)
+        page += 1
+
+        pageControl.currentPage = page
+
+        guard  page == 2 else { return }
+
+        button.setTitle("Got It", for: .normal)
     }
 }
