@@ -144,6 +144,23 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10.0
 
+
+        if viewModel.showTutorial {
+
+            let v = FantasyDeckTutorialView.instance
+            v.tutorialComplited = {
+                v.removeFromSuperview()
+                self.viewModel.showTutorial = false
+            }
+
+            view.addSubview(v)
+            
+            v.snp.makeConstraints { make in
+                make.edges.equalTo(fantasiesView)
+            }
+        }
+
+
         configureStyling()
     }
     
@@ -235,7 +252,6 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
         view.hasStory = !card.story.isEmpty
         view.isPaid = card.isPaid
         view.imageURL = card.imageURL
-        view.showTutorial = viewModel.showTutorial
         return view
     }
     

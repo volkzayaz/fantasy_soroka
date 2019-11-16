@@ -35,6 +35,8 @@ class FantasyDeckTutorialView: UIView {
 
     private  func configure() {
         translatesAutoresizingMaskIntoConstraints = false
+        layer.cornerRadius = 23.0
+        clipsToBounds = true
     }
 }
 

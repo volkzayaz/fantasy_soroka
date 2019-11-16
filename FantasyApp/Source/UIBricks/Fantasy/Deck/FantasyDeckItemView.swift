@@ -11,24 +11,6 @@ import SnapKit
 
 class FantasyDeckItemView: UIView {
 
-    var showTutorial: Bool = false {
-        didSet {
-
-            guard showTutorial else { return }
-
-            let v = FantasyDeckTutorialView.instance
-            v.tutorialComplited = {
-                v.removeFromSuperview()
-            }
-
-            addSubview(v)
-
-            v.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
-    }
-
     var isPaid: Bool = false {
         didSet {
             paidCardView.isHidden = !isPaid

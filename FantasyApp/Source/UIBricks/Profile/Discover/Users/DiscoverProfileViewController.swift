@@ -254,20 +254,21 @@ extension DiscoverProfileViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         animator.presenting = false
 
-//        if let view = fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
-//            view.animateAppearance()
-//        }
+        if let view = profilesCarousel.currentItemView as? UserCarouselView{
+            view.animateAppearance()
+        }
 
         return animator
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        animator.originFrame = fantasiesView.superview?.convert(fantasiesView.frame, to: nil) ?? .zero
+
+        animator.originFrame = profilesCarousel.superview?.convert(profilesCarousel.frame, to: nil) ?? .zero
         animator.presenting = true
 
-//        if let view = fantasiesView.viewForCard(at: self.fantasiesView.currentCardIndex) as? FantasyDeckItemView {
-//            view.animateDisappearance()
-//        }
+        if let view = profilesCarousel.currentItemView as? UserCarouselView{
+            view.animateDisappearance()
+        }
 
         return animator
     }

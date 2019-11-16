@@ -147,8 +147,11 @@ extension FantasyDeckViewModel {
 
 extension FantasyDeckViewModel {
     var showTutorial: Bool {
-        let v = SettingsStore.showFantasyCardTutorial.value
-        SettingsStore.showFantasyCardTutorial.value = false
-        return v
+        get {
+            return SettingsStore.showFantasyCardTutorial.value
+        }
+        set {
+            SettingsStore.showFantasyCardTutorial.value = newValue
+        }
     }
 }

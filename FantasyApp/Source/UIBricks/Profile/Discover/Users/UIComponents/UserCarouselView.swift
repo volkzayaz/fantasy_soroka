@@ -134,4 +134,27 @@ extension UserCarouselView {
         animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         gradientLayer.add(animation, forKey: "fade")
     }
+
+    func animateDisappearance() {
+//           storyView.alpha = 1.0
+//           shareButton.alpha = 1.0
+//           paidCardView.alpha = 1.0
+           UIView.animate(withDuration: 0.2,
+                          delay: FantasyDetailsTransitionAnimator.durationExpanding,
+                          options: .curveEaseIn,
+                          animations: {
+//               self.storyView.alpha = 0.0
+//               self.shareButton.alpha = 0.0
+//               self.paidCardView.alpha = 0.0
+           })
+
+           let animation = CABasicAnimation(keyPath: "opacity")
+           animation.fromValue = 1.0
+           animation.toValue = 0.0
+           animation.duration = 0.2
+           animation.beginTime = CACurrentMediaTime() + FantasyDetailsTransitionAnimator.durationExpanding
+           animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+           gradientLayer.add(animation, forKey: "fade")
+       }
+
 }

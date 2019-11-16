@@ -1228,8 +1228,8 @@
 		734C52972326A65700B54510 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				B7E2E537237C848F00234A88 /* DiscoverProfileRouterTransitionAnimator.swift */,
 				B73774AE23644F2D00A353CC /* UIComponents */,
+				B7E2E537237C848F00234A88 /* DiscoverProfileRouterTransitionAnimator.swift */,
 				734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */,
 				734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */,
 				734C528D23266ADA00B54510 /* DiscoverProfileViewModel.swift */,

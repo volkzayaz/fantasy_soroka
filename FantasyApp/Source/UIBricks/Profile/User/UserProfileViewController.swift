@@ -253,7 +253,12 @@ class UserProfileViewController: UIViewController, MVVM_View {
     }
     
     @IBAction func back() {
-        navigationController?.popViewController(animated: true)
+        if let nav = navigationController {
+            nav.popViewController(animated: true)
+            return
+        }
+
+        dismiss(animated: true, completion: nil)
     }
     
 }
