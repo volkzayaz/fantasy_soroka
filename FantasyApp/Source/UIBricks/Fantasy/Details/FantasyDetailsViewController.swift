@@ -215,7 +215,7 @@ private extension FantasyDetailsViewController {
             Fantasy.LayoutConstants.cardAspectRatio
         zoomedBackgroundConstraint.constant = view.bounds.height
         unzoomedBackgroundConstraint.constant = view.bounds.height - (
-            view.bounds.height - cardHeight - 50)
+            view.bounds.height - cardHeight - view.bounds.height / 12)
     }
 }
 
@@ -226,7 +226,7 @@ private extension FantasyDetailsViewController {
             isZoomingBlocked = false
             scrollView.isScrollEnabled = true
             animateUnzoom()
-            configureNavigationBarButtons()
+            configureNavigationBar()
         } else {
             animateDisappearance()
         }
@@ -236,7 +236,7 @@ private extension FantasyDetailsViewController {
         isZoomingBlocked = true
         scrollView.isScrollEnabled = false
         animateZoom()
-        configureNavigationBarButtons()
+        configureNavigationBar()
     }
 
     @IBAction func expandOrCollapseStory(_ sender: UIButton) {
@@ -252,8 +252,7 @@ private extension FantasyDetailsViewController {
 // MARK: - Scrolling
 extension FantasyDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        configureNavigationBarButtons()
-        configureBackground()
+        configureNavigationBar()
 
         guard !isZoomingBlocked else { return }
 
@@ -263,44 +262,48 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                    withVelocity velocity: CGPoint,
                                    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        // interrupt scrolling to make custom bouncing animation later
+        targetContentOffset.pointee = scrollView.contentOffset
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard !decelerate else {
+            return
+        }
+        
         let areaRadius = view.bounds.height / 5
         let topAreaRange = 0 ... view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius
         let centerAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius ...
             view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio + areaRadius
-        let bottomAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio + areaRadius ...
-            scrollView.contentSize.height
-        if centerAreaRange.contains(targetContentOffset.pointee.y) {
-            targetContentOffset.pointee.y = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        let bottomAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio +
+            areaRadius ... scrollView.contentSize.height
+        if centerAreaRange.contains(scrollView.contentOffset.y) {
+            animateContentOffsetChange(contentOffset:
+                CGPoint(x: 0, y: view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio))
             shareButton.isHidden = false
-        } else if topAreaRange.contains(targetContentOffset.pointee.y) {
-            targetContentOffset.pointee.y = 0
+        } else if topAreaRange.contains(scrollView.contentOffset.y) {
+            animateContentOffsetChange(contentOffset: .zero)
             shareButton.isHidden = true
-        } else if bottomAreaRange.contains(targetContentOffset.pointee.y) {
-            targetContentOffset.pointee.y = scrollView.contentSize.height - scrollView.bounds.height < 0 ? 0 :
-                scrollView.contentSize.height - scrollView.bounds.height
+        } else if bottomAreaRange.contains(scrollView.contentOffset.y) {
+            animateContentOffsetChange(contentOffset:
+                CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height))
             shareButton.isHidden = false
         }
     }
 
-    private func configureNavigationBarButtons() {
+    private func configureNavigationBar() {
         if isZoomed {
             closeButton.setImage(R.image.cardDetailsClose(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
+            gradientBackgroundView.isHidden = true
         } else if scrollView.contentOffset.y >=
             unzoomedBackgroundConstraint.constant - navigationBar.frame.maxY {
             closeButton.setImage(R.image.navigationBackButton(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOptionPlain(), for: .normal)
+            gradientBackgroundView.isHidden = false
         } else {
             closeButton.setImage(R.image.cardDetailsBack(), for: .normal)
             optionButton.setImage(R.image.cardDetailsOption(), for: .normal)
-        }
-    }
-
-    private func configureBackground() {
-        if scrollView.contentOffset.y >=
-            unzoomedBackgroundConstraint.constant - navigationBar.frame.maxY {
-            gradientBackgroundView.isHidden = false
-        } else {
             gradientBackgroundView.isHidden = true
         }
     }

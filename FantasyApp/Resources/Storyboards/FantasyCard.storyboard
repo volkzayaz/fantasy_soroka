@@ -141,7 +141,7 @@
                                     <constraint firstAttribute="width" secondItem="o9J-DO-8Ss" secondAttribute="height" multiplier="375:560" id="03S-gd-Ggq"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="d2Z-NG-tY3">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2Z-NG-tY3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IP5-Ce-aKB">
@@ -320,7 +320,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ae-Ny-mfF" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="60.5" y="586" width="254" height="52"/>
+                                <rect key="frame" x="60.5" y="586.5" width="254" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="mAJ-HV-xh2"/>
                                     <constraint firstAttribute="width" constant="254" id="pFg-tV-qMj"/>
@@ -431,14 +431,15 @@
                             <constraint firstItem="d2Z-NG-tY3" firstAttribute="leading" secondItem="AZg-yI-Bgb" secondAttribute="leading" id="ADW-Jd-PXo"/>
                             <constraint firstAttribute="bottom" secondItem="67D-ww-QPD" secondAttribute="bottom" id="AS1-dI-BHn"/>
                             <constraint firstItem="qVp-KI-NDh" firstAttribute="trailing" secondItem="YC5-Z0-wau" secondAttribute="trailing" id="CC0-cJ-PQw"/>
-                            <constraint firstAttribute="bottom" secondItem="5Ae-Ny-mfF" secondAttribute="bottom" constant="29" id="CIR-5h-Jde"/>
+                            <constraint firstAttribute="bottom" secondItem="5Ae-Ny-mfF" secondAttribute="bottom" priority="750" constant="29" id="CIR-5h-Jde"/>
                             <constraint firstItem="6Id-55-adl" firstAttribute="trailing" secondItem="qVp-KI-NDh" secondAttribute="trailing" id="EOl-zr-BP9"/>
                             <constraint firstItem="67D-ww-QPD" firstAttribute="leading" secondItem="AZg-yI-Bgb" secondAttribute="leading" id="Izb-df-vdq"/>
                             <constraint firstItem="o9J-DO-8Ss" firstAttribute="centerX" secondItem="AZg-yI-Bgb" secondAttribute="centerX" id="JcS-em-3YH"/>
-                            <constraint firstItem="YC5-Z0-wau" firstAttribute="bottom" secondItem="KWM-mI-MrG" secondAttribute="bottom" priority="250" id="LgK-TD-3Sj"/>
+                            <constraint firstItem="YC5-Z0-wau" firstAttribute="bottom" secondItem="KWM-mI-MrG" secondAttribute="bottom" priority="1" id="LgK-TD-3Sj"/>
                             <constraint firstAttribute="trailing" secondItem="d2Z-NG-tY3" secondAttribute="trailing" id="Skg-Lm-Ts4"/>
                             <constraint firstItem="6Id-55-adl" firstAttribute="leading" secondItem="qVp-KI-NDh" secondAttribute="leading" id="WBE-2h-Ncd"/>
                             <constraint firstAttribute="bottom" secondItem="d2Z-NG-tY3" secondAttribute="bottom" id="YSt-Kx-4iK"/>
+                            <constraint firstItem="5Ae-Ny-mfF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o9J-DO-8Ss" secondAttribute="bottom" constant="12" id="Yzg-ro-ghW"/>
                             <constraint firstItem="6Id-55-adl" firstAttribute="top" secondItem="AZg-yI-Bgb" secondAttribute="top" id="hWK-tY-hVE"/>
                             <constraint firstAttribute="trailing" secondItem="o9J-DO-8Ss" secondAttribute="trailing" constant="26" id="hXU-0r-brS"/>
                             <constraint firstItem="qVp-KI-NDh" firstAttribute="top" secondItem="YC5-Z0-wau" secondAttribute="top" id="iMJ-3A-7qp"/>
