@@ -17,7 +17,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     private var animator = FantasyDetailsTransitionAnimator()
 
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
-    
+
+    private var tutorialView: FantasyDeckTutorialView?
     @IBOutlet weak var mutualCardContainer: UIView! {
         didSet {
             mutualCardContainer.alpha = 0
@@ -157,6 +158,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             v.snp.makeConstraints { make in
                 make.edges.equalTo(fantasiesView)
             }
+
+            tutorialView = v
         }
 
 
@@ -176,6 +179,8 @@ private extension FantasyDeckViewController {
         cardsButton.isSelected = true
         cardsView.isHidden = false
         collectionsView.isHidden = true
+
+        tutorialView?.isHidden = false
     }
 
     @IBAction private func collectionsTapped() {
@@ -183,6 +188,8 @@ private extension FantasyDeckViewController {
         cardsButton.isSelected = false
         cardsView.isHidden = true
         collectionsView.isHidden = false
+
+        tutorialView?.isHidden = true
     }
 
     // MARK: - Configuration
