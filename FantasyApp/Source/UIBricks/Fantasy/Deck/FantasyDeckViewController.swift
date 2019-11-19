@@ -55,8 +55,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         }
     }
 
-    lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource
-    <AnimatableSectionModel<String, Fantasy.Collection>>(
+    lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Collection>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
             let cell = self.collectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,

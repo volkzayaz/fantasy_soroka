@@ -16,7 +16,7 @@ struct RoomSettingsRouter: MVVM_Router {
     }
 
     func showNotificationSettings(for room: Room) {
-        let vc = R.storyboard.chat.roomNotificationSettingsViewController()!
+        let vc = R.storyboard.rooms.roomNotificationSettingsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room)
         owner.navigationController?.pushViewController(vc, animated: true)

@@ -36,33 +36,33 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     static let initialScrollViewRatio: CGFloat = 1 / 3
 
     // MARK: - Outlets
-    @IBOutlet private (set) var navigationBar: UINavigationBar!
-    @IBOutlet private (set) var titleLabel: UILabel!
-    @IBOutlet private (set) var gradientBackgroundView: UIView!
-    @IBOutlet private (set) var backgroundView: UIView!
-    @IBOutlet private (set) var scrollView: UIScrollView!
-    @IBOutlet private (set) var stackView: FantasyStackView!
-    @IBOutlet private (set) var backgroundImageView: UIImageView!
-    @IBOutlet private (set) var descriptionView: UIView!
-    @IBOutlet private (set) var descriptionTitleLabel: UILabel!
-    @IBOutlet private (set) var descriptionLabel: UILabel!
-    @IBOutlet private (set) var descriptionButton: UIButton!
-    @IBOutlet private (set) var preferenceSelector: FantasyDetailsPreferenceSelector!
-    @IBOutlet private (set) var preferenceView: UIView!
-    @IBOutlet private (set) var preferenceTitleLabel: UILabel!
-    @IBOutlet private (set) var collectionsView: UIView!
-    @IBOutlet private (set) var collectionsTitleLabel: UILabel!
-    @IBOutlet private (set) var collectionView: UICollectionView!
-    @IBOutlet private (set) var shareButton: SecondaryButton!
-    @IBOutlet private (set) var closeButton: UIButton!
-    @IBOutlet private (set) var optionButton: UIButton!
+    @IBOutlet  var navigationBar: UINavigationBar!
+    @IBOutlet  var titleLabel: UILabel!
+    @IBOutlet  var gradientBackgroundView: UIView!
+    @IBOutlet  var backgroundView: UIView!
+    @IBOutlet  var scrollView: UIScrollView!
+    @IBOutlet  var stackView: FantasyStackView!
+    @IBOutlet  var backgroundImageView: ProtectedImageView!
+    @IBOutlet  var descriptionView: UIView!
+    @IBOutlet  var descriptionTitleLabel: UILabel!
+    @IBOutlet  var descriptionLabel: UILabel!
+    @IBOutlet  var descriptionButton: UIButton!
+    @IBOutlet  var preferenceSelector: FantasyDetailsPreferenceSelector!
+    @IBOutlet  var preferenceView: UIView!
+    @IBOutlet  var preferenceTitleLabel: UILabel!
+    @IBOutlet  var collectionsView: UIView!
+    @IBOutlet  var collectionsTitleLabel: UILabel!
+    @IBOutlet  var collectionView: UICollectionView!
+    @IBOutlet  var shareButton: SecondaryButton!
+    @IBOutlet  var closeButton: UIButton!
+    @IBOutlet  var optionButton: UIButton!
 
-    @IBOutlet private (set) var backgroundImageLeftMargin: NSLayoutConstraint!
-    @IBOutlet private (set) var backgroundImageRightMargin: NSLayoutConstraint!
-    @IBOutlet private (set) var backgroundImageCenterY: NSLayoutConstraint!
-    @IBOutlet private (set) var collapsedDescriptionHeight: NSLayoutConstraint!
-    @IBOutlet private (set) var zoomedBackgroundConstraint: NSLayoutConstraint!
-    @IBOutlet private (set) var unzoomedBackgroundConstraint: NSLayoutConstraint!
+    @IBOutlet  var backgroundImageLeftMargin: NSLayoutConstraint!
+    @IBOutlet  var backgroundImageRightMargin: NSLayoutConstraint!
+    @IBOutlet  var backgroundImageCenterY: NSLayoutConstraint!
+    @IBOutlet  var collapsedDescriptionHeight: NSLayoutConstraint!
+    @IBOutlet  var zoomedBackgroundConstraint: NSLayoutConstraint!
+    @IBOutlet  var unzoomedBackgroundConstraint: NSLayoutConstraint!
 
     private var isZoomingBlocked = false
     private var isFirstAppearance = true
@@ -87,10 +87,8 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ImageRetreiver.imageForURLWithoutProgress(url: viewModel!.imageURL)
-                   .drive(backgroundImageView.rx.image)
-                   .disposed(by: backgroundImageView.rx.disposeBag)
-
+        backgroundImageView.set(imageURL: viewModel.imageURL, isProtected: true)
+        
         viewModel.currentState.asDriver().drive(onNext: { [weak self] reaction in
             self?.preferenceSelector.reaction = reaction
         }).disposed(by: rx.disposeBag)

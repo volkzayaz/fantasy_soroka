@@ -18,7 +18,7 @@ struct RoomDetailsRouter: MVVM_Router {
 
     func showSettings(room: SharedRoomResource) {
         
-        let viewController = R.storyboard.chat.roomSettingsViewController()!
+        let viewController = R.storyboard.rooms.roomSettingsViewController()!
         let router = RoomSettingsRouter(owner: viewController)
         viewController.viewModel = RoomSettingsViewModel(router: router, room: room)
         

@@ -33,7 +33,7 @@ class FantasyListViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
+        //view.backgroundColor = .red
         
         collectionTitleLabel.text = viewModel.title
         
@@ -52,6 +52,12 @@ class FantasyListViewController: UIViewController, MVVM_View {
                                           sourceFrame: sourceRect)
             })
             .disposed(by: rx.disposeBag)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
     }
     
 }

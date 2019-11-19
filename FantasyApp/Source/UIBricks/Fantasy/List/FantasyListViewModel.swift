@@ -17,11 +17,10 @@ extension FantasyListViewModel {
     var dataSource: Driver<[AnimatableSectionModel<String, ProtectedEntity<Fantasy.Card>>]> {
         
         return Driver.combineLatest(
-            User.changesOfSubscriptionStatus,
+            protectPolicy,
             provider
         )
         .map { isSubscribed, cards in
-            
             return [AnimatableSectionModel(model: "",
                                            items:  cards.map { ProtectedEntity(entity: $0,
                                                                                isProtected: isSubscribed)})]
@@ -34,6 +33,8 @@ extension FantasyListViewModel {
 struct FantasyListViewModel : MVVM_ViewModel {
     
     fileprivate let provider: Driver<[Fantasy.Card]>
+    fileprivate let protectPolicy: Driver<Bool>
+    
     let title: String
     
     let animator = FantasyDetailsTransitionAnimator()
@@ -42,9 +43,11 @@ struct FantasyListViewModel : MVVM_ViewModel {
         self.init(router: router, cardsProvider: .just(cards), title: "")
     }
     
-    init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>, title: String) {
+    init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>,
+         title: String, protectPolicy: Driver<Bool> = .just(false)) {
         self.router = router
         self.provider = cardsProvider
+        self.protectPolicy = protectPolicy
         self.title = title
         
         /////progress indicator

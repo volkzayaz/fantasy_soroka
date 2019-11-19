@@ -16,7 +16,7 @@ struct RoomsRouter: MVVM_Router {
     }
 
     func roomTapped(_ room: Room) {
-        let vc = R.storyboard.chat.roomDetailsViewController()!
+        let vc = R.storyboard.rooms.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
                              page: .chat)
@@ -25,7 +25,7 @@ struct RoomsRouter: MVVM_Router {
 
     func showRoomSettings(_ room: Room) {
         
-        let vc = R.storyboard.chat.roomSettingsViewController()!
+        let vc = R.storyboard.rooms.roomSettingsViewController()!
         vc.viewModel = .init(router: .init(owner: vc), room: SharedRoomResource(value: room))
         
         let container = FantasyNavigationController(rootViewController: vc)

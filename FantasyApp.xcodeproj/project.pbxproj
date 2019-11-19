@@ -285,7 +285,7 @@
 		84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D02F2327B95300648DE1 /* Shaders.metal */; };
 		84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */; };
 		84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */; };
-		84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0602327D5A800648DE1 /* Chat.storyboard */; };
+		84C1D0612327D5A900648DE1 /* Rooms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D0602327D5A800648DE1 /* Rooms.storyboard */; };
 		84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06A2327D63E00648DE1 /* RoomManager.swift */; };
 		84C1D06D2327D68100648DE1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06C2327D68100648DE1 /* Chat.swift */; };
 		84C1D0702327D6B500648DE1 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */; };
@@ -638,7 +638,7 @@
 		84C1D02F2327B95300648DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		84C1D03E2327B95F00648DE1 /* SexualityGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientView.swift; sourceTree = "<group>"; };
 		84C1D03F2327B95F00648DE1 /* SexualityGradientRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexualityGradientRenderer.swift; sourceTree = "<group>"; };
-		84C1D0602327D5A800648DE1 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		84C1D0602327D5A800648DE1 /* Rooms.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rooms.storyboard; sourceTree = "<group>"; };
 		84C1D06A2327D63E00648DE1 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		84C1D06C2327D68100648DE1 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		84C1D06E2327D6B500648DE1 /* RoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
@@ -1004,7 +1004,7 @@
 			isa = PBXGroup;
 			children = (
 				73097C04231D3D8200B71053 /* User.storyboard */,
-				84C1D0602327D5A800648DE1 /* Chat.storyboard */,
+				84C1D0602327D5A800648DE1 /* Rooms.storyboard */,
 				7312B06322D7403300DB0F36 /* LaunchScreen.storyboard */,
 				7312B06522D7403300DB0F36 /* Main.storyboard */,
 				73E6012122EC3A9600F767BF /* Authorization.storyboard */,
@@ -2310,7 +2310,7 @@
 				841681EA22E9AE6E00FA9455 /* SF-Pro-Text-Black.otf in Resources */,
 				841681EC22E9AE6E00FA9455 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				84C1D03B2327B95300648DE1 /* Bisexual.png in Resources */,
-				84C1D0612327D5A900648DE1 /* Chat.storyboard in Resources */,
+				84C1D0612327D5A900648DE1 /* Rooms.storyboard in Resources */,
 				841681E822E9AE6E00FA9455 /* SF-Pro-Text-Ultralight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rD1-8M-Box">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rD1-8M-Box">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -171,10 +171,10 @@
             </objects>
             <point key="canvasLocation" x="1729" y="1454"/>
         </scene>
-        <!--Chat-->
+        <!--Rooms-->
         <scene sceneID="kAy-5Z-pkU">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chat" id="cQz-D4-5De" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Rooms" id="cQz-D4-5De" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="nfW-Fl-8Jl"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bju-aY-3xV" userLabel="First Responder" sceneMemberID="firstResponder"/>

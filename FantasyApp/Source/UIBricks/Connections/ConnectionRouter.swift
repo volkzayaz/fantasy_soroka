@@ -16,7 +16,7 @@ struct ConnectionRouter : MVVM_Router {
     }
     
     func show(room: Room, page: RoomDetailsViewModel.DetailsPage = .chat) {
-        let vc = R.storyboard.chat.roomDetailsViewController()!
+        let vc = R.storyboard.rooms.roomDetailsViewController()!
         vc.viewModel = RoomDetailsViewModel(router: .init(owner: vc), room: room,
                                             page: page)
         owner.navigationController?.pushViewController(vc, animated: true)

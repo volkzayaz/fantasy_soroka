@@ -25,17 +25,18 @@ class FantasyDeckItemView: UIView {
 
     var imageURL: String? {
         didSet {
-            guard let imageURL = imageURL else {
-                imageView.image = nil
+            
+            guard let x = imageURL else {
+                imageView.reset()
                 return
             }
-            ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
-                .drive(imageView.rx.image)
-                .disposed(by: imageView.rx.disposeBag)
+            
+            imageView.set(imageURL: x, isProtected: true)
+            
         }
     }
 
-    private let imageView = UIImageView(frame: .zero)
+    private let imageView = ProtectedImageView(frame: .zero)
     private let paidCardView = UIView(frame: .zero)
     private let paidCardLabel = UILabel(frame: .zero)
     private let paidCardImageView = UIImageView(frame: .zero)
@@ -175,7 +176,8 @@ private extension FantasyDeckItemView {
     func configureStyling() {
         layer.cornerRadius = 23.0
         clipsToBounds = true
-
+        backgroundColor = UIColor(fromHex: 0xadd8e6)
+        
         imageView.contentMode = .scaleAspectFill
 
         paidCardView.backgroundColor = UIColor.black.withAlphaComponent(0.15)

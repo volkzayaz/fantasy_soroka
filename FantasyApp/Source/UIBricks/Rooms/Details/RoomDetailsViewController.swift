@@ -72,8 +72,6 @@ extension RoomDetailsViewController {
 
     func selectPage(_ page: RoomDetailsViewModel.DetailsPage, animated: Bool = true) {
         
-        commonFantasiesContainerView.subviews.first?.isHidden = false
-        
         let rect = CGRect(x: scrollView.bounds.width * CGFloat(page.rawValue),
                           y: 0,
                           width: scrollView.bounds.width,
@@ -120,7 +118,8 @@ extension RoomDetailsViewController {
             
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: provider,
-                                                title: "Mutual Fantasies")
+                                                title: "Mutual Fantasies",
+                                                protectPolicy: User.changesOfSubscriptionStatus)
             
         }
         else if segue.identifier == R.segue.roomDetailsViewController.showChat.identifier {
