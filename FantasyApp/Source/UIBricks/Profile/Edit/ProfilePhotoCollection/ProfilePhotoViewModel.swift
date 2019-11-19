@@ -16,10 +16,10 @@ extension ProfilePhotoViewModel {
     var deleteButtonEnabled: Driver<Bool> {
         
         if isPublic && photoNumber == 0 {
-            return .just(true)
+            return .just(false)
         }
         
-        return image.map { $0 == nil }
+        return image.map { $0 != nil }
     }
     
     var image: Driver<UIImage?> {
