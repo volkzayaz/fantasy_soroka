@@ -19,13 +19,15 @@ extension TeleportViewModel {
         return mode.asDriver()
             .flatMapLatest { mode in
                 
-                return self.data.asDriver().map { data in
+                return Driver.combineLatest(self.data.asDriver(),
+                                            self.currentLocationName.asDriver()) { ($0, $1) }
+                .map { (data, currentLocationName) in
                     
                     switch mode {
                     case .countries:
                         return [
                             AnimatableSectionModel(model: "current location",
-                                                   items: [Data.location]),
+                                                   items: [Data.location(currentLocationName)]),
                             
                             AnimatableSectionModel(model: "available locations",
                                                    items: data
@@ -38,7 +40,7 @@ extension TeleportViewModel {
                     case .communities(let fromCountry):
                         return [
                             AnimatableSectionModel(model: "current location",
-                                                   items: [Data.location]),
+                                                   items: [Data.location(currentLocationName)]),
                             
                             AnimatableSectionModel(model: "available locations",
                                                    items: (data[fromCountry] ?? []).map { Data.community($0) })
@@ -55,13 +57,13 @@ extension TeleportViewModel {
     enum Data: IdentifiableType, Equatable {
         case community(Community)
         case country(String, Int)
-        case location
+        case location(String)
         
         var identity: String {
             switch self {
             case .community(let x):  return x.name + x.country
             case .country(let x, _): return x
-            case .location:          return "currentLocation"
+            case .location(let x):   return "currentLocation" + x
             }
         }
         
@@ -78,6 +80,7 @@ struct TeleportViewModel : MVVM_ViewModel {
     
     fileprivate let mode = BehaviorRelay(value: Mode.countries)
     fileprivate let data = BehaviorRelay<[String: [Community]]>(value: [:])
+    fileprivate let currentLocationName = BehaviorRelay<String>(value: "")
     
     enum Response {
         case editForm(BehaviorRelay<EditProfileForm>)
@@ -96,6 +99,15 @@ struct TeleportViewModel : MVVM_ViewModel {
             .map { Dictionary(grouping: $0, by: { $0.country }) }
             .bind(to: data)
             .disposed(by: bag)
+        
+        if let x = appStateSlice.currentUser?.community.lastKnownLocation {
+            CLGeocoder().rx
+                .city(near: CLLocation(latitude: x.latitude, longitude: x.longitude))
+                .asObservable()
+                .map { $0 ?? "" }
+                .bind(to: currentLocationName)
+                .disposed(by: bag)
+        }
         
         /////progress indicator
         
