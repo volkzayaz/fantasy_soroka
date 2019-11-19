@@ -11,10 +11,9 @@ import RxSwift
 
 struct LikeFantasy: ActionCreator {
     let card: Fantasy.Card
-    let shouldDecrement: Bool
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .like, shouldDecrement: shouldDecrement, card: card)
+        return FantasyCardInteraction(type: .like, shouldDecrement: true, card: card)
             .perform(initialState: initialState)
     }
     
@@ -22,10 +21,9 @@ struct LikeFantasy: ActionCreator {
 
 struct DislikeFantasy: ActionCreator {
     let card: Fantasy.Card
-    let shouldDecrement: Bool
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .dislike, shouldDecrement: shouldDecrement, card: card)
+        return FantasyCardInteraction(type: .dislike, shouldDecrement: true, card: card)
             .perform(initialState: initialState)
     }
 }
@@ -68,7 +66,7 @@ struct FantasyCardInteraction: ActionCreator {
             ///not neccesserily removes card
             ///could be a case that swiping stack does not contain liked\disliked card
             var deckIsConsistent = false
-            if self.shouldDecrement && self.card.isFree {
+            if self.shouldDecrement {
                 deckIsConsistent = state.fantasiesDeck.pop(card: self.card)
             }
             

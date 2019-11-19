@@ -33,14 +33,12 @@ extension FantasyDetailsViewModel {
 struct FantasyDetailsViewModel: MVVM_ViewModel {
 
     private let card: Fantasy.Card
-    private let shouldDecrement: Bool
-
+    
     let currentState: BehaviorRelay<Fantasy.Card.Reaction>
     
-    init(router: FantasyDetailsRouter, card: Fantasy.Card, shouldDecrement: Bool) {
+    init(router: FantasyDetailsRouter, card: Fantasy.Card) {
         self.router = router
         self.card = card
-        self.shouldDecrement = shouldDecrement
         self.currentState = BehaviorRelay(value: card.reaction)
         
         indicator.asDriver()
@@ -80,7 +78,7 @@ extension FantasyDetailsViewModel {
             Dispatcher.dispatch(action: NeutralFantasy(card: card))
             reaction = .neutral
         case .neutral, .dislike:
-            Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: shouldDecrement))
+            Dispatcher.dispatch(action: LikeFantasy(card: card))
             reaction = .like
         default:
             break
@@ -97,7 +95,7 @@ extension FantasyDetailsViewModel {
             Dispatcher.dispatch(action: NeutralFantasy(card: card))
             reaction = .neutral
         case .neutral, .like:
-            Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: shouldDecrement))
+            Dispatcher.dispatch(action: DislikeFantasy(card: card))
             reaction = .dislike
         default:
             break

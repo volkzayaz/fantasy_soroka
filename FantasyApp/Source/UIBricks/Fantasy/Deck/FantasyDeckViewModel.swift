@@ -46,7 +46,7 @@ extension FantasyDeckViewModel {
             .notNil()
             .flatMapLatest { date in
         
-                return Driver<Int>.interval(.seconds(1)).map { _ in
+                return Driver<Int>.interval(.seconds(1)).startWith(0).map { _ in
                     let string = date.toTimeLeftString()
                     let attributedString = NSMutableAttributedString(string: string)
                     attributedString.addAttribute(.foregroundColor,

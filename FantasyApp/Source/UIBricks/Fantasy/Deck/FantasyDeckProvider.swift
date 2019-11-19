@@ -27,10 +27,10 @@ struct MainDeckProvider: FantasyDeckProvier {
         
         switch direction {
         case .left:
-            Dispatcher.dispatch(action: DislikeFantasy(card: card, shouldDecrement: true))
+            Dispatcher.dispatch(action: DislikeFantasy(card: card))
             
         case .right:
-            Dispatcher.dispatch(action: LikeFantasy(card: card, shouldDecrement: true))
+            Dispatcher.dispatch(action: LikeFantasy(card: card))
             
         case .down:
             ///don't really know what should happen here for now
@@ -46,12 +46,23 @@ struct MainDeckProvider: FantasyDeckProvier {
 struct RoomsDeckProvider: FantasyDeckProvier {
     
     let room: Room
+    let card = BehaviorRelay<Int>(value: 0)
     
     var cardsChange: Driver<AppState.FantasiesDeck> {
         
         return Fantasy.Manager.fetchSwipesDeck(in: room)
             .retry(2)
-            .asDriver(onErrorJustReturn: .cards([]))
+            .asDriver(onErrorJustReturn: .init(cards: [],
+                                               deckState: .init(wouldBeUpdatedAt: Date(timeIntervalSince1970: 0))))
+            .flatMap { [unowned x = card] state -> Driver<AppState.FantasiesDeck> in
+                
+                return x
+                    .asDriver()
+                    .filter { $0 >= state.cards.count }
+                    .map { _ in .empty(till: state.deckState.wouldBeUpdatedAt) }
+                    .startWith( .cards(state.cards) )
+                
+            }
         
     }
     
@@ -74,6 +85,10 @@ struct RoomsDeckProvider: FantasyDeckProvier {
             break
             
         }
+        
+        var x = self.card.value
+        x+=1
+        self.card.accept(x)
         
     }
     
