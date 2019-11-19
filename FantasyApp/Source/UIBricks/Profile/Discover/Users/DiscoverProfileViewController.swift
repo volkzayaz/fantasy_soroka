@@ -16,7 +16,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
     private var animator = DiscoverProfileRouterTransitionAnimator()
 
-    lazy var viewModel: DiscoverProfileViewModel! = DiscoverProfileViewModel(router: .init(owner: self))
+    var viewModel: DiscoverProfileViewModel!
     
     @IBOutlet weak var profilesCarousel: iCarousel! {
         didSet {

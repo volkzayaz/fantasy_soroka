@@ -27,7 +27,8 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
                     }
                 }
                 else {
-                    let vc = R.storyboard.main.locationRequestViewController()!
+                    let vc = R.storyboard.user.searchLocationRestrictedViewController()!
+                    vc.modalPresentationStyle = .overFullScreen
                     self.present(vc, animated: true, completion: nil)
                 }
                 
@@ -39,6 +40,9 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
                 self.tabBar.items!.last!.image = image
             })
             .disposed(by: rx.disposeBag)
+ 
+        let vc = (viewControllers![1] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
+        vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
         
     }
     

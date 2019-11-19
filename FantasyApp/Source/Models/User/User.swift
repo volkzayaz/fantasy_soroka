@@ -100,11 +100,31 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     struct Community: Equatable, Codable {
         var value: FantasyApp.Community?
         var changePolicy: CommunityChangePolicy
+        var lastKnownLocation: LastKnownLocation?
     }
     
     enum CommunityChangePolicy: Int, Equatable, Codable {
         case teleport = 1
         case locationBased = 2
+    }
+    
+    struct LastKnownLocation: Codable, Equatable {
+        let latitude: Double
+        let longitude: Double
+        
+        init(location: CLLocation) {
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+        }
+        
+        init(pfGeoPoint: PFGeoPoint) {
+            latitude = pfGeoPoint.latitude
+            longitude = pfGeoPoint.longitude
+        }
+        
+        var pfGeoPoint: PFGeoPoint {
+            return PFGeoPoint(latitude: latitude, longitude: longitude)
+        }
     }
     
     static var current: User? {

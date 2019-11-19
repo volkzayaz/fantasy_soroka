@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 import RxCoreLocation
 
-////COmunitySelectionViewModel
 extension PickCommunityViewModel {
     
     var needsLocationPermission: Driver<Bool> {
@@ -26,6 +25,7 @@ extension PickCommunityViewModel {
                 }
                 
                 return self.manager.rx.didChangeAuthorization
+                    .startWith((self.manager, CLLocationManager.authorizationStatus()))
                     .map { $0.status == .denied }
                     .asDriver(onErrorJustReturn: false)
             }
@@ -128,6 +128,13 @@ struct PickCommunityViewModel {
             })
             .disposed(by: bag)
         
+        manager.rx.location
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .notNil()
+            .subscribe(onNext: { (l) in
+                Dispatcher.dispatch(action: UpdateLastKnownLocation(location: l))
+            })
+            .disposed(by: bag)
     }
     
     private let bag = DisposeBag()

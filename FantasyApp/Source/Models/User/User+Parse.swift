@@ -80,6 +80,10 @@ extension User {
         }
         
         let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
+        var maybeLastKnownLocation: User.LastKnownLocation? = nil
+        if let x = pfUser["lastKnownLocation"] as? PFGeoPoint {
+            maybeLastKnownLocation = .init(pfGeoPoint: x)
+        }
         
         let photos = User.Bio.Photos(avatar  : mainPhoto,
                                      public  : albums?.public  ?? .init(images: []) ,
@@ -111,7 +115,9 @@ extension User {
         
         searchPreferences = nil
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
-        community = User.Community(value: maybeCommunity, changePolicy: changePolicy)
+        community = User.Community(value: maybeCommunity,
+                                   changePolicy: changePolicy,
+                                   lastKnownLocation: maybeLastKnownLocation)
         subscription = subscriptionStatus ?? .init(status: nil)
         notificationSettings = notifSettings ?? NotificationSettings()
     }
@@ -132,8 +138,11 @@ extension User {
             "lookingFor"                : bio.lookingFor?.rawValue as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
+            
             "belongsTo"                 : community.value?.pfObject as Any,
             "communityChangePolicy"     : community.changePolicy.rawValue,
+            "lastKnownLocation"         : community.lastKnownLocation?.pfGeoPoint as Any,
+            
             "notificationSettings"      : notificationSettings.pfObject,
         ] as [String : Any]
         

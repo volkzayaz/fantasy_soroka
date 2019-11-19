@@ -11,24 +11,37 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Kingfisher
+import RxCoreLocation
 
 extension MainTabBarViewModel {
     
     var locationRequestHidden: Driver<Bool> {
         
-        return Observable.combineLatest(SettingsStore.atLeastOnceLocation.observable,
-                                        locationManager.rx.didChangeAuthorization) { ($0, $1) }
-            .map { (didAskForLocation, authorizationStatus) in
+        return Driver.combineLatest(appState.changesOf { $0.currentUser },
+                                    locationManager.rx.didChangeAuthorization.asDriver()
+                                        .startWith((locationManager, CLLocationManager.authorizationStatus()))
+            )
+            { maybeUser, event in
                 
-                if authorizationStatus.status == .notDetermined { return true }
-                
-                guard didAskForLocation != nil else {
-                    return SettingsStore.currentUser.value == nil
+                guard let u = maybeUser,
+                    event.status != .notDetermined else {
+                        
+                        ///do not show dialog if
+                        ///   no user logged in
+                        ///or
+                        ///   user hasn't made a decision yet
+                        
+                        return true
                 }
                 
-                return (authorizationStatus.status != .denied)
+                if let _ = u.community.lastKnownLocation {
+                    ///do not show dialog if community exist
+                    return true
+                }
+                
+                return (event.status != .denied)
             }
-            .asDriver(onErrorJustReturn: false)
+            
         
     }
  
@@ -58,13 +71,6 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             //.trackView(viewIndicator: indicator)
             .subscribe(onSuccess: { x in
                 Dispatcher.dispatch(action: ResetSwipeDeck(deck: x))
-            })
-            .disposed(by: bag)
-
-        locationManager.rx.didChangeAuthorization
-            .filter { $0.status != .denied && $0.status != .notDetermined }
-            .subscribe(onNext: { (_) in
-                SettingsStore.atLeastOnceLocation.value = true
             })
             .disposed(by: bag)
         

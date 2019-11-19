@@ -16,6 +16,8 @@ class SearchLocationRestrictedViewController: UIViewController {
     }
 
     @IBAction func settings(_ sender: Any) {
-
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
     }
 }

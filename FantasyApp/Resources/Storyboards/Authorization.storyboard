@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1782,7 +1782,7 @@ Describe Yourself?</string>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-a6-CE4" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="1551" y="628" width="253" height="52"/>
+                                <rect key="frame" x="1551" y="594" width="253" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="U98-mk-TNy"/>
                                 </constraints>
@@ -1813,7 +1813,7 @@ Describe Yourself?</string>
                             <constraint firstAttribute="trailing" secondItem="WdF-1N-zRB" secondAttribute="trailing" id="S2a-jk-GAG"/>
                             <constraint firstItem="WdF-1N-zRB" firstAttribute="top" secondItem="UQw-k4-WmC" secondAttribute="top" id="Syy-O6-fOB"/>
                             <constraint firstItem="0CI-Kx-HRX" firstAttribute="top" secondItem="o7y-P8-LtY" secondAttribute="top" id="dhd-h0-uUg"/>
-                            <constraint firstAttribute="bottom" secondItem="JO7-a6-CE4" secondAttribute="bottom" constant="20" id="dpK-dV-LRi"/>
+                            <constraint firstItem="o7y-P8-LtY" firstAttribute="bottom" secondItem="JO7-a6-CE4" secondAttribute="bottom" constant="20" id="dpK-dV-LRi"/>
                             <constraint firstItem="0CI-Kx-HRX" firstAttribute="leading" secondItem="o7y-P8-LtY" secondAttribute="leading" id="pJF-tK-bvf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o7y-P8-LtY"/>
@@ -2032,7 +2032,7 @@ Describe Yourself?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kf-8p-tgP" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="60" y="820" width="294" height="56"/>
+                                <rect key="frame" x="60" y="786" width="294" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="oJA-V2-Fpq"/>
@@ -2086,7 +2086,7 @@ Describe Yourself?</string>
                             <constraint firstItem="9kf-8p-tgP" firstAttribute="leading" secondItem="YLX-bJ-Bnh" secondAttribute="leading" constant="60" id="jLf-an-fXp"/>
                             <constraint firstItem="OgC-Rr-pZH" firstAttribute="leading" secondItem="Nl1-O0-wOg" secondAttribute="leading" id="qGb-TG-4dR"/>
                             <constraint firstItem="YLX-bJ-Bnh" firstAttribute="trailing" secondItem="Z95-C1-cmH" secondAttribute="trailing" constant="25" id="syL-db-cdW"/>
-                            <constraint firstAttribute="bottom" secondItem="9kf-8p-tgP" secondAttribute="bottom" constant="20" id="szc-xM-OyZ"/>
+                            <constraint firstItem="YLX-bJ-Bnh" firstAttribute="bottom" secondItem="9kf-8p-tgP" secondAttribute="bottom" constant="20" id="szc-xM-OyZ"/>
                             <constraint firstItem="Z95-C1-cmH" firstAttribute="top" secondItem="Nl1-O0-wOg" secondAttribute="bottom" constant="36" id="yUK-cH-qbH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YLX-bJ-Bnh"/>

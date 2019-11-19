@@ -135,6 +135,7 @@
 		7379ED1B230D3C5000E661A7 /* FantasyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */; };
 		7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */; };
 		7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED20230D54A100E661A7 /* PurchaseManager.swift */; };
+		7384B0F62384363100869016 /* UpdateLastKnownLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384B0F52384363100869016 /* UpdateLastKnownLocation.swift */; };
 		738A181623696FF300C54C8A /* FantasyCollectionDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */; };
 		738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */; };
 		738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */; };
@@ -488,6 +489,7 @@
 		7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionViewModel.swift; sourceTree = "<group>"; };
 		7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCollection.swift; sourceTree = "<group>"; };
 		7379ED20230D54A100E661A7 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		7384B0F52384363100869016 /* UpdateLastKnownLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLastKnownLocation.swift; sourceTree = "<group>"; };
 		738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsRouter.swift; sourceTree = "<group>"; };
 		738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsViewController.swift; sourceTree = "<group>"; };
 		738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -1151,6 +1153,7 @@
 				734C70B82321355F00ED2E91 /* EditProfilePhoto.swift */,
 				7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */,
 				73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */,
+				7384B0F52384363100869016 /* UpdateLastKnownLocation.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2470,6 +2473,7 @@
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */,
 				843CF716234249420098C196 /* TimeSeparatorModel.swift in Sources */,
+				7384B0F62384363100869016 /* UpdateLastKnownLocation.swift in Sources */,
 				B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */,

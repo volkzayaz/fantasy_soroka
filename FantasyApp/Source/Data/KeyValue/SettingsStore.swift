@@ -22,8 +22,8 @@ extension SettingsStore {
     static var ageRestriction: Setting<Date?> = Setting(key: "com.fantasyapp.iosclient.settings.ageRestriction",
                                                      initialValue: nil)
     
-    static var atLeastOnceLocation: Setting<Bool?> = Setting(key: "com.fantasyapp.iosclient.settings.atLeastOnceLocation",
-                                                            initialValue: nil)
+    ///
+    ///
     
     static var freeSubscriptionSwitch: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.settings.freeSubscriptionSwitch",
                                                                initialValue: false)

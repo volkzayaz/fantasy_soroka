@@ -154,7 +154,6 @@ extension AuthenticationManager {
     
     static func logout() {
         SettingsStore.currentUser.value = nil
-        SettingsStore.atLeastOnceLocation.value = nil
         PFUser.logOutInBackground(block: { _ in })
     }
 
