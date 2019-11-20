@@ -118,6 +118,12 @@ extension RoomDetailsViewController {
             
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: provider,
+                                                detailsProvider: { card in
+                                                    RoomFantasyDetailsProvider(room: room,
+                                                                               card: card,
+                                                                               initialReaction: .like,
+                                                                               reactionCallback: nil)
+                                                },
                                                 title: "Mutual Fantasies",
                                                 protectPolicy: User.changesOfSubscriptionStatus)
             

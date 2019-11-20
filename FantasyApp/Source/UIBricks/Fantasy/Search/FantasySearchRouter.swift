@@ -17,9 +17,9 @@ struct FantasySearchRouter : MVVM_Router {
 
     func cardTapped(card: Fantasy.Card) {
         
-        let vc = R.storyboard.fantasyCard.fantasyDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), card: card)
-        owner.navigationController?.pushViewController(vc, animated: true)
+//        let vc = R.storyboard.fantasyCard.fantasyDetailsViewController()!
+//        vc.viewModel = .init(router: .init(owner: vc), card: card)
+//        owner.navigationController?.pushViewController(vc, animated: true)
         
     }
     

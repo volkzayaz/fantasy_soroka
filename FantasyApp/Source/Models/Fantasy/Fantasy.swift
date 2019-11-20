@@ -24,10 +24,6 @@ extension Fantasy {
             case dislikes
             case blocks
             
-//            case isLikedByYou
-//            case isDislikedByYou
-//            case isBlockedByYou
-            
         }
         
         let id: String
@@ -38,18 +34,6 @@ extension Fantasy {
         let likes: Int
         let dislikes: Int
         let blocks: Int
-        
-//        private let isLikedByYou: Bool
-//        private let isDislikedByYou: Bool
-//        private let isBlockedByYou: Bool
-        
-        var reaction: Reaction {
-//            if isLikedByYou { return .like }
-//            if isDislikedByYou { return .dislike }
-//            if isBlockedByYou { return .block }
-            
-            return .neutral
-        }
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection

@@ -50,6 +50,10 @@ extension MyFantasiesReactionHistoryViewController {
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: provider,
+                                                detailsProvider: { [unowned s = segmentedControl] card in
+                                                    OwnFantasyDetailsProvider(card: card,
+                                                                              initialReaction: s!.selectedSegmentIndex == 0 ? .like : .dislike)
+                                                },
                                                 title: "")
                 
             
