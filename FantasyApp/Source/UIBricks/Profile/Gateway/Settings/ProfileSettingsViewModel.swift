@@ -7,18 +7,18 @@
 //
 
 import Foundation
-
 import RxSwift
 import RxCocoa
+import StoreKit
 
 extension ProfileSettingsViewModel {
     
     /** Reference binding drivers that are going to be used in the corresponding view
-    
-    var text: Driver<String> {
-        return privateTextVar.asDriver().notNil()
-    }
- 
+
+     var text: Driver<String> {
+     return privateTextVar.asDriver().notNil()
+     }
+
      */
     
 }
@@ -60,30 +60,62 @@ struct ProfileSettingsViewModel : MVVM_ViewModel {
 extension ProfileSettingsViewModel {
     
     func logout() {
-        AuthenticationManager.logout()
-        Dispatcher.dispatch(action: Logout())
+
+        let actions: [UIAlertAction] = [
+            .init(title: "No", style: .cancel, handler: nil),
+            .init(title: "Log out", style: .destructive, handler: { _ in
+                AuthenticationManager.logout()
+                Dispatcher.dispatch(action: Logout())
+                self.router.dismiss()
+            })
+        ]
+
+        router.owner.showDialog(title: "Log out", text: "You sure you want to log out from Fantasy app?", style: .alert, actions: actions)
     }
     
     func deleteAccount() {
-        
-        router.owner.showDialog(title: "Delete account?",
-                                text: "You will be logged out. All your data will be erased. This can not be undone", style: .alert, negativeText: "Cancel", negativeCallback: nil, positiveText: "Delete account") {
-            
-            let _ = UserManager.deleteAccount()
-                .trackView(viewIndicator: self.indicator)
-                .silentCatch(handler: self.router.owner)
-                .subscribe(onNext: self.logout)
-            
-        }
-        
+
+        let actions: [UIAlertAction] = [
+            .init(title: "Cancel", style: .cancel, handler: nil),
+            .init(title: "Delete account", style: .destructive, handler: { _ in
+                let _ = UserManager.deleteAccount()
+                                   .trackView(viewIndicator: self.indicator)
+                                   .silentCatch(handler: self.router.owner)
+                                   .subscribe(onNext: self.logout)
+            })
+        ]
+
+         router.owner.showDialog(title: "Delete account?", text: "You will be logged out. All your data will be erased. This can not be undone", style: .actionSheet, actions: actions)
     }
 
     func restorePurchases() {
         PurchaseManager.restorePurchases()
-        .trackView(viewIndicator: indicator)
+            .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe()
             .disposed(by: bag)
     }
-    
+
+    func helpSupport() {
+        guard let u = URL(string: R.string.localizable.fantasyConstantsHelpSupport()) else { return }
+        router.showSafari(for: u)
+    }
+
+    func legal() {
+        guard let u = URL(string: R.string.localizable.fantasyConstantsLegal()) else { return }
+        router.showSafari(for: u)
+    }
+
+    func communityRules() {
+        guard let u = URL(string: R.string.localizable.fantasyConstantsCommunityRulesUrl()) else { return }
+        router.showSafari(for: u)
+    }
+
+    func rateUs() {
+        SKStoreReviewController.requestReview()
+    }
+
+    func dismiss() {
+        router.dismiss()
+    }
 }

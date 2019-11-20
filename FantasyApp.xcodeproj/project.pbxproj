@@ -298,6 +298,8 @@
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
+		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
+		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
 		B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774AF23644F2D00A353CC /* UserCarouselView.swift */; };
 		B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B023644F2D00A353CC /* UserCarouselView.xib */; };
@@ -654,6 +656,8 @@
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
+		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
+		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
 		B73774AF23644F2D00A353CC /* UserCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCarouselView.swift; sourceTree = "<group>"; };
 		B73774B023644F2D00A353CC /* UserCarouselView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCarouselView.xib; sourceTree = "<group>"; };
@@ -1580,6 +1584,7 @@
 		73C96F0F23409DEC002C3F8E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B723A9F52385B8DC00C72A7C /* UI */,
 				73EBBA74234E2BD300B79121 /* NotificationSettings */,
 				73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */,
 				73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */,
@@ -2086,6 +2091,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B723A9F52385B8DC00C72A7C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */,
+				B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		B73774AE23644F2D00A353CC /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -2296,6 +2310,7 @@
 				7312B07422D7413C00DB0F36 /* Main.storyboard in Resources */,
 				84C1D03A2327B95300648DE1 /* Queer.png in Resources */,
 				73E6012222EC3A9600F767BF /* Authorization.storyboard in Resources */,
+				B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */,
 				841681DF22E9AE6E00FA9455 /* SF-Pro-Text-Regular.otf in Resources */,
 				73C96F172340A421002C3F8E /* UserGateway.storyboard in Resources */,
 				841681E522E9AE6E00FA9455 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
@@ -2684,6 +2699,7 @@
 				73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */,
 				84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */,
 				84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */,
+				B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */,
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
 				B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */,

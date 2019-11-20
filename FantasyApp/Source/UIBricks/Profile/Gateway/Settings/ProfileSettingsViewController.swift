@@ -15,7 +15,11 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
-    @IBOutlet weak var freeSubscriptionSwitch: UISwitch!
+    @IBOutlet weak var freeSubscriptionSwitch: UISwitch!{
+        didSet {
+            freeSubscriptionSwitch.onTintColor = R.color.textPinkColor()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,22 +35,58 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     @IBAction func freeSubscriptionSwitchChanged(_ sender: UISwitch) {
         SettingsStore.freeSubscriptionSwitch.value = sender.isOn
     }
+
+    @IBAction func done(_ sender: UIBarButtonItem) {
+        viewModel.dismiss()
+    }
 }
 
 extension ProfileSettingsViewController {
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = ProfileSettingsHeaderView.instance
+        
+        switch section {
+        case 0: v.setText("Account")
+        case 1: v.setText("Rooms")
+        case 2: v.setText("Subscriptions")
+        case 3: v.setText("Support")
+
+        default: v.setText(" ")
+        }
+
+        return v
+    }
     
     override internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.section == 5 {
-            viewModel.logout()
-        }
-        
-        if indexPath.section == 4 {
-            viewModel.deleteAccount()
-        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
 
         if indexPath.section == 2 && indexPath.row == 1 {
             viewModel.restorePurchases()
+        }
+
+        if indexPath.section == 3 && indexPath.row == 0 {
+            viewModel.helpSupport()
+        }
+
+        if indexPath.section == 3 && indexPath.row == 1 {
+            viewModel.legal()
+        }
+
+        if indexPath.section == 3 && indexPath.row == 2 {
+            viewModel.communityRules()
+        }
+
+        if indexPath.section == 3 && indexPath.row == 3 {
+            viewModel.rateUs()
+        }
+
+        if indexPath.section == 4 {
+              viewModel.deleteAccount()
+          }
+        if indexPath.section == 5 {
+            viewModel.logout()
         }
         
     }
