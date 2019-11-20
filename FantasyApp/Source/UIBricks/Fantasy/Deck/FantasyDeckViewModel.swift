@@ -14,7 +14,7 @@ import RxDataSources
 extension FantasyDeckViewModel {
 
     var collectionsDataSource: Driver<[AnimatableSectionModel<String, Fantasy.Collection>]> {
-        return collectionsTrigger.asDriver().map { collections in
+        return collections.asDriver().map { collections in
             return [AnimatableSectionModel(model: "", items: collections)]
         }
     }
@@ -60,7 +60,7 @@ extension FantasyDeckViewModel {
     }
 
     var collectionsCountText: Driver<NSAttributedString> {
-        return collectionsTrigger.asDriver().map { collections in
+        return collections.asDriver().map { collections in
             let count = collections.filter { !$0.isPurchased }.count
             let string = R.string.localizable.fantasyDeckCollectionsCount(count)
             let attributedString = NSMutableAttributedString(string: string)
@@ -74,14 +74,21 @@ extension FantasyDeckViewModel {
     }
     
     var cards: Driver<[Fantasy.Card]> {
-        return provider.cardsChange
+        
+        let p = provider
+        
+        return reloadTrigger.asDriver()
+            .flatMapLatest { _ in p.cardsChange }
             .map { deck in
                 switch deck {
                 case .cards(let cards): return cards
                 case .empty(_): return []
                 }
             }
+        
     }
+    
+    
     
     var mutualCardTrigger: Driver<Fantasy.Card> {
         return cardTrigger.asDriver().notNil()
@@ -93,8 +100,10 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     
     let provider: FantasyDeckProvier
 
+    private let reloadTrigger = BehaviorRelay(value: ())
+    
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
-    fileprivate let collectionsTrigger = BehaviorRelay<[Fantasy.Collection]>(value: [])
+    fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     
     init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
         self.router = router
@@ -108,7 +117,7 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
 
         Fantasy.Manager.fetchCollections()
             .silentCatch(handler: router.owner)
-            .bind(to: collectionsTrigger)
+            .bind(to: collections)
             .disposed(by: bag)
 
     }
@@ -117,7 +126,6 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     
-
 }
 
 extension FantasyDeckViewModel {
@@ -135,12 +143,24 @@ extension FantasyDeckViewModel {
     }
     
     func cardTapped(card: Fantasy.Card) {
-        router.cardTapped(card: card)
+        
+        let shouldTrigger = provider.pessimisticReload
+        
+        router.cardTapped(provider: provider.detailsProvider(card: card, reactionCallback: { [unowned x = reloadTrigger] in
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                if shouldTrigger {
+                    x.accept( () )
+                }
+            }
+            
+        }))
     }
 
     func show(collection: Fantasy.Collection) {
         router.show(collection: collection)
     }
+    
 }
 
 //MARK:- Tutorial

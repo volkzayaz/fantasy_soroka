@@ -15,10 +15,10 @@ struct FantasyDeckRouter : MVVM_Router {
         self.owner = owner
     }
     
-    func cardTapped(card: Fantasy.Card) {
+    func cardTapped(provider: FantasyDetailProvider) {
         
         let vc = R.storyboard.fantasyCard.fantasyDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), card: card)
+        vc.viewModel = .init(router: .init(owner: vc), provider: provider)
         vc.modalPresentationStyle = .overFullScreen
         vc.transitioningDelegate = owner
         

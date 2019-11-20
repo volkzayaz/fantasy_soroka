@@ -144,7 +144,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10.0
 
-
         if viewModel.showTutorial {
 
             let v = FantasyDeckTutorialView.instance
@@ -161,7 +160,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
             tutorialView = v
         }
-
 
         configureStyling()
     }
@@ -301,4 +299,6 @@ extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
         
         return animator
     }
+    
+    
 }

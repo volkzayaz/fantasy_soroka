@@ -34,19 +34,29 @@ struct FantasyListViewModel : MVVM_ViewModel {
     
     fileprivate let provider: Driver<[Fantasy.Card]>
     fileprivate let protectPolicy: Driver<Bool>
+    fileprivate let detailsProvider: (Fantasy.Card) -> FantasyDetailProvider
     
     let title: String
     
     let animator = FantasyDetailsTransitionAnimator()
     
-    init(router: FantasyListRouter, cards: [Fantasy.Card]) {
-        self.init(router: router, cardsProvider: .just(cards), title: "")
+    init(router: FantasyListRouter,
+         detailsProvider: @escaping (Fantasy.Card) -> FantasyDetailProvider,
+         cards: [Fantasy.Card]) {
+        self.init(router: router,
+                  cardsProvider: .just(cards),
+                  detailsProvider: detailsProvider,
+                  title: "")
     }
     
-    init(router: FantasyListRouter, cardsProvider: Driver<[Fantasy.Card]>,
-         title: String, protectPolicy: Driver<Bool> = .just(false)) {
+    init(router: FantasyListRouter,
+         cardsProvider: Driver<[Fantasy.Card]>,
+         detailsProvider: @escaping (Fantasy.Card) -> FantasyDetailProvider,
+         title: String,
+         protectPolicy: Driver<Bool> = .just(false)) {
         self.router = router
         self.provider = cardsProvider
+        self.detailsProvider = detailsProvider
         self.protectPolicy = protectPolicy
         self.title = title
         
@@ -68,6 +78,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
 extension FantasyListViewModel {
     func cardTapped(card: Fantasy.Card, sourceFrame: CGRect) {
         animator.originFrame = sourceFrame
-        router.cardTapped(card: card)
+        
+        router.cardTapped(provider: detailsProvider(card) )
     }
 }

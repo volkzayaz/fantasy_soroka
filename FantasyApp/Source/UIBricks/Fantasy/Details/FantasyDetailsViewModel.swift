@@ -14,10 +14,10 @@ import RxDataSources
 
 extension FantasyDetailsViewModel {
     
-    var description: String { return card.story }
-    var dislikesCount: Int { return card.dislikes }
-    var likesCount: Int { return card.likes }
-    var imageURL: String { return card.imageURL }
+    var description: String { return provider.card.story }
+    var dislikesCount: Int { return provider.card.dislikes }
+    var likesCount: Int { return provider.card.likes }
+    var imageURL: String { return provider.card.imageURL }
 
     var collectionsDataSource: Driver<[AnimatableSectionModel<String, Fantasy.Collection>]> {
         return Fantasy.Manager.fetchCollections()
@@ -32,14 +32,14 @@ extension FantasyDetailsViewModel {
 
 struct FantasyDetailsViewModel: MVVM_ViewModel {
 
-    private let card: Fantasy.Card
+    private let provider: FantasyDetailProvider
     
     let currentState: BehaviorRelay<Fantasy.Card.Reaction>
     
-    init(router: FantasyDetailsRouter, card: Fantasy.Card) {
+    init(router: FantasyDetailsRouter, provider: FantasyDetailProvider) {
         self.router = router
-        self.card = card
-        self.currentState = BehaviorRelay(value: card.reaction)
+        self.provider = provider
+        self.currentState = BehaviorRelay(value: provider.initialReaction)
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
@@ -72,18 +72,17 @@ extension FantasyDetailsViewModel {
     
     func likeCard() {
         var reaction = currentState.value
-
+        
         switch currentState.value {
-        case .like:
-            Dispatcher.dispatch(action: NeutralFantasy(card: card))
-            reaction = .neutral
-        case .neutral, .dislike:
-            Dispatcher.dispatch(action: LikeFantasy(card: card))
-            reaction = .like
-        default:
-            break
+        case .like:              reaction = .neutral
+        case .neutral, .dislike: reaction = .like
+        case .block:             return;
         }
         
+        guard provider.shouldReact(to: reaction) else {
+            return
+        }
+
         currentState.accept(reaction)
     }
 
@@ -91,16 +90,15 @@ extension FantasyDetailsViewModel {
         var reaction = currentState.value
 
         switch currentState.value {
-        case .dislike:
-            Dispatcher.dispatch(action: NeutralFantasy(card: card))
-            reaction = .neutral
-        case .neutral, .like:
-            Dispatcher.dispatch(action: DislikeFantasy(card: card))
-            reaction = .dislike
-        default:
-            break
+        case .dislike:           reaction = .neutral
+        case .neutral, .like:    reaction = .dislike
+        case .block:             return;
         }
 
+        guard provider.shouldReact(to: reaction) else {
+            return
+        }
+        
         currentState.accept(reaction)
     }
 

@@ -47,7 +47,6 @@ class FantasyDetailsPreferenceSelector: UIView {
         
         configureLayout()
         configureStyling()
-        configurePreferenceState(reaction)
     }
     
     required init?(coder: NSCoder) {
@@ -55,7 +54,6 @@ class FantasyDetailsPreferenceSelector: UIView {
         
         configureLayout()
         configureStyling()
-        configurePreferenceState(reaction)
     }
     
     // MARK: - Configuration
@@ -156,9 +154,13 @@ class FantasyDetailsPreferenceSelector: UIView {
         case .like:
             dislikeLabel.isHidden = true
             dislikesCountLabel.isHidden = true
+            likeLabel.isHidden = false
+            likesCountLabel.isHidden = false
         case .dislike:
             likeLabel.isHidden = true
             likesCountLabel.isHidden = true
+            dislikeLabel.isHidden = false
+            dislikesCountLabel.isHidden = false
         default:
             dislikeLabel.isHidden = true
             dislikesCountLabel.isHidden = true
