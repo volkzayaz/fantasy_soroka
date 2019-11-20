@@ -41,7 +41,7 @@ extension MainTabBarViewModel {
                 
                 return (event.status != .denied)
             }
-            
+        .distinctUntilChanged()
         
     }
  

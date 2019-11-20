@@ -15,9 +15,9 @@ struct FantasyDetailsRouter : MVVM_Router {
         self.owner = owner
     }
 
-     func close() {
+    func close() {
         owner.dismiss(animated: true, completion: nil)
-     }
+    }
     
     func show(collection: Fantasy.Collection) {
         
