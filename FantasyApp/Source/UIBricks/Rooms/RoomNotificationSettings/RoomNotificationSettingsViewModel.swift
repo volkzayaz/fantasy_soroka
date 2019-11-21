@@ -15,8 +15,8 @@ struct RoomNotificationSettingsViewModel: MVVM_ViewModel {
     let router: RoomNotificationSettingsRouter
     let room: Room
 
-    var currentSettings: Room.NotificationSettings {
-        return room.notificationSettings
+    var currentSettings: Room.Settings.Notifications {
+        return room.settings.notifications
     }
 
     init(router: RoomNotificationSettingsRouter, room: Room) {
@@ -30,7 +30,11 @@ extension RoomNotificationSettingsViewModel {
     func changeMessageSettings(state: Bool) {
         
         var r = room
-        r.notificationSettings.newMessage = state
+        r.settings.notifications.newMessage = state
+        
+        if r.isDraftRoom {
+            return
+        }
         
         Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
         
@@ -39,7 +43,11 @@ extension RoomNotificationSettingsViewModel {
     func changeCommonFantasySettings(state: Bool) {
         
         var r = room
-        r.notificationSettings.newFantasyMatch = state
+        r.settings.notifications.newFantasyMatch = state
+        
+        if r.isDraftRoom {
+            return
+        }
         
         Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
         

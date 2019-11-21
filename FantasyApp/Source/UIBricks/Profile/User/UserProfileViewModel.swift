@@ -264,10 +264,12 @@ struct UserProfileViewModel : MVVM_ViewModel {
     
     fileprivate let user: User
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
+    let bottomActionAvailable: Bool
     
-    init(router: UserProfileRouter, user: User) {
+    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = false) {
         self.router = router
         self.user = user
+        self.bottomActionAvailable = bottomActionsAvailable
         
         if user.id != User.current!.id {
             ConnectionManager.relationStatus(with: user)

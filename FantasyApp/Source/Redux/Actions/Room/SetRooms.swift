@@ -29,3 +29,22 @@ struct TriggerRoomsRefresh: Action {
     }
     
 }
+
+struct DeleteRoom: Action {
+    
+    let room: Room
+    
+    func perform(initialState: AppState) -> AppState {
+        
+        guard let i = initialState.rooms.firstIndex(where: { $0.id == room.id }) else {
+            fatalErrorInDebug("Can't update settings of room that is not in the rooms list")
+            return initialState
+        }
+        
+        var state = initialState
+        state.rooms.remove(at: i)
+        return state
+        
+    }
+    
+}

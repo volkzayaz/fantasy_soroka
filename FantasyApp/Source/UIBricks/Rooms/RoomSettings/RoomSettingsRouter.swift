@@ -25,14 +25,8 @@ struct RoomSettingsRouter: MVVM_Router {
     func showUser(user: User) {
         
         let vc = R.storyboard.user.userProfileViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), user: user)
-        
-//        let ref = owner.presentingViewController
-//        
-//        owner.dismiss(animated: true) {
-//            self.owner.navigationController?.pushViewController(vc, animated: true)
-//        }
-        
+        vc.viewModel = .init(router: .init(owner: vc), user: user, bottomActionsAvailable: false)
+        owner.navigationController?.pushViewController(vc, animated: true)
         
     }
 }

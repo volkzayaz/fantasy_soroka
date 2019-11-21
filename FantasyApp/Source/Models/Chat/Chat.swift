@@ -114,28 +114,20 @@ extension Room {
     }
 
     struct Settings: Codable, Equatable {
-        var isClosedRoom = false
-        var isHideCommonFantasies = false
-        var isScreenShieldEnabled = false
+        var isClosedRoom: Bool
+        var isHideCommonFantasies: Bool
+        var isScreenShieldEnabled: Bool
         var sharedCollections: [String]
+        
+        var notifications: Notifications
+        
+        struct Notifications: Codable, Equatable {
+            var newMessage: Bool
+            var newFantasyMatch: Bool
+        }
+        
     }
     
-    struct NotificationSettings: Codable, Equatable, ParsePresentable {
-
-        static var className: String {
-            return "RoomNotificationSettings"
-        }
-
-        var objectId: String?
-
-        ///these names are actually keys on Parse Table,
-        ///so be accurate when chaning them
-        var roomId: String!
-        var newMessage: Bool = true
-        var newFantasyMatch: Bool = true
-
-    }
-
     struct Participant: Codable, Equatable, IdentifiableType {
         var identity: String {
             return  userId ?? invitationLink ?? ""

@@ -1534,7 +1534,7 @@
 			isa = PBXGroup;
 			children = (
 				733F41B923645290004EC466 /* Deeplink */,
-				84C1D04B2327C65800648DE1 /* Chat */,
+				84C1D04B2327C65800648DE1 /* Room */,
 				732231202305671B009DD37F /* Fantasy */,
 				73E4C3A122F08E9800BB71B4 /* Community */,
 				7334CC7422EDC5F500495843 /* User */,
@@ -2074,13 +2074,13 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		84C1D04B2327C65800648DE1 /* Chat */ = {
+		84C1D04B2327C65800648DE1 /* Room */ = {
 			isa = PBXGroup;
 			children = (
 				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
 				844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */,
 			);
-			path = Chat;
+			path = Room;
 			sourceTree = "<group>";
 		};
 		84C1D0582327D30D00648DE1 /* Cell */ = {
