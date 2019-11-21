@@ -62,30 +62,30 @@ extension ProfileSettingsViewModel {
     func logout() {
 
         let actions: [UIAlertAction] = [
-            .init(title: "No", style: .cancel, handler: nil),
-            .init(title: "Log out", style: .destructive, handler: { _ in
+            .init(title: R.string.localizable.generalNo(), style: .cancel, handler: nil),
+            .init(title: R.string.localizable.fantasySettingsLogoutAlertAction(), style: .destructive, handler: { [weak r = router]_ in
                 AuthenticationManager.logout()
                 Dispatcher.dispatch(action: Logout())
-                self.router.dismiss()
+                r?.dismiss()
             })
         ]
 
-        router.owner.showDialog(title: "Log out", text: "You sure you want to log out from Fantasy app?", style: .alert, actions: actions)
+        router.owner.showDialog(title: R.string.localizable.fantasySettingsLogoutAlertTitle(), text: R.string.localizable.fantasySettingsLogoutAlertText(), style: .alert, actions: actions)
     }
     
     func deleteAccount() {
 
         let actions: [UIAlertAction] = [
-            .init(title: "Cancel", style: .cancel, handler: nil),
-            .init(title: "Delete account", style: .destructive, handler: { _ in
+            .init(title: R.string.localizable.generalCancel(), style: .cancel, handler: nil),
+            .init(title:  R.string.localizable.fantasySettingsDeleteAccountAlertAction(), style: .destructive, handler: {[weak r = router] _ in
                 let _ = UserManager.deleteAccount()
                                    .trackView(viewIndicator: self.indicator)
-                                   .silentCatch(handler: self.router.owner)
+                                   .silentCatch(handler: r?.owner)
                                    .subscribe(onNext: self.logout)
             })
         ]
 
-         router.owner.showDialog(title: "Delete account?", text: "You will be logged out. All your data will be erased. This can not be undone", style: .actionSheet, actions: actions)
+         router.owner.showDialog(title: R.string.localizable.fantasySettingsDeleteAccountAlertTitle(), text: R.string.localizable.fantasySettingsDeleteAccountAlertText(), style: .actionSheet, actions: actions)
     }
 
     func restorePurchases() {
