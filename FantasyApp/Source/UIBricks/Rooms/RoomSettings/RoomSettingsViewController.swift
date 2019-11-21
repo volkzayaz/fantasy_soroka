@@ -132,6 +132,12 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                                                             target: self,
                                                             action: #selector(RoomSettingsViewController.close))
         
+        if SettingsStore.showRoomTutorial.value {
+            let vc = R.storyboard.rooms.roomTutorial()!
+            present(vc, animated: true, completion: nil)
+            SettingsStore.showRoomTutorial.value = false
+        }
+        
     }
     
     @objc func close() {

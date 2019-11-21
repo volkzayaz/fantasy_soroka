@@ -26,8 +26,11 @@ extension SettingsStore {
     ///
     
     static var freeSubscriptionSwitch: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.settings.freeSubscriptionSwitch",
-                                                               initialValue: false)
+                                                               initialValue: true)
 
     static var showFantasyCardTutorial: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.showFantasyCardTutorial",
                                                                initialValue: true)
+    
+    static var showRoomTutorial: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.showRoomTutorial",
+                                                                initialValue: true)
 }

@@ -80,14 +80,14 @@ extension UserProfileViewModel {
         return Fantasy.Manager.mutualCards(with: user)
             .map { (collection) in
                 
-                if collection.count > 0 {
-                    
-                    let simpleFantasies = collection
-                        .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
-                        .joined(separator: "; ")
-                    
-                    res.append( ("fantasies", [.fantasy( "Fantasies: " + simpleFantasies  )]) )
-                }
+//                if collection.count > 0 {
+//                    
+//                    let simpleFantasies = collection
+//                        .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
+//                        .joined(separator: "; ")
+//                    
+//                    res.append( ("fantasies", [.fantasy( "Fantasies: " + simpleFantasies  )]) )
+//                }
             
                 return res
             }
@@ -268,7 +268,7 @@ struct UserProfileViewModel : MVVM_ViewModel {
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
     let bottomActionAvailable: Bool
     
-    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = false) {
+    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = true) {
         self.router = router
         self.user = user
         self.bottomActionAvailable = bottomActionsAvailable
