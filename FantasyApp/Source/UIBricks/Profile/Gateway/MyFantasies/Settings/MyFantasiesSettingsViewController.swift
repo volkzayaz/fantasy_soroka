@@ -22,14 +22,7 @@ class MyFantasiesSettingsViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /**
-         *  Set up any bindings here
-         *  viewModel.labelText
-         *     .drive(label.rx.text)
-         *     .addDisposableTo(rx_disposeBag)
-         */
-        
+        view.addFantasyGradient()
     }
     
 }
