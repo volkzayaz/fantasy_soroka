@@ -215,6 +215,8 @@ class UserProfileViewController: UIViewController, MVVM_View {
                 self?.avaliableSheetActions = sheetActions
             })
             .disposed(by: rx.disposeBag)
+     
+        actionContainer.isHidden = !viewModel.bottomActionAvailable
         
     }
     
