@@ -41,20 +41,22 @@ extension UserProfileViewModel {
 
     var sections: Driver<[(String, [Row])]> {
         
-        let years = user.bio.yearsOld
-        var res = [("basic", [Row.basic(user.bio.name + ", \(years)", user.subscription.isSubscribed)])]
+        var res = [("basic", [Row.basic(user.bio.name, user.subscription.isSubscribed)])]
         
         if let x = user.bio.about {
             res.append( ("about", [.about(x, user.bio.sexuality)]) )
         }
         
         var bioSection: (String, [Row]) = ("bio", [])
+        
+        bioSection.1.append(.bio(R.image.profileBirthday()!, "\(user.bio.yearsOld) years"))
+        
         if let x = user.community.value?.name {
             bioSection.1.append( .bio(R.image.profileLocation()!, x) )
         }
         
-        bioSection.1.append( .bio(R.image.profileSexuality()!, "\(user.bio.sexuality) \(user.bio.gender)") )
-        bioSection.1.append( .bio(R.image.profileRelationships()!, user.bio.relationshipStatus.description) )
+        bioSection.1.append( .bio(R.image.profileSexuality()!, "\(user.bio.sexuality.rawValue) \(user.bio.gender.pretty)") )
+        bioSection.1.append( .bio(R.image.profileRelationships()!, user.bio.relationshipStatus.pretty) )
         
         if let l = user.bio.lookingFor {
             bioSection.1.append( .bio(R.image.profileLookingFor()!, l.description) )
