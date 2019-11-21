@@ -103,10 +103,10 @@ extension RoomsViewModel {
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { room in
-                self.router.showRoomSettings(room)
+                self.router.showRoomSettings(room)                
             })
             .disposed(by: bag)
-        
+
     }
     
     func refreshRooms() {

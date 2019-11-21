@@ -136,6 +136,7 @@
 		7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */; };
 		7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED20230D54A100E661A7 /* PurchaseManager.swift */; };
 		7384B0F62384363100869016 /* UpdateLastKnownLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384B0F52384363100869016 /* UpdateLastKnownLocation.swift */; };
+		7384B0F82386E15A00869016 /* UIDismissSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384B0F72386E15A00869016 /* UIDismissSegue.swift */; };
 		738A181623696FF300C54C8A /* FantasyCollectionDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */; };
 		738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */; };
 		738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */; };
@@ -492,6 +493,7 @@
 		7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCollection.swift; sourceTree = "<group>"; };
 		7379ED20230D54A100E661A7 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		7384B0F52384363100869016 /* UpdateLastKnownLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLastKnownLocation.swift; sourceTree = "<group>"; };
+		7384B0F72386E15A00869016 /* UIDismissSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDismissSegue.swift; sourceTree = "<group>"; };
 		738A181323696FF300C54C8A /* FantasyCollectionDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsRouter.swift; sourceTree = "<group>"; };
 		738A181423696FF300C54C8A /* FantasyCollectionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsViewController.swift; sourceTree = "<group>"; };
 		738A181523696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -884,6 +886,7 @@
 				7312B07122D740AC00DB0F36 /* R.generated.swift */,
 				7353BDDA22EC8BFF001D46A6 /* ImagePicker.swift */,
 				73570A78237169350097430B /* UIView+Rx.swift */,
+				7384B0F72386E15A00869016 /* UIDismissSegue.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1534,7 +1537,7 @@
 			isa = PBXGroup;
 			children = (
 				733F41B923645290004EC466 /* Deeplink */,
-				84C1D04B2327C65800648DE1 /* Chat */,
+				84C1D04B2327C65800648DE1 /* Room */,
 				732231202305671B009DD37F /* Fantasy */,
 				73E4C3A122F08E9800BB71B4 /* Community */,
 				7334CC7422EDC5F500495843 /* User */,
@@ -2074,13 +2077,13 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		84C1D04B2327C65800648DE1 /* Chat */ = {
+		84C1D04B2327C65800648DE1 /* Room */ = {
 			isa = PBXGroup;
 			children = (
 				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
 				844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */,
 			);
-			path = Chat;
+			path = Room;
 			sourceTree = "<group>";
 		};
 		84C1D0582327D30D00648DE1 /* Cell */ = {
@@ -2593,6 +2596,7 @@
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
 				73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */,
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
+				7384B0F82386E15A00869016 /* UIDismissSegue.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				73F80CD22361E66E00212FCF /* ChattoMess.swift in Sources */,

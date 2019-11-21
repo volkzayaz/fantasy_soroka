@@ -302,6 +302,16 @@ enum RelationshipStatus: Equatable, Codable {
         }
     }
     
+    var pretty: String {
+        switch self {
+        case .single:
+            return "Single"
+        case .couple(let partnerGender):
+            return "with \(partnerGender.pretty)"
+        
+        }
+    }
+    
 }
 
 enum LookingFor: Int, Codable, Equatable, CaseIterable {
@@ -310,7 +320,13 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     case someoneToPlayWith
     case princesDaySlutNight
     case friendship
+    case ethicalNonMono
     case sleepPartners
+    case bdsm
+    case polyNetwork
+    case unicorn
+    case beAUnicorn
+    case joinAnEstablishedCouple
     
     var description: String {
         
@@ -320,7 +336,13 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         case .someoneToPlayWith: return "Someone to play with"
         case .princesDaySlutNight: return "Princes by day, slut by night"
         case .friendship: return "Friendship"
+        case .ethicalNonMono: return "Ethical non-monogamous relationship"
         case .sleepPartners: return "Sleep partners"
+        case .bdsm: return "BDSM Relationship"
+        case .polyNetwork: return "Poly network"
+        case .unicorn: return "To be a unicorn"
+        case .beAUnicorn: return "To be a unicorn"
+        case .joinAnEstablishedCouple: return "To join an established couple"
             
         }
         
@@ -330,21 +352,31 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
 
 enum Expirience: Int, Codable, Equatable, CaseIterable {
     
-    case veryExpirienced = 0
+    case professional = 0
+    case iveDoneItAll
+    case veryExpirienced
+    case upForAnything
     case somewhereInTheMiddle
-    case curious
-    case brandNew
+    case alilBitOfThisNThat
+    case newButReadyForAnything
     case curiousAndLooking
+    case vanilla
+    case brandNew
     
     var description: String {
         
         switch self {
             
-        case .veryExpirienced: return "Very expirienced"
+        case .professional: return "Professional"
+        case .iveDoneItAll: return "I’ve done it all"
+        case .veryExpirienced: return "Very experienced"
+        case .upForAnything: return "Up for anything"
         case .somewhereInTheMiddle: return "Somewhere in the middle"
-        case .curious: return "Curious"
-        case .brandNew: return "Brand New"
-        case .curiousAndLooking: return "Curious And Looking"
+        case .alilBitOfThisNThat: return "A little of this, a little of that"
+        case .newButReadyForAnything: return "New but ready for (almost) anything"
+        case .curiousAndLooking: return "Curious and looking"
+        case .vanilla: return "Vanilla"
+        case .brandNew: return "Brand new"
             
         }
         

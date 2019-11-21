@@ -127,10 +127,16 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
         }
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(RoomSettingsViewController.close))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(RoomSettingsViewController.close))
+        
+        if SettingsStore.showRoomTutorial.value {
+            let vc = R.storyboard.rooms.roomTutorial()!
+            present(vc, animated: true, completion: nil)
+            SettingsStore.showRoomTutorial.value = false
+        }
         
     }
     
@@ -173,8 +179,6 @@ private extension RoomSettingsViewController {
         inviteLinkLabel.font = .regularFont(ofSize: 15)
         inviteLinkLabel.textColor = .basicGrey
         
-        copyLinkButton.setTitle(R.string.localizable.roomCreationInviteCopy(), for: .normal)
-
         leaveRoomButton.setTitleColor(.fantasyRed, for: .normal)
         leaveRoomButton.titleLabel?.font = .mediumFont(ofSize: 15)
         leaveRoomButton.backgroundColor = .white
@@ -187,7 +191,7 @@ private extension RoomSettingsViewController {
     }
 
     @IBAction func copyLink() {
-        viewModel.copyClicked()
+        self.viewModel.shareLink()
     }
 
     @IBAction func editNotificationSettings() {

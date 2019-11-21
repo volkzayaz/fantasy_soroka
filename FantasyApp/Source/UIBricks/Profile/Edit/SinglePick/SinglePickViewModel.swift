@@ -69,7 +69,7 @@ extension SinglePickViewModel {
 extension Gender: SinglePickModel {
     
     var textRepresentation: String {
-        return rawValue
+        return pretty
     }
     
 }

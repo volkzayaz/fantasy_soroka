@@ -41,20 +41,22 @@ extension UserProfileViewModel {
 
     var sections: Driver<[(String, [Row])]> {
         
-        let years = user.bio.yearsOld
-        var res = [("basic", [Row.basic(user.bio.name + ", \(years)", user.subscription.isSubscribed)])]
+        var res = [("basic", [Row.basic(user.bio.name, user.subscription.isSubscribed)])]
         
         if let x = user.bio.about {
             res.append( ("about", [.about(x, user.bio.sexuality)]) )
         }
         
         var bioSection: (String, [Row]) = ("bio", [])
+        
+        bioSection.1.append(.bio(R.image.profileBirthday()!, "\(user.bio.yearsOld) years"))
+        
         if let x = user.community.value?.name {
             bioSection.1.append( .bio(R.image.profileLocation()!, x) )
         }
         
-        bioSection.1.append( .bio(R.image.profileSexuality()!, "\(user.bio.sexuality) \(user.bio.gender)") )
-        bioSection.1.append( .bio(R.image.profileRelationships()!, user.bio.relationshipStatus.description) )
+        bioSection.1.append( .bio(R.image.profileSexuality()!, "\(user.bio.sexuality.rawValue) \(user.bio.gender.pretty)") )
+        bioSection.1.append( .bio(R.image.profileRelationships()!, user.bio.relationshipStatus.pretty) )
         
         if let l = user.bio.lookingFor {
             bioSection.1.append( .bio(R.image.profileLookingFor()!, l.description) )
@@ -78,14 +80,14 @@ extension UserProfileViewModel {
         return Fantasy.Manager.mutualCards(with: user)
             .map { (collection) in
                 
-                if collection.count > 0 {
-                    
-                    let simpleFantasies = collection
-                        .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
-                        .joined(separator: "; ")
-                    
-                    res.append( ("fantasies", [.fantasy( "Fantasies: " + simpleFantasies  )]) )
-                }
+//                if collection.count > 0 {
+//                    
+//                    let simpleFantasies = collection
+//                        .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
+//                        .joined(separator: "; ")
+//                    
+//                    res.append( ("fantasies", [.fantasy( "Fantasies: " + simpleFantasies  )]) )
+//                }
             
                 return res
             }
@@ -264,10 +266,12 @@ struct UserProfileViewModel : MVVM_ViewModel {
     
     fileprivate let user: User
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
+    let bottomActionAvailable: Bool
     
-    init(router: UserProfileRouter, user: User) {
+    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = true) {
         self.router = router
         self.user = user
+        self.bottomActionAvailable = bottomActionsAvailable
         
         if user.id != User.current!.id {
             ConnectionManager.relationStatus(with: user)
