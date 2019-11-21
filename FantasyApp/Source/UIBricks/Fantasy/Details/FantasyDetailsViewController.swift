@@ -150,7 +150,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 // MARK: - Configuration
 private extension FantasyDetailsViewController {
     func configureStyling() {
-        navigationBar.applyFantasyStyling()
+        navigationBar.applyFantasyTransparentStyling()
         scrollView.delegate = self
         scrollView.scrollsToTop = false
         scrollView.showsVerticalScrollIndicator = false

@@ -19,6 +19,12 @@ class MyFantasiesSettingsViewController: UIViewController, MVVM_View {
      *  Connect any IBOutlets here
      *  @IBOutlet private weak var label: UILabel!
      */
+    @IBOutlet weak var scrollView: UIScrollView! {
+           didSet {
+               scrollView.addFantasyRoundedCorners()
+               scrollView.backgroundColor = R.color.listBackgroundColor()
+           }
+       }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -51,15 +51,11 @@ extension MyFantasiesViewController {
     @IBAction func cardsAction(_ sender: Any) {
         cardsButton.isSelected = true
         collectionButton.isSelected = false
-
-//        viewModel.sourceChanged(source: .incomming )
     }
 
     @IBAction func collectionAction(_ sender: Any) {
-        cardsButton.isSelected = false
-        collectionButton.isSelected = true
-
-//        viewModel.sourceChanged(source: .outgoing )
+//        cardsButton.isSelected = false
+//        collectionButton.isSelected = true
     }
 
 }
@@ -82,7 +78,6 @@ extension MyFantasiesViewController {
                                                 title: "")
             
         }
-        
     }
     
 }
