@@ -37,26 +37,7 @@ extension RoomManager {
     }
 
     static func getAllRooms() -> Single<[Room]> {
-        
         return RoomsResource().rx.request
-            .flatMap { rooms -> Single<[Room]> in
-                
-                return Room.NotificationSettings.query
-                    .whereKey("roomId", containedIn: rooms.map { $0.id })
-                    .rx
-                    .fetchAll()
-                    .map { (settings: [Room.NotificationSettings]) in
-                        let populatedRooms: [Room] = rooms.map { room in
-                            var populatedRoom = room
-                            populatedRoom.notificationSettings = settings.first(where: { $0.roomId == room.id })
-                            return populatedRoom
-                        }
-                        
-                        return populatedRooms
-                    }
-                
-            }
-            
     }
 
     static func getRoom(id: String) -> Single<Room> {
@@ -73,25 +54,15 @@ extension RoomManager {
         
         let settings = Room.Settings(isClosedRoom: true,
                                      isHideCommonFantasies: false,
-                                     isScreenShieldEnabled: false,
-                                     sharedCollections: [])
+                                     isScreenShieldEnabled: User.current?.subscription.isSubscribed ?? false,
+                                     sharedCollections: [],
+                                     notifications: .init(newMessage: true,
+                                                          newFantasyMatch: true)
+                                     )
         
         return CreateDraftRoomResource(settings: settings).rx.request
-            .flatMap { room -> Single<(Room, Room.NotificationSettings)> in
-                
-                let roomSettings = Room.NotificationSettings(objectId: nil,
-                                                           roomId: room.id,
-                                                           newMessage: true,
-                                                           newFantasyMatch: true)
-                
-                return Single.zip(inviteUser(nil, to: room.id),
-                                  roomSettings.rxCreate())
-                
-            }
-            .map { room, settings in
-                var r = room
-                r.notificationSettings = settings
-                return r
+            .flatMap { room in
+                return inviteUser(nil, to: room.id)
             }
             
     }

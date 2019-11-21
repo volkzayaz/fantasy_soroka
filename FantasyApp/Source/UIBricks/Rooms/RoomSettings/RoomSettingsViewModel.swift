@@ -191,10 +191,7 @@ extension RoomSettingsViewModel {
     }
 
     func showNotificationSettings() {
-        
-        router.owner.showMessage(title: "Waiting", text: "Ждем Кирилла, чтобы расширил модель RoomSettings")
-        
-        //router.showNotificationSettings(for: room)
+        router.showNotificationSettings(for: room.value)
     }
     
     func showParticipant(participant: Room.Participant) {
