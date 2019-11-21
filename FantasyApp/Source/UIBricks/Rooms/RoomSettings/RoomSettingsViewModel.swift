@@ -208,14 +208,15 @@ extension RoomSettingsViewModel {
     
     func leaveRoom() {
         
-        RoomManager.deleteRoom(room.value.id)
+        let r = room.value
+        RoomManager.deleteRoom(r.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { (_) in
-                self.router.owner.navigationController?.popViewController(animated: true)
+                Dispatcher.dispatch(action: DeleteRoom(room: r))
+                self.router.owner.dismiss(animated: true, completion: nil)
             })
             .disposed(by: bag)
-        
         
     }
 }

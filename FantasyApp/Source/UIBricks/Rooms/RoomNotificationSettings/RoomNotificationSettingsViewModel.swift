@@ -32,6 +32,10 @@ extension RoomNotificationSettingsViewModel {
         var r = room
         r.settings.notifications.newMessage = state
         
+        if r.isDraftRoom {
+            return
+        }
+        
         Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
         
     }
@@ -40,6 +44,10 @@ extension RoomNotificationSettingsViewModel {
         
         var r = room
         r.settings.notifications.newFantasyMatch = state
+        
+        if r.isDraftRoom {
+            return
+        }
         
         Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
         
