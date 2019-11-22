@@ -134,6 +134,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         
         if SettingsStore.showRoomTutorial.value {
             let vc = R.storyboard.rooms.roomTutorial()!
+            vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true, completion: nil)
             SettingsStore.showRoomTutorial.value = false
         }
