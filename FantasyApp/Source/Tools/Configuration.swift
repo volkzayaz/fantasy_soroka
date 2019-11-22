@@ -47,7 +47,9 @@ extension Configuration {
         // MARK: - Branch
         // unncomment to disable debug mode
         //Branch.setUseTestBranchKey(true)
+        
         let branch = Branch.getInstance()
+        //branch?.setDebug()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
             guard let identifier = params?["$canonical_identifier"] as? String,
