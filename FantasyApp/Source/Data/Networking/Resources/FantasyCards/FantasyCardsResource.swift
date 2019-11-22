@@ -161,22 +161,21 @@ extension Fantasy.Request {
         
     }
 
-    struct MutualCards: AuthorizedAPIResource {
+    struct LikedCards: AuthorizedAPIResource {
         
-        let with: User
+        let of: User
         
-        struct SurrogateCollection: Codable {
-            let description: String
-            let src: String
-            let cards: [Fantasy.Card]
-        }; typealias responseType = [SurrogateCollection]
+        struct SneakPeek: Codable, Equatable {
+            let isPaid: Bool
+            let amountlikedCardsByUser: Int
+        }; typealias responseType = [SneakPeek]
         
         var method: Moya.Method {
             return .get
         }
         
         var path: String {
-            return "/users/\(with.id)/fantasy-collections"
+            return "/users/\(of.id)/fantasy-collections"
         }
         
         var task: Task {
@@ -192,7 +191,7 @@ extension Fantasy.Request {
     
     struct FetchRoomCards: AuthorizedAPIResource {
         
-        let room: Room
+        let room: RoomIdentifier
      
         typealias responseType = Response
         
@@ -224,7 +223,7 @@ extension Fantasy.Request {
         
         let reaction: Fantasy.Card.Reaction
         let card: Fantasy.Card
-        let room: Room
+        let room: RoomIdentifier
         
         typealias responseType = MutualIndicator
         
@@ -256,7 +255,7 @@ extension Fantasy.Request {
     
     struct MutualRoomCards: AuthorizedAPIResource {
         
-        let room: Room
+        let room: RoomIdentifier
         
         typealias responseType = [Fantasy.Card]
         

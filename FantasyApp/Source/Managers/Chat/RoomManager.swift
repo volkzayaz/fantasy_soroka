@@ -12,6 +12,15 @@ import RxCocoa
 import Parse
 import ParseLiveQuery
 
+protocol RoomIdentifier {
+    var id: String { get }
+}
+
+extension Room: RoomIdentifier {}
+extension RoomRef: RoomIdentifier {}
+extension String: RoomIdentifier {
+}
+
 enum RoomManager {}
 
 extension RoomManager {

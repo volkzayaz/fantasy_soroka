@@ -81,7 +81,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userProfileFantasyCell, for: ip)!
             
-            cell.textLabel?.text = x
+            cell.bindModel(x: x)
             
             return cell
             

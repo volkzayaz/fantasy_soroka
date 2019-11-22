@@ -71,6 +71,8 @@
 		733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CD2365EFB4004EC466 /* MultiSlider.swift */; };
 		733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D223660397004EC466 /* FantasyDeckProvider.swift */; };
 		733F41D923675732004EC466 /* FantasyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D823675732004EC466 /* FantasyListCell.swift */; };
+		73432AB523881E4A008CF2F1 /* UserProfileFantasiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73432AB423881E4A008CF2F1 /* UserProfileFantasiesCell.swift */; };
+		73432AB723881FB6008CF2F1 /* FantasyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73432AB623881FB6008CF2F1 /* FantasyListCell.xib */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -429,6 +431,8 @@
 		733F41CD2365EFB4004EC466 /* MultiSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSlider.swift; sourceTree = "<group>"; };
 		733F41D223660397004EC466 /* FantasyDeckProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDeckProvider.swift; sourceTree = "<group>"; };
 		733F41D823675732004EC466 /* FantasyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListCell.swift; sourceTree = "<group>"; };
+		73432AB423881E4A008CF2F1 /* UserProfileFantasiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFantasiesCell.swift; sourceTree = "<group>"; };
+		73432AB623881FB6008CF2F1 /* FantasyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FantasyListCell.xib; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -1204,6 +1208,7 @@
 			isa = PBXGroup;
 			children = (
 				733F41D823675732004EC466 /* FantasyListCell.swift */,
+				73432AB623881FB6008CF2F1 /* FantasyListCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1318,6 +1323,7 @@
 			children = (
 				734C70C423214C7E00ED2E91 /* UserProfilePhotoCell.swift */,
 				736D2359235A057A00430863 /* AboutCell.swift */,
+				73432AB423881E4A008CF2F1 /* UserProfileFantasiesCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2300,6 +2306,7 @@
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
 				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
+				73432AB723881FB6008CF2F1 /* FantasyListCell.xib in Resources */,
 				849D3FA62366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib in Resources */,
 				84C1D0322327B95300648DE1 /* Transsexual.png in Resources */,
 				B7E4E3FB237E9E8600D8D9CA /* FantasyDeckTutorialView.xib in Resources */,
@@ -2535,6 +2542,7 @@
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
 				735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */,
 				7390015022E1B8D000260198 /* Setting.swift in Sources */,
+				73432AB523881E4A008CF2F1 /* UserProfileFantasiesCell.swift in Sources */,
 				84C1D06D2327D68100648DE1 /* Chat.swift in Sources */,
 				7312B0A022D7422100DB0F36 /* ProgressAnimatable.swift in Sources */,
 				7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */,
