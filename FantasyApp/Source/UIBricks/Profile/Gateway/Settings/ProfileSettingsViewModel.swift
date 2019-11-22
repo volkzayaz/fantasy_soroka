@@ -63,10 +63,10 @@ extension ProfileSettingsViewModel {
 
         let actions: [UIAlertAction] = [
             .init(title: R.string.localizable.generalNo(), style: .cancel, handler: nil),
-            .init(title: R.string.localizable.fantasySettingsLogoutAlertAction(), style: .destructive, handler: { [weak r = router]_ in
+            .init(title: R.string.localizable.fantasySettingsLogoutAlertAction(), style: .destructive, handler: { _ in
                 AuthenticationManager.logout()
                 Dispatcher.dispatch(action: Logout())
-                r?.dismiss()
+                self.router.dismiss()
             })
         ]
 
@@ -77,10 +77,10 @@ extension ProfileSettingsViewModel {
 
         let actions: [UIAlertAction] = [
             .init(title: R.string.localizable.generalCancel(), style: .cancel, handler: nil),
-            .init(title:  R.string.localizable.fantasySettingsDeleteAccountAlertAction(), style: .destructive, handler: {[weak r = router] _ in
+            .init(title:  R.string.localizable.fantasySettingsDeleteAccountAlertAction(), style: .destructive, handler: { _ in
                 let _ = UserManager.deleteAccount()
                                    .trackView(viewIndicator: self.indicator)
-                                   .silentCatch(handler: r?.owner)
+                                   .silentCatch(handler: self.router.owner)
                                    .subscribe(onNext: self.logout)
             })
         ]
