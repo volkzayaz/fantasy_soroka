@@ -14,17 +14,16 @@ import RxCocoa
 extension WelcomeViewModel {
 
     var termsUrl: String {
-        return "https://fantasyapp.com/en/terms-and-conditions/"
+        return R.string.localizable.fantasyConstantsTermsUrl()
     }
 
     var privacyUrl: String {
-        return "https://fantasyapp.com/en/privacy-policy/"
+        return R.string.localizable.fantasyConstantsPrivacyUrl()
     }
 
     var communityRulesUrl: String {
-        return "https://fantasyapp.com/en/community-rules/"
+        return R.string.localizable.fantasyConstantsCommunityRulesUrl()
     }
-
 }
 
 struct WelcomeViewModel : MVVM_ViewModel {
