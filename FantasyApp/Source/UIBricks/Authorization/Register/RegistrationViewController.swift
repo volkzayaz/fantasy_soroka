@@ -500,6 +500,17 @@ private extension RegistrationViewController {
 
 extension RegistrationViewController: UITextFieldDelegate {
 
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        if textField == self.nameTextField {
+            self.viewModel.nameChanged(name: "")
+        }
+
+        if textField == self.emailTextField {
+            self.viewModel.emailChanged(email: "")
+        }
+        return true
+    }
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
         guard textField != self.birthdayTextField else { return false }
