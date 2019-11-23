@@ -4,8 +4,9 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:fantasy.test-app.link
-</string>
+		<string>applinks:fantasy-alternate.app.link</string>
+		<string>applinks:fantasy.app.link</string>
+		<string>applinks:fantasy.test-app.link</string>
 		<string>applinks:fantasy-alternate.app.link</string>
 	</array>
 	<key>aps-environment</key>

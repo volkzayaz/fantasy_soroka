@@ -47,10 +47,10 @@ extension ProfileSettingsViewController {
         let v = ProfileSettingsHeaderView.instance
         
         switch section {
-        case 0: v.setText("Account")
-        case 1: v.setText("Rooms")
-        case 2: v.setText("Subscriptions")
-        case 3: v.setText("Support")
+        case 0: v.setText(R.string.localizable.fantasySettingsSectionAccount())
+        case 1: v.setText(R.string.localizable.fantasySettingsSectionRooms())
+        case 2: v.setText(R.string.localizable.fantasySettingsSectionSubscriptions())
+        case 3: v.setText(R.string.localizable.fantasySettingsSectionSupport())
 
         default: v.setText(" ")
         }

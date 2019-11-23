@@ -505,37 +505,7 @@
                                 <rect key="frame" x="0.0" y="97.5" width="375" height="569.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="uOw-xA-VQg" customClass="BaseFlowLayout" customModule="FantasyApp" customModuleProvider="target"/>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FantasyListCell" id="MAF-kX-Irk" customClass="FantasyListCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="0.0" width="305" height="266"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Dzu-kB-nsV">
-                                            <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyQ-QS-IJO" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="305" height="266"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="CyQ-QS-IJO" secondAttribute="bottom" id="T3I-6o-8nf"/>
-                                                <constraint firstItem="CyQ-QS-IJO" firstAttribute="leading" secondItem="Dzu-kB-nsV" secondAttribute="leading" id="f6t-Uf-cTS"/>
-                                                <constraint firstItem="CyQ-QS-IJO" firstAttribute="top" secondItem="Dzu-kB-nsV" secondAttribute="top" id="gGq-eF-jDY"/>
-                                                <constraint firstAttribute="trailing" secondItem="CyQ-QS-IJO" secondAttribute="trailing" id="wC6-8e-m9f"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="305" height="266"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="12"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="protectedImageView" destination="CyQ-QS-IJO" id="d71-c6-GpG"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bvo-Qx-Km4">
                                 <rect key="frame" x="16" y="20" width="50" height="67.5"/>

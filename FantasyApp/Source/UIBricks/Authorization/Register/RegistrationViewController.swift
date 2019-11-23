@@ -503,14 +503,21 @@ extension RegistrationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
         guard textField != self.birthdayTextField else { return false }
-        guard textField == self.nameTextField else { return true }
 
-        if let text = textField.text,
+        if textField == self.emailTextField,
+            let text = textField.text,
+            let textRange = Range(range, in: text) {
+            let x = text.replacingCharacters(in: textRange, with: string)
+            return x.first != " " && x.suffix(1) != " "
+        }
+
+        if textField == self.nameTextField,
+            let text = textField.text,
             let textRange = Range(range, in: text) {
 
             let x = text.replacingCharacters(in: textRange, with: string)
 
-            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
+            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z0-9 ].*", options: [])
             let result = regex?.firstMatch(in: x, options: [], range: NSMakeRange(0, x.count)) == nil
 
             return x.first != " " && x.suffix(2) != "  " && result && x.count <= 18

@@ -41,56 +41,72 @@ extension UserProfileViewModel {
 
     var sections: Driver<[(String, [Row])]> {
         
-        let years = user.bio.yearsOld
-        var res = [("basic", [Row.basic(user.bio.name + ", \(years)", user.subscription.isSubscribed)])]
-        
-        if let x = user.bio.about {
-            res.append( ("about", [.about(x, user.bio.sexuality)]) )
-        }
-        
-        var bioSection: (String, [Row]) = ("bio", [])
-        if let x = user.community.value?.name {
-            bioSection.1.append( .bio(R.image.profileLocation()!, x) )
-        }
-        
-        bioSection.1.append( .bio(R.image.profileSexuality()!, "\(user.bio.sexuality) \(user.bio.gender)") )
-        bioSection.1.append( .bio(R.image.profileRelationships()!, user.bio.relationshipStatus.description) )
-        
-        if let l = user.bio.lookingFor {
-            bioSection.1.append( .bio(R.image.profileLookingFor()!, l.description) )
-        }
-        
-        if let x = user.bio.expirience {
-            bioSection.1.append( .bio(R.image.profileExpirience()!, x.description) )
-        }
-        
-        res.append( bioSection )
-       
-        if user.bio.answers.count > 0 {
-            
-            for (key, value) in user.bio.answers {
-                let x = Row.answer(q: key, a: value)
-                res.append( (x.identity, [x] ) )
+        let u = user
+        return relationshipState
+            .distinctUntilChanged { (lhs, rhs) -> Bool in
+                switch (lhs, rhs) {
+                    
+                case (_, .mutual(_)): return false
+                default: return true
+                    
+                }
             }
+            .flatMapLatest { relation -> Single<[Row.Fantasies]> in
             
-        }
-        
-        return Fantasy.Manager.mutualCards(with: user)
-            .map { (collection) in
+                if case .mutual(let roomRef) = relation {
+                    return Fantasy.Manager.mutualCards(in: roomRef)
+                        .map { $0.map { .card($0) } }
+                }
                 
-                if collection.count > 0 {
-                    
-                    let simpleFantasies = collection
-                        .map { $0.description.appending(" = \($0.cards.count) mutual cards") }
-                        .joined(separator: "; ")
-                    
-                    res.append( ("fantasies", [.fantasy( "Fantasies: " + simpleFantasies  )]) )
+                return Fantasy.Manager.likedCards(of: u)
+                    .map { $0.map { .sneakPeek($0) } }
+                
+            }
+            .map { (fantasiesRow) in
+                
+                var res = [("basic", [Row.basic(u.bio.name, u.subscription.isSubscribed)])]
+                 
+                 if let x = u.bio.about {
+                     res.append( ("about", [.about(x, u.bio.sexuality)]) )
+                 }
+                 
+                 var bioSection: (String, [Row]) = ("bio", [])
+                 
+                 bioSection.1.append(.bio(R.image.profileBirthday()!, "\(u.bio.yearsOld) years"))
+                 
+                 if let x = u.community.value?.name {
+                     bioSection.1.append( .bio(R.image.profileLocation()!, x) )
+                 }
+                 
+                 bioSection.1.append( .bio(R.image.profileSexuality()!, "\(u.bio.sexuality.rawValue) \(u.bio.gender.pretty)") )
+                 bioSection.1.append( .bio(R.image.profileRelationships()!, u.bio.relationshipStatus.pretty) )
+                 
+                 if let l = u.bio.lookingFor {
+                     bioSection.1.append( .bio(R.image.profileLookingFor()!, l.description) )
+                 }
+                 
+                 if let x = u.bio.expirience {
+                     bioSection.1.append( .bio(R.image.profileExpirience()!, x.description) )
+                 }
+                 
+                 res.append( bioSection )
+                
+                 if u.bio.answers.count > 0 {
+                     
+                     for (key, value) in u.bio.answers {
+                         let x = Row.answer(q: key, a: value)
+                         res.append( (x.identity, [x] ) )
+                     }
+                     
+                 }
+                
+                if fantasiesRow.count > 0 {
+                    res.append( ("fantasies", [.fantasy( fantasiesRow )] ) )
                 }
             
                 return res
             }
-            .asDriver(onErrorJustReturn: res)
-            .startWith(res)
+            .asDriver(onErrorJustReturn: [])
         
     }
     
@@ -243,7 +259,7 @@ extension UserProfileViewModel {
         case basic(String, Bool)
         case about(String, Sexuality)
         case bio(UIImage, String)
-        case fantasy(String)
+        case fantasy([Fantasies])
         case answer(q: String, a: String)
         
         var identity: String {
@@ -251,10 +267,21 @@ extension UserProfileViewModel {
             case .basic(let x):         return "basic \(x)"
             case .about(let x):         return "about \(x)"
             case .bio(_, let y):        return "bio \(y)"
-            case .fantasy(let x):       return "fantasy \(x)"
+            case .fantasy(let x):
+                if case .card(_)? = x.first {
+                    return "fantasy cards"
+                }
+                
+                return "fantasy sneakPeek"
+                
             case .answer(let q, let a): return "answer \(q), \(a)"
                 
             }
+        }
+        
+        enum Fantasies: Equatable {
+            case card(Fantasy.Card)
+            case sneakPeek(Fantasy.Request.LikedCards.SneakPeek)
         }
     }
     
@@ -266,7 +293,7 @@ struct UserProfileViewModel : MVVM_ViewModel {
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
     let bottomActionAvailable: Bool
     
-    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = false) {
+    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = true) {
         self.router = router
         self.user = user
         self.bottomActionAvailable = bottomActionsAvailable

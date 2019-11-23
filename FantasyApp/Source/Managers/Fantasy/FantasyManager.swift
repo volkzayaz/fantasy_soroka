@@ -82,10 +82,10 @@ extension Fantasy.Manager {
             .map { _ in }
     }
     
-    static func mutualCards(with: User) -> Single<[Fantasy.Request.MutualCards.SurrogateCollection]> {
-        return Fantasy.Request.MutualCards(with: with).rx.request
+    static func likedCards(of user: User) -> Single<[Fantasy.Request.LikedCards.SneakPeek]> {
+        return Fantasy.Request.LikedCards(of: user).rx.request
     }
-    
+ 
 }
 
 extension Fantasy.Manager {
@@ -116,7 +116,7 @@ extension Fantasy.Manager {
             
     }
     
-    static func mutualCards(in room: Room) -> Single<[Fantasy.Card]> {
+    static func mutualCards(in room: RoomIdentifier) -> Single<[Fantasy.Card]> {
         return Fantasy.Request.MutualRoomCards(room: room).rx.request
     }
     

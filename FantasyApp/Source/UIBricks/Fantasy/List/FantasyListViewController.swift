@@ -42,6 +42,7 @@ class FantasyListViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.register(R.nib.fantasyListCell)
         //view.backgroundColor = .red
         
         collectionTitleLabel.text = viewModel.title

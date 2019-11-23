@@ -12,6 +12,15 @@ import RxCocoa
 import Parse
 import ParseLiveQuery
 
+protocol RoomIdentifier {
+    var id: String { get }
+}
+
+extension Room: RoomIdentifier {}
+extension RoomRef: RoomIdentifier {}
+extension String: RoomIdentifier {
+}
+
 enum RoomManager {}
 
 extension RoomManager {
@@ -85,6 +94,10 @@ extension RoomManager {
     }
 
     static func latestMessageIn(rooms: [Room]) -> Observable<[Room: Room.Message?]> {
+        
+        if rooms.count == 0 {
+            return .just([:])
+        }
         
         return Observable.zip(rooms.map { x -> Observable<PFObject?> in
                 let q = Room.Message.query

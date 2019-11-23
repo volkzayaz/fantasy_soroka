@@ -24,12 +24,12 @@ struct FantasyCollectionCellModel: IdentifiableType, Equatable {
 
 class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet private var imageView: ProtectedImageView!
-    @IBOutlet private var paidView: UIView!
-    @IBOutlet private var paidLabel: UILabel!
-    @IBOutlet private var paidImageView: UIImageView!
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var fantasiesCountLabel: UILabel!
+    @IBOutlet var imageView: ProtectedImageView!
+    @IBOutlet var paidView: UIView!
+    @IBOutlet var paidLabel: UILabel!
+    @IBOutlet var paidImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var fantasiesCountLabel: UILabel!
     private var gradientLayer = CAGradientLayer()
 
     var title: String = "" {
@@ -57,6 +57,8 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureStyling()
+        
+        title = ""
     }
 
     override func prepareForReuse() {

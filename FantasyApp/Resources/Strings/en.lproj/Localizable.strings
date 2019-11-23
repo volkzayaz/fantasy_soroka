@@ -115,9 +115,23 @@
 "fantasy.collection.paid.indicator" = "Curated";
 "fantasy.collection.cards.count" = "%d fantasies";
 
-
 "fantasy.constants.termsUrl" = "https://fantasyapp.com/en/terms-and-conditions/";
 "fantasy.constants.privacyUrl" = "https://fantasyapp.com/en/privacy-policy/";
 "fantasy.constants.communityRulesUrl" = "https://fantasyapp.com/en/community-rules/";
 "fantasy.constants.helpSupport" = "https://fantasyapp.com/en/community-rules/";
 "fantasy.constants.legal" = "https://fantasyapp.com/en/community-rules/";
+
+"fantasy.settings.section.account" = "Account";
+"fantasy.settings.section.rooms" = "Rooms";
+"fantasy.settings.section.subscriptions" = "Subscriptions";
+"fantasy.settings.section.support" = "Support";
+
+
+"fantasy.settings.logout.alert.title" = "Log out";
+"fantasy.settings.logout.alert.action" = "Log out";
+
+"fantasy.settings.logout.alert.text" = "You sure you want to log out from Fantasy app?";
+
+"fantasy.settings.delete.account.alert.title" = "Delete account?";
+"fantasy.settings.delete.account.alert.text" = "You will be logged out. All your data will be erased. This can not be undone";
+"fantasy.settings.delete.account.alert.action" = "Delete account";

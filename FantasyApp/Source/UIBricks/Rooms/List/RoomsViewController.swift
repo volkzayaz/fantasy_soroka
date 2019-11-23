@@ -46,6 +46,11 @@ class RoomsViewController: UIViewController, MVVM_View {
 
         view.addFantasyGradient()
         navigationItem.title = "Rooms"
+ 
+        tableView.bindEmptyStateTo = viewModel.dataSource.debounce(0.8).map { data in
+            EmptyState(isEmpty: data.count == 0,
+                       emptyView: UIImageView(image: R.image.room_placeholder()!))
+        }
         
         configure()
     }
