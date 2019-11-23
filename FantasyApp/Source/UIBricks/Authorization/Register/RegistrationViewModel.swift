@@ -58,8 +58,13 @@ extension RegistrationViewModel {
     }
 
     var forwardButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(step.asDriver(), form.asDriver()) { ($0, $1) }
-            .map { (step, form) -> Bool in
+        return Driver.combineLatest(
+        step.asDriver(),
+        form.asDriver(),
+        emailRelay.asDriver(),
+        showEmailExistVar.asDriver()
+        ) { ($0, $1, $2, $3) }
+            .map { (step, form, tmpEmail, emailExist) -> Bool in
                 
                 switch step {
                     
@@ -70,7 +75,7 @@ extension RegistrationViewModel {
                 case .sexuality:    return true
                 case .gender:       return true
                 case .relationship: return form.relationshipStatus != nil
-                case .email:        return form.email?.isValidEmail ?? false
+                case .email:        return (form.email?.isValidEmail ?? false) && (tmpEmail?.isValidEmail ?? false) && emailExist == false
                 case .password:     return form.password == form.confirmPassword && form.password != nil && (form.password?.count ?? 0) > 7
                 
                 case .photo:        return form.selectedPhoto != nil
@@ -149,7 +154,8 @@ struct RegistrationViewModel : MVVM_ViewModel {
 
         let updateEmail = self.updateForm
         
-        emailRelay.notNil()
+        emailRelay
+            .notNil()
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .filter { $0.isValidEmail }
             .flatMapLatest { (email) -> Single<Bool> in
@@ -290,6 +296,7 @@ extension RegistrationViewModel {
     }
     
     func emailChanged(email: String) {
+        showEmailExistVar.accept(false)
         emailRelay.accept(email)
     }
     
