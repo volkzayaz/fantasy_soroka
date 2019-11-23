@@ -30,16 +30,8 @@ class MyFantasiesViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /**
-         *  Set up any bindings here
-         *  viewModel.labelText
-         *     .drive(label.rx.text)
-         *     .addDisposableTo(rx_disposeBag)
-         */
 
         view.addFantasyGradient()
-        
     }
     
 }
@@ -48,16 +40,15 @@ class MyFantasiesViewController: UIViewController, MVVM_View {
 
 extension MyFantasiesViewController {
 
-    @IBAction func cardsAction(_ sender: Any) {
-        cardsButton.isSelected = true
-        collectionButton.isSelected = false
-    }
-
-    @IBAction func collectionAction(_ sender: Any) {
+//    @IBAction func cardsAction(_ sender: Any) {
+//        cardsButton.isSelected = true
+//        collectionButton.isSelected = false
+//    }
+//
+//    @IBAction func collectionAction(_ sender: Any) {
 //        cardsButton.isSelected = false
 //        collectionButton.isSelected = true
-    }
-
+//    }
 }
 
 //MARK:- Navigation

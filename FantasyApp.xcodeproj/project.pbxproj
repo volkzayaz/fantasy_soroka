@@ -300,6 +300,9 @@
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
+		B719F9222389A625009AB110 /* MyFantasiesBlockedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */; };
+		B719F9232389A625009AB110 /* MyFantasiesBlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */; };
+		B719F9242389A625009AB110 /* MyFantasiesBlockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */; };
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
 		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
@@ -661,6 +664,9 @@
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
+		B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedRouter.swift; sourceTree = "<group>"; };
+		B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedViewController.swift; sourceTree = "<group>"; };
+		B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedViewModel.swift; sourceTree = "<group>"; };
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
 		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
@@ -1605,6 +1611,7 @@
 		73C96F192340A63E002C3F8E /* MyFantasies */ = {
 			isa = PBXGroup;
 			children = (
+				B719F91E2389A4D3009AB110 /* Blocked */,
 				73EBBA5F234A1C3B00B79121 /* ReactionHistory */,
 				73EBBA58234A1AD800B79121 /* Settings */,
 				73C96F1A2340A653002C3F8E /* MyFantasiesRouter.swift */,
@@ -2100,6 +2107,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B719F91E2389A4D3009AB110 /* Blocked */ = {
+			isa = PBXGroup;
+			children = (
+				B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */,
+				B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */,
+				B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */,
+			);
+			path = Blocked;
+			sourceTree = "<group>";
+		};
 		B723A9F52385B8DC00C72A7C /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -2593,6 +2610,7 @@
 				73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
+				B719F9232389A625009AB110 /* MyFantasiesBlockedViewController.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
 				7379ED1A230D3C5000E661A7 /* FantasyCollectionViewController.swift in Sources */,
 				B78893EF2364B18A00079C89 /* PinkButton.swift in Sources */,
@@ -2736,6 +2754,7 @@
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,
 				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
+				B719F9242389A625009AB110 /* MyFantasiesBlockedViewModel.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
 				B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */,
 				733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */,
@@ -2743,6 +2762,7 @@
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,
 				7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */,
 				84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */,
+				B719F9222389A625009AB110 /* MyFantasiesBlockedRouter.swift in Sources */,
 				73EBBA64234A1C4D00B79121 /* MyFantasiesReactionHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

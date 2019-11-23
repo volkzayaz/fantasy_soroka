@@ -14,21 +14,45 @@ import RxCocoa
 class MyFantasiesReactionHistoryViewController: UIViewController, MVVM_View {
     
     var viewModel: MyFantasiesReactionHistoryViewModel!
-    
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
+
+    @IBOutlet weak var likedButton: PrimaryButton! {
+        didSet {
+            likedButton.mode = .selector
+            likedButton.titleFont = .mediumFont(ofSize: 15)
+        }
+    }
+    @IBOutlet weak var dislikedButton: PrimaryButton! {
+        didSet {
+            dislikedButton.mode = .selector
+            dislikedButton.titleFont = .mediumFont(ofSize: 15)
+        }
+    }
+
+    fileprivate let state = BehaviorRelay<Int>(value: 0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /**
-         *  Set up any bindings here
-         *  viewModel.labelText
-         *     .drive(label.rx.text)
-         *     .addDisposableTo(rx_disposeBag)
-         */
-        
+        view.addFantasyGradient()
     }
-    
+}
+
+//MARK:- Actions
+
+extension MyFantasiesReactionHistoryViewController {
+
+    @IBAction func likedAction(_ sender: Any) {
+        likedButton.isSelected = true
+        dislikedButton.isSelected = false
+        state.accept(0)
+    }
+
+    @IBAction func dislikedAction(_ sender: Any) {
+        likedButton.isSelected = false
+        dislikedButton.isSelected = true
+        state.accept(1)
+
+    }
+
 }
 
 extension MyFantasiesReactionHistoryViewController {
@@ -36,8 +60,8 @@ extension MyFantasiesReactionHistoryViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == R.segue.myFantasiesReactionHistoryViewController.embedFantasyList.identifier {
-            
-            let provider = segmentedControl.rx.value.flatMapLatest { x -> Single<[Fantasy.Card]> in
+
+            let provider = state.asObservable().flatMapLatest { (x) -> Single<[Fantasy.Card]> in
                 
                 if x == 0 {
                     return Fantasy.Request.FetchCards(reactionType: .liked).rx.request
@@ -46,17 +70,17 @@ extension MyFantasiesReactionHistoryViewController {
                 return Fantasy.Request.FetchCards(reactionType: .disliked).rx.request
             }
             .asDriver(onErrorJustReturn: [])
-            
+
+            let stateVar = state.value
+
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: provider,
-                                                detailsProvider: { [unowned s = segmentedControl] card in
+                                                detailsProvider: { card in
                                                     OwnFantasyDetailsProvider(card: card,
-                                                                              initialReaction: s!.selectedSegmentIndex == 0 ? .like : .dislike)
+                                                                              initialReaction: stateVar == 0 ? .like : .dislike)
                                                 },
                                                 title: "")
-                
-            
         }
         
     }

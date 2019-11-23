@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Bold.otf">
+            <string>SFProText-Bold</string>
+        </array>
         <array key="SF-Pro-Text-Medium.otf">
             <string>SFProText-Medium</string>
         </array>
@@ -531,21 +534,21 @@
             </objects>
             <point key="canvasLocation" x="5857" y="-589"/>
         </scene>
-        <!--My Fantasy-->
+        <!--MyFantasiesViewController-->
         <scene sceneID="861-Up-pdV">
             <objects>
-                <viewController storyboardIdentifier="MyFantasiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Miz-86-bjN" customClass="MyFantasiesViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyFantasiesViewController" title="MyFantasiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Miz-86-bjN" customClass="MyFantasiesViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqR-7v-zCg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGw-wQ-mmq">
-                                <rect key="frame" x="0.0" y="101" width="414" height="761"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
                                     <segue destination="Mw7-hf-ZpF" kind="embed" identifier="embedLikedCards" id="FvT-wh-DBe"/>
                                 </connections>
                             </containerView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6hm-Cj-hDw">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6hm-Cj-hDw">
                                 <rect key="frame" x="125" y="52" width="164" height="33"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaF-aI-cWK" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
@@ -585,9 +588,15 @@
                             <constraint firstItem="dGw-wQ-mmq" firstAttribute="top" secondItem="6hm-Cj-hDw" secondAttribute="bottom" constant="16" id="BAh-oi-yPR"/>
                             <constraint firstItem="6hm-Cj-hDw" firstAttribute="centerX" secondItem="gqR-7v-zCg" secondAttribute="centerX" id="BWU-7e-m59"/>
                             <constraint firstItem="dGw-wQ-mmq" firstAttribute="bottom" secondItem="sjB-xp-Cxa" secondAttribute="bottom" id="HsM-rc-oEV"/>
+                            <constraint firstItem="dGw-wQ-mmq" firstAttribute="top" secondItem="sjB-xp-Cxa" secondAttribute="top" id="aab-u4-sqj"/>
                             <constraint firstItem="dGw-wQ-mmq" firstAttribute="leading" secondItem="sjB-xp-Cxa" secondAttribute="leading" id="unY-oX-4lJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sjB-xp-Cxa"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BAh-oi-yPR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="My Fantasy" id="NJj-zj-fal">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="8BJ-XN-d4F" customClass="FantasyTextItem" customModule="FantasyApp" customModuleProvider="target">
@@ -1146,16 +1155,6 @@
             </objects>
             <point key="canvasLocation" x="3492.753623188406" y="1141.7410714285713"/>
         </scene>
-        <!--FantasyListViewController-->
-        <scene sceneID="NAe-rR-htX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FantasyCard" referencedIdentifier="FantasyListViewController" id="17z-Js-cWD" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="agU-uN-hca"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="usT-YV-8lR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5316" y="737"/>
-        </scene>
         <!--Monetization View Controller-->
         <scene sceneID="xAi-bl-jta">
             <objects>
@@ -1305,48 +1304,105 @@
             </objects>
             <point key="canvasLocation" x="5289.8550724637689" y="1141.7410714285713"/>
         </scene>
-        <!--My Fantasies Reaction History View Controller-->
+        <!--Reaction History-->
         <scene sceneID="gyZ-A1-8x0">
             <objects>
-                <viewController storyboardIdentifier="MyFantasiesReactionHistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hhw-En-1aU" customClass="MyFantasiesReactionHistoryViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyFantasiesReactionHistoryViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hhw-En-1aU" customClass="MyFantasiesReactionHistoryViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DRf-to-2Z6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjH-aq-oxU">
-                                <rect key="frame" x="0.0" y="58" width="414" height="750"/>
+                                <rect key="frame" x="0.0" y="101" width="414" height="761"/>
                                 <color key="backgroundColor" name="activityIndicatorColor"/>
                                 <connections>
                                     <segue destination="ZPH-kY-gJD" kind="embed" identifier="embedFantasyList" id="sqa-Wz-1NI"/>
                                 </connections>
                             </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PXK-dm-9Me">
-                                <rect key="frame" x="139.5" y="20" width="135" height="32"/>
-                                <segments>
-                                    <segment title="Liked"/>
-                                    <segment title="Disliked"/>
-                                </segments>
-                            </segmentedControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VmS-Gt-gG1">
+                                <rect key="frame" x="148" y="52" width="118" height="33"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaF-RK-PoI" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="33"/>
+                                        <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Liked">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="likedAction:" destination="hhw-En-1aU" eventType="touchUpInside" id="rhQ-aw-i1H"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CG-6K-QQY" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="62" y="0.0" width="56" height="33"/>
+                                        <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Disliked">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dislikedAction:" destination="hhw-En-1aU" eventType="touchUpInside" id="4Zv-M6-AzZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="bMd-ZB-SGY"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PXK-dm-9Me" firstAttribute="centerX" secondItem="TSx-5c-Z2f" secondAttribute="centerX" id="0uj-7d-FlG"/>
+                            <constraint firstItem="pjH-aq-oxU" firstAttribute="top" secondItem="VmS-Gt-gG1" secondAttribute="bottom" constant="16" id="7uk-Jk-fRo"/>
                             <constraint firstItem="pjH-aq-oxU" firstAttribute="bottom" secondItem="TSx-5c-Z2f" secondAttribute="bottom" id="8Ql-31-ZEX"/>
-                            <constraint firstItem="PXK-dm-9Me" firstAttribute="top" secondItem="TSx-5c-Z2f" secondAttribute="top" constant="20" id="8dh-WQ-2Qj"/>
+                            <constraint firstItem="VmS-Gt-gG1" firstAttribute="centerX" secondItem="DRf-to-2Z6" secondAttribute="centerX" id="9Qz-0s-2Cl"/>
+                            <constraint firstItem="VmS-Gt-gG1" firstAttribute="top" secondItem="TSx-5c-Z2f" secondAttribute="top" constant="8" id="CIK-um-3Xb"/>
                             <constraint firstItem="pjH-aq-oxU" firstAttribute="leading" secondItem="TSx-5c-Z2f" secondAttribute="leading" id="Lew-ys-DXq"/>
                             <constraint firstItem="pjH-aq-oxU" firstAttribute="trailing" secondItem="TSx-5c-Z2f" secondAttribute="trailing" id="hQt-nq-NNp"/>
-                            <constraint firstItem="pjH-aq-oxU" firstAttribute="top" secondItem="PXK-dm-9Me" secondAttribute="bottom" constant="7" id="q4Y-Sq-x6I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TSx-5c-Z2f"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LvG-9v-Tqw"/>
+                    <navigationItem key="navigationItem" title="Reaction History" id="LvG-9v-Tqw"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="PXK-dm-9Me" id="WMa-yg-VqD"/>
+                        <outlet property="dislikedButton" destination="8CG-6K-QQY" id="pSS-z0-eAb"/>
+                        <outlet property="likedButton" destination="OaF-RK-PoI" id="UJl-c3-PSy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjQ-bX-FSd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5933" y="321"/>
+            <point key="canvasLocation" x="5951" y="335"/>
+        </scene>
+        <!--MyFantasiesBlockedViewController-->
+        <scene sceneID="Vbz-QG-aEt">
+            <objects>
+                <viewController storyboardIdentifier="MyFantasiesBlockedViewController" title="MyFantasiesBlockedViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FT7-gP-b6g" customClass="MyFantasiesBlockedViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3m8-Qo-IXh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecc-Ju-P2Y">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" name="activityIndicatorColor"/>
+                                <connections>
+                                    <segue destination="ZPH-kY-gJD" kind="embed" identifier="embedFantasyList" id="TB4-RF-Fev"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="trailing" secondItem="jax-v5-ZSl" secondAttribute="trailing" id="1iv-u6-u7z"/>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="bottom" secondItem="jax-v5-ZSl" secondAttribute="bottom" id="7tX-sS-bRX"/>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="top" secondItem="jax-v5-ZSl" secondAttribute="top" id="l1G-x1-PBw"/>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="leading" secondItem="jax-v5-ZSl" secondAttribute="leading" id="sIw-Ow-TXq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jax-v5-ZSl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Blocked" id="w1h-S0-CaO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Vi-QA-9f4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6687" y="334"/>
         </scene>
         <!--FantasyListViewController-->
         <scene sceneID="XLF-NU-JxF">
@@ -1354,7 +1410,7 @@
                 <viewControllerPlaceholder storyboardName="FantasyCard" referencedIdentifier="FantasyListViewController" id="ZPH-kY-gJD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8TP-bt-Mdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6096" y="737"/>
+            <point key="canvasLocation" x="6310" y="737"/>
         </scene>
         <!--Fantasy Pink Navigation Controller-->
         <scene sceneID="V8A-tH-2me">
@@ -1493,31 +1549,31 @@
             </objects>
             <point key="canvasLocation" x="5175" y="-380"/>
         </scene>
-        <!--DiscoveryFilterViewController-->
+        <!--MyFantasiesSettingsViewController-->
         <scene sceneID="wvM-aw-YYH">
             <objects>
-                <viewController storyboardIdentifier="MyFantasiesSettingsViewController" title="DiscoveryFilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oXI-uq-QgF" customClass="MyFantasiesSettingsViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyFantasiesSettingsViewController" title="MyFantasiesSettingsViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oXI-uq-QgF" customClass="MyFantasiesSettingsViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oVM-ho-IEz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPb-A5-mUv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPb-A5-mUv">
+                                <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="REy-tb-c5v">
-                                        <rect key="frame" x="16" y="20" width="382" height="342"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="200.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="LeK-dn-epy">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="120"/>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="LeK-dn-epy">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="90"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vkb-4V-43e">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
-                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrf-t2-XWT" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="43" width="382" height="77"/>
+                                                        <rect key="frame" x="0.0" y="13" width="382" height="77"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-VN-PAS">
                                                                 <rect key="frame" x="346" y="0.0" width="20" height="77"/>
@@ -1540,7 +1596,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="22" id="Slb-hl-PuZ"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1569,23 +1625,26 @@
                                                             <constraint firstItem="bmq-VN-PAS" firstAttribute="leading" secondItem="bJ0-Qf-Ggd" secondAttribute="trailing" id="aDo-IQ-Pzv"/>
                                                             <constraint firstAttribute="height" constant="77" id="brj-ze-BVd"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="wyI-9A-cqp" appends="YES" id="dIV-iF-W4s"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7oU-XA-FBc">
-                                                <rect key="frame" x="0.0" y="144" width="382" height="198"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="200.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-rt-JEc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="198"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-rt-JEc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="200.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnG-xq-qlT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
-                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaA-bA-4zw" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="40" width="382" height="158"/>
+                                                                <rect key="frame" x="0.0" y="42.5" width="382" height="158"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LvO-xo-9z4">
                                                                         <rect key="frame" x="15" y="15" width="352" height="44"/>
@@ -1595,11 +1654,11 @@
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="22" id="uU3-Av-M5t"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Collection, 136 Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Collection, 136 Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
                                                                                 <rect key="frame" x="0.0" y="22" width="352" height="22"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="22" id="64n-Y1-av6"/>
@@ -1610,7 +1669,7 @@
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpT-xs-RZ7">
+                                                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpT-xs-RZ7">
                                                                         <rect key="frame" x="15" y="69" width="352" height="0.5"/>
                                                                         <color key="backgroundColor" name="textLightGrayColor"/>
                                                                         <constraints>
@@ -1649,7 +1708,7 @@
                                                                             <outletCollection property="gestureRecognizers" destination="fxf-O9-try" appends="YES" id="Ahr-V7-N6k"/>
                                                                         </connections>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-kA-4PQ">
+                                                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-kA-4PQ">
                                                                         <rect key="frame" x="15" y="113.5" width="352" height="0.5"/>
                                                                         <color key="backgroundColor" name="textLightGrayColor"/>
                                                                         <constraints>
@@ -1739,6 +1798,7 @@
                     <navigationItem key="navigationItem" title="My Fantasies Settings" id="YkQ-5F-XW3"/>
                     <size key="freeformSize" width="414" height="950"/>
                     <connections>
+                        <outlet property="collectionImageView" destination="OIQ-RQ-mgV" id="zwP-dW-eAd"/>
                         <outlet property="scrollView" destination="JPb-A5-mUv" id="uCn-sK-aZ5"/>
                     </connections>
                 </viewController>
@@ -1750,11 +1810,16 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="s84-t9-zVy">
                     <connections>
-                        <segue destination="17z-Js-cWD" kind="show" identifier="blockedFantasiesSegue" id="ij5-Ke-GZ0"/>
+                        <segue destination="FT7-gP-b6g" kind="show" id="ck9-Lu-REO"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="wyI-9A-cqp">
+                    <connections>
+                        <action selector="collectionTap:" destination="oXI-uq-QgF" id="nQG-Nj-1ty"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5197" y="352"/>
+            <point key="canvasLocation" x="5195.652173913044" y="351.5625"/>
         </scene>
     </scenes>
     <resources>
@@ -1784,4 +1849,7 @@
             <color red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sqa-Wz-1NI"/>
+    </inferredMetricsTieBreakers>
 </document>

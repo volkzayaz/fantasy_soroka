@@ -14,11 +14,13 @@ import RxCocoa
 class MyFantasiesSettingsViewController: UIViewController, MVVM_View {
     
     var viewModel: MyFantasiesSettingsViewModel!
-    
-    /**
-     *  Connect any IBOutlets here
-     *  @IBOutlet private weak var label: UILabel!
-     */
+
+    @IBOutlet weak var collectionImageView: UIImageView! {
+        didSet {
+            collectionImageView.layer.cornerRadius = 5.0
+        }
+    }
+
     @IBOutlet weak var scrollView: UIScrollView! {
            didSet {
                scrollView.addFantasyRoundedCorners()
@@ -30,25 +32,8 @@ class MyFantasiesSettingsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         view.addFantasyGradient()
     }
-    
-}
 
-extension MyFantasiesSettingsViewController {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == R.segue.myFantasiesSettingsViewController.blockedFantasiesSegue.identifier {
-            
-            let vc = segue.destination as! FantasyListViewController
-            vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
-                                                cardsProvider: Fantasy.Request.FetchCards(reactionType: .blocked).rx.request.asDriver(onErrorJustReturn: []),
-                                                detailsProvider: { card in
-                                                    OwnFantasyDetailsProvider(card: card,
-                                                                              initialReaction: .neutral)
-                                                },
-                                                title: "")
+        @IBAction func collectionTap(_ sender: Any) {
+
         }
-            
-    }
-    
 }
