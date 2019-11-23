@@ -100,7 +100,7 @@ extension LoginViewController {
     }
         
     @IBAction func signIn(_ sender: Any) {
-        viewModel.login(email: emailTextField.text ?? "",
+        viewModel.login(email: emailTextField.text?.trimmingCharacters(in: .whitespaces) ?? "",
                         password: passwordTextField.text ?? "")
     }
     
