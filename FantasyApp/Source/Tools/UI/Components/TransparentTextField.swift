@@ -54,7 +54,10 @@ class TransparentTextField: UITextField {
     }
 
     @objc func clear() {
+        guard self.delegate?.textFieldShouldClear?(self) ?? false else { return }
+
         self.text = ""
+
         showPasswordButton.isSelected = false
 
         if isSecureTextEntryVar {
