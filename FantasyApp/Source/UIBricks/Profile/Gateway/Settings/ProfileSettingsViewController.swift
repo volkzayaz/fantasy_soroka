@@ -29,7 +29,7 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
         #endif
         
         freeSubscriptionSwitch.isOn = SettingsStore.freeSubscriptionSwitch.value
-        
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }
     
     @IBAction func freeSubscriptionSwitchChanged(_ sender: UISwitch) {
@@ -42,6 +42,11 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
 }
 
 extension ProfileSettingsViewController {
+
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
+    }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = ProfileSettingsHeaderView.instance
