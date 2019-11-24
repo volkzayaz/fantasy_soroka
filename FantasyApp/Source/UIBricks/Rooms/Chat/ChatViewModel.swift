@@ -8,6 +8,8 @@
 
 import RxSwift
 import RxCocoa
+import RxDataSources
+
 
 import Chatto
 
@@ -17,28 +19,50 @@ extension ChatViewModel {
         return inputEnabledRelay.asDriver()
     }
     
+    var dataSource: Driver<[AnimatableSectionModel<String, Room.Message>]> {
+        
+        return mes.asDriver()
+            .map { messages in
+                return [AnimatableSectionModel(model: "",
+                                               items: messages)]
+            }
+        
+    }
+    
+    var peerAvatar: Driver<UIImage> {
+        return ImageRetreiver.imageForURLWithoutProgress(url: room.value.peer.userSlice.avatarURL)
+            .map { $0 ?? R.image.noPhoto()! }
+    }
+    
+    func position(for message: Room.Message) -> MessageCellPosition {
+        if let x = heightCache[message.text] {
+            return x
+        }
+        
+        heightCache[message.text] = .init(message: message)
+        return position(for: message)
+    }
+    
 }
 
 class ChatViewModel: MVVM_ViewModel {
     
     private let room: SharedRoomResource
+    private var heightCache: [String: MessageCellPosition] = [:]
     
-    let chattoMess: ChattoMess
+    
+    private let mes = BehaviorRelay<[Room.Message]>(value: [])
     
     private let inputEnabledRelay: BehaviorRelay<Bool>
     
-    init(router: ChatRouter, room: SharedRoomResource, chattoDelegate: ChatDataSourceDelegateProtocol) {
+    init(router: ChatRouter, room: SharedRoomResource) {
         self.router = router
         self.room = room
-        self.chattoMess =  {
-            let x = ChattoMess()
-            x.delegate = chattoDelegate
-            return x
-        }()
         
-        chattoMess.includesAcceptReject = room.value.participants.contains { $0.status == .invited && $0.userId == User.current?.id }
         
-        inputEnabledRelay = .init(value: !chattoMess.includesAcceptReject)
+        //chattoMess.includesAcceptReject = room.value.participants.contains { $0.status == .invited && $0.userId == User.current?.id }
+        
+        inputEnabledRelay = .init(value: true)//!chattoMess.includesAcceptReject)
         
         RoomManager.getMessagesInRoom(room.value.id, offset: 0)
             .trackView(viewIndicator: indicator)
@@ -46,17 +70,16 @@ class ChatViewModel: MVVM_ViewModel {
             .flatMap { mes -> Observable<[Room.Message]> in
 
                 return RoomManager.subscribeTo(rooms: [room.value])
-                    .scan(mes, accumulator: { (res, messageInRoom) in res + [messageInRoom.0] })
+                    .scan(mes, accumulator: { (res, messageInRoom) in [messageInRoom.0] + res })
                     .startWith(mes)
             }
             .subscribe(onNext: { [weak self] messages in
                 guard let self = self else { return }
 
-                self.chattoMess.messages = messages
+                self.mes.accept(messages)
             })
             .disposed(by: bag)
 
-        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
@@ -102,7 +125,7 @@ extension ChatViewModel {
         room.accept(updatedRoom)
         
         ///reaction. Should be in inits bindings ;)
-        chattoMess.includesAcceptReject = false
+        //chattoMess.includesAcceptReject = false
         inputEnabledRelay.accept(true)
         
         let _ = ConnectionManager.likeBack(user: room.value.ownerId)

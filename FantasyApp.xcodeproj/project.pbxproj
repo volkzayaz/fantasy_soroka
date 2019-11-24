@@ -73,6 +73,11 @@
 		733F41D923675732004EC466 /* FantasyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41D823675732004EC466 /* FantasyListCell.swift */; };
 		73432AB523881E4A008CF2F1 /* UserProfileFantasiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73432AB423881E4A008CF2F1 /* UserProfileFantasiesCell.swift */; };
 		73432AB723881FB6008CF2F1 /* FantasyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73432AB623881FB6008CF2F1 /* FantasyListCell.xib */; };
+		73432AC3238A829D008CF2F1 /* MessageCellPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73432AC2238A829D008CF2F1 /* MessageCellPosition.swift */; };
+		73432AC8238A8B46008CF2F1 /* TextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73432AC6238A8B46008CF2F1 /* TextMessageCell.xib */; };
+		73432ACA238A8E7C008CF2F1 /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73432AC9238A8E7C008CF2F1 /* TextMessageCell.swift */; };
+		73432ACC238A9850008CF2F1 /* OwnMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73432ACB238A9850008CF2F1 /* OwnMessageCell.xib */; };
+		73432ACE238A9859008CF2F1 /* OtherMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73432ACD238A9859008CF2F1 /* OtherMessageCell.xib */; };
 		7343D8682358C48500FC1816 /* CurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343D8672358C48500FC1816 /* CurrentLocationCell.swift */; };
 		734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */; };
 		734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */; };
@@ -436,6 +441,11 @@
 		733F41D823675732004EC466 /* FantasyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListCell.swift; sourceTree = "<group>"; };
 		73432AB423881E4A008CF2F1 /* UserProfileFantasiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFantasiesCell.swift; sourceTree = "<group>"; };
 		73432AB623881FB6008CF2F1 /* FantasyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FantasyListCell.xib; sourceTree = "<group>"; };
+		73432AC2238A829D008CF2F1 /* MessageCellPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellPosition.swift; sourceTree = "<group>"; };
+		73432AC6238A8B46008CF2F1 /* TextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextMessageCell.xib; sourceTree = "<group>"; };
+		73432AC9238A8E7C008CF2F1 /* TextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
+		73432ACB238A9850008CF2F1 /* OwnMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnMessageCell.xib; sourceTree = "<group>"; };
+		73432ACD238A9859008CF2F1 /* OtherMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherMessageCell.xib; sourceTree = "<group>"; };
 		7343D8672358C48500FC1816 /* CurrentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCell.swift; sourceTree = "<group>"; };
 		734C528B23266ADA00B54510 /* DiscoverProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouter.swift; sourceTree = "<group>"; };
 		734C528C23266ADA00B54510 /* DiscoverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProfileViewController.swift; sourceTree = "<group>"; };
@@ -1219,6 +1229,27 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		73432AB9238A6BE0008CF2F1 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				73F80CD12361E66E00212FCF /* ChattoMess.swift */,
+				843CF7102342466B0098C196 /* Views */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		73432ABA238A6BFD008CF2F1 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				73432AC2238A829D008CF2F1 /* MessageCellPosition.swift */,
+				73432AC9238A8E7C008CF2F1 /* TextMessageCell.swift */,
+				73432AC6238A8B46008CF2F1 /* TextMessageCell.xib */,
+				73432ACB238A9850008CF2F1 /* OwnMessageCell.xib */,
+				73432ACD238A9859008CF2F1 /* OtherMessageCell.xib */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
 		7343D8662358C45F00FC1816 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1947,11 +1978,11 @@
 		84AB4902232A2CE300F3609A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				843CF7102342466B0098C196 /* Views */,
+				73432ABA238A6BFD008CF2F1 /* New */,
+				73432AB9238A6BE0008CF2F1 /* Legacy */,
 				84AB4905232A2D0000F3609A /* ChatRouter.swift */,
 				84AB4904232A2D0000F3609A /* ChatViewController.swift */,
 				84AB4903232A2D0000F3609A /* ChatViewModel.swift */,
-				73F80CD12361E66E00212FCF /* ChattoMess.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2326,6 +2357,7 @@
 				73432AB723881FB6008CF2F1 /* FantasyListCell.xib in Resources */,
 				849D3FA62366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib in Resources */,
 				84C1D0322327B95300648DE1 /* Transsexual.png in Resources */,
+				73432AC8238A8B46008CF2F1 /* TextMessageCell.xib in Resources */,
 				B7E4E3FB237E9E8600D8D9CA /* FantasyDeckTutorialView.xib in Resources */,
 				841681E022E9AE6E00FA9455 /* SF-Pro-Text-Medium.otf in Resources */,
 				84C1D0382327B95300648DE1 /* Straight.png in Resources */,
@@ -2346,9 +2378,11 @@
 				84C1D0372327B95300648DE1 /* Heteroflexible.png in Resources */,
 				84C1D0312327B95300648DE1 /* Lesbian.png in Resources */,
 				84C1D0302327B95300648DE1 /* Sapiosexual.png in Resources */,
+				73432ACC238A9850008CF2F1 /* OwnMessageCell.xib in Resources */,
 				84C1D0362327B95300648DE1 /* Asexual.png in Resources */,
 				84C1D0342327B95300648DE1 /* Questioning.png in Resources */,
 				7312B0D122D74FB200DB0F36 /* deploy_patch_FantasyApp.command in Resources */,
+				73432ACE238A9859008CF2F1 /* OtherMessageCell.xib in Resources */,
 				7312B06A22D7403300DB0F36 /* Assets.xcassets in Resources */,
 				841681E422E9AE6E00FA9455 /* SF-Pro-Text-Light.otf in Resources */,
 				841681EB22E9AE6E00FA9455 /* SF-Pro-Text-BlackItalic.otf in Resources */,
@@ -2494,6 +2528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73432ACA238A8E7C008CF2F1 /* TextMessageCell.swift in Sources */,
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
 				733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */,
@@ -2715,6 +2750,7 @@
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
+				73432AC3238A829D008CF2F1 /* MessageCellPosition.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				B7B03BB52365DFA8000F42A6 /* TransparentSideView.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,

@@ -68,6 +68,7 @@ PODS:
   - RxRelay (5.0.1):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
+  - SlackTextViewController (1.9.6)
   - SmoothPicker (1.1.3):
     - SnapKit (~> 4.2.0)
   - SnapKit (4.2.0)
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - RxCocoa (~> 5.0)
   - RxCoreLocation (~> 1.4)
   - RxDataSources (~> 4.0.1)
+  - SlackTextViewController
   - SmoothPicker (~> 1.1.3)
   - SnapKit (~> 4.2)
   - SwiftyStoreKit
@@ -130,6 +132,7 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
+    - SlackTextViewController
     - SmoothPicker
     - SnapKit
     - Starscream
@@ -165,11 +168,12 @@ SPEC CHECKSUMS:
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
   SmoothPicker: a3f4b3c3a95fff73f20d526856aeff2c32696375
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: e6f4d20b23a94a7dc3226c36aadb2281aca75f02
+PODFILE CHECKSUM: 8d115f9add31f506bb11695cdec97bc07fbf682d
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

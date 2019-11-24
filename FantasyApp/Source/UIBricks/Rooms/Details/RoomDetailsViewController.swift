@@ -132,7 +132,7 @@ extension RoomDetailsViewController {
             
             let vc = segue.destination as! ChatViewController
             vc.viewModel = ChatViewModel(router: .init(owner: vc),
-                                         room: viewModel.room, chattoDelegate: vc)
+                                         room: viewModel.room)
             
         }
         

@@ -2,87 +2,102 @@
 //  ChatViewController.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 12.09.2019.
+//  Created by Vlad Soroka on 12.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
 import Foundation
-import Chatto
-import ChattoAdditions
+import SlackTextViewController
 
-class ChatViewController: BaseChatViewController, MVVM_View, BaseMessageInteractionHandlerProtocol {
-    typealias ViewModelT = TextMessageViewModel<TextMessageModel<Room.Message>>
+import RxDataSources
+
+class ChatViewController: SLKTextViewController, MVVM_View {
+
     var viewModel: ChatViewModel!
 
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        configure()
+    var tv: UITableView! {
+        return tableView!
     }
+    
+    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Room.Message>>(configureCell: { [unowned self] (_, tv, ip, x) in
+        
+        if x.isOwn {
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.ownCell, for: ip)!
+            cell.transform = tv.transform
+        
+            cell.position = self.viewModel.position(for: x)
+            cell.message = x
+            
+            return cell
+        }
+        
+        let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.otherCell, for: ip)!
+        cell.transform = tv.transform
+        
+        cell.position = self.viewModel.position(for: x)
+        cell.message = x
+        cell.avatar = self.viewModel.peerAvatar
+        
+        return cell
+        
+    })
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tv.register(R.nib.ownMessageCell)
+        tv.register(R.nib.otherMessageCell)
+        tv.dataSource = nil
+        tv.separatorStyle = .none
+        
+        textInputbar.rightButton.setImage(R.image.sendMessage()?.withRenderingMode(.alwaysOriginal),
+                                          for: .normal)
+        textInputbar.rightButton.setTitle("",
+                                          for: .normal)
+        
+        textInputbar.textView.backgroundColor = .messageBackground
+        textInputbar.textView.placeholder = R.string.localizable.chatInputViewPlaceholder()
+        textInputbar.textView.placeholderColor = .basicGrey
+        textInputbar.textView.placeholderFont = .regularFont(ofSize: 15)
+
+        textInputbar.textView.textColor = .fantasyBlack
+        textInputbar.textView.font = .regularFont(ofSize: 15)
+        textInputbar.textView.layer.cornerRadius = 18
+        textInputbar.textView.layer.borderWidth = 0
+        
+        textInputbar.barTintColor = .white
+        textInputbar.clipsToBounds = true
+        
         viewModel.inputEnabled
-            .drive(inputBarContainer.rx.isUserInteractionEnabled)
+            .drive(textInputbar.rx.isUserInteractionEnabled)
             .disposed(by: rx.disposeBag)
+        
+        viewModel.dataSource
+            .drive(tv.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        
+    }
+
+    override func didPressRightButton(_ sender: (Any)?) {
+    
+        let message = textView.text!
+        
+        viewModel.sendMessage(text: message)
+        
+        super.didPressRightButton(sender)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let model = dataSource[indexPath]
+        
+        return viewModel.position(for: model).totalHeight
     }
     
-    override func createChatInputView() -> UIView {
-        let chatInputView = ChatInputView(frame: .zero)
-        chatInputView.translatesAutoresizingMaskIntoConstraints = false
-        chatInputView.maxCharactersCount = 1000
-        chatInputView.delegate = self
-        return chatInputView
-    }
-
-    override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenterBuilder = MessagePresenterBuilder<TextMessageViewModelDefaultBuilder<TextMessageModel<Room.Message>>, ChatViewController>(
-            viewModelBuilder: TextMessageViewModelDefaultBuilder<TextMessageModel<Room.Message>>(),
-            interactionHandler: nil /*passing self creates retain cycle*/
-        )
-
-        let x = AcceptRejectBuilder()
-        x.viewModel = viewModel
-        
-        return [
-            Chat.CellType.text.rawValue: [textMessagePresenterBuilder],
-            Chat.CellType.emoji.rawValue: [textMessagePresenterBuilder],
-            Chat.CellType.timeSeparator.rawValue: [TimeSeparatorPresenterBuilder()],
-            Chat.CellType.acceptReject.rawValue: [x]
-        ]
-    }
-
-    func userDidTapOnFailIcon(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>, failIconView: UIView) {}
-    func userDidTapOnAvatar(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
-    func userDidTapOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
-    func userDidBeginLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
-    func userDidEndLongPressOnBubble(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
-    func userDidSelectMessage(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
-    func userDidDeselectMessage(viewModel: TextMessageViewModel<TextMessageModel<Room.Message>>) {}
 }
 
-private extension ChatViewController {
-    func configure() { 
-        // TODO: uncomment this condition when ScreenShield testing is finished
-        //if viewModel.room.settings?.isScreenShieldEnabled == true {
-            //setupScreenCaptureProtection()
-        //}
-        chatDataSource = viewModel.chattoMess
-        chatItemsDecorator = ChatItemsDecorator()
 
-        guard let superview = view.superview else {
-            return
-        }
-
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: superview.topAnchor),
-            view.rightAnchor.constraint(equalTo: superview.rightAnchor),
-            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
-            view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
-        ])
-    }
-}
 
 extension ChatViewController: ChatInputViewDelegate {
     func inputViewSendButtonPressed(_ inputView: ChatInputView) {
@@ -91,21 +106,3 @@ extension ChatViewController: ChatInputViewDelegate {
     }
 }
 
-class ChatItemsDecorator: ChatItemsDecoratorProtocol {
-    
-    func decorateItems(_ chatItems: [ChatItemProtocol]) -> [DecoratedChatItem] {
-        let attributes = ChatItemDecorationAttributes(
-            bottomMargin: 8,
-            messageDecorationAttributes: BaseMessageDecorationAttributes(
-                canShowFailedIcon: false,
-                isShowingTail: true,
-                isShowingAvatar: true,
-                isShowingSelectionIndicator: false,
-                isSelected: false
-            )
-        )
-        return chatItems
-            .map { DecoratedChatItem(chatItem: $0, decorationAttributes: attributes)}
-    }
-    
-}

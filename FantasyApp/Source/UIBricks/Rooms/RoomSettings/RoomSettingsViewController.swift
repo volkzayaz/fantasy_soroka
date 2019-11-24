@@ -2,7 +2,7 @@
 //  RoomSettingsViewController.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 10.10.2019.
+//  Created by Vlad Soroka on 10.10.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 

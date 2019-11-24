@@ -38,9 +38,9 @@ extension RoomManager {
     static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Single<[Room.Message]> {
         let query = Room.Message.query
                         .whereKey("roomId", equalTo: roomId)
-                        .addAscendingOrder("createdAt")
+                        .addDescendingOrder("createdAt")
         query.skip = offset
-        query.limit = limit
+        query.limit = 1000
 
         return query.rx.fetchAll()
     }

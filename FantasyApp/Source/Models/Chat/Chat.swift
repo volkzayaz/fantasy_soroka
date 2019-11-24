@@ -61,6 +61,10 @@ extension Room {
             
             self.createdAt = Date()
         }
+        
+        var isOwn: Bool {
+            return senderId == User.current?.id
+        }
     }
 }
 
