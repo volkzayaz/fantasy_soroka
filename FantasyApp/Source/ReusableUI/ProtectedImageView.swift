@@ -22,7 +22,7 @@ class ProtectedImageView: UIView {
     
     func set(imageURL: String, isProtected: Bool, errorPlaceholder: UIImage? = nil) {
         
-        regularImageView.isHidden = isProtected
+        regularImageView.isHidden = false//isProtected
         //protectedImageView.isHidden = !isProtected
         
         indicator.asDriver()
@@ -31,7 +31,7 @@ class ProtectedImageView: UIView {
             })
             .disposed(by: rx.disposeBag)
         
-        if !isProtected {
+        //if !isProtected {
     
             ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
                 .trackView(viewIndicator: indicator)
@@ -39,7 +39,9 @@ class ProtectedImageView: UIView {
                 .bind(to: regularImageView.rx.image(transitionType: CATransitionType.fade.rawValue))
                 .disposed(by: bag)
             
-        }
+        //}
+        
+        return;
         
         ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
             .map { $0 ?? errorPlaceholder }

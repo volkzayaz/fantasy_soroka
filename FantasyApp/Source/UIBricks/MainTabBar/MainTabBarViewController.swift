@@ -44,7 +44,7 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
         let vc = (viewControllers![1] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
         vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
      
-        selectedIndex = 3
+        //selectedIndex = 3
         
     }
     
