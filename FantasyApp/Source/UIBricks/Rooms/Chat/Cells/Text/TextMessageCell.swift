@@ -38,7 +38,7 @@ class TextBubleView: UIView {
 
             text.text = message.text
             
-            date.text = message.createdAt.toTimeAgoString()
+            date.text = message.createdAt.toMessageTimestampString()
             
         }
     }

@@ -92,6 +92,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         tv.dataSource = nil
         tv.separatorStyle = .none
         tv.allowsSelection = false
+        edgesForExtendedLayout = []
         
         textInputbar.rightButton.setImage(R.image.sendMessage()?.withRenderingMode(.alwaysOriginal),
                                           for: .normal)
@@ -123,9 +124,6 @@ class ChatViewController: SLKTextViewController, MVVM_View {
     
     override func didPressRightButton(_ sender: (Any)?) {
 
-//        tv.contentInset = .zero
-//        tv.scrollIndicatorInsets = .zero
-        
         let message = textView.text!
         
         viewModel.sendMessage(text: message)
