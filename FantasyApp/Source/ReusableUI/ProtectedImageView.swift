@@ -14,7 +14,7 @@ import SnapKit
 class ProtectedImageView: UIView {
     
     var regularImageView: UIImageView!
-    var protectedImageView: SSKProtectedImageView!
+    //var protectedImageView: SSKProtectedImageView!
     
     var bag = DisposeBag()
     
@@ -23,7 +23,7 @@ class ProtectedImageView: UIView {
     func set(imageURL: String, isProtected: Bool, errorPlaceholder: UIImage? = nil) {
         
         regularImageView.isHidden = isProtected
-        protectedImageView.isHidden = !isProtected
+        //protectedImageView.isHidden = !isProtected
         
         indicator.asDriver()
             .drive(onNext: { [weak self] (loading) in
@@ -51,9 +51,9 @@ class ProtectedImageView: UIView {
                 transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
                 transition.type = CATransitionType.fade
                 
-                self?.protectedImageView.layer.add(transition, forKey: kCATransition)
-                
-                self?.protectedImageView.image = x
+//                self?.protectedImageView.layer.add(transition, forKey: kCATransition)
+//
+//                self?.protectedImageView.image = x
             })
             .disposed(by: bag)
             
@@ -63,7 +63,7 @@ class ProtectedImageView: UIView {
         bag = DisposeBag()
         
         regularImageView.image = nil
-        protectedImageView.image = nil
+        //protectedImageView.image = nil
     }
     
     override init(frame: CGRect) {
@@ -88,12 +88,12 @@ class ProtectedImageView: UIView {
             make.edges.equalToSuperview()
         }
         
-        protectedImageView = .init(image: nil)
-        addSubview(protectedImageView)
-        protectedImageView.resizeMode = .scaleAspectFill
-        protectedImageView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
+//        protectedImageView = .init(image: nil)
+//        addSubview(protectedImageView)
+//        protectedImageView.resizeMode = .scaleAspectFill
+//        protectedImageView.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview()
+//        }
      
         indicator.asDriver()
             .drive(onNext: { [weak self] (loading) in
