@@ -68,7 +68,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
         cardsProvider
             .map {$0.count }
             .map({ (count) -> NSAttributedString in
-                let text = "\(count) \(count > 1 ? "cards" : "card")"
+                let text = "\(count) \(count > 1 ? R.string.localizable.fantasyDeckCardsCountSeveral() : R.string.localizable.fantasyDeckCardsCountOne())"
                 let att = NSMutableAttributedString(string: text)
                 att.addAttributes([.foregroundColor : R.color.textPinkColor()!], range: text.nsRange(from: text.range(of: "\(count)")!))
                 return att
