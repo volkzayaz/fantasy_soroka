@@ -233,6 +233,7 @@ private extension FantasyDetailsViewController {
     @IBAction func zoomCard(_ sender: Any) {
         isZoomingBlocked = true
         scrollView.isScrollEnabled = false
+        shareButton.isHidden = false
         animateZoom()
         configureNavigationBar()
     }
