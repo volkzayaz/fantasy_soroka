@@ -99,7 +99,7 @@ struct GetConnection: AuthorizedAPIResource {
     
     typealias responseType = ConnectionResponse?
     
-    let with: User
+    let with: UserIdentifier
 }
 
 ///If you're not mutual with user you can get his attention by creating/updating your request outgoing (ConnectionRequestType)

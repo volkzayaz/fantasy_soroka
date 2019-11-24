@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatHeaderCell" rowHeight="325" id="nv5-T1-rbh" customClass="ChatHeaderCell" customModule="FantasyApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="510" height="325"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nv5-T1-rbh" id="fk0-wh-eXJ">
+                <rect key="frame" x="0.0" y="0.0" width="510" height="325"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zHX-Es-YyA">
+                        <rect key="frame" x="181.5" y="96" width="147.5" height="133"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cAT-gt-mn0">
+                                <rect key="frame" x="33.5" y="0.0" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="2Ak-fQ-mya"/>
+                                    <constraint firstAttribute="height" constant="80" id="4zD-iN-1Hp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fri-9i-HuL">
+                                <rect key="frame" x="0.0" y="92" width="147.5" height="41"/>
+                                <string key="text">Jack sent you
+new Room Request</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="bF8-Qc-f6O">
+                        <rect key="frame" x="225" y="153" width="60" height="26"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestSticker" translatesAutoresizingMaskIntoConstraints="NO" id="QAF-xl-YlV">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="26"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestMessage" translatesAutoresizingMaskIntoConstraints="NO" id="4Mq-wV-R9N">
+                                <rect key="frame" x="15" y="0.0" width="24" height="26"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestLike" translatesAutoresizingMaskIntoConstraints="NO" id="wPR-Sv-lg6">
+                                <rect key="frame" x="34" y="0.0" width="26" height="26"/>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bF8-Qc-f6O" firstAttribute="bottom" secondItem="cAT-gt-mn0" secondAttribute="bottom" constant="3" id="0PU-a0-BQj"/>
+                    <constraint firstItem="zHX-Es-YyA" firstAttribute="centerX" secondItem="fk0-wh-eXJ" secondAttribute="centerX" id="3qL-6e-oJB"/>
+                    <constraint firstItem="bF8-Qc-f6O" firstAttribute="centerX" secondItem="cAT-gt-mn0" secondAttribute="centerX" id="7P1-eK-SDC"/>
+                    <constraint firstItem="zHX-Es-YyA" firstAttribute="centerY" secondItem="fk0-wh-eXJ" secondAttribute="centerY" id="ZhW-0n-Mpl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="cAT-gt-mn0" id="95f-Zm-B9d"/>
+                <outlet property="inviteLabel" destination="fri-9i-HuL" id="g4O-G0-6hq"/>
+                <outlet property="stackView" destination="bF8-Qc-f6O" id="Ksz-rL-kBT"/>
+            </connections>
+            <point key="canvasLocation" x="-53.623188405797109" y="237.38839285714283"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="outgoingRequestLike" width="26" height="26"/>
+        <image name="outgoingRequestMessage" width="24" height="24"/>
+        <image name="outgoingRequestSticker" width="20" height="20"/>
+    </resources>
+</document>

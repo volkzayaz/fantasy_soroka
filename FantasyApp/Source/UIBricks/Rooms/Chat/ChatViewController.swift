@@ -19,27 +19,51 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         return tableView!
     }
     
-    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Room.Message>>(configureCell: { [unowned self] (_, tv, ip, x) in
+    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ChatViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, x) in
         
-        if x.isOwn {
+        switch x {
+         
+        case .message(let message):
             
-            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.ownCell, for: ip)!
+            if message.isOwn {
+                
+                let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.ownCell, for: ip)!
+                cell.transform = tv.transform
+            
+                cell.position = self.viewModel.position(for: message)
+                cell.message = message
+                
+                return cell
+            }
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.otherCell, for: ip)!
             cell.transform = tv.transform
-        
-            cell.position = self.viewModel.position(for: x)
-            cell.message = x
+            
+            cell.position = self.viewModel.position(for: message)
+            cell.message = message
+            cell.avatar = self.viewModel.peerAvatar
             
             return cell
+            
+        case .connection(let x):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.chatHeaderCell, for: ip)!
+            cell.transform = tv.transform
+            
+            cell.setConnections(x)
+            cell.set(user: self.viewModel.initiator)
+            
+            return cell
+            
+        case .acceptReject:
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.acceptRejectCell, for: ip)!
+            cell.transform = tv.transform
+            
+            cell.viewModel = self.viewModel
+            
+            return cell
+            
         }
-        
-        let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.otherCell, for: ip)!
-        cell.transform = tv.transform
-        
-        cell.position = self.viewModel.position(for: x)
-        cell.message = x
-        cell.avatar = self.viewModel.peerAvatar
-        
-        return cell
         
     })
     
@@ -48,8 +72,12 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         
         tv.register(R.nib.ownMessageCell)
         tv.register(R.nib.otherMessageCell)
+        tv.register(R.nib.chatHeaderCell)
+        tv.register(R.nib.acceptRejectCell)
+        
         tv.dataSource = nil
         tv.separatorStyle = .none
+        tv.allowsSelection = false
         
         textInputbar.rightButton.setImage(R.image.sendMessage()?.withRenderingMode(.alwaysOriginal),
                                           for: .normal)
@@ -91,18 +119,19 @@ class ChatViewController: SLKTextViewController, MVVM_View {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let model = dataSource[indexPath]
+
+        switch model {
+        case .message(let x):
+            return viewModel.position(for: x).totalHeight
+            
+        case .connection(_):
+            return 150
+            
+        case .acceptReject:
+            return 121
+            
+        }
         
-        return viewModel.position(for: model).totalHeight
     }
     
 }
-
-
-
-extension ChatViewController: ChatInputViewDelegate {
-    func inputViewSendButtonPressed(_ inputView: ChatInputView) {
-        viewModel.sendMessage(text: inputView.inputText)
-        inputView.inputText = ""
-    }
-}
-

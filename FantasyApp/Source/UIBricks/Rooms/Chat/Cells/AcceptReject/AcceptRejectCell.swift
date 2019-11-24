@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AcceptRejectCell: UICollectionViewCell {
+class AcceptRejectCell: UITableViewCell {
     
     var viewModel: ChatViewModel!
     

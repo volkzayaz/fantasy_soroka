@@ -26,6 +26,12 @@ extension ConnectionManager {
             .map { $0?.toNative ?? .absent }
     }
     
+    ///does not take into account whether self sent requests or other party sent requests
+    static func requestTypes(with user: UserIdentifier) -> Single<Set<ConnectionRequestType>> {
+        return GetConnection(with: user).rx.request
+            .map { $0?.connectTypes ?? [] }
+    }
+    
     static func initiate(with user: UserIdentifier, type: ConnectionRequestType) -> Single<Connection> {
         
         PushManager.sendPush(to: user, text: "\(User.current!.bio.name) is interested in you")

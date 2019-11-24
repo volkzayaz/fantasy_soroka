@@ -2,15 +2,13 @@
 //  Chat.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 10.09.2019.
+//  Created by Vlad Soroka on 10.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
 import Foundation
 import RxDataSources
 import Parse
-import ChattoAdditions
-import Chatto
 
 extension Room {
 
@@ -105,6 +103,10 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
         return participants.reduce(into: false) { result, participant in
             result = result || participant.status == .invited
         }
+    }
+    
+    var isWaitingForMyResponse: Bool {
+        return participants.contains(where: { $0.status == .invited && $0.userId == User.current?.id })
     }
     
 }

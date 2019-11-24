@@ -2,7 +2,7 @@
 //  ChatViewModel.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 12.09.2019.
+//  Created by Vlad Soroka on 12.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -10,21 +10,32 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
-import Chatto
-
 extension ChatViewModel {
     
     var inputEnabled: Driver<Bool> {
-        return inputEnabledRelay.asDriver()
+        return room
+            .asDriver()
+            .map { !$0.isWaitingForMyResponse }
     }
     
-    var dataSource: Driver<[AnimatableSectionModel<String, Room.Message>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, Row>]> {
         
-        return mes.asDriver()
-            .map { messages in
+        let requestTypes = ConnectionManager.requestTypes(with: room.value.peer.userSlice.id)
+                                .asDriver(onErrorJustReturn: [])
+        
+        return Driver.combineLatest(requestTypes, mes.asDriver(), room.asDriver())
+            .map { requestTypes, messages, room in
+                
+                var items = messages.map { Row.message($0) }
+                
+                if room.isWaitingForMyResponse {
+                    items.append(.acceptReject)
+                }
+                
+                items.append(.connection(requestTypes))
+                
                 return [AnimatableSectionModel(model: "",
-                                               items: messages)]
+                                               items: items)]
             }
         
     }
@@ -34,7 +45,16 @@ extension ChatViewModel {
             .map { $0 ?? R.image.noPhoto()! }
     }
     
-    func position(for message: Room.Message) -> MessageCellPosition {
+    var initiator: Room.Participant.UserSlice {
+        
+        if room.value.ownerId == User.current?.id {
+            return room.value.me.userSlice
+        }
+        
+        return room.value.peer.userSlice
+    }
+    
+    mutating func position(for message: Room.Message) -> MessageCellPosition {
         if let x = heightCache[message.text] {
             return x
         }
@@ -43,27 +63,33 @@ extension ChatViewModel {
         return position(for: message)
     }
     
+    enum Row: IdentifiableType, Equatable {
+        case message(Room.Message)
+        case connection(Set<ConnectionRequestType>)
+        case acceptReject
+        
+        var identity: String {
+            switch self {
+            case .message(let m): return m.objectId ?? ""
+            case .connection(_): return "connection"
+            case .acceptReject: return "acceptReject"
+            }
+        }
+    }
+    
 }
 
-class ChatViewModel: MVVM_ViewModel {
+struct ChatViewModel: MVVM_ViewModel {
     
     private let room: SharedRoomResource
     private var heightCache: [String: MessageCellPosition] = [:]
     
-    
     private let mes = BehaviorRelay<[Room.Message]>(value: [])
-    
-    private let inputEnabledRelay: BehaviorRelay<Bool>
     
     init(router: ChatRouter, room: SharedRoomResource) {
         self.router = router
         self.room = room
-        
-        
-        //chattoMess.includesAcceptReject = room.value.participants.contains { $0.status == .invited && $0.userId == User.current?.id }
-        
-        inputEnabledRelay = .init(value: true)//!chattoMess.includesAcceptReject)
-        
+
         RoomManager.getMessagesInRoom(room.value.id, offset: 0)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
@@ -73,11 +99,7 @@ class ChatViewModel: MVVM_ViewModel {
                     .scan(mes, accumulator: { (res, messageInRoom) in [messageInRoom.0] + res })
                     .startWith(mes)
             }
-            .subscribe(onNext: { [weak self] messages in
-                guard let self = self else { return }
-
-                self.mes.accept(messages)
-            })
+            .bind(to: mes)
             .disposed(by: bag)
 
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
@@ -123,10 +145,6 @@ extension ChatViewModel {
         let i = updatedRoom.participants.firstIndex { $0.userId == x.userId }!
         updatedRoom.participants[i] = x
         room.accept(updatedRoom)
-        
-        ///reaction. Should be in inits bindings ;)
-        //chattoMess.includesAcceptReject = false
-        inputEnabledRelay.accept(true)
         
         let _ = ConnectionManager.likeBack(user: room.value.ownerId)
             .subscribe()
