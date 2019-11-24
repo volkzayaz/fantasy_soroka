@@ -11,9 +11,15 @@ import RxSwift
 
 class ChatHeaderCell: UITableViewCell {
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tapOnAvatar")))
+        }
+    }
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var inviteLabel: UILabel!
+    
+    var viewModel: ChatViewModel!
     
     func setConnections(_ connections: Set<ConnectionRequestType>) {
         
@@ -42,6 +48,10 @@ class ChatHeaderCell: UITableViewCell {
             .drive(avatarImageView.rx.image)
             .disposed(by: rx.disposeBag)
         
+    }
+    
+    @objc func tapOnAvatar() {
+        viewModel.presentInitiator()
     }
     
 }

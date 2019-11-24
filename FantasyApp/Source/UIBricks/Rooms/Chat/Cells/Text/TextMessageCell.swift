@@ -27,8 +27,11 @@ class TextBubleView: UIView {
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
             avatarImageView.layer.cornerRadius = 15
+            avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tapOnAvatar")))
         }
     }
+    
+    var viewModel: ChatViewModel!
     
     var message: Room.Message! {
         didSet {
@@ -44,6 +47,11 @@ class TextBubleView: UIView {
         super.layoutSubviews()
         text.textContainerInset = .zero
         text.textContainer.lineFragmentPadding = 0
+    }
+    
+    
+    @objc func tapOnAvatar() {
+        viewModel.presentPeer()
     }
     
 }
@@ -77,10 +85,6 @@ class OwnMessageCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        textBubble.message = message
-        
-        textBubble.message = message
         
         let rect = CGRect(x: bounds.size.width - MessageStyle.sideInset - position.totalWidth,
                           y: MessageStyle.upDownInset,

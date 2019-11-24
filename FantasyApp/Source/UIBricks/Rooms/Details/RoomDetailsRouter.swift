@@ -23,6 +23,7 @@ struct RoomDetailsRouter: MVVM_Router {
         viewController.viewModel = RoomSettingsViewModel(router: router, room: room)
         
         let container = FantasyNavigationController(rootViewController: viewController)
+        container.modalPresentationStyle = .overFullScreen
         
         owner.present(container, animated: true, completion: nil)
         

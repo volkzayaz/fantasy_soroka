@@ -31,6 +31,9 @@ extension ChatViewModel {
                 if room.isWaitingForMyResponse {
                     items.append(.acceptReject)
                 }
+                else if !room.isDraftRoom {
+                    items.append(.roomCreated)
+                }
                 
                 items.append(.connection(requestTypes))
                 
@@ -54,6 +57,10 @@ extension ChatViewModel {
         return room.value.peer.userSlice
     }
     
+    var slicePair: (left: Room.Participant.UserSlice, right: Room.Participant.UserSlice) {
+        return (room.value.me.userSlice, room.value.peer.userSlice)
+    }
+    
     mutating func position(for message: Room.Message) -> MessageCellPosition {
         if let x = heightCache[message.text] {
             return x
@@ -67,12 +74,14 @@ extension ChatViewModel {
         case message(Room.Message)
         case connection(Set<ConnectionRequestType>)
         case acceptReject
+        case roomCreated
         
         var identity: String {
             switch self {
             case .message(let m): return m.objectId ?? ""
             case .connection(_): return "connection"
             case .acceptReject: return "acceptReject"
+            case .roomCreated: return "roomCreated"
             }
         }
     }
@@ -157,6 +166,30 @@ extension ChatViewModel {
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { _ in
                 self.router.owner.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
+        
+    }
+    
+    func presentInitiator() {
+        
+        UserManager.getUser(id: initiator.id)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { user in
+                self.router.showUser(user: user)
+            })
+            .disposed(by: bag)
+            
+    }
+    
+    func presentPeer() {
+        
+        UserManager.getUser(id: room.value.peer.userSlice.id)
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { user in
+                self.router.showUser(user: user)
             })
             .disposed(by: bag)
         

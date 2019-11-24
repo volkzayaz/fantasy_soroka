@@ -2,7 +2,7 @@
 //  RoomsRouter.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 10.09.2019.
+//  Created by Vlad Soroka on 10.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -20,6 +20,10 @@ struct RoomsRouter: MVVM_Router {
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
                              page: .chat)
+        
+//        let vc = ChatViewController(tableViewStyle: .plain)!
+//        vc.viewModel = ChatViewModel(router: .init(owner: vc), room: SharedRoomResource(value: room))
+        
         owner.navigationController?.pushViewController(vc, animated: true)
     }
 

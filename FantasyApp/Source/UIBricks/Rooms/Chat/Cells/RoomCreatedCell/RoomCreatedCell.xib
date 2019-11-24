@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomCreatedCell" rowHeight="136" id="VJl-Mu-sub" customClass="RoomCreatedCell" customModule="FantasyApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="136"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VJl-Mu-sub" id="8el-ua-p4X">
+                <rect key="frame" x="0.0" y="0.0" width="447" height="136"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="3bt-z3-nA2">
+                        <rect key="frame" x="95" y="58" width="257.5" height="20"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="-4" translatesAutoresizingMaskIntoConstraints="NO" id="sra-58-HCg">
+                                <rect key="frame" x="0.0" y="0.0" width="36" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MwH-Bb-Z9T">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="7C7-e0-H2b"/>
+                                            <constraint firstAttribute="height" constant="20" id="qyY-qw-dJ7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Axf-CL-067">
+                                        <rect key="frame" x="16" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Eip-aE-SAu"/>
+                                            <constraint firstAttribute="width" constant="20" id="TTf-Oz-hxq"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome! The Room is created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHG-pz-oFJ">
+                                <rect key="frame" x="42" y="0.0" width="215.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.68627450980392157" green="0.70588235294117641" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3bt-z3-nA2" firstAttribute="centerX" secondItem="8el-ua-p4X" secondAttribute="centerX" id="kIr-hb-CoQ"/>
+                    <constraint firstItem="3bt-z3-nA2" firstAttribute="centerY" secondItem="8el-ua-p4X" secondAttribute="centerY" id="mDD-yF-9p6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="leftImageView" destination="MwH-Bb-Z9T" id="fdr-18-rep"/>
+                <outlet property="rightImageView" destination="Axf-CL-067" id="FhM-xV-XYA"/>
+            </connections>
+            <point key="canvasLocation" x="74.637681159420296" y="102.45535714285714"/>
+        </tableViewCell>
+    </objects>
+</document>

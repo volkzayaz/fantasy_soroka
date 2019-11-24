@@ -32,6 +32,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             
                 cell.position = self.viewModel.position(for: message)
                 cell.message = message
+                cell.textBubble.viewModel = self.viewModel
                 
                 return cell
             }
@@ -42,6 +43,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             cell.position = self.viewModel.position(for: message)
             cell.message = message
             cell.avatar = self.viewModel.peerAvatar
+            cell.textBubble.viewModel = self.viewModel
             
             return cell
             
@@ -52,6 +54,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             
             cell.setConnections(x)
             cell.set(user: self.viewModel.initiator)
+            cell.viewModel = self.viewModel
             
             return cell
             
@@ -60,6 +63,16 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             cell.transform = tv.transform
             
             cell.viewModel = self.viewModel
+            
+            return cell
+         
+        case .roomCreated:
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.roomCreatedCell, for: ip)!
+            cell.transform = tv.transform
+            
+            let x = self.viewModel.slicePair
+            
+            cell.setParticipants(left: x.left, right: x.right)
             
             return cell
             
@@ -74,6 +87,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         tv.register(R.nib.otherMessageCell)
         tv.register(R.nib.chatHeaderCell)
         tv.register(R.nib.acceptRejectCell)
+        tv.register(R.nib.roomCreatedCell)
         
         tv.dataSource = nil
         tv.separatorStyle = .none
@@ -106,9 +120,12 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
     }
-
-    override func didPressRightButton(_ sender: (Any)?) {
     
+    override func didPressRightButton(_ sender: (Any)?) {
+
+//        tv.contentInset = .zero
+//        tv.scrollIndicatorInsets = .zero
+        
         let message = textView.text!
         
         viewModel.sendMessage(text: message)
@@ -129,6 +146,9 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             
         case .acceptReject:
             return 121
+            
+        case .roomCreated:
+            return 35
             
         }
         

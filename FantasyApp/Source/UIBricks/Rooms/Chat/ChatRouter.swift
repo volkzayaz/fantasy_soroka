@@ -14,4 +14,13 @@ struct ChatRouter: MVVM_Router {
     init(owner: ChatViewController) {
         self.owner = owner
     }
+    
+    func showUser(user: User) {
+        
+        let vc = R.storyboard.user.userProfileViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), user: user, bottomActionsAvailable: false)
+        owner.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
 }

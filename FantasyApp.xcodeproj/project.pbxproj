@@ -168,6 +168,8 @@
 		73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */; };
 		73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */; };
 		73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F212340B05B002C3F8E /* AlbumRequest.swift */; };
+		73E13B6B238AE0FD00CE1B06 /* RoomCreatedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73E13B6A238AE0FD00CE1B06 /* RoomCreatedCell.xib */; };
+		73E13B6D238AE1AA00CE1B06 /* RoomCreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E13B6C238AE1AA00CE1B06 /* RoomCreatedCell.swift */; };
 		73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */; };
 		73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011522EC3A3400F767BF /* RegistrationRouter.swift */; };
 		73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011622EC3A3400F767BF /* RegistrationViewController.swift */; };
@@ -531,6 +533,8 @@
 		73C96F1B2340A653002C3F8E /* MyFantasiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesViewController.swift; sourceTree = "<group>"; };
 		73C96F1C2340A653002C3F8E /* MyFantasiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFantasiesViewModel.swift; sourceTree = "<group>"; };
 		73C96F212340B05B002C3F8E /* AlbumRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequest.swift; sourceTree = "<group>"; };
+		73E13B6A238AE0FD00CE1B06 /* RoomCreatedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomCreatedCell.xib; sourceTree = "<group>"; };
+		73E13B6C238AE1AA00CE1B06 /* RoomCreatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreatedCell.swift; sourceTree = "<group>"; };
 		73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocation.swift; sourceTree = "<group>"; };
 		73E6011522EC3A3400F767BF /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		73E6011622EC3A3400F767BF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -1224,6 +1228,7 @@
 		73432ABA238A6BFD008CF2F1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				73E13B69238AE0E900CE1B06 /* RoomCreatedCell */,
 				73E13B68238ADC2000CE1B06 /* Text */,
 				73F80CD32361EC1200212FCF /* AcceptReject */,
 				73432AD3238AC7E1008CF2F1 /* ChatHeader */,
@@ -1660,6 +1665,15 @@
 				73432ACD238A9859008CF2F1 /* OtherMessageCell.xib */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		73E13B69238AE0E900CE1B06 /* RoomCreatedCell */ = {
+			isa = PBXGroup;
+			children = (
+				73E13B6A238AE0FD00CE1B06 /* RoomCreatedCell.xib */,
+				73E13B6C238AE1AA00CE1B06 /* RoomCreatedCell.swift */,
+			);
+			path = RoomCreatedCell;
 			sourceTree = "<group>";
 		};
 		73E4C39E22F088E500BB71B4 /* Actors */ = {
@@ -2294,6 +2308,7 @@
 			files = (
 				B73774BA23647FF600A353CC /* NoUsersCarouselView.xib in Resources */,
 				B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */,
+				73E13B6B238AE0FD00CE1B06 /* RoomCreatedCell.xib in Resources */,
 				843B648B234EB0B000E5639B /* FantasyApp.entitlements in Resources */,
 				841681E122E9AE6E00FA9455 /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				7312B0D222D74FB200DB0F36 /* Appfile in Resources */,
@@ -2498,6 +2513,7 @@
 				7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */,
 				7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */,
 				844A3ED522EE9C9B00E06665 /* TextField.swift in Sources */,
+				73E13B6D238AE1AA00CE1B06 /* RoomCreatedCell.swift in Sources */,
 				841681F022E9B36C00FA9455 /* UIColor+Style.swift in Sources */,
 				7379ED09230975A800E661A7 /* Analytics.swift in Sources */,
 				7322311123040DB6009DD37F /* FantasyDeckRouter.swift in Sources */,
