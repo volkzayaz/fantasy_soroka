@@ -11,38 +11,10 @@ import RxSwift
 import RxCocoa
 import StoreKit
 
-extension ProfileSettingsViewModel {
-    
-    /** Reference binding drivers that are going to be used in the corresponding view
-
-     var text: Driver<String> {
-     return privateTextVar.asDriver().notNil()
-     }
-
-     */
-    
-}
-
 struct ProfileSettingsViewModel : MVVM_ViewModel {
-    
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
-    
+
     init(router: ProfileSettingsRouter) {
         self.router = router
-        
-        /**
-         
-         Proceed with initialization here
-         
-         */
-        
-        /////progress indicator
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in

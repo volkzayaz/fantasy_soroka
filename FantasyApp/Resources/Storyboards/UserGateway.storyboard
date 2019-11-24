@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Bold.otf">
+            <string>SFProText-Bold</string>
+        </array>
         <array key="SF-Pro-Text-Medium.otf">
             <string>SFProText-Medium</string>
         </array>
@@ -531,40 +534,81 @@
             </objects>
             <point key="canvasLocation" x="5857" y="-589"/>
         </scene>
-        <!--My Fantasies View Controller-->
+        <!--MyFantasiesViewController-->
         <scene sceneID="861-Up-pdV">
             <objects>
-                <viewController storyboardIdentifier="MyFantasiesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Miz-86-bjN" customClass="MyFantasiesViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyFantasiesViewController" title="MyFantasiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Miz-86-bjN" customClass="MyFantasiesViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gqR-7v-zCg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f34-9n-xvW">
-                                <rect key="frame" x="343" y="20" width="57" height="30"/>
-                                <state key="normal" title="Settings"/>
-                                <connections>
-                                    <segue destination="DE1-Yr-yPc" kind="show" id="o2b-yJ-hmj"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGw-wQ-mmq">
-                                <rect key="frame" x="0.0" y="57" width="414" height="751"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
                                     <segue destination="Mw7-hf-ZpF" kind="embed" identifier="embedLikedCards" id="FvT-wh-DBe"/>
                                 </connections>
                             </containerView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6hm-Cj-hDw">
+                                <rect key="frame" x="125" y="52" width="164" height="33"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaF-aI-cWK" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="79" height="33"/>
+                                        <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Cards">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cardsAction:" destination="Miz-86-bjN" eventType="touchUpInside" id="IwM-ah-73m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNR-l0-QTv" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="85" y="0.0" width="79" height="33"/>
+                                        <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Collections">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="collectionAction:" destination="Miz-86-bjN" eventType="touchUpInside" id="TpY-eh-Itc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="bqw-TP-yhC"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="6hm-Cj-hDw" firstAttribute="top" secondItem="sjB-xp-Cxa" secondAttribute="top" constant="8" id="6HI-jA-1LS"/>
                             <constraint firstItem="dGw-wQ-mmq" firstAttribute="trailing" secondItem="sjB-xp-Cxa" secondAttribute="trailing" id="6U5-Me-2cA"/>
+                            <constraint firstItem="dGw-wQ-mmq" firstAttribute="top" secondItem="6hm-Cj-hDw" secondAttribute="bottom" constant="16" id="BAh-oi-yPR"/>
+                            <constraint firstItem="6hm-Cj-hDw" firstAttribute="centerX" secondItem="gqR-7v-zCg" secondAttribute="centerX" id="BWU-7e-m59"/>
                             <constraint firstItem="dGw-wQ-mmq" firstAttribute="bottom" secondItem="sjB-xp-Cxa" secondAttribute="bottom" id="HsM-rc-oEV"/>
-                            <constraint firstItem="dGw-wQ-mmq" firstAttribute="top" secondItem="f34-9n-xvW" secondAttribute="bottom" constant="7" id="VIJ-1K-WPv"/>
-                            <constraint firstItem="sjB-xp-Cxa" firstAttribute="trailing" secondItem="f34-9n-xvW" secondAttribute="trailing" constant="14" id="es1-ny-evk"/>
-                            <constraint firstItem="f34-9n-xvW" firstAttribute="top" secondItem="sjB-xp-Cxa" secondAttribute="top" constant="20" id="icn-tJ-UyX"/>
+                            <constraint firstItem="dGw-wQ-mmq" firstAttribute="top" secondItem="sjB-xp-Cxa" secondAttribute="top" id="aab-u4-sqj"/>
                             <constraint firstItem="dGw-wQ-mmq" firstAttribute="leading" secondItem="sjB-xp-Cxa" secondAttribute="leading" id="unY-oX-4lJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sjB-xp-Cxa"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BAh-oi-yPR"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="lda-qw-oew"/>
+                    <navigationItem key="navigationItem" title="My Fantasy" id="NJj-zj-fal">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="8BJ-XN-d4F" customClass="FantasyTextItem" customModule="FantasyApp" customModuleProvider="target">
+                            <connections>
+                                <segue destination="oXI-uq-QgF" kind="show" id="Xal-ct-f2M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cardsButton" destination="UaF-aI-cWK" id="9MU-uy-gb4"/>
+                        <outlet property="collectionButton" destination="HNR-l0-QTv" id="QnZ-3B-bOA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="or3-NT-wui" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -817,44 +861,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MR6-mZ-eb4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4346.376811594203" y="1810.7142857142856"/>
-        </scene>
-        <!--My Fantasies Settings View Controller-->
-        <scene sceneID="Ntw-in-wEg">
-            <objects>
-                <viewController storyboardIdentifier="MyFantasiesSettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DE1-Yr-yPc" customClass="MyFantasiesSettingsViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YNY-Hn-WKr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4e-YN-NTW">
-                                <rect key="frame" x="20" y="20" width="111" height="30"/>
-                                <state key="normal" title="Reaction history"/>
-                                <connections>
-                                    <segue destination="hhw-En-1aU" kind="show" id="pKi-h4-vHb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAA-E3-wqC">
-                                <rect key="frame" x="20" y="58" width="55" height="30"/>
-                                <state key="normal" title="Blocked"/>
-                                <connections>
-                                    <segue destination="17z-Js-cWD" kind="show" identifier="blockedFantasiesSegue" id="bSB-68-kS3"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="wAA-E3-wqC" firstAttribute="leading" secondItem="cjV-s4-dgw" secondAttribute="leading" constant="20" id="Kg8-ws-smG"/>
-                            <constraint firstItem="e4e-YN-NTW" firstAttribute="top" secondItem="cjV-s4-dgw" secondAttribute="top" constant="20" id="bwo-Ff-azf"/>
-                            <constraint firstItem="e4e-YN-NTW" firstAttribute="leading" secondItem="cjV-s4-dgw" secondAttribute="leading" constant="20" id="j1f-S4-bfI"/>
-                            <constraint firstItem="wAA-E3-wqC" firstAttribute="top" secondItem="e4e-YN-NTW" secondAttribute="bottom" constant="8" id="sdw-4L-bTv"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="cjV-s4-dgw"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ML1-x5-2I5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lyo-zf-l3K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5316" y="335"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="t2J-4N-MqJ">
@@ -1149,16 +1155,6 @@
             </objects>
             <point key="canvasLocation" x="3492.753623188406" y="1141.7410714285713"/>
         </scene>
-        <!--FantasyListViewController-->
-        <scene sceneID="NAe-rR-htX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FantasyCard" referencedIdentifier="FantasyListViewController" id="17z-Js-cWD" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="agU-uN-hca"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="usT-YV-8lR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5316" y="737"/>
-        </scene>
         <!--Monetization View Controller-->
         <scene sceneID="xAi-bl-jta">
             <objects>
@@ -1308,48 +1304,105 @@
             </objects>
             <point key="canvasLocation" x="5289.8550724637689" y="1141.7410714285713"/>
         </scene>
-        <!--My Fantasies Reaction History View Controller-->
+        <!--Reaction History-->
         <scene sceneID="gyZ-A1-8x0">
             <objects>
-                <viewController storyboardIdentifier="MyFantasiesReactionHistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hhw-En-1aU" customClass="MyFantasiesReactionHistoryViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyFantasiesReactionHistoryViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hhw-En-1aU" customClass="MyFantasiesReactionHistoryViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DRf-to-2Z6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjH-aq-oxU">
-                                <rect key="frame" x="0.0" y="58" width="414" height="750"/>
+                                <rect key="frame" x="0.0" y="101" width="414" height="761"/>
                                 <color key="backgroundColor" name="activityIndicatorColor"/>
                                 <connections>
                                     <segue destination="ZPH-kY-gJD" kind="embed" identifier="embedFantasyList" id="sqa-Wz-1NI"/>
                                 </connections>
                             </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PXK-dm-9Me">
-                                <rect key="frame" x="139.5" y="20" width="135" height="32"/>
-                                <segments>
-                                    <segment title="Liked"/>
-                                    <segment title="Disliked"/>
-                                </segments>
-                            </segmentedControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VmS-Gt-gG1">
+                                <rect key="frame" x="148" y="52" width="118" height="33"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaF-RK-PoI" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="33"/>
+                                        <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Liked">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="likedAction:" destination="hhw-En-1aU" eventType="touchUpInside" id="rhQ-aw-i1H"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CG-6K-QQY" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="62" y="0.0" width="56" height="33"/>
+                                        <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Disliked">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dislikedAction:" destination="hhw-En-1aU" eventType="touchUpInside" id="4Zv-M6-AzZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="bMd-ZB-SGY"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PXK-dm-9Me" firstAttribute="centerX" secondItem="TSx-5c-Z2f" secondAttribute="centerX" id="0uj-7d-FlG"/>
+                            <constraint firstItem="pjH-aq-oxU" firstAttribute="top" secondItem="VmS-Gt-gG1" secondAttribute="bottom" constant="16" id="7uk-Jk-fRo"/>
                             <constraint firstItem="pjH-aq-oxU" firstAttribute="bottom" secondItem="TSx-5c-Z2f" secondAttribute="bottom" id="8Ql-31-ZEX"/>
-                            <constraint firstItem="PXK-dm-9Me" firstAttribute="top" secondItem="TSx-5c-Z2f" secondAttribute="top" constant="20" id="8dh-WQ-2Qj"/>
+                            <constraint firstItem="VmS-Gt-gG1" firstAttribute="centerX" secondItem="DRf-to-2Z6" secondAttribute="centerX" id="9Qz-0s-2Cl"/>
+                            <constraint firstItem="VmS-Gt-gG1" firstAttribute="top" secondItem="TSx-5c-Z2f" secondAttribute="top" constant="8" id="CIK-um-3Xb"/>
                             <constraint firstItem="pjH-aq-oxU" firstAttribute="leading" secondItem="TSx-5c-Z2f" secondAttribute="leading" id="Lew-ys-DXq"/>
                             <constraint firstItem="pjH-aq-oxU" firstAttribute="trailing" secondItem="TSx-5c-Z2f" secondAttribute="trailing" id="hQt-nq-NNp"/>
-                            <constraint firstItem="pjH-aq-oxU" firstAttribute="top" secondItem="PXK-dm-9Me" secondAttribute="bottom" constant="7" id="q4Y-Sq-x6I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TSx-5c-Z2f"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LvG-9v-Tqw"/>
+                    <navigationItem key="navigationItem" title="Reaction History" id="LvG-9v-Tqw"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="PXK-dm-9Me" id="WMa-yg-VqD"/>
+                        <outlet property="dislikedButton" destination="8CG-6K-QQY" id="pSS-z0-eAb"/>
+                        <outlet property="likedButton" destination="OaF-RK-PoI" id="UJl-c3-PSy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjQ-bX-FSd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6097" y="335"/>
+            <point key="canvasLocation" x="5951" y="335"/>
+        </scene>
+        <!--MyFantasiesBlockedViewController-->
+        <scene sceneID="Vbz-QG-aEt">
+            <objects>
+                <viewController storyboardIdentifier="MyFantasiesBlockedViewController" title="MyFantasiesBlockedViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FT7-gP-b6g" customClass="MyFantasiesBlockedViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3m8-Qo-IXh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecc-Ju-P2Y">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" name="activityIndicatorColor"/>
+                                <connections>
+                                    <segue destination="ZPH-kY-gJD" kind="embed" identifier="embedFantasyList" id="TB4-RF-Fev"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="trailing" secondItem="jax-v5-ZSl" secondAttribute="trailing" id="1iv-u6-u7z"/>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="bottom" secondItem="jax-v5-ZSl" secondAttribute="bottom" id="7tX-sS-bRX"/>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="top" secondItem="jax-v5-ZSl" secondAttribute="top" id="l1G-x1-PBw"/>
+                            <constraint firstItem="ecc-Ju-P2Y" firstAttribute="leading" secondItem="jax-v5-ZSl" secondAttribute="leading" id="sIw-Ow-TXq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jax-v5-ZSl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Blocked" id="w1h-S0-CaO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Vi-QA-9f4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6687" y="334"/>
         </scene>
         <!--FantasyListViewController-->
         <scene sceneID="XLF-NU-JxF">
@@ -1357,7 +1410,7 @@
                 <viewControllerPlaceholder storyboardName="FantasyCard" referencedIdentifier="FantasyListViewController" id="ZPH-kY-gJD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8TP-bt-Mdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6096" y="737"/>
+            <point key="canvasLocation" x="6310" y="737"/>
         </scene>
         <!--Fantasy Pink Navigation Controller-->
         <scene sceneID="V8A-tH-2me">
@@ -1496,8 +1549,281 @@
             </objects>
             <point key="canvasLocation" x="5175" y="-380"/>
         </scene>
+        <!--MyFantasiesSettingsViewController-->
+        <scene sceneID="wvM-aw-YYH">
+            <objects>
+                <viewController storyboardIdentifier="MyFantasiesSettingsViewController" title="MyFantasiesSettingsViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oXI-uq-QgF" customClass="MyFantasiesSettingsViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oVM-ho-IEz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPb-A5-mUv">
+                                <rect key="frame" x="0.0" y="44" width="414" height="906"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="REy-tb-c5v">
+                                        <rect key="frame" x="16" y="20" width="382" height="200.5"/>
+                                        <subviews>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="LeK-dn-epy">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="90"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vkb-4V-43e">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
+                                                        <color key="textColor" name="textBlackColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrf-t2-XWT" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="13" width="382" height="77"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-VN-PAS">
+                                                                <rect key="frame" x="346" y="0.0" width="20" height="77"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="fSg-BG-dqS"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="OIQ-RQ-mgV">
+                                                                <rect key="frame" x="10" y="11" width="35" height="55"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="35" id="Vdf-cs-P6S"/>
+                                                                    <constraint firstAttribute="height" constant="55" id="rFP-lR-h51"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bJ0-Qf-Ggd">
+                                                                <rect key="frame" x="60" y="16.5" width="286" height="44"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lik-V2-g1O">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="286" height="22"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="22" id="Slb-hl-PuZ"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="15"/>
+                                                                        <color key="textColor" name="textBlackColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Collection, 136 Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OQ-Kf-emy">
+                                                                        <rect key="frame" x="0.0" y="22" width="286" height="22"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="22" id="ehl-4v-sJY"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                        <color key="textColor" name="textLightGrayColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstItem="bJ0-Qf-Ggd" firstAttribute="leading" secondItem="OIQ-RQ-mgV" secondAttribute="trailing" constant="15" id="2SC-Zy-c0u"/>
+                                                            <constraint firstItem="bmq-VN-PAS" firstAttribute="top" secondItem="Nrf-t2-XWT" secondAttribute="top" id="4OV-Ij-yVc"/>
+                                                            <constraint firstItem="OIQ-RQ-mgV" firstAttribute="centerY" secondItem="Nrf-t2-XWT" secondAttribute="centerY" id="BKq-7c-Dp7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="bmq-VN-PAS" secondAttribute="trailing" constant="16" id="Btv-wW-37k"/>
+                                                            <constraint firstItem="OIQ-RQ-mgV" firstAttribute="leading" secondItem="Nrf-t2-XWT" secondAttribute="leading" constant="10" id="J4B-ig-9ZW"/>
+                                                            <constraint firstItem="bJ0-Qf-Ggd" firstAttribute="centerY" secondItem="OIQ-RQ-mgV" secondAttribute="centerY" id="T9G-Ft-TCy"/>
+                                                            <constraint firstAttribute="bottom" secondItem="bmq-VN-PAS" secondAttribute="bottom" id="YfR-p5-JkI"/>
+                                                            <constraint firstItem="bmq-VN-PAS" firstAttribute="leading" secondItem="bJ0-Qf-Ggd" secondAttribute="trailing" id="aDo-IQ-Pzv"/>
+                                                            <constraint firstAttribute="height" constant="77" id="brj-ze-BVd"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="wyI-9A-cqp" appends="YES" id="dIV-iF-W4s"/>
+                                                        </connections>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7oU-XA-FBc">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="200.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-rt-JEc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="200.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnG-xq-qlT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
+                                                                <color key="textColor" name="textBlackColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaA-bA-4zw" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="42.5" width="382" height="158"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LvO-xo-9z4">
+                                                                        <rect key="frame" x="15" y="15" width="352" height="44"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuo-Gp-AJ0">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="22"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="22" id="uU3-Av-M5t"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="15"/>
+                                                                                <color key="textColor" name="textBlackColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Collection, 136 Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
+                                                                                <rect key="frame" x="0.0" y="22" width="352" height="22"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="22" id="64n-Y1-av6"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                                <color key="textColor" name="textLightGrayColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpT-xs-RZ7">
+                                                                        <rect key="frame" x="15" y="69" width="352" height="0.5"/>
+                                                                        <color key="backgroundColor" name="textLightGrayColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="0.5" id="3E6-CU-HGc"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snx-oS-LBu">
+                                                                        <rect key="frame" x="15" y="69.5" width="352" height="44"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reaction History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rF7-F1-juG">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="44"/>
+                                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                                <color key="textColor" name="textBlackColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="fkp-oq-OTO">
+                                                                                <rect key="frame" x="332" y="0.0" width="20" height="44"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="20" id="otf-6J-jga"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <gestureRecognizers/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="fkp-oq-OTO" secondAttribute="trailing" id="Ffd-eg-235"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="rF7-F1-juG" secondAttribute="bottom" id="LbK-vB-dFY"/>
+                                                                            <constraint firstItem="rF7-F1-juG" firstAttribute="top" secondItem="snx-oS-LBu" secondAttribute="top" id="OQR-wo-Lbl"/>
+                                                                            <constraint firstItem="rF7-F1-juG" firstAttribute="leading" secondItem="snx-oS-LBu" secondAttribute="leading" id="RVz-sp-Mmb"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="rF7-F1-juG" secondAttribute="trailing" id="Ry3-eO-hLu"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="fkp-oq-OTO" secondAttribute="bottom" id="a6J-er-hfr"/>
+                                                                            <constraint firstItem="fkp-oq-OTO" firstAttribute="top" secondItem="snx-oS-LBu" secondAttribute="top" id="aNp-Nq-sv2"/>
+                                                                            <constraint firstAttribute="height" constant="44" id="kol-2S-kvv"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="fxf-O9-try" appends="YES" id="Ahr-V7-N6k"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-kA-4PQ">
+                                                                        <rect key="frame" x="15" y="113.5" width="352" height="0.5"/>
+                                                                        <color key="backgroundColor" name="textLightGrayColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="0.5" id="Js6-e6-MEF"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnt-K8-2wA">
+                                                                        <rect key="frame" x="15" y="114" width="352" height="44"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boK-DU-ltf">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="44"/>
+                                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                                <color key="textColor" name="textBlackColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="CRK-4M-Inx">
+                                                                                <rect key="frame" x="332" y="0.0" width="20" height="44"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="20" id="Mw3-1b-f1E"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <gestureRecognizers/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="boK-DU-ltf" firstAttribute="leading" secondItem="hnt-K8-2wA" secondAttribute="leading" id="7Ss-ON-FEs"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="boK-DU-ltf" secondAttribute="bottom" id="8Na-Dw-JLu"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="CRK-4M-Inx" secondAttribute="bottom" id="D0M-nL-BZ8"/>
+                                                                            <constraint firstItem="CRK-4M-Inx" firstAttribute="top" secondItem="hnt-K8-2wA" secondAttribute="top" id="NLe-hs-Zd9"/>
+                                                                            <constraint firstItem="boK-DU-ltf" firstAttribute="top" secondItem="hnt-K8-2wA" secondAttribute="top" id="bEY-dm-C6m"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="CRK-4M-Inx" secondAttribute="trailing" id="fQh-LK-hfa"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="boK-DU-ltf" secondAttribute="trailing" id="l0f-Yq-jjf"/>
+                                                                            <constraint firstAttribute="height" constant="44" id="lhT-cV-2Ee"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="s84-t9-zVy" appends="YES" id="2l7-8h-eR4"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="LvO-xo-9z4" firstAttribute="leading" secondItem="MaA-bA-4zw" secondAttribute="leading" constant="15" id="5FO-5X-LJA"/>
+                                                                    <constraint firstItem="hnt-K8-2wA" firstAttribute="trailing" secondItem="LvO-xo-9z4" secondAttribute="trailing" id="7YW-c7-jYI"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="hnt-K8-2wA" secondAttribute="bottom" id="D17-ou-W8c"/>
+                                                                    <constraint firstItem="fpO-kA-4PQ" firstAttribute="top" secondItem="snx-oS-LBu" secondAttribute="bottom" id="Hqj-ye-xkD"/>
+                                                                    <constraint firstItem="snx-oS-LBu" firstAttribute="top" secondItem="OpT-xs-RZ7" secondAttribute="bottom" id="JrA-rG-MUq"/>
+                                                                    <constraint firstItem="fpO-kA-4PQ" firstAttribute="trailing" secondItem="OpT-xs-RZ7" secondAttribute="trailing" id="M3d-09-6qq"/>
+                                                                    <constraint firstItem="hnt-K8-2wA" firstAttribute="leading" secondItem="LvO-xo-9z4" secondAttribute="leading" id="MnJ-YL-qqU"/>
+                                                                    <constraint firstItem="LvO-xo-9z4" firstAttribute="top" secondItem="MaA-bA-4zw" secondAttribute="top" constant="15" id="Wau-uk-grb"/>
+                                                                    <constraint firstItem="snx-oS-LBu" firstAttribute="trailing" secondItem="LvO-xo-9z4" secondAttribute="trailing" id="ZDH-a9-Kmi"/>
+                                                                    <constraint firstItem="hnt-K8-2wA" firstAttribute="top" secondItem="fpO-kA-4PQ" secondAttribute="bottom" id="b4u-7w-2eW"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="OpT-xs-RZ7" secondAttribute="trailing" constant="15" id="fDW-FS-Szd"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="LvO-xo-9z4" secondAttribute="trailing" constant="15" id="gwK-qO-RMO"/>
+                                                                    <constraint firstItem="fpO-kA-4PQ" firstAttribute="leading" secondItem="OpT-xs-RZ7" secondAttribute="leading" id="jv8-C1-A1G"/>
+                                                                    <constraint firstItem="OpT-xs-RZ7" firstAttribute="leading" secondItem="MaA-bA-4zw" secondAttribute="leading" constant="15" id="q2b-f8-tNr"/>
+                                                                    <constraint firstItem="OpT-xs-RZ7" firstAttribute="top" secondItem="LvO-xo-9z4" secondAttribute="bottom" constant="10" id="smm-vV-w63"/>
+                                                                    <constraint firstItem="snx-oS-LBu" firstAttribute="leading" secondItem="LvO-xo-9z4" secondAttribute="leading" id="us3-W0-vsp"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="REy-tb-c5v" secondAttribute="bottom" constant="92" id="LwE-fI-PZa"/>
+                                    <constraint firstAttribute="trailing" secondItem="REy-tb-c5v" secondAttribute="trailing" id="NMC-yY-hBG"/>
+                                    <constraint firstItem="REy-tb-c5v" firstAttribute="top" secondItem="JPb-A5-mUv" secondAttribute="top" constant="20" id="dzP-gJ-ifw"/>
+                                    <constraint firstItem="REy-tb-c5v" firstAttribute="leading" secondItem="JPb-A5-mUv" secondAttribute="leading" constant="16" id="t3N-7Q-Jra"/>
+                                    <constraint firstItem="REy-tb-c5v" firstAttribute="width" secondItem="JPb-A5-mUv" secondAttribute="width" constant="-32" id="yzT-ej-4Af"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="72"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Dkl-E7-Zh4" firstAttribute="trailing" secondItem="JPb-A5-mUv" secondAttribute="trailing" id="1FT-Bt-2tT"/>
+                            <constraint firstItem="JPb-A5-mUv" firstAttribute="top" secondItem="Dkl-E7-Zh4" secondAttribute="top" id="CQi-tb-hhH"/>
+                            <constraint firstAttribute="bottom" secondItem="JPb-A5-mUv" secondAttribute="bottom" id="I20-ni-Lyp"/>
+                            <constraint firstItem="JPb-A5-mUv" firstAttribute="leading" secondItem="Dkl-E7-Zh4" secondAttribute="leading" id="NdS-sD-Ykf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dkl-E7-Zh4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Fantasies Settings" id="YkQ-5F-XW3"/>
+                    <size key="freeformSize" width="414" height="950"/>
+                    <connections>
+                        <outlet property="collectionImageView" destination="OIQ-RQ-mgV" id="zwP-dW-eAd"/>
+                        <outlet property="scrollView" destination="JPb-A5-mUv" id="uCn-sK-aZ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SxX-uS-dcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fxf-O9-try">
+                    <connections>
+                        <segue destination="hhw-En-1aU" kind="show" id="vrU-Eo-8No"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="s84-t9-zVy">
+                    <connections>
+                        <segue destination="FT7-gP-b6g" kind="show" id="ck9-Lu-REO"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="wyI-9A-cqp">
+                    <connections>
+                        <action selector="collectionTap:" destination="oXI-uq-QgF" id="nQG-Nj-1ty"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="5195.652173913044" y="351.5625"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="cellAccessoryImage" width="10" height="10"/>
         <image name="footer" width="128" height="181"/>
         <image name="gatewayFantasies" width="53" height="42"/>
         <image name="gatewayFeedback" width="55" height="39"/>
@@ -1507,6 +1833,7 @@
         <image name="gatewayTeleport" width="48" height="43"/>
         <image name="gloriousUnicorn" width="343" height="546"/>
         <image name="indicator" width="10" height="14"/>
+        <image name="launchBackground" width="375" height="667"/>
         <image name="profileLock" width="20" height="20"/>
         <image name="secret" width="80" height="80"/>
         <namedColor name="activityIndicatorColor">
@@ -1515,8 +1842,14 @@
         <namedColor name="textBlackColor">
             <color red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="textLightGrayColor">
+            <color red="0.68627450980392157" green="0.70588235294117652" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textPinkColor">
             <color red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sqa-Wz-1NI"/>
+    </inferredMetricsTieBreakers>
 </document>

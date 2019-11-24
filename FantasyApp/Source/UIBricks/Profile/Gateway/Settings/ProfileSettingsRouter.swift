@@ -24,21 +24,5 @@ struct ProfileSettingsRouter : MVVM_Router {
     func showSafari(for url: URL) {
         let vc = SFSafariViewController(url: url, configuration: SFSafariViewController.Configuration())
         owner.present(vc, animated: true, completion: nil)
-//        owner.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    /**
-     
-     func showNextModule(with data: String) {
-     
-        let nextViewController = owner.storyboard.instantiate()
-        let nextRouter = NextRouter(owner: nextViewController)
-        let nextViewModel = NextViewModel(router: nextRuter, data: data)
-        
-        nextViewController.viewModel = nextViewModel
-        owner.present(nextViewController)
-     }
-     
-     */
-    
 }

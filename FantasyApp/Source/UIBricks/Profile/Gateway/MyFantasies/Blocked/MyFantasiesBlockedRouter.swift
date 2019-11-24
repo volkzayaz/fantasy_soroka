@@ -8,10 +8,10 @@
 
 import UIKit
 
-struct MyFantasiesReactionHistoryRouter : MVVM_Router {
+struct MyFantasiesBlockedRouter : MVVM_Router {
     
-    unowned private(set) var owner: MyFantasiesReactionHistoryViewController
-    init(owner: MyFantasiesReactionHistoryViewController) {
+    unowned private(set) var owner: MyFantasiesBlockedViewController
+    init(owner: MyFantasiesBlockedViewController) {
         self.owner = owner
     }
 }

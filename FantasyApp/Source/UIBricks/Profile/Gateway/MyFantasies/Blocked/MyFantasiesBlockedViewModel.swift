@@ -11,9 +11,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct MyFantasiesReactionHistoryViewModel : MVVM_ViewModel {
+struct MyFantasiesBlockedViewModel : MVVM_ViewModel {
 
-    init(router: MyFantasiesReactionHistoryRouter) {
+    init(router: MyFantasiesBlockedRouter) {
         self.router = router
         
         indicator.asDriver()
@@ -23,7 +23,7 @@ struct MyFantasiesReactionHistoryViewModel : MVVM_ViewModel {
             .disposed(by: bag)
     }
     
-    let router: MyFantasiesReactionHistoryRouter
+    let router: MyFantasiesBlockedRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     

@@ -27,6 +27,10 @@ extension FantasyListViewModel {
         }
         
     }
+
+    var cardNumberText: Driver<NSAttributedString> {
+        return cardNumberTextVar.asDriver().notNil()
+    }
     
 }
 
@@ -35,7 +39,8 @@ struct FantasyListViewModel : MVVM_ViewModel {
     fileprivate let provider: Driver<[Fantasy.Card]>
     fileprivate let protectPolicy: Driver<Bool>
     fileprivate let detailsProvider: (Fantasy.Card) -> FantasyDetailProvider
-    
+    fileprivate let cardNumberTextVar = BehaviorRelay<NSAttributedString?>(value: nil)
+
     let title: String
     
     let animator = FantasyDetailsTransitionAnimator()
@@ -59,7 +64,18 @@ struct FantasyListViewModel : MVVM_ViewModel {
         self.detailsProvider = detailsProvider
         self.protectPolicy = protectPolicy
         self.title = title
-        
+
+        cardsProvider
+            .map {$0.count }
+            .map({ (count) -> NSAttributedString in
+                let text = "\(count) \(count > 1 ? "cards" : "card")"
+                let att = NSMutableAttributedString(string: text)
+                att.addAttributes([.foregroundColor : R.color.textPinkColor()!], range: text.nsRange(from: text.range(of: "\(count)")!))
+                return att
+            })
+            .drive(cardNumberTextVar)
+            .disposed(by: bag)
+
         /////progress indicator
         
         indicator.asDriver()

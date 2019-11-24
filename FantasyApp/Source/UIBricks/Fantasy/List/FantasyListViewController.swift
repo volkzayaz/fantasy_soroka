@@ -17,8 +17,17 @@ class FantasyListViewController: UIViewController, MVVM_View {
     var viewModel: FantasyListViewModel!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionTitleLabel: UILabel!
-    
+    @IBOutlet weak var collectionTitleLabel: UILabel! {
+        didSet {
+            collectionTitleLabel.text = ""
+        }
+    }
+    @IBOutlet weak var collectionNumberLabel: UILabel! {
+        didSet {
+            collectionNumberLabel.text = ""
+        }
+    }
+
     lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ProtectedEntity<Fantasy.Card>>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
         let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyListCell,
@@ -37,7 +46,11 @@ class FantasyListViewController: UIViewController, MVVM_View {
         //view.backgroundColor = .red
         
         collectionTitleLabel.text = viewModel.title
-        
+
+        viewModel.cardNumberText
+            .drive(collectionNumberLabel.rx.attributedText)
+            .disposed(by: rx.disposeBag)
+
         viewModel.dataSource
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
@@ -62,25 +75,6 @@ class FantasyListViewController: UIViewController, MVVM_View {
     }
     
 }
-
-private extension FantasyListViewController {
-    
-    /**
-     *  Describe any IBActions here
-     *
-     
-     @IBAction func performAction(_ sender: Any) {
-     
-     }
-    
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     }
- 
-    */
-    
-}
-
 
 extension FantasyListViewController: UIViewControllerTransitioningDelegate {
     
