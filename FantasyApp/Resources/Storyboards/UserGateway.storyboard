@@ -598,7 +598,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="My Fantasy" id="NJj-zj-fal">
+                    <navigationItem key="navigationItem" title="My Fantasies" id="NJj-zj-fal">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="8BJ-XN-d4F" customClass="FantasyTextItem" customModule="FantasyApp" customModuleProvider="target">
                             <connections>
                                 <segue destination="oXI-uq-QgF" kind="show" id="Xal-ct-f2M"/>
@@ -1649,7 +1649,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LvO-xo-9z4">
                                                                         <rect key="frame" x="15" y="15" width="352" height="44"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuo-Gp-AJ0">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuo-Gp-AJ0">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="352" height="22"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="22" id="uU3-Av-M5t"/>
@@ -1658,7 +1658,7 @@
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Collection, 136 Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See Liked, Disliked, and Blocked Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
                                                                                 <rect key="frame" x="0.0" y="22" width="352" height="22"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="22" id="64n-Y1-av6"/>
