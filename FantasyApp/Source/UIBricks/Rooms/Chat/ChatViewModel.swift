@@ -78,7 +78,7 @@ extension ChatViewModel {
         
         var identity: String {
             switch self {
-            case .message(let m): return m.objectId ?? ""
+            case .message(let m): return m.identity
             case .connection(_): return "connection"
             case .acceptReject: return "acceptReject"
             case .roomCreated: return "roomCreated"
@@ -102,10 +102,11 @@ struct ChatViewModel: MVVM_ViewModel {
         RoomManager.getMessagesInRoom(room.value.id, offset: 0)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
+            .map { $0.reversed() }
             .flatMap { mes -> Observable<[Room.Message]> in
 
-                return RoomManager.subscribeTo(rooms: [room.value])
-                    .scan(mes, accumulator: { (res, messageInRoom) in [messageInRoom.0] + res })
+                return RoomManager.subscribeToMessages(in: room.value)
+                    .scan(mes, accumulator: { (res, message) in [message] + res })
                     .startWith(mes)
             }
             .bind(to: mes)
@@ -129,7 +130,7 @@ extension ChatViewModel {
         let message = Room.Message(text: text,
                                    from: User.current!,
                                    in: room.value)
-                                   
+        
         RoomManager.sendMessage(message, to: room.value)
             .subscribe({ event in
             // TODO: error handling

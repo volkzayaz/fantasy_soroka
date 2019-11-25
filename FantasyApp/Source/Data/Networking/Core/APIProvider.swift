@@ -59,7 +59,7 @@ open class APIProvider: MoyaProvider<MultiTarget>, APIProviderType {
 
 extension APIProvider {
     public static let `default` = APIProvider(plugins: [
-        NetworkLoggerPlugin(verbose: true)
+        //NetworkLoggerPlugin(verbose: true)
     ])
 }
 
@@ -74,23 +74,13 @@ extension Moya.Response {
         let value: T
     }
     
-    private static let dateFormatter: ISO8601DateFormatter = {
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        return dateFormatter
-    }()
-    
     func mapFantasyResponse<T: Decodable>() throws -> T {
         
         ///We just want to represent Empty data response
         /// as Optional<T>
         ///while Moya's default behaviour in such case is Error
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom { (decoder) -> Date in
-            let string = try (try decoder.singleValueContainer()).decode(String.self)
-            return Moya.Response.dateFormatter.date(from: string)!
-        }
+        let decoder = fantasyDecoder
         
         guard data.count > 0 else {
             
@@ -119,3 +109,18 @@ extension Moya.Response {
 
 ///TODO: this should really be just Void
 struct EmptyResponse: Codable {}
+
+private let fantasyDateFormatter: ISO8601DateFormatter = {
+    let dateFormatter = ISO8601DateFormatter()
+    dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return dateFormatter
+}()
+
+let fantasyDecoder: JSONDecoder = {
+    let x = JSONDecoder()
+    x.dateDecodingStrategy = .custom { (decoder) -> Date in
+        let string = try (try decoder.singleValueContainer()).decode(String.self)
+        return fantasyDateFormatter.date(from: string)!
+    }
+    return x
+}()

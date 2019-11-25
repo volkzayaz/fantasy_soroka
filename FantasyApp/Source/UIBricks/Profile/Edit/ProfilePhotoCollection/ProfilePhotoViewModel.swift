@@ -42,7 +42,7 @@ extension ProfilePhotoViewModel {
             }
             .flatMapLatest { (maybeURL) in
                 
-                guard let x = maybeURL?.thumbnailURL else { return .just(nil) }
+                guard let x = maybeURL?.url else { return .just(nil) }
                 
                 return ImageRetreiver.imageForURLWithoutProgress(url: x)
             }

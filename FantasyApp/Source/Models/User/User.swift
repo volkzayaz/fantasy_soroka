@@ -180,6 +180,7 @@ struct Community: Codable, Equatable, ParsePresentable {
     var objectId: String?
     let name: String
     let country: String
+    let sortOrder: Int
     
     init() {
         fatalError("Do not use. Swift freaks out for some reason without this init. Process is terminated with Bad_Access if you try creating Value ")

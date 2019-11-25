@@ -8,13 +8,12 @@
 
 import UIKit
 import Branch
-import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         Configuration.setup(launchOptions: launchOptions)

@@ -8,56 +8,48 @@
 
 import Foundation
 import RxDataSources
-import Parse
+import SocketIO
 
 extension Room {
-
-    class Message: Equatable, IdentifiableType, ParsePresentable {
+    
+    struct Message: Equatable, IdentifiableType, Codable, SocketData {
         static func == (lhs: Room.Message, rhs: Room.Message) -> Bool {
-            return lhs.objectId == rhs.objectId && lhs.roomId == rhs.roomId
-        }
-
-        static var className: String {
-            return "SinchMessage"
+            return lhs.messageId == rhs.messageId && lhs.roomId == rhs.roomId
         }
 
         var identity: String {
-            return objectId!
+            return messageId
         }
 
         enum CodingKeys: String, CodingKey {
-            case senderDisplayName
-            case senderId
+            case messageId
             case text
-            case objectId
+            case senderId
             case roomId
-            case isRead = "isReaded"
-            case createdAt
+            case createdAt = "timestamp"
         }
 
-        var objectId: String?
-        
-        let senderDisplayName: String
+        var messageId: String
         let text: String
-        
         let senderId: String
         let roomId: String
-        
-        var isRead: Bool = false
-        
         let createdAt: Date
 
         init(text: String,
              from user: User,
              in room: Room) {
-             
-            self.senderDisplayName = user.bio.name
-            self.senderId = user.id
+            
+            messageId = UUID().uuidString + "fresh message"
+            senderId = user.id
             self.text = text
             
-            self.roomId = room.id
+            roomId = room.id
             
-            self.createdAt = Date()
+            createdAt = Date()
+        }
+        
+        func socketRepresentation() -> SocketData {
+            return ["text": text, "roomId": roomId]
         }
         
         var isOwn: Bool {
@@ -80,6 +72,8 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     let freezeStatus: FreezeStatus?
     var participants: [Participant]
 
+    var lastMessage: Message? { return nil }
+    
     var peer: Participant {
         return participants.first(where: { $0.userId != User.current?.id })!
     }

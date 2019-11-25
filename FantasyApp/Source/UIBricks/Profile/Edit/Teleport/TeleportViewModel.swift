@@ -31,7 +31,7 @@ extension TeleportViewModel {
                             
                             AnimatableSectionModel(model: "available locations",
                                                    items: data
-                                                    .sorted { $0.value.count > $1.value.count }
+                                                    .sorted { $0.value.first!.sortOrder < $1.value.first!.sortOrder }
                                                     .map { Data.country($0.key, $0.value.count) }
                                 )
                                 

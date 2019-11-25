@@ -31,8 +31,8 @@ extension Date {
 
     private static let hoursAndMinutesDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.dateFormat = "HH:MM"
+        //dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "HH:mm"
         return dateFormatter
     }()
 
