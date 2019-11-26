@@ -127,11 +127,9 @@ extension ChatViewModel {
     
     func sendMessage(text: String) {
         
-        let message = Room.Message(text: text,
-                                   from: User.current!,
-                                   in: room.value)
-        
-        RoomManager.sendMessage(message, to: room.value)
+        RoomManager.sendMessage(.init(text: text,
+                                      from: User.current!,
+                                      in: room.value))
             .subscribe({ event in
             // TODO: error handling
             }).disposed(by: bag)

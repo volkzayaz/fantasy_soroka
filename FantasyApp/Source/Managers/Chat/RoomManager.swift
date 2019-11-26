@@ -24,7 +24,7 @@ enum RoomManager {}
 
 extension RoomManager {
     
-    static func sendMessage(_ message: Room.Message, to room: Room) -> Single<Void> {
+    static func sendMessage(_ message: Room.MessageInRoom) -> Single<Void> {
         return webSocket.send(message: message)
             .map { _ in }
     }
@@ -94,7 +94,7 @@ extension RoomManager {
         return webSocket.didReceiveMessage
             .filter { access[$0.roomId] != nil }
             .map { message in
-                result[access[message.roomId]!] = message
+                result[access[message.roomId]!] = message.raw
                 return result
             }
             .startWith(result)
@@ -103,6 +103,7 @@ extension RoomManager {
 
     static func subscribeToMessages(in room: Room) -> Observable<Room.Message> {
         return webSocket.didReceiveMessage(in: room)
+            .map { $0.raw }
     }
 
 }

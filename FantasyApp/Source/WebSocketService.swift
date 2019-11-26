@@ -18,11 +18,11 @@ class WebSocketService {
     /////Interface
     /////----------
     
-    var didReceiveMessage: Observable<Room.Message> {
+    var didReceiveMessage: Observable<Room.MessageInRoom> {
         return Observable.merge(messageProxy.notNil(), subscribe(onEvent: "message"))
     }
     
-    func didReceiveMessage(in room: RoomIdentifier) -> Observable<Room.Message> {
+    func didReceiveMessage(in room: RoomIdentifier) -> Observable<Room.MessageInRoom> {
         return didReceiveMessage
             .filter { $0.roomId == room.id }
     }
@@ -30,8 +30,8 @@ class WebSocketService {
     ///rule of sending own message to self via socket is in this proxy
     ///in reality you should just use socket as transport
     ///shame on you lazy ass =)
-    private let messageProxy = BehaviorSubject<Room.Message?>(value: nil)
-    func send(message: Room.Message) -> Single<Room.Message> {
+    private let messageProxy = BehaviorSubject<Room.MessageInRoom?>(value: nil)
+    func send(message: Room.MessageInRoom) -> Single<Room.MessageInRoom> {
         
         struct Confirmation: Codable {
             let isSuccess: Bool
@@ -39,14 +39,14 @@ class WebSocketService {
         }
         
         return send(event: "message", with: message)
-            .map { (x: Confirmation) -> Room.Message in
+            .map { (x: Confirmation) -> Room.MessageInRoom in
                 
                 guard let id = x.messageId else {
                     throw FantasyError.generic(description: "Unsuccessfull message sent \(message)")
                 }
                 
                 var mes = message
-                mes.messageId = id
+                mes.raw.messageId = id
                 return mes
             }
             .do(onSuccess: { x in
@@ -60,7 +60,6 @@ class WebSocketService {
     /////----------
     
     private var socketManager: SocketManager!
-    private static let url = "https://apidev.fantasyapp.com/socket.io/"
     
     init() {
         
@@ -70,24 +69,17 @@ class WebSocketService {
             .drive(onNext: { (userExist) in
         
                 guard let t = PFUser.current()?.sessionToken else {
-                    self.socketManager.defaultSocket.disconnect()
+                    self.socketManager = nil
+                    
                     return
                 }
                 
-                self.socketManager = SocketManager(socketURL: URL(string: WebSocketService.url)!,
-                                                   config: [ .log(true), .connectParams(["token": t]) ])
+                self.socketManager = SocketManager(socketURL: URL(string: ServerURL.socket)!,
+                                                   config: [ .log(true), .forceNew(true), .connectParams(["token": t]) ])
                 
                 self.socketManager.connect()
-        
-                //DefaultSocketLogger.Logger.log = true
-                
-//                self.socketManager.defaultSocket.onAny { (evet) in
-//                    print(evet)
-//                }
                 
             })
-        
-            didConnect.subscribe()
                 
     }
 

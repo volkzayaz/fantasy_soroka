@@ -38,7 +38,7 @@ extension Configuration {
             
             config.applicationId = "416c8bf3a253b72a312835f0e4c1d20d23c22eb5"
             config.clientKey = "8c48e9b378ba8a6f1616ff78c3536c9f35437225"
-            config.server = "https://apidev.fantasyapp.com/parseserver"
+            config.server = ServerURL.parse
         })
 
         // MARK: - Facebook
@@ -91,5 +91,16 @@ extension Configuration {
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }
+    
+}
+
+enum ServerURL {}
+extension ServerURL {
+    
+    static let base = "https://dev.fantasyapp.com"
+    
+    static let parse = base + "/parseserver"
+    static let api = base + "/api/v1"
+    static let socket = base + "/socket.io/"
     
 }

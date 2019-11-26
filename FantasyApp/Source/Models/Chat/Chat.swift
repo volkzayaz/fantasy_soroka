@@ -12,9 +12,9 @@ import SocketIO
 
 extension Room {
     
-    struct Message: Equatable, IdentifiableType, Codable, SocketData {
+    struct Message: Equatable, IdentifiableType, Codable {
         static func == (lhs: Room.Message, rhs: Room.Message) -> Bool {
-            return lhs.messageId == rhs.messageId && lhs.roomId == rhs.roomId
+            return lhs.messageId == rhs.messageId && lhs.text == rhs.text
         }
 
         var identity: String {
@@ -25,37 +25,51 @@ extension Room {
             case messageId
             case text
             case senderId
-            case roomId
             case createdAt = "timestamp"
         }
 
         var messageId: String
         let text: String
         let senderId: String
-        let roomId: String
         let createdAt: Date
-
-        init(text: String,
-             from user: User,
-             in room: Room) {
-            
-            messageId = UUID().uuidString + "fresh message"
-            senderId = user.id
-            self.text = text
-            
-            roomId = room.id
-            
-            createdAt = Date()
-        }
-        
-        func socketRepresentation() -> SocketData {
-            return ["text": text, "roomId": roomId]
-        }
         
         var isOwn: Bool {
             return senderId == User.current?.id
         }
     }
+    
+    struct MessageInRoom: Codable, SocketData {
+        var raw: Message
+        let roomId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case roomId
+        }
+        
+        init(from decoder: Decoder) throws {
+            raw = try .init(from: decoder)
+            roomId = try (try decoder.container(keyedBy: CodingKeys.self))
+                .decode(String.self, forKey: .roomId)
+        }
+        
+        init(text: String,
+             from user: User,
+             in room: Room) {
+            
+            raw = Message(messageId: UUID().uuidString + "fresh message",
+                          text: text,
+                          senderId: user.id,
+                          createdAt: Date())
+            
+            roomId = room.id
+        }
+        
+        func socketRepresentation() -> SocketData {
+            return ["text": raw.text, "roomId": roomId]
+        }
+        
+    }
+    
 }
 
 struct RoomRef: Equatable {
@@ -72,7 +86,7 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     let freezeStatus: FreezeStatus?
     var participants: [Participant]
 
-    var lastMessage: Message? { return nil }
+    let lastMessage: Message?
     
     var peer: Participant {
         return participants.first(where: { $0.userId != User.current?.id })!

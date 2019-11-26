@@ -18,7 +18,7 @@ public protocol APIResource: TargetType, ReactiveCompatible {
 extension APIResource {
     // TODO: Env properties in .json config or plist?
     var baseURL: URL {
-        return URL(string: "https://apidev.fantasyapp.com/api/v1")!
+        return URL(string: ServerURL.api )!
     }
 
     var sampleData: Data {
