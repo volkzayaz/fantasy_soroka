@@ -43,7 +43,7 @@ extension TeleportViewModel {
                                                    items: [Data.location(currentLocationName)]),
                             
                             AnimatableSectionModel(model: "available locations",
-                                                   items: (data[fromCountry] ?? []).map { Data.community($0) })
+                            items: (data[fromCountry] ?? []).sorted(by: { $0.name < $1.name }).map { Data.community($0) })
                         ]
                         
                     }
