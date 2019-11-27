@@ -334,6 +334,7 @@
 		B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BE954F2360B48E003432D4 /* SwipeView.swift */; };
 		B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BE95512360B4B3003432D4 /* SwipeView.xib */; };
 		B7C24875236380A90097BD2A /* SearchLocationRestrictedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C24874236380A90097BD2A /* SearchLocationRestrictedViewController.swift */; };
+		B7D68496238E68D100E99993 /* GatewayProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D68495238E68D100E99993 /* GatewayProfileButton.swift */; };
 		B7E2E538237C849000234A88 /* DiscoverProfileRouterTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E2E537237C848F00234A88 /* DiscoverProfileRouterTransitionAnimator.swift */; };
 		B7E4E3FA237E9E8600D8D9CA /* FantasyDeckTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4E3F8237E9E8600D8D9CA /* FantasyDeckTutorialView.swift */; };
 		B7E4E3FB237E9E8600D8D9CA /* FantasyDeckTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E4E3F9237E9E8600D8D9CA /* FantasyDeckTutorialView.xib */; };
@@ -703,6 +704,7 @@
 		B7BE954F2360B48E003432D4 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		B7BE95512360B4B3003432D4 /* SwipeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeView.xib; sourceTree = "<group>"; };
 		B7C24874236380A90097BD2A /* SearchLocationRestrictedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationRestrictedViewController.swift; sourceTree = "<group>"; };
+		B7D68495238E68D100E99993 /* GatewayProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayProfileButton.swift; sourceTree = "<group>"; };
 		B7E2E537237C848F00234A88 /* DiscoverProfileRouterTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverProfileRouterTransitionAnimator.swift; sourceTree = "<group>"; };
 		B7E4E3F8237E9E8600D8D9CA /* FantasyDeckTutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyDeckTutorialView.swift; sourceTree = "<group>"; };
 		B7E4E3F9237E9E8600D8D9CA /* FantasyDeckTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FantasyDeckTutorialView.xib; sourceTree = "<group>"; };
@@ -1831,6 +1833,7 @@
 				B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */,
 				B78893EE2364B18A00079C89 /* PinkButton.swift */,
 				846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */,
+				B7D68495238E68D100E99993 /* GatewayProfileButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2508,6 +2511,7 @@
 			files = (
 				73432ACA238A8E7C008CF2F1 /* TextMessageCell.swift in Sources */,
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
+				B7D68496238E68D100E99993 /* GatewayProfileButton.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
 				733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */,
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
