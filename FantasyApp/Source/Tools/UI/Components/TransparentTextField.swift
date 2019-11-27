@@ -54,7 +54,7 @@ class TransparentTextField: UITextField {
     }
 
     @objc func clear() {
-        guard self.delegate?.textFieldShouldClear?(self) ?? false else { return }
+        guard self.delegate?.textFieldShouldClear?(self) ?? true else { return }
 
         self.text = ""
 
