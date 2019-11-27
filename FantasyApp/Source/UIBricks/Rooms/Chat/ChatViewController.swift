@@ -119,6 +119,12 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         viewModel.dataSource
             .drive(tv.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
+     
+        let i = UIImageView()
+        let l = UILabel()
+        
+        let x = UIStackView()
+        x.axis = .horizontal
         
     }
     

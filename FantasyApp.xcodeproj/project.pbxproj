@@ -540,6 +540,7 @@
 		73E13B6C238AE1AA00CE1B06 /* RoomCreatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreatedCell.swift; sourceTree = "<group>"; };
 		73E13B6F238BF56800CE1B06 /* WebSocketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketService.swift; sourceTree = "<group>"; };
 		73E13B72238C30AD00CE1B06 /* MesagesIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MesagesIn.swift; sourceTree = "<group>"; };
+		73E13B7F238E731100CE1B06 /* Kyiv.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Kyiv.gpx; sourceTree = "<group>"; };
 		73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocation.swift; sourceTree = "<group>"; };
 		73E6011522EC3A3400F767BF /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		73E6011622EC3A3400F767BF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -881,6 +882,7 @@
 				7312B0B022D744EA00DB0F36 /* Strings */,
 				7312B0AF22D744DF00DB0F36 /* Storyboards */,
 				7312B06222D7403300DB0F36 /* Assets.xcassets */,
+				73E13B7F238E731100CE1B06 /* Kyiv.gpx */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

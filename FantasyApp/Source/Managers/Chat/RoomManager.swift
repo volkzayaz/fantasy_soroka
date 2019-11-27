@@ -24,7 +24,13 @@ enum RoomManager {}
 
 extension RoomManager {
     
-    static func sendMessage(_ message: Room.MessageInRoom) -> Single<Void> {
+    static func sendMessage(_ message: Room.MessageInRoom, in room: Room) -> Single<Void> {
+        
+        if let id = room.peer.userId {
+            PushManager.sendPush(to: id,
+                                 text: "\(User.current!.bio.name) sent you a message" )
+        }
+        
         return webSocket.send(message: message)
             .map { _ in }
     }

@@ -71,10 +71,6 @@ struct RoomsViewModel: MVVM_ViewModel {
             }
             .subscribe(onNext: { (rooms: [Room]) in
                 
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                    router.roomTapped(rooms.first!)
-//                }
-                
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
             })
             .disposed(by: bag)

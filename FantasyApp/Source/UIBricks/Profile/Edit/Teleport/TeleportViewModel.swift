@@ -20,7 +20,8 @@ extension TeleportViewModel {
             .flatMapLatest { mode in
                 
                 return Driver.combineLatest(self.data.asDriver(),
-                                            self.currentLocationName.asDriver()) { ($0, $1) }
+                                            self.currentLocationName.asDriver())
+                                            //appState.changesOf { $0.currentUser?.community.changePolicy } { ($0, $1) }
                 .map { (data, currentLocationName) in
                     
                     switch mode {
@@ -137,11 +138,13 @@ extension TeleportViewModel {
             
         case .community(let community):
             x = User.Community(value: community,
-                               changePolicy: .teleport)
+                               changePolicy: .teleport,
+                               lastKnownLocation: User.current?.community.lastKnownLocation)
         
         case .location:
             x = User.Community(value: nil,
-                               changePolicy: .locationBased)
+                               changePolicy: .locationBased,
+                               lastKnownLocation: User.current?.community.lastKnownLocation)
             
         }
         

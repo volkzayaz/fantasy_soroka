@@ -23,7 +23,7 @@ extension DiscoveryManager {
                     .whereKey("objectId", notContainedIn: noGo)
                     .whereKey("belongsTo", equalTo: filter.community.pfObject)
                     .whereKey("gender", equalTo: filter.filter.gender.rawValue)
-                    .whereKey("sexuality", equalTo: filter.filter.sexuality.rawValue)
+                    //.whereKey("sexuality", equalTo: filter.filter.sexuality.rawValue)
                     .rx.fetchAllObjects()
             }
             .map { x in

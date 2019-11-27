@@ -86,10 +86,11 @@ struct PickCommunityViewModel {
             .notNil()
             .drive(onNext: { [weak m = self.manager] (policy) in
                 
-                switch policy {
-                case .teleport:      m?.stopUpdatingLocation()
-                case .locationBased: m?.startUpdatingLocation()// startMonitoringSignificantLocationChanges()
-                }
+                m?.startUpdatingLocation()
+//                switch policy {
+//                case .teleport:      m?.stopUpdatingLocation()
+//                case .locationBased: m?.startUpdatingLocation()// startMonitoringSignificantLocationChanges()
+//                }
                 
             })
             .disposed(by: bag)
@@ -97,12 +98,12 @@ struct PickCommunityViewModel {
         ////Actions
         
         //CLLocation -> Community
-        appState.changesOf { $0.currentUser?.community }
+        appState.changesOf { $0.currentUser?.community.changePolicy }
             .asObservable()
             .notNil()
-            .flatMapLatest { [unowned m = self.manager] community -> Observable<CLLocation> in
+            .flatMapLatest { [unowned m = self.manager] changePolicy -> Observable<CLLocation> in
                 
-                guard case .locationBased = community.changePolicy else {
+                guard case .locationBased = changePolicy else {
                     return .never()
                 }
                 

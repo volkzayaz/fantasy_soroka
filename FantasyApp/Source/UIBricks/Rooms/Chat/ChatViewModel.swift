@@ -129,7 +129,7 @@ extension ChatViewModel {
         
         RoomManager.sendMessage(.init(text: text,
                                       from: User.current!,
-                                      in: room.value))
+                                      in: room.value), in: room.value)
             .subscribe({ event in
             // TODO: error handling
             }).disposed(by: bag)
