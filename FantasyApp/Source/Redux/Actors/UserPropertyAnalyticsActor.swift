@@ -45,7 +45,9 @@ class UserPropertyActor {
             })
             .disposed(by: bag)
         
-        appState.changesOf { $0.rooms }.drive(onNext: { rooms in
+        appState.changesOf { $0.rooms }
+            .notNil()
+            .drive(onNext: { rooms in
             AnalyticsReporter.default.setValue(rooms.count, forProperty: .chatRoomsQuantity)
         }).disposed(by: bag)
     }

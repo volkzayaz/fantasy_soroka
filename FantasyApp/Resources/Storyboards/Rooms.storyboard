@@ -24,7 +24,7 @@
                                 <rect key="frame" x="20" y="72" width="374" height="672"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step1" translatesAutoresizingMaskIntoConstraints="NO" id="TA2-Vf-YFP">
-                                        <rect key="frame" x="0.0" y="0.0" width="201" height="224"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="243" height="224"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step2" translatesAutoresizingMaskIntoConstraints="NO" id="MXF-TW-dk9">
                                         <rect key="frame" x="0.0" y="224" width="332" height="224"/>
@@ -70,12 +70,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2nB-EF-Vix">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="2nB-EF-Vix">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" red="0.96865862607955933" green="0.96865814924240112" blue="0.97676330804824829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" rowHeight="80" id="TOV-RH-5J6" customClass="RoomTableViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TOV-RH-5J6" id="i03-ai-cg4">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -775,7 +775,7 @@
         <image name="GotItTutorial" width="254" height="52"/>
         <image name="Onboarding_Background" width="375" height="667"/>
         <image name="indicator" width="10" height="14"/>
-        <image name="tutorial_step1" width="201" height="89"/>
+        <image name="tutorial_step1" width="243" height="87"/>
         <image name="tutorial_step2" width="332" height="88"/>
         <image name="tutorial_step3" width="288" height="87"/>
     </resources>

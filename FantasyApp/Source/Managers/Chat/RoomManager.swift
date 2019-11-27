@@ -46,7 +46,7 @@ extension RoomManager {
 
     static func getRoom(id: String) -> Single<Room> {
         
-        if let room = appStateSlice.rooms.first(where: { $0.id == id }) {
+        if let room = appStateSlice.rooms?.first(where: { $0.id == id }) {
             return .just(room)
         }
         

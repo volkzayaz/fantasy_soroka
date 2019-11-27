@@ -22,13 +22,13 @@ struct UpdateNotificationSettingsIn: ActionCreator {
                     return initialState
                 }
                 
-                guard let i = initialState.rooms.firstIndex(where: { $0.id == self.room.id }) else {
+                guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.room.id }) else {
                     fatalErrorInDebug("Can't update settings of room that is not in the rooms list")
                     return initialState
                 }
                 
                 var state = initialState
-                state.rooms[i] = self.room
+                state.rooms?[i] = self.room
                 return state
             }
             .catchErrorJustReturn(initialState)

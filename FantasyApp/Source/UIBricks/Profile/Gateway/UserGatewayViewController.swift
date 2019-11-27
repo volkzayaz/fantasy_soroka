@@ -11,6 +11,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import SafariServices
+
 class UserGatewayViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: UserGatewayViewModel! = .init(router: .init(owner: self))
@@ -50,13 +52,21 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     override var prefersNavigationBarHidden: Bool {
         return true
     }
-    
+ 
 }
 
 extension UserGatewayViewController {
     
     @IBAction func teleport(_ sender: Any) {
         viewModel.teleport()
+    }
+    
+    @IBAction func tapFeedback(_ sender: Any) {
+        
+        let vc = SFSafariViewController(url: URL(string:"http://feedback.fantasyapp.com/")!)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true, completion: nil)
+        
     }
     
 }

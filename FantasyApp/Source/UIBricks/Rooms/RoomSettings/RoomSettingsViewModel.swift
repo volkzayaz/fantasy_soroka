@@ -94,7 +94,7 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         
             self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
             buo?.title = "Fantasy"
-            buo?.contentDescription = "Join my room!"
+            buo?.contentDescription = "Hey! We have things to swipe together 🍓Check out Fantasy Match!"
             buo?.publiclyIndex = true
             buo?.locallyIndex = true
             buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
@@ -153,7 +153,7 @@ extension RoomSettingsViewModel {
     func shareLink() {
         
         buo?.showShareSheet(with: BranchLinkProperties(),
-                            andShareText: "Join my room!",
+                            andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
                             from: router.owner) { (activityType, completed) in
 
         }

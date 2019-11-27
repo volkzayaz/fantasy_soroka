@@ -281,6 +281,7 @@
                                                         <connections>
                                                             <outlet property="image" destination="S42-zt-uDk" id="FUl-dV-rzV"/>
                                                             <outlet property="label" destination="ZJ5-ad-ciL" id="ay5-nz-o3m"/>
+                                                            <outletCollection property="gestureRecognizers" destination="dvE-vc-il0" appends="YES" id="tph-TH-dkb"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brd-bt-QlB" customClass="GatewayProfileButton" customModule="FantasyApp" customModuleProvider="target">
@@ -439,6 +440,11 @@
                 <tapGestureRecognizer id="czC-r1-VWi" userLabel="Tap Teleport">
                     <connections>
                         <action selector="teleport:" destination="PbI-uz-Pww" id="pCO-cm-oTX"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="dvE-vc-il0" userLabel="Tap feedback">
+                    <connections>
+                        <action selector="tapFeedback:" destination="PbI-uz-Pww" id="ySF-JY-e3Y"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

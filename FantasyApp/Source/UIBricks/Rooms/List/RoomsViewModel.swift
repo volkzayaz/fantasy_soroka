@@ -15,6 +15,7 @@ extension RoomsViewModel {
     
     var dataSource: Driver<[AnimatableSectionModel<String, RoomCell>]> {
         return appState.changesOf { $0.rooms }
+            .notNil()
             .flatMapLatest { rooms -> Driver<[RoomCell]> in
                 
                 return RoomManager.latestMessageIn(rooms: rooms)

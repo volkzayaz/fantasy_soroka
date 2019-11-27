@@ -47,7 +47,7 @@ var appState: Driver<AppState> {
 struct AppState: Equatable {
     var currentUser: User?
     
-    var rooms: [Room] = []
+    var rooms: [Room]? = nil
     var reloadRoomsTriggerBecauseOfComplexFreezeLogic = false
     
     var fantasiesDeck: FantasiesDeck

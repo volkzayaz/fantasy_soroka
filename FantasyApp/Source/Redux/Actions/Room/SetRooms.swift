@@ -36,13 +36,13 @@ struct DeleteRoom: Action {
     
     func perform(initialState: AppState) -> AppState {
         
-        guard let i = initialState.rooms.firstIndex(where: { $0.id == room.id }) else {
+        guard let i = initialState.rooms?.firstIndex(where: { $0.id == room.id }) else {
             fatalErrorInDebug("Can't update settings of room that is not in the rooms list")
             return initialState
         }
         
         var state = initialState
-        state.rooms.remove(at: i)
+        state.rooms?.remove(at: i)
         return state
         
     }
