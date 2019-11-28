@@ -28,7 +28,7 @@ target 'FantasyApp' do
     pod 'Amplitude-iOS', '~> 4.8'
 
     #deep linking
-    pod 'Branch'
+    pod 'Branch', '~> 0.29.3'
     
     #ui
     pod 'SnapKit', '~> 4.2'
