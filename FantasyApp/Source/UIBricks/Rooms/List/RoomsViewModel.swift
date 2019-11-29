@@ -92,8 +92,23 @@ extension RoomsViewModel {
     func roomTapped(roomCell: RoomCell) {
         
         guard roomCell.room.freezeStatus != .frozen else {
-            return router.messagePresentable.presentMessage(R.string.localizable.roomFrozenRoomUnreachable())
+            
+            return router.owner.showDialog(title: "Error",
+                                           text: R.string.localizable.roomFrozenRoomUnreachable(),
+                                           style: .alert, negativeText: "No, thanks",
+                                           negativeCallback: nil,
+                                           positiveText: "Upgrade") { [weak h = router.owner,
+                                                                       unowned i = indicator] in
+                                            
+                                            PurchaseManager.purhcaseSubscription()
+                                                .trackView(viewIndicator: i)
+                                                .silentCatch(handler: h)
+                                                .subscribe()
+                                                .disposed(by: self.bag)
+                                            
+            }
         }
+            
         
         router.roomTapped(roomCell.room)
     }

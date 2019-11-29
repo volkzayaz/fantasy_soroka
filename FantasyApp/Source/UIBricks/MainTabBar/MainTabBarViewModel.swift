@@ -45,6 +45,11 @@ extension MainTabBarViewModel {
         
     }
  
+    var unsupportedVersionTrigger: Driver<Bool> {
+        return unsupportedVersionTriggerVar.asDriver()
+            .filter { $0 }
+    }
+    
     var profileTabImage: Driver<UIImage> {
         return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL ?? "" }
             .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0) }
@@ -59,6 +64,7 @@ extension MainTabBarViewModel {
 struct MainTabBarViewModel : MVVM_ViewModel {
 
     private let locationManager = CLLocationManager()
+    private let unsupportedVersionTriggerVar = BehaviorRelay(value: false)
     
     init(router: MainTabBarRouter) {
         self.router = router
@@ -76,8 +82,9 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         
         FetchConfig().rx.request
             .retry(2)
-            .subscribe(onSuccess: { (config) in
+            .subscribe(onSuccess: { [weak t = unsupportedVersionTriggerVar] (config) in
                 immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId)
+                t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
             })
             .disposed(by: bag)
         

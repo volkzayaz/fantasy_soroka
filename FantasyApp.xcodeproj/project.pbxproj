@@ -65,6 +65,7 @@
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
 		733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA052239161DE00EF7922 /* FetchConfig.swift */; };
 		733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */; };
+		733CA05723916B1000EF7922 /* UpdateSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA05623916B1000EF7922 /* UpdateSubscription.swift */; };
 		733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BA236452A0004EC466 /* InviteDeeplink.swift */; };
 		733F41C02364AE88004EC466 /* MonetizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BF2364AE88004EC466 /* MonetizationViewController.swift */; };
 		733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */; };
@@ -435,6 +436,7 @@
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
 		733CA052239161DE00EF7922 /* FetchConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchConfig.swift; sourceTree = "<group>"; };
 		733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableNonPersistentState.swift; sourceTree = "<group>"; };
+		733CA05623916B1000EF7922 /* UpdateSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscription.swift; sourceTree = "<group>"; };
 		733F41BA236452A0004EC466 /* InviteDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDeeplink.swift; sourceTree = "<group>"; };
 		733F41BF2364AE88004EC466 /* MonetizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetizationViewController.swift; sourceTree = "<group>"; };
 		733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiSlider+Drag.swift"; sourceTree = "<group>"; };
@@ -1187,6 +1189,7 @@
 				7361F3232333D88C007B84B0 /* UpdateSearchPreferences.swift */,
 				73EBBA7B234E2DC300B79121 /* UpdateNotificationSettings.swift */,
 				7384B0F52384363100869016 /* UpdateLastKnownLocation.swift */,
+				733CA05623916B1000EF7922 /* UpdateSubscription.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2530,6 +2533,7 @@
 				844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */,
 				7384B0F62384363100869016 /* UpdateLastKnownLocation.swift in Sources */,
 				B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */,
+				733CA05723916B1000EF7922 /* UpdateSubscription.swift in Sources */,
 				7312B09B22D7422100DB0F36 /* NSObject+Rx.swift in Sources */,
 				733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */,
 				73EBBA5C234A1AEB00B79121 /* MyFantasiesSettingsRouter.swift in Sources */,

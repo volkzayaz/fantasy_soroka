@@ -81,6 +81,11 @@ class TeleportViewController: UIViewController, MVVM_View {
                 self.viewModel.selected(data: x)
             })
             .disposed(by: rx.disposeBag)
+        
+        viewModel.upgradeButtonHidden
+            .drive(teleportToBadge.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
     }
     
 }

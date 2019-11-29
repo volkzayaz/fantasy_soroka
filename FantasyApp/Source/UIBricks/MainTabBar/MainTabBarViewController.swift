@@ -41,6 +41,16 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
  
+        viewModel.unsupportedVersionTrigger
+            .drive(onNext: { [unowned self] _ in
+                
+                let vc = R.storyboard.user.updateAppViewController()!
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true, completion: nil)
+                
+            })
+            .disposed(by: rx.disposeBag)
+        
         let vc = (viewControllers![1] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
         vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
      

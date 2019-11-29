@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxCocoa
 
 struct RoomSettingsPremiumFeatureViewModel {
     let title: String
@@ -17,17 +18,22 @@ struct RoomSettingsPremiumFeatureViewModel {
 
 class RoomSettingsPremiumFeatureView: UIView {
 
-    var viewModel: RoomSettingsPremiumFeatureViewModel? {
+    var viewModel: RoomSettingsViewModel! {
         didSet {
-            titleLabel.text = viewModel?.title
-            descriptionLabel.text = viewModel?.description
-            layer.borderColor = viewModel?.isEnabled == true ? UIColor.clear.cgColor : UIColor.premium.cgColor
-            upgradeImageView.isHidden = viewModel?.isEnabled == true
+            
+            let vm = viewModel.securitySettingsViewModel
+            
+            titleLabel.text = vm.title
+            descriptionLabel.text = vm.description
+            layer.borderColor = vm.isEnabled ? UIColor.clear.cgColor : UIColor.premium.cgColor
+            
+            viewModel.upgradeHidden
+                .drive(upgradeImageView.rx.isHidden)
+                .disposed(by: rx.disposeBag)
+            
             setupOptions()
         }
     }
-
-    var didChangeOptions: (([(Int, Bool)]) -> ())?
 
     private let titleLabel = UILabel(frame: .zero)
     private let descriptionLabel = UILabel(frame: .zero)
@@ -101,7 +107,7 @@ class RoomSettingsPremiumFeatureView: UIView {
     private func setupOptions() {
         optionsStackView.arrangedSubviews.forEach { optionsStackView.removeArrangedSubview($0) }
         switches = []
-        viewModel?.options.forEach { option in
+        viewModel.securitySettingsViewModel.options.forEach { option in
             let separatorView = UIView(frame: .zero)
             separatorView.translatesAutoresizingMaskIntoConstraints = false
             separatorView.backgroundColor = .fantasySeparator
@@ -122,7 +128,6 @@ class RoomSettingsPremiumFeatureView: UIView {
             optionSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
             optionSwitch.isOn = option.1
             optionSwitch.onTintColor = .fantasyPink
-            optionSwitch.isUserInteractionEnabled = viewModel?.isEnabled == true
             switches.append(optionSwitch)
             containerView.addSubview(optionSwitch)
 
@@ -145,7 +150,7 @@ class RoomSettingsPremiumFeatureView: UIView {
     }
 
     @objc private func switchValueChanged(_ sender: UISwitch) {
-        didChangeOptions?(switches.enumerated().map { ($0, $1.isOn) })
+        viewModel.setIsScreenShieldEnabled(sender.isOn)
     }
 
 }

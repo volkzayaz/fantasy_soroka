@@ -71,6 +71,11 @@ extension RoomSettingsViewModel {
         
     }
     
+    var upgradeHidden: Driver<Bool> {
+        return appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+            .map { $0 ?? false }
+    }
+    
 }
 
 struct RoomSettingsViewModel: MVVM_ViewModel {
@@ -178,6 +183,23 @@ extension RoomSettingsViewModel {
     }
 
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
+        
+        guard User.current?.subscription.isSubscribed ?? false else {
+            return router.owner.showDialog(title: "Error",
+                                           text: R.string.localizable.roomSettingsUpgradeSuggestion(),
+                                           style: .alert, negativeText: "No, thanks",
+                                           negativeCallback: nil,
+                                           positiveText: "Upgrade") { [weak h = router.owner,
+                                            unowned i = indicator] in
+                                            
+                                            PurchaseManager.purhcaseSubscription()
+                                                .trackView(viewIndicator: i)
+                                                .silentCatch(handler: h)
+                                                .subscribe()
+                                                .disposed(by: self.bag)
+                                            
+            }
+        }
         
         var roomSettings = room.value.settings
         

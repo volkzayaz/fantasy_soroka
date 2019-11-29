@@ -74,7 +74,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         configure()
         
-        securitySettingsView.viewModel = viewModel.securitySettingsViewModel
+        securitySettingsView.viewModel = viewModel
         
         viewModel.intiteLinkHidden
             .drive(inviteView.rx.hidden(in: stackView))
@@ -122,10 +122,6 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
-
-        securitySettingsView.didChangeOptions = { [weak self] options in
-            self?.viewModel.setIsScreenShieldEnabled(options.first?.1 ?? false)
-        }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
                                                             style: .plain,

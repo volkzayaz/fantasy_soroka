@@ -99,9 +99,7 @@ extension PurchaseManager {
                     SwiftyStoreKit.finishTransaction(t)
                 }
                 
-                var u = User.current!
-                u.subscription = subscription
-                Dispatcher.dispatch(action: SetUser(user: u))
+                Dispatcher.dispatch(action: UpdateSubscription(with: subscription))
                 
             })
     

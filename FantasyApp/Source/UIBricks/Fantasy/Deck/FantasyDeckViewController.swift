@@ -160,7 +160,16 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
             tutorialView = v
         }
-
+        
+        viewModel.subscribeButtonHidden
+            .drive(subscribeButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.subscribeButtonHidden
+            .drive(subsbcriptionLabel.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        
         configureStyling()
     }
     
@@ -169,7 +178,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 private extension FantasyDeckViewController {
     // MARK: - Actions
     @IBAction func subscribeTapped(_ sender: Any) {
-
+        viewModel.subscribeTapped()
     }
 
     @IBAction private func cardsTapped() {

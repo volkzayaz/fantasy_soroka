@@ -55,6 +55,11 @@ extension TeleportViewModel {
         
     }
     
+    var upgradeButtonHidden: Driver<Bool> {
+        return appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+            .map { $0 ?? false }
+    }
+    
     enum Data: IdentifiableType, Equatable {
         case community(Community)
         case country(String, Int)

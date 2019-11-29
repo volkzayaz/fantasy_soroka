@@ -94,6 +94,11 @@ extension FantasyDeckViewModel {
         return cardTrigger.asDriver().notNil()
     }
     
+    var subscribeButtonHidden: Driver<Bool> {
+        return appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+            .map { $0 ?? false }
+    }
+    
 }
 
 struct FantasyDeckViewModel : MVVM_ViewModel {
@@ -139,7 +144,13 @@ extension FantasyDeckViewModel {
     }
 
     func subscribeTapped() {
-
+        
+        PurchaseManager.purhcaseSubscription()
+            .trackView(viewIndicator: indicator)
+            .silentCatch(handler: router.owner)
+            .subscribe()
+            .disposed(by: bag)
+        
     }
     
     func cardTapped(card: Fantasy.Card) {
