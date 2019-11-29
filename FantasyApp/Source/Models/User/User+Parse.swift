@@ -101,6 +101,21 @@ extension User {
         
         let answers = pfUser["answers"] as? Bio.PersonalQuestion ?? [:]
         
+        var subscriptionObject: Subscription? = subscriptionStatus
+        if subscriptionObject == nil,
+           let isSubscribed = pfUser["isSubscribed"] as? Bool,
+           isSubscribed == true {
+            
+            ///new server subscription API stores isSubscribed flag into User collection
+            ///it hasn't similar mapping to proper subscription status
+            ///so before we moved away from Parse.User, we will manually conform
+            ///isSubscribed: Bool to User.Subscription
+            ///it will not be precise, but should fit our business needs
+            
+            subscriptionObject = .init(status: .init(endDate: Date.distantFuture))
+            
+        }
+        
         id = objectId
         bio = User.Bio(name: name,
                        about: about,
@@ -118,7 +133,7 @@ extension User {
         community = User.Community(value: maybeCommunity,
                                    changePolicy: changePolicy,
                                    lastKnownLocation: maybeLastKnownLocation)
-        subscription = subscriptionStatus ?? .init(status: nil)
+        subscription = subscriptionObject ?? .init(status: nil)
         notificationSettings = notifSettings ?? NotificationSettings()
     }
     

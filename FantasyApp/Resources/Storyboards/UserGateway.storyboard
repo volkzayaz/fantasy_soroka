@@ -537,22 +537,12 @@
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cb6-v3-2O4">
-                                                    <rect key="frame" x="323" y="6.5" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="freeSubscriptionSwitchChanged:" destination="ABr-g6-V4z" eventType="valueChanged" id="ZEk-JF-vvE"/>
-                                                    </connections>
-                                                </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Cb6-v3-2O4" firstAttribute="centerY" secondItem="zmF-PV-PIq" secondAttribute="centerY" id="1Rz-R2-QSG"/>
                                                 <constraint firstItem="zmF-PV-PIq" firstAttribute="centerY" secondItem="LgA-k8-cDJ" secondAttribute="centerY" id="4iF-Fa-zM0"/>
                                                 <constraint firstItem="zmF-PV-PIq" firstAttribute="leading" secondItem="LgA-k8-cDJ" secondAttribute="leading" constant="15" id="wNt-XB-4g8"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Cb6-v3-2O4" secondAttribute="trailing" constant="42" id="qLh-wg-bnO"/>
-                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TrO-5U-qO5" style="IBUITableViewCellStyleDefault" id="F1K-hA-Qjv">
                                         <rect key="frame" x="0.0" y="341.5" width="414" height="43.5"/>
@@ -700,9 +690,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="freeSubscriptionSwitch" destination="Cb6-v3-2O4" id="nag-gU-Xj6"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0QG-DM-6TU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

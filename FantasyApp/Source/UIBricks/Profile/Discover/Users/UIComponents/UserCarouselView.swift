@@ -103,7 +103,7 @@ extension UserCarouselView {
 
         profileImageView.reset()
         profileImageView.set(imageURL: data.bio.photos.avatar.url,
-                             isProtected: true,
+                             isProtected: data.subscription.isSubscribed,
                              errorPlaceholder: R.image.noPhoto())
         
     }

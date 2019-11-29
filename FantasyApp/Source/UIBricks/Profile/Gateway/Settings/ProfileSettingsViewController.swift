@@ -15,27 +15,12 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
-    @IBOutlet weak var freeSubscriptionSwitch: UISwitch!{
-        didSet {
-            freeSubscriptionSwitch.onTintColor = R.color.textPinkColor()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if RELEASE
-        freeSubscriptionSwitch.isHidden = true
-        #endif
-        
-        freeSubscriptionSwitch.isOn = SettingsStore.freeSubscriptionSwitch.value
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }
     
-    @IBAction func freeSubscriptionSwitchChanged(_ sender: UISwitch) {
-        SettingsStore.freeSubscriptionSwitch.value = sender.isOn
-    }
-
     @IBAction func done(_ sender: UIBarButtonItem) {
         viewModel.dismiss()
     }

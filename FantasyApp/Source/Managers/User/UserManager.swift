@@ -132,7 +132,7 @@ extension UserManager {
                 
         }
         
-    }
+    }    ///isSubscribed = 0;
     
     static func getUser(id: String) -> Single<User> {
         return User.query

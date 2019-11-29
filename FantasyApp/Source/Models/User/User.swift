@@ -146,9 +146,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         }
         
         var isSubscribed: Bool {
-            
-            if SettingsStore.freeSubscriptionSwitch.value { return true }
-            
             return (status?.endDate.timeIntervalSinceNow ?? -1) > 0
         }
         let status: Status?
@@ -161,12 +158,8 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     
     static var changesOfSubscriptionStatus: Driver<Bool> {
-        
-        return Driver.combineLatest(
-            appState.changesOf { $0.currentUser?.subscription.isSubscribed },
-            SettingsStore.freeSubscriptionSwitch.observable.asSharedSequence(onErrorJustReturn: false)
-        ) { x, y in (x ?? false || y) }
-        
+        return appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+            .map { $0 ?? false }
     }
     
 }

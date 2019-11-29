@@ -137,7 +137,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
         
     }
     
-}
+} 
 
 ///TableViews
 
