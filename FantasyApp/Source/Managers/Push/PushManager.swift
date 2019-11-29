@@ -25,36 +25,7 @@ extension PushManager {
         PFInstallation.current()?.setObject(userId as Any, forKey: "userId")
         let _ = PFInstallation.current()?.rxSave().retry(2).subscribe()
     }
-    
-    static func sendPush(to user: UserIdentifier, text: String) {
-
         
-//        NSString *alertString = [NSString stringWithFormat:message, currentUser.realname];
-//
-//        NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
-//        [userInfo setValue:activity.objectId forKey:@"activity"];
-//
-//        [data setValue:alertString forKey:@"alert"];
-//        [data setValue:@"bingbong.aiff" forKey:@"sound"];
-//        [data setValue:userInfo forKey:@"userInfo"];
-//        [data setValue:user.objectId forKey:@"userId"];
-//        [data setValue:@"Increment" forKey:@"badge"];
-//
-//        NSError *error = nil;
-//        [PFCloud callFunction:@"sendPush" withParameters:data error:&error];
-        
-        let params = [
-            "alert": text,
-            "userId": user.id
-        ]
-        
-        PFCloud.callFunction(inBackground: "sendPush",
-                             withParameters: params) { (value, error) in
-                                print("error")
-        }
-        
-    }
-    
     static func requestNotificationPermission() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge],

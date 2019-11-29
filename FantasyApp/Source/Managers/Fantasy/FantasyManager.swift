@@ -101,11 +101,6 @@ extension Fantasy.Manager {
                                                card: card,
                                                room: room)
             .rx.request
-            .do(onSuccess: { (x) in
-                if x.isMutual {
-                    PushManager.sendPush(to: room.peer.userSlice.id, text: "New mutual card with \(User.current!.bio.name)")
-                }
-            })
     }
     
     static func dislike(card: Fantasy.Card, in room: Room) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
