@@ -189,4 +189,22 @@ extension SwiftyStoreKit {
         })
     }
     
+    public class func rx_productDetails(product: String) -> Single<SKProduct> {
+        
+        return Single.create(subscribe: { (subscriber) -> Disposable in
+            
+            SwiftyStoreKit.retrieveProductsInfo([product]) { (res: RetrieveResults) in
+                
+                if let e = res.error {
+                    return subscriber(.error(e))
+                }
+                
+                subscriber(.success( res.retrievedProducts.first! ))
+                
+            }
+            
+            return Disposables.create()
+        })
+    }
+    
 }

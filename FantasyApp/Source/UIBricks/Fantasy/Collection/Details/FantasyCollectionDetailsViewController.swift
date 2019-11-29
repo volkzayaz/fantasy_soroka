@@ -85,7 +85,6 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
                 .disposed(by: cell.rx.disposeBag)
             
             cell.nameLabel.text = viewModel.collection.title
-            cell.buyButton.setTitle("$2.99", for: .normal)
             cell.viewModel = viewModel
             
             return cell
@@ -129,7 +128,6 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
                 .disposed(by: cell.rx.disposeBag)
             
             cell.nameLabel.text = viewModel.collection.title
-            cell.buyButton.setTitle("Buy for $2.99", for: .normal)
             cell.viewModel = viewModel
             
             return cell
@@ -140,11 +138,6 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
     }
     
 }
-
-private extension FantasyCollectionDetailsViewController {
-    
-}
-
 
 ///TableViews
 
@@ -157,10 +150,17 @@ class TopCollectionPurchaseCell: UITableViewCell {
             buyButton.mode = .selector
             buyButton.titleFont = .mediumFont(ofSize: 14)
             buyButton.addFantasyGradient()
+            buyButton.setTitle("", for: .normal)
         }
     }
     
-    var viewModel: FantasyCollectionDetailsViewModel!
+    var viewModel: FantasyCollectionDetailsViewModel! {
+        didSet {
+            viewModel.price
+                .drive(buyButton.rx.title(for: .normal))
+                .disposed(by: rx.disposeBag)
+        }
+    }
     
     @IBAction func buy() {
         viewModel.buy()
@@ -226,10 +226,18 @@ class BottomCollectionPurchaseCell: UITableViewCell {
             buyButton.mode = .selector
             buyButton.titleFont = .boldFont(ofSize: 16)
             buyButton.addFantasyGradient()
+            buyButton.setTitle("", for: .normal)
         }
     }
     
-    var viewModel: FantasyCollectionDetailsViewModel!
+    var viewModel: FantasyCollectionDetailsViewModel!{
+        didSet {
+            viewModel.price
+                .map { "Buy for \($0)" }
+                .drive(buyButton.rx.title(for: .normal))
+                .disposed(by: rx.disposeBag)
+        }
+    }
     
     @IBAction func buy() {
         viewModel.buy()

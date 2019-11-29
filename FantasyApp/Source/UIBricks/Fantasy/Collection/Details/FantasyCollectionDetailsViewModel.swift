@@ -8,10 +8,20 @@
 
 import Foundation
 
+import SwiftyStoreKit
+
 import RxSwift
 import RxCocoa
 
 extension FantasyCollectionDetailsViewModel {
+    
+    var price: Driver<String> {
+
+        return SwiftyStoreKit.rx_productDetails(product: collection.productId!)
+            .map { "$\($0.price.stringValue)" }
+            .asDriver(onErrorJustReturn: "error")
+            
+    }
     
     var firstCard: Driver<Fantasy.Card> {
         return Fantasy.Manager.fetchCollectionsCards(collection: collection)
