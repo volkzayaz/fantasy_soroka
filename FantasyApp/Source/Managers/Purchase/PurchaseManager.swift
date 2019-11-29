@@ -44,7 +44,7 @@ extension PurchaseManager {
     
     static func purhcaseSubscription() -> Single<User.Subscription> {
         
-        let goldPlanProductId = "com.fantasyapp.iosclient.iap.premium"
+        let goldPlanProductId = immutableNonPersistentState.subscriptionProductID
         
         return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
             .flatMap { x in

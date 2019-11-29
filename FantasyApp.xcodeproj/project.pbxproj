@@ -63,6 +63,8 @@
 		7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7222ED9A8C00495843 /* User+Parse.swift */; };
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
+		733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA052239161DE00EF7922 /* FetchConfig.swift */; };
+		733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */; };
 		733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BA236452A0004EC466 /* InviteDeeplink.swift */; };
 		733F41C02364AE88004EC466 /* MonetizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BF2364AE88004EC466 /* MonetizationViewController.swift */; };
 		733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */; };
@@ -89,7 +91,6 @@
 		734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */; };
 		734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */; };
 		734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A02326A78A00B54510 /* DiscoveryFilter.swift */; };
-		734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52A9232A377700B54510 /* ServerBusinessLogic.swift */; };
 		734C52AD232A84C000B54510 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C52AC232A84C000B54510 /* Photo.swift */; };
 		734C70AB2321206800ED2E91 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70AA2321206800ED2E91 /* UserManager.swift */; };
 		734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */; };
@@ -432,6 +433,8 @@
 		7334CC7222ED9A8C00495843 /* User+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Parse.swift"; sourceTree = "<group>"; };
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
+		733CA052239161DE00EF7922 /* FetchConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchConfig.swift; sourceTree = "<group>"; };
+		733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableNonPersistentState.swift; sourceTree = "<group>"; };
 		733F41BA236452A0004EC466 /* InviteDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDeeplink.swift; sourceTree = "<group>"; };
 		733F41BF2364AE88004EC466 /* MonetizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetizationViewController.swift; sourceTree = "<group>"; };
 		733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiSlider+Drag.swift"; sourceTree = "<group>"; };
@@ -458,7 +461,6 @@
 		734C529A2326A6FD00B54510 /* DiscoveryFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewController.swift; sourceTree = "<group>"; };
 		734C529B2326A6FD00B54510 /* DiscoveryFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilterViewModel.swift; sourceTree = "<group>"; };
 		734C52A02326A78A00B54510 /* DiscoveryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFilter.swift; sourceTree = "<group>"; };
-		734C52A9232A377700B54510 /* ServerBusinessLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerBusinessLogic.swift; sourceTree = "<group>"; };
 		734C52AC232A84C000B54510 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		734C70AA2321206800ED2E91 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		734C70B2232122D200ED2E91 /* ProfilePhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoRouter.swift; sourceTree = "<group>"; };
@@ -1072,7 +1074,6 @@
 				73EBBA6E234E044F00B79121 /* Push */,
 				7361F32D2334F436007B84B0 /* Connection */,
 				7361F31223322BB4007B84B0 /* Community */,
-				734C52A8232A376800B54510 /* ServerBusinessLogic */,
 				734C529123266CD400B54510 /* Discover */,
 				734C70A92321205C00ED2E91 /* User */,
 				7379ED1F230D549600E661A7 /* Purchase */,
@@ -1196,6 +1197,14 @@
 				7334CC8822EDE76700495843 /* ImageValidator.swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		733CA051239161C400EF7922 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				733CA052239161DE00EF7922 /* FetchConfig.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		733F41B923645290004EC466 /* Deeplink */ = {
@@ -1322,14 +1331,6 @@
 				733096812353586F0039D013 /* DeleteUser.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		734C52A8232A376800B54510 /* ServerBusinessLogic */ = {
-			isa = PBXGroup;
-			children = (
-				734C52A9232A377700B54510 /* ServerBusinessLogic.swift */,
-			);
-			path = ServerBusinessLogic;
 			sourceTree = "<group>";
 		};
 		734C52AB232A84B500B54510 /* Photo */ = {
@@ -1569,6 +1570,7 @@
 			isa = PBXGroup;
 			children = (
 				7310036322DDEFCD0057CC6A /* AppState.swift */,
+				733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -1929,13 +1931,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		849D3FA72366C19F001CEBCA /* FantasyCollections */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FantasyCollections;
-			sourceTree = "<group>";
-		};
 		84AB48FA232A16AA00F3609A /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -2003,7 +1998,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				849D3FA72366C19F001CEBCA /* FantasyCollections */,
+				733CA051239161C400EF7922 /* Config */,
 				73C96F202340B046002C3F8E /* Album */,
 				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				843CF71B23436B570098C196 /* Rooms */,
@@ -2595,6 +2590,7 @@
 				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
 				842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */,
+				733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */,
 				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				734C70C023214B8D00ED2E91 /* UserProfileRouter.swift in Sources */,
@@ -2679,9 +2675,9 @@
 				73432AD2238AC7DD008CF2F1 /* ChatHeaderCell.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
-				734C52AA232A377700B54510 /* ServerBusinessLogic.swift in Sources */,
 				734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */,
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
+				733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */,
 				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				84BE526E2367636C00FD362F /* FantasyDeckItemOverlayView.swift in Sources */,

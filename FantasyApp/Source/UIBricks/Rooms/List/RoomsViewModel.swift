@@ -71,7 +71,6 @@ struct RoomsViewModel: MVVM_ViewModel {
                     .silentCatch(handler: router.owner)
             }
             .subscribe(onNext: { (rooms: [Room]) in
-                
                 Dispatcher.dispatch(action: SetRooms(rooms: rooms))
             })
             .disposed(by: bag)

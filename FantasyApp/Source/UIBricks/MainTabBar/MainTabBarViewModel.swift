@@ -74,6 +74,13 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
+        FetchConfig().rx.request
+            .retry(2)
+            .subscribe(onSuccess: { (config) in
+                immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId)
+            })
+            .disposed(by: bag)
+        
         /////progress indicator
         
         indicator.asDriver()
