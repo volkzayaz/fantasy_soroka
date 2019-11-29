@@ -43,6 +43,7 @@ struct DeleteRoom: Action {
         
         var state = initialState
         state.rooms?.remove(at: i)
+        state.reloadRoomsTriggerBecauseOfComplexFreezeLogic = true
         return state
         
     }
