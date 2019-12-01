@@ -28,6 +28,10 @@ extension ConnectionViewModel {
         
     }
     
+    var sourceDriver: Driver<GetConnectionRequests.Source> {
+        return source.asDriver()
+    }
+    
 }
 
 struct ConnectionViewModel : MVVM_ViewModel {

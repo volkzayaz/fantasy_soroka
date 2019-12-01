@@ -2,7 +2,7 @@
 //  RoomsViewController.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 10.09.2019.
+//  Created by Vlad Soroka on 10.09.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -41,27 +41,21 @@ class RoomsViewController: UIViewController, MVVM_View {
 //    }
     )
 
+    lazy var emptyView: EmptyView! = tableView.addEmptyView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addFantasyGradient()
         navigationItem.title = "Rooms"
  
-        tableView.bindEmptyStateTo = viewModel.dataSource.map { data in
-            EmptyState(isEmpty: data.count == 0,
-                       emptyView: UIImageView(image: R.image.room_placeholder()!))
-        }
+        emptyView.emptyView = UIImageView(image: R.image.room_placeholder())
         
-        configure()
-    }
-}
-
-extension RoomsViewController {
-    @IBAction func addNewRoom() {
-        viewModel.createRoom()
-    }
-
-    func configure() {
+         viewModel.dataSource
+            .map { $0.count == 0 }
+            .drive(emptyView.rx.isEmpty)
+            .disposed(by: rx.disposeBag)
+        
         viewModel.dataSource
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
@@ -73,7 +67,13 @@ extension RoomsViewController {
 
         createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
     }
-    
+}
+
+extension RoomsViewController {
+    @IBAction func addNewRoom() {
+        viewModel.createRoom()
+    }
+
     @objc func pullToRefresh() {
         viewModel.refreshRooms()
         

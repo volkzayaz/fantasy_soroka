@@ -43,6 +43,7 @@ class ConnectionViewController: UIViewController, MVVM_View {
         
     })
     @IBOutlet weak var gradientView: UIView!
+    lazy var emptyView: EmptyView! = collectionView.addEmptyView()
     
     @IBOutlet weak var incommingButton: PrimaryButton! {
         didSet {
@@ -75,11 +76,19 @@ class ConnectionViewController: UIViewController, MVVM_View {
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
     
-        collectionView.bindEmptyStateTo = viewModel.requests.map { data in
-            EmptyState(isEmpty: data.first!.items.count == 0,
-                       emptyView: UIImageView(image: R.image.connectionsPlaceholder()!))
-        }
+        viewModel.requests
+            .map { $0.first!.items.count == 0 }
+            .drive(emptyView.rx.isEmpty)
+            .disposed(by: rx.disposeBag)
         
+        viewModel.sourceDriver.map { source in
+                let image = source == .incomming ? R.image.incommingConnectionsPlaceholder() : R.image.outgoingConnectionsPlaceholder()
+            
+                return UIImageView(image: image)
+            }
+            .drive(emptyView.rx.emptyView)
+            .disposed(by: rx.disposeBag)
+            
         collectionView.rx.modelSelected(ConnectedUser.self)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.show(room: x.room)

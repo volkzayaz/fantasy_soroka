@@ -7,120 +7,80 @@
 //
 
 import Foundation
+
+import RxSwift
 import RxCocoa
+
 import SnapKit
 
-struct EmptyState {
-    let isEmpty: Bool
-    let emptyView: UIView
-}
-
-extension UIView {
+extension Reactive where Base: EmptyView {
     
-    /**
-     *  @discussion - setOnly property for binding Driver to emptyState property.
-     */
-    var bindEmptyStateTo: Driver<EmptyState> {
-        get { fatalError("bindEmptyStateTo is setOnly property") }
-        set {
-            
-            newValue.drive (onNext: { [unowned self] indicator in
-                self.emptyState = indicator
-            })
-                .disposed(by: self.rx.disposeBag)
-            
+    var isEmpty: Binder<Bool> {
+        return Binder(self.base) { view, isEmpty in
+            view.isEmpty = isEmpty
+        }
+    }
+
+    var emptyView: Binder<UIView> {
+        return Binder(self.base) { view, emptyView in
+            view.emptyView = emptyView
         }
     }
     
+}
+
+class EmptyView: UIView {
+
     /**
      * @discussion - you can also enable/disable animation manually
      */
-    var emptyState : EmptyState {
-        get {
-            return EmptyState(isEmpty: self.emptyView(content: UIView()).isHidden, emptyView: UIView())
-        }
-        set {
-            let pv = self.emptyView(content: newValue.emptyView)
-            pv.superview?.isUserInteractionEnabled = !pv.isHidden
+    
+    var isEmpty: Bool = false {
+        didSet {
             
             UIView.animate(withDuration: 0.3) {
-                pv.alpha = newValue.isEmpty ? 1 : 0
+                self.emptyView?.alpha = self.isEmpty ? 1 : 0
             }
-            
         }
+    }
+    
+    
+    var emptyView: UIView? {
+        didSet {
+            subviews.forEach { $0.removeFromSuperview() }
+            
+            guard let newView = emptyView else { return }
+            
+            newView.alpha = 0
+            addSubview(newView)
+            
+            newView.snp.makeConstraints { (make) in
+                make.center.equalTo(self)
+            }
+        }
+    }
+    
+    var rx: Reactive<EmptyView> {
+        return Reactive(self)
     }
 }
 
-
 extension UIView {
     
-    ///not the best solution, though.
-    ///On heavy layots recursive search for view with tag might be expensive
-    fileprivate var emptyViewHash: Int {
-        return "com.Grasshopper.emptyHash".hash
-    }
-    
-    fileprivate func emptyView(content: UIView) -> UIView {
+    func addEmptyView() -> EmptyView {
+        let ev = EmptyView()
         
-        if let ev = self.subviews.filter({ $0.tag == self.emptyViewHash }).first {
-            return ev
+        if let s = self as? UITableView {
+            s.backgroundView = ev
         }
-        
-        
-        let container = UIView()
-        container.isUserInteractionEnabled = true
-        container.alpha = 0;
-        container.tag = self.emptyViewHash;
-        
-        container.addSubview(content)
-        self.addSubview(container)
-        
-        if self is UIScrollView {
-            self.positionOnScrollView(container: container,
-                                      view: content)
+        else if let s = self as? UICollectionView {
+            s.backgroundView = ev
         }
         else {
-            self.positionOnStaticView(container: container,
-                                      view: content)
+            addSubview(ev)
         }
         
-        return container
+        return ev
     }
-    
-    func positionOnScrollView(container: UIView,
-                              view: UIView) {
-        
-        guard let scrollView = self as? UIScrollView else {
-            fatalError("self is not a scrollView subclass")
-        }
-        
-        let _ =
-        scrollView.rx.sentMessage(#selector(UIView.layoutSubviews))
-            .subscribe(onNext: { [unowned sv = scrollView] (_) in
-                
-                sv.bringSubviewToFront(container)
-                
-                container.frame = CGRect(origin: sv.contentOffset, size: sv.frame.size)
-                view.center = CGPoint( x: container.bounds.midX,
-                                       y: container.bounds.midY)
-                
-            })
-        
-    }
-    
-    func positionOnStaticView(container: UIView,
-                              view: UIView) {
-        
-        view.snp.makeConstraints { (make) in
-            make.center.equalTo(container)
-        }
-        
-        container.snp.makeConstraints { make in
-            make.edges.equalTo(self)
-        }
-        
-    }
-    
-    
     
 }

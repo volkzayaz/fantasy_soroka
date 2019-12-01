@@ -10,6 +10,7 @@ import Foundation
 import Amplitude_iOS
 
 class AmplitudeAnalyticsService: AnalyticsService {
+    
     var provider: AnalyticsProvider = .amplitude
 
     func report(event: String, withProperties properties: [String: Any]) {
