@@ -20,7 +20,11 @@ class NotificationService: UNNotificationServiceExtension {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
-        let url = URL(string: "")!
+        guard let str = request.content.userInfo["cardImageUrl"] as? String,
+              let url = URL(string: str) else {
+                
+            return contentHandler(request.content)
+        }
         
         URLSession.init(configuration: .default).downloadTask(with: url) { (temporaryFileLocation, response, error) in
             
