@@ -28,7 +28,7 @@ extension PushManager {
         
     static func requestNotificationPermission() {
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge],
+            .requestAuthorization(options: [.alert, .sound, .badge, .provisional],
                                   completionHandler: { _, _ in })
     }
     

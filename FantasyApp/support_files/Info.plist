@@ -139,6 +139,11 @@
 	<key>branch_app_domain</key>
 	<string>fantasy.test-app.link</string>
 	<key>branch_key</key>
-	<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
+	<dict>
+		<key>live</key>
+		<string>key_live_moTbeLfcci5ujO9hU8RQhfoeqwddrq2g</string>
+		<key>test</key>
+		<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
+	</dict>
 </dict>
 </plist>
