@@ -9,11 +9,6 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Text-Bold.otf">
-            <string>SFProText-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Fantasy Search View Controller-->
         <scene sceneID="Ocm-fR-c1H">
@@ -75,13 +70,14 @@
         <!--Fantasy Collection View Controller-->
         <scene sceneID="dCa-79-2HK">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IU4-Fk-ChJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FantasyCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6EI-uA-pE9" customClass="FantasyCollectionViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bgm-hv-4Yc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uUj-7s-fFw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Simple collection cell" textLabel="fiN-3k-b70" detailTextLabel="wPG-iE-Dk6" style="IBUITableViewCellStyleSubtitle" id="NzH-aR-udK">
@@ -124,7 +120,6 @@
                         <outlet property="tableView" destination="uUj-7s-fFw" id="dZk-8X-MvA"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IU4-Fk-ChJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-413" y="1101"/>
         </scene>
@@ -499,49 +494,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tRC-cE-HBO">
-                                <rect key="frame" x="0.0" y="97.5" width="375" height="569.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="uOw-xA-VQg" customClass="BaseFlowLayout" customModule="FantasyApp" customModuleProvider="target"/>
                                 <cells/>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bvo-Qx-Km4">
-                                <rect key="frame" x="16" y="20" width="50" height="67.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfI-w6-Aha">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
-                                        <color key="textColor" name="textBlackColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXJ-6F-hl6">
-                                        <rect key="frame" x="0.0" y="50" width="50" height="17.5"/>
-                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="15"/>
-                                        <color key="textColor" name="textBlackColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bvo-Qx-Km4" firstAttribute="leading" secondItem="cqA-dx-3gR" secondAttribute="leading" constant="16" id="21h-Wp-NLJ"/>
                             <constraint firstItem="tRC-cE-HBO" firstAttribute="trailing" secondItem="cqA-dx-3gR" secondAttribute="trailing" id="Ebx-OJ-jE7"/>
-                            <constraint firstItem="bvo-Qx-Km4" firstAttribute="top" secondItem="cqA-dx-3gR" secondAttribute="top" constant="20" id="F5X-Jx-vaU"/>
-                            <constraint firstItem="tRC-cE-HBO" firstAttribute="top" secondItem="bvo-Qx-Km4" secondAttribute="bottom" constant="10" id="PFN-rv-1dW"/>
+                            <constraint firstItem="tRC-cE-HBO" firstAttribute="top" secondItem="cqA-dx-3gR" secondAttribute="top" id="N4l-z6-tfG"/>
                             <constraint firstItem="tRC-cE-HBO" firstAttribute="leading" secondItem="cqA-dx-3gR" secondAttribute="leading" id="bJ4-bz-Ypd"/>
                             <constraint firstItem="tRC-cE-HBO" firstAttribute="bottom" secondItem="cqA-dx-3gR" secondAttribute="bottom" id="uwB-RF-8qh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cqA-dx-3gR"/>
                     </view>
                     <connections>
-                        <outlet property="collectionNumberLabel" destination="dXJ-6F-hl6" id="Wfu-Vc-B3B"/>
-                        <outlet property="collectionTitleLabel" destination="EfI-w6-Aha" id="gGP-uX-p4V"/>
                         <outlet property="collectionView" destination="tRC-cE-HBO" id="dxO-8Q-p1x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utx-Af-RN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="442" y="-287"/>
+            <point key="canvasLocation" x="440.80000000000001" y="-287.40629685157421"/>
         </scene>
         <!--Fantasy Collection Details View Controller-->
         <scene sceneID="ONw-C0-pDM">
@@ -1037,13 +1011,6 @@
                                     <constraint firstItem="Cy3-0H-x0L" firstAttribute="leading" secondItem="HPK-WY-9qU" secondAttribute="leading" id="y8k-Kg-amb"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebt-aA-4op">
-                                <rect key="frame" x="149" y="592" width="77" height="30"/>
-                                <state key="normal" title="Collections"/>
-                                <connections>
-                                    <segue destination="6EI-uA-pE9" kind="show" id="vaL-Bg-1Jn"/>
-                                </connections>
-                            </button>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ln-R6-YLe">
                                 <rect key="frame" x="26" y="574" width="323" height="77"/>
                                 <subviews>
@@ -1113,7 +1080,6 @@
                             <constraint firstItem="zjh-Ba-jLq" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" id="3zI-5T-4P4"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="zjh-Ba-jLq" secondAttribute="bottom" id="4w4-xf-tm4"/>
                             <constraint firstItem="8ln-R6-YLe" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" constant="26" id="Crv-83-fp4"/>
-                            <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="ebt-aA-4op" secondAttribute="bottom" constant="45" id="D78-B0-pbV"/>
                             <constraint firstItem="HPK-WY-9qU" firstAttribute="top" secondItem="lej-fb-B2h" secondAttribute="bottom" id="EsX-4g-dP3"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="HPK-WY-9qU" secondAttribute="trailing" id="Qwt-LK-gxp"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="zjh-Ba-jLq" secondAttribute="trailing" id="Tr8-oG-0Hz"/>
@@ -1124,7 +1090,6 @@
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="8ln-R6-YLe" secondAttribute="trailing" constant="26" id="jjb-Mo-XeV"/>
                             <constraint firstItem="HPK-WY-9qU" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" id="nz3-NL-3LZ"/>
                             <constraint firstItem="zjh-Ba-jLq" firstAttribute="top" secondItem="MWl-cV-xbo" secondAttribute="top" constant="53" id="pZO-oi-elh"/>
-                            <constraint firstItem="ebt-aA-4op" firstAttribute="centerX" secondItem="MWl-cV-xbo" secondAttribute="centerX" id="uMU-bd-jXa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MWl-cV-xbo"/>
                     </view>

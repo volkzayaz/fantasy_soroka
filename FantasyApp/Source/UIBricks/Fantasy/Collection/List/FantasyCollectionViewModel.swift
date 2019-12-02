@@ -20,6 +20,7 @@ extension FantasyCollectionViewModel {
             .silentCatch(handler: router.owner)
             .trackView(viewIndicator: indicator)
             .asDriver(onErrorJustReturn: [])
+            .map { $0.filter { !$0.isPurchased } }
             .map { x in
                 return [AnimatableSectionModel(model: "",
                                                items: x)]

@@ -12,43 +12,56 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class FantasyListViewController: UIViewController, MVVM_View {
+class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDelegateFlowLayout {
     
     var viewModel: FantasyListViewModel!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionTitleLabel: UILabel! {
-        didSet {
-            collectionTitleLabel.text = ""
-        }
-    }
-    @IBOutlet weak var collectionNumberLabel: UILabel! {
-        didSet {
-            collectionNumberLabel.text = ""
-        }
-    }
 
-    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ProtectedEntity<Fantasy.Card>>>(configureCell: { [unowned self] (_, cv, ip, x) in
+    lazy var dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, FantasyListViewModel.CardType>>(configureCell: { [unowned self] (_, cv, ip, x) in
         
         let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyListCell,
                                           for: ip)!
         
-        cell.set(protectedCard: x)
+        switch x {
+            
+        case .fantasy(let card):
+            cell.set(protectedCard: card)
+        
+        case .empty(_):
+            cell.backgroundColor = .init(fromHex: 0xF7F7FA)
+        
+        }
         
         return cell
         
+    }, configureSupplementaryView: { [unowned self] (_, cv, kind, ip) in
+        
+        if let x = self.strongRef {
+            return x
+        }
+        
+        self.strongRef = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: R.reuseIdentifier.daHeader, for: ip)!
+        self.viewModel.cardTitle
+            .do(afterNext: { (_) in
+                cv.collectionViewLayout.invalidateLayout()
+            })
+            .drive(self.strongRef!.label.rx.attributedText)
+            .disposed(by: self.strongRef!.rx.disposeBag)
+        
+        return self.strongRef!
     })
+    
+    var strongRef: DaHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(R.nib.fantasyListCell)
-        //view.backgroundColor = .red
+        collectionView.register(R.nib.daHeader, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
         
-        collectionTitleLabel.text = viewModel.title
-
-        viewModel.cardNumberText
-            .drive(collectionNumberLabel.rx.attributedText)
+        viewModel.tableScrollEnabled
+            .drive(collectionView.rx.isUserInteractionEnabled)
             .disposed(by: rx.disposeBag)
 
         viewModel.dataSource
@@ -58,7 +71,10 @@ class FantasyListViewController: UIViewController, MVVM_View {
         collectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] ip in
                 
-                let model: ProtectedEntity<Fantasy.Card> = try! self.collectionView.rx.model(at: ip)
+                guard let model: ProtectedEntity<Fantasy.Card> = try? self.collectionView.rx.model(at: ip) else {
+                    return
+                }
+                
                 let sourceRect = self.collectionView.convert(self.collectionView.cellForItem(at: ip)!.frame,
                                                             to: nil)
                 
@@ -66,12 +82,34 @@ class FantasyListViewController: UIViewController, MVVM_View {
                                           sourceFrame: sourceRect)
             })
             .disposed(by: rx.disposeBag)
+        
+        collectionView.delegate = self
+        
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         (collectionView.collectionViewLayout as! BaseFlowLayout).configureFor(bounds: view.bounds)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if let headerView = strongRef {
+            // Layout to get the right dimensions
+            headerView.layoutIfNeeded()
+            
+            // Automagically get the right height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
+            
+            // return the correct size
+            return CGSize(width: collectionView.frame.width, height: height)
+        }
+        
+        // You need this because this delegate method will run at least
+        // once before the header is available for sizing.
+        // Returning zero will stop the delegate from trying to get a supplementary view
+        return CGSize(width: 1, height: 1)
     }
     
 }
@@ -89,4 +127,10 @@ extension FantasyListViewController: UIViewControllerTransitioningDelegate {
         viewModel.animator.presenting = true
         return viewModel.animator
     }
+}
+
+class DaHeader: UICollectionReusableView {
+    
+    @IBOutlet weak var label: UILabel!
+
 }

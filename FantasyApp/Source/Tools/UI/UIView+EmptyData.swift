@@ -44,7 +44,6 @@ class EmptyView: UIView {
         }
     }
     
-    
     var emptyView: UIView? {
         didSet {
             subviews.forEach { $0.removeFromSuperview() }

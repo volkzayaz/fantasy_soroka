@@ -124,7 +124,42 @@ extension RoomDetailsViewController {
                                                                                initialReaction: .like,
                                                                                reactionCallback: nil)
                                                 },
-                                                title: "Mutual Fantasies",
+                                                titleProvider: { count in
+                                                    
+                                                    let text: String
+                                                    if count == 0 {
+                                                        text = "Swipe to see new\nmutual Fantasies!\nYou have no mutual Fantasies yet"
+                                                    }
+                                                    else if count == 1 {
+                                                        text = "1 mutual Fantasy"
+                                                    }
+                                                    else {
+                                                        text = "\(count) mutual Fantasies"
+                                                    }
+                                                    
+                                                    let att = NSMutableAttributedString(string: text, attributes: [.font: UIFont.boldFont(ofSize: 25)])
+                                                    
+                                                    if let range = text.range(of: "\(count)") {
+                                                        att.addAttributes([.foregroundColor : R.color.textPinkColor()!],
+                                                                          range: text.nsRange(from: range))
+                                                    }
+                                                    
+                                                    if let range = text.range(of: "You have no mutual Fantasies yet") {
+                                                        
+                                                        att.addAttributes([.foregroundColor : UIColor.gray],
+                                                                          range: text.nsRange(from: range))
+                                                        att.addAttributes([.font : UIFont.regularFont(ofSize: 15)],
+                                                                          range: text.nsRange(from: range))
+                                                        
+                                                        let style = NSMutableParagraphStyle()
+                                                        style.lineHeightMultiple = 1.5
+                                                        att.addAttribute(.paragraphStyle, value: style,
+                                                                         range: text.nsRange(from: range))
+                                                    }
+                                                    
+                                                    return att
+                                                    
+                                                },
                                                 protectPolicy: User.changesOfSubscriptionStatus)
             
         }

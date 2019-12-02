@@ -61,7 +61,7 @@ extension MyFantasiesReactionHistoryViewController {
         
         if segue.identifier == R.segue.myFantasiesReactionHistoryViewController.embedFantasyList.identifier {
 
-            let provider = state.asObservable().flatMapLatest { (x) -> Single<[Fantasy.Card]> in
+            let provider: Driver<[Fantasy.Card]> = state.asObservable().flatMapLatest { (x) -> Single<[Fantasy.Card]> in
                 
                 if x == 0 {
                     return Fantasy.Request.FetchCards(reactionType: .liked).rx.request
@@ -69,7 +69,7 @@ extension MyFantasiesReactionHistoryViewController {
                 
                 return Fantasy.Request.FetchCards(reactionType: .disliked).rx.request
             }
-            .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: Array<Fantasy.Card>())
 
             let stateVar = state.value
 
@@ -79,8 +79,7 @@ extension MyFantasiesReactionHistoryViewController {
                                                 detailsProvider: { card in
                                                     OwnFantasyDetailsProvider(card: card,
                                                                               initialReaction: stateVar == 0 ? .like : .dislike)
-                                                },
-                                                title: "")
+                                                })
         }
         
     }

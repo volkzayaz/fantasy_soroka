@@ -65,8 +65,7 @@ extension MyFantasiesViewController {
                                                 detailsProvider: { card in
                                                     OwnFantasyDetailsProvider(card: card,
                                                                               initialReaction: .like)
-            },
-                                                title: "")
+            })
             
         }
     }

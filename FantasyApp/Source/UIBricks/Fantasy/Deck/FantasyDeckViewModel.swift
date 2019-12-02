@@ -121,6 +121,7 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .disposed(by: bag)
 
         Fantasy.Manager.fetchCollections()
+            .map { $0.filter { !$0.isPurchased } }
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)
