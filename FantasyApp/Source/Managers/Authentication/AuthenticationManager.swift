@@ -113,6 +113,7 @@ extension AuthenticationManager {
             let permissions = ["public_profile", "email", "user_photos", "user_birthday"]
             
             PFFacebookUtils.facebookLoginManager().loginBehavior = .web
+            PFFacebookUtils.facebookLoginManager().logOut()
             PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (maybeUser, maybeError) in
                 
                 if let e = maybeError {
