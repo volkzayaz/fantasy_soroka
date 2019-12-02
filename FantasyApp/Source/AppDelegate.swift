@@ -8,6 +8,8 @@
 
 import UIKit
 import Branch
+import ZendeskSDK
+import ZendeskCoreSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         Configuration.setup(launchOptions: launchOptions)
+
+        Zendesk.initialize(appId: "9d8b51fca51b5f85a64615805f9db77a547e239d9f7aa0b4",
+            clientId: "mobile_sdk_client_38524f5c375d9e45cf0f",
+            zendeskUrl: "https://fantasyapp.zendesk.com")
+        Theme.currentTheme.primaryColor = UIColor.fantasyPink
         
+        Support.initialize(withZendesk: Zendesk.instance)
+
         return true
     }
     

@@ -40,7 +40,9 @@ target 'FantasyApp' do
     pod 'SmoothPicker', '~> 1.1.3'
     
     pod 'SlackTextViewController'
-    
+
+    #feedback
+    pod 'ZendeskSDK'
 end
 
 target 'FantasyAppTests' do
