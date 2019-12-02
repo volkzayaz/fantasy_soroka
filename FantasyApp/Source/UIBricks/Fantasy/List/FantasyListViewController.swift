@@ -60,6 +60,8 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
         collectionView.register(R.nib.fantasyListCell)
         collectionView.register(R.nib.daHeader, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
         
+        collectionView.delegate = self
+        
         viewModel.tableScrollEnabled
             .drive(collectionView.rx.isUserInteractionEnabled)
             .disposed(by: rx.disposeBag)
@@ -71,7 +73,9 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
         collectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] ip in
                 
-                guard let model: ProtectedEntity<Fantasy.Card> = try? self.collectionView.rx.model(at: ip) else {
+                let x: FantasyListViewModel.CardType? = try? self.collectionView.rx.model(at: ip)
+                
+                guard case .fantasy(let model)? = x else {
                     return
                 }
                 
@@ -83,7 +87,6 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
             })
             .disposed(by: rx.disposeBag)
         
-        collectionView.delegate = self
         
     }
 
