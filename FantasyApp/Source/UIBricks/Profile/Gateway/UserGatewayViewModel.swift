@@ -67,5 +67,9 @@ extension UserGatewayViewModel {
     func teleport() {
         router.presentTeleport()
     }
-    
+
+    func help() {
+        router.presentHelp()
+    }
+
 }

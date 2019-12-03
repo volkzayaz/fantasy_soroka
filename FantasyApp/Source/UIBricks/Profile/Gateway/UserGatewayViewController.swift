@@ -13,10 +13,6 @@ import RxCocoa
 
 import SafariServices
 
-import ZendeskSDK
-import ZendeskCoreSDK
-import ZendeskProviderSDK
-
 class UserGatewayViewController: UIViewController, MVVM_View {
     
     lazy var viewModel: UserGatewayViewModel! = .init(router: .init(owner: self))
@@ -74,44 +70,7 @@ extension UserGatewayViewController {
     }
 
     @IBAction func tapZendesk(_ sender: Any) {
-        
-//        let ident = Identity.createAnonymous(name: "Tolya Afanasev", email: nil)
-//        Zendesk.instance?.setIdentity(ident)
-
-        func openHC() {
-
-            let helpCenterUiConfig = HelpCenterUiConfiguration()
-            helpCenterUiConfig.showContactOptionsOnEmptySearch = false
-            helpCenterUiConfig.showContactOptions = false
-
-            let vc = HelpCenterUi.buildHelpCenterOverviewUi(withConfigs: [helpCenterUiConfig])
-
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            nav.navigationBar.tintColor = .fantasyPink
-            nav.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.font: UIFont.boldFont(ofSize: 18.0),
-                NSAttributedString.Key.foregroundColor: UIColor.fantasyPink
-            ]
-
-            present(nav, animated: true, completion: nil)
-        }
-
-//        func openRequestList() {
-//
-//            var requestConfig: RequestUiConfiguration {
-//                let config = RequestUiConfiguration()
-//                config.subject = "Testing the SDK"
-//                config.tags = ["ios", "testing"]
-//                return config
-//            }
-//
-//            let requestList = RequestUi.buildRequestList(with: [requestConfig])
-//            requestList.view.addFantasyGradient()
-//            navigationController?.pushViewController(requestList, animated: true)
-//        }
-
-        openHC()
+        viewModel.help()
     }
 }
 

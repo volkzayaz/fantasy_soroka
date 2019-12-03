@@ -21,12 +21,16 @@ struct ProfileSettingsViewModel : MVVM_ViewModel {
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+
+        appState.changesOf { $0.currentUser?.bio.name }
+        .drive(usernameVar)
+        .disposed(by: bag)
     }
     
     let router: ProfileSettingsRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
+    fileprivate let usernameVar = BehaviorRelay<String?>(value: nil)
 }
 
 extension ProfileSettingsViewModel {
@@ -69,8 +73,8 @@ extension ProfileSettingsViewModel {
     }
 
     func helpSupport() {
-        guard let u = URL(string: R.string.localizable.fantasyConstantsHelpSupport()) else { return }
-        router.showSafari(for: u)
+        router.showSupport(for: usernameVar.value ?? R.string.localizable.fantasySettingsSectionSupportUnknownUser(),
+                           email: PFUser.current()?.email)
     }
 
     func legal() {
