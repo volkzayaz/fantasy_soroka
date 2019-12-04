@@ -12,6 +12,8 @@ import Crashlytics
 import Amplitude_iOS
 import Parse
 import Branch
+import ZendeskSDK
+import ZendeskCoreSDK
 
 enum Configuration {}
 extension Configuration {
@@ -67,11 +69,19 @@ extension Configuration {
 
         // MARK: - Logging
         if Environment.debug {
-            Parse.setLogLevel(.debug)
+            Parse.logLevel = .debug
         }
 
         // MARK: - Analytics (Amplitude)
-        Amplitude.instance()?.initializeApiKey("8ef1a93282a6ca16bfe1341dedd639dc")
+        let key: String
+        if Environment.appstore {
+            key = "8ef1a93282a6ca16bfe1341dedd639dc"
+        }
+        else {
+            key = "f0ea040baf0427e2cbeb733729946eb3"
+        }
+        
+        Amplitude.instance()?.initializeApiKey(key)
         
         ///in case AppState initialisation becomes async
         ///we need to delay app ViewControllers presentation
@@ -83,6 +93,14 @@ extension Configuration {
         ///Push registration
         PushManager.kickOff()
 
+
+        /// Zendesk
+        Zendesk.initialize(appId: "9d8b51fca51b5f85a64615805f9db77a547e239d9f7aa0b4",
+            clientId: "mobile_sdk_client_38524f5c375d9e45cf0f",
+            zendeskUrl: "https://fantasyapp.zendesk.com")
+        Theme.currentTheme.primaryColor = UIColor.fantasyPink
+
+        Support.initialize(withZendesk: Zendesk.instance)
     }
 
     private static func registerActors() {
@@ -91,7 +109,7 @@ extension Configuration {
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }
-    
+
 }
 
 enum ServerURL {}

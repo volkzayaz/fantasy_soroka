@@ -1554,57 +1554,96 @@ activated when it reaches</string>
             </objects>
             <point key="canvasLocation" x="3675" y="-645"/>
         </scene>
-        <!--View Controller-->
+        <!--Fantasy Navigation Controller-->
+        <scene sceneID="Uea-uJ-Doc">
+            <objects>
+                <navigationController storyboardIdentifier="UpdateAppViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0tI-Kt-4Cq" customClass="FantasyNavigationController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VMc-36-Uc2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PO0-MO-9LS" kind="relationship" relationship="rootViewController" id="92h-Ho-6zg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NLi-u6-k7h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1345" y="-663"/>
+        </scene>
+        <!--Update App View Controller-->
         <scene sceneID="tjP-89-XkY">
             <objects>
-                <viewController storyboardIdentifier="UpdateAppViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PO0-MO-9LS" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="PO0-MO-9LS" customClass="UpdateAppViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jkf-SH-Xxh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unsupported version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfI-9C-UpQ">
-                                <rect key="frame" x="50" y="587.5" width="314" height="21"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4r-zU-MIQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfI-9C-UpQ">
+                                <rect key="frame" x="50" y="507.5" width="314" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" name="textBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsr-Lb-gfZ">
-                                <rect key="frame" x="50" y="616.5" width="314" height="70"/>
+                                <rect key="frame" x="50" y="537" width="314" height="70"/>
                                 <string key="text">Your application version is no longer supported. Please, update the app. 
 We've implemented a lot of new and exciting features</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                 <color key="textColor" name="textBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="screenShield_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8Vq-j6-7XF">
-                                <rect key="frame" x="83" y="77" width="248" height="442"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="8Vq-j6-7XF" secondAttribute="height" multiplier="375:667" id="ZHp-QA-6lX"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8Vq-j6-7XF">
+                                <rect key="frame" x="87" y="178" width="240" height="240"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-pO-HKE" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <rect key="frame" x="62" y="783" width="290" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="52j-bO-eZh"/>
+                                </constraints>
+                                <state key="normal" title="Update Now"/>
+                                <connections>
+                                    <action selector="updateApp:" destination="PO0-MO-9LS" eventType="touchUpInside" id="ALa-Ik-eeX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="yyq-pq-Sxe" firstAttribute="bottom" secondItem="dP9-pO-HKE" secondAttribute="bottom" constant="27" id="41K-Uw-otb"/>
                             <constraint firstItem="8Vq-j6-7XF" firstAttribute="centerX" secondItem="Jkf-SH-Xxh" secondAttribute="centerX" id="8bW-he-Uw1"/>
                             <constraint firstItem="bsr-Lb-gfZ" firstAttribute="trailing" secondItem="AfI-9C-UpQ" secondAttribute="trailing" id="CO9-7N-6FS"/>
+                            <constraint firstItem="dP9-pO-HKE" firstAttribute="centerX" secondItem="yyq-pq-Sxe" secondAttribute="centerX" id="GmL-VA-ZDH"/>
+                            <constraint firstItem="q4r-zU-MIQ" firstAttribute="leading" secondItem="yyq-pq-Sxe" secondAttribute="leading" id="Gph-7k-8UA"/>
                             <constraint firstItem="AfI-9C-UpQ" firstAttribute="centerX" secondItem="Jkf-SH-Xxh" secondAttribute="centerX" id="GtY-2w-K71"/>
                             <constraint firstItem="bsr-Lb-gfZ" firstAttribute="top" secondItem="AfI-9C-UpQ" secondAttribute="bottom" constant="8" id="IBF-j7-sfc"/>
                             <constraint firstItem="8Vq-j6-7XF" firstAttribute="centerY" secondItem="Jkf-SH-Xxh" secondAttribute="centerY" constant="-150" id="IDO-ej-LTF"/>
                             <constraint firstItem="yyq-pq-Sxe" firstAttribute="trailing" secondItem="AfI-9C-UpQ" secondAttribute="trailing" constant="50" id="KB4-E0-qqm"/>
-                            <constraint firstItem="AfI-9C-UpQ" firstAttribute="centerY" secondItem="Jkf-SH-Xxh" secondAttribute="centerY" constant="150" id="OLe-tN-hk2"/>
+                            <constraint firstItem="AfI-9C-UpQ" firstAttribute="centerY" secondItem="Jkf-SH-Xxh" secondAttribute="centerY" constant="70" id="OLe-tN-hk2"/>
+                            <constraint firstAttribute="bottom" secondItem="q4r-zU-MIQ" secondAttribute="bottom" id="SjL-zc-9ft"/>
+                            <constraint firstItem="dP9-pO-HKE" firstAttribute="width" secondItem="Jkf-SH-Xxh" secondAttribute="width" multiplier="0.7" id="TmR-Kx-4SU"/>
                             <constraint firstItem="bsr-Lb-gfZ" firstAttribute="leading" secondItem="AfI-9C-UpQ" secondAttribute="leading" id="UyU-pN-8gk"/>
+                            <constraint firstItem="q4r-zU-MIQ" firstAttribute="top" secondItem="yyq-pq-Sxe" secondAttribute="top" id="aG9-4l-aef"/>
                             <constraint firstItem="AfI-9C-UpQ" firstAttribute="leading" secondItem="yyq-pq-Sxe" secondAttribute="leading" constant="50" id="dWU-5E-xIe"/>
-                            <constraint firstItem="8Vq-j6-7XF" firstAttribute="width" secondItem="Jkf-SH-Xxh" secondAttribute="width" multiplier="0.6" id="dnA-ig-sn1"/>
+                            <constraint firstItem="q4r-zU-MIQ" firstAttribute="trailing" secondItem="yyq-pq-Sxe" secondAttribute="trailing" id="pxb-z9-FFA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yyq-pq-Sxe"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZuH-R1-q8s"/>
+                    <connections>
+                        <outlet property="buyButton" destination="dP9-pO-HKE" id="p7L-zJ-UPg"/>
+                        <outlet property="daView" destination="q4r-zU-MIQ" id="LoB-px-1Eo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyn-I0-ezO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2132" y="-662"/>
+            <point key="canvasLocation" x="2131.8840579710145" y="-662.27678571428567"/>
         </scene>
     </scenes>
     <resources>
+        <image name="app_icon" width="120" height="120"/>
         <image name="cellAccessoryImage" width="10" height="10"/>
         <image name="cityCheckImage" width="12" height="12"/>
         <image name="goldMember" width="25" height="25"/>
@@ -1621,7 +1660,6 @@ We've implemented a lot of new and exciting features</string>
         <image name="requestMessage" width="40" height="40"/>
         <image name="requestSticker" width="40" height="40"/>
         <image name="roomUpgrade" width="101" height="30"/>
-        <image name="screenShield_placeholder" width="375" height="667"/>
         <image name="searchEnableLocationPlanetImage" width="220" height="300"/>
         <image name="searchEnableLocationToSettings" width="220" height="300"/>
         <image name="searchFantasyLogo" width="80" height="80"/>

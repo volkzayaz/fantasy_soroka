@@ -14,10 +14,16 @@ PODS:
     - Fabric (~> 1.10.2)
   - Differentiator (4.0.1)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (4.40.0):
-    - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.40.0):
-    - FBSDKCoreKit
+  - FBSDKCoreKit (5.7.0):
+    - FBSDKCoreKit/Basics (= 5.7.0)
+    - FBSDKCoreKit/Core (= 5.7.0)
+  - FBSDKCoreKit/Basics (5.7.0)
+  - FBSDKCoreKit/Core (5.7.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.7.0):
+    - FBSDKLoginKit/Login (= 5.7.0)
+  - FBSDKLoginKit/Login (5.7.0):
+    - FBSDKCoreKit (~> 5.0)
   - FMPhotoPicker (0.8.2)
   - iCarousel (1.8.3)
   - Kingfisher (5.9.0):
@@ -31,13 +37,13 @@ PODS:
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
-  - Parse (1.17.2):
-    - Parse/Core (= 1.17.2)
-  - Parse/Core (1.17.2):
+  - Parse (1.17.3):
+    - Parse/Core (= 1.17.3)
+  - Parse/Core (1.17.3):
     - Bolts/Tasks (~> 1.9)
-  - Parse/FacebookUtils (1.17.2):
+  - Parse/FacebookUtils (1.17.3):
     - Bolts (~> 1.9)
-    - FBSDKLoginKit (~> 4.33)
+    - FBSDKLoginKit (~> 5.x)
     - Parse/Core
   - pop (1.0.12)
   - R.swift (5.0.3):
@@ -67,21 +73,30 @@ PODS:
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
   - SwiftyStoreKit (0.15.0)
+  - ZendeskSDK (4.0.0):
+    - ZendeskSDK/Providers (= 4.0.0)
+    - ZendeskSDK/UI (= 4.0.0)
+  - ZendeskSDK/Core (4.0.0)
+  - ZendeskSDK/Providers (4.0.0):
+    - ZendeskSDK/Core
+  - ZendeskSDK/UI (4.0.0):
+    - ZendeskSDK/Core
+    - ZendeskSDK/Providers
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
   - Branch (~> 0.29.3)
   - Crashlytics (~> 3.13)
-  - FBSDKCoreKit (= 4.40.0)
-  - FBSDKLoginKit (= 4.40.0)
+  - FBSDKCoreKit (= 5.7.0)
+  - FBSDKLoginKit (= 5.7.0)
   - FMPhotoPicker (~> 0.8)
   - iCarousel (~> 1.8)
   - Kingfisher (~> 5.8)
   - KMPlaceholderTextView
   - Koloda (~> 5.0)
   - Moya (= 13.0.1)
-  - Parse (= 1.17.2)
-  - Parse/FacebookUtils
+  - Parse (= 1.17.3)
+  - Parse/FacebookUtils (= 1.17.3)
   - R.swift (= 5.0.3)
   - RxCocoa (~> 5.0)
   - RxCoreLocation (~> 1.4)
@@ -91,6 +106,7 @@ DEPENDENCIES:
   - SnapKit (~> 4.2)
   - Socket.IO-Client-Swift (~> 15.2.0)
   - SwiftyStoreKit
+  - ZendeskSDK
 
 SPEC REPOS:
   trunk:
@@ -125,6 +141,7 @@ SPEC REPOS:
     - Socket.IO-Client-Swift
     - Starscream
     - SwiftyStoreKit
+    - ZendeskSDK
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -134,15 +151,15 @@ SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
-  FBSDKLoginKit: 7a1e411d46acc8834588eca437daf34de42e1d52
+  FBSDKCoreKit: 0d2d450fe9447e204fa6e912e0df76dd36693699
+  FBSDKLoginKit: 4127e8260b96e0e4cc8ba0c10c95ee63941aa24a
   FMPhotoPicker: abc6559e4cdcb84cc2fc2f62dcdbdeca7cacbf6c
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
-  Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
+  Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
@@ -158,7 +175,8 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
+  ZendeskSDK: 99679d8420a6d862773e2ddef0ebcc51b282317d
 
-PODFILE CHECKSUM: dd44787bccfe3c7b6f999f597c1b5afb6ebd9c38
+PODFILE CHECKSUM: 3f8cd42e96fd24659233996f7a48cf77114b8cfd
 
 COCOAPODS: 1.8.4

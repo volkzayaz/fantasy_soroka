@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Configuration.setup(launchOptions: launchOptions)
         
+        application.applicationSupportsShakeToEdit = true
+        
         return true
     }
     

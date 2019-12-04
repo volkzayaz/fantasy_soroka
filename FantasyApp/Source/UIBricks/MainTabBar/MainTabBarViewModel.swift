@@ -118,6 +118,10 @@ struct MainTabBarViewModel : MVVM_ViewModel {
 
 extension MainTabBarViewModel {
     
+    func triggerUpdate() {
+        unsupportedVersionTriggerVar.accept(true)
+    }
+    
     /** Reference any actions ViewModel can handle
      ** Actions should always be void funcs
      ** any result should be reflected via corresponding drivers
