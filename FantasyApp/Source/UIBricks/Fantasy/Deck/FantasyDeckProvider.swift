@@ -139,7 +139,9 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
         switch reaction {
         case .like   : Dispatcher.dispatch(action: LikeFantasy(card: card))
         case .dislike: Dispatcher.dispatch(action: DislikeFantasy(card: card))
-        case .neutral: Dispatcher.dispatch(action: NeutralFantasy(card: card))
+            
+        case .neutral: return false
+            ///Dispatcher.dispatch(action: NeutralFantasy(card: card))
             
         case .block: return false;
             

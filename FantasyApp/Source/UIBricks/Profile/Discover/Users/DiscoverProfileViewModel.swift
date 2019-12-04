@@ -120,7 +120,7 @@ extension DiscoverProfileViewModel {
 
     func inviteFriends() {
         router.invite(
-            ["SEXUAL WELLNESS FOR YOUR MIND",
+            ["Sharing - Invite To The App",
              NSURL(string: "http://bit.ly/fantasymatch")!
         ])
     }
