@@ -11,31 +11,21 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension UIImage {
-
-    func addPinkCircle() -> UIImage {
-
-        let rect = CGRect(x: -1, y: -1, width: size.width + 2, height: size.height + 2)
-        let renderer = UIGraphicsImageRenderer(size: rect.size)
-
-        return renderer.image { ctx in
-
-            ctx.cgContext.setFillColor(UIColor.red.cgColor)
-            ctx.cgContext.fillEllipse(in: rect)
-
-            draw(in: rect, blendMode: .normal, alpha: 1.0)
-
-        }.withRenderingMode(.alwaysOriginal)
-    }
-}
-
 class MainTabBarViewController: UITabBarController, MVVM_View {
     
     var viewModel: MainTabBarViewModel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if #available(iOS 13, *)  {
+            // we don't need additional inset for iOS 13.
+        } else {
+            tabBar.items?.forEach({ (item) in
+                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -10, right: 0)
+            })
+        }
+
         viewModel.locationRequestHidden
             .drive(onNext: { [unowned self] (hidden) in
                 
@@ -55,9 +45,8 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
         
         viewModel.profileTabImage
             .drive(onNext: { [unowned self] (image) in
-                let i = image.addPinkCircle()
-                self.tabBar.items!.last!.selectedImage = i
-                self.tabBar.items!.last!.image = image
+                self.tabBar.items!.last!.selectedImage = image.addPinkCircle(for: 36)
+                self.tabBar.items!.last!.image = image.resize(for: 36)
             })
             .disposed(by: rx.disposeBag)
 
