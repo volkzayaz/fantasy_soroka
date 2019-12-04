@@ -70,7 +70,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
-  - Branch
+  - Branch (~> 0.29.3)
   - Crashlytics (~> 3.13)
   - FBSDKCoreKit (= 4.40.0)
   - FBSDKLoginKit (= 4.40.0)
@@ -159,6 +159,6 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: a15d5291623dbdaf43bb5dbb91c7e43c85bec604
+PODFILE CHECKSUM: dd44787bccfe3c7b6f999f597c1b5afb6ebd9c38
 
 COCOAPODS: 1.8.4

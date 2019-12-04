@@ -11,6 +11,24 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+extension UIImage {
+
+    func addPinkCircle() -> UIImage {
+
+        let rect = CGRect(x: -1, y: -1, width: size.width + 2, height: size.height + 2)
+        let renderer = UIGraphicsImageRenderer(size: rect.size)
+
+        return renderer.image { ctx in
+
+            ctx.cgContext.setFillColor(UIColor.red.cgColor)
+            ctx.cgContext.fillEllipse(in: rect)
+
+            draw(in: rect, blendMode: .normal, alpha: 1.0)
+
+        }.withRenderingMode(.alwaysOriginal)
+    }
+}
+
 class MainTabBarViewController: UITabBarController, MVVM_View {
     
     var viewModel: MainTabBarViewModel!
@@ -37,10 +55,12 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
         
         viewModel.profileTabImage
             .drive(onNext: { [unowned self] (image) in
+                let i = image.addPinkCircle()
+                self.tabBar.items!.last!.selectedImage = i
                 self.tabBar.items!.last!.image = image
             })
             .disposed(by: rx.disposeBag)
- 
+
         viewModel.unsupportedVersionTrigger
             .drive(onNext: { [unowned self] _ in
                 
@@ -53,7 +73,7 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
         
         let vc = (viewControllers![1] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
         vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
-     
+
         //selectedIndex = 3
         
     }
@@ -69,11 +89,11 @@ private extension MainTabBarViewController {
      @IBAction func performAction(_ sender: Any) {
      
      }
-    
+
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      
      }
- 
-    */
+
+     */
     
 }

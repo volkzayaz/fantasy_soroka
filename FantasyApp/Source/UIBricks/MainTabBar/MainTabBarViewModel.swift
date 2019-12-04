@@ -54,7 +54,7 @@ extension MainTabBarViewModel {
         return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL ?? "" }
             .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0) }
             .map { $0 ?? R.image.noPhoto()! }
-            .map { RoundCornerImageProcessor(cornerRadius: 15, targetSize: .init(width: 30, height: 30))
+            .map { RoundCornerImageProcessor(cornerRadius: 20, targetSize: .init(width: 40, height: 40))
                 .process(item: ImageProcessItem.image($0), options: [])! }
             .map { $0.withRenderingMode(.alwaysOriginal) }
     }
