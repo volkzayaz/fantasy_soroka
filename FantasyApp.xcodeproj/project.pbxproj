@@ -72,6 +72,7 @@
 		733CA05C23951D7000EF7922 /* FantasyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED18230D3C5000E661A7 /* FantasyCollectionViewModel.swift */; };
 		733CA06523955FC500EF7922 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA06423955FC500EF7922 /* NotificationService.swift */; };
 		733CA06923955FC600EF7922 /* FantasyAppRichPush.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 733CA06223955FC500EF7922 /* FantasyAppRichPush.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		733CA0722397BE1900EF7922 /* UpdateAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA0712397BE1900EF7922 /* UpdateAppViewController.swift */; };
 		733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BA236452A0004EC466 /* InviteDeeplink.swift */; };
 		733F41C02364AE88004EC466 /* MonetizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41BF2364AE88004EC466 /* MonetizationViewController.swift */; };
 		733F41CE2365EFB4004EC466 /* MultiSlider+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */; };
@@ -463,6 +464,7 @@
 		733CA06423955FC500EF7922 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		733CA06623955FC500EF7922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		733CA06F2395615B00EF7922 /* FantasyAppRichPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FantasyAppRichPush.entitlements; sourceTree = "<group>"; };
+		733CA0712397BE1900EF7922 /* UpdateAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppViewController.swift; sourceTree = "<group>"; };
 		733F41BA236452A0004EC466 /* InviteDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDeeplink.swift; sourceTree = "<group>"; };
 		733F41BF2364AE88004EC466 /* MonetizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetizationViewController.swift; sourceTree = "<group>"; };
 		733F41CA2365EFB4004EC466 /* MultiSlider+Drag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiSlider+Drag.swift"; sourceTree = "<group>"; };
@@ -973,6 +975,7 @@
 		7312B07622D741DE00DB0F36 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				733CA0702397BDFB00EF7922 /* Update */,
 				7312B07722D741F000DB0F36 /* OnboardingRouter.swift */,
 				7312B07822D741F000DB0F36 /* OnboardingViewController.swift */,
 				7312B07922D741F000DB0F36 /* OnboardingViewModel.swift */,
@@ -1253,6 +1256,14 @@
 				733CA06623955FC500EF7922 /* Info.plist */,
 			);
 			path = FantasyAppRichPush;
+			sourceTree = "<group>";
+		};
+		733CA0702397BDFB00EF7922 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				733CA0712397BE1900EF7922 /* UpdateAppViewController.swift */,
+			);
+			path = Update;
 			sourceTree = "<group>";
 		};
 		733F41B923645290004EC466 /* Deeplink */ = {
@@ -2609,6 +2620,7 @@
 				B7D68496238E68D100E99993 /* GatewayProfileButton.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
 				733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */,
+				733CA0722397BE1900EF7922 /* UpdateAppViewController.swift in Sources */,
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,

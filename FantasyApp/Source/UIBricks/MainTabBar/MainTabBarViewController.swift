@@ -57,6 +57,39 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
         //selectedIndex = 3
         
     }
+ 
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resignFirstResponder()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        
+        guard motion == .motionShake && (Environment.debug || Environment.adhoc) else {
+            return
+        }
+        
+        let actions: [UIAlertAction] = [UIAlertAction(title: "Force Update Application",
+                                                      style: .default,
+                                                      handler: { [weak self] _ in
+                                                        self?.viewModel.triggerUpdate()
+        }),
+        .init(title: "Cancel", style: .cancel, handler: nil)]
+        
+        showDialog(title: "Debug Actions", text: "Pick one", style: .alert,
+                   actions: actions)
+        
+    }
+    
     
 }
 
