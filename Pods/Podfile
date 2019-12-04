@@ -13,10 +13,10 @@ target 'FantasyApp' do
     pod 'SwiftyStoreKit'
 
     #data layer
-    pod 'Parse', '1.17.2'
-    pod 'Parse/FacebookUtils'
-    pod 'FBSDKCoreKit', '4.40.0'
-    pod 'FBSDKLoginKit', '4.40.0'
+    pod 'Parse', '1.17.3'
+    pod 'Parse/FacebookUtils', '1.17.3'
+    pod 'FBSDKCoreKit', '5.7.0'
+    pod 'FBSDKLoginKit', '5.7.0'
     pod 'Moya', '13.0.1'
     pod 'Socket.IO-Client-Swift', '~> 15.2.0'
   

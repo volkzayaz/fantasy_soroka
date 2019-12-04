@@ -69,11 +69,19 @@ extension Configuration {
 
         // MARK: - Logging
         if Environment.debug {
-            Parse.setLogLevel(.debug)
+            Parse.logLevel = .debug
         }
 
         // MARK: - Analytics (Amplitude)
-        Amplitude.instance()?.initializeApiKey("8ef1a93282a6ca16bfe1341dedd639dc")
+        let key: String
+        if Environment.appstore {
+            key = "8ef1a93282a6ca16bfe1341dedd639dc"
+        }
+        else {
+            key = "f0ea040baf0427e2cbeb733729946eb3"
+        }
+        
+        Amplitude.instance()?.initializeApiKey(key)
         
         ///in case AppState initialisation becomes async
         ///we need to delay app ViewControllers presentation
