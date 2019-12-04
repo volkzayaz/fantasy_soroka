@@ -101,6 +101,9 @@ extension Configuration {
         Theme.currentTheme.primaryColor = UIColor.fantasyPink
 
         Support.initialize(withZendesk: Zendesk.instance)
+
+        let ident = Identity.createAnonymous()
+        Zendesk.instance?.setIdentity(ident)
     }
 
     private static func registerActors() {
