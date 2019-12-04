@@ -31,14 +31,18 @@ struct ProfileSettingsViewModel : MVVM_ViewModel {
 
 extension ProfileSettingsViewModel {
     
+    private func logoutActions() {
+        AuthenticationManager.logout()
+        Dispatcher.dispatch(action: Logout())
+        self.router.dismiss()
+    }
+    
     func logout() {
 
         let actions: [UIAlertAction] = [
             .init(title: R.string.localizable.generalNo(), style: .cancel, handler: nil),
             .init(title: R.string.localizable.fantasySettingsLogoutAlertAction(), style: .destructive, handler: { _ in
-                AuthenticationManager.logout()
-                Dispatcher.dispatch(action: Logout())
-                self.router.dismiss()
+                self.logoutActions()
             })
         ]
 
@@ -53,7 +57,7 @@ extension ProfileSettingsViewModel {
                 let _ = UserManager.deleteAccount()
                                    .trackView(viewIndicator: self.indicator)
                                    .silentCatch(handler: self.router.owner)
-                                   .subscribe(onNext: self.logout)
+                                   .subscribe(onNext: self.logoutActions)
             })
         ]
 

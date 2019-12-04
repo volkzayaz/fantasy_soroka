@@ -70,7 +70,6 @@
         <!--Fantasy Collection View Controller-->
         <scene sceneID="dCa-79-2HK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IU4-Fk-ChJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FantasyCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6EI-uA-pE9" customClass="FantasyCollectionViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bgm-hv-4Yc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -120,6 +119,7 @@
                         <outlet property="tableView" destination="uUj-7s-fFw" id="dZk-8X-MvA"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IU4-Fk-ChJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-413" y="1101"/>
         </scene>
@@ -578,7 +578,6 @@
                                                         <constraint firstAttribute="height" constant="30" id="Lyj-XI-oQE"/>
                                                         <constraint firstAttribute="width" constant="78" id="NxL-fI-2Xj"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button"/>
                                                     <connections>
                                                         <action selector="buy" destination="LAe-x4-l5a" eventType="touchUpInside" id="Bdf-sD-zY8"/>
                                                     </connections>
