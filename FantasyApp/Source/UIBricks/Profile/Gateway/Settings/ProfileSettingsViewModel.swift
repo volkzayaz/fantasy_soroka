@@ -26,7 +26,6 @@ struct ProfileSettingsViewModel : MVVM_ViewModel {
     let router: ProfileSettingsRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
 }
 
 extension ProfileSettingsViewModel {
@@ -73,8 +72,8 @@ extension ProfileSettingsViewModel {
     }
 
     func helpSupport() {
-        guard let u = URL(string: R.string.localizable.fantasyConstantsHelpSupport()) else { return }
-        router.showSafari(for: u)
+        guard let u = User.current  else { return }
+        router.showSupport(for: u.bio.name, email: PFUser.current()?.email)
     }
 
     func legal() {

@@ -2289,6 +2289,7 @@
 				843B6496235051DA00E5639B /* Embed Frameworks */,
 				844C84EE23505F9F00BDC60F /* ShellScript */,
 				733CA06E23955FC600EF7922 /* Embed App Extensions */,
+				B73821422395777C006A25A4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2561,6 +2562,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScreenShieldKit.framework/strip-frameworks.sh\"\n";
+		};
+		B73821422395777C006A25A4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZendeskSDK.framework/strip-frameworks.sh\"\n";
 		};
 		C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

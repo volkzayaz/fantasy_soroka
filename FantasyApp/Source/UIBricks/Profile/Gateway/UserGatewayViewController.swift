@@ -52,7 +52,7 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     override var prefersNavigationBarHidden: Bool {
         return true
     }
- 
+
 }
 
 extension UserGatewayViewController {
@@ -68,5 +68,10 @@ extension UserGatewayViewController {
         present(vc, animated: true, completion: nil)
         
     }
-    
+
+    @IBAction func tapZendesk(_ sender: Any) {
+        viewModel.help()
+    }
 }
+
+
