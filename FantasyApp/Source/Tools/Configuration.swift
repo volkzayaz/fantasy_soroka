@@ -21,7 +21,6 @@ extension Configuration {
     static func setup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         setupServices(launchOptions: launchOptions)
         registerActors()
-        registerZendesk()
     }
     
     private static func setupServices(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -86,6 +85,14 @@ extension Configuration {
         ///Push registration
         PushManager.kickOff()
 
+
+        /// Zendesk
+        Zendesk.initialize(appId: "9d8b51fca51b5f85a64615805f9db77a547e239d9f7aa0b4",
+            clientId: "mobile_sdk_client_38524f5c375d9e45cf0f",
+            zendeskUrl: "https://fantasyapp.zendesk.com")
+        Theme.currentTheme.primaryColor = UIColor.fantasyPink
+
+        Support.initialize(withZendesk: Zendesk.instance)
     }
 
     private static func registerActors() {
@@ -95,16 +102,6 @@ extension Configuration {
         actors.forEach { ActorLocator.shared.register($0) }
     }
 
-
-    private static func registerZendesk() {
-        Zendesk.initialize(appId: "9d8b51fca51b5f85a64615805f9db77a547e239d9f7aa0b4",
-            clientId: "mobile_sdk_client_38524f5c375d9e45cf0f",
-            zendeskUrl: "https://fantasyapp.zendesk.com")
-        Theme.currentTheme.primaryColor = UIColor.fantasyPink
-
-        Support.initialize(withZendesk: Zendesk.instance)
-    }
-    
 }
 
 enum ServerURL {}
