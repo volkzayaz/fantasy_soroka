@@ -44,9 +44,9 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.profileTabImage
-            .drive(onNext: { [unowned self] (image) in
-                self.tabBar.items!.last!.selectedImage = image.addPinkCircle(for: 36)
-                self.tabBar.items!.last!.image = image.resize(for: 36)
+            .drive(onNext: { [unowned self] (imagesTuple) in
+                self.tabBar.items!.last!.image = imagesTuple.0
+                self.tabBar.items!.last!.selectedImage = imagesTuple.1
             })
             .disposed(by: rx.disposeBag)
 

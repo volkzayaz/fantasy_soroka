@@ -15,6 +15,7 @@ extension UIImage {
         let rect = CGRect(x: 0, y: 0, width: imageSize, height: imageSize)
 
         return UIGraphicsImageRenderer(size: rect.size).image { ctx in
+            UIBezierPath.init(roundedRect: rect, cornerRadius: CGFloat(imageSize/2)).addClip()
             draw(in: rect, blendMode: .normal, alpha: 1.0)
         }.withRenderingMode(.alwaysOriginal)
     }
@@ -33,6 +34,7 @@ extension UIImage {
             ctx.cgContext.setFillColor(UIColor.white.cgColor)
             ctx.cgContext.fillEllipse(in: mediumRect)
 
+            UIBezierPath.init(roundedRect: imageRect, cornerRadius: CGFloat(imageSize/2)).addClip()
             draw(in: imageRect, blendMode: .normal, alpha: 1.0)
         }.withRenderingMode(.alwaysOriginal)
     }

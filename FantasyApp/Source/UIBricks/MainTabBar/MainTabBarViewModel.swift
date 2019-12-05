@@ -50,13 +50,15 @@ extension MainTabBarViewModel {
             .filter { $0 }
     }
     
-    var profileTabImage: Driver<UIImage> {
+    var profileTabImage: Driver<(UIImage, UIImage)> {
         return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL ?? "" }
+            .asObservable()
+            .observeOn(SerialDispatchQueueScheduler(qos: .background))
             .flatMapLatest { ImageRetreiver.imageForURLWithoutProgress(url: $0) }
             .map { $0 ?? R.image.noPhoto()! }
-            .map { RoundCornerImageProcessor(cornerRadius: 50, targetSize: .init(width: 100, height: 100))
-                .process(item: ImageProcessItem.image($0), options: [])! }
-            .map { $0.withRenderingMode(.alwaysOriginal) }
+            .map { ($0.resize(for: 36), $0.addPinkCircle(for: 36)) }
+        .asDriver(onErrorJustReturn: nil)
+        .notNil()
     }
     
 }
