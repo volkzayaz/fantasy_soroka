@@ -15,6 +15,11 @@
 "general.about" = "About";
 "general.ago" = "%@ ago";
 "general.just.now" = "just now";
+"general.done" = "Done";
+"general.back" = "Back";
+"general.edit" = "Edit";
+"general.images" = "images";
+"general.videos" = "videos";
 
 "general.text.field.show" = "SHOW";
 "general.text.field.hide" = "HIDE";
@@ -140,3 +145,18 @@
 "fantasy.settings.delete.account.alert.title" = "Delete account?";
 "fantasy.settings.delete.account.alert.text" = "You will be logged out. All your data will be erased. This can not be undone";
 "fantasy.settings.delete.account.alert.action" = "Delete account";
+
+
+
+"fantasy.image.picker.library.picker_warning_over_image_select_format.part1" = "You can select maximum";
+"fantasy.image.picker.library.picker_warning_over_video_select_format.part1" = "You can select maximum";
+
+"fantasy.image.picker.library.editor_menu_filter" = "Filter";
+"fantasy.image.picker.library.editor_menu_crop" = "Crop";
+"fantasy.image.picker.library.editor_menu_crop_button_reset" = "Reset";
+"fantasy.image.picker.library.editor_menu_crop_button_rotate" = "Rotate";
+"fantasy.image.picker.library.editor_crop_ratioCustom" = "Custom";
+"fantasy.image.picker.library.editor_crop_ratioOrigin" = "Origin";
+"fantasy.image.picker.library.editor_crop_ratioSquare" = "Square";
+"fantasy.image.picker.library.permission_dialog_title" = "Fantasy app";
+"fantasy.image.picker.library.permission_dialog_message" = "Fantasy app wants to access Photo Library";

@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - Amplitude-iOS (4.8.2)
+  - Amplitude-iOS (4.9.3)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -24,11 +24,11 @@ PODS:
     - FBSDKLoginKit/Login (= 5.7.0)
   - FBSDKLoginKit/Login (5.7.0):
     - FBSDKCoreKit (~> 5.0)
-  - FMPhotoPicker (0.8.2)
+  - FMPhotoPicker (0.9.0)
   - iCarousel (1.8.3)
-  - Kingfisher (5.9.0):
-    - Kingfisher/Core (= 5.9.0)
-  - Kingfisher/Core (5.9.0)
+  - Kingfisher (5.11.0):
+    - Kingfisher/Core (= 5.11.0)
+  - Kingfisher/Core (5.11.0)
   - KMPlaceholderTextView (1.4.0)
   - Koloda (5.0):
     - pop (~> 1.0)
@@ -89,7 +89,7 @@ DEPENDENCIES:
   - Crashlytics (~> 3.13)
   - FBSDKCoreKit (= 5.7.0)
   - FBSDKLoginKit (= 5.7.0)
-  - FMPhotoPicker (~> 0.8)
+  - FMPhotoPicker (from `https://github.com/tribalmedia/FMPhotoPicker.git`, tag `0.9.0`)
   - iCarousel (~> 1.8)
   - Kingfisher (~> 5.8)
   - KMPlaceholderTextView
@@ -119,7 +119,6 @@ SPEC REPOS:
     - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
-    - FMPhotoPicker
     - iCarousel
     - Kingfisher
     - KMPlaceholderTextView
@@ -143,9 +142,19 @@ SPEC REPOS:
     - SwiftyStoreKit
     - ZendeskSDK
 
+EXTERNAL SOURCES:
+  FMPhotoPicker:
+    :git: https://github.com/tribalmedia/FMPhotoPicker.git
+    :tag: 0.9.0
+
+CHECKOUT OPTIONS:
+  FMPhotoPicker:
+    :git: https://github.com/tribalmedia/FMPhotoPicker.git
+    :tag: 0.9.0
+
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Amplitude-iOS: 46c8e6e65c49bb1ad1909a9add1a68e1f8562b3f
+  Amplitude-iOS: 122e026c44db8460e5efcf84859aa290a0ae9786
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
@@ -153,9 +162,9 @@ SPEC CHECKSUMS:
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: 0d2d450fe9447e204fa6e912e0df76dd36693699
   FBSDKLoginKit: 4127e8260b96e0e4cc8ba0c10c95ee63941aa24a
-  FMPhotoPicker: abc6559e4cdcb84cc2fc2f62dcdbdeca7cacbf6c
+  FMPhotoPicker: cbb55c2b76531af004ed8541c9c6edb6fa7af069
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
+  Kingfisher: 4569606189149e19c7d9439f47e885d0679b7a90
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
@@ -177,6 +186,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   ZendeskSDK: 99679d8420a6d862773e2ddef0ebcc51b282317d
 
-PODFILE CHECKSUM: 3f8cd42e96fd24659233996f7a48cf77114b8cfd
+PODFILE CHECKSUM: 05806dbf8d7ed657bee7054fac46705c73965b28
 
 COCOAPODS: 1.8.4
