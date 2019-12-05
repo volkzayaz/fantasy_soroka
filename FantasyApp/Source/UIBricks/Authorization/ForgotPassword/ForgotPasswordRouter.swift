@@ -17,5 +17,7 @@ struct ForgotPasswordRouter: MVVM_Router {
 
     func closeSignIn() {
         owner.navigationController?.popViewController(animated: true)
+        
+        Analytics.report(Analytics.Event.SignIn(source: .ForgotPassword))
     }
 }

@@ -26,8 +26,12 @@ extension PickCommunityViewModel {
                 
                 return self.manager.rx.didChangeAuthorization
                     .startWith((self.manager, CLLocationManager.authorizationStatus()))
+                    .do(onNext: { (status) in
+                        Analytics.report( Analytics.Event.LocationPermissionChange(authStatus: status.status) )
+                    })
                     .map { $0.status == .denied }
                     .asDriver(onErrorJustReturn: false)
+                    
             }
         
     }

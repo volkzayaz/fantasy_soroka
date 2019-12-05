@@ -46,6 +46,8 @@ extension ProfileSettingsViewModel {
         ]
 
         router.owner.showDialog(title: R.string.localizable.fantasySettingsLogoutAlertTitle(), text: R.string.localizable.fantasySettingsLogoutAlertText(), style: .alert, actions: actions)
+        
+        Analytics.report(Analytics.Event.ProfileLogout())
     }
     
     func deleteAccount() {
@@ -61,6 +63,8 @@ extension ProfileSettingsViewModel {
         ]
 
          router.owner.showDialog(title: R.string.localizable.fantasySettingsDeleteAccountAlertTitle(), text: R.string.localizable.fantasySettingsDeleteAccountAlertText(), style: .actionSheet, actions: actions)
+        
+        Analytics.report(Analytics.Event.ProfileDelete())
     }
 
     func restorePurchases() {

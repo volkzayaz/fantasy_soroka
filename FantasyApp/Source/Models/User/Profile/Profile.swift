@@ -46,8 +46,13 @@ struct RegisterForm {
     var password: String?
     var confirmPassword: String?
 
-    var selectedPhoto: UIImage?
+    var selectedPhoto: SelectedPhoto?
     var photo: UIImage?
+    
+    struct SelectedPhoto {
+        let image: UIImage
+        let source: Analytics.Event.SignUpPassed.PhotoSource
+    }
     
     var toEditProfileForm: EditProfileForm {
         return EditProfileForm(name: name,

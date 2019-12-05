@@ -213,6 +213,7 @@
 		73FDD08D2399134900BA3E1D /* AuthorizationEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */; };
 		73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */; };
 		73FDD09123993E8000BA3E1D /* AnalyticsEventRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */; };
+		73FDD093239940F300BA3E1D /* TimeSpentCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */; };
 		841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */; };
@@ -612,6 +613,7 @@
 		73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationEvents.swift; sourceTree = "<group>"; };
 		73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnalyticsEvents.swift; sourceTree = "<group>"; };
 		73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventRoom.swift; sourceTree = "<group>"; };
+		73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSpentCounter.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FantasyDetailsViewController+Animations.swift"; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -1890,6 +1892,7 @@
 				73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */,
 				73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */,
 				73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */,
+				73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */,
 			);
 			path = AnalyticsEvent;
 			sourceTree = "<group>";
@@ -2713,6 +2716,7 @@
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
 				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
+				73FDD093239940F300BA3E1D /* TimeSpentCounter.swift in Sources */,
 				842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */,
 				733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */,
 				84AB4907232A2D0000F3609A /* ChatViewController.swift in Sources */,

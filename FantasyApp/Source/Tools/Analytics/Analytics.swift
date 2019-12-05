@@ -59,7 +59,7 @@ enum Analytics {}
 extension Analytics {
     
     static func report(_ event: AnalyticsEvent) {
-        Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
+//        Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
     }
     
 }

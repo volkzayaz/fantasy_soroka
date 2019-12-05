@@ -15,7 +15,7 @@ extension Analytics.Event {
         var name: String { return "Card Viewed" }
 
         enum NavigationContext: String {
-            case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFanasies
+            case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFanasies, Blocked
         }
 
         let card: Fantasy.Card

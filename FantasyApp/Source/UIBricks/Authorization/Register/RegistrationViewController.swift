@@ -442,7 +442,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
 
         alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
             FantasyCameraViewController.present(on: self) { [unowned self] (image) in
-                self.viewModel.photoSelected(photo: image)
+                self.viewModel.photoSelected(photo: image, source: .Taken)
             }
         }))
 
@@ -450,7 +450,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
 
             self.imagePicker = FantasyImagePickerController(presentationController: self) { [unowned self](image) in
                 FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
-                    self.viewModel.photoSelected(photo: image)
+                    self.viewModel.photoSelected(photo: image, source: .Chosen)
                 }
                 self.imagePicker = nil
             }

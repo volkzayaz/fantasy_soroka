@@ -33,6 +33,8 @@ extension FantasyDetailsViewModel {
 struct FantasyDetailsViewModel: MVVM_ViewModel {
 
     private let provider: FantasyDetailProvider
+    private var timeSpentCounter = TimeSpentCounter()
+    private var collapsedStory = false
     
     let currentState: BehaviorRelay<Fantasy.Card.Reaction>
     
@@ -108,6 +110,23 @@ extension FantasyDetailsViewModel {
     
     func show(collection: Fantasy.Collection) {
         router.show(collection: collection)
+    }
+ 
+    mutating func viewAppeared() {
+        timeSpentCounter.start()
+    }
+    
+    mutating func viewWillDisappear() {
+        
+        Analytics.report( Analytics.Event.CardViewed(card: provider.card,
+                                                     context: provider.navigationContext,
+                                                     collapsedContent: collapsedStory,
+                                                     spentTime: timeSpentCounter.finish()) )
+        
+    }
+    
+    mutating func expandStory() {
+        collapsedStory = true
     }
     
 }

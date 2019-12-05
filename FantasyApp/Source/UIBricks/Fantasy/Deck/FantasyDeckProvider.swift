@@ -30,6 +30,7 @@ protocol FantasyDetailProvider {
     
     var card: Fantasy.Card { get }
     var initialReaction: Fantasy.Card.Reaction { get }
+    var navigationContext: Analytics.Event.CardViewed.NavigationContext { get }
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool
     
@@ -62,7 +63,7 @@ struct MainDeckProvider: FantasyDeckProvier {
     }
     
     func detailsProvider(card: Fantasy.Card, reactionCallback: (() -> Void)? = nil) -> FantasyDetailProvider {
-        return OwnFantasyDetailsProvider(card: card, initialReaction: .neutral)
+        return OwnFantasyDetailsProvider(card: card, initialReaction: .neutral, navigationContext: .Deck)
     }
     
 };
@@ -124,7 +125,8 @@ struct RoomsDeckProvider: FantasyDeckProvier {
         return RoomFantasyDetailsProvider(room: room,
                                           card: card,
                                           initialReaction: .neutral,
-                                          reactionCallback: reactionCallback)
+                                          reactionCallback: reactionCallback,
+                                          navigationContext: .RoomPlay)
     }
     
 }
@@ -133,6 +135,7 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
     
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
+    let navigationContext: Analytics.Event.CardViewed.NavigationContext
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool {
         
@@ -158,6 +161,7 @@ struct RoomFantasyDetailsProvider: FantasyDetailProvider {
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
     let reactionCallback: (() -> Void)?
+    let navigationContext: Analytics.Event.CardViewed.NavigationContext
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool {
         

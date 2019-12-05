@@ -25,7 +25,14 @@ extension Analytics.Event {
     
     struct LocationPermissionChange: AnalyticsEvent {
         
-        let value: Value
+        let authStatus: CLAuthorizationStatus
+        
+        private var value: Value {
+            switch authStatus {
+            case .notDetermined, .denied, .restricted: return .NotAllowed
+            case .authorizedWhenInUse, .authorizedAlways: return .WhileUsing
+            }
+        }
         
         enum Value: String {
             case NotAllowed, WhileUsing, AllowOnce

@@ -31,6 +31,12 @@ extension Analytics.Event {
     
     struct ForgotPasswordSubmitted: AnalyticsEvent {
         var name: String { "Sign-In: Forgot Password" }
+        
+        let isSuccessful: Bool
+        
+        var props: [String : String]? {
+            return ["Type": isSuccessful ? "Success" : "Failed"]
+        }
     }
     
     enum SignUpPassed: AnalyticsEvent {
