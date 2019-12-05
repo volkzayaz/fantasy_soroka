@@ -273,10 +273,18 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
     }
  
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        
+        guard let card = cardsProxy[safe: index] else {
+            ///because we don't use Rx it is possible
+            ///that cardsProxy is desynchronised with actual datasource
+            ///that is backing Koloda
+            return
+        }
+        
         if case .left = direction {
-            viewModel.swiped(card: cardsProxy[index], direction: .left)
+            viewModel.swiped(card: card, direction: .left)
         } else if case .right = direction {
-            viewModel.swiped(card: cardsProxy[index], direction: .right)
+            viewModel.swiped(card: card, direction: .right)
         }
     }
     

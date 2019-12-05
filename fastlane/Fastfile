@@ -60,7 +60,7 @@ platform :ios do
           
           use_webhook_configured_username_and_icon: true,
           payload: {
-          'Version number' => get_version_number,
+          'Version number' => get_version_number(target: "FantasyApp"),
           'Environment' => environmentName,
           'Download Link' => "https://apps.crashlytics.com/projects",
           },
