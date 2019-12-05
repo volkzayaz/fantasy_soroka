@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+import Amplitude_iOS
 import Crashlytics
 import Branch
 
@@ -17,38 +18,77 @@ class UserPropertyActor {
     private let bag = DisposeBag()
 
     init() {
+        
         appState.changesOf { $0.currentUser }
-            .notNil()
-            .drive(onNext: { user in
-                AnalyticsReporter.default.setValue(user.fantasies.liked.count, forProperty: .fantasiesQuantity)
-                AnalyticsReporter.default.setValue(user.bio.sexuality.rawValue, forProperty: .sexuality)
-                AnalyticsReporter.default.setValue(user.bio.gender.rawValue, forProperty: .gender)
-                AnalyticsReporter.default.setValue(user.bio.name, forProperty: .name)
-                // AnalyticsReporter.default.setValue(user.bio.age, forProperty: .age)
-                // AnalyticsReporter.default.setValue(user.community.name, forProperty: .community)
+            .asObservable().subscribeOn(SerialDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { maybeUser in
+                
+                guard let user = maybeUser else {
+
+                    Amplitude.instance()?.setUserId(nil)
+                    Amplitude.instance()?.regenerateDeviceId()
+                    
+                    return
+                }
+                
+                func applicator<T: NSObject>(value: T?, key: String, i: AMPIdentify) -> AMPIdentify {
+                    
+                    if let x = value {
+                        i.set(key, value: x)
+                    }
+                    else {
+                        i.unset(key)
+                    }
+                    
+                    return i
+                }
+                
+                let newIdentity =
+                    [
+                        "Profile Status: Is In Active City": NSNumber(booleanLiteral: user.community.value != nil),
+                        "Profile Status: Active City Name": user.community.value?.name as NSString?,
+                        "Profile Status: Signed Up" : PFUser.current()!.createdAt as NSDate?
+                        
+                ]
+                .reduce(AMPIdentify()) { (i, tuple) in
+                    return applicator(value: tuple.value, key: tuple.key, i: i)
+                }
+                
+                Amplitude.instance()?.setUserId(user.id)
+                Amplitude.instance()?.identify(newIdentity)
+                
+                
+                ///user .add for increment operations
+                
+                ///[[Amplitude instance] setOptOut:YES]; to turn user off from logging. Not sure if we need it
+                
+//                Amplitude.instance()?.logRevenueV2(AMPRevenue!)
+                
+                
+                
+//                Crashlytics.sharedInstance().setUserIdentifier(user?.id)
+//                Crashlytics.sharedInstance().setUserName(user?.bio.name)
+//
+//                if let id = user?.id {
+//                    Branch.getInstance()?.setIdentity(id)
+//                } else {
+//                    Branch.getInstance()?.logout()
+//                }
                 
         }).disposed(by: bag)
 
-        appState.changesOf { $0.currentUser }
-        .drive(onNext: { user in
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .subscribe(onNext: { (_) in
                 
-                Crashlytics.sharedInstance().setUserIdentifier(user?.id)
-                Crashlytics.sharedInstance().setUserName(user?.bio.name)
-                
-                if let id = user?.id {
-                    Branch.getInstance()?.setIdentity(id)
-                } else {
-                    Branch.getInstance()?.logout()
+                UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                    
+                    print(settings)
+                    
                 }
                 
-            
             })
-            .disposed(by: bag)
         
-        appState.changesOf { $0.rooms }
-            .notNil()
-            .drive(onNext: { rooms in
-            AnalyticsReporter.default.setValue(rooms.count, forProperty: .chatRoomsQuantity)
-        }).disposed(by: bag)
+        
+        
     }
 }

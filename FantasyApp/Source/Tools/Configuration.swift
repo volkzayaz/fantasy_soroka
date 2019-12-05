@@ -78,7 +78,7 @@ extension Configuration {
             key = "8ef1a93282a6ca16bfe1341dedd639dc"
         }
         else {
-            key = "f0ea040baf0427e2cbeb733729946eb3"
+            key = "43d33719cb8721c70c1935aaeb791d1d"
         }
         
         Amplitude.instance()?.initializeApiKey(key)

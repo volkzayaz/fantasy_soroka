@@ -23,6 +23,7 @@ extension Fantasy {
             case likes
             case dislikes
             case blocks
+            case category = "type"
             
         }
         
@@ -34,6 +35,7 @@ extension Fantasy {
         let likes: Int
         let dislikes: Int
         let blocks: Int
+        let category: String
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection

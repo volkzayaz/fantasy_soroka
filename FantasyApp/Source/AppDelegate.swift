@@ -9,6 +9,8 @@
 import UIKit
 import Branch
 
+import Crashlytics
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

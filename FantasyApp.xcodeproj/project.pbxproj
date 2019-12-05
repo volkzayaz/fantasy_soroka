@@ -145,7 +145,6 @@
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
 		7379ED09230975A800E661A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED02230975A800E661A7 /* Analytics.swift */; };
 		7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED03230975A800E661A7 /* AnalyticsScreen.swift */; };
-		7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED06230975A800E661A7 /* LikeEvent.swift */; };
 		7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */; };
 		7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */; };
 		7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */; };
@@ -210,6 +209,10 @@
 		73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */; };
 		73F80CD52361EC2D00212FCF /* AcceptRejectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80CD42361EC2D00212FCF /* AcceptRejectCell.swift */; };
 		73F80CD72361ED0200212FCF /* AcceptRejectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F80CD62361ED0200212FCF /* AcceptRejectCell.xib */; };
+		73FDD08B23990DAF00BA3E1D /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD08A23990DAF00BA3E1D /* AnalyticsEvent.swift */; };
+		73FDD08D2399134900BA3E1D /* AuthorizationEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */; };
+		73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */; };
+		73FDD09123993E8000BA3E1D /* AnalyticsEventRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */; };
 		840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */; };
 		841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */; };
 		841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */; };
@@ -537,7 +540,6 @@
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
 		7379ED02230975A800E661A7 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		7379ED03230975A800E661A7 /* AnalyticsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsScreen.swift; sourceTree = "<group>"; };
-		7379ED06230975A800E661A7 /* LikeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeEvent.swift; sourceTree = "<group>"; };
 		7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalyticsService.swift; sourceTree = "<group>"; };
 		7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUserProperty.swift; sourceTree = "<group>"; };
 		7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionRouter.swift; sourceTree = "<group>"; };
@@ -606,6 +608,10 @@
 		73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewController.swift; sourceTree = "<group>"; };
 		73F80CD42361EC2D00212FCF /* AcceptRejectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptRejectCell.swift; sourceTree = "<group>"; };
 		73F80CD62361ED0200212FCF /* AcceptRejectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AcceptRejectCell.xib; sourceTree = "<group>"; };
+		73FDD08A23990DAF00BA3E1D /* AnalyticsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
+		73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationEvents.swift; sourceTree = "<group>"; };
+		73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnalyticsEvents.swift; sourceTree = "<group>"; };
+		73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventRoom.swift; sourceTree = "<group>"; };
 		840AC2FD23028BFE009270C4 /* UserPropertyAnalyticsActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyAnalyticsActor.swift; sourceTree = "<group>"; };
 		841504B6236390380003054A /* FantasyDetailsViewController+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FantasyDetailsViewController+Animations.swift"; sourceTree = "<group>"; };
 		8416816622E96CF700FA9455 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -1060,6 +1066,7 @@
 		7312B0AB22D7440800DB0F36 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				73FDD08923990DA000BA3E1D /* AnalyticsEvent */,
 				73EBBA71234E23AE00B79121 /* Notification */,
 				84C1D0452327BE7D00648DE1 /* Chat */,
 				7322311723055C2A009DD37F /* Fantasy */,
@@ -1550,18 +1557,9 @@
 		7379ED04230975A800E661A7 /* Amplitude */ = {
 			isa = PBXGroup;
 			children = (
-				7379ED05230975A800E661A7 /* Events */,
 				7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */,
 			);
 			path = Amplitude;
-			sourceTree = "<group>";
-		};
-		7379ED05230975A800E661A7 /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				7379ED06230975A800E661A7 /* LikeEvent.swift */,
-			);
-			path = Events;
 			sourceTree = "<group>";
 		};
 		7379ED15230D3C3D00E661A7 /* Collection */ = {
@@ -1883,6 +1881,17 @@
 				73F80CD62361ED0200212FCF /* AcceptRejectCell.xib */,
 			);
 			path = AcceptReject;
+			sourceTree = "<group>";
+		};
+		73FDD08923990DA000BA3E1D /* AnalyticsEvent */ = {
+			isa = PBXGroup;
+			children = (
+				73FDD08A23990DAF00BA3E1D /* AnalyticsEvent.swift */,
+				73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */,
+				73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */,
+				73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */,
+			);
+			path = AnalyticsEvent;
 			sourceTree = "<group>";
 		};
 		8416816522E96CD900FA9455 /* Components */ = {
@@ -2675,11 +2684,13 @@
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */,
+				73FDD08B23990DAF00BA3E1D /* AnalyticsEvent.swift in Sources */,
 				73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */,
 				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
 				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
+				73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
@@ -2766,7 +2777,6 @@
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */,
 				843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */,
-				7379ED0B230975A800E661A7 /* LikeEvent.swift in Sources */,
 				B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */,
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
@@ -2785,6 +2795,7 @@
 				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				73432AD2238AC7DD008CF2F1 /* ChatHeaderCell.swift in Sources */,
+				73FDD08D2399134900BA3E1D /* AuthorizationEvents.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
 				734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */,
@@ -2846,6 +2857,7 @@
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
 				B7B03BB52365DFA8000F42A6 /* TransparentSideView.swift in Sources */,
 				734C529E2326A6FD00B54510 /* DiscoveryFilterViewModel.swift in Sources */,
+				73FDD09123993E8000BA3E1D /* AnalyticsEventRoom.swift in Sources */,
 				84C1D06B2327D63E00648DE1 /* RoomManager.swift in Sources */,
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */,
@@ -3081,6 +3093,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
