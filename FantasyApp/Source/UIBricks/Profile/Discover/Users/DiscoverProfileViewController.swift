@@ -14,8 +14,6 @@ import iCarousel
 
 class DiscoverProfileViewController: UIViewController, MVVM_View {
 
-    private var animator = DiscoverProfileRouterTransitionAnimator()
-
     var viewModel: DiscoverProfileViewModel!
     
     @IBOutlet weak var profilesCarousel: iCarousel! {
@@ -247,29 +245,5 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
 
     func showFilters() {
         viewModel.presentFilter()
-    }
-}
-
-extension DiscoverProfileViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        animator.presenting = false
-
-        if let view = profilesCarousel.currentItemView as? UserCarouselView{
-            view.animateAppearance()
-        }
-
-        return animator
-    }
-
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-
-        animator.originFrame = profilesCarousel.superview?.convert(profilesCarousel.frame, to: nil) ?? .zero
-        animator.presenting = true
-
-        if let view = profilesCarousel.currentItemView as? UserCarouselView{
-            view.animateDisappearance()
-        }
-
-        return animator
     }
 }

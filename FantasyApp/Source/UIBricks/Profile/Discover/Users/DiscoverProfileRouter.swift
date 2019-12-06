@@ -21,9 +21,7 @@ struct DiscoverProfileRouter : MVVM_Router {
         let vc = R.storyboard.user.userProfileViewController()!
         vc.viewModel = .init(router: .init(owner: vc), user: profile)
         vc.modalPresentationStyle = .overFullScreen
-        vc.transitioningDelegate = owner
 
-//        owner.navigationController?.present(vc, animated: true, completion: nil)
         owner.navigationController?.pushViewController(vc, animated: true)
     }
     

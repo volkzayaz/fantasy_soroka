@@ -130,6 +130,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
             actionContainer.layer.insertSublayer(gradientLayer, at: 0)
         }
     }
+    @IBOutlet weak var topBlurView: UIView!
     
     private var avaliableSheetActions: [(String, () -> Void)] = [] {
         didSet {

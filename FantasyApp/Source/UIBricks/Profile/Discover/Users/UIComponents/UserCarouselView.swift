@@ -22,10 +22,7 @@ class UserCarouselView: UIView {
     @IBOutlet weak var labelCardNumber: UILabel!
     @IBOutlet weak var labelPhotoNumber: UILabel!
 
-    @IBOutlet weak var transparentGradienView: UIView!
-
     private var bag = DisposeBag()
-    private let gradientLayer = CAGradientLayer()
     private let corner: CGFloat = 20.0
 
     override init(frame: CGRect) {
@@ -53,7 +50,6 @@ class UserCarouselView: UIView {
         }
 
 //        setupShadow()
-        setupTransparentGradient()
     }
 
     private func loadViewFromNib() -> UIView {
@@ -72,17 +68,8 @@ class UserCarouselView: UIView {
         contentView.layer.rasterizationScale = UIScreen.main.scale
     }
 
-    private func setupTransparentGradient() {
-        gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.9).cgColor
-        ]
-
-        transparentGradienView.layer.insertSublayer(gradientLayer, at: 0)
-    }
-
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        gradientLayer.frame = transparentGradienView.bounds
         contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: corner).cgPath
     }
 }
@@ -107,54 +94,4 @@ extension UserCarouselView {
                              errorPlaceholder: R.image.noPhoto())
         
     }
-}
-
-// MARK:- Animation Transition
-
-extension UserCarouselView {
-
-    func animateAppearance() {
-//        storyView.alpha = 0.0
-//        shareButton.alpha = 0.0
-//        paidCardView.alpha = 0.0
-        UIView.animate(withDuration: 0.2,
-                       delay: DiscoverProfileRouterTransitionAnimator.durationClosing,
-                       options: .curveEaseIn,
-                       animations: {
-//            self.storyView.alpha = 1.0
-//            self.shareButton.alpha = 1.0
-//            self.paidCardView.alpha = 1.0
-        })
-
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 0.2
-        animation.beginTime = CACurrentMediaTime() + DiscoverProfileRouterTransitionAnimator.durationClosing
-        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        gradientLayer.add(animation, forKey: "fade")
-    }
-
-    func animateDisappearance() {
-//           storyView.alpha = 1.0
-//           shareButton.alpha = 1.0
-//           paidCardView.alpha = 1.0
-           UIView.animate(withDuration: 0.2,
-                          delay: FantasyDetailsTransitionAnimator.durationExpanding,
-                          options: .curveEaseIn,
-                          animations: {
-//               self.storyView.alpha = 0.0
-//               self.shareButton.alpha = 0.0
-//               self.paidCardView.alpha = 0.0
-           })
-
-           let animation = CABasicAnimation(keyPath: "opacity")
-           animation.fromValue = 1.0
-           animation.toValue = 0.0
-           animation.duration = 0.2
-           animation.beginTime = CACurrentMediaTime() + FantasyDetailsTransitionAnimator.durationExpanding
-           animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-           gradientLayer.add(animation, forKey: "fade")
-       }
-
 }
