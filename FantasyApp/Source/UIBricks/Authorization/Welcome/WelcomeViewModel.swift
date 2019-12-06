@@ -80,8 +80,6 @@ extension WelcomeViewModel {
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { (user) in
                 Dispatcher.dispatch(action: SetUser(user: user))
-                
-                Analytics.report(Analytics.Event.SignUpPassed.completed(from: .Facebook, timeSpent: timer.finish()))
             })
             .disposed(by: bag)
 

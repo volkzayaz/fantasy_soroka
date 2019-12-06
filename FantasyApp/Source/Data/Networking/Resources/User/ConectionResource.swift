@@ -144,7 +144,8 @@ struct AcceptConnection: AuthorizedAPIResource {
     
     let with: UserIdentifier
     let type: ConnectionRequestType
- 
+    
+    
     struct AcceptConnectionResponse: Codable {
         let connection: ConnectionResponse
         let room: Room

@@ -60,6 +60,10 @@ extension Analytics {
     
     static func report(_ event: AnalyticsEvent) {
 //        Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
+        print("Analytics:  Event = \(event.name)")
+        if let x = event.props {
+            print("Properties: \(event.props)")
+        }
     }
     
 }

@@ -35,10 +35,14 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     let collection: Fantasy.Collection
     private var timeSpentCounter = TimeSpentCounter()
+    private let context: Analytics.Event.CollectionViewed.NavigationContext
     
-    init(router: FantasyCollectionDetailsRouter, collection: Fantasy.Collection) {
+    init(router: FantasyCollectionDetailsRouter,
+         collection: Fantasy.Collection,
+         context: Analytics.Event.CollectionViewed.NavigationContext) {
         self.router = router
         self.collection = collection
+        self.context = context
         
         /**
          
@@ -83,7 +87,7 @@ extension FantasyCollectionDetailsViewModel {
     mutating func viewWillDisappear() {
         
         Analytics.report(Analytics.Event.CollectionViewed(collection: collection,
-                                                          context: .Deck,
+                                                          context: context,
                                                           spentTime: timeSpentCounter.finish()))
         
     }

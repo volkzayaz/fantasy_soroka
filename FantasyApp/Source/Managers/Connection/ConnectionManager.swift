@@ -38,7 +38,7 @@ extension ConnectionManager {
         
     }
     
-    static func likeBack(user: UserIdentifier) -> Single<Connection> {
+    static func likeBack(user: UserIdentifier, context: Analytics.Event.RoomAccepted.Source) -> Single<Connection> {
         return AcceptConnection(with: user, type: .like)
             .rx.request.map { $0.connection.toNative }
             .do(onSuccess: { (_) in

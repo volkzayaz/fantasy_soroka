@@ -17,14 +17,18 @@ extension Analytics.Event {
     struct SignIn: AnalyticsEvent {
         
         let source: Source
+        let isSuccess: Bool
         
         enum Source: String {
-            case FirstScreen, ForgotPassword
+            case FirstScreen, Registration
         };
         
         var name: String { return "Sign-In" }
         var props: [String : String]? {
-            return ["Source": source.rawValue]
+            return [
+                "Source": source.rawValue,
+                "Type"  : isSuccess ? "Success" : "Failed"
+            ]
         }
         
     }

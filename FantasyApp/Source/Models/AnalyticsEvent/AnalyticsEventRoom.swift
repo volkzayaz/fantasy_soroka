@@ -10,18 +10,10 @@ import Foundation
 
 extension Analytics.Event {
     
-    struct RoomAccepted: AnalyticsEvent {
+    struct RoomAccepted {
         
         enum Source: String {
             case Profile, Room
-        }
-        
-        var name: String { return "Room Accepted" }
-        
-        let isFrozen: Bool
-        
-        var props: [String : String]? {
-            return ["Frozen": isFrozen ? "true" : "false"]
         }
         
     }

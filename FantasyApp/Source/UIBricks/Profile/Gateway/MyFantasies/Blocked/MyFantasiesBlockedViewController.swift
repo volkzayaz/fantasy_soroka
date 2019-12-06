@@ -33,7 +33,7 @@ extension MyFantasiesBlockedViewController {
                                                 cardsProvider: Fantasy.Request.FetchCards(reactionType: .blocked).rx.request.asDriver(onErrorJustReturn: []),
                                                 detailsProvider: { card in
                                                     OwnFantasyDetailsProvider(card: card, initialReaction: .neutral,
-                                                                              navigationContext: .Blocked)
+                                                                              navigationContext: .MyFantasiesBlocked)
                                                 })
         }
         

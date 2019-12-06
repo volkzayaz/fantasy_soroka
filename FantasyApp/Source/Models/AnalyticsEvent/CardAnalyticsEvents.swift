@@ -15,7 +15,7 @@ extension Analytics.Event {
         var name: String { return "Card Viewed" }
 
         enum NavigationContext: String {
-            case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFanasies, Blocked
+            case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFanasies, MyFantasiesBlocked
         }
 
         let card: Fantasy.Card
@@ -29,6 +29,8 @@ extension Analytics.Event {
                 "Name"   : card.text,
                 "Category Type" : card.category,
                 "Curated" : card.isPaid ? "true" : "false",
+//                "Art"     : card.art,
+//                "Collection Name" : card.collectionName,
                 "Time Spent" : "\(spentTime)"
             ]
             
@@ -49,8 +51,16 @@ extension Analytics.Event {
         
         var name: String { return "Collection Viewed" }
 
-        enum NavigationContext: String {
-            case Deck
+        enum NavigationContext {
+            case Collection
+            case Card(CardViewed.NavigationContext)
+            
+            var rawValue: String {
+                switch self {
+                case .Collection: return "Collection"
+                case .Card(let context): return context.rawValue
+                }
+            }
         }
 
         let collection: Fantasy.Collection

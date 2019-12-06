@@ -154,7 +154,7 @@ extension ChatViewModel {
         updatedRoom.participants[i] = x
         room.accept(updatedRoom)
         
-        let _ = ConnectionManager.likeBack(user: room.value.ownerId)
+        let _ = ConnectionManager.likeBack(user: room.value.ownerId, context: .Room)
             .subscribe()
     }
     

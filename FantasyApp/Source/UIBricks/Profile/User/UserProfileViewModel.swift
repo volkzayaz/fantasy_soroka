@@ -364,7 +364,7 @@ extension UserProfileViewModel {
     
     func likeBack() {
         
-        let _ = ConnectionManager.likeBack(user: user)
+        let _ = ConnectionManager.likeBack(user: user, context: .Profile)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .bind(to: relationshipState)

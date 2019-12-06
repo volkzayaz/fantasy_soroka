@@ -26,10 +26,11 @@ struct LoginViewModel : MVVM_ViewModel {
     fileprivate let emailVar = BehaviorRelay(value: "")
     fileprivate let passwordVar = BehaviorRelay(value: "")
     fileprivate let bag = DisposeBag()
-
-    init(router: LoginRouter) {
+    private let context: Analytics.Event.SignIn.Source
+    
+    init(router: LoginRouter, context: Analytics.Event.SignIn.Source) {
         self.router = router
-
+        self.context = context
         
         /////progress indicator
         
@@ -69,18 +70,10 @@ extension LoginViewModel {
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { (user) in
                 Dispatcher.dispatch(action: SetUser(user: user))
-            })
-            .disposed(by: bag)
-        
-    }
-
-    func authorizeUsingFacebook() {
-        
-        AuthenticationManager.loginWithFacebook()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { (user) in
-                Dispatcher.dispatch(action: SetUser(user: user))
+                
+                Analytics.report(Analytics.Event.SignIn(source: self.context, isSuccess: true))
+            }, onError: { error in
+                Analytics.report(Analytics.Event.SignIn(source: self.context, isSuccess: false))
             })
             .disposed(by: bag)
         

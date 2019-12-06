@@ -38,6 +38,8 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
                     let vc = R.storyboard.user.searchLocationRestrictedViewController()!
                     vc.modalPresentationStyle = .overFullScreen
                     self.present(vc, animated: true, completion: nil)
+                    
+                    Analytics.report(Analytics.Event.LocationRestricted())
                 }
                 
             })

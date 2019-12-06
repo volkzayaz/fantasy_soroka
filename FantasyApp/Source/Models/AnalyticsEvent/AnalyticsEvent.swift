@@ -56,6 +56,11 @@ extension Analytics.Event {
         }
     }
     
+    struct LocationRestricted: AnalyticsEvent {
+        var name: String { return "Location Restricted" }
+    }
+    
+    
     struct ProfileDelete: AnalyticsEvent {
         var name: String { return "Profile Delete" }
     }

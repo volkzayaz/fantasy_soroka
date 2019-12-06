@@ -109,7 +109,7 @@ extension FantasyDetailsViewModel {
     }
     
     func show(collection: Fantasy.Collection) {
-        router.show(collection: collection)
+        router.show(collection: collection, context: .Card(provider.navigationContext))
     }
  
     mutating func viewAppeared() {
