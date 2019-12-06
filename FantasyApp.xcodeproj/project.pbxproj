@@ -337,6 +337,7 @@
 		B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */; };
 		B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BE6FA23521A11003A36BA /* TransparentTextField.swift */; };
 		B7B03BB52365DFA8000F42A6 /* TransparentSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B03BB42365DFA8000F42A6 /* TransparentSideView.swift */; };
+		B7B152102398303100C4E749 /* UIImage+TabbarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */; };
 		B7BE95502360B48E003432D4 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BE954F2360B48E003432D4 /* SwipeView.swift */; };
 		B7BE95522360B4B3003432D4 /* SwipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BE95512360B4B3003432D4 /* SwipeView.xib */; };
 		B7C24875236380A90097BD2A /* SearchLocationRestrictedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C24874236380A90097BD2A /* SearchLocationRestrictedViewController.swift */; };
@@ -734,6 +735,7 @@
 		B78BE6F62351D3A3003A36BA /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		B78BE6FA23521A11003A36BA /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
 		B7B03BB42365DFA8000F42A6 /* TransparentSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentSideView.swift; sourceTree = "<group>"; };
+		B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TabbarUtils.swift"; sourceTree = "<group>"; };
 		B7BE954F2360B48E003432D4 /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		B7BE95512360B4B3003432D4 /* SwipeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeView.xib; sourceTree = "<group>"; };
 		B7C24874236380A90097BD2A /* SearchLocationRestrictedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationRestrictedViewController.swift; sourceTree = "<group>"; };
@@ -999,6 +1001,7 @@
 				B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */,
 				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
 				B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */,
+				B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2811,6 +2814,7 @@
 				844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */,
 				843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
+				B7B152102398303100C4E749 /* UIImage+TabbarUtils.swift in Sources */,
 				B7E2E538237C849000234A88 /* DiscoverProfileRouterTransitionAnimator.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
 				73EBBA5E234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift in Sources */,
