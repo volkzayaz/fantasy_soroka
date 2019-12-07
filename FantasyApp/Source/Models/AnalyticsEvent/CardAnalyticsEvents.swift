@@ -48,7 +48,32 @@ extension Analytics.Event {
         var props: [String : String]? {
             var x = card.analyticsProps
             x["Context"] = context.rawValue
-            x["Time Spent"] = "\(spentTime)"
+            x["Time till Opened"] = "\(spentTime)"
+            
+            return x
+        }
+
+    }
+    
+    struct CardReactionTime: AnalyticsEvent {
+
+        var name: String { return "Card Time Reaction" }
+
+        let card: Fantasy.Card
+        let context: Fantasy.Card.NavigationContext
+        let spentTime: Int
+        let reaction: Fantasy.Card.Reaction
+
+        var props: [String : String]? {
+            var x = card.analyticsProps
+            x["Context"] = context.rawValue
+            x["Time till Reaction"] = "\(spentTime)"
+            if reaction == .like {
+                x["Reaction"] = "Like"
+            }
+            else if reaction == .dislike {
+                x["Reaction"] = "Dislike"
+            }
             
             return x
         }
@@ -128,6 +153,7 @@ extension Fantasy.Card {
  
     var analyticsProps: [String: String] {
         var x = [
+            "Card Id" : id,
             "Name"   : text,
             "Category Type" : category,
             "Curated" : isPaid ? "true" : "false",

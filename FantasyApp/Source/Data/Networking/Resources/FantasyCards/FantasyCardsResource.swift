@@ -160,7 +160,7 @@ extension Fantasy.Request {
         var task: Task {
             
             return .requestParameters(parameters: actionContext.stakeholdersParams,
-                                      encoding: URLEncoding.default)
+                                      encoding: URLEncoding(destination: .queryString))
         }
         
     }
@@ -255,7 +255,7 @@ extension Fantasy.Request {
         
         var task: Task {
             return .requestParameters(parameters: actionContext.stakeholdersParams,
-                                      encoding: URLEncoding.default)
+                                      encoding: URLEncoding(destination: .queryString))
         }
         
     }
