@@ -21,6 +21,8 @@ extension PurchaseManager {
             return .just( () )
         }
         
+        Analytics.report(ConsiderPurchase(of: .collection))
+        
         return SwiftyStoreKit.rx_purchase(product: pid)
             .flatMap { _ in SwiftyStoreKit.rx_fetchReceipt(forceRefresh: false) }
             .flatMap { x in User.Request.PurchaseCollection(collection: collection, recieptData: x).rx.request }
@@ -43,6 +45,8 @@ extension PurchaseManager {
     }
     
     static func purhcaseSubscription() -> Single<User.Subscription> {
+        
+        Analytics.report(ConsiderPurchase(of: .subscription))
         
         let goldPlanProductId = immutableNonPersistentState.subscriptionProductID
         

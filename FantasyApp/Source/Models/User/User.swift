@@ -125,6 +125,9 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var pfGeoPoint: PFGeoPoint {
             return PFGeoPoint(latitude: latitude, longitude: longitude)
         }
+        
+        ///analytics property that should not be user in ApplicationLogic in any way
+        var assosiatedTown: String?
     }
     
     static var current: User? {

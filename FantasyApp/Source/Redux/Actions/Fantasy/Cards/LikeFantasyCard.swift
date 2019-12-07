@@ -11,9 +11,10 @@ import RxSwift
 
 struct LikeFantasy: ActionCreator {
     let card: Fantasy.Card
+    let actionContext: Fantasy.Card.ActionContext
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .like, shouldDecrement: true, card: card)
+        return FantasyCardInteraction(type: .like, shouldDecrement: true, card: card, actionContext: actionContext)
             .perform(initialState: initialState)
     }
     
@@ -21,18 +22,20 @@ struct LikeFantasy: ActionCreator {
 
 struct DislikeFantasy: ActionCreator {
     let card: Fantasy.Card
+    let actionContext: Fantasy.Card.ActionContext
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .dislike, shouldDecrement: true, card: card)
+        return FantasyCardInteraction(type: .dislike, shouldDecrement: true, card: card, actionContext: actionContext)
             .perform(initialState: initialState)
     }
 }
 
 struct NeutralFantasy: ActionCreator {
     let card: Fantasy.Card
+    let actionContext: Fantasy.Card.ActionContext
     
     func perform(initialState: AppState) -> Observable<AppState> {
-        return FantasyCardInteraction(type: .neutral, shouldDecrement: false, card: card)
+        return FantasyCardInteraction(type: .neutral, shouldDecrement: false, card: card, actionContext: actionContext)
             .perform(initialState: initialState)
     }
 }
@@ -48,14 +51,15 @@ struct FantasyCardInteraction: ActionCreator {
     let type: InteractionType
     let shouldDecrement: Bool
     let card: Fantasy.Card
+    let actionContext: Fantasy.Card.ActionContext
     
     func perform(initialState: AppState) -> Observable<AppState> {
         
         let request: Single<Void>
         switch type {
-        case .dislike: request = Fantasy.Manager.dislike(card: card)
-        case .like:    request = Fantasy.Manager.like(card: card)
-        case .neutral: request = Fantasy.Manager.neutral(card: card)
+        case .dislike: request = Fantasy.Manager.dislike(card: card, actionContext: actionContext)
+        case .like:    request = Fantasy.Manager.like(card: card, actionContext: actionContext)
+        case .neutral: request = Fantasy.Manager.neutral(card: card, actionContext: actionContext)
         }
         
         return request.asObservable().flatMap { _ -> Observable<AppState> in

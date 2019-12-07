@@ -43,11 +43,15 @@ class UserPropertyActor {
                     return i
                 }
                 
+                //!!! can't pass date "Profile Status: Signed Up" : PFUser.current()!.createdAt as NSDate?
+                
                 let newIdentity =
                     [
                         "Profile Status: Is In Active City": NSNumber(booleanLiteral: user.community.value != nil),
                         "Profile Status: Active City Name": user.community.value?.name as NSString?,
-                        "Profile Status: Signed Up" : PFUser.current()!.createdAt as NSDate?
+                        
+                        "Profile Status: Location" : (user.community.value?.name ?? user.community.lastKnownLocation?.assosiatedTown) as NSString?,
+                        
                         
                 ]
                 .reduce(AMPIdentify()) { (i, tuple) in

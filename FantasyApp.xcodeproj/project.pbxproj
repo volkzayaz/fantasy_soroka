@@ -63,6 +63,7 @@
 		7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7222ED9A8C00495843 /* User+Parse.swift */; };
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
+		7339BEE8239B9DED0073B883 /* BackendAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */; };
 		733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA052239161DE00EF7922 /* FetchConfig.swift */; };
 		733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */; };
 		733CA05723916B1000EF7922 /* UpdateSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA05623916B1000EF7922 /* UpdateSubscription.swift */; };
@@ -177,7 +178,6 @@
 		73E13B6D238AE1AA00CE1B06 /* RoomCreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E13B6C238AE1AA00CE1B06 /* RoomCreatedCell.swift */; };
 		73E13B70238BF56800CE1B06 /* WebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E13B6F238BF56800CE1B06 /* WebSocketService.swift */; };
 		73E13B73238C30AD00CE1B06 /* MesagesIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E13B72238C30AD00CE1B06 /* MesagesIn.swift */; };
-		73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */; };
 		73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011522EC3A3400F767BF /* RegistrationRouter.swift */; };
 		73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011622EC3A3400F767BF /* RegistrationViewController.swift */; };
 		73E6011A22EC3A3400F767BF /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6011722EC3A3400F767BF /* RegistrationViewModel.swift */; };
@@ -461,6 +461,7 @@
 		7334CC7222ED9A8C00495843 /* User+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Parse.swift"; sourceTree = "<group>"; };
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
+		7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAnalytics.swift; sourceTree = "<group>"; };
 		733CA052239161DE00EF7922 /* FetchConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchConfig.swift; sourceTree = "<group>"; };
 		733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableNonPersistentState.swift; sourceTree = "<group>"; };
 		733CA05623916B1000EF7922 /* UpdateSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscription.swift; sourceTree = "<group>"; };
@@ -577,7 +578,6 @@
 		73E13B6F238BF56800CE1B06 /* WebSocketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketService.swift; sourceTree = "<group>"; };
 		73E13B72238C30AD00CE1B06 /* MesagesIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MesagesIn.swift; sourceTree = "<group>"; };
 		73E13B7F238E731100CE1B06 /* Kyiv.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Kyiv.gpx; sourceTree = "<group>"; };
-		73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocation.swift; sourceTree = "<group>"; };
 		73E6011522EC3A3400F767BF /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		73E6011622EC3A3400F767BF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		73E6011722EC3A3400F767BF /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -1252,6 +1252,14 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		7339BEE6239B9DD90073B883 /* BackendAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */,
+			);
+			path = BackendAnalytics;
+			sourceTree = "<group>";
+		};
 		733CA051239161C400EF7922 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -1762,7 +1770,6 @@
 		73E4C3A122F08E9800BB71B4 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				73E4C3A222F08EA100BB71B4 /* UpdateLocation.swift */,
 				7361F3152332301F007B84B0 /* UpdateCommunity.swift */,
 			);
 			path = Community;
@@ -2073,6 +2080,7 @@
 		84B8ACF922DCCC650026862E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7339BEE6239B9DD90073B883 /* BackendAnalytics */,
 				733CA051239161C400EF7922 /* Config */,
 				73C96F202340B046002C3F8E /* Album */,
 				7361F3252333F2FC007B84B0 /* FantasyCards */,
@@ -2756,7 +2764,6 @@
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */,
-				73E4C3A322F08EA100BB71B4 /* UpdateLocation.swift in Sources */,
 				843B648F234F197B00E5639B /* RoomSettingsViewModel.swift in Sources */,
 				73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */,
 				73C96F1F2340A653002C3F8E /* MyFantasiesViewModel.swift in Sources */,
@@ -2786,6 +2793,7 @@
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
 				B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */,
+				7339BEE8239B9DED0073B883 /* BackendAnalytics.swift in Sources */,
 				73F80CD52361EC2D00212FCF /* AcceptRejectCell.swift in Sources */,
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
 				73E13B73238C30AD00CE1B06 /* MesagesIn.swift in Sources */,

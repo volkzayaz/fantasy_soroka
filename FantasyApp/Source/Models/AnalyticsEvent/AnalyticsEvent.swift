@@ -13,6 +13,8 @@ protocol AnalyticsEvent {
     var props: [String: String]? { get }
 }
 
+protocol AnalyticsNetworkRequest: AuthorizedAPIResource { }
+
 extension AnalyticsEvent {
     var props: [String: String]? { return nil }
 }

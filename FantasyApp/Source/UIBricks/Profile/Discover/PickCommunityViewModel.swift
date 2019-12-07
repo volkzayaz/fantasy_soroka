@@ -58,6 +58,8 @@ extension PickCommunityViewModel {
                                     return Near.bigCity(name: x)
                                 }
                                 
+                                Dispatcher.dispatch(action: UpdateLastAssosiatedTown(with: bigCity))
+                                
                                 return nil
                             }
                         

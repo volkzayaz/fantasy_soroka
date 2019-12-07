@@ -14,12 +14,8 @@ extension Analytics.Event {
 
         var name: String { return "Card Viewed" }
 
-        enum NavigationContext: String {
-            case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFanasies, MyFantasiesBlocked
-        }
-
         let card: Fantasy.Card
-        let context: NavigationContext
+        let context: Fantasy.Card.NavigationContext
         let collapsedContent: Bool
         let spentTime: Int
 
@@ -29,8 +25,8 @@ extension Analytics.Event {
                 "Name"   : card.text,
                 "Category Type" : card.category,
                 "Curated" : card.isPaid ? "true" : "false",
-//                "Art"     : card.art,
-//                "Collection Name" : card.collectionName,
+                "Art"     : card.art,
+                "Collection Name" : card.collectionName,
                 "Time Spent" : "\(spentTime)"
             ]
             
@@ -53,7 +49,7 @@ extension Analytics.Event {
 
         enum NavigationContext {
             case Collection
-            case Card(CardViewed.NavigationContext)
+            case Card(Fantasy.Card.NavigationContext)
             
             var rawValue: String {
                 switch self {
@@ -77,4 +73,45 @@ extension Analytics.Event {
         
     }
     
+}
+
+extension Fantasy.Card {
+    
+    ///which screen was before action happened
+    enum NavigationContext: String {
+        case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFanasies, MyFantasiesBlocked
+    }
+    
+    ///on which screen action happend
+    enum ActionContext {
+        
+        case Deck
+        case RoomDeck
+        
+        case inside(NavigationContext)
+        
+        var stakeholdersParams: [String: String] {
+            
+            let context: String
+            let representation: String
+            
+            switch self {
+            case .Deck:
+                context = "Deck"
+                representation = "Preview"
+                
+            case .RoomDeck:
+                context = "RoomPlay"
+                representation = "Preview"
+                
+            case .inside(let navigationContext):
+                context = navigationContext.rawValue
+                representation = "Expanded"
+            }
+            
+            return ["context": context, "representation": representation]
+        }
+        
+    }
+ 
 }

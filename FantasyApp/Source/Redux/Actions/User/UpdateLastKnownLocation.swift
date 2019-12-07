@@ -27,3 +27,15 @@ struct UpdateLastKnownLocation: Action {
     }
     
 }
+
+struct UpdateLastAssosiatedTown: Action {
+    
+    let with: String?
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        state.currentUser?.community.lastKnownLocation?.assosiatedTown = with
+        return state
+    }
+    
+}

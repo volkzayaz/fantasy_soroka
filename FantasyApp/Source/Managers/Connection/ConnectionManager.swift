@@ -39,7 +39,10 @@ extension ConnectionManager {
     }
     
     static func likeBack(user: UserIdentifier, context: Analytics.Event.RoomAccepted.Source) -> Single<Connection> {
-        return AcceptConnection(with: user, type: .like)
+        
+        print("Analytics: backend Request = Accept Connection source: \(context.rawValue)")
+        
+        return AcceptConnection(with: user, type: .like, navigationContext: context)
             .rx.request.map { $0.connection.toNative }
             .do(onSuccess: { (_) in
                 ///complex freeze logic requires recalculating all rooms

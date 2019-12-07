@@ -139,6 +139,8 @@ extension Fantasy.Request {
         let reaction: Fantasy.Card.Reaction
         let card: Fantasy.Card
         
+        let actionContext: Fantasy.Card.ActionContext
+        
         typealias responseType = EmptyResponse
         
         var method: Moya.Method {
@@ -156,7 +158,9 @@ extension Fantasy.Request {
         }
         
         var task: Task {
-            return .requestPlain
+            
+            return .requestParameters(parameters: actionContext.stakeholdersParams,
+                                      encoding: URLEncoding.default)
         }
         
     }
@@ -225,6 +229,8 @@ extension Fantasy.Request {
         let card: Fantasy.Card
         let room: RoomIdentifier
         
+        let actionContext: Fantasy.Card.ActionContext
+        
         typealias responseType = MutualIndicator
         
         var method: Moya.Method {
@@ -248,7 +254,8 @@ extension Fantasy.Request {
         }
         
         var task: Task {
-            return .requestPlain
+            return .requestParameters(parameters: actionContext.stakeholdersParams,
+                                      encoding: URLEncoding.default)
         }
         
     }

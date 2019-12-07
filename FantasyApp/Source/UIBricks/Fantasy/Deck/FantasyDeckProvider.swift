@@ -26,18 +26,31 @@ protocol FantasyDeckProvier {
     
 }
 
+
 protocol FantasyDetailProvider {
     
     var card: Fantasy.Card { get }
     var initialReaction: Fantasy.Card.Reaction { get }
-    var navigationContext: Analytics.Event.CardViewed.NavigationContext { get }
+    
+    ///analytics properties defined by stakeholders
+    ///this is why they are so messy
+    var navigationContext: Fantasy.Card.NavigationContext { get }
+    
+    ///is provied automatically (beacuse of stakeholders data redundancy)
+    var actionContext: Fantasy.Card.ActionContext { get }
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool
     
 }
 
-struct MainDeckProvider: FantasyDeckProvier {
+extension FantasyDetailProvider {
+    var actionContext: Fantasy.Card.ActionContext {
+        return .inside(navigationContext)
+    }
+}
 
+struct MainDeckProvider: FantasyDeckProvier {
+    
     var pessimisticReload: Bool { return false }
     
     var cardsChange: Driver<AppState.FantasiesDeck> {
@@ -48,10 +61,12 @@ struct MainDeckProvider: FantasyDeckProvier {
         
         switch direction {
         case .left:
-            Dispatcher.dispatch(action: DislikeFantasy(card: card))
+            Dispatcher.dispatch(action: DislikeFantasy(card: card,
+                                                       actionContext: .Deck))
             
         case .right:
-            Dispatcher.dispatch(action: LikeFantasy(card: card))
+            Dispatcher.dispatch(action: LikeFantasy(card: card,
+                                                    actionContext: .Deck))
             
         case .down:
             ///don't really know what should happen here for now
@@ -63,7 +78,10 @@ struct MainDeckProvider: FantasyDeckProvier {
     }
     
     func detailsProvider(card: Fantasy.Card, reactionCallback: (() -> Void)? = nil) -> FantasyDetailProvider {
-        return OwnFantasyDetailsProvider(card: card, initialReaction: .neutral, navigationContext: .Deck)
+        return OwnFantasyDetailsProvider(card: card,
+                                         initialReaction: .neutral,
+                                         navigationContext: .Deck)
+        
     }
     
 };
@@ -99,13 +117,13 @@ struct RoomsDeckProvider: FantasyDeckProvier {
         
         switch direction {
         case .right:
-            _ = Fantasy.Manager.like(card: card, in: room)
+            _ = Fantasy.Manager.like(card: card, in: room, actionContext: .RoomDeck)
                 .subscribe(onSuccess: { x in
                     if x.isMutual { mutualTrigger() }
                 })
             
         case .left:
-            _ = Fantasy.Manager.dislike(card: card, in: room)
+            _ = Fantasy.Manager.dislike(card: card, in: room, actionContext: .RoomDeck)
                 .subscribe()
             
         case .down:
@@ -135,13 +153,15 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
     
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
-    let navigationContext: Analytics.Event.CardViewed.NavigationContext
+    let navigationContext: Fantasy.Card.NavigationContext
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool {
         
         switch reaction {
-        case .like   : Dispatcher.dispatch(action: LikeFantasy(card: card))
-        case .dislike: Dispatcher.dispatch(action: DislikeFantasy(card: card))
+        case .like   : Dispatcher.dispatch(action: LikeFantasy(card: card,
+                                                               actionContext: actionContext))
+        case .dislike: Dispatcher.dispatch(action: DislikeFantasy(card: card,
+                                                                  actionContext: actionContext))
             
         case .neutral: return false
             ///Dispatcher.dispatch(action: NeutralFantasy(card: card))
@@ -161,18 +181,21 @@ struct RoomFantasyDetailsProvider: FantasyDetailProvider {
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
     let reactionCallback: (() -> Void)?
-    let navigationContext: Analytics.Event.CardViewed.NavigationContext
+    let navigationContext: Fantasy.Card.NavigationContext
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool {
         
         switch reaction {
         case .like:
-            _ = Fantasy.Manager.like(card: card, in: room)
+            _ = Fantasy.Manager.like(card: card,
+                                     in: room,
+                                     actionContext: actionContext)
                 .subscribe()
             
         case .dislike:
-            _ = Fantasy.Manager
-                .dislike(card: card, in: room)
+            _ = Fantasy.Manager.dislike(card: card,
+                                        in: room,
+                                        actionContext: actionContext)
                 .subscribe()
             
         case .block, .neutral: return false;
