@@ -17,6 +17,10 @@ struct TimeSpentCounter {
         startDate = Date()
     }
     
+    mutating func restart() {
+        start()
+    }
+    
     mutating func finish() -> TimeSpent {
         guard let x = startDate else {
             fatalErrorInDebug("Can't finish counter before calling |start|")

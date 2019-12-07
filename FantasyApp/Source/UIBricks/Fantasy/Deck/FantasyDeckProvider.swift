@@ -24,6 +24,7 @@ protocol FantasyDeckProvier {
     
     func detailsProvider(card: Fantasy.Card, reactionCallback: (() -> Void)?) -> FantasyDetailProvider
     
+    var navigationContext: Fantasy.Card.NavigationContext { get }
 }
 
 
@@ -52,6 +53,10 @@ extension FantasyDetailProvider {
 struct MainDeckProvider: FantasyDeckProvier {
     
     var pessimisticReload: Bool { return false }
+    
+    var navigationContext: Fantasy.Card.NavigationContext {
+        return .Deck
+    }
     
     var cardsChange: Driver<AppState.FantasiesDeck> {
         return appState.changesOf { $0.fantasiesDeck }
@@ -92,6 +97,10 @@ struct RoomsDeckProvider: FantasyDeckProvier {
     let card = BehaviorRelay<Int>(value: 0)
     
     var pessimisticReload: Bool { return true }
+    
+    var navigationContext: Fantasy.Card.NavigationContext {
+        return .RoomPlay
+    }
     
     var cardsChange: Driver<AppState.FantasiesDeck> {
         

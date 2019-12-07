@@ -20,15 +20,9 @@ extension Analytics.Event {
         let spentTime: Int
 
         var props: [String : String]? {
-            var x = [
-                "Context": context.rawValue,
-                "Name"   : card.text,
-                "Category Type" : card.category,
-                "Curated" : card.isPaid ? "true" : "false",
-                "Art"     : card.art,
-                "Collection Name" : card.collectionName,
-                "Time Spent" : "\(spentTime)"
-            ]
+            var x = card.analyticsProps
+            x["Context"] = context.rawValue
+            x["Time Spent"] = "\(spentTime)"
             
             if !card.story.isEmpty {
                 x["Content"] = "Story"
@@ -37,6 +31,24 @@ extension Analytics.Event {
             if collapsedContent {
                 x["Content Opened"] = "Story"
             }
+            
+            return x
+        }
+
+    }
+
+    struct CardOpenTime: AnalyticsEvent {
+
+        var name: String { return "Card Time Open" }
+
+        let card: Fantasy.Card
+        let context: Fantasy.Card.NavigationContext
+        let spentTime: Int
+
+        var props: [String : String]? {
+            var x = card.analyticsProps
+            x["Context"] = context.rawValue
+            x["Time Spent"] = "\(spentTime)"
             
             return x
         }
@@ -114,4 +126,20 @@ extension Fantasy.Card {
         
     }
  
+    var analyticsProps: [String: String] {
+        var x = [
+            "Name"   : text,
+            "Category Type" : category,
+            "Curated" : isPaid ? "true" : "false",
+            "Art"     : art,
+            "Collection Name" : collectionName,
+        ]
+        
+        if !story.isEmpty {
+            x["Content"] = "Story"
+        }
+        
+        return x
+    }
+    
 }
