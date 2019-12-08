@@ -2,7 +2,7 @@
 //  UserPropertyAnalyticsActor.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 13.08.2019.
+//  Created by Vlad Soroka on 13.08.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
@@ -14,6 +14,8 @@ import Amplitude_iOS
 import Crashlytics
 import Branch
 
+var _AnalyticsHackyTown: String? = nil
+
 class UserPropertyActor {
     private let bag = DisposeBag()
 
@@ -23,6 +25,18 @@ class UserPropertyActor {
             .asObservable().subscribeOn(SerialDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { maybeUser in
                 
+                ///Crashlytics
+                Crashlytics.sharedInstance().setUserIdentifier(maybeUser?.id)
+                Crashlytics.sharedInstance().setUserName(maybeUser?.bio.name)
+
+                ///Barnch
+                if let id = maybeUser?.id {
+                    Branch.getInstance()?.setIdentity(id)
+                } else {
+                    Branch.getInstance()?.logout()
+                }
+                
+                ///Amplitude
                 guard let user = maybeUser else {
 
                     Amplitude.instance()?.setUserId(nil)
@@ -50,8 +64,15 @@ class UserPropertyActor {
                         "Profile Status: Is In Active City": NSNumber(booleanLiteral: user.community.value != nil),
                         "Profile Status: Active City Name": user.community.value?.name as NSString?,
                         
-                        "Profile Status: Location" : (user.community.value?.name ?? user.community.lastKnownLocation?.assosiatedTown) as NSString?,
+                        "Profile Status: Location" : (user.community.value?.name ?? _AnalyticsHackyTown) as NSString?,
                         
+                        "Profile Status: Signed Up" : PFUser.current()!.createdAt?.toAnalyticsTime() as NSString?,
+                        
+                        "Profile Trait: Sex" : user.bio.gender.rawValue as NSString?,
+                        "Profile Trait: Age" : NSNumber(integerLiteral: user.bio.birthday.distance(from: Date(), in: .year)),
+                        "Profile Trait: Sexuality" : user.bio.sexuality.rawValue as NSString?,
+                        "Profile Trait: Realtionship" : user.bio.relationshipStatus.analyticsTuple.0 as NSString?,
+                        "Profile Trait: Partner's Sex" : user.bio.relationshipStatus.analyticsTuple.1 as NSString?,
                         
                 ]
                 .reduce(AMPIdentify()) { (i, tuple) in
@@ -70,29 +91,21 @@ class UserPropertyActor {
                 
                 
                 
-//                Crashlytics.sharedInstance().setUserIdentifier(user?.id)
-//                Crashlytics.sharedInstance().setUserName(user?.bio.name)
-//
-//                if let id = user?.id {
-//                    Branch.getInstance()?.setIdentity(id)
-//                } else {
-//                    Branch.getInstance()?.logout()
-//                }
-                
         }).disposed(by: bag)
 
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
             .subscribe(onNext: { (_) in
                 
                 UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-                    
-                    print(settings)
+        
+                    Amplitude.instance()?.setUserProperties([
+                        "Profile Status: Push": Analytics.PushStatus(settings: settings).rawValue
+                    ])
                     
                 }
                 
             })
-        
-        
+            .disposed(by: bag)
         
     }
 }

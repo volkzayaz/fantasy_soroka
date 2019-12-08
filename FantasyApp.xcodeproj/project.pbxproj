@@ -64,6 +64,7 @@
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
 		7339BEE8239B9DED0073B883 /* BackendAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */; };
+		7339BEEB239CE9140073B883 /* PushStatusAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7339BEEA239CE9140073B883 /* PushStatusAnalytics.swift */; };
 		733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA052239161DE00EF7922 /* FetchConfig.swift */; };
 		733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */; };
 		733CA05723916B1000EF7922 /* UpdateSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA05623916B1000EF7922 /* UpdateSubscription.swift */; };
@@ -462,6 +463,7 @@
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
 		7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAnalytics.swift; sourceTree = "<group>"; };
+		7339BEEA239CE9140073B883 /* PushStatusAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushStatusAnalytics.swift; sourceTree = "<group>"; };
 		733CA052239161DE00EF7922 /* FetchConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchConfig.swift; sourceTree = "<group>"; };
 		733CA054239162AD00EF7922 /* ImmutableNonPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableNonPersistentState.swift; sourceTree = "<group>"; };
 		733CA05623916B1000EF7922 /* UpdateSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSubscription.swift; sourceTree = "<group>"; };
@@ -1260,6 +1262,18 @@
 			path = BackendAnalytics;
 			sourceTree = "<group>";
 		};
+		7339BEE9239CE8FF0073B883 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				73FDD08A23990DAF00BA3E1D /* AnalyticsEvent.swift */,
+				73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */,
+				73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */,
+				73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */,
+				73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		733CA051239161C400EF7922 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -1895,11 +1909,8 @@
 		73FDD08923990DA000BA3E1D /* AnalyticsEvent */ = {
 			isa = PBXGroup;
 			children = (
-				73FDD08A23990DAF00BA3E1D /* AnalyticsEvent.swift */,
-				73FDD08C2399134900BA3E1D /* AuthorizationEvents.swift */,
-				73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */,
-				73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */,
-				73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */,
+				7339BEE9239CE8FF0073B883 /* Event */,
+				7339BEEA239CE9140073B883 /* PushStatusAnalytics.swift */,
 			);
 			path = AnalyticsEvent;
 			sourceTree = "<group>";
@@ -2774,6 +2785,7 @@
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
 				843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */,
+				7339BEEB239CE9140073B883 /* PushStatusAnalytics.swift in Sources */,
 				B783C6382350D6C00017CE1A /* WelcomeViewController.swift in Sources */,
 				7312B0A122D7422100DB0F36 /* ViewController+ErrorMessage.swift in Sources */,
 				73EBBA6D234CDAB800B79121 /* SubscriptionStatus.swift in Sources */,

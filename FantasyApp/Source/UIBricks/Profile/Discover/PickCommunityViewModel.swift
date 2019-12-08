@@ -53,14 +53,15 @@ extension PickCommunityViewModel {
                             .city(near: location)
                             .map { bigCity in
                                 
-                                if let x = bigCity {
-                                    CommunityManager.logBigCity(name: x, location: location)
-                                    return Near.bigCity(name: x)
+                                guard let x = bigCity else {
+                                    return nil
                                 }
                                 
-                                Dispatcher.dispatch(action: UpdateLastAssosiatedTown(with: bigCity))
+                                CommunityManager.logBigCity(name: x, location: location)
                                 
-                                return nil
+                                _AnalyticsHackyTown = bigCity
+                                
+                                return Near.bigCity(name: x)
                             }
                         
                     }

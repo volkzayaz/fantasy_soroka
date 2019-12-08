@@ -126,8 +126,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
             return PFGeoPoint(latitude: latitude, longitude: longitude)
         }
         
-        ///analytics property that should not be user in ApplicationLogic in any way
-        var assosiatedTown: String?
     }
     
     static var current: User? {
@@ -309,6 +307,12 @@ enum RelationshipStatus: Equatable, Codable {
         }
     }
     
+    var analyticsTuple: (String, String?) {
+        switch self {
+            case .single                   : return ("Solo", nil)
+            case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
+        }
+    }
 }
 
 enum LookingFor: Int, Codable, Equatable, CaseIterable {
