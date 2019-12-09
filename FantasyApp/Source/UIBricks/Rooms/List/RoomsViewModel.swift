@@ -93,23 +93,22 @@ extension RoomsViewModel {
         
         guard roomCell.room.freezeStatus != .frozen else {
             
-            return router.owner.showDialog(title: "Error",
+            return router.owner.showDialog(title: "Club Membership",
                                            text: R.string.localizable.roomFrozenRoomUnreachable(),
-                                           style: .alert, negativeText: "No, thanks",
-                                           negativeCallback: nil,
-                                           positiveText: "Upgrade") { [weak h = router.owner,
-                                                                       unowned i = indicator] in
-                                            
-                                            PurchaseManager.purhcaseSubscription()
-                                                .trackView(viewIndicator: i)
-                                                .silentCatch(handler: h)
-                                                .subscribe()
-                                                .disposed(by: self.bag)
-                                            
-            }
+                                           style: .alert, negativeText: "Upgrade",
+                                           negativeCallback: { [weak h = router.owner,
+                                                                unowned i = indicator] in
+                                                                           
+                                                                           PurchaseManager.purhcaseSubscription()
+                                                                               .trackView(viewIndicator: i)
+                                                                               .silentCatch(handler: h)
+                                                                               .subscribe()
+                                                                               .disposed(by: self.bag)
+                                                                           
+                                           },
+                                           positiveText: "No, thanks")
         }
             
-        
         router.roomTapped(roomCell.room)
     }
 

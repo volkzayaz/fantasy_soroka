@@ -22,7 +22,7 @@ class RoomTableViewCell: UITableViewCell {
         
         nameLabel.text = participant.userSlice.name
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
-        lastMessageLabel.text = model.lastMessage?.nonNullHackyText ?? "new room"
+        lastMessageLabel.text = model.lastMessage?.text ?? "new room"
         
         ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
             .map { $0 ?? R.image.noPhoto() }
