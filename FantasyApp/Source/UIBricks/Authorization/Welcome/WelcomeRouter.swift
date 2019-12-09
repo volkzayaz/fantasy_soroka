@@ -13,6 +13,8 @@ struct WelcomeRouterRouter : MVVM_Router {
     unowned private(set) var owner: UIViewController
     init(owner: UIViewController) {
         self.owner = owner
+        
+        Analytics.report(Analytics.Event.FirstScreen())
     }
 
     func presentRegister() {
@@ -21,11 +23,13 @@ struct WelcomeRouterRouter : MVVM_Router {
         vc.viewModel = .init(router: .init(owner: vc))
 
         owner.navigationController?.pushViewController(vc, animated: true)
+        
+        Analytics.report(Analytics.Event.SignUpPassed.started(from: .Email))
     }
 
     func presentSignIn() {
         let vc = R.storyboard.authorization.loginViewController()!
-        vc.viewModel = .init(router: .init(owner: vc))
+        vc.viewModel = .init(router: .init(owner: vc), context: .FirstScreen)
 
         owner.navigationController?.pushViewController(vc, animated: true)
     }

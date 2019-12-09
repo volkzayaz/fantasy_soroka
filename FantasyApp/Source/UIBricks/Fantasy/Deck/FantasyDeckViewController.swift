@@ -288,6 +288,19 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
         }
     }
     
+    func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
+        
+        guard let card = cardsProxy[safe: index] else {
+            ///because we don't use Rx it is possible
+            ///that cardsProxy is desynchronised with actual datasource
+            ///that is backing Koloda
+            return
+        }
+        
+        viewModel.cardShown(card: card)
+        
+    }
+    
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         let card = cardsProxy[index]
         viewModel.cardTapped(card: card)

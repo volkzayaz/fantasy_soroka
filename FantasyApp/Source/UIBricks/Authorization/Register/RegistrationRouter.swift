@@ -27,7 +27,7 @@ struct RegistrationRouter : MVVM_Router {
         }
 
         let login = R.storyboard.authorization.loginViewController()!
-        login.viewModel = .init(router: .init(owner: vc))
+        login.viewModel = .init(router: .init(owner: vc), context: .Registration)
 
         owner.navigationController?.setViewControllers([vc, login], animated: true)
     }

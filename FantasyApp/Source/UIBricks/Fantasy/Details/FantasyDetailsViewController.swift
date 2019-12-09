@@ -132,9 +132,17 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        viewModel.viewAppeared()
+        
         guard isFirstAppearance else { return }
         animateAppearance()
         isFirstAppearance = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.viewWillDisappear()
     }
 
     override func viewDidLayoutSubviews() {
@@ -245,6 +253,8 @@ private extension FantasyDetailsViewController {
         } else {
             collapseStoryAnimated()
         }
+        
+        viewModel.expandStory()
     }
 }
 

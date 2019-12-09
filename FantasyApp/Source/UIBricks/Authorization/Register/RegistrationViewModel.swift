@@ -104,7 +104,7 @@ extension RegistrationViewModel {
     }
     
     var selectedPhoto: Driver<UIImage?> {
-        return form.asDriver().map { $0.selectedPhoto }
+        return form.asDriver().map { $0.selectedPhoto?.image }
     }
 
     var photo: Driver<UIImage?> {
@@ -149,6 +149,8 @@ struct RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate let emailRelay = BehaviorRelay<String?>(value: nil)
     
+    fileprivate var timerSpentForRegistration = TimeSpentCounter()
+    
     init(router: RegistrationRouter) {
         self.router = router
 
@@ -172,6 +174,8 @@ struct RegistrationViewModel : MVVM_ViewModel {
             .map { !$0 }
             .bind(to: showEmailExistVar)
             .disposed(by: bag)
+     
+        timerSpentForRegistration.start()
         
         /////progress indicator
         
@@ -224,17 +228,25 @@ extension RegistrationViewModel {
             d.timeIntervalSinceNow > years21 {
             
             SettingsStore.ageRestriction.value = d
+            Analytics.report(Analytics.Event.SignUpPassed.birthdayFailed)
             
             return
         }
         
+        reportStepPassed(step: step.value)
+        
         guard let next = Step(rawValue: step.value.rawValue + 1) else {
+            
+            var timerCopy = timerSpentForRegistration
             
             AuthenticationManager.register(with: form.value)
                 .trackView(viewIndicator: indicator)
                 .silentCatch(handler: router.owner)
                 .subscribe(onNext: { (user) in
                     Dispatcher.dispatch(action: SetUser(user: user))
+                    
+                    Analytics.report(Analytics.Event.SignUpPassed.completed(from: .SignUp,
+                                                                            timeSpent: timerCopy.finish()))
                 })
                 .disposed(by: bag)
             
@@ -246,7 +258,7 @@ extension RegistrationViewModel {
         // start photo uploading
         if step.value == .addingPhoto,
             let image = form.value.selectedPhoto {
-            photoSelected(photo: image)
+            photoSelected(photo: image.image, source: image.source)
         }
     }
     
@@ -308,30 +320,37 @@ extension RegistrationViewModel {
         updateForm { $0.confirmPassword = password }
     }
 
-    func photoSelected(photo: UIImage) {
+    func photoSelected(photo: UIImage, source: Analytics.Event.SignUpPassed.PhotoSource) {
         updateForm { $0.photo = nil }
         showUploadPhotoProblemVar.accept(false)
-        updateForm { $0.selectedPhoto = photo }
+        updateForm { $0.selectedPhoto = .init(image: photo, source: source) }
 
         if step.value == .addingPhoto {
-            photoChanged(photo: photo)
+            photoChanged(photo: photo, source: source)
             return
         }
 
         forward()
     }
     
-    func photoChanged(photo: UIImage) {
+    func photoChanged(photo: UIImage, source: Analytics.Event.SignUpPassed.PhotoSource) {
         
         ImageValidator.validate(image: photo)
             .subscribe(onSuccess: { (_) in
                 self.updateForm { $0.photo = photo }
                 self.showUploadPhotoProblemVar.accept(false)
+                
+                Analytics.report(Analytics.Event.SignUpPassed.photoUploadGood)
+                
             }, onError: { (Error) in
                 self.showUploadPhotoProblemVar.accept(true)
+                
+                Analytics.report(Analytics.Event.SignUpPassed.photoUploadBad)
+                
             })
             .disposed(by: bag)
             
+        Analytics.report(Analytics.Event.SignUpPassed.photo(from: source))
     }
     
     private func updateForm(_ mapper: (inout RegisterForm) -> Void ) {
@@ -340,4 +359,37 @@ extension RegistrationViewModel {
         form.accept(x)
     }
 
+}
+
+extension RegistrationViewModel {
+    
+    private func reportStepPassed(step: Step) {
+        
+        let event: Analytics.Event.SignUpPassed
+        switch step {
+            
+        case .notice:
+            event = .notice
+        case .name:
+            event = .name
+        case .gender:
+            event = .gender
+        case .birthday:
+            event = .birthdayFilled
+        case .relationship:
+            event = .relation
+        case .sexuality:
+            event = .sexuality
+        case .email:
+            event = .email
+        case .password:
+            event = .password
+            
+        case .photo, .addingPhoto: return
+        }
+         
+        Analytics.report(event)
+        
+    }
+    
 }

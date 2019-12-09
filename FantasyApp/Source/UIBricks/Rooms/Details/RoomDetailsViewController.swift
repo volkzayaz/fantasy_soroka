@@ -122,7 +122,8 @@ extension RoomDetailsViewController {
                                                     RoomFantasyDetailsProvider(room: room,
                                                                                card: card,
                                                                                initialReaction: .like,
-                                                                               reactionCallback: nil)
+                                                                               reactionCallback: nil,
+                                                                               navigationContext: .RoomMutual)
                                                 },
                                                 titleProvider: { count in
                                                     

@@ -32,13 +32,13 @@ struct MessageCellPosition {
     init(message: Room.Message) {
         
         var textBound: CGRect
-        if message.text.isEmpty {
+        if message.nonNullHackyText.isEmpty {
             textBound = .zero
         }
         else {
             
             textBound =
-            message.text.boundingRect(with: .init(width: cellWidth, height: CGFloat.greatestFiniteMagnitude),
+            message.nonNullHackyText.boundingRect(with: .init(width: cellWidth, height: CGFloat.greatestFiniteMagnitude),
                                       options: NSStringDrawingOptions.usesLineFragmentOrigin,
                                       attributes: [.font: MessageStyle.font],
                                       context: nil)

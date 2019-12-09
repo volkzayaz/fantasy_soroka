@@ -36,7 +36,7 @@ class TextBubleView: UIView {
     var message: Room.Message! {
         didSet {
 
-            text.text = message.text
+            text.text = message.nonNullHackyText
             
             date.text = message.createdAt.toMessageTimestampString()
             

@@ -35,7 +35,7 @@ struct WelcomeViewModel : MVVM_ViewModel {
      fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
 
      */
-
+    
     init(router: WelcomeRouterRouter) {
         self.router = router
 
@@ -72,6 +72,9 @@ extension WelcomeViewModel {
 
     func authorizeUsingFacebook() {
 
+        var timer = TimeSpentCounter()
+        timer.start()
+        
         AuthenticationManager.loginWithFacebook()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
@@ -80,6 +83,7 @@ extension WelcomeViewModel {
             })
             .disposed(by: bag)
 
+        Analytics.report(Analytics.Event.SignUpPassed.started(from: .Facebook))
     }
 
 }

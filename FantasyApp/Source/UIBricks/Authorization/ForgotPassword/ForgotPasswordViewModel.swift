@@ -66,8 +66,12 @@ extension ForgotPasswordViewModel {
             .subscribe(onNext: { (res) in
                 guard res else { return }
                 self.showCodeWasSentVar.accept(true)
+                
+                Analytics.report(Analytics.Event.ForgotPasswordSubmitted(isSuccessful: true))
             }, onError: { (e) in
                 self.showWrongEmailVar.accept(true)
+                
+                Analytics.report(Analytics.Event.ForgotPasswordSubmitted(isSuccessful: false))
             })
             .disposed(by: bag)
 

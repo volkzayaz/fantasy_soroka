@@ -33,6 +33,9 @@ extension FantasyDetailsViewModel {
 struct FantasyDetailsViewModel: MVVM_ViewModel {
 
     private let provider: FantasyDetailProvider
+    private var timeSpentCounter = TimeSpentCounter()
+    private var collapsedStory = false
+    private var viewTillFirstReactionTimer = TimeSpentCounter()
     
     let currentState: BehaviorRelay<Fantasy.Card.Reaction>
     
@@ -70,7 +73,7 @@ struct FantasyDetailsViewModel: MVVM_ViewModel {
 
 extension FantasyDetailsViewModel {
     
-    func likeCard() {
+    mutating func likeCard() {
         var reaction = currentState.value
         
         switch currentState.value {
@@ -84,9 +87,12 @@ extension FantasyDetailsViewModel {
         }
 
         currentState.accept(reaction)
+        
+        reportReactionTime(reaction: .like)
     }
 
-    func dislikeCard() {
+    mutating func dislikeCard() {
+        
         var reaction = currentState.value
 
         switch currentState.value {
@@ -100,6 +106,8 @@ extension FantasyDetailsViewModel {
         }
         
         currentState.accept(reaction)
+        
+        reportReactionTime(reaction: .dislike)
     }
 
     func close() {
@@ -107,7 +115,37 @@ extension FantasyDetailsViewModel {
     }
     
     func show(collection: Fantasy.Collection) {
-        router.show(collection: collection)
+        router.show(collection: collection, context: .Card(provider.navigationContext))
+    }
+ 
+    mutating func viewAppeared() {
+        timeSpentCounter.start()
+        viewTillFirstReactionTimer.start()
+    }
+    
+    mutating func viewWillDisappear() {
+        
+        Analytics.report( Analytics.Event.CardViewed(card: provider.card,
+                                                     context: provider.navigationContext,
+                                                     collapsedContent: collapsedStory,
+                                                     spentTime: timeSpentCounter.finish()) )
+        
+    }
+    
+    mutating func expandStory() {
+        collapsedStory = true
+    }
+    
+    private mutating func reportReactionTime(reaction: Fantasy.Card.Reaction) {
+        
+        ///we are interested only in initial reaction time
+        guard provider.initialReaction == .neutral else { return }
+        
+        Analytics.report(Analytics.Event.CardReactionTime(card: provider.card,
+                                                          context: provider.navigationContext,
+                                                          spentTime: viewTillFirstReactionTimer.finish(),
+                                                          reaction: reaction))
+        
     }
     
 }

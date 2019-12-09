@@ -33,19 +33,16 @@ extension FantasyCollectionDetailsViewModel {
 
 struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
-    /** Reference dependent viewModels, managers, stores, tracking variables...
-     
-     fileprivate let privateDependency = Dependency()
-     
-     fileprivate let privateTextVar = BehaviourRelay<String?>(nil)
-     
-     */
-    
     let collection: Fantasy.Collection
+    private var timeSpentCounter = TimeSpentCounter()
+    private let context: Analytics.Event.CollectionViewed.NavigationContext
     
-    init(router: FantasyCollectionDetailsRouter, collection: Fantasy.Collection) {
+    init(router: FantasyCollectionDetailsRouter,
+         collection: Fantasy.Collection,
+         context: Analytics.Event.CollectionViewed.NavigationContext) {
         self.router = router
         self.collection = collection
+        self.context = context
         
         /**
          
@@ -80,6 +77,18 @@ extension FantasyCollectionDetailsViewModel {
                 //o?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: bag)
+        
+    }
+    
+    mutating func viewAppeared() {
+        timeSpentCounter.start()
+    }
+    
+    mutating func viewWillDisappear() {
+        
+        Analytics.report(Analytics.Event.CollectionViewed(collection: collection,
+                                                          context: context,
+                                                          spentTime: timeSpentCounter.finish()))
         
     }
     

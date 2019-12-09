@@ -185,20 +185,20 @@ extension RoomSettingsViewModel {
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
         
         guard User.current?.subscription.isSubscribed ?? false else {
-            return router.owner.showDialog(title: "Error",
+            return router.owner.showDialog(title: "Club Membership",
                                            text: R.string.localizable.roomSettingsUpgradeSuggestion(),
-                                           style: .alert, negativeText: "No, thanks",
-                                           negativeCallback: nil,
-                                           positiveText: "Upgrade") { [weak h = router.owner,
-                                            unowned i = indicator] in
-                                            
-                                            PurchaseManager.purhcaseSubscription()
-                                                .trackView(viewIndicator: i)
-                                                .silentCatch(handler: h)
-                                                .subscribe()
-                                                .disposed(by: self.bag)
-                                            
-            }
+                                           style: .alert, negativeText: "Subscribe",
+                                           negativeCallback: { [weak h = router.owner,
+                                                                           unowned i = indicator] in
+                                                                           
+                                                                           PurchaseManager.purhcaseSubscription()
+                                                                               .trackView(viewIndicator: i)
+                                                                               .silentCatch(handler: h)
+                                                                               .subscribe()
+                                                                               .disposed(by: self.bag)
+                                                                           
+                                           },
+                                           positiveText: "No, thanks")
         }
         
         var roomSettings = room.value.settings
