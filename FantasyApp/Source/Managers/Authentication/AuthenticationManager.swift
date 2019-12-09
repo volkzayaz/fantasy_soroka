@@ -110,7 +110,7 @@ extension AuthenticationManager {
         
         let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
             
-            let permissions = ["public_profile", "email", "user_photos", "user_birthday"]
+            let permissions = ["public_profile", "email", "user_photos"]
 
             PFFacebookUtils.facebookLoginManager().logOut()
             PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (maybeUser, maybeError) in

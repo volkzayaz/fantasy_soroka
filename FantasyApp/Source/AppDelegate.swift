@@ -9,7 +9,8 @@
 import UIKit
 import Branch
 
-import Crashlytics
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         Branch.getInstance()?.application(app, open: url, options: options)
+        
+        ApplicationDelegate.shared.application(app, open: url, options: options)
+        
         return true
     }
 
