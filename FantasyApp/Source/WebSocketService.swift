@@ -21,6 +21,7 @@ class WebSocketService {
     var didReceiveMessage: Observable<Room.MessageInRoom> {
         return Observable.merge(messageProxy.skip(1).notNil(),
                                 manager.defaultSocket.rx.subscribe(onEvent: "message"))
+            .filter { $0.raw.type == .message }
     }
     
     func didReceiveMessage(in room: RoomIdentifier) -> Observable<Room.MessageInRoom> {

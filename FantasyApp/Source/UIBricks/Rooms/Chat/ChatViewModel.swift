@@ -62,11 +62,11 @@ extension ChatViewModel {
     }
     
     mutating func position(for message: Room.Message) -> MessageCellPosition {
-        if let x = heightCache[message.text] {
+        if let x = heightCache[message.nonNullHackyText] {
             return x
         }
         
-        heightCache[message.text] = .init(message: message)
+        heightCache[message.nonNullHackyText] = .init(message: message)
         return position(for: message)
     }
     
