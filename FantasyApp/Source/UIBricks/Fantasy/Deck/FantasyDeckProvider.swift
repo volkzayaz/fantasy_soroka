@@ -115,8 +115,11 @@ struct RoomsDeckProvider: FantasyDeckProvier {
                 return x
                     .asDriver()
                     .filter { $0 >= state.cards.count }
-                    .map { _ in .empty(till: state.deckState.wouldBeUpdatedAt) }
-                    .startWith( .cards(state.cards) )
+                    .startWith(0)
+                    .map { suffix in
+                        AppState.FantasiesDeck(cards: Array(state.cards.suffix(from: suffix)),
+                                               wouldUpdateAt: state.deckState.wouldBeUpdatedAt)
+                    }
                 
             }
         

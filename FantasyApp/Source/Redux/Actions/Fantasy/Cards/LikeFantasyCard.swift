@@ -88,7 +88,7 @@ struct FantasyCardInteraction: ActionCreator {
             }
             
             ///Performing Smart Refresh of Main Deck
-            if deckIsConsistent {
+            if deckIsConsistent && state.fantasiesDeck.wouldUpdateAt != nil {
                 return .just(state)
             }
             
