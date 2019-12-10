@@ -64,7 +64,8 @@ extension MyFantasiesViewController {
                                                 cardsProvider: Fantasy.Request.FetchCards(reactionType: .liked).rx.request.asDriver(onErrorJustReturn: []),
                                                 detailsProvider: { card in
                                                     OwnFantasyDetailsProvider(card: card,
-                                                                              initialReaction: .like)
+                                                                              initialReaction: .like,
+                                                                              navigationContext: .MyFanasies)
             })
             
         }

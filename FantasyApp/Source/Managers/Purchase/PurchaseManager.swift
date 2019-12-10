@@ -21,6 +21,8 @@ extension PurchaseManager {
             return .just( () )
         }
         
+        Analytics.report(ConsiderPurchase(of: .collection))
+        
         return SwiftyStoreKit.rx_purchase(product: pid)
             .flatMap { _ in SwiftyStoreKit.rx_fetchReceipt(forceRefresh: false) }
             .flatMap { x in User.Request.PurchaseCollection(collection: collection, recieptData: x).rx.request }
@@ -44,6 +46,8 @@ extension PurchaseManager {
     
     static func purhcaseSubscription() -> Single<User.Subscription> {
         
+        Analytics.report(ConsiderPurchase(of: .subscription))
+        
         let goldPlanProductId = immutableNonPersistentState.subscriptionProductID
         
         return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
@@ -51,6 +55,16 @@ extension PurchaseManager {
                 return self.sendRecipeToServer(forceRefresh: false,
                                                transactionToFinish: x.transaction)
             }
+        .catchError { er in
+            if (er as NSError).domain == SKErrorDomain,
+                (er as NSError).code == SKError.paymentCancelled.rawValue {
+                throw FantasyError.canceled
+            }
+            
+            throw FantasyError.generic(description: "There's been an error processing your payment. Try restoring your purchases from settings or contact support.")
+            
+        }
+        
     }
     
     static func fetchSubscriptionStatus() -> Single<User.Subscription> {

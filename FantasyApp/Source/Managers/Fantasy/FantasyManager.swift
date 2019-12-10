@@ -61,23 +61,35 @@ extension Fantasy.Manager {
             .map { $0.availableCards }
     }
  
-    static func like(card: Fantasy.Card) -> Single<Void> {
+    static func like(card: Fantasy.Card, actionContext: Fantasy.Card.ActionContext) -> Single<Void> {
+        
+        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
+        
         return Fantasy.Request.ReactOnCard(reaction: .like,
-                                           card: card)
+                                           card: card,
+                                           actionContext: actionContext)
             .rx.request
             .map { _ in }
     }
     
-    static func dislike(card: Fantasy.Card) -> Single<Void> {
+    static func dislike(card: Fantasy.Card, actionContext: Fantasy.Card.ActionContext) -> Single<Void> {
+        
+        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
+        
         return Fantasy.Request.ReactOnCard(reaction: .dislike,
-                                           card: card)
+                                           card: card,
+                                           actionContext: actionContext)
             .rx.request
             .map { _ in }
     }
     
-    static func neutral(card: Fantasy.Card) -> Single<Void> {
+    static func neutral(card: Fantasy.Card, actionContext: Fantasy.Card.ActionContext) -> Single<Void> {
+        
+        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
+        
         return Fantasy.Request.ReactOnCard(reaction: .neutral,
-                                           card: card)
+                                           card: card,
+                                           actionContext: actionContext)
             .rx.request
             .map { _ in }
     }
@@ -96,17 +108,27 @@ extension Fantasy.Manager {
         
     }
     
-    static func like(card: Fantasy.Card, in room: Room) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
+    static func like(card: Fantasy.Card, in room: Room,
+                     actionContext: Fantasy.Card.ActionContext) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
+        
+        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
+        
         return Fantasy.Request.ReactOnRoomCard(reaction: .like,
                                                card: card,
-                                               room: room)
+                                               room: room,
+                                               actionContext: actionContext)
             .rx.request
     }
     
-    static func dislike(card: Fantasy.Card, in room: Room) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
+    static func dislike(card: Fantasy.Card, in room: Room,
+                        actionContext: Fantasy.Card.ActionContext) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
+        
+        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
+        
         return Fantasy.Request.ReactOnRoomCard(reaction: .dislike,
                                                card: card,
-                                               room: room)
+                                               room: room,
+                                               actionContext: actionContext)
             .rx.request
             
     }

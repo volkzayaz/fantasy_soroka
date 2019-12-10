@@ -137,14 +137,19 @@ struct AcceptConnection: AuthorizedAPIResource {
     typealias responseType = AcceptConnectionResponse
     
     var task: Task {
-        return .requestParameters(parameters: ["status": ConnectionStatus.connected.rawValue,
-                                               "responseConnectType": type.rawValue ],
+        return .requestParameters(parameters:
+            [
+                "status": ConnectionStatus.connected.rawValue,
+                "responseConnectType": type.rawValue,
+                "source" : navigationContext.rawValue
+            ],
                                   encoding: JSONEncoding())
     }
     
     let with: UserIdentifier
     let type: ConnectionRequestType
- 
+    let navigationContext: Analytics.Event.RoomAccepted.Source
+    
     struct AcceptConnectionResponse: Codable {
         let connection: ConnectionResponse
         let room: Room

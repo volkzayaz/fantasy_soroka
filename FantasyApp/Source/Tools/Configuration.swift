@@ -34,12 +34,16 @@ extension Configuration {
 
         // MARK: - Parse
         Parse.initialize(with: ParseClientConfiguration { (config) in
-//            config.applicationId = "416c8bf3a253b72a312835f0e4c1d20d23c22eb5"
-//            config.clientKey = "8c48e9b378ba8a6f1616ff78c3536c9f35437225"
-//            config.server = "https://api.fantasyapp.com/parseserver"
             
-            config.applicationId = "416c8bf3a253b72a312835f0e4c1d20d23c22eb5"
-            config.clientKey = "8c48e9b378ba8a6f1616ff78c3536c9f35437225"
+//            if Environment.debug {
+//                config.applicationId = "416c8bf3a253b72a312835f0e4c1d20d23c22eb5"
+//                config.clientKey = "8c48e9b378ba8a6f1616ff78c3536c9f35437225"
+//            }
+//            else {
+                config.applicationId = "527a9cf3a253b72a312835f0e4c1d20d23c22eb5"
+                config.clientKey = "6886ac343b6f721db688a259d0ee51d84ea2fbe4"
+            //}
+            
             config.server = ServerURL.parse
         })
 
@@ -75,10 +79,13 @@ extension Configuration {
         // MARK: - Analytics (Amplitude)
         let key: String
         if Environment.appstore {
-            key = "8ef1a93282a6ca16bfe1341dedd639dc"
+            key = "be790981c8f961486368e7af48ffa984"
+        }
+        else if Environment.adhoc {
+            key = "be790981c8f961486368e7af48ffa984"
         }
         else {
-            key = "f0ea040baf0427e2cbeb733729946eb3"
+            key = "43d33719cb8721c70c1935aaeb791d1d"
         }
         
         Amplitude.instance()?.initializeApiKey(key)
@@ -117,8 +124,14 @@ extension Configuration {
 
 enum ServerURL {}
 extension ServerURL {
+
+//    #if DEBUG
+    //static let env = "dev"
+//    #else
+    static let env = "prod"
+    //#endif
     
-    static let base = "https://dev.fantasyapp.com"
+    static let base = "https://\(env).fantasyapp.com"
     
     static let parse = base + "/parseserver"
     static let api = base + "/api/v1"

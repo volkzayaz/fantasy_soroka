@@ -42,6 +42,13 @@ extension Date {
         dateFormatter.dateFormat = "MMMM dd yyyy"
         return dateFormatter
     }()
+    
+    private static let analyticsTimeFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
+    }()
 
     // MARK: - Conversions
     func toMessageTimestampString() -> String {
@@ -69,7 +76,13 @@ extension Date {
 
         return formatter.string(from: timeIntervalSinceNow) ?? ""
     }
+    
+    func toAnalyticsTime() -> String {
+        let formatter = Date.analyticsTimeFormatter
 
+        return formatter.string(from: self)
+    }
+    
     func distance(from date: Date, in component: Calendar.Component) -> Int {
         return Calendar.current.dateComponents([component], from: self, to: date).value(for: component) ?? 0
     }

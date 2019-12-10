@@ -45,7 +45,6 @@ class WelcomeViewController: UIViewController, MVVM_View {
         }
     }
 
-    var imagePicker: FantasyImagePickerController?
 }
 
 // MAKR:- Actions

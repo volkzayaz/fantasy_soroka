@@ -109,6 +109,7 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
+    fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
     
     init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
         self.router = router
@@ -154,7 +155,7 @@ extension FantasyDeckViewModel {
         
     }
     
-    func cardTapped(card: Fantasy.Card) {
+    mutating func cardTapped(card: Fantasy.Card) {
         
         let shouldTrigger = provider.pessimisticReload
         
@@ -167,10 +168,23 @@ extension FantasyDeckViewModel {
             }
             
         }))
+        
+        Analytics.report(Analytics.Event.CardOpenTime(card: card,
+                                                      context: provider.navigationContext,
+                                                      spentTime: viewTillOpenCardTimer.finish()))
+        
+        ///it's actually wrong. Timer restart should happen on next viewWillApper
+        ///but we can't receive this event because of how Boris implemented Card Details presentation
+        ///view lifecycle events are not passed through
+        viewTillOpenCardTimer.restart()
     }
 
     func show(collection: Fantasy.Collection) {
         router.show(collection: collection)
+    }
+    
+    mutating func cardShown(card: Fantasy.Card) {
+        viewTillOpenCardTimer.start()
     }
     
 }

@@ -46,20 +46,21 @@ class UserProfileFantasiesCell: UITableViewCell {
         
     })
     
+    private let bottleneck: BehaviorSubject<[UserProfileViewModel.Row.Fantasies]> = .init(value: [])
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
         collectionView.register(R.nib.fantasyListCell)
+        
+        bottleneck.map { [SectionModel(model: "", items: $0)] }
+            .bind(to: collectionView.rx.items(dataSource: sectionsTableDataSource))
+            .disposed(by: bag)
     }
     
     func bindModel(x: [UserProfileViewModel.Row.Fantasies]) {
-        
-        Observable.just(x)
-            .map { [SectionModel(model: "", items: $0)] }
-            .bind(to: collectionView.rx.items(dataSource: sectionsTableDataSource))
-            .disposed(by: bag)
-        
+        bottleneck.onNext(x)
     }
     
     var bag = DisposeBag()

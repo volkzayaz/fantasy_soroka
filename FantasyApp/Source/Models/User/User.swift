@@ -125,6 +125,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var pfGeoPoint: PFGeoPoint {
             return PFGeoPoint(latitude: latitude, longitude: longitude)
         }
+        
     }
     
     static var current: User? {
@@ -306,6 +307,12 @@ enum RelationshipStatus: Equatable, Codable {
         }
     }
     
+    var analyticsTuple: (String, String?) {
+        switch self {
+            case .single                   : return ("Solo", nil)
+            case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
+        }
+    }
 }
 
 enum LookingFor: Int, Codable, Equatable, CaseIterable {

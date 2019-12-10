@@ -26,8 +26,12 @@ extension PickCommunityViewModel {
                 
                 return self.manager.rx.didChangeAuthorization
                     .startWith((self.manager, CLLocationManager.authorizationStatus()))
+                    .do(onNext: { (status) in
+                        Analytics.report( Analytics.Event.LocationPermissionChange(authStatus: status.status) )
+                    })
                     .map { $0.status == .denied }
                     .asDriver(onErrorJustReturn: false)
+                    
             }
         
     }
@@ -49,12 +53,15 @@ extension PickCommunityViewModel {
                             .city(near: location)
                             .map { bigCity in
                                 
-                                if let x = bigCity {
-                                    CommunityManager.logBigCity(name: x, location: location)
-                                    return Near.bigCity(name: x)
+                                guard let x = bigCity else {
+                                    return nil
                                 }
                                 
-                                return nil
+                                CommunityManager.logBigCity(name: x, location: location)
+                                
+                                _AnalyticsHackyTown = bigCity
+                                
+                                return Near.bigCity(name: x)
                             }
                         
                     }

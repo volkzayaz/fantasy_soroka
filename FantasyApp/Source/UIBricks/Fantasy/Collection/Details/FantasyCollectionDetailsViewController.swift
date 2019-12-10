@@ -60,6 +60,13 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
                                            left: 0, bottom: 0, right: 0)
         collTableView.setContentOffset(.init(x: 0, y: -top), animated: true)
         
+        viewModel.viewAppeared()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.viewWillDisappear()
     }
     
     @IBAction func popBack(_ sender: Any) {

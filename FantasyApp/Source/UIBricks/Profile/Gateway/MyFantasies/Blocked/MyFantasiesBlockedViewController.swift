@@ -32,7 +32,8 @@ extension MyFantasiesBlockedViewController {
                 FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: Fantasy.Request.FetchCards(reactionType: .blocked).rx.request.asDriver(onErrorJustReturn: []),
                                                 detailsProvider: { card in
-                                                    OwnFantasyDetailsProvider(card: card, initialReaction: .neutral)
+                                                    OwnFantasyDetailsProvider(card: card, initialReaction: .neutral,
+                                                                              navigationContext: .MyFantasiesBlocked)
                                                 })
         }
         

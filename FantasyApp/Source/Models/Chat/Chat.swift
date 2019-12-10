@@ -14,7 +14,7 @@ extension Room {
     
     struct Message: Equatable, IdentifiableType, Codable {
         static func == (lhs: Room.Message, rhs: Room.Message) -> Bool {
-            return lhs.messageId == rhs.messageId && lhs.text == rhs.text
+            return lhs.messageId == rhs.messageId && lhs.nonNullHackyText == rhs.nonNullHackyText
         }
 
         var identity: String {
@@ -26,15 +26,30 @@ extension Room {
             case text
             case senderId
             case createdAt = "timestamp"
+            case type
         }
 
         var messageId: String
-        let text: String
+        let text: String?
         let senderId: String
         let createdAt: Date
+        let type: MessageType
+        
+        var nonNullHackyText: String {
+            return text ?? ""
+        }
         
         var isOwn: Bool {
             return senderId == User.current?.id
+        }
+        
+        enum MessageType: String, Codable {
+            case message
+            case message_deleted
+            case invited
+            case like
+            case created
+            case deleted, sp_enabled, sp_disabled, settings_changed, frozen, unfrozen, unfrozenPaid
         }
     }
     
@@ -59,13 +74,14 @@ extension Room {
             raw = Message(messageId: UUID().uuidString + "fresh message",
                           text: text,
                           senderId: user.id,
-                          createdAt: Date())
+                          createdAt: Date(),
+                          type: .message)
             
             roomId = room.id
         }
         
         func socketRepresentation() -> SocketData {
-            return ["text": raw.text, "roomId": roomId]
+            return ["text": raw.nonNullHackyText, "roomId": roomId]
         }
         
     }

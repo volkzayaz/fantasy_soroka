@@ -2,53 +2,31 @@
 //  Analytics.swift
 //  FantasyApp
 //
-//  Created by Borys Vynohradov on 11.08.2019.
+//  Created by Soroka Vlad on 11.08.2019.
 //  Copyright © 2019 Fantasy App. All rights reserved.
 //
 
-import Foundation
+import Amplitude_iOS
+import RxSwift
 
-public enum AnalyticsProvider {
-    case amplitude
-    // case firebase
-    // case crashlytics
-}
-
-public protocol AnalyticsService {
-    var provider: AnalyticsProvider { get }
-
-    func report(event: String, withProperties properties: [String: Any])
-    func report(view screen: AnalyticsScreen)
-    func setValue(_: Any, forProperty property: AnalyticsUserProperty)
-}
-
-protocol AnalyticsEvent {
-    var providers: Set<AnalyticsProvider> { get }
-    var name: [AnalyticsProvider: String] { get }
-    var properties: [AnalyticsProvider: [String: Any]] { get }
-}
-
-class AnalyticsReporter {
-    private let services: [AnalyticsService]
-
-    static let `default` = AnalyticsReporter(services: [AmplitudeAnalyticsService()])
-
-    init(services: [AnalyticsService]) {
-        self.services = services
+enum Analytics {}
+extension Analytics {
+    
+    static func report(_ event: AnalyticsEvent) {
+        Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
+        
+//        print("Analytics:  Event = \(event.name)")
+//        if let x = event.props {
+//            print("Properties: \(event.props)")
+//        }
     }
 
-    func report(event: AnalyticsEvent) {
-        services
-            .filter { event.providers.contains($0.provider) }
-            .forEach { $0.report(event: event.name[$0.provider]!,
-                                 withProperties: event.properties[$0.provider]!) }
+    static func report<T: AnalyticsNetworkRequest>(_ request: T) {
+        
+        _ = request.rx.request.subscribe()
+        
+        //print("Analytics: backend Request = \(request)")
+        
     }
-
-    func setValue(_ value: Any, forProperty property: AnalyticsUserProperty) {
-        services.forEach { $0.setValue(value, forProperty: property) }
-    }
-
-    func report(view screen: AnalyticsScreen) {
-        services.forEach { $0.report(view: screen) }
-    }
+    
 }
