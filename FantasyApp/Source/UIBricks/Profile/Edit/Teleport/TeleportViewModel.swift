@@ -135,25 +135,27 @@ extension TeleportViewModel {
     func selected(data: Data) {
         
         let x: User.Community
-        
+        let requiresSubscriptionCheck: Bool
         switch data {
             
         case .country(let country, _):
             return mode.accept(.communities(fromCountry: country))
             
         case .community(let community):
+            requiresSubscriptionCheck = true
             x = User.Community(value: community,
                                changePolicy: .teleport,
                                lastKnownLocation: User.current?.community.lastKnownLocation)
         
         case .location:
+            requiresSubscriptionCheck = false
             x = User.Community(value: nil,
                                changePolicy: .locationBased,
                                lastKnownLocation: User.current?.community.lastKnownLocation)
             
         }
         
-        guard (User.current?.subscription.isSubscribed ?? false) else {
+        guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
             
             PurchaseManager.purhcaseSubscription()
                 .trackView(viewIndicator: indicator)

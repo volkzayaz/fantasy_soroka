@@ -68,14 +68,14 @@ extension FantasyCollectionViewModel {
     
     func collectionTapped(collection: Fantasy.Collection) {
         
-        PurchaseManager.purhcase(collection: collection)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [weak o = router.owner] in
-                Dispatcher.dispatch(action: BuyCollection(collection: collection))
-                o?.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: bag)
+//        PurchaseManager.purhcase(collection: collection)
+//            .trackView(viewIndicator: indicator)
+//            .silentCatch(handler: router.owner)
+//            .subscribe(onNext: { [weak o = router.owner] in
+//                Dispatcher.dispatch(action: BuyCollection(collection: collection))
+//                o?.navigationController?.popViewController(animated: true)
+//            })
+//            .disposed(by: bag)
         
     }
     

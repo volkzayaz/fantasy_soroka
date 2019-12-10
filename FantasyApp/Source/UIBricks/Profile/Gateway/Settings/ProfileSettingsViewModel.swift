@@ -80,8 +80,13 @@ extension ProfileSettingsViewModel {
         router.showSupport(for: u.bio.name, email: PFUser.current()?.email)
     }
 
-    func legal() {
-        guard let u = URL(string: R.string.localizable.fantasyConstantsLegal()) else { return }
+    func termsAndConditions() {
+        guard let u = URL(string: R.string.localizable.fantasyConstantsTermsUrl()) else { return }
+        router.showSafari(for: u)
+    }
+    
+    func privacyPolicy() {
+        guard let u = URL(string: R.string.localizable.fantasyConstantsPrivacyUrl()) else { return }
         router.showSafari(for: u)
     }
 

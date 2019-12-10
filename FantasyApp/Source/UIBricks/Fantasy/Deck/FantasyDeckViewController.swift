@@ -175,13 +175,13 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     
 }
 
-private extension FantasyDeckViewController {
+extension FantasyDeckViewController {
     // MARK: - Actions
     @IBAction func subscribeTapped(_ sender: Any) {
         viewModel.subscribeTapped()
     }
 
-    @IBAction private func cardsTapped() {
+    @IBAction func cardsTapped() {
         collectionsButton.isSelected = false
         cardsButton.isSelected = true
         cardsView.isHidden = false
@@ -190,7 +190,7 @@ private extension FantasyDeckViewController {
         tutorialView?.isHidden = false
     }
 
-    @IBAction private func collectionsTapped() {
+    @IBAction func collectionsTapped() {
         collectionsButton.isSelected = true
         cardsButton.isSelected = false
         cardsView.isHidden = true

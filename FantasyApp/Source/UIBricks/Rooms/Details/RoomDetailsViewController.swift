@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class RoomDetailsViewController: UIViewController, MVVM_View {
     var viewModel: RoomDetailsViewModel!
@@ -109,8 +110,14 @@ extension RoomDetailsViewController {
             let vc = segue.destination as! FantasyListViewController
             
             let room = viewModel.room.value
-            let provider = viewModel.page
-                .filter { $0 == .fantasies }
+            
+            let left = viewModel.page
+            .filter { $0 == .fantasies }
+            .map { _ in }
+            
+            let right = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
+            
+            let provider = Observable.merge(left, right)
                 .flatMapLatest { _ in
                     Fantasy.Manager.mutualCards(in: room)
                 }
