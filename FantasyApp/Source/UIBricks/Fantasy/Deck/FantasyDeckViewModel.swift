@@ -27,7 +27,7 @@ extension FantasyDeckViewModel {
         return provider.cardsChange
             .map { state in
                 
-                if case .cards(_) = state {
+                if state.cards == nil || (state.cards?.count ?? 0) > 0 {
                     return .swipeCards
                 }
                 return .waiting
@@ -38,10 +38,7 @@ extension FantasyDeckViewModel {
         
         return provider.cardsChange
             .map { x -> Date? in
-                if case .empty(let date) = x {
-                    return date
-                }
-                return nil
+                return x.wouldUpdateAt
             }
             .notNil()
             .flatMapLatest { date in
@@ -80,11 +77,9 @@ extension FantasyDeckViewModel {
         return reloadTrigger.asDriver()
             .flatMapLatest { _ in p.cardsChange }
             .map { deck in
-                switch deck {
-                case .cards(let cards): return cards
-                case .empty(_): return []
-                }
+                return deck.cards
             }
+            .notNil()
         
     }
     
