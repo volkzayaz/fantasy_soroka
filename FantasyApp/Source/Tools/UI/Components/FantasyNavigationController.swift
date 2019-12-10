@@ -17,6 +17,10 @@ class FantasyPinkNavigationController: UINavigationController, UINavigationContr
         configureNavigationBar()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     func configureNavigationBar() {
         navigationBar.applyFantasyStyling()
     }

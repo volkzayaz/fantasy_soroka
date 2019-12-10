@@ -45,6 +45,10 @@ class RootViewController: UINavigationController, MVVM_View {
         
         
     }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 private extension RootViewController {

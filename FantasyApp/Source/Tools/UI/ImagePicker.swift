@@ -36,6 +36,13 @@ class FMPhotoImagePicker: ImagePicker {
         config.library.maxNumberOfItems = 1
         config.hidesStatusBar = true
 
+        if #available(iOS 13.0, *) {
+            config.preferredStatusBarStyle = .darkContent
+        } else {
+            // Fallback on earlier versions
+            config.preferredStatusBarStyle = .default
+        }
+
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { [unowned picker] items, cancelled in
 
