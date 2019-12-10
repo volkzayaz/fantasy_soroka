@@ -34,7 +34,7 @@ class FMPhotoImagePicker: ImagePicker {
         config.startOnScreen = .library
         config.screens = [.library, .photo]
         config.library.maxNumberOfItems = 1
-        config.hidesStatusBar = true
+        config.hidesStatusBar = false
 
         if #available(iOS 13.0, *) {
             config.preferredStatusBarStyle = .darkContent

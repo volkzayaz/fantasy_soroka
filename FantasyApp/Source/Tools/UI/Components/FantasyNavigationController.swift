@@ -8,17 +8,24 @@
 
 import Foundation
 
+class FantasyBaseNavigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    override var childForStatusBarStyle: UIViewController? {
+        return nil
+    }
+
+//    childViewControllerForStatusBarStyle
+}
 //MARK:- FantasyPinkNavigationController
 
-class FantasyPinkNavigationController: UINavigationController, UINavigationControllerDelegate {
+class FantasyPinkNavigationController: FantasyBaseNavigationController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         configureNavigationBar()
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
     func configureNavigationBar() {
@@ -50,7 +57,6 @@ extension UIViewController {
     @objc var prefersNavigationBarHidden: Bool {
         return false
     }
-    
 }
 
 //MARK:- CAGradientLayer Extension
