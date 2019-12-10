@@ -121,7 +121,11 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
 
-        Fantasy.Manager.fetchCollections()
+        appState.changesOf { $0.currentUser?.fantasies.purchasedCollections }
+            .asObservable()
+            .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
+                return Fantasy.Manager.fetchCollections()
+            }
             .map { $0.filter { !$0.isPurchased } }
             .silentCatch(handler: router.owner)
             .bind(to: collections)
