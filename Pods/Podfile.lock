@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - Amplitude-iOS (4.8.2)
+  - Amplitude-iOS (4.9.3)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -26,9 +26,9 @@ PODS:
     - FBSDKCoreKit (~> 5.0)
   - FMPhotoPicker (0.8.2)
   - iCarousel (1.8.3)
-  - Kingfisher (5.9.0):
-    - Kingfisher/Core (= 5.9.0)
-  - Kingfisher/Core (5.9.0)
+  - Kingfisher (5.10.1):
+    - Kingfisher/Core (= 5.10.1)
+  - Kingfisher/Core (5.10.1)
   - KMPlaceholderTextView (1.4.0)
   - Koloda (5.0):
     - pop (~> 1.0)
@@ -145,7 +145,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Amplitude-iOS: 46c8e6e65c49bb1ad1909a9add1a68e1f8562b3f
+  Amplitude-iOS: 122e026c44db8460e5efcf84859aa290a0ae9786
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
@@ -155,7 +155,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 4127e8260b96e0e4cc8ba0c10c95ee63941aa24a
   FMPhotoPicker: abc6559e4cdcb84cc2fc2f62dcdbdeca7cacbf6c
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
+  Kingfisher: eb36b7dfcc78d60877051c92c119a2865972961a
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
