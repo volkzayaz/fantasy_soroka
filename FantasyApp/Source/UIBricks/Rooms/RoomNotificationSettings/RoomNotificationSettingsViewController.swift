@@ -27,6 +27,8 @@ class RoomNotificationSettingsViewController: UIViewController, MVVM_View {
 
 private extension RoomNotificationSettingsViewController {
     func configure() {
+        view.addFantasyGradient()
+        
         titleLabel.text = R.string.localizable.roomNotificationSettingsPushTitle()
         titleLabel.font = .boldFont(ofSize: 15)
         titleLabel.textColor = .fantasyBlack
