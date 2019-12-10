@@ -14,6 +14,7 @@ import Parse
 import Branch
 import ZendeskSDK
 import ZendeskCoreSDK
+import ScreenShieldKit
 
 enum Configuration {}
 extension Configuration {
@@ -111,6 +112,8 @@ extension Configuration {
 
         let ident = Identity.createAnonymous()
         Zendesk.instance?.setIdentity(ident)
+        
+        ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
     }
 
     private static func registerActors() {
