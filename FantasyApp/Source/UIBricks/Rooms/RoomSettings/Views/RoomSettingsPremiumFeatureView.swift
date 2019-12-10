@@ -150,7 +150,10 @@ class RoomSettingsPremiumFeatureView: UIView {
     }
 
     @objc private func switchValueChanged(_ sender: UISwitch) {
-        viewModel.setIsScreenShieldEnabled(sender.isOn)
+        viewModel.setIsScreenShieldEnabled(sender.isOn) { 
+            sender.isOn = false
+        }
+        
     }
 
 }

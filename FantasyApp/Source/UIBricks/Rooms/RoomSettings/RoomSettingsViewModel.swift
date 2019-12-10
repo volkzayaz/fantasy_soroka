@@ -182,7 +182,7 @@ extension RoomSettingsViewModel {
         })
     }
 
-    func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool) {
+    func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool, turnoff: @escaping () -> Void )  {
         
         guard User.current?.subscription.isSubscribed ?? false else {
             return router.owner.showDialog(title: "Club Membership",
@@ -198,7 +198,7 @@ extension RoomSettingsViewModel {
                                                                                .disposed(by: self.bag)
                                                                            
                                            },
-                                           positiveText: "No, thanks")
+                                           positiveText: "No, thanks", positiveCallback: turnoff)
         }
         
         var roomSettings = room.value.settings
