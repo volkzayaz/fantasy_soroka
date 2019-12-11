@@ -60,7 +60,11 @@ class OwnMessageCell: UITableViewCell {
     
     weak var textBubble: TextBubleView!
     
-    var position: MessageCellPosition!
+    var position: MessageCellPosition? {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     var message: Room.Message! {
         didSet {
             textBubble.message = message
@@ -85,6 +89,8 @@ class OwnMessageCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        guard let position = self.position else { return }
         
         let rect = CGRect(x: bounds.size.width - MessageStyle.sideInset - position.totalWidth,
                           y: MessageStyle.upDownInset,

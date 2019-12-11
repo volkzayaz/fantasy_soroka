@@ -66,7 +66,7 @@ class UserPropertyActor {
                         
                         "Profile Status: Location" : (user.community.value?.name ?? _AnalyticsHackyTown) as NSString?,
                         
-                        "Profile Status: Signed Up" : PFUser.current()!.createdAt?.toAnalyticsTime() as NSString?,
+                        "Profile Status: Signed Up" : PFUser.current()?.createdAt?.toAnalyticsTime() as NSString?,
                         
                         "Profile Trait: Sex" : user.bio.gender.rawValue as NSString?,
                         "Profile Trait: Age" : NSNumber(integerLiteral: user.bio.birthday.distance(from: Date(), in: .year)),

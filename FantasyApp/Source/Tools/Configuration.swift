@@ -79,15 +79,15 @@ extension Configuration {
 
         // MARK: - Analytics (Amplitude)
         let key: String
-        if Environment.appstore {
+//        if Environment.appstore {
+//            key = "be790981c8f961486368e7af48ffa984"
+//        }
+//        else if Environment.adhoc {
             key = "be790981c8f961486368e7af48ffa984"
-        }
-        else if Environment.adhoc {
-            key = "be790981c8f961486368e7af48ffa984"
-        }
-        else {
-            key = "43d33719cb8721c70c1935aaeb791d1d"
-        }
+//        }
+//        else {
+//            key = "43d33719cb8721c70c1935aaeb791d1d"
+//        }
         
         Amplitude.instance()?.initializeApiKey(key)
         
