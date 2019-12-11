@@ -11,13 +11,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RootViewController: UINavigationController, MVVM_View {
+class RootViewController: FantasyBaseNavigationController, MVVM_View {
     
     lazy var viewModel: RootViewModel! = .init(router: .init(owner: self))
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         viewModel.state
             .drive(onNext: { [unowned self] (x) in
                 
@@ -36,31 +36,8 @@ class RootViewController: UINavigationController, MVVM_View {
                 case .ageRestriction:
                     let vc = R.storyboard.authorization.ageRestrictionViewConrtoller()!
                     self.setViewControllers([vc], animated: true)
-                    
                 }
-                
             })
             .disposed(by: rx.disposeBag)
-        
-        
-        
     }
-}
-
-private extension RootViewController {
-    
-    /**
-     *  Describe any IBActions here
-     *
-     
-     @IBAction func performAction(_ sender: Any) {
-     
-     }
-    
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     }
- 
-    */
-    
 }
