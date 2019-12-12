@@ -12,9 +12,8 @@ import RxSwift
 import RxCocoa
 
 class RegistrationViewController: UIViewController, MVVM_View {
-    var imagePicker: FantasyImagePickerController?
 
-    
+    var imagePicker: FantasyImagePickerController?    
     var viewModel: RegistrationViewModel!
 
     @IBOutlet private weak var stepForwardButton: UIButton!

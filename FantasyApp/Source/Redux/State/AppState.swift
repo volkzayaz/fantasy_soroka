@@ -24,8 +24,11 @@ fileprivate let _appState = BehaviorRelay<AppState?>(value: nil)
 func initAppState() -> Maybe<Void> {
     
     ///we can use network requests here as well if we want to delay application initialization
-    _appState.accept(AppState(currentUser: AuthenticationManager.currentUser(),
-                              fantasiesDeck: .cards([])))
+    _appState.accept(
+        AppState(currentUser: AuthenticationManager.currentUser(),
+                 fantasiesDeck: .init(cards: nil, wouldUpdateAt: nil)
+        )
+    )
     
     let _ =
     NotificationCenter.default.rx.notification(UIApplication.willTerminateNotification)
@@ -53,10 +56,10 @@ struct AppState: Equatable {
     var fantasiesDeck: FantasiesDeck
     var inviteDeeplink: InviteDeeplink?
     
-    enum FantasiesDeck: Equatable {
+    struct FantasiesDeck: Equatable {
         
-        case cards([Fantasy.Card])
-        case empty(till: Date)
+        var cards:[Fantasy.Card]?
+        var wouldUpdateAt: Date?
         
     };
     

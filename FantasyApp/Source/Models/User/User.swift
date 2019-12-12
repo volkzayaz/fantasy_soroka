@@ -387,8 +387,8 @@ enum Expirience: Int, Codable, Equatable, CaseIterable {
 
 extension User.Bio.PersonalQuestion {
     static let question1: String = "Which 3 words describe me the best?"
-    static let question2: String = "What motto do I live by?"
-    static let question3: String = "What is on the top of my bucket list?"
+    static let question2: String = "What do I value in other people?"
+    static let question3: String = "What are my hobbies & interests?"
 }
 
 

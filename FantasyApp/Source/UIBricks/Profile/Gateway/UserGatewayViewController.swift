@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 import SafariServices
+import StoreKit
 
 class UserGatewayViewController: UIViewController, MVVM_View {
     
@@ -72,6 +73,11 @@ extension UserGatewayViewController {
     @IBAction func tapZendesk(_ sender: Any) {
         viewModel.help()
     }
+    
+    @IBAction func rateUs(_ sender: Any) {
+        SKStoreReviewController.requestReview()
+    }
+    
 }
 
 

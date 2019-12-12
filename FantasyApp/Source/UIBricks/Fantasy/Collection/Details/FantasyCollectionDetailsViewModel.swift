@@ -74,7 +74,11 @@ extension FantasyCollectionDetailsViewModel {
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak o = router.owner] in
                 Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
-                //o?.navigationController?.popViewController(animated: true)
+                
+                let vc = (((o?.presentingViewController as! RootViewController).viewControllers.first! as! MainTabBarViewController).viewControllers!.first! as! UINavigationController).viewControllers.first! as! FantasyDeckViewController
+                vc.cardsTapped()
+                o?.dismiss(animated: true, completion: nil)
+                
             })
             .disposed(by: bag)
         

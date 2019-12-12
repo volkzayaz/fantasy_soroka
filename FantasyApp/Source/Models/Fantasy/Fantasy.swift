@@ -103,7 +103,11 @@ extension AppState.FantasiesDeck {
      */
     mutating func pop(card: Fantasy.Card) -> Bool {
         
-        guard case .cards(var x) = self, x.count > 0 else {
+        guard var x = cards else {
+            return true
+        }
+        
+        guard x.count > 0 else {
             return true
         }
         
@@ -113,12 +117,8 @@ extension AppState.FantasiesDeck {
         
         x.remove(at: maybeIndex)
         
-        guard x.count > 0 else {
-            self = .empty(till: Date(timeIntervalSinceNow: 3600 * 24))
-            return true
-        }
+        cards = x
         
-        self = .cards(x)
         return true
         
     }

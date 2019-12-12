@@ -60,14 +60,14 @@ extension EditProfileViewModel {
                                         value: user.community.value?.name ?? "No community",
                                         image: R.image.profileCommunity()!,
                                         editAction: self.changeActiveCity),
-                        Model.attribute("Looking for",
-                                        value: user.bio.lookingFor?.description ?? "Choose",
-                                        image: R.image.profileLookingFor()!,
-                                        editAction: self.changeLookingFor),
                         Model.attribute("Expience",
                                         value: user.bio.expirience?.description ?? "Choose",
                                         image: R.image.profileExpirience()!,
                                         editAction: self.changeExpirience),
+                        Model.attribute("Looking for",
+                                        value: user.bio.lookingFor?.description ?? "Choose",
+                                        image: R.image.profileLookingFor()!,
+                                        editAction: self.changeLookingFor),
                 ])
                 
                 let q1 = User.Bio.PersonalQuestion.question1

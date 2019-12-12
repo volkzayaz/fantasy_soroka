@@ -27,16 +27,8 @@ extension Fantasy.Manager {
             .rx.request
             .map { (response) in
                 
-                if response.cards.count > 0 {
-                    return .cards(response.cards)
-                }
+                return AppState.FantasiesDeck(cards: response.cards, wouldUpdateAt: response.deckState.wouldBeUpdatedAt)
                 
-                if let x = response.deckState.wouldBeUpdatedAt {
-                    return .empty(till: x)
-                }
-                
-                fatalErrorInDebug("Server returned neither update date, nor available amount")
-                return .empty(till: Date(timeIntervalSinceNow: 24 * 3600))
             }
         
     }

@@ -38,9 +38,9 @@ extension ProfileSettingsViewController {
         
         switch section {
         case 0: v.setText(R.string.localizable.fantasySettingsSectionAccount())
-        case 1: v.setText(R.string.localizable.fantasySettingsSectionRooms())
-        case 2: v.setText(R.string.localizable.fantasySettingsSectionSubscriptions())
-        case 3: v.setText(R.string.localizable.fantasySettingsSectionSupport())
+        //case 1: v.setText(R.string.localizable.fantasySettingsSectionRooms())
+        case 1: v.setText(R.string.localizable.fantasySettingsSectionSubscriptions())
+        case 2: v.setText(R.string.localizable.fantasySettingsSectionSupport())
 
         default: v.setText(" ")
         }
@@ -52,30 +52,34 @@ extension ProfileSettingsViewController {
 
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if indexPath.section == 2 && indexPath.row == 1 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             viewModel.restorePurchases()
         }
 
-        if indexPath.section == 3 && indexPath.row == 0 {
+        if indexPath.section == 2 && indexPath.row == 0 {
             viewModel.helpSupport()
         }
 
-        if indexPath.section == 3 && indexPath.row == 1 {
-            viewModel.legal()
+        if indexPath.section == 2 && indexPath.row == 1 {
+            viewModel.privacyPolicy()
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 2 {
+            viewModel.termsAndConditions()
         }
 
-        if indexPath.section == 3 && indexPath.row == 2 {
+        if indexPath.section == 2 && indexPath.row == 3 {
             viewModel.communityRules()
         }
 
-        if indexPath.section == 3 && indexPath.row == 3 {
+        if indexPath.section == 2 && indexPath.row == 4 {
             viewModel.rateUs()
         }
 
-        if indexPath.section == 4 {
+        if indexPath.section == 3 {
               viewModel.deleteAccount()
           }
-        if indexPath.section == 5 {
+        if indexPath.section == 4 {
             viewModel.logout()
         }
         

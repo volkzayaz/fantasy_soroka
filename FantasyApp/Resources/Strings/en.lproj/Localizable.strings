@@ -15,6 +15,13 @@
 "general.about" = "About";
 "general.ago" = "%@ ago";
 "general.just.now" = "just now";
+"general.done" = "Done";
+"general.back" = "Back";
+"general.edit" = "Edit";
+"general.images" = "images";
+"general.videos" = "videos";
+"general.save" = "Save";
+"general.next" = "Next";
 
 "general.text.field.show" = "SHOW";
 "general.text.field.hide" = "HIDE";
@@ -53,7 +60,7 @@
 "room.details.chat" = "Chat";
 "room.details.play" = "Play";
 
-"room.frozenRoomUnreachable" = "Seems like you've reached rooms limit. This room is currently frozen, you can't use it at the moment. Would you like to upgrade to premium to unfreeze all rooms at once?";
+"room.frozenRoomUnreachable" = "This Room is currently frozen. You or the other Room participant reached the limit of available Rooms. Would you like to subscribe to a Club Membership to unfreeze all Rooms?";
 
 "room.creation.title" = "New Room Settings";
 "room.creation.invite" = "Invite Someone";
@@ -77,7 +84,7 @@
 "room.settings.security.title" = "ScreenProtect";
 "room.settings.security.description" = "Protect your Profile and Mutual Fantasies tab in Rooms from being screenshotted or screenrecorded from other devices";
 "room.settings.security.option.screen.shield" = "ScreenProtect";
-"room.settings.upgradeSuggestion" = "ScreenProtect is a part of Club Membership subscription feature. Would you like to upgrade to premium?";
+"room.settings.upgradeSuggestion" = "ScreenProtect is a part of Club Membership subscription feature. Would you like to subscribe to Club Membership?";
 "room.settings.leave.room" = "Leave Room";
 
 "room.notification.settings.push.title" = "Push";
@@ -122,8 +129,6 @@
 "fantasy.constants.termsUrl" = "https://fantasyapp.com/en/terms-and-conditions/";
 "fantasy.constants.privacyUrl" = "https://fantasyapp.com/en/privacy-policy/";
 "fantasy.constants.communityRulesUrl" = "https://fantasyapp.com/en/community-rules/";
-"fantasy.constants.helpSupport" = "https://fantasyapp.com/en/community-rules/";
-"fantasy.constants.legal" = "https://fantasyapp.com/en/community-rules/";
 
 "fantasy.settings.section.account" = "Account";
 "fantasy.settings.section.rooms" = "Rooms";
