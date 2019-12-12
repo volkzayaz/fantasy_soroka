@@ -106,10 +106,13 @@ struct RoomsDeckProvider: FantasyDeckProvier {
         
         card.accept(0)
         
-        return Fantasy.Manager.fetchSwipesDeck(in: room)
-            .retry(2)
-            .asDriver(onErrorJustReturn: .init(cards: [],
-                                               deckState: .init(wouldBeUpdatedAt: Date(timeIntervalSince1970: 0))))
+        return appState.changesOf { $0.currentUser?.subscription }
+            .flatMapLatest { _ in
+                return Fantasy.Manager.fetchSwipesDeck(in: self.room)
+                    .retry(2)
+                    .asDriver(onErrorJustReturn: .init(cards: [],
+                                                       deckState: .init(wouldBeUpdatedAt: Date(timeIntervalSince1970: 0))))
+            }
             .flatMap { [unowned x = card] state -> Driver<AppState.FantasiesDeck> in
                 
                 return x
