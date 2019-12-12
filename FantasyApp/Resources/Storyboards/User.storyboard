@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -84,19 +84,19 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="219" height="236"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mcq-3P-om6">
-                                                    <rect key="frame" x="50" y="15" width="119" height="206.5"/>
+                                                    <rect key="frame" x="50" y="24.5" width="119" height="187.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="secret" translatesAutoresizingMaskIntoConstraints="NO" id="llt-Ho-UXd">
                                                             <rect key="frame" x="0.0" y="0.0" width="119" height="80"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qP-qK-8nd">
-                                                            <rect key="frame" x="0.0" y="90" width="119" height="21.5"/>
+                                                            <rect key="frame" x="0.0" y="85" width="119" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secret Photos can be seen after Match. Send stickers to stand out from others" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvc-2Z-YlY">
-                                                            <rect key="frame" x="0.0" y="116.5" width="119" height="90"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secret Photos can be seen when you create a Room together" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvc-2Z-YlY">
+                                                            <rect key="frame" x="0.0" y="115.5" width="119" height="72"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1139,22 +1139,22 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="762.5"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="764"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="86.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="87"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-fj-wTM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-Cd-I9r" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="42.5" width="382" height="44"/>
+                                                        <rect key="frame" x="0.0" y="43" width="382" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-ZW-YUQ">
-                                                                <rect key="frame" x="16" y="11" width="72" height="22"/>
+                                                                <rect key="frame" x="16" y="11" width="76.5" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="BOR-Mo-7dm"/>
                                                                 </constraints>
@@ -1163,20 +1163,20 @@ activated when it reaches</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityCheckImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-J4-MI5">
-                                                                <rect key="frame" x="267.5" y="16" width="12" height="12"/>
+                                                                <rect key="frame" x="275.5" y="16" width="12" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="12" id="eEl-Ey-JRP"/>
                                                                     <constraint firstAttribute="width" secondItem="iLt-J4-MI5" secondAttribute="height" multiplier="1:1" id="zwz-mJ-FHC"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NS-4E-Ebr">
-                                                                <rect key="frame" x="293.5" y="13.5" width="47.5" height="17.5"/>
+                                                                <rect key="frame" x="301.5" y="13" width="49.5" height="18"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                 <color key="textColor" name="textPinkColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="bXt-su-CJ0">
-                                                                <rect key="frame" x="346" y="0.0" width="20" height="44"/>
+                                                                <rect key="frame" x="356" y="0.0" width="10" height="44"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1201,19 +1201,19 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-1k-Qk9">
-                                                <rect key="frame" x="0.0" y="110.5" width="382" height="424.5"/>
+                                                <rect key="frame" x="0.0" y="111" width="382" height="425"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-W8-g6m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="164.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="165"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8z-qv-z4e">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHi-3I-88t" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="41.5" width="382" height="123"/>
+                                                                <rect key="frame" x="0.0" y="42" width="382" height="123"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Rug-h3-Yph">
                                                                         <rect key="frame" x="16" y="16" width="366" height="49"/>
@@ -1287,7 +1287,7 @@ activated when it reaches</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="U7d-3r-Pig">
-                                                        <rect key="frame" x="0.0" y="176.5" width="382" height="248"/>
+                                                        <rect key="frame" x="0.0" y="177" width="382" height="248"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3Y-JS-oLB" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="123"/>
@@ -1395,10 +1395,10 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyJ-oa-jxg" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="559" width="382" height="44"/>
+                                                <rect key="frame" x="0.0" y="560" width="382" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-Ul-yCK">
-                                                        <rect key="frame" x="16" y="11" width="48.5" height="22"/>
+                                                        <rect key="frame" x="16" y="11" width="50" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="lx7-gv-8iE"/>
                                                         </constraints>
@@ -1421,28 +1421,28 @@ activated when it reaches</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-Jj-sjy">
-                                                <rect key="frame" x="0.0" y="627" width="382" height="135.5"/>
+                                                <rect key="frame" x="0.0" y="628" width="382" height="136"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6er-11-nia">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="135.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="136"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0I-xQ-K38">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3R-VX-lKE" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="39.5" width="382" height="96"/>
+                                                                <rect key="frame" x="0.0" y="40" width="382" height="96"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-kD-la2">
-                                                                        <rect key="frame" x="16" y="11" width="350" height="17.5"/>
+                                                                        <rect key="frame" x="16" y="11" width="350" height="18"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egU-Il-qSz" customClass="SmoothPickerView" customModule="SmoothPicker">
-                                                                        <rect key="frame" x="0.0" y="38.5" width="382" height="46.5"/>
+                                                                        <rect key="frame" x="0.0" y="39" width="382" height="46"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <connections>
                                                                             <outlet property="dataSource" destination="iyx-6x-4MS" id="BdF-tS-vAT"/>
@@ -1450,7 +1450,7 @@ activated when it reaches</string>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2J-iQ-ozP" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="38.5" width="80" height="46.5"/>
+                                                                        <rect key="frame" x="0.0" y="39" width="80" height="46"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="Zuw-Op-aaU"/>
@@ -1462,7 +1462,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tY-Ad-NRt" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="302" y="38.5" width="80" height="46.5"/>
+                                                                        <rect key="frame" x="302" y="39" width="80" height="46"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="direction">

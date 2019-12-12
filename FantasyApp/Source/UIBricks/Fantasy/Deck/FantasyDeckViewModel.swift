@@ -117,6 +117,7 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .disposed(by: bag)
 
         appState.changesOf { $0.currentUser?.fantasies.purchasedCollections }
+            .notNil()
             .asObservable()
             .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
                 return Fantasy.Manager.fetchCollections()
