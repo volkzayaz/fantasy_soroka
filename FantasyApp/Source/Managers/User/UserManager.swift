@@ -34,6 +34,7 @@ extension UserManager {
                                   thumbnailURL: avatar.avatarThumbnail.absoluteString)
                 
                 ImageRetreiver.registerImage(image: image, forKey: photo.url)
+                ImageRetreiver.registerImage(image: image, forKey: photo.thumbnailURL)
                 
                 return photo
                 

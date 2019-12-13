@@ -52,10 +52,10 @@ extension AuthenticationManager {
             return Disposables.create()
         }
         .flatMap { (u: PFUser) -> Single<PFUser> in
-            return UpdateUserAvatarResource(image: form.photo!).rx.request
+            return UserManager.replaceAvatar(image: form.photo!)
                 .map { avatar -> PFUser in
-                    u["avatar"] = avatar.avatar.absoluteString
-                    u["avatarThumbnail"] = avatar.avatarThumbnail.absoluteString
+                    u["avatar"] = avatar.url
+                    u["avatarThumbnail"] = avatar.thumbnailURL
                     
                     return u
             }
