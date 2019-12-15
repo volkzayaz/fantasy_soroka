@@ -23,10 +23,10 @@ extension FantasyCollectionDetailsViewModel {
             
     }
     
-    var firstCard: Driver<Fantasy.Card> {
+    ///if collection is not purchased, there only will be a single card inside
+    var availableCards: Driver<[Fantasy.Card]> {
         return Fantasy.Manager.fetchCollectionsCards(collection: collection)
             .asDriver(onErrorJustReturn: [])
-            .map { $0.first! }
     }
     
 }

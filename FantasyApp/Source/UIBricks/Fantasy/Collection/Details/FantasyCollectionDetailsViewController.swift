@@ -114,13 +114,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
             cell.cardsCountLabel.text = "\(viewModel.collection.cardsCount) cards"
             cell.descriptionLabel.text = viewModel.collection.whatsInside
             
-            viewModel.firstCard
-                .drive(onNext: { (x) in
-                    
-                    cell.set(card: x)
-                    
-                })
-                .disposed(by: rx.disposeBag)
+            cell.viewModel = viewModel
             
             return cell
             
@@ -187,13 +181,21 @@ class WhatsInsideCollectionDetailsCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var cardsCollectionView: UICollectionView!
  
-    func set(card: Fantasy.Card) {
-     
-        Observable<[String]>
-            .just([card.imageURL, "stub", "stub", "stub", "andMore"])
-            .bind(to: cardsCollectionView.rx.items(cellIdentifier: "CardCollectionCell",
-                                                   cellType: CardCollectionCell.self)) { index, model, cell in
-            
+    var viewModel: FantasyCollectionDetailsViewModel! {
+        didSet {
+            viewModel.availableCards
+                .map { $0.map { $0.imageURL } }
+                .map { urls -> [String] in
+                    
+                    if urls.count == 1 {
+                        return [urls.first!, "stub", "stub", "stub", "andMore"]
+                    }
+                    
+                    return urls
+            }
+            .drive(cardsCollectionView.rx.items(cellIdentifier: "CardCollectionCell",
+                                                cellType: CardCollectionCell.self)) { index, model, cell in
+                                                    
                                                     cell.cardImageView.isHidden = model == "andMore"
                                                     
                                                     if model == "stub" {
@@ -209,10 +211,11 @@ class WhatsInsideCollectionDetailsCell: UITableViewCell {
                                                         .drive(cell.cardImageView.rx.image)
                                                         .disposed(by: cell.rx.disposeBag)
                                                     
+            }
+            .disposed(by: bag)
         }
-        .disposed(by: bag)
-        
     }
+    
     
     var bag = DisposeBag()
     
@@ -256,5 +259,13 @@ class CardCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var andMoreLable: UILabel!
     @IBOutlet weak var cardImageView: UIImageView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+     
+        cardImageView.isHidden = false
+        cardImageView.image = nil
+        
+    }
     
 }
