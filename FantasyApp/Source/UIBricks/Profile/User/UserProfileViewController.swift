@@ -153,7 +153,9 @@ class UserProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         let layout = photosCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = photosCollectionView.frame.size
+
+        let w = view.bounds.size.width
+        layout.itemSize = CGSize(width: w, height: w + 44)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
