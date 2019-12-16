@@ -133,6 +133,22 @@ extension Date : UserDefaultsStorable {
     
 }
 
+extension RawRepresentable where Self.RawValue == String {
+    
+    func store(for key: String) {
+        UserDefaults.standard.set(self.rawValue, forKey: key)
+    }
+    
+    init?(key: String) {
+        
+        guard let str = UserDefaults.standard.string(forKey: key),
+              let x: Self = Self(rawValue: str) else { return nil }
+        
+        self = x
+    }
+    
+}
+
 extension Encodable where Self : UserDefaultsStorable {
     
     func store(for key: String) {

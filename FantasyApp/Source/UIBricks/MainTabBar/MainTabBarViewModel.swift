@@ -45,11 +45,6 @@ extension MainTabBarViewModel {
         
     }
  
-    var unsupportedVersionTrigger: Driver<Bool> {
-        return unsupportedVersionTriggerVar.asDriver()
-            .filter { $0 }
-    }
-    
     var profileTabImage: Driver<(UIImage, UIImage)> {
         return appState.changesOf { $0.currentUser?.bio.photos.avatar.thumbnailURL ?? "" }
             .asObservable()
@@ -66,7 +61,6 @@ extension MainTabBarViewModel {
 struct MainTabBarViewModel : MVVM_ViewModel {
 
     private let locationManager = CLLocationManager()
-    private let unsupportedVersionTriggerVar = BehaviorRelay(value: false)
     
     init(router: MainTabBarRouter) {
         self.router = router
@@ -79,14 +73,6 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             //.trackView(viewIndicator: indicator)
             .subscribe(onSuccess: { x in
                 Dispatcher.dispatch(action: ResetSwipeDeck(deck: x))
-            })
-            .disposed(by: bag)
-        
-        FetchConfig().rx.request
-            .retry(2)
-            .subscribe(onSuccess: { [weak t = unsupportedVersionTriggerVar] (config) in
-                immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId)
-                t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
             })
             .disposed(by: bag)
         
@@ -119,10 +105,6 @@ struct MainTabBarViewModel : MVVM_ViewModel {
 }
 
 extension MainTabBarViewModel {
-    
-    func triggerUpdate() {
-        unsupportedVersionTriggerVar.accept(true)
-    }
     
     /** Reference any actions ViewModel can handle
      ** Actions should always be void funcs

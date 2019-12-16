@@ -10,6 +10,9 @@ import Foundation
 enum SettingsStore {}
 extension SettingsStore {
     
+    static var environment: Setting<Environment> = Setting(key: "com.fantasyapp.iosclient.settings.environment",
+                                                           initialValue: .default)
+    
     static var lastUsedEmail: Setting<String?> = Setting(key: "com.fantasyapp.iosclient.settings.lastUsedEmail",
                                                            initialValue: nil)
 

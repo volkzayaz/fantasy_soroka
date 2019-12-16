@@ -36,8 +36,83 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                 case .ageRestriction:
                     let vc = R.storyboard.authorization.ageRestrictionViewConrtoller()!
                     self.setViewControllers([vc], animated: true)
+                    
+                case .updateApp:
+                    let vc = R.storyboard.user.updateAppViewController()!
+                    self.present(vc, animated: true, completion: nil)
+                    
                 }
             })
             .disposed(by: rx.disposeBag)
+    }
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resignFirstResponder()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        
+        guard motion == .motionShake && (RunScheme.debug || RunScheme.adhoc) else {
+            return
+        }
+        
+        let actions: [UIAlertAction] = [
+            
+            UIAlertAction(title: "Force Update Application",
+                          style: .default,
+                          handler: { [weak self] _ in
+                            
+                            self?.viewModel.triggerUpdate()
+                            
+            }),
+            
+            .init(title: "Change environment",
+                style: .default,
+                handler: { [weak self] _ in
+                    self?.envChange()
+            }),
+            
+            .init(title: "Cancel", style: .cancel, handler: nil)]
+        
+        showDialog(title: "Debug Actions", text: "Pick one", style: .alert,
+                   actions: actions)
+        
+    }
+    
+    private func envChange() {
+        
+        var actions: [UIAlertAction] =
+            Environment.allCases.map { env in
+                
+                UIAlertAction(title: env.rawValue,
+                              style: .default,
+                              handler: { _ in
+                                
+                                SettingsStore.environment.value = env
+                                AuthenticationManager.logout()
+                                Dispatcher.dispatch(action: Logout())
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    exit(0)
+                                }
+                })
+                
+        }
+            
+        actions.append(.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        showDialog(title: "Current environment -- \(SettingsStore.environment.value.serverAlias)",
+            text: "You will be logged out. Application will be closed. Launch it manually to use new environment",
+            style: .alert,
+                   actions: actions)
+        
     }
 }
