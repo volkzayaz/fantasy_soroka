@@ -19,7 +19,13 @@ class UserProfilePhotoCell: UICollectionViewCell {
             stubCell.isHidden = true
         }
     }
-    
+
+    @IBOutlet weak var topImageHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            topImageHeightConstraint.constant = UIApplication.shared.statusBarFrame.height
+        }
+    }
+
     var disposeBag = DisposeBag()
     
     func set(photo: UserProfileViewModel.Photo) {
