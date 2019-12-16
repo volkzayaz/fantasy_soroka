@@ -79,17 +79,17 @@ enum RunScheme {
     
     static var adhoc: Bool {
         #if ADHOC
-        return false
-        #else
         return true
+        #else
+        return false
         #endif
     }
     
     static var appstore: Bool {
         #if DEBUG || ADHOC
-        return false
-        #else
         return true
+        #else
+        return false
         #endif
     }
     
