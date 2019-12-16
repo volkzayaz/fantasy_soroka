@@ -19,15 +19,19 @@ extension RootViewModel {
         
         let user = appState.changesOf { $0.currentUser }
                             .map { $0 == nil }
-        .distinctUntilChanged()
+                            .distinctUntilChanged()
         
-        return Driver.combineLatest(age, user) { ($0, $1) }
-            .map { (maybeAge, user) in
+        return Driver.combineLatest(age, user,
+                                    unsupportedVersionTriggerVar.asDriver(onErrorJustReturn: false)) { ($0, $1, $2) }
+            .map { (maybeAge, user, isUnsupportedVersion) in
+                
+                if isUnsupportedVersion  { return .updateApp }
                 
                 guard maybeAge == nil else { return .ageRestriction }
                 
                 return user ? .authentication : .mainApp
             }
+            .distinctUntilChanged()
     }
     
 }
@@ -39,7 +43,10 @@ struct RootViewModel : MVVM_ViewModel {
         case mainApp
         
         case ageRestriction
+        case updateApp
     }
+    
+    private let unsupportedVersionTriggerVar = BehaviorRelay(value: false)
     
     init(router: RootRouter) {
         self.router = router
@@ -50,6 +57,14 @@ struct RootViewModel : MVVM_ViewModel {
          
          */
         
+        FetchConfig().rx.request
+            .retry(2)
+            .subscribe(onSuccess: { [weak t = unsupportedVersionTriggerVar] (config) in
+                immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId)
+                t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
+            })
+            .disposed(by: bag)
+        
         /////progress indicator
         
 //        indicator.asDriver()
@@ -57,6 +72,7 @@ struct RootViewModel : MVVM_ViewModel {
 //                h?.setLoadingStatus(loading)
 //            })
 //            .disposed(by: bag)
+        
     }
     
     let router: RootRouter
@@ -67,14 +83,8 @@ struct RootViewModel : MVVM_ViewModel {
 
 extension RootViewModel {
     
-    /** Reference any actions ViewModel can handle
-     ** Actions should always be void funcs
-     ** any result should be reflected via corresponding drivers
-     
-     func buttonPressed(labelValue: String) {
-     
-     }
-     
-     */
+    func triggerUpdate() {
+        unsupportedVersionTriggerVar.accept(true)
+    }
     
 }

@@ -17,7 +17,6 @@ platform :ios do
         
         version_number = 0
         configuration = ""
-        environmentName = ""
         
         #parsing options
         if options[:patch]
@@ -28,10 +27,8 @@ platform :ios do
     
     if options[:adhoc]
         configuration = "AdHoc"
-        environmentName = "Staging"
     else
         configuration = "Release"
-        environmentName = "Production"
     end
 
     ##building ipa
@@ -61,7 +58,6 @@ platform :ios do
           use_webhook_configured_username_and_icon: true,
           payload: {
           'Version number' => get_version_number(target: "FantasyApp"),
-          'Environment' => environmentName,
           'Download Link' => "https://apps.crashlytics.com/projects",
           },
           default_payloads: []

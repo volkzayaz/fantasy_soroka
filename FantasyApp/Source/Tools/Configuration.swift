@@ -29,6 +29,8 @@ extension Configuration {
         /**
          * Place to set up everything you would normally do in AppDelegate
          */
+        
+        let env = SettingsStore.environment.value
 
         // MARK: - Fabric
         Fabric.with([Crashlytics.self])
@@ -36,14 +38,8 @@ extension Configuration {
         // MARK: - Parse
         Parse.initialize(with: ParseClientConfiguration { (config) in
             
-//            if Environment.debug {
-//                config.applicationId = "416c8bf3a253b72a312835f0e4c1d20d23c22eb5"
-//                config.clientKey = "8c48e9b378ba8a6f1616ff78c3536c9f35437225"
-//            }
-//            else {
-                config.applicationId = "527a9cf3a253b72a312835f0e4c1d20d23c22eb5"
-                config.clientKey = "6886ac343b6f721db688a259d0ee51d84ea2fbe4"
-            //}
+            config.applicationId = env.parseApplicationId
+            config.clientKey = env.parseClientKey
             
             config.server = ServerURL.parse
         })
@@ -72,24 +68,11 @@ extension Configuration {
         // uncomment to test Branch Integration
         //Branch.getInstance()?.validateSDKIntegration()
 
-        // MARK: - Logging
-        if Environment.debug {
+        if env == .dev {
             Parse.logLevel = .debug
         }
 
-        // MARK: - Analytics (Amplitude)
-        let key: String
-//        if Environment.appstore {
-//            key = "be790981c8f961486368e7af48ffa984"
-//        }
-//        else if Environment.adhoc {
-            key = "be790981c8f961486368e7af48ffa984"
-//        }
-//        else {
-//            key = "43d33719cb8721c70c1935aaeb791d1d"
-//        }
-        
-        Amplitude.instance()?.initializeApiKey(key)
+        Amplitude.instance()?.initializeApiKey(env.amplitudeKey)
         
         ///in case AppState initialisation becomes async
         ///we need to delay app ViewControllers presentation
@@ -128,11 +111,7 @@ extension Configuration {
 enum ServerURL {}
 extension ServerURL {
 
-//    #if DEBUG
-    //static let env = "dev"
-//    #else
-    static let env = "prod"
-    //#endif
+    static let env = SettingsStore.environment.value.serverAlias
     
     static let base = "https://\(env).fantasyapp.com"
     
