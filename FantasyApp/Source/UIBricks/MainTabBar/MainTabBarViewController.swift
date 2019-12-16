@@ -51,16 +51,6 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
                 self.tabBar.items!.last!.selectedImage = imagesTuple.1
             })
             .disposed(by: rx.disposeBag)
-
-        viewModel.unsupportedVersionTrigger
-            .drive(onNext: { [unowned self] _ in
-                
-                let vc = R.storyboard.user.updateAppViewController()!
-                vc.modalPresentationStyle = .overFullScreen
-                self.present(vc, animated: true, completion: nil)
-                
-            })
-            .disposed(by: rx.disposeBag)
         
         let vc = (viewControllers![1] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
         vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
@@ -72,35 +62,6 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        becomeFirstResponder()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        resignFirstResponder()
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        
-        guard motion == .motionShake && (Environment.debug || Environment.adhoc) else {
-            return
-        }
-        
-        let actions: [UIAlertAction] = [UIAlertAction(title: "Force Update Application",
-                                                      style: .default,
-                                                      handler: { [weak self] _ in
-                                                        self?.viewModel.triggerUpdate()
-        }),
-        .init(title: "Cancel", style: .cancel, handler: nil)]
-        
-        showDialog(title: "Debug Actions", text: "Pick one", style: .alert,
-                   actions: actions)
-        
-    }
-    
     
 }
 

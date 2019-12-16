@@ -101,7 +101,7 @@ struct CocoaVersion : CustomStringConvertible {
 }
 
 
-struct FetchConfig: AuthorizedAPIResource {
+struct FetchConfig: APIResource {
     
     var path: String {
         return "/global-settings"
