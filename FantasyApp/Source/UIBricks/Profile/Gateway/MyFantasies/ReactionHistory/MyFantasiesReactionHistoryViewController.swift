@@ -79,7 +79,7 @@ extension MyFantasiesReactionHistoryViewController {
                                                 detailsProvider: { card in
                                                     OwnFantasyDetailsProvider(card: card,
                                                                               initialReaction: stateVar == 0 ? .like : .dislike,
-                                                                              navigationContext: .MyFanasies)
+                                                                              navigationContext: .MyFantasies)
                                                 })
         }
         
