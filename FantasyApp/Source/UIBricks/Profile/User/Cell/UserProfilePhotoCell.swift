@@ -10,14 +10,22 @@ import Foundation
 import RxSwift
 
 class UserProfilePhotoCell: UICollectionViewCell {
-    
+
+    @IBOutlet weak var topImageView: UIImageView!
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var stubCell: UILabel! {
         didSet {
             stubCell.isHidden = true
         }
     }
-    
+
+    @IBOutlet weak var topImageHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            topImageHeightConstraint.constant = UIApplication.shared.statusBarFrame.height
+        }
+    }
+
     var disposeBag = DisposeBag()
     
     func set(photo: UserProfileViewModel.Photo) {
@@ -29,7 +37,10 @@ class UserProfilePhotoCell: UICollectionViewCell {
         case .url(let url):
             ImageRetreiver.imageForURLWithoutProgress(url: url)
                 .map { $0 ?? R.image.errorPhoto() }
-                .drive(imageView.rx.image)
+                .drive(onNext: { [unowned self] (image) in
+                    self.imageView.image = image
+                    self.topImageView.image = image
+                })
                 .disposed(by: disposeBag)
             
         case .privateStub(let x):

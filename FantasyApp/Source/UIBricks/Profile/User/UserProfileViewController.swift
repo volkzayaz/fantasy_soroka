@@ -130,6 +130,12 @@ class UserProfileViewController: UIViewController, MVVM_View {
             actionContainer.layer.insertSublayer(gradientLayer, at: 0)
         }
     }
+
+    @IBOutlet weak var blurHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            blurHeightConstraint.constant = UIApplication.shared.statusBarFrame.height
+        }
+    }
     
     private var avaliableSheetActions: [(String, () -> Void)] = [] {
         didSet {
@@ -152,7 +158,9 @@ class UserProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         let layout = photosCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = photosCollectionView.frame.size
+
+        let w = view.bounds.size.width
+        layout.itemSize = CGSize(width: w, height: w + UIApplication.shared.statusBarFrame.height)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
@@ -227,7 +235,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let top = photosCollectionView.frame.size.height - scrollableBackground.layer.cornerRadius
+        let top = photosCollectionView.frame.size.height - (scrollableBackground.layer.cornerRadius + UIApplication.shared.statusBarFrame.height)
         let bottom = actionContainer.bounds.size.height
         
         profileTableView.contentInset = .init(top: top,
