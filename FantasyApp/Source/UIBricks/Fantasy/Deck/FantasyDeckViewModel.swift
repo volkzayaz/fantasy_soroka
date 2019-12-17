@@ -101,11 +101,11 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     let provider: FantasyDeckProvier
 
     private let reloadTrigger = BehaviorRelay(value: ())
-    
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
-    
+    fileprivate let showTutorialVar = BehaviorRelay<Bool>(value: SettingsStore.showFantasyCardTutorial.value)
+
     init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
         self.router = router
         self.provider = provider
@@ -126,6 +126,8 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)
+
+
 
     }
     
@@ -192,12 +194,15 @@ extension FantasyDeckViewModel {
 //MARK:- Tutorial
 
 extension FantasyDeckViewModel {
-    var showTutorial: Bool {
-        get {
-            return SettingsStore.showFantasyCardTutorial.value
-        }
-        set {
-            SettingsStore.showFantasyCardTutorial.value = newValue
+
+    func updateTutorial(showNextTime: Bool)  {
+        SettingsStore.showFantasyCardTutorial.value = showNextTime
+        showTutorialVar.accept(false)
+    }
+
+    var showTutorial: Driver<Bool> {
+        return Driver.combineLatest(showTutorialVar.asDriver(), mode) { (a, b) -> Bool in
+            return a && b != Mode.waiting
         }
     }
 }

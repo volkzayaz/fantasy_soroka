@@ -144,22 +144,32 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10.0
 
-        if viewModel.showTutorial {
+        // tutorial
+        viewModel.showTutorial
+            .distinctUntilChanged()
+            .drive(onNext: { [unowned self] (show) in
 
-            let v = FantasyDeckTutorialView.instance
-            v.tutorialComplited = {
-                v.removeFromSuperview()
-                self.viewModel.showTutorial = false
-            }
+                guard show else {
+                    self.tutorialView?.removeFromSuperview()
+                    self.tutorialView = nil
+                    return
+                }
 
-            view.addSubview(v)
-            
-            v.snp.makeConstraints { make in
-                make.edges.equalTo(fantasiesView)
-            }
+                let v = FantasyDeckTutorialView.instance
+                v.tutorialComplited = {
+                    v.removeFromSuperview()
+                    self.viewModel.updateTutorial(showNextTime: false)
+                }
 
-            tutorialView = v
-        }
+                self.view.addSubview(v)
+
+                v.snp.makeConstraints { make in
+                    make.edges.equalTo(self.fantasiesView)
+                }
+
+                self.tutorialView = v
+            })
+            .disposed(by: rx.disposeBag)
         
         viewModel.subscribeButtonHidden
             .drive(subscribeButton.rx.isHidden)
