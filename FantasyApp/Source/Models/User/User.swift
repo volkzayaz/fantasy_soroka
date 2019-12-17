@@ -126,6 +126,10 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
             return PFGeoPoint(latitude: latitude, longitude: longitude)
         }
         
+        var clLocation: CLLocation {
+            return CLLocation(latitude: latitude, longitude: longitude)
+        }
+        
     }
     
     static var current: User? {

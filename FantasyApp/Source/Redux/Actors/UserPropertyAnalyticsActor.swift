@@ -21,8 +21,21 @@ class UserPropertyActor {
 
     init() {
         
+        func applicator<T: NSObject>(value: T?, key: String, i: AMPIdentify) -> AMPIdentify {
+            
+            if let x = value {
+                i.set(key, value: x)
+            }
+            else {
+                i.unset(key)
+            }
+            
+            return i
+        }
+        
+        ///Generic User Properties
         appState.changesOf { $0.currentUser }
-            .asObservable().subscribeOn(SerialDispatchQueueScheduler(qos: .background))
+            .asObservable().observeOn(SerialDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { maybeUser in
                 
                 ///Crashlytics
@@ -45,26 +58,11 @@ class UserPropertyActor {
                     return
                 }
                 
-                func applicator<T: NSObject>(value: T?, key: String, i: AMPIdentify) -> AMPIdentify {
-                    
-                    if let x = value {
-                        i.set(key, value: x)
-                    }
-                    else {
-                        i.unset(key)
-                    }
-                    
-                    return i
-                }
-                
                 //!!! can't pass date "Profile Status: Signed Up" : PFUser.current()!.createdAt as NSDate?
                 
                 let newIdentity =
                     [
-                        "Profile Status: Is In Active City": NSNumber(booleanLiteral: user.community.value != nil),
                         "Profile Status: Active City Name": user.community.value?.name as NSString?,
-                        
-                        "Profile Status: Location" : (user.community.value?.name ?? _AnalyticsHackyTown) as NSString?,
                         
                         "Profile Status: Signed Up" : PFUser.current()?.createdAt?.toAnalyticsTime() as NSString?,
                         
@@ -93,6 +91,87 @@ class UserPropertyActor {
                 
         }).disposed(by: bag)
 
+        ///Physical Location
+        appState.changesOf { $0.currentUser?.community.lastKnownLocation }
+            .skip(1)
+            .asObservable()
+            .observeOn(SerialDispatchQueueScheduler(qos: .background))
+            .distinctUntilChanged({ (lhs, rhs) -> Bool in
+                switch (lhs, rhs) {
+                    
+                case (let left?, let right?):
+                    return left.clLocation.distance(from: right.clLocation) < 5000 //5km
+                    
+                default: return false
+                    
+                }
+            })
+            .flatMapLatest { maybeLastKnownLocation -> Single<String?> in
+                
+                guard let lastKnownLocation = maybeLastKnownLocation else {
+                    return .just(nil)
+                }
+                
+                return CLGeocoder().rx.city(near: lastKnownLocation.clLocation)
+
+            }
+            .subscribe(onNext: { maybePhysicalCity in
+                
+                let i = applicator(value: maybePhysicalCity as NSString?,
+                                   key: "Profile Status: Location",
+                                   i: AMPIdentify())
+                
+                Amplitude.instance()?.identify(i)
+                
+            })
+            .disposed(by: bag)
+        
+        ///is in active city
+        appState.changesOf { $0.currentUser?.community }
+            .asObservable()
+            .observeOn(SerialDispatchQueueScheduler(qos: .background))
+            .distinctUntilChanged({ (lhs, rhs) -> Bool in
+                switch (lhs, rhs) {
+
+                case (let left?, let right?):
+                    guard let x = left.lastKnownLocation?.clLocation,
+                          let y = right.lastKnownLocation?.clLocation else {
+                        return false
+                    }
+                    
+                    return x.distance(from: y) < 5000 //5km
+
+                default: return true
+
+                }
+            })
+            .flatMapLatest { maybeCommunity -> Single<Bool?> in
+
+                guard let community = maybeCommunity,
+                      let location = community.lastKnownLocation?.clLocation else {
+                    return .just(nil)
+                }
+            
+                if community.changePolicy == .locationBased {
+                    return .just( community.value != nil )
+                }
+                
+                return CommunityManager.communities(near: location)
+                    .map { $0.count > 0 }
+
+            }
+            .subscribe(onNext: { maybeBool in
+
+                let i = applicator(value: maybeBool == nil ? nil: NSNumber(booleanLiteral: maybeBool!),
+                                   key: "Profile Status: Is In Active City",
+                                   i: AMPIdentify())
+
+                Amplitude.instance()?.identify(i)
+
+            })
+            .disposed(by: bag)
+        
+        ///Push status
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
             .subscribe(onNext: { (_) in
                 
@@ -106,6 +185,6 @@ class UserPropertyActor {
                 
             })
             .disposed(by: bag)
-        
+            
     }
 }
