@@ -74,7 +74,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,6 +102,14 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
             for: indexPath)!
             
             cell.detailsLabel.text = viewModel.collection.details
+            cell.sectionTitleLabel.text = "Details"
+            cell.tableView = tableView
+            
+            cell.perform(change: viewModel.deatilsCollapsed)
+            
+            cell.change = { [weak self] x in
+                self?.viewModel.deatilsCollapsed = x
+            }
             
             return cell
             
@@ -109,15 +117,49 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
         else if indexPath.section == 2 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.whatsInsideCollectionDetailsCell,
-            for: indexPath)!
+                                                     for: indexPath)!
             
             cell.cardsCountLabel.text = "\(viewModel.collection.cardsCount) cards"
-            cell.descriptionLabel.text = viewModel.collection.whatsInside
-            
             cell.viewModel = viewModel
             
             return cell
             
+        }
+        else if indexPath.section == 3 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
+                                                     for: indexPath)!
+            
+            cell.detailsLabel.text = viewModel.collection.highlights
+            cell.sectionTitleLabel.text = "Highlights"
+            cell.tableView = tableView
+            
+            cell.perform(change: viewModel.highlightsCollapsed)
+            
+            cell.change = { [weak self] x in
+                self?.viewModel.highlightsCollapsed = x
+            }
+            
+            return cell
+            
+        }
+        else if indexPath.section == 4 {
+                
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
+                                                     for: indexPath)!
+            
+            cell.detailsLabel.text = viewModel.collection.loveThis
+            cell.sectionTitleLabel.text = "You'll Love This Collection If"
+            cell.tableView = tableView
+            
+            cell.perform(change: viewModel.loveThisCollapsed)
+            
+            cell.change = { [weak self] x in
+                self?.viewModel.loveThisCollapsed = x
+            }
+            
+            return cell
+                
         }
         else {
             
@@ -171,14 +213,54 @@ class TopCollectionPurchaseCell: UITableViewCell {
 
 class FantasyCollectionDetailsCell: UITableViewCell {
     
-    @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var sectionTitleLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!{
+        didSet {
+            detailsLabel.numberOfLines = 2
+            detailsLabel.contentMode = .top
+        }
+    }
+    weak var tableView: UITableView?
+    var change: ( (Bool) -> Void )?
+    
+    @IBOutlet weak var collapseButton: UIButton! {
+        didSet {
+            collapseButton.backgroundColor = .fantasyLightGrey
+            collapseButton.setTitleColor(.fantasyPink, for: .normal)
+            collapseButton.titleLabel?.font = .boldFont(ofSize: 14)
+            collapseButton.layer.cornerRadius = collapseButton.frame.height / 2.0
+        }
+    }
+    
+    @IBAction func collapseAction(_ sender: UIButton) {
+        let shouldCollapse = detailsLabel.isTruncated
+        perform(change: shouldCollapse)
+    }
+    
+    func perform(change: Bool) {
+     
+        self.change?(change)
+        
+        detailsLabel.numberOfLines = change ? 0 : 2
+        
+        collapseButton.setTitle(change ? "Show Less" : "Read More", for: .normal)
+        
+        tableView?.beginUpdates()
+        tableView?.endUpdates()
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        change = nil
+    }
     
 }
 
 class WhatsInsideCollectionDetailsCell: UITableViewCell {
     
     @IBOutlet weak var cardsCountLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var cardsCollectionView: UICollectionView!
  
     var viewModel: FantasyCollectionDetailsViewModel! {

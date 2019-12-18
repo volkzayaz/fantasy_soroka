@@ -66,6 +66,9 @@ extension Fantasy {
             case cardsCount = "size"
             case isPurchased
             case productId
+            
+            case loveThis
+            case highlights
         }
         
         let id: String
@@ -76,6 +79,9 @@ extension Fantasy {
         let cardsCount: Int
         let isPurchased: Bool
         let productId: String? ///absence of ProductID means product is free
+        
+        let loveThis: String
+        let highlights: String
         
         var identity: String {
             return id

@@ -37,6 +37,10 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     private var timeSpentCounter = TimeSpentCounter()
     private let context: Analytics.Event.CollectionViewed.NavigationContext
     
+    var deatilsCollapsed: Bool = false
+    var highlightsCollapsed: Bool = false
+    var loveThisCollapsed: Bool = false
+    
     init(router: FantasyCollectionDetailsRouter,
          collection: Fantasy.Collection,
          context: Analytics.Event.CollectionViewed.NavigationContext) {
