@@ -48,13 +48,13 @@ class ConnectionViewController: UIViewController, MVVM_View {
     @IBOutlet weak var incommingButton: PrimaryButton! {
         didSet {
             incommingButton.mode = .selector
-            incommingButton.titleFont = .mediumFont(ofSize: 15)
+//            incommingButton.titleFont = .mediumFont(ofSize: 15)
         }
     }
     @IBOutlet weak var outgoingButton: PrimaryButton! {
         didSet {
             outgoingButton.mode = .selector
-            incommingButton.titleFont = .mediumFont(ofSize: 15)
+//            outgoingButton.titleFont = .mediumFont(ofSize: 15)
         }
     }
     
@@ -154,7 +154,7 @@ class BaseFlowLayout: UICollectionViewFlowLayout {
         
             minimumInteritemSpacing = 0
             minimumLineSpacing = 0
-            sectionInset = .init(top: 40, left: 0, bottom: 40, right: 0)
+            sectionInset = .init(top: 0, left: 0, bottom: 40, right: 0)
             itemSize = CGSize(width: bounds.size.width, height: 77)
             
             return;

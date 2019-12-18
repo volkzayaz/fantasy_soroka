@@ -1039,14 +1039,14 @@ activated when it reaches</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-3o-gJM">
-                                <rect key="frame" x="126" y="52" width="162" height="33"/>
+                                <rect key="frame" x="139" y="52" width="136" height="33"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5n4-my-7WL" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="78" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
                                         <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Incomming">
+                                        <state key="normal" title="Incoming">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1054,7 +1054,7 @@ activated when it reaches</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xX0-i5-BYr" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="84" y="0.0" width="78" height="33"/>
+                                        <rect key="frame" x="71" y="0.0" width="65" height="33"/>
                                         <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
