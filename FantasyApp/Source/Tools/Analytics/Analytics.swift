@@ -21,7 +21,7 @@ extension Analytics {
 //        }
     }
 
-    static setUserProps( props: [String: String] ) {
+    static func setUserProps( props: [String: String] ) {
         Amplitude.instance()?.setUserProperties( props )
     }
     
