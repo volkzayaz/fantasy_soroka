@@ -14,7 +14,10 @@ struct WelcomeRouterRouter : MVVM_Router {
     init(owner: UIViewController) {
         self.owner = owner
         
-        Analytics.report(Analytics.Event.FirstScreen())
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            Analytics.report(Analytics.Event.FirstScreen())
+        }
+        
     }
 
     func presentRegister() {
