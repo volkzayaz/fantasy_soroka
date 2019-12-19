@@ -21,6 +21,10 @@ extension Analytics {
 //        }
     }
 
+    static setUserProps( props: [String: String] ) {
+        Amplitude.instance()?.setUserProperties( props )
+    }
+    
     static func report<T: AnalyticsNetworkRequest>(_ request: T) {
         
         _ = request.rx.request.subscribe()

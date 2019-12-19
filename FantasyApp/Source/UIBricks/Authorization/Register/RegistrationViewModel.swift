@@ -176,6 +176,7 @@ struct RegistrationViewModel : MVVM_ViewModel {
             .disposed(by: bag)
      
         timerSpentForRegistration.start()
+        Analytics.setUserProps(props: ["Profile Status: Type": "Incomplete Sign-Up"])
         
         /////progress indicator
         

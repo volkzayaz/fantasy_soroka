@@ -52,8 +52,8 @@ class UserPropertyActor {
                 ///Amplitude
                 guard let user = maybeUser else {
 
+                    Amplitude.instance()?.setUserProperties(["Profile Status: Type": "Log Out"])
                     Amplitude.instance()?.setUserId(nil)
-                    Amplitude.instance()?.regenerateDeviceId()
                     
                     return
                 }
@@ -72,6 +72,7 @@ class UserPropertyActor {
                         "Profile Trait: Realtionship" : user.bio.relationshipStatus.analyticsTuple.0 as NSString?,
                         "Profile Trait: Partner's Sex" : user.bio.relationshipStatus.analyticsTuple.1 as NSString?,
                         
+                        "Profile Status: Type" : "Active" as NSString?
                 ]
                 .reduce(AMPIdentify()) { (i, tuple) in
                     return applicator(value: tuple.value, key: tuple.key, i: i)
