@@ -78,11 +78,11 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         
         /////progress indicator
         
-        indicator.asDriver()
-            .drive(onNext: { [weak h = router.owner] (loading) in
-                h?.setLoadingStatus(loading)
-            })
-            .disposed(by: bag)
+//        indicator.asDriver()
+//            .drive(onNext: { [weak h = router.owner] (loading) in
+//                h?.setLoadingStatus(loading)
+//            })
+//            .disposed(by: bag)
         
         appState.changesOf { $0.inviteDeeplink }
             .notNil()
