@@ -193,6 +193,7 @@ extension RoomSettingsViewModel {
                                                                            
                                                                            PurchaseManager.purhcaseSubscription()
                                                                                .trackView(viewIndicator: i)
+                                                                               .do(onError: { _ in turnoff() })
                                                                                .silentCatch(handler: h)
                                                                                .subscribe()
                                                                                .disposed(by: self.bag)

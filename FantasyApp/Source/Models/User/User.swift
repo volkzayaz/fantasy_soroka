@@ -345,7 +345,7 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         case .sleepPartners: return "Sleep partners"
         case .bdsm: return "BDSM Relationship"
         case .polyNetwork: return "Poly network"
-        case .unicorn: return "To be a unicorn"
+        case .unicorn: return "Unicorn"
         case .beAUnicorn: return "To be a unicorn"
         case .joinAnEstablishedCouple: return "To join an established couple"
             

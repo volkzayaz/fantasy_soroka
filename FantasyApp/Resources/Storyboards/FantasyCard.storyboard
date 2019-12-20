@@ -532,7 +532,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl3-8M-dDU">
-                                <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <rect key="frame" x="10" y="10" width="80" height="80"/>
                                 <state key="normal" image="profileBack"/>
                                 <connections>
                                     <action selector="popBack:" destination="OfO-JC-MZH" eventType="touchUpInside" id="Gt4-oZ-BQk"/>
@@ -1054,7 +1054,7 @@
                                                 <constraint firstItem="FMt-VP-eXa" firstAttribute="top" secondItem="fDz-tu-j9A" secondAttribute="top" constant="8" id="gZy-b7-9SC"/>
                                             </constraints>
                                         </view>
-                                        <blurEffect style="light"/>
+                                        <blurEffect style="dark"/>
                                     </visualEffectView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
