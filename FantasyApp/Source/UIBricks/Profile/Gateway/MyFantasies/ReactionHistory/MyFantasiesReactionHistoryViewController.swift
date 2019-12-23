@@ -71,14 +71,12 @@ extension MyFantasiesReactionHistoryViewController {
             }
             .asDriver(onErrorJustReturn: Array<Fantasy.Card>())
 
-            let stateVar = state.value
-
             let vc = segue.destination as! FantasyListViewController
             vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
                                                 cardsProvider: provider,
-                                                detailsProvider: { card in
+                                                detailsProvider: { [unowned x = state] card in
                                                     OwnFantasyDetailsProvider(card: card,
-                                                                              initialReaction: stateVar == 0 ? .like : .dislike,
+                                                                              initialReaction: x.value == 0 ? .like : .dislike,
                                                                               navigationContext: .MyFantasies)
                                                 })
         }

@@ -109,6 +109,8 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         textInputbar.textView.layer.cornerRadius = 18
         textInputbar.textView.layer.borderWidth = 0
         
+        textInputbar.textView.keyboardType = .default
+        
         textInputbar.barTintColor = .white
         textInputbar.clipsToBounds = true
         

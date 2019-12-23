@@ -86,6 +86,8 @@
 	<string>To set photo as your Fantasy profile picture</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Suggesting people in closest communities</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Suggesting people in closest communities</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Let you pick your profile photo</string>
 	<key>UIAppFonts</key>
