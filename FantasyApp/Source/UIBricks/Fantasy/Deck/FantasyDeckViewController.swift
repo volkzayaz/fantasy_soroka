@@ -55,6 +55,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
         }
     }
+    lazy var emptyView: EmptyView! = collectionView.addEmptyView()
 
     lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Collection>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
@@ -179,6 +180,20 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(subsbcriptionLabel.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
+        viewModel.collectionsDataSource
+            .map { $0.first!.items.count == 0 }
+            .do(onNext: { [unowned self] (x) in
+                self.collectionsCountLabel.isHidden = x
+            })
+            .drive(emptyView.rx.isEmpty)
+            .disposed(by: rx.disposeBag)
+        
+        Driver.just(R.image.collectionPlaceholder()!)
+            .map { image in
+                return UIImageView(image: image)
+            }
+            .drive(emptyView.rx.emptyView)
+            .disposed(by: rx.disposeBag)
         
         configureStyling()
     }

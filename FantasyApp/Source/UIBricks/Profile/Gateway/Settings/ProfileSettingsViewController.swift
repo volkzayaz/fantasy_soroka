@@ -15,10 +15,14 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
+    @IBOutlet weak var versionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        
+        versionLabel.text = viewModel.version
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {

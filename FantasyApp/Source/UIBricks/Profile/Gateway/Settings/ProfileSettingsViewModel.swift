@@ -11,6 +11,19 @@ import RxSwift
 import RxCocoa
 import StoreKit
 
+extension ProfileSettingsViewModel {
+    
+    var version: String {
+        
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        let env = SettingsStore.environment.value.serverAlias
+        
+        return "Version \(appVersion)-\(appBuild)\n\(env)"
+    }
+    
+}
+
 struct ProfileSettingsViewModel : MVVM_ViewModel {
 
     init(router: ProfileSettingsRouter) {

@@ -251,7 +251,8 @@ private extension FantasyDetailsViewController {
         if sender.isSelected {
             collapsedDescriptionHeight.isActive = false
         } else {
-            collapseStoryAnimated()
+            collapsedDescriptionHeight.isActive = true
+            //collapseStoryAnimated()
         }
         
         viewModel.expandStory()

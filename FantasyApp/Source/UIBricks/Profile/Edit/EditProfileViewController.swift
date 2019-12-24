@@ -52,12 +52,6 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 
                 return cell
                 
-            case .footer:
-                return tableView
-                .dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileFooterCell,
-                                     for: ip)!
-                
-                
             }
             
         }, titleForHeaderInSection: { dataSource, index in
@@ -117,7 +111,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 switch x {
                 case .attribute(_, _, _, let editAction): editAction?()
                     
-                case .expandable(_), .footer: break
+                case .expandable(_): break
                 }
                 
             })

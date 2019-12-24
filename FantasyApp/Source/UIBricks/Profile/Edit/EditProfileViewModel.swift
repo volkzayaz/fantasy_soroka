@@ -93,11 +93,8 @@ extension EditProfileViewModel {
                                          editAction: { self.change(answer: $0, to: q3) }),
                         
                 ])
-                
-                let footer = SectionModel(model: "",
-                                          items: [Model.footer])
                     
-                return [about, account, community, questions, footer]
+                return [about, account, community, questions]
                 
             }
         
@@ -145,7 +142,6 @@ struct EditProfileViewModel : MVVM_ViewModel {
     enum Model {
         case expandable(text: String, placeholder: String, title: String?, editAction: ((String?) -> Void)?)
         case attribute(String, value: String, image: UIImage, editAction: (() -> Void)?)
-        case footer
     }
     
 }
