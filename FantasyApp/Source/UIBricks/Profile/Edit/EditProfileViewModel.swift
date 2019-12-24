@@ -53,6 +53,15 @@ extension EditProfileViewModel {
                                                               editAction: self.changeRelationship)
                     ])
                 
+                
+                let lookingFor: String
+                if user.bio.lookingFor.count > 0 {
+                    lookingFor = user.bio.lookingFor.map { $0.description }.joined(separator: ", ")
+                }
+                else {
+                    lookingFor = "Choose"
+                }
+                
                 let community = SectionModel(model: R.string.localizable.editProfilePrefs(),
                                          items:
                     [
@@ -65,7 +74,7 @@ extension EditProfileViewModel {
                                         image: R.image.profileExpirience()!,
                                         editAction: self.changeExpirience),
                         Model.attribute("Looking for",
-                                        value: user.bio.lookingFor?.description ?? "Choose",
+                                        value: lookingFor,
                                         image: R.image.profileLookingFor()!,
                                         editAction: self.changeLookingFor),
                 ])
@@ -155,29 +164,39 @@ extension EditProfileViewModel {
     func changeLookingFor() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeLookingForTitle(),
                                  models: LookingFor.allCases,
-                                 defaultModel: User.current!.applied(editForm: form.value).bio.lookingFor,
-                                 mode: .table) { x in self.updateForm { $0.lookingFor = x } }
+                                 defaultModels: User.current!.applied(editForm: form.value).bio.lookingFor,
+                                 mode: .table,
+                                 singlePickMode: false) { x in self.updateForm { $0.lookingFor = x } }
     }
     
     func changeExpirience() {
+        
+        var defaultModel: [Expirience] = []
+        if let x = User.current!.applied(editForm: form.value).bio.expirience {
+            defaultModel = [x]
+        }
+        
         router.presentSinglePick(title: R.string.localizable.editProfileChangeExpirienceTitle(),
                                  models: Expirience.allCases,
-                                 defaultModel: User.current!.applied(editForm: form.value).bio.expirience,
-                                 mode: .table) { x in self.updateForm { $0.expirience = x } }
+                                 defaultModels: defaultModel,
+                                 mode: .table,
+                                 singlePickMode: true) { x in self.updateForm { $0.expirience = x.first! } }
     }
     
     func changeGender() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeGenderTitle(),
                                  models: Gender.allCases,
-                                 defaultModel: User.current!.applied(editForm: form.value).bio.gender,
-                                 mode: .picker) { x in self.updateForm { $0.gender = x } }
+                                 defaultModels: [User.current!.applied(editForm: form.value).bio.gender],
+                                 mode: .picker,
+                                 singlePickMode: true) { x in self.updateForm { $0.gender = x.first! } }
     }
     
     func changeSexuality() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeSexualityTitle(),
                                  models: Sexuality.allCases,
-                                 defaultModel: User.current!.applied(editForm: form.value).bio.sexuality,
-                                 mode: .picker) { x in self.updateForm { $0.sexuality = x } }
+                                 defaultModels: [User.current!.applied(editForm: form.value).bio.sexuality],
+                                 mode: .picker,
+                                 singlePickMode: true) { x in self.updateForm { $0.sexuality = x.first! } }
     }
     
     func changeRelationship() {

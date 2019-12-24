@@ -89,9 +89,13 @@ extension User {
                                      public  : albums?.public  ?? .init(images: []) ,
                                      private : albums?.private ?? .init(images: []))
         
-        var maybeLookingFor: LookingFor? = nil
-        if let int = pfUser["lookingFor"] as? Int {
-            maybeLookingFor = LookingFor(rawValue: int)
+        var maybeLookingFor: [LookingFor] = []
+        if let string = pfUser["lookingForV2"] as? String {
+            
+            maybeLookingFor = string.components(separatedBy: ", ")
+                                    .compactMap({ Int($0) })
+                                    .compactMap ({ LookingFor(rawValue: $0) })
+            
         }
         
         var maybeExpirience: Expirience? = nil
@@ -144,13 +148,15 @@ extension User {
         
         guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
         
+        let lookingForV2: String = bio.lookingFor.map { "\($0.rawValue)" }.joined(separator: ", ")
+        
         var dict = [
             "realname"                  : bio.name,
             "aboutMe"                   : bio.about as Any,
             "birthady"                  : bio.birthday,
             "gender"                    : bio.gender.rawValue,
             "sexuality"                 : bio.sexuality.rawValue,
-            "lookingFor"                : bio.lookingFor?.rawValue as Any,
+            "lookingForV2"              : lookingForV2 as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
             

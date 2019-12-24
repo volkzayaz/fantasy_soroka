@@ -17,8 +17,8 @@ extension SinglePickViewModel {
         return _models
     }
     
-    var defaultModel: SinglePickModel? {
-        return _defaultModel
+    var pickedModels: [SinglePickModel] {
+        return _pickedModels
     }
     
 }
@@ -26,22 +26,25 @@ extension SinglePickViewModel {
 struct SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_ViewModel {
 
     private let _models: [T]
-    private let _defaultModel: T?
+    private var _pickedModels: [T]
     let title: String
     let mode: SinglePickViewController.Mode
-    private let callback: (T) -> Void
+    private let callback: ([T]) -> Void
+    private let singlePickMode: Bool
     
     init(router: SinglePickRouter,
          title: String,
          models: [T],
-         defaultModel: T?,
+         pickedModels: [T],
          mode: SinglePickViewController.Mode,
-         result: @escaping (T) -> Void) {
+         singlePickMode: Bool,
+         result: @escaping ([T]) -> Void) {
         self.router = router
         self._models = models
-        self._defaultModel = defaultModel
+        self._pickedModels = pickedModels
         self.title = title
         self.mode = mode
+        self.singlePickMode = singlePickMode
         self.callback = result
         
         indicator.asDriver()
@@ -59,8 +62,25 @@ struct SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_V
 
 extension SinglePickViewModel {
     
-    func picked(model: SinglePickModel) {
-        callback(model as! T)
+    mutating func picked(model: SinglePickModel) {
+        
+        if singlePickMode {
+            _pickedModels = [model as! T]
+            save()
+            return
+        }
+        
+        if let i = _pickedModels.firstIndex(where: { $0.textRepresentation == model.textRepresentation }) {
+            _pickedModels.remove(at: i)
+        }
+        else {
+            _pickedModels.append(model as! T)
+        }
+        
+    }
+    
+    func save() {
+        callback(_pickedModels)
         router.owner.navigationController?.popViewController(animated: true)
     }
     

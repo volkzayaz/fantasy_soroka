@@ -18,14 +18,15 @@ protocol SinglePickModel {
 protocol SinglePickViewModelType {
     
     var models: [SinglePickModel] { get }
-    var defaultModel: SinglePickModel? { get }
+    var pickedModels: [SinglePickModel] { get }
     
     var mode: SinglePickViewController.Mode { get }
     
-    func picked(model: SinglePickModel)
+    mutating func picked(model: SinglePickModel)
     
     var title: String { get }
     
+    func save() 
 }
 
 class SinglePickViewController: UIViewController {
@@ -59,6 +60,10 @@ class SinglePickViewController: UIViewController {
         case .table:
             backgroundView.backgroundColor = UIColor(fromHex: 0xF7F7F9)
             
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.back(),
+                                                               style: .plain, target: self, action: "save")
+            
+            
         case .picker:
             backgroundView.backgroundColor = .white
         }
@@ -69,7 +74,7 @@ class SinglePickViewController: UIViewController {
         ///Picker
         
         let data = viewModel.models
-        let picked = viewModel.defaultModel
+        let picked = viewModel.pickedModels.first
         
         Observable.just(data)
             .bind(to: picker.rx.itemAttributedTitles) { _, item in
@@ -85,6 +90,7 @@ class SinglePickViewController: UIViewController {
         picker.selectRow(index,
                          inComponent: 0, animated: false)
         
+        
         picker.rx.modelSelected(SinglePickModel.self)
             .map { $0.first! }
             .bind(to: selectedPickerModel)
@@ -94,6 +100,10 @@ class SinglePickViewController: UIViewController {
     
     @IBAction func saveAction(_ sender: Any) {
         viewModel.picked(model: selectedPickerModel.unsafeValue!)
+    }
+    
+    @objc func save() {
+        viewModel.save()
     }
     
 }
@@ -112,8 +122,7 @@ extension SinglePickViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.pickLabel.text = model.textRepresentation
         cell.selectionButton.isSelected = false
-        if let x = viewModel.defaultModel?.textRepresentation,
-            model.textRepresentation == x {
+        if viewModel.pickedModels.contains(where: { $0.textRepresentation == model.textRepresentation }) {
             cell.selectionButton.isSelected = true
         }
         
@@ -125,6 +134,9 @@ extension SinglePickViewController: UITableViewDataSource, UITableViewDelegate {
         let model = viewModel.models[indexPath.row]
         
         viewModel.picked(model: model)
+        
+        let cell = tableView.cellForRow(at: indexPath)! as! SinglePickTableCell
+        cell.selectionButton.isSelected = !cell.selectionButton.isSelected
         
     }
     

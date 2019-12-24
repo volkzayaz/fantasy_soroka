@@ -16,8 +16,9 @@ struct EditProfileForm {
     var gender: Gender?
     var relationshipStatus: RelationshipStatus?
     
+    var lookingFor: [LookingFor]?
+    
     ///each filed here is an Optional<T>. If value is not present in edit form, we will not apply it. Since |about| is an Optional<String> as well, we need String?? to represent editable String?
-    var lookingFor: LookingFor??
     var expirience: Expirience??
     var about: String??
     

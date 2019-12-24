@@ -84,9 +84,10 @@ extension UserProfileViewModel {
                  if let x = u.bio.expirience {
                      bioSection.1.append( .bio(R.image.profileExpirience()!, x.description) )
                  }
-                 
-                 if let l = u.bio.lookingFor {
-                     bioSection.1.append( .bio(R.image.profileLookingFor()!, l.description) )
+                
+                 if u.bio.lookingFor.count > 0 {
+                     bioSection.1.append( .bio(R.image.profileLookingFor()!,
+                                               u.bio.lookingFor.map { $0.description }.joined(separator: ", ")) )
                  }
                 
                  res.append( bioSection )
