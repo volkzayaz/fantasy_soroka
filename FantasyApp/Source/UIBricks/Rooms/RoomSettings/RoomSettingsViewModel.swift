@@ -202,15 +202,14 @@ extension RoomSettingsViewModel {
                                            positiveText: "No, thanks", positiveCallback: turnoff)
         }
         
-        var roomSettings = room.value.settings
+        var daRoom = room.value
         
-        roomSettings.isScreenShieldEnabled = isScreenShieldEnabled
+        daRoom.settings.isScreenShieldEnabled = isScreenShieldEnabled
         
-        RoomManager.updateRoomSettings(roomId: room.value.id, settings: roomSettings)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe()
-            .disposed(by: bag)
+        room.accept(daRoom)
+     
+        Dispatcher.dispatch(action: UpdateRoomSettingsIn(room: daRoom))
+        
     }
 
     func showNotificationSettings() {

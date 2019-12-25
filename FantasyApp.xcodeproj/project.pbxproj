@@ -263,7 +263,7 @@
 		844CD6F9235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6F8235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift */; };
 		844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */; };
 		844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */; };
-		844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */; };
+		844CD6FF235A7B99004E6BA3 /* UpdateRoomSettingsIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CD6FE235A7B99004E6BA3 /* UpdateRoomSettingsIn.swift */; };
 		846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B49D92365FC180087B7DF /* UILabel+Truncation.swift */; };
 		846B4A1C23661EAE0087B7DF /* FantasyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */; };
 		846E5F7223634AE8001C3473 /* FantasyDeckItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E5F7123634AE8001C3473 /* FantasyDeckItemView.swift */; };
@@ -663,7 +663,7 @@
 		844CD6F8235A777F004E6BA3 /* RoomNotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		844CD6FA235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		844CD6FC235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNotificationSettingsRouter.swift; sourceTree = "<group>"; };
-		844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomNotificationSettings.swift; sourceTree = "<group>"; };
+		844CD6FE235A7B99004E6BA3 /* UpdateRoomSettingsIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomSettingsIn.swift; sourceTree = "<group>"; };
 		844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomSettingsRouter.swift; sourceTree = "<group>"; };
 		846B49D92365FC180087B7DF /* UILabel+Truncation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncation.swift"; sourceTree = "<group>"; };
 		846B4A1B23661EAE0087B7DF /* FantasyStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyStackView.swift; sourceTree = "<group>"; };
@@ -2195,7 +2195,7 @@
 			isa = PBXGroup;
 			children = (
 				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
-				844CD6FE235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift */,
+				844CD6FE235A7B99004E6BA3 /* UpdateRoomSettingsIn.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -2913,7 +2913,7 @@
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
 				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,
 				739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */,
-				844CD6FF235A7B99004E6BA3 /* UpdateRoomNotificationSettings.swift in Sources */,
+				844CD6FF235A7B99004E6BA3 /* UpdateRoomSettingsIn.swift in Sources */,
 				734C70BB23213D9200ED2E91 /* Collection+Safe.swift in Sources */,
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,

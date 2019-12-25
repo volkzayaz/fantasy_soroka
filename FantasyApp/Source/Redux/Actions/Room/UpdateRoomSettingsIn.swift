@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-struct UpdateNotificationSettingsIn: ActionCreator {
+struct UpdateRoomSettingsIn: ActionCreator {
 
     let room: Room
 

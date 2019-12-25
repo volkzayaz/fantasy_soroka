@@ -52,6 +52,11 @@ class WebSocketService {
             })
             
     }
+    
+    var didConnect: Observable<Void> {
+        return manager.defaultSocket.rx.connected()
+    }
+    
     ///rule of sending own message to self via socket is in this proxy
     ///in reality you should just use socket as transport
     ///shame on you lazy ass =)
@@ -156,6 +161,26 @@ extension Reactive where Base == SocketIOClient {
         
     }
     
+    fileprivate func connected() -> Observable<Void> {
+
+        return Observable.create { (subscriber) -> Disposable in
+
+            let uid = self.base.on(clientEvent: .connect) { (data: [Any]?, emt: SocketAckEmitter) in
+                
+                subscriber.onNext( true )
+                
+            }
+            
+            return Disposables.create {
+                self.base.off(id: uid)
+            }
+        }
+        .startWith( base.status == .connected )
+        .filter { $0 }
+        .map { _ in }
+        
+    }
+    
     fileprivate func send<T: SocketData, U: Codable>(event: String, with data: T) -> Single<U> {
         
         return Single.create { (subscriber) -> Disposable in
@@ -179,5 +204,7 @@ extension Reactive where Base == SocketIOClient {
         
         
     }
+    
+    
     
 }

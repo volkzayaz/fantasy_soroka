@@ -99,7 +99,7 @@ struct ChatViewModel: MVVM_ViewModel {
         self.router = router
         self.room = room
 
-        RoomManager.getMessagesInRoom(room.value.id, offset: 0)
+        RoomManager.getMessagesInRoom(room.value.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .map { $0.reversed() }
