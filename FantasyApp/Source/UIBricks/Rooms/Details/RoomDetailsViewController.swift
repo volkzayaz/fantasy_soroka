@@ -207,7 +207,7 @@ extension RoomDetailsViewController {
 extension RoomDetailsViewController: RoomDetailsTitlePhotoViewDelegate {
 
     func didSelectedInitiator() {
-        viewModel.presentInitiator()
+        viewModel.presentMe()
     }
 
     func didSelectedPeer() {

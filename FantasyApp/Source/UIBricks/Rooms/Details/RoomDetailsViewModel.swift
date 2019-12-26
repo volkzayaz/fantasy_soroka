@@ -63,7 +63,7 @@ extension RoomDetailsViewModel {
         router.showPlay(room: room.value)
     }
 
-    func presentInitiator() {
+    func presentMe() {
 
 //        let id = (room.value.ownerId == User.current?.id)
 //            ? room.value.me.userSlice.id

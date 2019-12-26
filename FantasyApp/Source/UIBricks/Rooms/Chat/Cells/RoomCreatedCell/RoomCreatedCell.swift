@@ -18,7 +18,7 @@ class RoomCreatedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(initiatorTapped)))
+        leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(meTapped)))
         rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(peerTapped)))
     }
 
@@ -42,8 +42,8 @@ class RoomCreatedCell: UITableViewCell {
 
 extension RoomCreatedCell {
 
-    @objc func initiatorTapped() {
-        viewModel.presentInitiator()
+    @objc func meTapped() {
+        viewModel.presentMe()
     }
 
     @objc func peerTapped() {
