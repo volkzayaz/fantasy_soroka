@@ -25,6 +25,11 @@ class RoomDetailsTitlePhotoView: UIView {
         leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(initiatorTapped)))
         rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(peerTapped)))
     }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        leftImageView.addEllipsMask()
+    }
 }
 
 //MARK:- Actions

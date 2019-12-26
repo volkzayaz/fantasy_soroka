@@ -325,6 +325,7 @@
 		B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */; };
 		B72DDBC723B3739800FB1848 /* RoomDetailsTitlePhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
+		B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */; };
 		B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774AF23644F2D00A353CC /* UserCarouselView.swift */; };
 		B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B023644F2D00A353CC /* UserCarouselView.xib */; };
 		B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */; };
@@ -730,6 +731,7 @@
 		B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsTitlePhotoView.swift; sourceTree = "<group>"; };
 		B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomDetailsTitlePhotoView.xib; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
+		B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+AvatarUtils.swift"; sourceTree = "<group>"; };
 		B73774AF23644F2D00A353CC /* UserCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCarouselView.swift; sourceTree = "<group>"; };
 		B73774B023644F2D00A353CC /* UserCarouselView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCarouselView.xib; sourceTree = "<group>"; };
 		B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+FantasyFont.swift"; sourceTree = "<group>"; };
@@ -1016,6 +1018,7 @@
 				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
 				B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */,
 				B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */,
+				B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2706,6 +2709,7 @@
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
 				67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */,
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
+				B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */,
 				7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */,

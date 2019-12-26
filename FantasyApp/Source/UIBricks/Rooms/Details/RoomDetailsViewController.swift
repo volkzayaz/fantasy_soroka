@@ -43,13 +43,13 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
 
         Driver.combineLatest(
         ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.me.userSlice.avatarURL)
-                   .map { $0 ?? R.image.noPhoto() },
+            .map { $0 ?? R.image.noPhoto() },
         ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.peer.userSlice.avatarURL)
             .map { $0 ?? R.image.noPhoto() })
             .drive(onNext: { [unowned self] (images) in
 
                 let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
-                v.leftImageView.image = images.0
+                v.leftImageView.image = images.0                
                 v.rightImageView.image = images.1
                 v.delegate = self
                 self.navigationItem.titleView = v

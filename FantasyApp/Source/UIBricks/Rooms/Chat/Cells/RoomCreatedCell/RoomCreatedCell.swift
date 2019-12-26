@@ -36,6 +36,11 @@ class RoomCreatedCell: UITableViewCell {
                  .drive(rightImageView.rx.image)
                  .disposed(by: rx.disposeBag)
     }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        leftImageView.addEllipsMask()
+    }
 }
 
 //MARK:- Actions
