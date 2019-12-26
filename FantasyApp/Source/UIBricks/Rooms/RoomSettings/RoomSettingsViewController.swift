@@ -184,7 +184,6 @@ private extension RoomSettingsViewController {
         inviteView.layer.cornerRadius = 12.0
         notificationsView.layer.cornerRadius = 12.0
 
-
     }
 
     @IBAction func copyLink() {

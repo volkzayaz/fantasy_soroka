@@ -29,12 +29,12 @@ extension RoomManager {
             .map { _ in }
     }
 
-    static func getMessagesInRoom(_ roomId: String, offset: Int = 0, limit: Int = 30) -> Single<[Room.Message]> {
+    static func getMessagesInRoom(_ roomId: String) -> Single<[Room.Message]> {
         return MesagesIn(room: roomId).rx.request
             .map { $0.messages.filter { $0.type == .message } }
-            
+        
     }
-
+    
     static func getAllRooms() -> Single<[Room]> {
         return RoomsResource().rx.request
     }

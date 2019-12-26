@@ -32,7 +32,7 @@ extension RoomNotificationSettingsViewModel {
         var r = room
         r.settings.notifications.newMessage = state
         
-        Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
+        Dispatcher.dispatch(action: UpdateRoomSettingsIn(room: r))
         
     }
 
@@ -41,7 +41,7 @@ extension RoomNotificationSettingsViewModel {
         var r = room
         r.settings.notifications.newFantasyMatch = state
         
-        Dispatcher.dispatch(action: UpdateNotificationSettingsIn(room: r))
+        Dispatcher.dispatch(action: UpdateRoomSettingsIn(room: r))
         
     }
 

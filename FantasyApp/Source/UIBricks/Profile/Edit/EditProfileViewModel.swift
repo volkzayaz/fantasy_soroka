@@ -180,7 +180,7 @@ extension EditProfileViewModel {
                                  models: Expirience.allCases,
                                  defaultModels: defaultModel,
                                  mode: .table,
-                                 singlePickMode: true) { x in self.updateForm { $0.expirience = x.first! } }
+                                 singlePickMode: true) { x in self.updateForm { $0.expirience = x.first } }
     }
     
     func changeGender() {

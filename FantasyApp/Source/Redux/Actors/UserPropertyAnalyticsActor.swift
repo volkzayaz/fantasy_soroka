@@ -33,6 +33,8 @@ class UserPropertyActor {
             return i
         }
         
+        Crashlytics.sharedInstance().setObjectValue(SettingsStore.environment.value.serverAlias, forKey: "Environment")
+        
         ///Generic User Properties
         appState.changesOf { $0.currentUser }
             .asObservable().observeOn(SerialDispatchQueueScheduler(qos: .background))
@@ -41,7 +43,7 @@ class UserPropertyActor {
                 ///Crashlytics
                 Crashlytics.sharedInstance().setUserIdentifier(maybeUser?.id)
                 Crashlytics.sharedInstance().setUserName(maybeUser?.bio.name)
-
+                
                 ///Barnch
                 if let id = maybeUser?.id {
                     Branch.getInstance()?.setIdentity(id)
