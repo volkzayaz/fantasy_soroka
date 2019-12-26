@@ -12,20 +12,41 @@ class RoomCreatedCell: UITableViewCell {
     
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
-    
-    func setParticipants(left: Room.Participant.UserSlice,
-                         right: Room.Participant.UserSlice) {
-        
-        ImageRetreiver.imageForURLWithoutProgress(url: left.avatarURL)
-            .map { $0 ?? R.image.noPhoto() }
-            .drive(leftImageView.rx.image)
-            .disposed(by: rx.disposeBag)
-        
-        ImageRetreiver.imageForURLWithoutProgress(url: right.avatarURL)
-            .map { $0 ?? R.image.noPhoto() }
-            .drive(rightImageView.rx.image)
-            .disposed(by: rx.disposeBag)
-        
+
+    var viewModel: ChatViewModel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(initiatorTapped)))
+        rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(peerTapped)))
     }
-    
+
+    func setViewModel(vm: ChatViewModel) {
+
+        viewModel = vm
+
+        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.left.avatarURL)
+                 .map { $0 ?? R.image.noPhoto() }
+                 .drive(leftImageView.rx.image)
+                 .disposed(by: rx.disposeBag)
+
+             ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.right.avatarURL)
+                 .map { $0 ?? R.image.noPhoto() }
+                 .drive(rightImageView.rx.image)
+                 .disposed(by: rx.disposeBag)
+    }
+}
+
+//MARK:- Actions
+
+extension RoomCreatedCell {
+
+    @objc func initiatorTapped() {
+        viewModel.presentInitiator()
+    }
+
+    @objc func peerTapped() {
+        viewModel.presentPeer()
+    }
 }

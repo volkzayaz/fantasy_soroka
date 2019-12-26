@@ -69,13 +69,10 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         case .roomCreated:
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.roomCreatedCell, for: ip)!
             cell.transform = tv.transform
-            
-            let x = self.viewModel.slicePair
-            
-            cell.setParticipants(left: x.left, right: x.right)
+            cell.setViewModel(vm: self.viewModel)
             
             return cell
-            
+        
         }
         
     })

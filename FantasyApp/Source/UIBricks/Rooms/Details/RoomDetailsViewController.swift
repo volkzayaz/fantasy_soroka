@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class RoomDetailsViewController: UIViewController, MVVM_View {
     var viewModel: RoomDetailsViewModel!
@@ -28,9 +29,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
-        
-        navigationItem.title = viewModel.title
-        
+                
         viewModel.navigationEnabled
             .drive(onNext: { [unowned self] (x) in
                 self.playButton.isEnabled = x
@@ -40,6 +39,25 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
                 self.navigationItem.rightBarButtonItem?.isEnabled = x
             })
             .disposed(by: rx.disposeBag)
+
+
+        Driver.combineLatest(
+        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.me.userSlice.avatarURL)
+                   .map { $0 ?? R.image.noPhoto() },
+        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.peer.userSlice.avatarURL)
+            .map { $0 ?? R.image.noPhoto() })
+            .drive(onNext: { [unowned self] (images) in
+
+                let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
+                v.leftImageView.image = images.0
+                v.rightImageView.image = images.1
+                v.delegate = self
+                self.navigationItem.titleView = v
+
+            }).disposed(by: rx.disposeBag)
+
+
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -181,4 +199,19 @@ extension RoomDetailsViewController {
         
     }
     
+}
+
+
+//MARK:- RoomDetailsTitlePhotoViewDelegate
+
+extension RoomDetailsViewController: RoomDetailsTitlePhotoViewDelegate {
+
+    func didSelectedInitiator() {
+        viewModel.presentInitiator()
+    }
+
+    func didSelectedPeer() {
+        viewModel.presentPeer()
+    }
+
 }

@@ -12,7 +12,14 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+enum PresentationStyle {
+    case modal
+    case stack
+}
+
 class FantasyDeckViewController: UIViewController, MVVM_View {
+
+    var presentationStyle: PresentationStyle = .stack
 
     private var animator = FantasyDetailsTransitionAnimator()
 
@@ -196,12 +203,23 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         configureStyling()
+
+        if presentationStyle == .modal {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.generalCancel(), style: .plain, target: self, action:#selector(dismissModal))
+        }
+
     }
     
 }
 
 extension FantasyDeckViewController {
+
     // MARK: - Actions
+
+    @objc func dismissModal() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func subscribeTapped(_ sender: Any) {
         viewModel.subscribeTapped()
     }
