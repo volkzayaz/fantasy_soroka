@@ -88,7 +88,11 @@ struct FantasyCardInteraction: ActionCreator {
             }
             
             ///Performing Smart Refresh of Main Deck
-            if deckIsConsistent && state.fantasiesDeck.wouldUpdateAt != nil {
+            let weDontKnowDate = state.fantasiesDeck.wouldUpdateAt == nil
+            
+            let wouldWeGetNewInfo = (weDontKnowDate && self.card.isFree)
+            
+            if deckIsConsistent && !wouldWeGetNewInfo {
                 return .just(state)
             }
             

@@ -12,17 +12,13 @@ import RxCocoa
 
 protocol FantasyDeckProvier {
     
-    ///True -- for reload on each view appearence
-    ///False -- if you can manage all state using |cardsChange|
-    var pessimisticReload: Bool { get }
-    
     var cardsChange: Driver<AppState.FantasiesDeck> { get }
     
     func swiped(card: Fantasy.Card,
                 `in` direction: FantasyDeckViewModel.SwipeDirection,
                 mutualTrigger: @escaping () -> Void) -> Void
     
-    func detailsProvider(card: Fantasy.Card, reactionCallback: (() -> Void)?) -> FantasyDetailProvider
+    func detailsProvider(card: Fantasy.Card) -> FantasyDetailProvider
     
     var navigationContext: Fantasy.Card.NavigationContext { get }
 }
@@ -52,8 +48,6 @@ extension FantasyDetailProvider {
 
 struct MainDeckProvider: FantasyDeckProvier {
     
-    var pessimisticReload: Bool { return false }
-    
     var navigationContext: Fantasy.Card.NavigationContext {
         return .Deck
     }
@@ -82,7 +76,7 @@ struct MainDeckProvider: FantasyDeckProvier {
         
     }
     
-    func detailsProvider(card: Fantasy.Card, reactionCallback: (() -> Void)? = nil) -> FantasyDetailProvider {
+    func detailsProvider(card: Fantasy.Card) -> FantasyDetailProvider {
         return OwnFantasyDetailsProvider(card: card,
                                          initialReaction: .neutral,
                                          navigationContext: .Deck)
@@ -91,12 +85,13 @@ struct MainDeckProvider: FantasyDeckProvier {
     
 };
 
+private let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
+
 struct RoomsDeckProvider: FantasyDeckProvier {
     
     let room: Room
-    let card = BehaviorRelay<Int>(value: 0)
     
-    var pessimisticReload: Bool { return true }
+    private let bag = DisposeBag()
     
     var navigationContext: Fantasy.Card.NavigationContext {
         return .RoomPlay
@@ -104,27 +99,19 @@ struct RoomsDeckProvider: FantasyDeckProvier {
     
     var cardsChange: Driver<AppState.FantasiesDeck> {
         
-        card.accept(0)
+        roomsDeck.accept(nil)
         
-        return appState.changesOf { $0.currentUser?.subscription }
-            .flatMapLatest { _ in
-                return Fantasy.Manager.fetchSwipesDeck(in: self.room)
-                    .retry(2)
-                    .asDriver(onErrorJustReturn: .init(cards: [],
-                                                       deckState: .init(wouldBeUpdatedAt: Date(timeIntervalSince1970: 0))))
+        Fantasy.Manager.fetchSwipesDeck(in: room)
+            .retry(2)
+            .map { x in
+                AppState.FantasiesDeck(cards: x.cards,
+                                       wouldUpdateAt: x.deckState.wouldBeUpdatedAt)
             }
-            .flatMap { [unowned x = card] state -> Driver<AppState.FantasiesDeck> in
-                
-                return x
-                    .asDriver()
-                    .filter { $0 >= state.cards.count }
-                    .startWith(0)
-                    .map { suffix in
-                        AppState.FantasiesDeck(cards: Array(state.cards.suffix(from: suffix)),
-                                               wouldUpdateAt: state.deckState.wouldBeUpdatedAt)
-                    }
-                
-            }
+            .asObservable()
+            .bind(to: roomsDeck)
+            .disposed(by: bag)
+        
+        return roomsDeck.asDriver().notNil()
         
     }
     
@@ -148,17 +135,17 @@ struct RoomsDeckProvider: FantasyDeckProvier {
             
         }
         
-        var x = self.card.value
-        x+=1
-        self.card.accept(x)
+        if var deck = roomsDeck.value {
+            deck.pop(card: card)
+            roomsDeck.accept( deck )
+        }
         
     }
     
-    func detailsProvider(card: Fantasy.Card, reactionCallback: (() -> Void)?) -> FantasyDetailProvider {
+    func detailsProvider(card: Fantasy.Card) -> FantasyDetailProvider {
         return RoomFantasyDetailsProvider(room: room,
                                           card: card,
                                           initialReaction: .neutral,
-                                          reactionCallback: reactionCallback,
                                           navigationContext: .RoomPlay)
     }
     
@@ -195,7 +182,6 @@ struct RoomFantasyDetailsProvider: FantasyDetailProvider {
     let room: Room
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
-    let reactionCallback: (() -> Void)?
     let navigationContext: Fantasy.Card.NavigationContext
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool {
@@ -217,7 +203,10 @@ struct RoomFantasyDetailsProvider: FantasyDetailProvider {
             
         }
      
-        reactionCallback?()
+        if var deck = roomsDeck.value {
+            deck.pop(card: card)
+            roomsDeck.accept( deck )
+        }
         
         return true
     }
