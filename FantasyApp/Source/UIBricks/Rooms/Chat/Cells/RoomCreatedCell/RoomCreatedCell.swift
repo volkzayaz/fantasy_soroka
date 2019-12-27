@@ -13,28 +13,25 @@ class RoomCreatedCell: UITableViewCell {
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
 
-    var viewModel: ChatViewModel!
+    var viewModel: ChatViewModel! {
+        didSet {
+            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.left.avatarURL)
+                .map { $0 ?? R.image.noPhoto() }
+                .drive(leftImageView.rx.image)
+                .disposed(by: rx.disposeBag)
+
+            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.right.avatarURL)
+                .map { $0 ?? R.image.noPhoto() }
+                .drive(rightImageView.rx.image)
+                .disposed(by: rx.disposeBag)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(meTapped)))
         rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(peerTapped)))
-    }
-
-    func setViewModel(vm: ChatViewModel) {
-
-        viewModel = vm
-
-        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.left.avatarURL)
-                 .map { $0 ?? R.image.noPhoto() }
-                 .drive(leftImageView.rx.image)
-                 .disposed(by: rx.disposeBag)
-
-             ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.right.avatarURL)
-                 .map { $0 ?? R.image.noPhoto() }
-                 .drive(rightImageView.rx.image)
-                 .disposed(by: rx.disposeBag)
     }
 
     override func draw(_ rect: CGRect) {

@@ -32,21 +32,19 @@ struct RoomDetailsRouter: MVVM_Router {
     func showPlay(room: Room) {
         
         let vc = R.storyboard.fantasyCard.fantasiesViewController()!
-        vc.presentationStyle = .modal
         vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
-                                            provider: RoomsDeckProvider(room: room))
+                                            provider: RoomsDeckProvider(room: room),
+                                            presentationStyle: .modal,
+                                            room: room)
         let nav = FantasyNavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
 
         owner.present(nav, animated: true, completion: nil)
-//        owner.navigationController?.pushViewController(vc, animated: true)
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             vc.collectionsButton.isHidden = true
             vc.cardsButton.isHidden = true
-            vc.title = "Fantasies with \(room.peer.userSlice.name)"
         }
-        
     }
 
     func showUser(user: User) {

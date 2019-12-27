@@ -12,15 +12,13 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-enum PresentationStyle {
-    case modal
-    case stack
-}
-
 class FantasyDeckViewController: UIViewController, MVVM_View {
 
-    var presentationStyle: PresentationStyle = .stack
-
+    enum PresentationStyle {
+        case modal
+        case stack
+    }
+    
     private var animator = FantasyDetailsTransitionAnimator()
 
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
@@ -204,10 +202,27 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         
         configureStyling()
 
-        if presentationStyle == .modal {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.generalCancel(), style: .plain, target: self, action:#selector(dismissModal))
+        if viewModel.presentationStyle == .modal {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.cardDetailsBack()!, style: .plain, target: self, action: #selector(dismissModal))
         }
 
+        if let room = viewModel.room {
+
+            Driver.combineLatest(
+                ImageRetreiver.imageForURLWithoutProgress(url: room.me.userSlice.avatarURL)
+                    .map { $0 ?? R.image.noPhoto() },
+                ImageRetreiver.imageForURLWithoutProgress(url: room.peer.userSlice.avatarURL)
+                    .map { $0 ?? R.image.noPhoto() })
+                .drive(onNext: { [unowned self] (images) in
+
+                    let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
+                    v.leftImageView.image = images.0
+                    v.rightImageView.image = images.1
+                    v.delegate = self
+                    self.navigationItem.titleView = v
+
+                }).disposed(by: rx.disposeBag)
+        }
     }
     
 }
@@ -372,6 +387,16 @@ extension FantasyDeckViewController: UIViewControllerTransitioningDelegate {
         
         return animator
     }
-    
-    
+}
+
+//MARK:- RoomDetailsTitlePhotoViewDelegate
+
+extension FantasyDeckViewController: RoomDetailsTitlePhotoViewDelegate {
+     func didSelectedInitiator() {
+        viewModel.presentMe()
+    }
+
+    func didSelectedPeer() {
+        viewModel.presentPeer()
+    }
 }

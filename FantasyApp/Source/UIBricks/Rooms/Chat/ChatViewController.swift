@@ -69,7 +69,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         case .roomCreated:
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.roomCreatedCell, for: ip)!
             cell.transform = tv.transform
-            cell.setViewModel(vm: self.viewModel)
+            cell.viewModel = self.viewModel
             
             return cell
         
@@ -118,13 +118,6 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         viewModel.dataSource
             .drive(tv.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
-     
-        let i = UIImageView()
-        let l = UILabel()
-        
-        let x = UIStackView()
-        x.axis = .horizontal
-        
     }
     
     override func didPressRightButton(_ sender: (Any)?) {

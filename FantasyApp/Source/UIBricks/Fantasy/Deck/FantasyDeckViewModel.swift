@@ -31,7 +31,7 @@ extension FantasyDeckViewModel {
                     return .swipeCards
                 }
                 return .waiting
-            }
+        }
     }
     
     var timeLeftText: Driver<NSAttributedString> {
@@ -39,20 +39,20 @@ extension FantasyDeckViewModel {
         return provider.cardsChange
             .map { x -> Date? in
                 return x.wouldUpdateAt
+        }
+        .notNil()
+        .flatMapLatest { date in
+
+            return Driver<Int>.interval(.seconds(1)).startWith(0).map { _ in
+                let string = date.toTimeLeftString()
+                let attributedString = NSMutableAttributedString(string: string)
+                attributedString.addAttribute(.foregroundColor,
+                                              value: UIColor.fantasyPink,
+                                              range: (string as NSString).range(of: string))
+                return attributedString
             }
-            .notNil()
-            .flatMapLatest { date in
-        
-                return Driver<Int>.interval(.seconds(1)).startWith(0).map { _ in
-                    let string = date.toTimeLeftString()
-                    let attributedString = NSMutableAttributedString(string: string)
-                    attributedString.addAttribute(.foregroundColor,
-                                                  value: UIColor.fantasyPink,
-                                                  range: (string as NSString).range(of: string))
-                    return attributedString
-                }
-                
-            }
+
+        }
         
     }
 
@@ -78,8 +78,8 @@ extension FantasyDeckViewModel {
             .flatMapLatest { _ in p.cardsChange }
             .map { deck in
                 return deck.cards
-            }
-            .notNil()
+        }
+        .notNil()
         
     }
     
@@ -97,8 +97,12 @@ extension FantasyDeckViewModel {
 }
 
 struct FantasyDeckViewModel : MVVM_ViewModel {
-    
+
+    typealias PresentationStyle = FantasyDeckViewController.PresentationStyle
+
+    let presentationStyle: PresentationStyle
     let provider: FantasyDeckProvier
+    let room: Room?
 
     private let reloadTrigger = BehaviorRelay(value: ())
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
@@ -106,9 +110,11 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
     fileprivate let showTutorialVar = BehaviorRelay<Bool>(value: SettingsStore.showFantasyCardTutorial.value)
 
-    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
+    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider(), presentationStyle: PresentationStyle  = .stack, room: Room? = nil) {
         self.router = router
         self.provider = provider
+        self.presentationStyle = presentationStyle
+        self.room = room
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
@@ -121,11 +127,11 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .asObservable()
             .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
                 return Fantasy.Manager.fetchCollections()
-            }
-            .map { $0.filter { !$0.isPurchased } }
-            .silentCatch(handler: router.owner)
-            .bind(to: collections)
-            .disposed(by: bag)
+        }
+        .map { $0.filter { !$0.isPurchased } }
+        .silentCatch(handler: router.owner)
+        .bind(to: collections)
+        .disposed(by: bag)
 
 
 
@@ -204,5 +210,31 @@ extension FantasyDeckViewModel {
         return Driver.combineLatest(showTutorialVar.asDriver(), mode) { (a, b) -> Bool in
             return a && b != Mode.waiting
         }
+    }
+}
+
+//MARK:- Room
+
+extension FantasyDeckViewModel {
+
+    func presentMe() {
+        guard let r = room else { return }
+
+        presentUser(id: r.me.userSlice.id)
+    }
+
+    func presentPeer() {
+        guard let r = room else { return }
+
+        presentUser(id: r.peer.userSlice.id)
+    }
+
+   private func presentUser(id: String) {
+        UserManager.getUser(id: id)
+        .silentCatch(handler: router.owner)
+        .subscribe(onNext: { user in
+            self.router.showUser(user: user)
+        })
+        .disposed(by: bag)
     }
 }
