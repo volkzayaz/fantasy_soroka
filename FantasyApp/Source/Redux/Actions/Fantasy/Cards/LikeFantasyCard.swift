@@ -107,3 +107,18 @@ struct FantasyCardInteraction: ActionCreator {
     }
     
 }
+
+///https://trello.com/c/cDizL9vu/161-rooms-swipe
+struct LikeRoomCardLogic: Action {
+    
+    let card: Fantasy.Card
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        
+        state.fantasiesDeck.pop(card: card)
+        
+        return state
+    }
+    
+}
