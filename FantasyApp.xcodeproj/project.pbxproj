@@ -322,7 +322,10 @@
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
 		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
+		B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */; };
+		B72DDBC723B3739800FB1848 /* RoomDetailsTitlePhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
+		B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */; };
 		B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774AF23644F2D00A353CC /* UserCarouselView.swift */; };
 		B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B023644F2D00A353CC /* UserCarouselView.xib */; };
 		B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */; };
@@ -725,7 +728,10 @@
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
 		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
+		B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsTitlePhotoView.swift; sourceTree = "<group>"; };
+		B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomDetailsTitlePhotoView.xib; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
+		B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+AvatarUtils.swift"; sourceTree = "<group>"; };
 		B73774AF23644F2D00A353CC /* UserCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCarouselView.swift; sourceTree = "<group>"; };
 		B73774B023644F2D00A353CC /* UserCarouselView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCarouselView.xib; sourceTree = "<group>"; };
 		B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+FantasyFont.swift"; sourceTree = "<group>"; };
@@ -1012,6 +1018,7 @@
 				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
 				B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */,
 				B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */,
+				B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2038,6 +2045,7 @@
 		84AB48FB232A16B400F3609A /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				B72DDBC323B3736E00FB1848 /* Views */,
 				84AB48FC232A16C500F3609A /* RoomDetailsViewController.swift */,
 				84AB48FE232A16D500F3609A /* RoomDetailsViewModel.swift */,
 				84AB4900232A16DD00F3609A /* RoomDetailsRouter.swift */,
@@ -2225,6 +2233,15 @@
 				B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		B72DDBC323B3736E00FB1848 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */,
+				B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B73774AE23644F2D00A353CC /* UIComponents */ = {
@@ -2475,6 +2492,7 @@
 				84C1D0372327B95300648DE1 /* Heteroflexible.png in Resources */,
 				84C1D0312327B95300648DE1 /* Lesbian.png in Resources */,
 				84C1D0302327B95300648DE1 /* Sapiosexual.png in Resources */,
+				B72DDBC723B3739800FB1848 /* RoomDetailsTitlePhotoView.xib in Resources */,
 				73432ACC238A9850008CF2F1 /* OwnMessageCell.xib in Resources */,
 				84C1D0362327B95300648DE1 /* Asexual.png in Resources */,
 				84C1D0342327B95300648DE1 /* Questioning.png in Resources */,
@@ -2691,6 +2709,7 @@
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
 				67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */,
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
+				B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */,
 				7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */,
@@ -2888,6 +2907,7 @@
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
 				849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */,
+				B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */,
 				84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */,
 				73E13B70238BF56800CE1B06 /* WebSocketService.swift in Sources */,
 				B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */,

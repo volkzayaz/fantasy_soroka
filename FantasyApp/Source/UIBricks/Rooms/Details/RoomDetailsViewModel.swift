@@ -42,6 +42,7 @@ struct RoomDetailsViewModel: MVVM_ViewModel {
     let router: RoomDetailsRouter
     let room: SharedRoomResource
     let page: BehaviorRelay<DetailsPage>
+    fileprivate let bag = DisposeBag()
 
     init(router: RoomDetailsRouter,
          room: Room,
@@ -61,5 +62,32 @@ extension RoomDetailsViewModel {
     func showPlay() {
         router.showPlay(room: room.value)
     }
-    
+
+    func presentMe() {
+
+//        let id = (room.value.ownerId == User.current?.id)
+//            ? room.value.me.userSlice.id
+//            : room.value.peer.userSlice.id
+
+        let id = room.value.me.userSlice.id
+
+        UserManager.getUser(id: id)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { user in
+                self.router.showUser(user: user)
+            })
+            .disposed(by: bag)
+    }
+
+    func presentPeer() {
+
+        let id = room.value.peer.userSlice.id
+        
+        UserManager.getUser(id: id)
+            .silentCatch(handler: router.owner)
+            .subscribe(onNext: { user in
+                self.router.showUser(user: user)
+            })
+            .disposed(by: bag)
+    }
 }

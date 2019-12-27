@@ -21,7 +21,7 @@ extension ChatViewModel {
     var dataSource: Driver<[AnimatableSectionModel<String, Row>]> {
         
         let requestTypes = ConnectionManager.requestTypes(with: room.value.peer.userSlice.id)
-                                .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: [])
         
         return Driver.combineLatest(requestTypes, mes.asDriver(), room.asDriver())
             .map { requestTypes, messages, room in
@@ -39,7 +39,7 @@ extension ChatViewModel {
                 
                 return [AnimatableSectionModel(model: "",
                                                items: items)]
-            }
+        }
         
     }
     
@@ -108,9 +108,9 @@ struct ChatViewModel: MVVM_ViewModel {
                 return RoomManager.subscribeToMessages(in: room.value)
                     .scan(mes, accumulator: { (res, message) in [message] + res })
                     .startWith(mes)
-            }
-            .bind(to: mes)
-            .disposed(by: bag)
+        }
+        .bind(to: mes)
+        .disposed(by: bag)
 
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -131,7 +131,7 @@ extension ChatViewModel {
                                       from: User.current!,
                                       in: room.value), in: room.value)
             .subscribe({ event in
-            // TODO: error handling
+                // TODO: error handling
             }).disposed(by: bag)
         
         if room.value.peer.status == .invited {
@@ -171,27 +171,25 @@ extension ChatViewModel {
     }
     
     func presentInitiator() {
-        
-        UserManager.getUser(id: initiator.id)
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { user in
-                self.router.showUser(user: user)
-            })
-            .disposed(by: bag)
-            
+        presentUserDetails(for: initiator.id)
+    }
+
+    func presentMe() {
+        presentUserDetails(for: room.value.me.userSlice.id)
     }
     
     func presentPeer() {
-        
-        UserManager.getUser(id: room.value.peer.userSlice.id)
+        presentUserDetails(for: room.value.peer.userSlice.id)
+    }
+
+    func presentUserDetails(for userId: String) {
+        UserManager.getUser(id: userId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { user in
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
-        
     }
     
 }

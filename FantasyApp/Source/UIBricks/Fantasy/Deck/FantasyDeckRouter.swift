@@ -36,5 +36,14 @@ struct FantasyDeckRouter : MVVM_Router {
         owner.present(container, animated: true, completion: nil)
         
     }
-    
+
+    func showUser(user: User) {
+
+        let vc = R.storyboard.user.userProfileViewController()!
+        vc.viewModel = .init(router: .init(owner: vc), user: user, bottomActionsAvailable: false)
+
+        owner.navigationController?.pushViewController(vc, animated: true)
+
+    }
+
 }

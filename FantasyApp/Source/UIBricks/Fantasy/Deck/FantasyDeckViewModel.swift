@@ -31,7 +31,7 @@ extension FantasyDeckViewModel {
                     return .swipeCards
                 }
                 return .waiting
-            }
+        }
     }
     
     var timeLeftText: Driver<NSAttributedString> {
@@ -39,20 +39,20 @@ extension FantasyDeckViewModel {
         return provider.cardsChange
             .map { x -> Date? in
                 return x.wouldUpdateAt
+        }
+        .notNil()
+        .flatMapLatest { date in
+
+            return Driver<Int>.interval(.seconds(1)).startWith(0).map { _ in
+                let string = date.toTimeLeftString()
+                let attributedString = NSMutableAttributedString(string: string)
+                attributedString.addAttribute(.foregroundColor,
+                                              value: UIColor.fantasyPink,
+                                              range: (string as NSString).range(of: string))
+                return attributedString
             }
-            .notNil()
-            .flatMapLatest { date in
-        
-                return Driver<Int>.interval(.seconds(1)).startWith(0).map { _ in
-                    let string = date.toTimeLeftString()
-                    let attributedString = NSMutableAttributedString(string: string)
-                    attributedString.addAttribute(.foregroundColor,
-                                                  value: UIColor.fantasyPink,
-                                                  range: (string as NSString).range(of: string))
-                    return attributedString
-                }
-                
-            }
+
+        }
         
     }
 
@@ -99,16 +99,22 @@ extension FantasyDeckViewModel {
 }
 
 struct FantasyDeckViewModel : MVVM_ViewModel {
-    
+
+    typealias PresentationStyle = FantasyDeckViewController.PresentationStyle
+
+    let presentationStyle: PresentationStyle
     let provider: FantasyDeckProvier
+    let room: Room?
 
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
-    
-    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider()) {
+
+    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider(), presentationStyle: PresentationStyle  = .stack, room: Room? = nil) {
         self.router = router
         self.provider = provider
+        self.presentationStyle = presentationStyle
+        self.room = room
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
@@ -187,4 +193,30 @@ extension FantasyDeckViewModel {
         SettingsStore.showFantasyCardTutorial.value = showNextTime
     }
 
+}
+
+//MARK:- Room
+
+extension FantasyDeckViewModel {
+
+    func presentMe() {
+        guard let r = room else { return }
+
+        presentUser(id: r.me.userSlice.id)
+    }
+
+    func presentPeer() {
+        guard let r = room else { return }
+
+        presentUser(id: r.peer.userSlice.id)
+    }
+
+   private func presentUser(id: String) {
+        UserManager.getUser(id: id)
+        .silentCatch(handler: router.owner)
+        .subscribe(onNext: { user in
+            self.router.showUser(user: user)
+        })
+        .disposed(by: bag)
+    }
 }

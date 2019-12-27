@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zHX-Es-YyA">
-                        <rect key="frame" x="181.5" y="96" width="147.5" height="133"/>
+                        <rect key="frame" x="127.5" y="89.5" width="255" height="146"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cAT-gt-mn0">
-                                <rect key="frame" x="33.5" y="0.0" width="80" height="80"/>
+                                <rect key="frame" x="87.5" y="0.0" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="2Ak-fQ-mya"/>
                                     <constraint firstAttribute="height" constant="80" id="4zD-iN-1Hp"/>
@@ -31,18 +31,25 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fri-9i-HuL">
-                                <rect key="frame" x="0.0" y="92" width="147.5" height="41"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tCZ-iM-UUA">
+                                <rect key="frame" x="0.0" y="92" width="255" height="54"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="EdQ-ip-zSH"/>
+                                </constraints>
                                 <string key="text">Jack sent you
 new Room Request</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nv5-T1-rbh" id="bi7-DE-ks7"/>
+                                </connections>
+                            </textView>
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="bF8-Qc-f6O">
-                        <rect key="frame" x="225" y="153" width="60" height="26"/>
+                        <rect key="frame" x="225" y="146.5" width="60" height="26"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestSticker" translatesAutoresizingMaskIntoConstraints="NO" id="QAF-xl-YlV">
                                 <rect key="frame" x="0.0" y="0.0" width="20" height="26"/>
@@ -63,9 +70,12 @@ new Room Request</string>
                     <constraint firstItem="zHX-Es-YyA" firstAttribute="centerY" secondItem="fk0-wh-eXJ" secondAttribute="centerY" id="ZhW-0n-Mpl"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="tCZ-iM-UUA" firstAttribute="width" secondItem="nv5-T1-rbh" secondAttribute="width" multiplier="0.5" id="84K-IQ-EwP"/>
+            </constraints>
             <connections>
                 <outlet property="avatarImageView" destination="cAT-gt-mn0" id="95f-Zm-B9d"/>
-                <outlet property="inviteLabel" destination="fri-9i-HuL" id="g4O-G0-6hq"/>
+                <outlet property="inviteTextView" destination="tCZ-iM-UUA" id="4k5-YY-D8Z"/>
                 <outlet property="stackView" destination="bF8-Qc-f6O" id="Ksz-rL-kBT"/>
             </connections>
             <point key="canvasLocation" x="-53.623188405797109" y="237.38839285714283"/>

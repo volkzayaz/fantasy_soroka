@@ -22,6 +22,7 @@ class RoomsViewController: UIViewController, MVVM_View {
             control.addTarget(self, action: "pullToRefresh", for: .valueChanged)
             
             tableView.refreshControl = control
+            tableView.backgroundColor = R.color.bgLightGrey()
         }
     }
     @IBOutlet private var createRoomButton: SecondaryButton!
@@ -65,9 +66,13 @@ class RoomsViewController: UIViewController, MVVM_View {
                 self.viewModel.roomTapped(roomCell: cellModel)
         }).disposed(by: rx.disposeBag)
 
+        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+
         createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
     }
 }
+
+//MARK:- Actions
 
 extension RoomsViewController {
     @IBAction func addNewRoom() {
@@ -82,4 +87,12 @@ extension RoomsViewController {
         }
     }
     
+}
+
+//MARK:- UITableViewDelegate
+
+extension RoomsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.5
+    }
 }
