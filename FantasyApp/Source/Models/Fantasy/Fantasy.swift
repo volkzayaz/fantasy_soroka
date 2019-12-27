@@ -107,6 +107,7 @@ extension AppState.FantasiesDeck {
             False - state should be refreshed from server
             True  - state is consistent with server
      */
+    @discardableResult
     mutating func pop(card: Fantasy.Card) -> Bool {
         
         guard var x = cards else {

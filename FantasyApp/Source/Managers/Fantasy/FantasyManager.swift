@@ -103,7 +103,7 @@ extension Fantasy.Manager {
     static func like(card: Fantasy.Card, in room: Room,
                      actionContext: Fantasy.Card.ActionContext) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
         
-        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
+        Dispatcher.dispatch(action: LikeRoomCardLogic(card: card))
         
         return Fantasy.Request.ReactOnRoomCard(reaction: .like,
                                                card: card,

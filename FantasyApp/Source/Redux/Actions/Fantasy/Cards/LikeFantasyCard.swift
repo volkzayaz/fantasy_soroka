@@ -88,7 +88,11 @@ struct FantasyCardInteraction: ActionCreator {
             }
             
             ///Performing Smart Refresh of Main Deck
-            if deckIsConsistent && state.fantasiesDeck.wouldUpdateAt != nil {
+            let weDontKnowDate = state.fantasiesDeck.wouldUpdateAt == nil
+            
+            let wouldWeGetNewInfo = (weDontKnowDate && self.card.isFree)
+            
+            if deckIsConsistent && !wouldWeGetNewInfo {
                 return .just(state)
             }
             
@@ -100,6 +104,21 @@ struct FantasyCardInteraction: ActionCreator {
                 }
         }
         
+    }
+    
+}
+
+///https://trello.com/c/cDizL9vu/161-rooms-swipe
+struct LikeRoomCardLogic: Action {
+    
+    let card: Fantasy.Card
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        
+        state.fantasiesDeck.pop(card: card)
+        
+        return state
     }
     
 }

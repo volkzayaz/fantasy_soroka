@@ -41,13 +41,13 @@ platform :ios do
         }
     )
         
-    ###uploading to crashlytics
-    crashlytics(api_token: "e84ce1420f7f93176fb81a16a43f00b1cdbc00ff",
-                build_secret: "23e218800f398f44a1b99535f0a9e70571f31c508860c4e4be496e02abcf6b7c",
-                notes: changelog_from_git_commits,
-                groups: "Basic")
-    upload_symbols_to_crashlytics                    
-
+    ###uploading to firebase
+    firebase_app_distribution(
+        app: "1:730700349275:ios:b23a8045cf4a0fdc0f247e",
+        groups: "Basic",
+        release_notes: changelog_from_git_commits
+    )
+    
     ##cleaning up
     File.delete("../FantasyApp.ipa")
     File.delete("../FantasyApp.app.dSYM.zip")
@@ -58,7 +58,7 @@ platform :ios do
           use_webhook_configured_username_and_icon: true,
           payload: {
           'Version number' => get_version_number(target: "FantasyApp"),
-          'Download Link' => "https://apps.crashlytics.com/projects",
+          'Download Link' => "https://appdistribution.firebase.dev/app_distro/projects",
           },
           default_payloads: []
           )

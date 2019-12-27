@@ -72,14 +72,9 @@ extension FantasyDeckViewModel {
     
     var cards: Driver<[Fantasy.Card]> {
         
-        let p = provider
-        
-        return reloadTrigger.asDriver()
-            .flatMapLatest { _ in p.cardsChange }
-            .map { deck in
-                return deck.cards
-        }
-        .notNil()
+        return provider.cardsChange
+            .map { $0.cards }
+            .notNil()
         
     }
     
@@ -94,6 +89,13 @@ extension FantasyDeckViewModel {
             .map { $0 ?? false }
     }
     
+    var showTutorial: Driver<Bool> {
+        return Driver.combineLatest(SettingsStore.showFantasyCardTutorial.observable.asDriver(onErrorJustReturn: false),
+                                    mode) { (a, b) -> Bool in
+            return a && b != Mode.waiting
+        }
+    }
+    
 }
 
 struct FantasyDeckViewModel : MVVM_ViewModel {
@@ -104,11 +106,9 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     let provider: FantasyDeckProvier
     let room: Room?
 
-    private let reloadTrigger = BehaviorRelay(value: ())
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
-    fileprivate let showTutorialVar = BehaviorRelay<Bool>(value: SettingsStore.showFantasyCardTutorial.value)
 
     init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider(), presentationStyle: PresentationStyle  = .stack, room: Room? = nil) {
         self.router = router
@@ -127,13 +127,11 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .asObservable()
             .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
                 return Fantasy.Manager.fetchCollections()
-        }
-        .map { $0.filter { !$0.isPurchased } }
-        .silentCatch(handler: router.owner)
-        .bind(to: collections)
-        .disposed(by: bag)
-
-
+            }
+            .map { $0.filter { !$0.isPurchased } }
+            .silentCatch(handler: router.owner)
+            .bind(to: collections)
+            .disposed(by: bag)
 
     }
     
@@ -165,17 +163,7 @@ extension FantasyDeckViewModel {
     
     mutating func cardTapped(card: Fantasy.Card) {
         
-        let shouldTrigger = provider.pessimisticReload
-        
-        router.cardTapped(provider: provider.detailsProvider(card: card, reactionCallback: { [unowned x = reloadTrigger] in
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                if shouldTrigger {
-                    x.accept( () )
-                }
-            }
-            
-        }))
+        router.cardTapped(provider: provider.detailsProvider(card: card))
         
         Analytics.report(Analytics.Event.CardOpenTime(card: card,
                                                       context: provider.navigationContext,
@@ -203,14 +191,8 @@ extension FantasyDeckViewModel {
 
     func updateTutorial(showNextTime: Bool)  {
         SettingsStore.showFantasyCardTutorial.value = showNextTime
-        showTutorialVar.accept(false)
     }
 
-    var showTutorial: Driver<Bool> {
-        return Driver.combineLatest(showTutorialVar.asDriver(), mode) { (a, b) -> Bool in
-            return a && b != Mode.waiting
-        }
-    }
 }
 
 //MARK:- Room
