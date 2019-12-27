@@ -11,6 +11,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import Crashlytics
+
 class RootViewController: FantasyBaseNavigationController, MVVM_View {
     
     lazy var viewModel: RootViewModel! = .init(router: .init(owner: self))
@@ -101,7 +103,11 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                                 Dispatcher.dispatch(action: Logout())
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    exit(0)
+                                    ///just so we don't pollute crash logs
+                                    // exit(0) alledgedly produces this crash
+                                    // // https://console.firebase.google.com/u/1/project/fantasymatch-51c21/crashlytics/app/ios:com.fantasyapp.iosclient/issues/5d7d9d93f86080d57df4ce0c085193cb
+                                    
+                                    Crashlytics.sharedInstance().crash()
                                 }
                 })
                 
