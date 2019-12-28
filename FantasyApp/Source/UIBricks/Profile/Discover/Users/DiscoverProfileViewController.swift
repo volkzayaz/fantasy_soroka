@@ -30,23 +30,10 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     @IBOutlet weak var goToSettingsView: UIView!
     @IBOutlet weak var notActiveCityNameLabel: UILabel!
 
-    func enableFilter(_ enable: Bool) {
-
-        guard enable else {
-            navigationItem.rightBarButtonItem = nil
-            return
-        }
-
-        let item = UIBarButtonItem(title: "Filters", style: .done, target: self, action: #selector(presentFilter))
-        item.applyFantasyAttributes()
-        navigationItem.rightBarButtonItem = item
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        let s = NSMutableAttributedString(string: "Search for Fantasy Match", attributes: [.font : UIFont.boldFont(ofSize: 18), .foregroundColor: UIColor.white])
+        let s = NSMutableAttributedString(string: R.string.localizable.fantasyUsersSearchHeaderTitle(), attributes: [.font : UIFont.boldFont(ofSize: 18), .foregroundColor: UIColor.white])
 
         s.addAttributes([.font : UIFont.regularFont(ofSize: 18)], range: NSRange(location: 7, length: 3 ))
 
@@ -75,8 +62,6 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 self.hideView(self.allowGeolocationView)
                 self.hideView(self.goToSettingsView)
                 self.hideView(self.noFilterView)
-                self.enableFilter(true)
-
                 self.profilesCarousel.isHidden = true
 
                 switch mode {
@@ -84,14 +69,13 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     self.profilesCarousel.isHidden = false
 
                 case .noLocationPermission:
-                    self.enableFilter(false)
                     self.showView(self.goToSettingsView)
 
                 case .absentCommunity(let nearestCity):
                     self.showView(self.cityNotActiveView)
 
-                    let cityName = nearestCity ?? "Your city"
-                    let text = "\(cityName) will be activated when it reaches"
+                    let cityName = nearestCity ?? R.string.localizable.fantasyUsersSearchYourCity()
+                    let text = "\(cityName) \(R.string.localizable.fantasyUsersSearchYourCityWillBeActive())"
                     let attr = NSMutableAttributedString(string: text)
 
                     attr.addAttribute(NSAttributedString.Key.foregroundColor, value: R.color.textPinkColor()!,
@@ -99,12 +83,26 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     self.notActiveCityNameLabel.attributedText = attr
 
                 case .noSearchPreferences:
-                    self.enableFilter(false)
                     self.showView(self.noFilterView)
                 }
                 
             })
             .disposed(by: rx.disposeBag)
+
+        // filter button
+
+        viewModel.filterButtonEnabled
+            .drive(onNext: {  [unowned self] (enable) in
+                guard enable else {
+                    self.navigationItem.rightBarButtonItem = nil
+                    return
+                }
+
+                let item = UIBarButtonItem(title: R.string.localizable.fantasyUsersFilter(), style: .done, target: self, action: #selector(self.presentFilter))
+                item.applyFantasyAttributes()
+                self.navigationItem.rightBarButtonItem = item
+
+            }).disposed(by: rx.disposeBag)
         
     }
 }

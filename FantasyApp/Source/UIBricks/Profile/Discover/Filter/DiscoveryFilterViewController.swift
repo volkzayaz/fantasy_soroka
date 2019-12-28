@@ -67,7 +67,7 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
 
         view.addFantasyTripleGradient()
 
-        let item = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
+        let item = UIBarButtonItem(title: R.string.localizable.generalCancel(), style: .done, target: self, action: #selector(cancel))
         item.applyFantasyAttributes()
         navigationItem.rightBarButtonItem = item
 
