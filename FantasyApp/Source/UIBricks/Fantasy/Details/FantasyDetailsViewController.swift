@@ -148,6 +148,9 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        navigationBar.applyFantasyTransparentStyling()
+        gradientBackgroundView.addFantasyGradient()
+
         guard isFirstAppearance else { return }
         descriptionView.isHidden = viewModel.description.isEmpty
         descriptionLabel.text = viewModel.description
@@ -158,14 +161,12 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 // MARK: - Configuration
 private extension FantasyDetailsViewController {
     func configureStyling() {
-        navigationBar.applyFantasyTransparentStyling()
         scrollView.delegate = self
         scrollView.scrollsToTop = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
 
         gradientBackgroundView.isHidden = true
-        gradientBackgroundView.addFantasyGradient()
         view.backgroundColor = .clear
         backgroundView.backgroundColor = .fantasyCardBackground
         backgroundView.isHidden = true
