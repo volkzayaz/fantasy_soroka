@@ -94,9 +94,14 @@ extension Fantasy.Manager {
 
 extension Fantasy.Manager {
     
-    static func fetchSwipesDeck(in room: Room) -> Single< Fantasy.Request.FetchRoomCards.Response > {
+    static func fetchSwipesDeck(in room: Room) -> Single< AppState.FantasiesDeck > {
         
         return Fantasy.Request.FetchRoomCards(room: room).rx.request
+        .map { x in
+            AppState.FantasiesDeck(cards: x.cards,
+                                   wouldUpdateAt: x.deckState.wouldBeUpdatedAt)
+        }
+        
         
     }
     

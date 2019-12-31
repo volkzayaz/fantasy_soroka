@@ -48,6 +48,17 @@ extension FantasyDetailProvider {
 
 struct MainDeckProvider: FantasyDeckProvier {
     
+    init() {
+        
+        appState.map { $0.fantasiesDeck }
+        .asObservable()
+        .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
+        .subscribe(onNext: { deck in
+            Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
+        })
+        .disposed(by: bag)
+    }
+    
     var navigationContext: Fantasy.Card.NavigationContext {
         return .Deck
     }
@@ -83,6 +94,8 @@ struct MainDeckProvider: FantasyDeckProvier {
         
     }
     
+    private let bag = DisposeBag()
+    
 };
 
 private let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
@@ -91,6 +104,20 @@ struct RoomsDeckProvider: FantasyDeckProvier {
     
     let room: Room
     
+    init(room: Room) {
+
+        self.room = room
+
+        roomsDeck.accept(nil)
+        
+        roomsDeck.notNil()
+            .startWith(.init(cards: nil, wouldUpdateAt: nil))
+            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck(in: room))
+            .bind(to: roomsDeck)
+            .disposed(by: bag)
+        
+    }
+    
     private let bag = DisposeBag()
     
     var navigationContext: Fantasy.Card.NavigationContext {
@@ -98,19 +125,6 @@ struct RoomsDeckProvider: FantasyDeckProvier {
     }
     
     var cardsChange: Driver<AppState.FantasiesDeck> {
-        
-        roomsDeck.accept(nil)
-        
-        Fantasy.Manager.fetchSwipesDeck(in: room)
-            .retry(2)
-            .map { x in
-                AppState.FantasiesDeck(cards: x.cards,
-                                       wouldUpdateAt: x.deckState.wouldBeUpdatedAt)
-            }
-            .asObservable()
-            .bind(to: roomsDeck)
-            .disposed(by: bag)
-        
         return roomsDeck.asDriver().notNil()
         
     }
@@ -209,6 +223,44 @@ struct RoomFantasyDetailsProvider: FantasyDetailProvider {
         }
         
         return true
+    }
+    
+}
+
+extension Observable where Element == AppState.FantasiesDeck {
+    
+    func continousDeck( refreshSignal: Single<AppState.FantasiesDeck> ) -> Observable<AppState.FantasiesDeck> {
+        
+        return self
+        .filter { deck -> Bool in
+            guard let d = deck.cards else {
+                return true
+            }
+            
+            return d.count == 0
+        }
+        .flatMapLatest { deck -> Single<AppState.FantasiesDeck> in
+
+            guard let fd = deck.wouldUpdateAt else {
+                return refreshSignal
+            }
+            
+            let t0 = Int(fd.timeIntervalSinceNow)
+            
+            let refreshStartAt: Int = t0 - 30
+            
+            return Single.just(0)
+                .delay( .seconds(refreshStartAt) , scheduler: MainScheduler.instance)
+                .flatMap { _ in
+                    
+                    let deliverAt: Int = Int(fd.timeIntervalSinceNow)
+                    
+                    return refreshSignal
+                        .delay( .seconds(deliverAt), scheduler: MainScheduler.instance)
+                }
+                
+        }
+        
     }
     
 }
