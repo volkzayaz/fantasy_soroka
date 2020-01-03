@@ -54,10 +54,24 @@ extension DiscoverProfileViewModel {
                         
                         return .profiles
                         
-                    }
-            }
-            .notNil()
+                }
+        }
+        .notNil()
         
+    }
+
+    var filterButtonEnabled: Driver<Bool> {
+
+        return Driver.combineLatest(
+            appState.changesOf { $0.currentUser?.community.value }
+                .map { $0 != nil },
+                 mode.map { (m) -> Bool in
+                   switch m {
+                   case .noSearchPreferences, .noLocationPermission: return false
+                   default:  return true
+                   }
+               }){ ($0, $1) }
+            .map { $0.0 && $0.1}
     }
 }
 
@@ -68,7 +82,7 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     fileprivate var viewedProfiles: Set<Profile> = []
     
     let locationActor = PickCommunityViewModel()
-    
+
     init(router: DiscoverProfileRouter) {
         self.router = router
         
@@ -80,10 +94,10 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
                     .trackView(viewIndicator: i)
                     .asDriver(onErrorJustReturn: [])
                 
-            }
-            .asDriver(onErrorJustReturn: [])
-            .drive(profiles)
-            .disposed(by: bag)
+        }
+        .asDriver(onErrorJustReturn: [])
+        .drive(profiles)
+        .disposed(by: bag)
         
         /////progress indicator
         
