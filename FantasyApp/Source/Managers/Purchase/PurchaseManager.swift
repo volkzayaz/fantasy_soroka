@@ -48,7 +48,7 @@ extension PurchaseManager {
         
         Analytics.report(ConsiderPurchase(of: .subscription))
         
-        let goldPlanProductId = immutableNonPersistentState.subscriptionProductID
+        let goldPlanProductId = "com.fantasyapp.iosclient.iap.premium.1month" //immutableNonPersistentState.subscriptionProductID
         
         return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
             .flatMap { x in
