@@ -232,11 +232,11 @@ private extension FantasyDetailsViewController {
     
     @IBAction func moreActions(_ sender: Any) {
         
-        showDialog(title: "Report", text: "Let us know if you think this card has offense, nudity, profanity or pornography", style: .actionSheet, negativeText: "Cancel", negativeCallback: nil, positiveText: "Report card") { [weak self] in
+        showDialog(title: "Block", text: "Let us know if you think this card has offense, nudity, profanity or pornography", style: .actionSheet, negativeText: "Cancel", negativeCallback: nil, positiveText: "Block card") { [weak self] in
             
             self?.viewModel.blockCard()
             
-            self?.showMessage(title: "Thank you for reporting", text: "You will never see the card again. We will inspect the content of this fantasy", style: .alert, buttonText: "Ok", callback: { [weak self] in
+            self?.showMessage(title: "Thank you", text: "You will never see the card again. We will inspect the content of this fantasy", style: .alert, buttonText: "Ok", callback: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })
             
