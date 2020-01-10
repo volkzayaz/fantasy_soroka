@@ -84,9 +84,9 @@
 	<string>Let you pick your profile photo</string>
 	<key>NSCameraUsageDescription</key>
 	<string>To set photo as your Fantasy profile picture</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Suggesting people in closest communities</string>
 	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Suggesting people in closest communities</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Suggesting people in closest communities</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Let you pick your profile photo</string>
@@ -114,7 +114,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>Subscription</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
