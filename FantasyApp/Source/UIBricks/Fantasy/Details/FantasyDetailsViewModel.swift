@@ -109,6 +109,18 @@ extension FantasyDetailsViewModel {
         
         reportReactionTime(reaction: .dislike)
     }
+    
+    mutating func blockCard() {
+        let reaction = Fantasy.Card.Reaction.block
+
+        guard provider.shouldReact(to: reaction) else {
+            return
+        }
+        
+        currentState.accept(reaction)
+        
+        reportReactionTime(reaction: .block)
+    }
 
     func close() {
         router.close()

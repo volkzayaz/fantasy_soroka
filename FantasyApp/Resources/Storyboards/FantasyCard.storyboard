@@ -408,6 +408,9 @@
                                                             <constraint firstAttribute="width" constant="40" id="fgr-ID-1U5"/>
                                                         </constraints>
                                                         <state key="normal" image="cardDetailsOption"/>
+                                                        <connections>
+                                                            <action selector="moreActions:" destination="N1n-eG-0ux" eventType="touchUpInside" id="487-Fj-QyA"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

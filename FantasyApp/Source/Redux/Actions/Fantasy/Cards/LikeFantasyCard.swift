@@ -40,12 +40,23 @@ struct NeutralFantasy: ActionCreator {
     }
 }
 
+struct BlockFantasy: ActionCreator {
+    let card: Fantasy.Card
+    let actionContext: Fantasy.Card.ActionContext
+    
+    func perform(initialState: AppState) -> Observable<AppState> {
+        return FantasyCardInteraction(type: .block, shouldDecrement: true, card: card, actionContext: actionContext)
+            .perform(initialState: initialState)
+    }
+}
+
 struct FantasyCardInteraction: ActionCreator {
    
     enum InteractionType {
         case like
         case neutral
         case dislike
+        case block
     }
     
     let type: InteractionType
@@ -60,6 +71,7 @@ struct FantasyCardInteraction: ActionCreator {
         case .dislike: request = Fantasy.Manager.dislike(card: card, actionContext: actionContext)
         case .like:    request = Fantasy.Manager.like(card: card, actionContext: actionContext)
         case .neutral: request = Fantasy.Manager.neutral(card: card, actionContext: actionContext)
+        case .block:   request = Fantasy.Manager.block(card: card, actionContext: actionContext)
         }
         
         return request.asObservable().flatMap { _ -> Observable<AppState> in
@@ -84,6 +96,7 @@ struct FantasyCardInteraction: ActionCreator {
             case .dislike:
                 state.currentUser?.fantasies.disliked.append(self.card)
                 
+            case .block: fallthrough
             case .neutral: break
             }
             

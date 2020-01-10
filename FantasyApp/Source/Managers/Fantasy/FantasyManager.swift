@@ -66,8 +66,6 @@ extension Fantasy.Manager {
     
     static func dislike(card: Fantasy.Card, actionContext: Fantasy.Card.ActionContext) -> Single<Void> {
         
-        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
-        
         return Fantasy.Request.ReactOnCard(reaction: .dislike,
                                            card: card,
                                            actionContext: actionContext)
@@ -77,9 +75,16 @@ extension Fantasy.Manager {
     
     static func neutral(card: Fantasy.Card, actionContext: Fantasy.Card.ActionContext) -> Single<Void> {
         
-        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
-        
         return Fantasy.Request.ReactOnCard(reaction: .neutral,
+                                           card: card,
+                                           actionContext: actionContext)
+            .rx.request
+            .map { _ in }
+    }
+    
+    static func block(card: Fantasy.Card, actionContext: Fantasy.Card.ActionContext) -> Single<Void> {
+        
+        return Fantasy.Request.ReactOnCard(reaction: .block,
                                            card: card,
                                            actionContext: actionContext)
             .rx.request

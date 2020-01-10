@@ -156,6 +156,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         descriptionLabel.text = viewModel.description
         descriptionButton.isHidden = !descriptionLabel.isTruncated
     }
+    
 }
 
 // MARK: - Configuration
@@ -228,6 +229,21 @@ private extension FantasyDetailsViewController {
 
 // MARK: - Actions
 private extension FantasyDetailsViewController {
+    
+    @IBAction func moreActions(_ sender: Any) {
+        
+        showDialog(title: "Report", text: "Let us know if you think this card has offense, nudity, profanity or pornography", style: .actionSheet, negativeText: "Cancel", negativeCallback: nil, positiveText: "Report card") { [weak self] in
+            
+            self?.viewModel.blockCard()
+            
+            self?.showMessage(title: "Thank you for reporting", text: "You will never see the card again. We will inspect the content of this fantasy", style: .alert, buttonText: "Ok", callback: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
+            })
+            
+        }
+        
+    }
+    
     @IBAction func close(_ sender: Any) {
         if isZoomed {
             isZoomingBlocked = false
@@ -344,4 +360,5 @@ extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
             animateDisappearance()
         }
     }
+    
 }

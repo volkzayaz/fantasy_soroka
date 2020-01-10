@@ -74,6 +74,9 @@ extension Analytics.Event {
             else if reaction == .dislike {
                 x["Reaction"] = "Dislike"
             }
+            else if reaction == .block {
+                x["Reaction"] = "Block"
+            }
             
             return x
         }

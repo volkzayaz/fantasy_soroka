@@ -178,11 +178,13 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
                                                                actionContext: actionContext))
         case .dislike: Dispatcher.dispatch(action: DislikeFantasy(card: card,
                                                                   actionContext: actionContext))
+        
+        case .block: Dispatcher.dispatch(action: BlockFantasy(card: card,
+                                                              actionContext: actionContext))
             
         case .neutral: return false
             ///Dispatcher.dispatch(action: NeutralFantasy(card: card))
-            
-        case .block: return false;
+        
             
         }
         
