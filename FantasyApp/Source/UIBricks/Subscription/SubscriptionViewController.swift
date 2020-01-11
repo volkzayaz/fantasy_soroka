@@ -13,7 +13,7 @@ import RxCocoa
 
 class SubscriptionViewController: UITableViewController, MVVM_View {
     
-    lazy var viewModel: SubscriptionViewModel! = SubscriptionViewModel(router: .init(owner: self), page: .screenProtect)
+    var viewModel: SubscriptionViewModel!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!

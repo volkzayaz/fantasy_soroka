@@ -96,16 +96,7 @@ extension RoomsViewModel {
             return router.owner.showDialog(title: "Club Membership",
                                            text: R.string.localizable.roomFrozenRoomUnreachable(),
                                            style: .alert, negativeText: "Upgrade",
-                                           negativeCallback: { [weak h = router.owner,
-                                                                unowned i = indicator] in
-                                                                           
-                                                                           PurchaseManager.purhcaseSubscription()
-                                                                               .trackView(viewIndicator: i)
-                                                                               .silentCatch(handler: h)
-                                                                               .subscribe()
-                                                                               .disposed(by: self.bag)
-                                                                           
-                                           },
+                                           negativeCallback: router.showSubscription,
                                            positiveText: "No, thanks")
         }
             

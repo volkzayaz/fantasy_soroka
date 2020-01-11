@@ -156,15 +156,7 @@ extension TeleportViewModel {
         }
         
         guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
-            
-            PurchaseManager.purhcaseSubscription()
-                .trackView(viewIndicator: indicator)
-                .silentCatch(handler: router.owner)
-                .map { _ in data}
-                .subscribe(onNext: self.selected)
-                .disposed(by: bag)
-            
-            return
+            return router.showSubscription()
         }
         
         switch response {
