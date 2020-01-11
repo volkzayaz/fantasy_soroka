@@ -39,11 +39,7 @@ struct SubscriptionViewModel : MVVM_ViewModel {
         self.router = router
         startPage = page
         
-        /**
-         
-         Proceed with initialization here
-         
-         */
+        Analytics.report(Analytics.Event.PurchaseInterest(context: page))
         
         /////progress indicator
         

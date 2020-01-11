@@ -12,6 +12,7 @@ import UIKit
 class SubscribeButton: UIButton {
     
     @IBOutlet unowned var presenter: UIViewController!
+    var defaultPage = SubscriptionViewModel.Page.member
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,7 +47,7 @@ class SubscribeButton: UIButton {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .screenProtect)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: defaultPage)
         
         x.present(nav, animated: true, completion: nil)
         

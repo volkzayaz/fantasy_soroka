@@ -29,7 +29,7 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
         navigationController?.view.addFantasySubscriptionGradient()
     
         edgesForExtendedLayout = []
-        
+     
     }
     
     var once = false
