@@ -22,17 +22,20 @@ class ProtectedImageView: UIView {
     
     func set(imageURL: String, isProtected: Bool, errorPlaceholder: UIImage? = nil) {
         
-        regularImageView.isHidden = isProtected
-        protectedImageView.isHidden = !isProtected
+        let regular = !isProtected || !immutableNonPersistentState.screenProtectEnabled
         
-        if !isProtected {
+        regularImageView.isHidden = !regular
+        protectedImageView.isHidden = regular
+        
+        if regular {
     
             ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
                 .trackView(viewIndicator: indicator)
                 .map { $0 ?? errorPlaceholder }
                 .bind(to: regularImageView.rx.image(transitionType: CATransitionType.fade.rawValue))
                 .disposed(by: bag)
-            
+         
+            return
         }
         
         ImageRetreiver.imageForURLWithoutProgress(url: imageURL)

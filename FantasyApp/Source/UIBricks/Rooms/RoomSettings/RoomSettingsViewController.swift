@@ -135,6 +135,11 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             SettingsStore.showRoomTutorial.value = false
         }
         
+        NotificationCenter.default.rx.notification(Notification.Name("screenCancel"))
+            .subscribe(onNext: { [weak self] (_) in
+                self?.securitySettingsView.switches.first?.isOn = false
+            })
+        
     }
     
     @objc func close() {

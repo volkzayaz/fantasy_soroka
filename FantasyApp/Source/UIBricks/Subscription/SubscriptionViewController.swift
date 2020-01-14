@@ -50,6 +50,9 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     }
     
     @IBAction func cancel(_ sender: Any) {
+        
+        NotificationCenter.default.post(name: NSNotification.Name("screenCancel"), object: nil)
+        
         dismiss(animated: true, completion: nil)
     }
     

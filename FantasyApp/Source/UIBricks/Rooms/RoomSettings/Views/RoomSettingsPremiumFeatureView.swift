@@ -38,7 +38,7 @@ class RoomSettingsPremiumFeatureView: UIView {
     private let descriptionLabel = UILabel(frame: .zero)
     private let upgradeImageView = SubscribeButton(frame: .zero)
     private let optionsStackView = UIStackView(frame: .zero)
-    private var switches: [UISwitch] = []
+    var switches: [UISwitch] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)

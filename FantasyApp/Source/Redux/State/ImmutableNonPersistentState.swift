@@ -14,5 +14,6 @@ var immutableNonPersistentState: ImmutableNonPersistentState!
 struct ImmutableNonPersistentState {
     
     let subscriptionProductID: String
+    let screenProtectEnabled: Bool
     
 }
