@@ -285,7 +285,27 @@ extension UserProfileViewModel {
             case sneakPeek(Fantasy.Request.LikedCards.SneakPeek)
         }
     }
-    
+
+
+    var registeredDateText: Driver<String> {
+        guard let date = user.createdAt else {
+            return Driver.just("")
+        }
+
+        let s = date.toWeekDayAndDateString()
+        return Driver.just("Registered \(s)")
+    }
+
+    var userIdText: Driver<String> {
+
+        var id = ""
+
+        #if ADHOC || DEBUG
+          id = user.id
+        #endif
+
+        return Driver.just(id)
+    }
 }
 
 struct UserProfileViewModel : MVVM_ViewModel {
@@ -298,6 +318,7 @@ struct UserProfileViewModel : MVVM_ViewModel {
         self.router = router
         self.user = user
         self.bottomActionAvailable = bottomActionsAvailable
+
         
         if user.id != User.current!.id {
             ConnectionManager.relationStatus(with: user)

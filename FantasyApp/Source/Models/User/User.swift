@@ -13,7 +13,8 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     let id: String
     //var auth: AuthData
-    
+
+    var createdAt: Date?
     var bio: Bio
     var fantasies: Fantasies
     
