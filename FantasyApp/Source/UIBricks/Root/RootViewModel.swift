@@ -60,7 +60,7 @@ struct RootViewModel : MVVM_ViewModel {
         FetchConfig().rx.request
             .retry(2)
             .subscribe(onSuccess: { [weak t = unsupportedVersionTriggerVar] (config) in
-                immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId)
+                immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId, screenProtectEnabled: config.screenProtectEnabled)
                 t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
             })
             .disposed(by: bag)

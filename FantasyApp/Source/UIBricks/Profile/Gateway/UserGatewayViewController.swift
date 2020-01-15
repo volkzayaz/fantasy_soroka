@@ -20,7 +20,8 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     
     @IBOutlet weak var profileAvatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var subscriptionSuggestionImageView: UIImageView!
+    @IBOutlet weak var membershipTitle: UILabel!
+    @IBOutlet weak var membershipSubtitle: UILabel!
     
     @IBOutlet weak var actionsContainer: UIView! {
         didSet {
@@ -32,7 +33,19 @@ class UserGatewayViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addFantasyGradient()
+        viewModel.isPremium
+            .drive(onNext: { [weak v = view] (isSubscribed) in
+                
+                if let l = v?.layer.sublayers?.first as? CAGradientLayer {
+                    l.removeFromSuperlayer()
+                }
+                
+                isSubscribed ?
+                    v?.addFantasySubscriptionGradient() :
+                    v?.addFantasyTripleGradient()
+                
+            })
+            .disposed(by: rx.disposeBag)
         
         viewModel.name
             .drive(nameLabel.rx.text)
@@ -45,7 +58,13 @@ class UserGatewayViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.isPremium
-            .drive(subscriptionSuggestionImageView.rx.isHidden)
+            .map { $0 ? "Membership" : "Get membership" }
+            .drive(membershipTitle.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.isPremium
+            .map { $0 ? "Unlimited Rooms To Play, x3 New Fantasies Daily, ScreenProtect and more" : "Manage Club Membership" }
+            .drive(membershipSubtitle.rx.text)
             .disposed(by: rx.disposeBag)
         
     }

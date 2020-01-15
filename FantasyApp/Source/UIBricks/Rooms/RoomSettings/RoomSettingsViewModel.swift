@@ -71,11 +71,6 @@ extension RoomSettingsViewModel {
         
     }
     
-    var upgradeHidden: Driver<Bool> {
-        return appState.changesOf { $0.currentUser?.subscription.isSubscribed }
-            .map { $0 ?? false }
-    }
-    
 }
 
 struct RoomSettingsViewModel: MVVM_ViewModel {
@@ -185,21 +180,13 @@ extension RoomSettingsViewModel {
     func setIsScreenShieldEnabled(_ isScreenShieldEnabled: Bool, turnoff: @escaping () -> Void )  {
         
         guard User.current?.subscription.isSubscribed ?? false else {
+            
             return router.owner.showDialog(title: "Club Membership",
                                            text: R.string.localizable.roomSettingsUpgradeSuggestion(),
                                            style: .alert, negativeText: "Subscribe",
-                                           negativeCallback: { [weak h = router.owner,
-                                                                           unowned i = indicator] in
-                                                                           
-                                                                           PurchaseManager.purhcaseSubscription()
-                                                                               .trackView(viewIndicator: i)
-                                                                               .do(onError: { _ in turnoff() })
-                                                                               .silentCatch(handler: h)
-                                                                               .subscribe()
-                                                                               .disposed(by: self.bag)
-                                                                           
-                                           },
+                                           negativeCallback: router.showSubscription,
                                            positiveText: "No, thanks", positiveCallback: turnoff)
+            
         }
         
         var daRoom = room.value

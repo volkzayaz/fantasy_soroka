@@ -63,6 +63,11 @@
 		7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7222ED9A8C00495843 /* User+Parse.swift */; };
 		7334CC7622EDC60000495843 /* SetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC7522EDC60000495843 /* SetUser.swift */; };
 		7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334CC8822EDE76700495843 /* ImageValidator.swift */; };
+		7337B83C23C8B9B500EFC948 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7337B83B23C8B9B500EFC948 /* Subscription.storyboard */; };
+		7337B84123C8CBD500EFC948 /* SubscriptionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337B83E23C8CBD500EFC948 /* SubscriptionRouter.swift */; };
+		7337B84223C8CBD500EFC948 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337B83F23C8CBD500EFC948 /* SubscriptionViewController.swift */; };
+		7337B84323C8CBD500EFC948 /* SubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337B84023C8CBD500EFC948 /* SubscriptionViewModel.swift */; };
+		7337B84523CA389000EFC948 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337B84423CA389000EFC948 /* SubscribeButton.swift */; };
 		7339BEE8239B9DED0073B883 /* BackendAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */; };
 		7339BEEB239CE9140073B883 /* PushStatusAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7339BEEA239CE9140073B883 /* PushStatusAnalytics.swift */; };
 		733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733CA052239161DE00EF7922 /* FetchConfig.swift */; };
@@ -161,6 +166,7 @@
 		7390015122E1B8D000260198 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014F22E1B8D000260198 /* SettingsStore.swift */; };
 		7390015622E1E78B00260198 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390015522E1E78A00260198 /* Dispatcher.swift */; };
 		7390015922E1ED8B00260198 /* BaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390015822E1ED8B00260198 /* BaseActions.swift */; };
+		7399140F23CA4A8B00A45E74 /* SubscriptionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399140E23CA4A8B00A45E74 /* SubscriptionEvent.swift */; };
 		739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F798E230952A70045FCD7 /* FantasySearchRouter.swift */; };
 		739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F798F230952A70045FCD7 /* FantasySearchViewController.swift */; };
 		739F7993230952A70045FCD7 /* FantasySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F7990230952A70045FCD7 /* FantasySearchViewModel.swift */; };
@@ -466,6 +472,11 @@
 		7334CC7222ED9A8C00495843 /* User+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Parse.swift"; sourceTree = "<group>"; };
 		7334CC7522EDC60000495843 /* SetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUser.swift; sourceTree = "<group>"; };
 		7334CC8822EDE76700495843 /* ImageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValidator.swift; sourceTree = "<group>"; };
+		7337B83B23C8B9B500EFC948 /* Subscription.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
+		7337B83E23C8CBD500EFC948 /* SubscriptionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRouter.swift; sourceTree = "<group>"; };
+		7337B83F23C8CBD500EFC948 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
+		7337B84023C8CBD500EFC948 /* SubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewModel.swift; sourceTree = "<group>"; };
+		7337B84423CA389000EFC948 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
 		7339BEE7239B9DED0073B883 /* BackendAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAnalytics.swift; sourceTree = "<group>"; };
 		7339BEEA239CE9140073B883 /* PushStatusAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushStatusAnalytics.swift; sourceTree = "<group>"; };
 		733CA052239161DE00EF7922 /* FetchConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchConfig.swift; sourceTree = "<group>"; };
@@ -565,6 +576,7 @@
 		7390014F22E1B8D000260198 /* SettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		7390015522E1E78A00260198 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		7390015822E1ED8B00260198 /* BaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseActions.swift; sourceTree = "<group>"; };
+		7399140E23CA4A8B00A45E74 /* SubscriptionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEvent.swift; sourceTree = "<group>"; };
 		739F798E230952A70045FCD7 /* FantasySearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasySearchRouter.swift; sourceTree = "<group>"; };
 		739F798F230952A70045FCD7 /* FantasySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasySearchViewController.swift; sourceTree = "<group>"; };
 		739F7990230952A70045FCD7 /* FantasySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasySearchViewModel.swift; sourceTree = "<group>"; };
@@ -980,6 +992,7 @@
 		7312B07522D741D500DB0F36 /* UIBricks */ = {
 			isa = PBXGroup;
 			children = (
+				7337B83D23C8CBBA00EFC948 /* Subscription */,
 				7361F33223351F2A007B84B0 /* Connections */,
 				84C1D0422327BA8200648DE1 /* Rooms */,
 				7322310D23040DA4009DD37F /* Fantasy */,
@@ -1109,6 +1122,7 @@
 				73E6012122EC3A9600F767BF /* Authorization.storyboard */,
 				7322310B23040D79009DD37F /* FantasyCard.storyboard */,
 				73C96F162340A421002C3F8E /* UserGateway.storyboard */,
+				7337B83B23C8B9B500EFC948 /* Subscription.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1225,6 +1239,7 @@
 			children = (
 				7330FBA82358C63E008C08CF /* TickButton.swift */,
 				7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */,
+				7337B84423CA389000EFC948 /* SubscribeButton.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -1263,6 +1278,16 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		7337B83D23C8CBBA00EFC948 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				7337B83E23C8CBD500EFC948 /* SubscriptionRouter.swift */,
+				7337B83F23C8CBD500EFC948 /* SubscriptionViewController.swift */,
+				7337B84023C8CBD500EFC948 /* SubscriptionViewModel.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
 		7339BEE6239B9DD90073B883 /* BackendAnalytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -1279,6 +1304,7 @@
 				73FDD08E2399184200BA3E1D /* CardAnalyticsEvents.swift */,
 				73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */,
 				73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */,
+				7399140E23CA4A8B00A45E74 /* SubscriptionEvent.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -2509,6 +2535,7 @@
 				84C1D0342327B95300648DE1 /* Questioning.png in Resources */,
 				7312B0D122D74FB200DB0F36 /* deploy_patch_FantasyApp.command in Resources */,
 				73432ACE238A9859008CF2F1 /* OtherMessageCell.xib in Resources */,
+				7337B83C23C8B9B500EFC948 /* Subscription.storyboard in Resources */,
 				7312B06A22D7403300DB0F36 /* Assets.xcassets in Resources */,
 				841681E422E9AE6E00FA9455 /* SF-Pro-Text-Light.otf in Resources */,
 				841681EB22E9AE6E00FA9455 /* SF-Pro-Text-BlackItalic.otf in Resources */,
@@ -2723,12 +2750,14 @@
 				B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */,
+				7337B84123C8CBD500EFC948 /* SubscriptionRouter.swift in Sources */,
 				7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */,
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				843CF71F234370480098C196 /* CreateDraftRoomResource.swift in Sources */,
 				B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */,
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				B7EE6C102362DD1F00510255 /* ListRoundedView.swift in Sources */,
+				7399140F23CA4A8B00A45E74 /* SubscriptionEvent.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
 				7374F6A8235B8435000D6D20 /* ConnectionCells.swift in Sources */,
@@ -2765,6 +2794,7 @@
 				73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */,
 				7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
+				7337B84323C8CBD500EFC948 /* SubscriptionViewModel.swift in Sources */,
 				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
 				73FDD093239940F300BA3E1D /* TimeSpentCounter.swift in Sources */,
@@ -2888,6 +2918,7 @@
 				842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */,
 				B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */,
 				733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */,
+				7337B84223C8CBD500EFC948 /* SubscriptionViewController.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				733CA05A23951D7000EF7922 /* FantasyCollectionRouter.swift in Sources */,
@@ -2896,6 +2927,7 @@
 				B7E4E3FA237E9E8600D8D9CA /* FantasyDeckTutorialView.swift in Sources */,
 				734C70C523214C7E00ED2E91 /* UserProfilePhotoCell.swift in Sources */,
 				841681C922E999CA00FA9455 /* SecondaryButton.swift in Sources */,
+				7337B84523CA389000EFC948 /* SubscribeButton.swift in Sources */,
 				844C84F323509C4C00BDC60F /* InviteParticipantCollectionViewCell.swift in Sources */,
 				7312B0BB22D7472500DB0F36 /* Enivironment.swift in Sources */,
 				7353BDE222EC9857001D46A6 /* MainTabBarRouter.swift in Sources */,

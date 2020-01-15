@@ -38,6 +38,23 @@ extension UIView {
 
         layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    func addFantasySubscriptionGradient() {
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+
+        let color1 = UIColor(fromHex: 0xF0398B)
+        let color2 = UIColor(fromHex: 0xB77AE9)
+        let color3 = UIColor(fromHex: 0x54EECB)
+
+        gradientLayer.colors = [color1.cgColor, color2.cgColor, color3.cgColor]
+        gradientLayer.locations = [0, 0.6, 1]
+        gradientLayer.startPoint = CGPoint(x: 0.25, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.4)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
 
     func addFantasyRoundedCorners() {
         clipsToBounds = true

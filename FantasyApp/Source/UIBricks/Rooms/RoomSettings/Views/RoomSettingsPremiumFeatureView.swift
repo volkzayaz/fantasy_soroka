@@ -25,11 +25,10 @@ class RoomSettingsPremiumFeatureView: UIView {
             
             titleLabel.text = vm.title
             descriptionLabel.text = vm.description
-            layer.borderColor = vm.isEnabled ? UIColor.clear.cgColor : UIColor.premium.cgColor
+            layer.borderColor = vm.isEnabled ? UIColor.clear.cgColor : R.color.textPinkColor()!.cgColor
             
-            viewModel.upgradeHidden
-                .drive(upgradeImageView.rx.isHidden)
-                .disposed(by: rx.disposeBag)
+            upgradeImageView.presenter = viewModel.router.owner
+            upgradeImageView.defaultPage = .screenProtect
             
             setupOptions()
         }
@@ -37,9 +36,9 @@ class RoomSettingsPremiumFeatureView: UIView {
 
     private let titleLabel = UILabel(frame: .zero)
     private let descriptionLabel = UILabel(frame: .zero)
-    private let upgradeImageView = UIImageView(frame: .zero)
+    private let upgradeImageView = SubscribeButton(frame: .zero)
     private let optionsStackView = UIStackView(frame: .zero)
-    private var switches: [UISwitch] = []
+    var switches: [UISwitch] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +56,7 @@ class RoomSettingsPremiumFeatureView: UIView {
         backgroundColor = .white
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 16.0
-        layer.borderColor = UIColor.premium.cgColor
+        layer.borderColor = R.color.textPinkColor()!.cgColor
         layer.borderWidth = 1.0
 
         optionsStackView.axis = .vertical
@@ -74,7 +73,6 @@ class RoomSettingsPremiumFeatureView: UIView {
         descriptionLabel.numberOfLines = 0
         titleLabel.backgroundColor = .clear
 
-        upgradeImageView.image = R.image.roomUpgrade()
     }
 
     private func configureLayout() {
@@ -86,9 +84,7 @@ class RoomSettingsPremiumFeatureView: UIView {
         NSLayoutConstraint.activate([
             upgradeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             upgradeImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            upgradeImageView.widthAnchor.constraint(equalToConstant: 101),
-            upgradeImageView.heightAnchor.constraint(equalToConstant: 30),
-
+            
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 22),
             titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             titleLabel.rightAnchor.constraint(equalTo: upgradeImageView.leftAnchor, constant: -16),

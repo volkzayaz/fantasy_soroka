@@ -152,13 +152,7 @@ extension FantasyDeckViewModel {
     }
 
     func subscribeTapped() {
-        
-        PurchaseManager.purhcaseSubscription()
-            .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe()
-            .disposed(by: bag)
-        
+        router.showSubscription()
     }
     
     mutating func cardTapped(card: Fantasy.Card) {

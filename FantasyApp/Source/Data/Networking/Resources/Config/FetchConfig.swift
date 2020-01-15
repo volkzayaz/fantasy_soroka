@@ -13,6 +13,7 @@ struct ServerConfig: Codable {
     
     let IAPSubscriptionProductId: String
     let minSupportedIOSVersion: CodableVersion
+    let screenProtectEnabled: Bool
     
 }
 
