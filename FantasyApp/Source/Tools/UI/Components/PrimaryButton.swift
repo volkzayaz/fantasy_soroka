@@ -14,6 +14,8 @@ public class PrimaryButton: UIButton {
         case normal
         case selector
     }
+    
+    var useTransparency = true
 
     public var mode: Mode = .normal {
         didSet {
@@ -72,7 +74,7 @@ public class PrimaryButton: UIButton {
     }
 }
 
-private extension PrimaryButton {
+extension PrimaryButton {
     func setup() {
         setupBackgroundColor()
         clipsToBounds = true
@@ -94,7 +96,7 @@ private extension PrimaryButton {
     }
 
     func setupTransparencyMask() {
-        guard let text = titleLabel?.text, let font = titleLabel?.font else {
+        guard let text = titleLabel?.text, let font = titleLabel?.font, useTransparency else {
             return
         }
 

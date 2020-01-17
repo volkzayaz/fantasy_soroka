@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+import Branch
+
 extension FantasyDeckViewModel {
 
     var collectionsDataSource: Driver<[AnimatableSectionModel<String, Fantasy.Collection>]> {
@@ -138,7 +140,8 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
     let router: FantasyDeckRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
+ 
+    private var buo: BranchUniversalObject!
 }
 
 extension FantasyDeckViewModel {
@@ -175,6 +178,10 @@ extension FantasyDeckViewModel {
     
     mutating func cardShown(card: Fantasy.Card) {
         viewTillOpenCardTimer.start()
+    }
+ 
+    mutating func share(card: Fantasy.Card) {
+        self.buo = card.share(presenter: router.owner)
     }
     
 }

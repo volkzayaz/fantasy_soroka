@@ -74,7 +74,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -161,7 +161,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
             return cell
                 
         }
-        else {
+        else if indexPath.section == 5 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.bottomCollectionPurchaseCell,
             for: indexPath)!
@@ -171,6 +171,15 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
                 .disposed(by: cell.rx.disposeBag)
             
             cell.nameLabel.text = viewModel.collection.title
+            cell.viewModel = viewModel
+            
+            return cell
+            
+        } else {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCollectionCell,
+            for: indexPath)!
+            
             cell.viewModel = viewModel
             
             return cell
@@ -337,6 +346,25 @@ class BottomCollectionPurchaseCell: UITableViewCell {
     
 }
 
+class ShareCollectionCell: UITableViewCell {
+    
+    var viewModel: FantasyCollectionDetailsViewModel!
+    
+    @IBOutlet weak var shareButton: PrimaryButton! {
+        didSet {
+            shareButton.useTransparency = false
+            shareButton.normalBackgroundColor = UIColor(fromHex: 0xEDEDF1)
+            shareButton.setupBackgroundColor()
+            shareButton.setTitleColor(UIColor.fantasyPink, for: .normal)
+        }
+    }
+    
+    @IBAction func shareButton(_ sender: Any) {
+        viewModel.share()
+    }
+    
+}
+
 class CardCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var andMoreLable: UILabel!
@@ -351,3 +379,5 @@ class CardCollectionCell: UICollectionViewCell {
     }
     
 }
+
+

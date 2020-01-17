@@ -43,3 +43,5 @@ func fatalErrorInDebug(_ lastMessage: @autoclosure () -> String, file: StaticStr
     print("\(file):\(line): \(lastMessage())")
     #endif
 }
+
+

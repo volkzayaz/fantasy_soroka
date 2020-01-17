@@ -54,7 +54,11 @@ struct AppState: Equatable {
     var reloadRoomsTriggerBecauseOfComplexFreezeLogic = false
     
     var fantasiesDeck: FantasiesDeck
+    
     var inviteDeeplink: InviteDeeplink?
+    var openRoomRef: RoomRef?
+    var openCard: OpenCard?
+    var openCollection: OpenCollection?
     
     struct FantasiesDeck: Equatable {
         
@@ -66,6 +70,17 @@ struct AppState: Equatable {
     struct InviteDeeplink: Equatable {
         let roomRef: RoomRef
         let password: String
+    }
+    
+    struct OpenCard: Equatable {
+        let udid = UUID().uuidString
+        let cardId: String
+        let senderId: String
+    }
+    
+    struct OpenCollection: Equatable {
+        let udid = UUID().uuidString
+        let id: String
     }
     
 }

@@ -48,12 +48,21 @@ class FantasyDeckItemView: UIView {
 
     private var gradientLayer = CAGradientLayer()
 
+    var card: Fantasy.Card!
+    var viewModel: FantasyDeckViewModel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureStyling()
         configureLayout()
+        
+        shareButton.addTarget(self, action: "share", for: .touchUpInside)
     }
 
+    @objc func share() {
+        viewModel.share(card: card)
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureStyling()
