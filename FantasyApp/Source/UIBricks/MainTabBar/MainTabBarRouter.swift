@@ -23,7 +23,7 @@ struct MainTabBarRouter : MVVM_Router {
         
     }
     
-    func presentCardDetails(card: Fantasy.Card) {
+    func presentCardDetails(card: Fantasy.Card, preferencesEnabled: Bool) {
         
         owner.selectedIndex = 0
         
@@ -31,7 +31,8 @@ struct MainTabBarRouter : MVVM_Router {
         vc.viewModel = .init(router: .init(owner: vc),
                              provider: OwnFantasyDetailsProvider(card: card,
                                                                  initialReaction: .neutral,
-                                                                 navigationContext: .ShareLink))
+                                                                 navigationContext: .ShareLink,
+                                                                 preferenceEnabled: preferencesEnabled))
         vc.modalPresentationStyle = .overFullScreen
         
         (owner.viewControllers![0] as! UINavigationController).viewControllers.first!.present(vc, animated: true, completion: nil)

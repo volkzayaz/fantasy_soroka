@@ -28,6 +28,10 @@ extension FantasyDetailsViewModel {
                 return [AnimatableSectionModel(model: "", items: collections.filter { !$0.isPurchased })]
         }
     }
+
+    var preferenceEnabled: Bool {
+        return provider.preferenceEnabled
+    }
     
 }
 

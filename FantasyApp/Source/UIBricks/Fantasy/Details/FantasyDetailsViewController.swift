@@ -107,6 +107,10 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        if !viewModel.preferenceEnabled {
+            preferenceView.removeFromSuperview()
+        }
+         
         preferenceSelector.didPressLike = { [weak self] in
             self?.viewModel.likeCard()
         }

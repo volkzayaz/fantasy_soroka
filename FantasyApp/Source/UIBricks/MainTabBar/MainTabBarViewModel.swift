@@ -95,17 +95,22 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             .flatMap { [unowned i = indicator] x in
 
                 return Single.zip(Fantasy.Manager.card(by: x.cardId),
-                                  RoomManager.room(with: x.senderId))
+                                  RoomManager.room(with: x.senderId),
+                                  Fantasy.Manager.fetchCollections()
+                )
                         .trackView(viewIndicator: i)
                 
             }
-            .subscribe(onNext: { (card, maybeRoom) in
+            .subscribe(onNext: { (card, maybeRoom, collections) in
                 
                 if let x = maybeRoom {
                     router.presentCardDetails(card: card, in: x)
                 }
                 else {
-                    router.presentCardDetails(card: card)
+                    
+                    let prefsEnabled = collections.contains { $0.isPurchased && $0.title == card.collectionName }
+                    
+                    router.presentCardDetails(card: card, preferencesEnabled: prefsEnabled)
                 }
                 
             })

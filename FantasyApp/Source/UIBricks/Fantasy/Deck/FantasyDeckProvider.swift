@@ -28,6 +28,7 @@ protocol FantasyDetailProvider {
     
     var card: Fantasy.Card { get }
     var initialReaction: Fantasy.Card.Reaction { get }
+    var preferenceEnabled: Bool { get }
     
     ///analytics properties defined by stakeholders
     ///this is why they are so messy
@@ -51,12 +52,13 @@ struct MainDeckProvider: FantasyDeckProvier {
     init() {
         
         appState.map { $0.fantasiesDeck }
-        .asObservable()
-        .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
-        .subscribe(onNext: { deck in
-            Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
-        })
-        .disposed(by: bag)
+            .asObservable()
+            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
+            .subscribe(onNext: { deck in
+                Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
+            })
+            .disposed(by: bag)
+        
     }
     
     var navigationContext: Fantasy.Card.NavigationContext {
@@ -90,7 +92,8 @@ struct MainDeckProvider: FantasyDeckProvier {
     func detailsProvider(card: Fantasy.Card) -> FantasyDetailProvider {
         return OwnFantasyDetailsProvider(card: card,
                                          initialReaction: .neutral,
-                                         navigationContext: .Deck)
+                                         navigationContext: .Deck,
+                                         preferenceEnabled: true)
         
     }
     
@@ -170,6 +173,7 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
     let navigationContext: Fantasy.Card.NavigationContext
+    let preferenceEnabled: Bool
     
     func shouldReact(to reaction: Fantasy.Card.Reaction) -> Bool {
         
@@ -194,6 +198,10 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
 }
 
 struct RoomFantasyDetailsProvider: FantasyDetailProvider {
+    
+    var preferenceEnabled: Bool {
+        return true
+    }
     
     let room: RoomIdentifier
     let card: Fantasy.Card
