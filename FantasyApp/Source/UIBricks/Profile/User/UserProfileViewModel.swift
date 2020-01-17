@@ -292,7 +292,7 @@ extension UserProfileViewModel {
             return Driver.just("")
         }
 
-        let s = date.toWeekDayAndDateString()
+        let s = date.toRegisteredDateString()
         return Driver.just("Registered \(s)")
     }
 
