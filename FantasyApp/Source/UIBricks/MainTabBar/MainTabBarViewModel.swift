@@ -65,19 +65,6 @@ struct MainTabBarViewModel : MVVM_ViewModel {
     init(router: MainTabBarRouter) {
         self.router = router
         
-        ///Refresh on app start happens here:
-        ///Alternativelly we can encode appState to disk and just restore it from there
-        ///To keep syncing problems at min for now we'll fetch most info from server
-        ///But for v2 we want to implement disk-first restoration policy
-        
-        /////progress indicator
-        
-//        indicator.asDriver()
-//            .drive(onNext: { [weak h = router.owner] (loading) in
-//                h?.setLoadingStatus(loading)
-//            })
-//            .disposed(by: bag)
-        
         appState.changesOf { $0.inviteDeeplink }
             .notNil()
             .asObservable()
@@ -86,9 +73,66 @@ struct MainTabBarViewModel : MVVM_ViewModel {
                     .trackView(viewIndicator: i)
             }
             .subscribe(onNext: { (room) in
-                router.presentRoomSettings(room: room)
+                router.presentRoom(room: room, page: .chat)
             })
             .disposed(by: bag)
+        
+        appState.changesOf { $0.openRoomRef }
+            .notNil()
+            .asObservable()
+            .flatMap { [unowned i = indicator] x in
+                RoomManager.getRoom(id: x.id)
+                    .trackView(viewIndicator: i)
+            }
+            .subscribe(onNext: { (room) in
+                router.presentRoom(room: room, page: .chat)
+            })
+            .disposed(by: bag)
+        
+        appState.changesOf { $0.openCard }
+            .notNil()
+            .asObservable()
+            .flatMap { [unowned i = indicator] x in
+
+                return Single.zip(Fantasy.Manager.card(by: x.cardId),
+                                  RoomManager.room(with: x.senderId))
+                        .trackView(viewIndicator: i)
+                
+            }
+            .subscribe(onNext: { (card, maybeRoom) in
+                
+                if let x = maybeRoom {
+                    router.presentCardDetails(card: card, in: x)
+                }
+                else {
+                    router.presentCardDetails(card: card)
+                }
+                
+            })
+            .disposed(by: bag)
+        
+        
+        appState.changesOf { $0.openCollection }
+            .notNil()
+            .asObservable()
+            .flatMap { [unowned i = indicator] x in
+                Fantasy.Manager.collection(by: x.id)
+                    .trackView(viewIndicator: i)
+            }
+            .subscribe(onNext: { (collection) in
+                router.present(collection: collection)
+            })
+            .disposed(by: bag)
+        
+        
+        /////progress indicator
+        
+        indicator.asDriver()
+            .drive(onNext: { [weak h = router.owner] (loading) in
+                h?.setLoadingStatus(loading)
+            })
+            .disposed(by: bag)
+
         
     }
     

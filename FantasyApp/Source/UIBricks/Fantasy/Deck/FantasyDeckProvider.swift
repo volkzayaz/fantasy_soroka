@@ -195,7 +195,7 @@ struct OwnFantasyDetailsProvider: FantasyDetailProvider {
 
 struct RoomFantasyDetailsProvider: FantasyDetailProvider {
     
-    let room: Room
+    let room: RoomIdentifier
     let card: Fantasy.Card
     let initialReaction: Fantasy.Card.Reaction
     let navigationContext: Fantasy.Card.NavigationContext

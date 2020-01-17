@@ -132,7 +132,27 @@ extension AppState.FantasiesDeck {
     
 }
 
+import Branch
 extension Fantasy.Card {
+    
+    func share(presenter: UIViewController) -> BranchUniversalObject {
+        
+        let buo = BranchUniversalObject(canonicalIdentifier: "card/\(id)/\(User.current!.id)")
+        buo.title = "Fantasy"
+        buo.contentDescription = "Hey! We have things to swipe together 🍓Check out Fantasy Match!"
+        buo.publiclyIndex = true
+        buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
+            
+            b?.showShareSheet(with: BranchLinkProperties(),
+                                andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
+                                from: v) { (activityType, completed) in
+
+            }
+            
+        }
+        
+        return buo
+    }
     
 //    static var fakes: [Fantasy.Card] {
 //
@@ -147,6 +167,25 @@ extension Fantasy.Card {
 }
 
 extension Fantasy.Collection {
+    
+    func share(presenter: UIViewController) -> BranchUniversalObject {
+        
+        let buo = BranchUniversalObject(canonicalIdentifier: "collection/\(id)")
+        buo.title = "Fantasy"
+        buo.contentDescription = "Hey! We have things to swipe together 🍓Check out Fantasy Match!"
+        buo.publiclyIndex = true
+        buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
+            
+            b?.showShareSheet(with: BranchLinkProperties(),
+                                andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
+                                from: v) { (activityType, completed) in
+
+            }
+            
+        }
+        
+        return buo
+    }
     
 //    static var fakes: [Fantasy.Collection] {
 //        

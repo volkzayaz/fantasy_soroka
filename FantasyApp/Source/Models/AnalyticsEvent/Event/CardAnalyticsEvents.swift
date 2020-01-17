@@ -119,7 +119,7 @@ extension Fantasy.Card {
     
     ///which screen was before action happened
     enum NavigationContext: String {
-        case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFantasies, MyFantasiesBlocked
+        case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFantasies, MyFantasiesBlocked, ShareLink
     }
     
     ///on which screen action happend

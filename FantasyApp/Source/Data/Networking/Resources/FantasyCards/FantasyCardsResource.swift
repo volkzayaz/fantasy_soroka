@@ -280,4 +280,44 @@ extension Fantasy.Request {
         
     }
     
+    struct FetchCard: AuthorizedAPIResource {
+        
+        let id: String
+        
+        typealias responseType = Fantasy.Card
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/fantasy-cards/\(id)"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+    
+    struct FetchCollection: AuthorizedAPIResource {
+        
+        let id: String
+        
+        typealias responseType = Fantasy.Collection
+        
+        var method: Moya.Method {
+            return .get
+        }
+        
+        var path: String {
+            return "/fantasy-collections/\(id)"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+        
+    }
+    
 }

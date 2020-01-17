@@ -11,6 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Branch
 
 extension FantasyDetailsViewModel {
     
@@ -54,7 +55,8 @@ struct FantasyDetailsViewModel: MVVM_ViewModel {
     let router: FantasyDetailsRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-
+    private var buo: BranchUniversalObject!
+    
     struct CellModel: IdentifiableType, Equatable {
         var identity: String {
             return uid
@@ -146,6 +148,10 @@ extension FantasyDetailsViewModel {
     
     mutating func expandStory() {
         collapsedStory = true
+    }
+    
+    mutating func share() {
+        self.buo = provider.card.share(presenter: router.owner)
     }
     
     private mutating func reportReactionTime(reaction: Fantasy.Card.Reaction) {

@@ -327,6 +327,9 @@
                                     <constraint firstAttribute="width" constant="254" id="pFg-tV-qMj"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="share:" destination="N1n-eG-0ux" eventType="touchUpInside" id="XXG-ur-7Jo"/>
+                                </connections>
                             </button>
                             <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Id-55-adl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -669,7 +672,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WhatsInsideCollectionDetailsCell" rowHeight="362" id="bWW-J6-x8A" customClass="WhatsInsideCollectionDetailsCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="303.5" width="345" height="362"/>
+                                        <rect key="frame" x="15" y="303.5" width="345" height="362"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bWW-J6-x8A" id="hyU-ym-b8X">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="362"/>
@@ -803,6 +806,7 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <color key="backgroundColor" red="0.92941176470588238" green="0.92917501930000002" blue="0.94562381510000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -815,6 +819,38 @@
                                             <outlet property="buyButton" destination="cOs-a4-Q9N" id="BbD-QF-0vm"/>
                                             <outlet property="cardImageView" destination="oSe-mZ-Sjn" id="uKF-dv-GqB"/>
                                             <outlet property="nameLabel" destination="uEr-eq-CSA" id="XrL-eZ-Zch"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShareCollectionCell" rowHeight="94" id="j0K-if-uW7" userLabel="ShareCollectionCell" customClass="ShareCollectionCell" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="965.5" width="345" height="94"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j0K-if-uW7" id="vhj-XG-whH">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="94"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-7x-tEo" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                                    <rect key="frame" x="45.5" y="5" width="254" height="84"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="254" id="DHA-Df-kdH"/>
+                                                        <constraint firstAttribute="height" constant="52" id="rhZ-c2-pcF"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Share Collection"/>
+                                                    <connections>
+                                                        <action selector="shareButton:" destination="j0K-if-uW7" eventType="touchUpInside" id="bCI-v6-Hlh"/>
+                                                        <action selector="shareButton:" destination="Bfm-08-3FC" eventType="touchUpInside" id="nSG-Uz-v8f"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="nDf-7x-tEo" secondAttribute="bottom" constant="5" id="0lQ-MI-rTF"/>
+                                                <constraint firstItem="nDf-7x-tEo" firstAttribute="centerX" secondItem="vhj-XG-whH" secondAttribute="centerX" id="D4n-dP-bFb"/>
+                                                <constraint firstItem="nDf-7x-tEo" firstAttribute="top" secondItem="vhj-XG-whH" secondAttribute="top" constant="5" id="igY-TJ-43s"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="shareButton" destination="nDf-7x-tEo" id="Yfy-Tg-Fmq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -845,6 +881,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YN0-Pf-Ae3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Bfm-08-3FC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="-287.40629685157421"/>
         </scene>

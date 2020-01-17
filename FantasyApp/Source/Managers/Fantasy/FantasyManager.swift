@@ -94,6 +94,14 @@ extension Fantasy.Manager {
     static func likedCards(of user: User) -> Single<[Fantasy.Request.LikedCards.SneakPeek]> {
         return Fantasy.Request.LikedCards(of: user).rx.request
     }
+    
+    static func card(by id: String) -> Single<Fantasy.Card> {
+        return Fantasy.Request.FetchCard(id: id).rx.request
+    }
+    
+    static func collection(by id: String) -> Single<Fantasy.Collection> {
+        return Fantasy.Request.FetchCollection(id: id).rx.request
+    }
  
 }
 
@@ -110,7 +118,7 @@ extension Fantasy.Manager {
         
     }
     
-    static func like(card: Fantasy.Card, in room: Room,
+    static func like(card: Fantasy.Card, in room: RoomIdentifier,
                      actionContext: Fantasy.Card.ActionContext) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
         
         Dispatcher.dispatch(action: LikeRoomCardLogic(card: card))
@@ -122,10 +130,8 @@ extension Fantasy.Manager {
             .rx.request
     }
     
-    static func dislike(card: Fantasy.Card, in room: Room,
+    static func dislike(card: Fantasy.Card, in room: RoomIdentifier,
                         actionContext: Fantasy.Card.ActionContext) -> Single<Fantasy.Request.ReactOnRoomCard.MutualIndicator> {
-        
-        print("Analytics: backend Request = Like source: \(actionContext.stakeholdersParams)")
         
         return Fantasy.Request.ReactOnRoomCard(reaction: .dislike,
                                                card: card,

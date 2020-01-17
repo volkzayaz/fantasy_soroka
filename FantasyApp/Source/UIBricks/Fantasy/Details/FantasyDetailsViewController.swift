@@ -274,6 +274,10 @@ private extension FantasyDetailsViewController {
         
         viewModel.expandStory()
     }
+    
+    @IBAction func share(_ sender: Any) {
+        viewModel.share()
+    }
 }
 
 // MARK: - Scrolling

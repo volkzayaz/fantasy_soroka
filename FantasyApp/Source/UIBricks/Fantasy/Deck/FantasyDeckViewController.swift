@@ -323,6 +323,10 @@ extension FantasyDeckViewController: KolodaViewDataSource, KolodaViewDelegate {
         view.hasStory = !card.story.isEmpty
         view.isPaid = card.isPaid
         view.imageURL = card.imageURL
+        
+        view.card = card
+        view.viewModel = viewModel
+        
         return view
     }
     

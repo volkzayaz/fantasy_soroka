@@ -62,8 +62,23 @@ extension PushManager: UNUserNotificationCenterDelegate {
         
         //Branch.getInstance()?.handlePushNotification(  userInfo)
         
-        print(response)
+        guard let data = try? JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo, options: []) else {
+            return
+        }
+        
+        if let x = try? JSONDecoder().decode(NewMessageNotification.self, from: data) {
+            Dispatcher.dispatch(action: ChangeOpeRoomRef(roomRef: x.roomRef) )
+            return
+        }
         
     }
     
+}
+
+struct NewMessageNotification: Decodable {
+    let roomId: String
+    
+    var roomRef: RoomRef {
+        return .init(id: roomId)
+    }
 }

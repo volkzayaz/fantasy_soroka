@@ -55,14 +55,36 @@ extension Configuration {
         //branch?.setDebug()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
-            guard let identifier = params?["$canonical_identifier"] as? String,
-                identifier.starts(with: "room/"),
-                let accessToken = params?["inviteToken"] as? String else {
+            guard let identifier = params?["$canonical_identifier"] as? String else {
                 return
             }
             
-            let roomId = String(identifier.dropFirst(5))
-            Dispatcher.dispatch(action: ChangeInviteDeeplink(inviteDeeplink: .init(roomRef: .init(id: roomId), password: accessToken)))
+            if identifier.starts(with: "room/"),
+               let accessToken = params?["inviteToken"] as? String {
+            
+                let roomId = String(identifier.dropFirst(5))
+                Dispatcher.dispatch(action: ChangeInviteDeeplink(inviteDeeplink: .init(roomRef: .init(id: roomId), password: accessToken)))
+                
+            }
+            
+            if identifier.starts(with: "card/") {
+                
+                let parts = identifier.split(separator: "/")
+                
+                let cardID = parts[1]
+                let senderID = parts[2] 
+                
+                Dispatcher.dispatch(action: OpenCard(cardId: String(cardID),
+                                                     senderId: String(senderID)))
+            }
+            
+            if identifier.starts(with: "collection/") {
+                
+                let collectionId = String(identifier.split(separator: "/")[1])
+                
+                Dispatcher.dispatch(action: OpenCollection(collectionId: collectionId))
+                
+            }
             
         })
         // uncomment to test Branch Integration

@@ -12,6 +12,7 @@ import SwiftyStoreKit
 
 import RxSwift
 import RxCocoa
+import Branch
 
 extension FantasyCollectionDetailsViewModel {
     
@@ -66,7 +67,7 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     let router: FantasyCollectionDetailsRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
+    private var buo: BranchUniversalObject!
 }
 
 extension FantasyCollectionDetailsViewModel {
@@ -86,6 +87,10 @@ extension FantasyCollectionDetailsViewModel {
             })
             .disposed(by: bag)
         
+    }
+    
+    mutating func share() {
+        buo = collection.share(presenter: router.owner)
     }
     
     mutating func viewAppeared() {

@@ -19,3 +19,41 @@ struct ChangeInviteDeeplink: Action {
     }
     
 }
+
+
+struct ChangeOpeRoomRef: Action {
+    
+    let roomRef: RoomRef
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        state.openRoomRef = roomRef
+        return state
+    }
+    
+}
+
+struct OpenCard: Action {
+    
+    let cardId: String
+    let senderId: String
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        state.openCard = .init(cardId: cardId, senderId: senderId)
+        return state
+    }
+    
+}
+
+struct OpenCollection: Action {
+    
+    let collectionId: String
+    
+    func perform(initialState: AppState) -> AppState {
+        var state = initialState
+        state.openCollection = .init(id: collectionId)
+        return state
+    }
+    
+}
