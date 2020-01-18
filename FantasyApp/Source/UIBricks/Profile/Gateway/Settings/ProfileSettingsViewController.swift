@@ -16,8 +16,8 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
     @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var heartImageView: UIImageView!
-    @IBOutlet weak var parrotImageView: UIImageView!
+    @IBOutlet weak var heartImageView: ImageViewWithFantasyAnimation!
+    @IBOutlet weak var parrotImageView: ImageViewWithFantasyAnimation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,19 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     }
 
     @IBAction func tapHeart(_ sender: Any) {
+//        heartImageView.startAnimation()
     }
     
     @IBAction func tapParrot(_ sender: Any) {
+//        parrotImageView.startAnimation()
+    }
+
+    @IBAction func longPressHeart(_ sender: Any) {
+        heartImageView.startAnimation()
+    }
+
+    @IBAction func longPressParrot(_ sender: Any) {
+        parrotImageView.startAnimation()
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
