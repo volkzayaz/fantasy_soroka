@@ -328,7 +328,7 @@
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
 		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
-		B72BB57723D3201B00D2CDE5 /* ImageViewWithFantasyAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BB57623D3201B00D2CDE5 /* ImageViewWithFantasyAnimation.swift */; };
+		B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */; };
 		B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */; };
 		B72DDBC723B3739800FB1848 /* RoomDetailsTitlePhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
@@ -742,7 +742,7 @@
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
 		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
-		B72BB57623D3201B00D2CDE5 /* ImageViewWithFantasyAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewWithFantasyAnimation.swift; sourceTree = "<group>"; };
+		B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyAnimatedImage.swift; sourceTree = "<group>"; };
 		B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsTitlePhotoView.swift; sourceTree = "<group>"; };
 		B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomDetailsTitlePhotoView.xib; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
@@ -2270,7 +2270,7 @@
 		B72BB57523D3200300D2CDE5 /* ImageWithFantasyAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				B72BB57623D3201B00D2CDE5 /* ImageViewWithFantasyAnimation.swift */,
+				B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */,
 			);
 			path = ImageWithFantasyAnimation;
 			sourceTree = "<group>";
@@ -2947,7 +2947,7 @@
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
-				B72BB57723D3201B00D2CDE5 /* ImageViewWithFantasyAnimation.swift in Sources */,
+				B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */,
 				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,

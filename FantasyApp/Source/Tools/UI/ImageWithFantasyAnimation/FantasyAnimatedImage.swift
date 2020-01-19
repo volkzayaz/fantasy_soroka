@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewWithFantasyAnimation: UIView {
+class FantasyAnimatedImage: UIView {
 
     @IBInspectable var imageName: String = ""
 
@@ -59,7 +59,7 @@ class ImageViewWithFantasyAnimation: UIView {
 
 //MARK:- Animation Control
 
-extension ImageViewWithFantasyAnimation {
+extension FantasyAnimatedImage {
     public func startAnimation() {
 
         guard !isAnimation else { return }

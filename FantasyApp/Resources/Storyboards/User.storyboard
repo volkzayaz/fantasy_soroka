@@ -326,7 +326,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileAnswerCell" rowHeight="74" id="BA6-US-fF7" customClass="UserProfileAnswerCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="528.5" width="374" height="74"/>
+                                        <rect key="frame" x="0.0" y="528.5" width="374" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BA6-US-fF7" id="ofC-Xy-5PL">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
@@ -486,7 +486,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Se-hg-s60" customClass="iCarousel">
-                                <rect key="frame" x="25" y="49" width="364" height="798"/>
+                                <rect key="frame" x="0.0" y="49" width="414" height="798"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="sJw-Y8-Mmr" id="Hi6-DJ-kyS"/>
@@ -496,10 +496,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0Se-hg-s60" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" constant="25" id="3sU-5R-DMQ"/>
+                            <constraint firstItem="0Se-hg-s60" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" id="3sU-5R-DMQ"/>
                             <constraint firstItem="0Se-hg-s60" firstAttribute="top" secondItem="jFF-Ap-2z8" secondAttribute="top" constant="5" id="Ybt-hl-pPv"/>
                             <constraint firstItem="0Se-hg-s60" firstAttribute="bottom" secondItem="jFF-Ap-2z8" secondAttribute="bottom" constant="-15" id="kE6-q2-baI"/>
-                            <constraint firstItem="jFF-Ap-2z8" firstAttribute="trailing" secondItem="0Se-hg-s60" secondAttribute="trailing" constant="25" id="zWz-Yf-8qa"/>
+                            <constraint firstItem="jFF-Ap-2z8" firstAttribute="trailing" secondItem="0Se-hg-s60" secondAttribute="trailing" id="zWz-Yf-8qa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jFF-Ap-2z8"/>
                     </view>
@@ -684,7 +684,7 @@ to search for.</string>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFantasyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4wd-sf-EWY">
-                            <rect key="frame" x="146" y="94" width="80" height="80"/>
+                            <rect key="frame" x="106" y="94" width="160" height="90.5"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-hA-yJP" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="60" y="378" width="252" height="52"/>
@@ -704,10 +704,10 @@ to search for.</string>
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="JvS-eG-pQh">
-                            <rect key="frame" x="60" y="183" width="252" height="154.5"/>
+                            <rect key="frame" x="60" y="184.5" width="252" height="151"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahz-f2-kFB">
-                                    <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="252" height="42"/>
                                     <string key="text">Odessa will be
 activated when it reaches</string>
                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
@@ -715,13 +715,13 @@ activated when it reaches</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1050 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqG-hK-q1r">
-                                    <rect key="frame" x="0.0" y="46" width="252" height="84"/>
+                                    <rect key="frame" x="0.0" y="45" width="252" height="82"/>
                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="70"/>
                                     <color key="textColor" name="textPinkColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" users" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9h-Sx-NtX">
-                                    <rect key="frame" x="0.0" y="133" width="252" height="21.5"/>
+                                    <rect key="frame" x="0.0" y="130" width="252" height="21"/>
                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                     <color key="textColor" name="textBlackColor"/>
                                     <nil key="highlightedColor"/>
@@ -1655,7 +1655,7 @@ activated when it reaches</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsr-Lb-gfZ">
-                                <rect key="frame" x="50" y="537" width="314" height="72"/>
+                                <rect key="frame" x="50" y="537" width="314" height="70"/>
                                 <string key="text">Your application version is no longer supported. Please, update the app. 
 We've implemented a lot of new and exciting features</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
@@ -1663,7 +1663,7 @@ We've implemented a lot of new and exciting features</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8Vq-j6-7XF">
-                                <rect key="frame" x="147" y="238" width="120" height="120"/>
+                                <rect key="frame" x="87" y="178" width="240" height="240"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-pO-HKE" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                 <rect key="frame" x="62" y="783" width="290" height="52"/>

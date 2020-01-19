@@ -16,12 +16,8 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
     @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var heartLoadingView: FantasyLoadingView! {
-        didSet {
-            heartLoadingView.repeatTimes = 2
-        }
-    }
-    @IBOutlet weak var parrotImageView: ImageViewWithFantasyAnimation!
+    @IBOutlet weak var heartLoadingView: AnimatedFantasyLogoView!
+    @IBOutlet weak var parrotImageView: FantasyAnimatedImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
