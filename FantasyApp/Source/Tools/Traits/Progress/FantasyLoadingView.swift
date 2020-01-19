@@ -11,9 +11,11 @@ import UIKit
 class FantasyLoadingView: UIView {
 
     var active: Bool = false
+    var repeatTimes: Int = 0
 
     private var animationTimer: Timer?
-    private let scale: CGFloat
+    private var scale: CGFloat!
+    private var repeatCounts: Int = 0
 
     private var logoPath: UIBezierPath? {
 
@@ -140,10 +142,17 @@ class FantasyLoadingView: UIView {
     let gradientImage: UIImageView = UIImageView.init(image: R.image.loader_gradient()!)
 
     override init(frame: CGRect) {
-
-        scale = frame.size.width/164;
-
         super.init(frame: frame)
+        baseInit()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        baseInit()
+    }
+
+    private func baseInit() {
+        scale = frame.size.width/164;
 
         gradientImage.frame = CGRect(x: -200, y: -2, width: frame.size.width, height: frame.size.height)
 
@@ -154,11 +163,12 @@ class FantasyLoadingView: UIView {
         layer.mask = maskLayer
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    public func startAnimation() {
+        // ignore start if animation is inprogress
+        guard active == false else {
+            return
+        }
 
-    public func starAnimation() {
         animationTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(animateLogo), userInfo: nil, repeats: true)
         animationTimer?.fire()
         active = true
@@ -167,15 +177,22 @@ class FantasyLoadingView: UIView {
     public func stopAnimation() {
         active = false
         animationTimer?.invalidate()
+        repeatCounts = 0
     }
 
     @objc private func animateLogo() {
+
+        if repeatTimes != 0 && repeatCounts > repeatTimes {
+            stopAnimation()
+            return
+        }
+
         UIView.animate(withDuration: 1.95, animations: {
             self.gradientImage.frame = CGRect(x: -1, y: -2, width: 400, height: 200)
-//            self.layoutIfNeeded()
         }) { _ in
             self.gradientImage.frame = CGRect(x: -200, y: -2, width: 400, height: 200)
-//            self.layoutIfNeeded()
+            self.repeatCounts = self.repeatCounts + 1
         }
+
     }
 }
