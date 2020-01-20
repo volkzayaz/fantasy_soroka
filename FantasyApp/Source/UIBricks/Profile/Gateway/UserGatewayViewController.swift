@@ -58,12 +58,12 @@ class UserGatewayViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.isPremium
-            .map { $0 ? "Membership" : "Get membership" }
+            .map { $0 ? "Membership" : "Get Membership" }
             .drive(membershipTitle.rx.text)
             .disposed(by: rx.disposeBag)
         
         viewModel.isPremium
-            .map { $0 ? "Unlimited Rooms To Play, x3 New Fantasies Daily, ScreenProtect and more" : "Manage Club Membership" }
+            .map { $0 ? "Manage Club Membership" : "Unlimited Rooms To Play, x3 New Fantasies Daily, ScreenProtect and more" }
             .drive(membershipSubtitle.rx.text)
             .disposed(by: rx.disposeBag)
         

@@ -471,25 +471,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nwf-kP-hq4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nwf-kP-hq4">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <color key="backgroundColor" red="0.96871703860000002" green="0.9686463475" blue="0.98088699580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" rowHeight="54" id="Pr7-qS-fhF">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="54"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pr7-qS-fhF" id="7uz-OX-lnN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Get Club Membership" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aD3-9l-w7A" customClass="SubscriptionUpdatingLabel" customModule="FantasyApp" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="0.0" width="254.5" height="44"/>
+                                                    <rect key="frame" x="20" y="25" width="254.5" height="19"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clv-gj-z3s" customClass="SubscribeButton" customModule="FantasyApp" customModuleProvider="target">
-                                                    <rect key="frame" x="348" y="7" width="46" height="30"/>
+                                                    <rect key="frame" x="348" y="19.5" width="46" height="30"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
                                                         <outlet property="presenter" destination="vbj-0y-AHY" id="mHV-P5-kpd"/>
@@ -503,13 +503,13 @@
                                                 <constraint firstItem="aD3-9l-w7A" firstAttribute="leading" secondItem="7uz-OX-lnN" secondAttribute="leading" constant="20" id="VdG-I6-rGq"/>
                                                 <constraint firstAttribute="bottom" secondItem="aD3-9l-w7A" secondAttribute="bottom" constant="10" id="aRY-Ik-DBW"/>
                                                 <constraint firstItem="clv-gj-z3s" firstAttribute="centerY" secondItem="aD3-9l-w7A" secondAttribute="centerY" id="sJB-N0-YK9"/>
-                                                <constraint firstItem="aD3-9l-w7A" firstAttribute="top" secondItem="7uz-OX-lnN" secondAttribute="top" id="yIY-JT-jMo"/>
+                                                <constraint firstItem="aD3-9l-w7A" firstAttribute="top" secondItem="7uz-OX-lnN" secondAttribute="top" constant="25" id="yIY-JT-jMo"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.98039215690000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MonetizationCell" rowHeight="175" id="zNi-Oj-dXA" customClass="MonetizationCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="109.5" width="414" height="175"/>
+                                        <rect key="frame" x="0.0" y="82" width="414" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zNi-Oj-dXA" id="oQP-1O-BgD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
@@ -595,7 +595,7 @@
                                                 <constraint firstItem="ktt-93-PpC" firstAttribute="leading" secondItem="oQP-1O-BgD" secondAttribute="leading" constant="16" id="vjg-yA-pJO"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.96848577260000002" green="0.96846741439999995" blue="0.98075574639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.98039215690000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="descirpitonTextLabel" destination="VQB-dz-EfC" id="khh-YV-lL2"/>
                                             <outlet property="duplicateTitleView" destination="Vsh-we-5rt" id="peZ-JQ-wYj"/>
@@ -605,14 +605,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="membershipSubscribe" id="Wgg-EY-9Ug">
-                                        <rect key="frame" x="0.0" y="284.5" width="414" height="104"/>
+                                        <rect key="frame" x="0.0" y="257" width="414" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wgg-EY-9Ug" id="2zZ-0G-hir">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNO-cm-oaZ" customClass="MonetizationSubscribeButton" customModule="FantasyApp" customModuleProvider="target">
-                                                    <rect key="frame" x="81" y="26" width="252" height="52"/>
+                                                    <rect key="frame" x="81" y="21" width="252" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="252" id="FRx-E6-Vgv"/>
                                                         <constraint firstAttribute="height" constant="52" id="Zfz-Vw-l4k"/>
@@ -627,10 +627,10 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="KNO-cm-oaZ" secondAttribute="bottom" constant="26" id="Sui-8P-tg1"/>
                                                 <constraint firstItem="KNO-cm-oaZ" firstAttribute="centerX" secondItem="2zZ-0G-hir" secondAttribute="centerX" id="SvR-v2-9rd"/>
-                                                <constraint firstItem="KNO-cm-oaZ" firstAttribute="top" secondItem="2zZ-0G-hir" secondAttribute="top" constant="26" id="Zxv-OW-rPa"/>
+                                                <constraint firstItem="KNO-cm-oaZ" firstAttribute="top" secondItem="2zZ-0G-hir" secondAttribute="top" constant="21" id="Zxv-OW-rPa"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.98039215690000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
