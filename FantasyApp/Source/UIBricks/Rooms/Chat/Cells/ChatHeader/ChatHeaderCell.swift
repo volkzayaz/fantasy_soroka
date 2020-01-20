@@ -8,6 +8,8 @@
 
 import Foundation
 import RxSwift
+import SnapKit
+
 
 class ChatHeaderCell: UITableViewCell {
     
@@ -33,8 +35,18 @@ class ChatHeaderCell: UITableViewCell {
         
         stackView.subviews.forEach { $0.removeFromSuperview() }
         
-        connections
-            .map { UIImageView(image: $0.outgoingRequestImage) }
+        let x = [ConnectionRequestType.like, ConnectionRequestType.inviteLink]
+        
+        x
+            .map {
+                let i = UIImageView(image: $0.outgoingRequestImage)
+                i.contentMode = .scaleAspectFit
+                i.snp.makeConstraints { (make) in
+                    make.width.equalTo(23)
+                    make.height.equalTo(23)
+                }
+                return i
+            }
             .forEach(stackView.addArrangedSubview)
     }
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -48,19 +48,25 @@ new Room Request</string>
                             </textView>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="bF8-Qc-f6O">
-                        <rect key="frame" x="225" y="146.5" width="60" height="26"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="bF8-Qc-f6O">
+                        <rect key="frame" x="215" y="152.5" width="80" height="20"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestSticker" translatesAutoresizingMaskIntoConstraints="NO" id="QAF-xl-YlV">
-                                <rect key="frame" x="0.0" y="0.0" width="20" height="26"/>
+                                <rect key="frame" x="0.0" y="0.0" width="26" height="20"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestMessage" translatesAutoresizingMaskIntoConstraints="NO" id="4Mq-wV-R9N">
-                                <rect key="frame" x="15" y="0.0" width="24" height="26"/>
+                                <rect key="frame" x="18" y="0.0" width="26" height="20"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestLike" translatesAutoresizingMaskIntoConstraints="NO" id="wPR-Sv-lg6">
-                                <rect key="frame" x="34" y="0.0" width="26" height="26"/>
+                                <rect key="frame" x="36" y="0.0" width="26" height="20"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestLink" translatesAutoresizingMaskIntoConstraints="NO" id="JUI-vh-4aZ">
+                                <rect key="frame" x="54" y="0.0" width="26" height="20"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="ehG-dp-XuD"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -83,6 +89,7 @@ new Room Request</string>
     </objects>
     <resources>
         <image name="outgoingRequestLike" width="26" height="26"/>
+        <image name="outgoingRequestLink" width="20" height="20"/>
         <image name="outgoingRequestMessage" width="24" height="24"/>
         <image name="outgoingRequestSticker" width="20" height="20"/>
     </resources>
