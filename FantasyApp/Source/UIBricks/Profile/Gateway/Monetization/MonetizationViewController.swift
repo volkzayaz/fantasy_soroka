@@ -62,7 +62,14 @@ class MonetizationViewController: UIViewController {
 extension MonetizationViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count + 2
+        
+        if appStateSlice.currentUser?.subscription.isSubscribed ?? false {
+            return models.count + 1
+        }
+        else {
+            return models.count + 2
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

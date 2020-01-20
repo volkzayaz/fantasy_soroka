@@ -187,25 +187,10 @@ extension Fantasy.Collection {
         return buo
     }
     
-//    static var fakes: [Fantasy.Collection] {
-//        
-//        let x = Fantasy.Collection(name: "Vanila",
-//                                   cards: [.init(name: "Kiss on chick", description: "Some vanila stuff", isPaid: true),
-//                                           .init(name: "Kiss on lips", description: "Even more vanila stuff", isPaid: true),
-//                                           .init(name: "Kiss on neck", description: "neck stuff", isPaid: true)])
-//        
-//        let y = Fantasy.Collection(name: "Public",
-//                                   cards: [.init(name: "Fuck inside a bus", description: "lorem ipsum bus", isPaid: true),
-//                                           .init(name: "Fuck in the park", description: "lorem ipsum park", isPaid: true),
-//                                           .init(name: "Fuck in dressing room", description: "lorem ipsum dressing", isPaid: true)])
-//        
-//        let z = Fantasy.Collection(name: "Gangbang",
-//                                   cards: [.init(name: "Fuck 3 guys at a time", description: "lorem ipsum", isPaid: true),
-//                                           .init(name: "Fuck 7 guys at a time", description: "lorem ipsum 7", isPaid: true),
-//                                           .init(name: "Fuck the whole football team", description: "lorem ipsum 11", isPaid: true)])
-//        
-//        return [x, y ,z]
-//        
-//    }
+    static var fake: Fantasy.Collection {
+        
+        return Fantasy.Collection(id: "", title: "", details: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: nil, loveThis: "", highlights: "")
+        
+    }
     
 }

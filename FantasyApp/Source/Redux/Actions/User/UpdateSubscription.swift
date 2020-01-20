@@ -19,6 +19,10 @@ struct UpdateSubscription: ActionCreator {
             .map { (deck) in
                 var state = initialState
                 state.currentUser?.subscription = self.with
+                
+                ///this is trigget to reload data in collections list
+                state.currentUser?.fantasies.purchasedCollections = [Fantasy.Collection.fake]
+                
                 state.fantasiesDeck = deck
                 return state
             }
