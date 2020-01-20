@@ -35,9 +35,7 @@ class ChatHeaderCell: UITableViewCell {
         
         stackView.subviews.forEach { $0.removeFromSuperview() }
         
-        let x = [ConnectionRequestType.like, ConnectionRequestType.inviteLink]
-        
-        x
+        connections
             .map {
                 let i = UIImageView(image: $0.outgoingRequestImage)
                 i.contentMode = .scaleAspectFit
