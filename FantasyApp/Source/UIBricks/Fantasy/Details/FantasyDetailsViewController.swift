@@ -236,6 +236,10 @@ private extension FantasyDetailsViewController {
     
     @IBAction func moreActions(_ sender: Any) {
         
+        guard viewModel.preferenceEnabled else {
+            return
+        }
+        
         showDialog(title: "Block", text: "Let us know if you think this card has offense, nudity, profanity or pornography", style: .actionSheet, negativeText: "Cancel", negativeCallback: nil, positiveText: "Block card") { [weak self] in
             
             self?.viewModel.blockCard()
