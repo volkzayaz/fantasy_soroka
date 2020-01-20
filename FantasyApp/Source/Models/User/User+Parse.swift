@@ -121,8 +121,8 @@ extension User {
         }
         
         id = objectId
-        createdAt = pfUser.createdAt
-        bio = User.Bio(name: name,
+        bio = User.Bio(registrationDate: pfUser.createdAt!,
+                       name: name,
                        about: about,
                        birthday: birthday,
                        gender: gender,

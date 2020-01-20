@@ -14,7 +14,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     let id: String
     //var auth: AuthData
 
-    var createdAt: Date?
     var bio: Bio
     var fantasies: Fantasies
     
@@ -41,6 +40,9 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     };
     
     struct Bio: Equatable, Codable {
+        
+        let registrationDate: Date
+        
         var name: String
         var about: String?
         var birthday: Date

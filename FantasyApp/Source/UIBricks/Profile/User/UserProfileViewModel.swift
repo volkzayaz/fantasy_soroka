@@ -288,11 +288,7 @@ extension UserProfileViewModel {
 
 
     var registeredDateText: Driver<String> {
-        guard let date = user.createdAt else {
-            return Driver.just("")
-        }
-
-        let s = date.toRegisteredDateString()
+        let s = user.bio.registrationDate.toRegisteredDateString()
         return Driver.just("Registered \(s)")
     }
 
