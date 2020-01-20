@@ -731,11 +731,20 @@
                                                         </stackView>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf3-cV-hOe" customClass="FantasyAnimatedImage" customModule="FantasyApp" customModuleProvider="target">
                                                             <rect key="frame" x="70" y="112.5" width="28" height="60"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parrotTrafaretTransparent" translatesAutoresizingMaskIntoConstraints="NO" id="qqM-qe-wxa">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="28" height="60"/>
+                                                                </imageView>
+                                                            </subviews>
                                                             <color key="backgroundColor" red="0.89411764705882346" green="0.90588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="pf3-cV-hOe" secondAttribute="height" multiplier="7:15" id="Abg-JL-5ga"/>
+                                                                <constraint firstItem="qqM-qe-wxa" firstAttribute="top" secondItem="pf3-cV-hOe" secondAttribute="top" id="L69-2P-qb7"/>
                                                                 <constraint firstAttribute="height" constant="60" id="OdI-ej-Eny"/>
+                                                                <constraint firstItem="qqM-qe-wxa" firstAttribute="leading" secondItem="pf3-cV-hOe" secondAttribute="leading" id="W5q-62-x7y"/>
+                                                                <constraint firstAttribute="trailing" secondItem="qqM-qe-wxa" secondAttribute="trailing" id="dmc-0b-8A7"/>
+                                                                <constraint firstAttribute="bottom" secondItem="qqM-qe-wxa" secondAttribute="bottom" id="qS6-b0-43w"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="footerSingleParrot"/>
@@ -1947,6 +1956,7 @@
         <image name="indicator" width="10" height="14"/>
         <image name="launchBackground" width="375" height="667"/>
         <image name="memberParrot" width="57" height="60"/>
+        <image name="parrotTrafaretTransparent" width="90" height="200"/>
         <image name="profileLock" width="20" height="20"/>
         <image name="secret" width="80" height="80"/>
         <namedColor name="activityIndicatorColor">
