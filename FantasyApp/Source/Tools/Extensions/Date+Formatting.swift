@@ -42,6 +42,13 @@ extension Date {
         dateFormatter.dateFormat = "MMMM dd yyyy"
         return dateFormatter
     }()
+
+    private static let yearAndDateStampDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter
+    }()
     
     private static let analyticsTimeFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -81,6 +88,10 @@ extension Date {
         let formatter = Date.analyticsTimeFormatter
 
         return formatter.string(from: self)
+    }
+
+    func toRegisteredDateString() -> String {
+        return Date.yearAndDateStampDateFormatter.string(from: self)
     }
     
     func distance(from date: Date, in component: Calendar.Component) -> Int {

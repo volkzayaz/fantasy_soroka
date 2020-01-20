@@ -136,6 +136,8 @@ class UserProfileViewController: UIViewController, MVVM_View {
             blurHeightConstraint.constant = UIApplication.shared.statusBarFrame.height
         }
     }
+
+    @IBOutlet weak var footerView: UserProfileTableFooterView!
     
     private var avaliableSheetActions: [(String, () -> Void)] = [] {
         didSet {
@@ -145,7 +147,9 @@ class UserProfileViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        footerView.viewModel = viewModel
+
         profileTableView.rx.contentOffset
             .map { [unowned self] offset in
                 return CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top))

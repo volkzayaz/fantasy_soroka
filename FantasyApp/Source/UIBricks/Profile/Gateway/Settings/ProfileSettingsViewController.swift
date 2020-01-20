@@ -16,6 +16,8 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     lazy var viewModel: ProfileSettingsViewModel! = ProfileSettingsViewModel(router: .init(owner: self))
     
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var heartLoadingView: AnimatedFantasyLogoView!
+    @IBOutlet weak var parrotImageView: FantasyAnimatedImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +26,41 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
         
         versionLabel.text = viewModel.version
     }
+
+    @IBAction func tapMadeWith(_ sender: Any) {
+        guard let u = URL(string: R.string.localizable.fantasySettingsMadeWithMature()),
+            UIApplication.shared.canOpenURL(u) else {
+                return
+        }
+
+        UIApplication.shared.open(u, options: [:], completionHandler: nil)
+    }
+
+    @IBAction func tapHeart(_ sender: Any) {
+        heartLoadingView.startAnimation()
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+    }
     
+    @IBAction func tapParrot(_ sender: Any) {
+        parrotImageView.startAnimation()
+    }
+
+    @IBAction func longPressHeart(_ sender: Any) {
+        heartLoadingView.startAnimation()
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+    }
+
+    @IBAction func longPressParrot(_ sender: Any) {
+        parrotImageView.startAnimation()
+    }
+
     @IBAction func done(_ sender: UIBarButtonItem) {
         viewModel.dismiss()
     }
 }
+
+
+//https://fantasyapp.com/en/blog/mature-love-basis-of-alternative-relationships/
 
 extension ProfileSettingsViewController {
 
@@ -81,9 +113,11 @@ extension ProfileSettingsViewController {
         }
 
         if indexPath.section == 3 {
-              viewModel.deleteAccount()
-          }
-        if indexPath.section == 4 {
+            viewModel.deleteAccount()
+        }
+
+        if indexPath.section == 4
+            && indexPath.row == 0 {
             viewModel.logout()
         }
         

@@ -328,6 +328,7 @@
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
 		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
+		B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */; };
 		B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */; };
 		B72DDBC723B3739800FB1848 /* RoomDetailsTitlePhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */; };
 		B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */; };
@@ -339,6 +340,7 @@
 		B73774BA23647FF600A353CC /* NoUsersCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73774B923647FF600A353CC /* NoUsersCarouselView.xib */; };
 		B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */; };
 		B772E3552378221B0093B63B /* FantasyLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B772E3542378221B0093B63B /* FantasyLoadingView.swift */; };
+		B77B34AF23CA4F2C00899D9F /* UserProfileTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77B34AE23CA4F2C00899D9F /* UserProfileTableFooterView.swift */; };
 		B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */; };
 		B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C631234F92120017CE1A /* GradientBackgroundView.swift */; };
 		B783C6372350D6C00017CE1A /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783C6342350D6C00017CE1A /* WelcomeRouter.swift */; };
@@ -740,6 +742,7 @@
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
 		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
+		B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyAnimatedImage.swift; sourceTree = "<group>"; };
 		B72DDBC423B3739100FB1848 /* RoomDetailsTitlePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsTitlePhotoView.swift; sourceTree = "<group>"; };
 		B72DDBC623B3739800FB1848 /* RoomDetailsTitlePhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomDetailsTitlePhotoView.xib; sourceTree = "<group>"; };
 		B731F1D1235D94F800A05FAA /* FantasyPhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyPhotoEditorViewController.swift; sourceTree = "<group>"; };
@@ -751,6 +754,7 @@
 		B73774B923647FF600A353CC /* NoUsersCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoUsersCarouselView.xib; sourceTree = "<group>"; };
 		B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		B772E3542378221B0093B63B /* FantasyLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyLoadingView.swift; sourceTree = "<group>"; };
+		B77B34AE23CA4F2C00899D9F /* UserProfileTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableFooterView.swift; sourceTree = "<group>"; };
 		B78074EF2360CE930064CC17 /* AgeRestrictionViewConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRestrictionViewConrtoller.swift; sourceTree = "<group>"; };
 		B783C631234F92120017CE1A /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		B783C6342350D6C00017CE1A /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
@@ -974,6 +978,7 @@
 		7312B07022D740AC00DB0F36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B72BB57523D3200300D2CDE5 /* ImageWithFantasyAnimation */,
 				735481CF2367705A009132A2 /* UIView+EmptyData.swift */,
 				733F41C12365EF53004EC466 /* MultiSlider */,
 				84C1D03D2327B95F00648DE1 /* Metal */,
@@ -1478,6 +1483,7 @@
 		734C70BC23214B7B00ED2E91 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				B77B34AD23CA4F0C00899D9F /* UI */,
 				734C70C6232157B500ED2E91 /* Layout */,
 				734C70C323214C7000ED2E91 /* Cell */,
 				734C70BD23214B8D00ED2E91 /* UserProfileRouter.swift */,
@@ -2261,6 +2267,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		B72BB57523D3200300D2CDE5 /* ImageWithFantasyAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */,
+			);
+			path = ImageWithFantasyAnimation;
+			sourceTree = "<group>";
+		};
 		B72DDBC323B3736E00FB1848 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2279,6 +2293,14 @@
 				B73774B923647FF600A353CC /* NoUsersCarouselView.xib */,
 			);
 			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		B77B34AD23CA4F0C00899D9F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B77B34AE23CA4F2C00899D9F /* UserProfileTableFooterView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		B78074EE2360CE860064CC17 /* AgeRestriction */ = {
@@ -2763,6 +2785,7 @@
 				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
 				73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
+				B77B34AF23CA4F2C00899D9F /* UserProfileTableFooterView.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
 				7312B06922D7403300DB0F36 /* AppDelegate.swift in Sources */,
 				735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */,
@@ -2924,6 +2947,7 @@
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
+				B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */,
 				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,

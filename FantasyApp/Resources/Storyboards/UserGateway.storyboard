@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PbI-uz-Pww">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PbI-uz-Pww">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -661,7 +661,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Log out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zDz-pi-cXY">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Log Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zDz-pi-cXY">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
@@ -671,28 +671,80 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editProfileFooterCell" rowHeight="275" id="tgJ-nj-HB2">
-                                        <rect key="frame" x="0.0" y="631" width="375" height="275"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editProfileFooterCell" rowHeight="260" id="tgJ-nj-HB2">
+                                        <rect key="frame" x="0.0" y="631" width="375" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tgJ-nj-HB2" id="pqv-Aw-8rB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="U5b-Ru-vvg">
-                                                    <rect key="frame" x="99" y="48" width="177" height="179"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="U5b-Ru-vvg">
+                                                    <rect key="frame" x="103.5" y="44" width="168" height="172.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footerLogo" translatesAutoresizingMaskIntoConstraints="NO" id="m1e-r3-RWH">
-                                                            <rect key="frame" x="63" y="0.0" width="51" height="38"/>
-                                                        </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLk-h5-CWu" customClass="AnimatedFantasyLogoView" customModule="FantasyApp" customModuleProvider="target">
+                                                            <rect key="frame" x="58.5" y="0.0" width="51" height="50"/>
+                                                            <color key="backgroundColor" name="textPinkColor"/>
+                                                            <gestureRecognizers/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="51" id="O1F-6q-VD2"/>
+                                                                <constraint firstAttribute="height" constant="50" id="ieB-9N-H8a"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="Vri-Br-l0L" appends="YES" id="PFZ-cB-pHC"/>
+                                                                <outletCollection property="gestureRecognizers" destination="BSO-Gj-Izo" appends="YES" id="eAJ-xP-jx2"/>
+                                                            </connections>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 2.0.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgg-ZE-WFB">
-                                                            <rect key="frame" x="44" y="60" width="89" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <rect key="frame" x="40.5" y="60" width="87" height="17.5"/>
+                                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                             <color key="textColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footerParrot" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-dZ-bOa">
-                                                            <rect key="frame" x="0.0" y="100" width="177" height="79"/>
-                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="P1x-Z9-cms">
+                                                            <rect key="frame" x="0.0" y="87.5" width="168" height="15"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made with mature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wge-yP-o39">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="15"/>
+                                                                    <gestureRecognizers/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                                                                    <color key="textColor" name="textBlackColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footerHeart" translatesAutoresizingMaskIntoConstraints="NO" id="WxM-yO-zla">
+                                                                    <rect key="frame" x="100" y="0.0" width="15" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="15" id="BLL-ju-CSZ"/>
+                                                                        <constraint firstAttribute="width" constant="15" id="sjp-OW-JzS"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for lovers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XD-wd-ubT">
+                                                                    <rect key="frame" x="118" y="0.0" width="50" height="15"/>
+                                                                    <gestureRecognizers/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                                                                    <color key="textColor" name="textBlackColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="vWb-tu-a6e" appends="YES" id="07N-0i-OFE"/>
+                                                            </connections>
+                                                        </stackView>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf3-cV-hOe" customClass="FantasyAnimatedImage" customModule="FantasyApp" customModuleProvider="target">
+                                                            <rect key="frame" x="70" y="112.5" width="28" height="60"/>
+                                                            <color key="backgroundColor" red="0.89411764705882346" green="0.90588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <gestureRecognizers/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="pf3-cV-hOe" secondAttribute="height" multiplier="7:15" id="Abg-JL-5ga"/>
+                                                                <constraint firstAttribute="height" constant="60" id="OdI-ej-Eny"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="footerSingleParrot"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="uIf-QC-f3V" appends="YES" id="RWg-qO-O4E"/>
+                                                                <outletCollection property="gestureRecognizers" destination="Yf2-bH-zKv" appends="YES" id="uW9-7o-DF1"/>
+                                                            </connections>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -720,12 +772,39 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="heartLoadingView" destination="bLk-h5-CWu" id="sba-22-SoE"/>
+                        <outlet property="parrotImageView" destination="pf3-cV-hOe" id="Wxy-Nb-Zxf"/>
                         <outlet property="versionLabel" destination="rgg-ZE-WFB" id="FDK-5z-gBI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0QG-DM-6TU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vWb-tu-a6e">
+                    <connections>
+                        <action selector="tapMadeWith:" destination="ABr-g6-V4z" id="V9D-Hi-eja"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="uIf-QC-f3V">
+                    <connections>
+                        <action selector="tapParrot:" destination="ABr-g6-V4z" id="ZdX-xm-AeY"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Yf2-bH-zKv">
+                    <connections>
+                        <action selector="longPressParrot:" destination="ABr-g6-V4z" id="5FU-O5-45O"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Vri-Br-l0L">
+                    <connections>
+                        <action selector="longPressHeart:" destination="ABr-g6-V4z" id="98i-nf-C9J"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="BSO-Gj-Izo">
+                    <connections>
+                        <action selector="tapHeart:" destination="ABr-g6-V4z" id="del-a0-UYc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4402.898550724638" y="-380.35714285714283"/>
+            <point key="canvasLocation" x="4402.3999999999996" y="-380.95952023988008"/>
         </scene>
         <!--MyFantasiesViewController-->
         <scene sceneID="861-Up-pdV">
@@ -1858,8 +1937,7 @@
     </scenes>
     <resources>
         <image name="cellAccessoryImage" width="10" height="10"/>
-        <image name="footerLogo" width="51" height="38"/>
-        <image name="footerParrot" width="177" height="79"/>
+        <image name="footerHeart" width="14" height="14"/>
         <image name="gatewayFantasies" width="53" height="42"/>
         <image name="gatewayFeedback" width="55" height="39"/>
         <image name="gatewayParrot" width="51" height="54"/>

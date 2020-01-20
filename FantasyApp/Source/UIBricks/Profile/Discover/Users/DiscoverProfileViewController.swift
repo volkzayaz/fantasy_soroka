@@ -171,24 +171,22 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        
+
+        let frameVar = CGRect.init(x: 0, y: 0, width: carousel.bounds.width - 50.0, height: carousel.bounds.height)
+
         guard let profile = viewModel.profiles.value[safe: index] else {
             
-            let v = NoUsersCarouselView(frame: carousel.bounds)
+            let v = NoUsersCarouselView(frame: frameVar)
             v.delegate = self
 
             return v
         }
         
-        let view = UserCarouselView(frame: carousel.bounds)
+        let view = UserCarouselView(frame: frameVar)
         view.setUser(profile)
 
         return view
         
-    }
-
-    func carouselItemWidth(_ carousel: iCarousel) -> CGFloat {
-        return CGFloat(UIScreen.main.bounds.size.width * 0.875)
     }
 
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
