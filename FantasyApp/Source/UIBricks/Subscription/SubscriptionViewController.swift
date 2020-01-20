@@ -20,6 +20,8 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     @IBOutlet weak var subscribeButton: SecondaryButton!
     @IBOutlet weak var roundedView: UIView!
     
+    @IBOutlet weak var pricaeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,10 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     
         edgesForExtendedLayout = []
      
+        viewModel.price
+            .drive(pricaeLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
     }
     
     var once = false

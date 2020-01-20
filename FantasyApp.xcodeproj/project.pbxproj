@@ -166,6 +166,7 @@
 		7390015122E1B8D000260198 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390014F22E1B8D000260198 /* SettingsStore.swift */; };
 		7390015622E1E78B00260198 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390015522E1E78A00260198 /* Dispatcher.swift */; };
 		7390015922E1ED8B00260198 /* BaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390015822E1ED8B00260198 /* BaseActions.swift */; };
+		7393119623D585330054FC52 /* SKProduct+LocalPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393119523D585330054FC52 /* SKProduct+LocalPrice.swift */; };
 		7399140F23CA4A8B00A45E74 /* SubscriptionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399140E23CA4A8B00A45E74 /* SubscriptionEvent.swift */; };
 		739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F798E230952A70045FCD7 /* FantasySearchRouter.swift */; };
 		739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F798F230952A70045FCD7 /* FantasySearchViewController.swift */; };
@@ -577,6 +578,7 @@
 		7390014F22E1B8D000260198 /* SettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		7390015522E1E78A00260198 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		7390015822E1ED8B00260198 /* BaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseActions.swift; sourceTree = "<group>"; };
+		7393119523D585330054FC52 /* SKProduct+LocalPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalPrice.swift"; sourceTree = "<group>"; };
 		7399140E23CA4A8B00A45E74 /* SubscriptionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEvent.swift; sourceTree = "<group>"; };
 		739F798E230952A70045FCD7 /* FantasySearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasySearchRouter.swift; sourceTree = "<group>"; };
 		739F798F230952A70045FCD7 /* FantasySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasySearchViewController.swift; sourceTree = "<group>"; };
@@ -1037,6 +1039,7 @@
 				B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */,
 				B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */,
 				B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */,
+				7393119523D585330054FC52 /* SKProduct+LocalPrice.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2933,6 +2936,7 @@
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				733CA05A23951D7000EF7922 /* FantasyCollectionRouter.swift in Sources */,
+				7393119623D585330054FC52 /* SKProduct+LocalPrice.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
 				B772E3552378221B0093B63B /* FantasyLoadingView.swift in Sources */,
 				B7E4E3FA237E9E8600D8D9CA /* FantasyDeckTutorialView.swift in Sources */,

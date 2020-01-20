@@ -10,16 +10,9 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import SwiftyStoreKit
 
 extension SubscriptionViewModel {
-    
-    /** Reference binding drivers that are going to be used in the corresponding view
-    
-    var text: Driver<String> {
-        return privateTextVar.asDriver().notNil()
-    }
- 
-     */
     
     enum Page: Int {
         case member = 0
@@ -27,6 +20,15 @@ extension SubscriptionViewModel {
         case fantasyX3
         case screenProtect
         case teleport
+    }
+
+    var price: Driver<String> {
+        
+        return SwiftyStoreKit.rx_productDetails(product: immutableNonPersistentState.subscriptionProductID )
+            .map { ($0.localizedPrice) }
+            .asDriver(onErrorJustReturn: "error")
+            .startWith("_")
+        
     }
     
 }
@@ -81,3 +83,4 @@ extension SubscriptionViewModel {
      */
     
 }
+
