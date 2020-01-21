@@ -15,11 +15,11 @@ import SwiftyStoreKit
 extension SubscriptionViewModel {
     
     enum Page: Int {
-        case member = 0
-        case unlimRooms
+        case unlimRooms = 0
         case fantasyX3
         case screenProtect
         case teleport
+        case member
     }
 
     var price: Driver<String> {

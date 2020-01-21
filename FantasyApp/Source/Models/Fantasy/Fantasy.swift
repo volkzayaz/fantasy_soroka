@@ -139,12 +139,13 @@ extension Fantasy.Card {
         
         let buo = BranchUniversalObject(canonicalIdentifier: "card/\(id)/\(User.current!.id)")
         buo.title = "Fantasy"
-        buo.contentDescription = "Hey! We have things to swipe together 🍓Check out Fantasy Match!"
+        buo.contentDescription = "Join me on Fantasy Match & check out this Fantasy Card"
         buo.publiclyIndex = true
+        buo.imageUrl = "https://i.imgur.com/JEWpRQU.jpg"
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
-                                andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
+                                andShareText: "Join me on Fantasy Match & check out this Fantasy Card",
                                 from: v) { (activityType, completed) in
 
             }
@@ -172,12 +173,12 @@ extension Fantasy.Collection {
         
         let buo = BranchUniversalObject(canonicalIdentifier: "collection/\(id)")
         buo.title = "Fantasy"
-        buo.contentDescription = "Hey! We have things to swipe together 🍓Check out Fantasy Match!"
+        buo.contentDescription = "Join me on Fantasy Match & check out this Collection"
         buo.publiclyIndex = true
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
-                                andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
+                                andShareText: "Join me on Fantasy Match & check out this Collection",
                                 from: v) { (activityType, completed) in
 
             }

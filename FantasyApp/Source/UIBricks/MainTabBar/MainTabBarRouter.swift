@@ -35,7 +35,11 @@ struct MainTabBarRouter : MVVM_Router {
                                                                  preferenceEnabled: preferencesEnabled))
         vc.modalPresentationStyle = .overFullScreen
         
-        (owner.viewControllers![0] as! UINavigationController).viewControllers.first!.present(vc, animated: true, completion: nil)
+        let p = (owner.viewControllers![0] as! UINavigationController).viewControllers.first!
+        p.dismiss(animated: true) { [weak p = p] in
+            p?.present(vc, animated: true, completion: nil)
+        }
+        
     }
     
     func presentCardDetails(card: Fantasy.Card, in room: RoomIdentifier) {
@@ -50,7 +54,10 @@ struct MainTabBarRouter : MVVM_Router {
                                                                   navigationContext: .ShareLink))
         vc.modalPresentationStyle = .overFullScreen
         
-        (owner.viewControllers![3] as! UINavigationController).viewControllers.first!.present(vc, animated: true, completion: nil)
+        let p = (owner.viewControllers![0] as! UINavigationController).viewControllers.first!
+        p.dismiss(animated: true) { [weak p = p] in
+            p?.present(vc, animated: true, completion: nil)
+        }
         
     }
     
