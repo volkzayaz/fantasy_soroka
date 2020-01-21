@@ -60,7 +60,11 @@ struct RootViewModel : MVVM_ViewModel {
         FetchConfig().rx.request
             .retry(2)
             .subscribe(onSuccess: { [weak t = unsupportedVersionTriggerVar] (config) in
-                immutableNonPersistentState = .init(subscriptionProductID: config.IAPSubscriptionProductId, screenProtectEnabled: config.screenProtectEnabled)
+                immutableNonPersistentState = .init(
+                    subscriptionProductID: config.IAPSubscriptionProductId,
+                    screenProtectEnabled: config.screenProtectEnabled,
+                    shareCardImageURL: config.fantasyCardsShare.card,
+                    shareCollectionImageURL: config.fantasyCardsShare.collection)
                 t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
             })
             .disposed(by: bag)

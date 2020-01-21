@@ -141,7 +141,7 @@ extension Fantasy.Card {
         buo.title = "Fantasy"
         buo.contentDescription = "Join me on Fantasy Match & check out this Fantasy Card"
         buo.publiclyIndex = true
-        buo.imageUrl = "https://i.imgur.com/JEWpRQU.jpg"
+        buo.imageUrl = immutableNonPersistentState.shareCardImageURL
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
@@ -175,6 +175,7 @@ extension Fantasy.Collection {
         buo.title = "Fantasy"
         buo.contentDescription = "Join me on Fantasy Match & check out this Collection"
         buo.publiclyIndex = true
+        buo.imageUrl = immutableNonPersistentState.shareCollectionImageURL
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),

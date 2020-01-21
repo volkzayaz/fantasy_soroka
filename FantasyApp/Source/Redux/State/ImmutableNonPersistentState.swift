@@ -15,5 +15,8 @@ struct ImmutableNonPersistentState {
     
     let subscriptionProductID: String
     let screenProtectEnabled: Bool
+
+    let shareCardImageURL: String
+    let shareCollectionImageURL: String
     
 }

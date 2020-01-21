@@ -14,7 +14,12 @@ struct ServerConfig: Codable {
     let IAPSubscriptionProductId: String
     let minSupportedIOSVersion: CodableVersion
     let screenProtectEnabled: Bool
+    let fantasyCardsShare: ShareLinks
     
+    struct ShareLinks: Codable {
+        let card: String
+        let collection: String
+    }
 }
 
 struct CodableVersion: Codable {
