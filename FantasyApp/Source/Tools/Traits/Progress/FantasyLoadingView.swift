@@ -192,7 +192,9 @@ class AnimatedFantasyLogoView: FantasyLoadingView {
         guard active == false else {
             return
         }
-        
+
+        active = true
+
         gradientImage.frame = CGRect(x: -gradientLayerWidth, y: -2, width: gradientLayerWidth, height: gradientLayerHeight)
         
         UIView.animate(withDuration: 2.0, animations: {
@@ -204,7 +206,8 @@ class AnimatedFantasyLogoView: FantasyLoadingView {
                 self.active = false
             }
         }
-        
+
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
     
 }

@@ -36,29 +36,32 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
         UIApplication.shared.open(u, options: [:], completionHandler: nil)
     }
 
-    @IBAction func tapHeart(_ sender: Any) {
-        heartLoadingView.startAnimation()
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
-    }
-    
-    @IBAction func tapParrot(_ sender: Any) {
-        parrotImageView.startAnimation()
-    }
-
-    @IBAction func longPressHeart(_ sender: Any) {
-        heartLoadingView.startAnimation()
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
-    }
-
-    @IBAction func longPressParrot(_ sender: Any) {
-        parrotImageView.startAnimation()
-    }
-
     @IBAction func done(_ sender: UIBarButtonItem) {
         viewModel.dismiss()
     }
 }
 
+//MARK:- Gesture Recognizers
+
+extension ProfileSettingsViewController {
+
+    @IBAction func tapHeart(_ sender: Any) {
+         heartLoadingView.startAnimation()
+     }
+
+    @IBAction func longPressHeart(_ sender: Any) {
+        heartLoadingView.startAnimation()
+    }
+
+     @IBAction func tapParrot(_ sender: Any) {
+         parrotImageView.startAnimation()
+     }
+
+     @IBAction func longPressParrot(_ sender: Any) {
+         parrotImageView.startAnimation()
+     }
+
+}
 
 //https://fantasyapp.com/en/blog/mature-love-basis-of-alternative-relationships/
 
