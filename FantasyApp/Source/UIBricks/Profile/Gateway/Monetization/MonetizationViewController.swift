@@ -129,7 +129,10 @@ class MonetizationSubscribeButton: SecondaryButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        normalShadowRadius = 10
+        
         addTarget(self, action: Selector("subscribe"), for: .touchUpInside)
+        
     }
     
     @objc func subscribe() {

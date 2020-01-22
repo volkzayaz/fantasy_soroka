@@ -31,7 +31,11 @@ public class SecondaryButton: UIButton {
     }
 
     private let highlightedShadowRadius: CGFloat = 31.0
-    private let normalShadowRadius: CGFloat = 21.0
+    var normalShadowRadius: CGFloat = 21.0 {
+        didSet {
+            setupLayers()
+        }
+    }
     private let gradientColors = [UIColor.gradient2, UIColor.gradient3]
     private var gradientLayer: CAGradientLayer?
     private var shadowLayer: CAShapeLayer?
