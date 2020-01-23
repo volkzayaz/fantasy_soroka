@@ -29,6 +29,7 @@ struct Logout: Action {
     func perform(initialState: AppState) -> AppState {
         return AppState(currentUser: nil,
                         fantasiesDeck: .init(cards: nil, wouldUpdateAt: nil),
+                        incommingConnections: 0,
                         inviteDeeplink: nil)
     }
     

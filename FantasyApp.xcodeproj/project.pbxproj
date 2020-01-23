@@ -175,6 +175,7 @@
 		739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */; };
 		739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */; };
 		73C287E823D9954E004B15E6 /* NewMessageInRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */; };
+		73C287EB23D9CC0F004B15E6 /* ChangeIncommingConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C287EA23D9CC0F004B15E6 /* ChangeIncommingConnections.swift */; };
 		73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */; };
 		73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */; };
 		73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */; };
@@ -588,6 +589,7 @@
 		739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewController.swift; sourceTree = "<group>"; };
 		739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewModel.swift; sourceTree = "<group>"; };
 		73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageInRoom.swift; sourceTree = "<group>"; };
+		73C287EA23D9CC0F004B15E6 /* ChangeIncommingConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIncommingConnections.swift; sourceTree = "<group>"; };
 		73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsRouter.swift; sourceTree = "<group>"; };
 		73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewModel.swift; sourceTree = "<group>"; };
@@ -1714,6 +1716,7 @@
 		7390015722E1E79600260198 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				73C287E923D9CC04004B15E6 /* Connections */,
 				733F41B923645290004EC466 /* Deeplink */,
 				84C1D04B2327C65800648DE1 /* Room */,
 				732231202305671B009DD37F /* Fantasy */,
@@ -1760,6 +1763,14 @@
 				739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		73C287E923D9CC04004B15E6 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				73C287EA23D9CC0F004B15E6 /* ChangeIncommingConnections.swift */,
+			);
+			path = Connections;
 			sourceTree = "<group>";
 		};
 		73C96F0F23409DEC002C3F8E /* Settings */ = {
@@ -2731,6 +2742,7 @@
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
+				73C287EB23D9CC0F004B15E6 /* ChangeIncommingConnections.swift in Sources */,
 				73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */,
 				7322311F23055CFE009DD37F /* FantasyManager.swift in Sources */,
 				B73774B823647FE400A353CC /* NoUsersCarouselView.swift in Sources */,

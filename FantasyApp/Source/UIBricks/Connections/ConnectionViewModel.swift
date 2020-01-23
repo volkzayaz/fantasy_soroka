@@ -23,6 +23,13 @@ extension ConnectionViewModel {
                     //.trackView(viewIndicator: i)
                     .silentCatch(handler: o)
                     .asDriver(onErrorJustReturn: [])
+                    .do(onNext: { (x) in
+                        
+                        if source == .incomming {
+                            Dispatcher.dispatch(action: ChangeIncommingConnections(count: x.count))
+                        }
+                        
+                    })
             }
             .map { [AnimatableSectionModel(model: "", items: $0)] }
         

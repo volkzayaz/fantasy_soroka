@@ -24,8 +24,19 @@ enum RoomManager {}
 
 extension RoomManager {
     
-    static func sendMessage(_ message: Room.MessageInRoom, in room: Room) -> Single<Room.MessageInRoom> {
+    static func sendMessage(_ message: Room.MessageInRoom) -> Single<Room.MessageInRoom> {
         return webSocket.send(message: message)
+    }
+    
+    static func markRead(message: Room.Message, in room: RoomIdentifier) -> Single<Room.MessageInRoom> {
+        return webSocket.send(readStatus: Room.ReadStatus(roomId: room.id,
+                                                          userId: User.current!.id,
+                                                          messageId: message.messageId))
+            .map { _ in
+                var x = message
+                x.markRead()
+                return Room.MessageInRoom(raw: x, roomId: room.id)
+            }
     }
 
     static func getMessagesInRoom(_ roomId: String) -> Single<[Room.Message]> {

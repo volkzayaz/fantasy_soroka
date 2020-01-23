@@ -53,6 +53,11 @@ class WebSocketService {
             
     }
     
+    func send(readStatus: Room.ReadStatus) -> Single<Void> {
+        return manager.defaultSocket.rx.send(event: "message_read", with: readStatus)
+            .map { (x: EmptyResponse) in }
+    }
+    
     var didConnect: Observable<Void> {
         return manager.defaultSocket.rx.connected()
     }

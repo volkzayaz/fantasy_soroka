@@ -57,6 +57,22 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
 
         //selectedIndex = 3
         
+        viewModel.unreadRooms
+            .map { $0 > 0 ? "\($0)" : nil }
+            .drive( tabBar.items![3].rx.badgeValue )
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.unreadConnections
+            .map { $0 > 0 ? "\($0)" : nil }
+            .drive( tabBar.items![2].rx.badgeValue )
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.appBadge
+            .drive(onNext: { x in
+                UIApplication.shared.applicationIconBadgeNumber = x
+            })
+            .disposed(by: rx.disposeBag)
+        
     }
  
     override var canBecomeFirstResponder: Bool {

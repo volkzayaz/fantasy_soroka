@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -113,17 +114,32 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRo-CG-ZRp">
-                                                    <rect key="frame" x="69" y="42" width="329" height="22"/>
+                                                    <rect key="frame" x="69" y="42" width="37.333333333333343" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5C0-dY-edE">
+                                                    <rect key="frame" x="378" y="43" width="20" height="20"/>
+                                                    <color key="backgroundColor" name="textPinkColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="8AY-7K-UwN"/>
+                                                        <constraint firstAttribute="width" secondItem="5C0-dY-edE" secondAttribute="height" id="lbX-qK-5yY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" name="listBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DZg-TW-lfO" firstAttribute="leading" secondItem="cqo-Dv-0CM" secondAttribute="trailing" constant="8" id="Fde-LM-4nx"/>
                                                 <constraint firstAttribute="bottom" secondItem="Mlc-gS-LWC" secondAttribute="bottom" id="Gno-x9-03j"/>
                                                 <constraint firstAttribute="trailing" secondItem="Mlc-gS-LWC" secondAttribute="trailing" constant="16" id="L45-RD-TA1"/>
-                                                <constraint firstAttribute="trailing" secondItem="NRo-CG-ZRp" secondAttribute="trailing" constant="16" id="RDa-Re-4ho"/>
                                                 <constraint firstItem="cqo-Dv-0CM" firstAttribute="leading" secondItem="rbB-14-5Dn" secondAttribute="trailing" constant="8" id="TmZ-KJ-4sw"/>
                                                 <constraint firstItem="DZg-TW-lfO" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="Tte-yJ-bqq"/>
                                                 <constraint firstItem="NRo-CG-ZRp" firstAttribute="leading" secondItem="rbB-14-5Dn" secondAttribute="trailing" constant="8" id="Zyj-7h-Rla"/>
@@ -134,6 +150,8 @@
                                                 <constraint firstItem="cqo-Dv-0CM" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="mgF-vB-QeY"/>
                                                 <constraint firstAttribute="bottom" secondItem="NRo-CG-ZRp" secondAttribute="bottom" constant="16" id="ntW-Wc-nml"/>
                                                 <constraint firstItem="rbB-14-5Dn" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="qVe-yQ-5AB"/>
+                                                <constraint firstItem="5C0-dY-edE" firstAttribute="centerY" secondItem="NRo-CG-ZRp" secondAttribute="centerY" id="uf1-JF-9Lc"/>
+                                                <constraint firstItem="5C0-dY-edE" firstAttribute="trailing" secondItem="DZg-TW-lfO" secondAttribute="trailing" id="wph-DA-nOu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -142,6 +160,7 @@
                                             <outlet property="roomImageView" destination="rbB-14-5Dn" id="CAr-2n-Mxr"/>
                                             <outlet property="separator" destination="Mlc-gS-LWC" id="dmP-sO-BBA"/>
                                             <outlet property="timeLabel" destination="DZg-TW-lfO" id="L1T-Pv-6mh"/>
+                                            <outlet property="unreadCounterLabel" destination="5C0-dY-edE" id="mFL-uW-CEQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -786,5 +805,11 @@
         <image name="tutorial_step1" width="243" height="87"/>
         <image name="tutorial_step2" width="332" height="88"/>
         <image name="tutorial_step3" width="288" height="87"/>
+        <namedColor name="listBackgroundColor">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textPinkColor">
+            <color red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

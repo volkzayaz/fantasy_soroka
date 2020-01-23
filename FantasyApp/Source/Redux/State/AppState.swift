@@ -26,7 +26,8 @@ func initAppState() -> Maybe<Void> {
     ///we can use network requests here as well if we want to delay application initialization
     _appState.accept(
         AppState(currentUser: AuthenticationManager.currentUser(),
-                 fantasiesDeck: .init(cards: nil, wouldUpdateAt: nil)
+                 fantasiesDeck: .init(cards: nil, wouldUpdateAt: nil),
+                 incommingConnections: 0
         )
     )
     
@@ -54,6 +55,8 @@ struct AppState: Equatable {
     var reloadRoomsTriggerBecauseOfComplexFreezeLogic = false
     
     var fantasiesDeck: FantasiesDeck
+    
+    var incommingConnections: Int
     
     var inviteDeeplink: InviteDeeplink?
     var openRoomRef: RoomRef?

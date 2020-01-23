@@ -56,6 +56,28 @@ extension MainTabBarViewModel {
             .notNil()
     }
     
+    var unreadRooms: Driver<Int> {
+        return appState.changesOf { $0.rooms }
+            .map { rooms -> Int in
+                
+                guard let r = rooms else {
+                    return 0
+                }
+                    
+                return r.filter { $0.unreadCount > 0 }
+                    .count
+            }
+
+    }
+    
+    var unreadConnections: Driver<Int> {
+        return appState.changesOf { $0.incommingConnections }
+    }
+    
+    var appBadge: Driver<Int> {
+        return Driver.combineLatest(unreadRooms, unreadConnections, resultSelector: +)
+    }
+    
 }
 
 struct MainTabBarViewModel : MVVM_ViewModel {

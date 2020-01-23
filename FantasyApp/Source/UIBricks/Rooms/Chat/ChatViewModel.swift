@@ -129,7 +129,7 @@ extension ChatViewModel {
         
         RoomManager.sendMessage(.init(text: text,
                                       from: User.current!,
-                                      in: room.value), in: room.value)
+                                      in: room.value))
             .map(NewMessageSent.init)
             .subscribe(onSuccess: {
                 Dispatcher.dispatch(action: $0)
@@ -143,6 +143,33 @@ extension ChatViewModel {
                 .subscribe()
             
         }
+        
+    }
+    
+    func rowSeen(row: Row) {
+        
+        guard case .message(let message) = row else {
+            return
+        }
+        
+        if message.isRead { return }
+        
+        RoomManager.markRead(message: message, in: room.value)
+            .do(onSuccess: { (updatedMessage) in
+                Dispatcher.dispatch(action: MessageMakredRead(message: updatedMessage))
+            })
+            .subscribe(onSuccess: { [weak m = mes] (updatedMessage) in
+                
+                guard var copy = m?.value,
+                    let i = copy.firstIndex(where: { $0.messageId == updatedMessage.raw.messageId }) else {
+                    return
+                }
+                
+                copy[i] = updatedMessage.raw
+                
+                m?.accept(copy)
+            })
+            .disposed(by: bag)
         
     }
     

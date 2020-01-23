@@ -91,7 +91,7 @@ platform :ios do
   lane :refresh_dsym do |options|
 
     download_dsyms(version: "latest")
-    upload_symbols_to_crashlytics(api_token: "e84ce1420f7f93176fb81a16a43f00b1cdbc00ff")
+    upload_symbols_to_crashlytics
     clean_build_artifacts
      
   end

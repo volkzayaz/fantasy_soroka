@@ -27,6 +27,7 @@ extension Room {
             case senderId
             case createdAt = "timestamp"
             case type
+            case readUserIds
         }
 
         var messageId: String
@@ -34,6 +35,13 @@ extension Room {
         let senderId: String
         let createdAt: Date
         let type: MessageType
+        var readUserIds: Set<String>
+        
+        var isRead: Bool { readUserIds.contains { $0 == User.current?.id } }
+        
+        mutating func markRead() {
+            readUserIds.insert(User.current!.id)
+        }
         
         var nonNullHackyText: String {
             return text ?? ""
@@ -75,13 +83,31 @@ extension Room {
                           text: text,
                           senderId: user.id,
                           createdAt: Date(),
-                          type: .message)
+                          type: .message,
+                          readUserIds: [user.id])
             
             roomId = room.id
         }
         
+        init(raw: Message, roomId: String) {
+            self.raw = raw
+            self.roomId = roomId
+        }
+        
         func socketRepresentation() -> SocketData {
             return ["text": raw.nonNullHackyText, "roomId": roomId]
+        }
+        
+    }
+    
+    struct ReadStatus: Codable, SocketData {
+        
+        let roomId: String
+        let userId: String
+        let messageId: String
+        
+        func socketRepresentation() -> SocketData {
+            return ["messageId": messageId, "roomId": roomId, "userId": userId]
         }
         
     }
@@ -104,7 +130,7 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
 
     var lastMessage: Message?
     
-    //var unreadMessages: Int = 0
+    var unreadCount: Int! = 0
     
     var peer: Participant {
         return participants.first(where: { $0.userId != User.current?.id })!

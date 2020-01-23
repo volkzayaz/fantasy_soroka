@@ -9,6 +9,7 @@
 import Foundation
 import SlackTextViewController
 
+import RxSwift
 import RxDataSources
 
 class ChatViewController: SLKTextViewController, MVVM_View {
@@ -117,6 +118,17 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         
         viewModel.dataSource
             .drive(tv.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        
+        tableView!.rx.willDisplayCell
+            .delay( .milliseconds(400), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak tv = tableView, weak self] (_, ip: IndexPath) in
+                guard let x: ChatViewModel.Row = try? tv?.rx.model(at: ip) else {
+                    return
+                }
+                
+                self?.viewModel.rowSeen(row: x)
+            })
             .disposed(by: rx.disposeBag)
     }
     

@@ -15,14 +15,18 @@ class RoomTableViewCell: UITableViewCell {
     @IBOutlet private (set) var lastMessageLabel: UILabel!
     @IBOutlet private var separator: UIView!
     @IBOutlet weak var roomImageView: UIImageView!
+    @IBOutlet weak var unreadCounterLabel: UILabel!
     
     func set(model: Room) {
         
         let participant: Room.Participant = model.peer
         
-        nameLabel.text = "\(participant.userSlice.name)"// (\(model.unreadMessages))"
+        nameLabel.text = "\(participant.userSlice.name)"
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
         lastMessageLabel.text = model.lastMessage?.text ?? "new room"
+        
+        unreadCounterLabel.text = "\(model.unreadCount)"
+        unreadCounterLabel.isHidden = model.unreadCount == 0
         
         ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
             .map { $0 ?? R.image.noPhoto() }
