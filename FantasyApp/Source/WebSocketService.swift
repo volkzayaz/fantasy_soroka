@@ -3,7 +3,7 @@
 //  RhythmicRebellion
 //
 //  Created by Vlad Soroka on 6/26/18.
-//  Copyright © 2018 Patron Empowerment, LLC. All rights reserved.
+//  Copyright © 2018. All rights reserved.
 //
 
 import Foundation

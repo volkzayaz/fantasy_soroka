@@ -102,7 +102,9 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     let freezeStatus: FreezeStatus?
     var participants: [Participant]
 
-    let lastMessage: Message?
+    var lastMessage: Message?
+    
+    //var unreadMessages: Int = 0
     
     var peer: Participant {
         return participants.first(where: { $0.userId != User.current?.id })!
@@ -111,9 +113,6 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     var me: Participant {
         return participants.first(where: { $0.userId == User.current?.id })!
     }
-    
-    // property set during runtime
-    var notificationSettings: NotificationSettings!
     
     var identity: String {
         return id

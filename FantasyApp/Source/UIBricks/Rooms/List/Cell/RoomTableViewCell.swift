@@ -16,11 +16,11 @@ class RoomTableViewCell: UITableViewCell {
     @IBOutlet private var separator: UIView!
     @IBOutlet weak var roomImageView: UIImageView!
     
-    func set(model: RoomsViewModel.RoomCell) {
+    func set(model: Room) {
         
-        let participant: Room.Participant = model.room.peer
+        let participant: Room.Participant = model.peer
         
-        nameLabel.text = participant.userSlice.name
+        nameLabel.text = "\(participant.userSlice.name)"// (\(model.unreadMessages))"
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
         lastMessageLabel.text = model.lastMessage?.text ?? "new room"
         

@@ -130,9 +130,11 @@ extension ChatViewModel {
         RoomManager.sendMessage(.init(text: text,
                                       from: User.current!,
                                       in: room.value), in: room.value)
-            .subscribe({ event in
-                // TODO: error handling
-            }).disposed(by: bag)
+            .map(NewMessageSent.init)
+            .subscribe(onSuccess: {
+                Dispatcher.dispatch(action: $0)
+            })
+            .disposed(by: bag)
         
         if room.value.peer.status == .invited {
             

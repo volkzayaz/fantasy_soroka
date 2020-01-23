@@ -24,9 +24,8 @@ enum RoomManager {}
 
 extension RoomManager {
     
-    static func sendMessage(_ message: Room.MessageInRoom, in room: Room) -> Single<Void> {
+    static func sendMessage(_ message: Room.MessageInRoom, in room: Room) -> Single<Room.MessageInRoom> {
         return webSocket.send(message: message)
-            .map { _ in }
     }
 
     static func getMessagesInRoom(_ roomId: String) -> Single<[Room.Message]> {
@@ -93,22 +92,14 @@ extension RoomManager {
         return UpdateRoomSettingsResource(roomId: roomId, settings: settings).rx.request
     }
 
-    static func latestMessageIn(rooms: [Room]) -> Observable<[Room: Room.Message?]> {
+    static func latestMessageIn(rooms: [Room]) -> Observable<Room.MessageInRoom> {
         
         if rooms.count == 0 {
-            return .just([:])
+            return .empty()
         }
          
-        let access = Dictionary(uniqueKeysWithValues: rooms.map { ($0.id, $0) })
-        var result: [Room: Room.Message?] = Dictionary(uniqueKeysWithValues: rooms.map { ($0, $0.lastMessage) })
-        
         return webSocket.didReceiveMessage
-            .filter { access[$0.roomId] != nil }
-            .map { message in
-                result[access[message.roomId]!] = message.raw
-                return result
-            }
-            .startWith(result)
+            .filter { x in rooms.contains(where: { $0.id == x.roomId }) }
             
     }
 

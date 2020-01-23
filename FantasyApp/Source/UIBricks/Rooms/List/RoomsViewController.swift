@@ -27,7 +27,7 @@ class RoomsViewController: UIViewController, MVVM_View {
     }
     @IBOutlet private var createRoomButton: SecondaryButton!
 
-    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, RoomsViewModel.RoomCell>>(
+    lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Room>>(
         configureCell: { [unowned self] (_, tableView, indexPath, model) in
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.roomTableViewCell,
@@ -61,9 +61,9 @@ class RoomsViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
 
-        tableView.rx.modelSelected(RoomsViewModel.RoomCell.self)
+        tableView.rx.modelSelected(Room.self)
             .subscribe(onNext: { [unowned self] cellModel in
-                self.viewModel.roomTapped(roomCell: cellModel)
+                self.viewModel.roomTapped(room: cellModel)
         }).disposed(by: rx.disposeBag)
 
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)

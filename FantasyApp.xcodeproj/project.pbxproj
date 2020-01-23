@@ -174,6 +174,7 @@
 		739F799823095C7E0045FCD7 /* FantasyDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */; };
 		739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */; };
 		739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */; };
+		73C287E823D9954E004B15E6 /* NewMessageInRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */; };
 		73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */; };
 		73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */; };
 		73C96F1523409DFC002C3F8E /* ProfileSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */; };
@@ -586,6 +587,7 @@
 		739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsRouter.swift; sourceTree = "<group>"; };
 		739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewController.swift; sourceTree = "<group>"; };
 		739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewModel.swift; sourceTree = "<group>"; };
+		73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageInRoom.swift; sourceTree = "<group>"; };
 		73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsRouter.swift; sourceTree = "<group>"; };
 		73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		73C96F1223409DFC002C3F8E /* ProfileSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewModel.swift; sourceTree = "<group>"; };
@@ -2239,6 +2241,7 @@
 			children = (
 				84C1D0742327DB7600648DE1 /* SetRooms.swift */,
 				844CD6FE235A7B99004E6BA3 /* UpdateRoomSettingsIn.swift */,
+				73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -2875,6 +2878,7 @@
 				73EEFC33235C6E3100480E79 /* SinglePickViewController.swift in Sources */,
 				7312B09822D7422100DB0F36 /* NotNilObservable.swift in Sources */,
 				B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */,
+				73C287E823D9954E004B15E6 /* NewMessageInRoom.swift in Sources */,
 				843B6491234F198500E5639B /* RoomSettingsViewController.swift in Sources */,
 				B73774B123644F2D00A353CC /* UserCarouselView.swift in Sources */,
 				734C528F23266ADA00B54510 /* DiscoverProfileViewController.swift in Sources */,

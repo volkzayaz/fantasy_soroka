@@ -13,24 +13,14 @@ import RxDataSources
 
 extension RoomsViewModel {
     
-    var dataSource: Driver<[AnimatableSectionModel<String, RoomCell>]> {
+    var dataSource: Driver<[AnimatableSectionModel<String, Room>]> {
         return appState.changesOf { $0.rooms }
             .notNil()
-            .flatMapLatest { rooms -> Driver<[RoomCell]> in
-                
-                return RoomManager.latestMessageIn(rooms: rooms)
-                    .asDriver(onErrorJustReturn: [:])
-                    .map { messages in
-                        rooms.map { r in
-                            RoomCell(room: r, lastMessage: messages[r] ?? nil)
-                        }
-                    }
-            }
             .map { cells in
                 
-                let freezed = Dictionary(grouping: cells, by: { $0.room.freezeStatus == .frozen })
+                let freezed = Dictionary(grouping: cells, by: { $0.freezeStatus == .frozen })
                 
-                var results: [AnimatableSectionModel<String, RoomCell>] = []
+                var results: [AnimatableSectionModel<String, Room>] = []
                 
                 if let x = freezed[false] {
                     results.append(AnimatableSectionModel(model: "Non Freezed rooms",
@@ -46,14 +36,6 @@ extension RoomsViewModel {
             }
     }
     
-    struct RoomCell: IdentifiableType, Equatable {
-        let room: Room
-        let lastMessage: Room.Message?
-        
-        var identity: String {
-            return room.id
-        }
-    }
 }
 
 struct RoomsViewModel: MVVM_ViewModel {
@@ -61,6 +43,8 @@ struct RoomsViewModel: MVVM_ViewModel {
     init(router: RoomsRouter) {
         self.router = router
 
+        ///Rooms refresh
+        
         appState.changesOf { $0.reloadRoomsTriggerBecauseOfComplexFreezeLogic }
             .filter { $0 }
             .asObservable()
@@ -77,6 +61,22 @@ struct RoomsViewModel: MVVM_ViewModel {
         
         Dispatcher.dispatch(action: TriggerRoomsRefresh())
         
+        ///Global stuff, binding webSocket to appState
+        
+        appState.changesOf { $0.rooms }
+            .notNil()
+            .distinctUntilChanged { $0.count == $1.count }
+            .asObservable()
+            .flatMapLatest { (rooms) in
+                RoomManager.latestMessageIn(rooms: rooms)
+            }
+            .subscribe(onNext: { (message) in
+                Dispatcher.dispatch(action: NewMessageSent(message: message))
+            })
+            .disposed(by: bag)
+        
+        ///indicator
+        
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
@@ -89,9 +89,9 @@ struct RoomsViewModel: MVVM_ViewModel {
 
 extension RoomsViewModel {
     
-    func roomTapped(roomCell: RoomCell) {
+    func roomTapped(room: Room) {
         
-        guard roomCell.room.freezeStatus != .frozen else {
+        guard room.freezeStatus != .frozen else {
             
             return router.owner.showDialog(title: "Club Membership",
                                            text: R.string.localizable.roomFrozenRoomUnreachable(),
@@ -100,7 +100,7 @@ extension RoomsViewModel {
                                            positiveText: "No, thanks")
         }
             
-        router.roomTapped(roomCell.room)
+        router.roomTapped(room)
     }
 
     func createRoom() {
