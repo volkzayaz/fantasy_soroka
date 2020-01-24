@@ -151,6 +151,34 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
+        ///Rooms stuff
+        
+        appState.changesOf { $0.rooms }
+            .notNil()
+            .distinctUntilChanged { $0.count == $1.count }
+            .asObservable()
+            .flatMapLatest { (rooms) in
+                RoomManager.latestMessageIn(rooms: rooms)
+            }
+            .subscribe(onNext: { (message) in
+                Dispatcher.dispatch(action: NewMessageSent(message: message))
+            })
+            .disposed(by: bag)
+        
+        appState.changesOf { $0.reloadRoomsTriggerBecauseOfComplexFreezeLogic }
+            .filter { $0 }
+            .asObservable()
+            .flatMapFirst { _ -> Observable<[Room]> in
+                return RoomManager.getAllRooms()
+                    .asObservable()
+                    .silentCatch(handler: router.owner)
+            }
+            .subscribe(onNext: { (rooms: [Room]) in
+                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
+            })
+            .disposed(by: bag)
+        
+        Dispatcher.dispatch(action: TriggerRoomsRefresh())
         
         /////progress indicator
         

@@ -41,7 +41,9 @@ extension RoomManager {
 
     static func getMessagesInRoom(_ roomId: String) -> Single<[Room.Message]> {
         return MesagesIn(room: roomId).rx.request
-            .map { $0.messages.filter { $0.type == .message } }
+            .map { $0.messages
+//                .filter { $0.type == .message }
+        }
         
     }
     

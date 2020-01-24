@@ -55,7 +55,6 @@ class WebSocketService {
     
     func send(readStatus: Room.ReadStatus) -> Single<Void> {
         return manager.defaultSocket.rx.send(event: "message_read", with: readStatus)
-            .map { (x: EmptyResponse) in }
     }
     
     var didConnect: Observable<Void> {
@@ -186,22 +185,42 @@ extension Reactive where Base == SocketIOClient {
         
     }
     
+    fileprivate func send<T: SocketData>(event: String, with data: T) -> Single<Void> {
+        return send(event: event, with: data) { _ in }
+    }
+    
     fileprivate func send<T: SocketData, U: Codable>(event: String, with data: T) -> Single<U> {
+        
+        return send(event: event, with: data) { (response: [Any]) -> U in
+            
+            guard let dic = response.first as? [String: Any] else {
+                throw FantasyError.generic(description: "Can't map \(String(describing: response.first)) as [String: Any]")
+            }
+            
+            let bytes = try JSONSerialization.data(withJSONObject: dic, options: [])
+            
+            return try fantasyDecoder.decode(U.self, from: bytes)
+            
+        }
+        
+    }
+    
+    fileprivate func send<T: SocketData, U>
+        (event: String, with data: T,
+         responseMap: @escaping ( ([Any]) throws -> U  ))
+        -> Single<U> {
         
         return Single.create { (subscriber) -> Disposable in
             
             self.base.emitWithAck(event, data).timingOut(after: 1) { (data: [Any]) in
                 
-                guard let dic = data.first as? [String: Any],
-                    let bytes = try? JSONSerialization.data(withJSONObject: dic, options: []),
-                    let model = try? fantasyDecoder.decode(U.self, from: bytes) else {
-                        
-                    subscriber(.error(FantasyError.generic(description: "Can't parse response for socket event \(event)")))
-                    return
-                        
+                do {
+                    subscriber( .success(try responseMap(data)) )
+                }
+                catch (let er) {
+                    subscriber(.error(FantasyError.generic(description: "Can't parse response for socket event \(event). Details \(er)")))
                 }
                 
-                subscriber(.success(model))
             }
             
             return Disposables.create()

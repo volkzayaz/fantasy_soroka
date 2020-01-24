@@ -43,38 +43,6 @@ struct RoomsViewModel: MVVM_ViewModel {
     init(router: RoomsRouter) {
         self.router = router
 
-        ///Rooms refresh
-        
-        appState.changesOf { $0.reloadRoomsTriggerBecauseOfComplexFreezeLogic }
-            .filter { $0 }
-            .asObservable()
-            .flatMapFirst { [unowned i = indicator] _ -> Observable<[Room]> in
-                return RoomManager.getAllRooms()
-                    .asObservable()
-                    .trackView(viewIndicator: i)
-                    .silentCatch(handler: router.owner)
-            }
-            .subscribe(onNext: { (rooms: [Room]) in
-                Dispatcher.dispatch(action: SetRooms(rooms: rooms))
-            })
-            .disposed(by: bag)
-        
-        Dispatcher.dispatch(action: TriggerRoomsRefresh())
-        
-        ///Global stuff, binding webSocket to appState
-        
-        appState.changesOf { $0.rooms }
-            .notNil()
-            .distinctUntilChanged { $0.count == $1.count }
-            .asObservable()
-            .flatMapLatest { (rooms) in
-                RoomManager.latestMessageIn(rooms: rooms)
-            }
-            .subscribe(onNext: { (message) in
-                Dispatcher.dispatch(action: NewMessageSent(message: message))
-            })
-            .disposed(by: bag)
-        
         ///indicator
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in

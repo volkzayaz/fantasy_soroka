@@ -22,6 +22,11 @@ struct NewMessageSent: Action {
         
         var state = initialState
         room.lastMessage = message.raw
+        
+        if !message.raw.isOwn {
+            room.unreadCount += 1
+        }
+        
         state.rooms?[i] = room
         return state
             

@@ -25,7 +25,7 @@ class RoomTableViewCell: UITableViewCell {
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
         lastMessageLabel.text = model.lastMessage?.text ?? "new room"
         
-        unreadCounterLabel.text = "\(model.unreadCount)"
+        unreadCounterLabel.text = "\(model.unreadCount ?? 0)"
         unreadCounterLabel.isHidden = model.unreadCount == 0
         
         ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)

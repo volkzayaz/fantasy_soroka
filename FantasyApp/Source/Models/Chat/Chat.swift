@@ -35,12 +35,12 @@ extension Room {
         let senderId: String
         let createdAt: Date
         let type: MessageType
-        var readUserIds: Set<String>
+        var readUserIds: Set<String>?
         
-        var isRead: Bool { readUserIds.contains { $0 == User.current?.id } }
+        var isRead: Bool { readUserIds?.contains { $0 == User.current?.id } ?? false }
         
         mutating func markRead() {
-            readUserIds.insert(User.current!.id)
+            readUserIds?.insert(User.current!.id)
         }
         
         var nonNullHackyText: String {
