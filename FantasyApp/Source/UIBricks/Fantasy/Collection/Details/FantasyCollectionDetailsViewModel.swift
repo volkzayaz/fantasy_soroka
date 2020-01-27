@@ -80,8 +80,12 @@ extension FantasyCollectionDetailsViewModel {
             .subscribe(onNext: { [weak o = router.owner] in
                 Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
                 
-                let vc = (((o?.presentingViewController as! RootViewController).viewControllers.first! as! MainTabBarViewController).viewControllers!.first! as! UINavigationController).viewControllers.first! as! FantasyDeckViewController
-                vc.cardsTapped()
+                if let vc = (((o?.presentingViewController as? RootViewController)?.viewControllers.first as? MainTabBarViewController)?.viewControllers?.first as? UINavigationController)?.viewControllers.first as? FantasyDeckViewController {
+                    
+                    vc.cardsTapped()
+                  
+                }
+                
                 o?.dismiss(animated: true, completion: nil)
                 
             })
