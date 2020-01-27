@@ -145,6 +145,8 @@
 		7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33523351F64007B84B0 /* ConnectionRouter.swift */; };
 		7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33623351F64007B84B0 /* ConnectionViewController.swift */; };
 		7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F33723351F64007B84B0 /* ConnectionViewModel.swift */; };
+		7368A0A423DF353E00A7E2AE /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7368A0A223DF353D00A7E2AE /* EventCell.xib */; };
+		7368A0A523DF353E00A7E2AE /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7368A0A323DF353D00A7E2AE /* EventCell.swift */; };
 		736D235A235A057A00430863 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2359235A057A00430863 /* AboutCell.swift */; };
 		7374F6A8235B8435000D6D20 /* ConnectionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7374F6A7235B8435000D6D20 /* ConnectionCells.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
@@ -556,6 +558,8 @@
 		7361F33523351F64007B84B0 /* ConnectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRouter.swift; sourceTree = "<group>"; };
 		7361F33623351F64007B84B0 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		7361F33723351F64007B84B0 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
+		7368A0A223DF353D00A7E2AE /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		7368A0A323DF353D00A7E2AE /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		736D2359235A057A00430863 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
 		7374F6A7235B8435000D6D20 /* ConnectionCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCells.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
@@ -1385,6 +1389,7 @@
 		73432ABA238A6BFD008CF2F1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7368A0A123DF350900A7E2AE /* EventCell */,
 				73E13B69238AE0E900CE1B06 /* RoomCreatedCell */,
 				73E13B68238ADC2000CE1B06 /* Text */,
 				73F80CD32361EC1200212FCF /* AcceptReject */,
@@ -1591,6 +1596,15 @@
 				7361F33723351F64007B84B0 /* ConnectionViewModel.swift */,
 			);
 			path = Connections;
+			sourceTree = "<group>";
+		};
+		7368A0A123DF350900A7E2AE /* EventCell */ = {
+			isa = PBXGroup;
+			children = (
+				7368A0A323DF353D00A7E2AE /* EventCell.swift */,
+				7368A0A223DF353D00A7E2AE /* EventCell.xib */,
+			);
+			path = EventCell;
 			sourceTree = "<group>";
 		};
 		7374F6A6235B8419000D6D20 /* Cells */ = {
@@ -2522,6 +2536,7 @@
 				841681EE22E9AE6E00FA9455 /* SF-Pro-Text-UltralightItalic.otf in Resources */,
 				841681E222E9AE6E00FA9455 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				7312B0D322D74FB200DB0F36 /* Fastfile in Resources */,
+				7368A0A423DF353E00A7E2AE /* EventCell.xib in Resources */,
 				73097C05231D3D8200B71053 /* User.storyboard in Resources */,
 				84C1D0392327B95300648DE1 /* Pansexual.png in Resources */,
 				73F80CD72361ED0200212FCF /* AcceptRejectCell.xib in Resources */,
@@ -3005,6 +3020,7 @@
 				B783C632234F92120017CE1A /* GradientBackgroundView.swift in Sources */,
 				7322311B23055C3F009DD37F /* Fantasy.swift in Sources */,
 				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,
+				7368A0A523DF353E00A7E2AE /* EventCell.swift in Sources */,
 				843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
 				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,

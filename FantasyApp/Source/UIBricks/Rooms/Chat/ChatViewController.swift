@@ -74,6 +74,15 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             
             return cell
         
+        case .event(let image, let event, _):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.eventCell, for: ip)!
+            cell.transform = tv.transform
+            cell.eventImage = image
+            cell.event = event
+            
+            return cell
+            
         }
         
     })
@@ -86,6 +95,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         tv.register(R.nib.chatHeaderCell)
         tv.register(R.nib.acceptRejectCell)
         tv.register(R.nib.roomCreatedCell)
+        tv.register(R.nib.eventCell)
         
         tv.dataSource = nil
         tv.separatorStyle = .none
@@ -157,6 +167,9 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             
         case .roomCreated:
             return 35
+            
+        case .event(_, _, _):
+            return UITableView.automaticDimension
             
         }
         

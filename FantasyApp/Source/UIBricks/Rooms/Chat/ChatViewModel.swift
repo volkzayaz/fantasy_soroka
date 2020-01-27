@@ -22,17 +22,57 @@ extension ChatViewModel {
         
         let requestTypes = ConnectionManager.requestTypes(with: room.value.peer.userSlice.id)
             .asDriver(onErrorJustReturn: [])
+        let peer = room.value.peer.userSlice
+        let isAdmin = room.value.ownerId == room.value.me.userId!
         
         return Driver.combineLatest(requestTypes, mes.asDriver(), room.asDriver())
             .map { requestTypes, messages, room in
                 
-                var items = messages.map { Row.message($0) }
+                var items = messages.map { x -> Row in
+                    
+                    switch x.type {
+                        
+                    case .created:
+                        return .roomCreated
+                        
+                    case .like:
+                        let event = x.isOwn ? "You liked \(peer.name) profile" : "\(peer.name) liked your profile"
+                        return .event(R.image.outgoingRequestLike()!, event, x.identity)
+                        
+                    case .invited:
+                        let event = x.isOwn ? "You invited \(peer.name) to the rooom" : "\(peer.name) liked your profile"
+                        return .event(R.image.outgoingRequestLink()!, event, x.identity)
+                        
+                    case .message:
+                        return .message(x)
+                        
+                    case .sp_enabled, .sp_disabled: fallthrough
+                    case .settings_changed:
+                        let event = isAdmin ? "You changed the Room settings" : "\(peer.name) changed the Room settings"
+                        return .event(R.image.roomSettingsChanged()!, event, x.identity)
+                        
+                    case .frozen:
+                        let event = x.isOwn ? "Your Rooms limit exceeded" : "\(peer.name) Rooms limit exceeded"
+                        return .event(R.image.roomFrozen()!, event, x.identity)
+                        
+                    case .unfrozen:
+                        let event = "The Room is Unfrozen"
+                        return .event(R.image.roomUnfrozen()!, event, x.identity)
+                        
+                    case .unfrozenPaid:
+                        let name = x.isOwn ? "you" : "\(peer.name)"
+                        let event =  "The Room is Unfrozen because \(name) became a member"
+                        return .event(R.image.roomUnfrozen()!, event, x.identity)
+                    
+                    case .message_deleted, .deleted:
+                        return .message(x)
+                    
+                    }
+                    
+                }
                 
                 if room.isWaitingForMyResponse {
                     items.append(.acceptReject)
-                }
-                else if !room.isDraftRoom {
-                    items.append(.roomCreated)
                 }
                 
                 items.append(.connection(requestTypes))
@@ -75,6 +115,7 @@ extension ChatViewModel {
         case connection(Set<ConnectionRequestType>)
         case acceptReject
         case roomCreated
+        case event(UIImage, String, String)
         
         var identity: String {
             switch self {
@@ -82,6 +123,7 @@ extension ChatViewModel {
             case .connection(_): return "connection"
             case .acceptReject: return "acceptReject"
             case .roomCreated: return "roomCreated"
+            case .event(_, _, let hash): return "event \(hash)"
             }
         }
     }
