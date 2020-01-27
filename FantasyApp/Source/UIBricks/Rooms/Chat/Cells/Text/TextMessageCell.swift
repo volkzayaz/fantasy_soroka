@@ -138,8 +138,6 @@ class OtherMessageCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        textBubble.message = message
-        
         let rect = CGRect(x: MessageStyle.sideInset,
                           y: MessageStyle.upDownInset,
                           width: position.totalWidth,
