@@ -27,7 +27,7 @@ struct ChangeOpeRoomRef: Action {
     
     func perform(initialState: AppState) -> AppState {
         var state = initialState
-        state.openRoomRef = roomRef
+        state.openRoom = .init(roomRef: roomRef)
         return state
     }
     

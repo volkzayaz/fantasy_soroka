@@ -17,7 +17,7 @@ struct MainTabBarRouter : MVVM_Router {
     
     func presentRoom(room: Room, page: RoomDetailsViewModel.DetailsPage) {
         
-        owner.selectedIndex = 3
+        owner.selectedIndex = 2
         let notificationController = (owner.viewControllers![2] as! UINavigationController).viewControllers.first! as! ConnectionViewController
         notificationController.viewModel.router.show(room: room, page: page)
         

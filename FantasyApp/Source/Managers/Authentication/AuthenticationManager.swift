@@ -154,7 +154,7 @@ extension AuthenticationManager {
     
     static func logout() {
         SettingsStore.currentUser.value = nil
-        PFUser.logOutInBackground(block: { _ in })
+        PFUser.logOut()
     }
 
     private static func postAuthorizationParseMess( signal: Observable<PFUser> ) -> Single<User> {

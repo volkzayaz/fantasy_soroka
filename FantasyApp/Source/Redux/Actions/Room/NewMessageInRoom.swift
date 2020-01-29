@@ -16,7 +16,8 @@ struct NewMessageSent: Action {
 
         guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.message.roomId }),
             var room = initialState.rooms?[i] else {
-            fatalErrorInDebug("Can't update message in room that is not in the rooms list")
+            
+            ///happens when you send out messages to draft rooms for example
             return initialState
         }
         
@@ -42,7 +43,7 @@ struct MessageMakredRead: Action {
 
         guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.message.roomId }),
             var room = initialState.rooms?[i] else {
-            fatalErrorInDebug("Can't update message in room that is not in the rooms list")
+            ///might happen in draft room
             return initialState
         }
         

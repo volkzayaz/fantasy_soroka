@@ -99,11 +99,11 @@ struct MainTabBarViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
-        appState.changesOf { $0.openRoomRef }
+        appState.changesOf { $0.openRoom }
             .notNil()
             .asObservable()
             .flatMap { [unowned i = indicator] x in
-                RoomManager.getRoom(id: x.id)
+                RoomManager.getRoom(id: x.roomRef.id)
                     .trackView(viewIndicator: i)
             }
             .subscribe(onNext: { (room) in

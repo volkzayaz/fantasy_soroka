@@ -59,7 +59,7 @@ struct AppState: Equatable {
     var incommingConnections: Int
     
     var inviteDeeplink: InviteDeeplink?
-    var openRoomRef: RoomRef?
+    var openRoom: OpenRoom?
     var openCard: OpenCard?
     var openCollection: OpenCollection?
     
@@ -69,6 +69,12 @@ struct AppState: Equatable {
         var wouldUpdateAt: Date?
         
     };
+    
+    struct OpenRoom: Equatable {
+        let udid = UUID().uuidString
+        let roomRef: RoomRef
+    }
+    
     
     struct InviteDeeplink: Equatable {
         let roomRef: RoomRef
