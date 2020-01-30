@@ -52,9 +52,14 @@ class ChatHeaderCell: UITableViewCell {
         
         let str: NSString = "\(user.name) sent\nnew room request" as NSString
         
+        let para = NSMutableParagraphStyle()
+        para.alignment = .center
+        
         let attributedString = NSMutableAttributedString(string: str as String, attributes: [
           .font: UIFont.systemFont(ofSize: 18.0, weight: .bold),
-          .foregroundColor: R.color.textBlackColor()!
+          .foregroundColor: R.color.textBlackColor()!,
+          .paragraphStyle: para
+            
         ])
 
         attributedString.addAttributes([

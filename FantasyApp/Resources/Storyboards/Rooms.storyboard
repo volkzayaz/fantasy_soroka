@@ -71,12 +71,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="2nB-EF-Vix">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2nB-EF-Vix">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" rowHeight="80" id="TOV-RH-5J6" customClass="RoomTableViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TOV-RH-5J6" id="i03-ai-cg4">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -114,7 +113,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRo-CG-ZRp">
-                                                    <rect key="frame" x="69" y="42" width="37.333333333333343" height="22"/>
+                                                    <rect key="frame" x="69" y="42" width="301" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -140,6 +139,7 @@
                                                 <constraint firstItem="DZg-TW-lfO" firstAttribute="leading" secondItem="cqo-Dv-0CM" secondAttribute="trailing" constant="8" id="Fde-LM-4nx"/>
                                                 <constraint firstAttribute="bottom" secondItem="Mlc-gS-LWC" secondAttribute="bottom" id="Gno-x9-03j"/>
                                                 <constraint firstAttribute="trailing" secondItem="Mlc-gS-LWC" secondAttribute="trailing" constant="16" id="L45-RD-TA1"/>
+                                                <constraint firstItem="5C0-dY-edE" firstAttribute="leading" secondItem="NRo-CG-ZRp" secondAttribute="trailing" constant="8" id="OMc-iB-7DV"/>
                                                 <constraint firstItem="cqo-Dv-0CM" firstAttribute="leading" secondItem="rbB-14-5Dn" secondAttribute="trailing" constant="8" id="TmZ-KJ-4sw"/>
                                                 <constraint firstItem="DZg-TW-lfO" firstAttribute="top" secondItem="i03-ai-cg4" secondAttribute="top" constant="16" id="Tte-yJ-bqq"/>
                                                 <constraint firstItem="NRo-CG-ZRp" firstAttribute="leading" secondItem="rbB-14-5Dn" secondAttribute="trailing" constant="8" id="Zyj-7h-Rla"/>

@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="447" height="98"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome! The Room is created" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHG-pz-oFJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome! The Room is created" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHG-pz-oFJ">
                         <rect key="frame" x="116" y="15" width="215.5" height="68"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.68627450980392157" green="0.70588235294117641" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -39,6 +39,7 @@
                     <constraint firstItem="EHG-pz-oFJ" firstAttribute="centerX" secondItem="8el-ua-p4X" secondAttribute="centerX" id="Dkv-HT-Sbk"/>
                     <constraint firstItem="EHG-pz-oFJ" firstAttribute="leading" secondItem="Axf-CL-067" secondAttribute="trailing" constant="8" id="EwR-df-wTC"/>
                     <constraint firstAttribute="bottom" secondItem="EHG-pz-oFJ" secondAttribute="bottom" constant="15" id="WYj-UJ-MSI"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EHG-pz-oFJ" secondAttribute="trailing" constant="40" id="ZYE-6F-nV0"/>
                     <constraint firstItem="Axf-CL-067" firstAttribute="centerY" secondItem="EHG-pz-oFJ" secondAttribute="centerY" id="fiv-zP-OYm"/>
                     <constraint firstItem="EHG-pz-oFJ" firstAttribute="top" secondItem="8el-ua-p4X" secondAttribute="top" constant="15" id="vgH-hg-Yp7"/>
                 </constraints>

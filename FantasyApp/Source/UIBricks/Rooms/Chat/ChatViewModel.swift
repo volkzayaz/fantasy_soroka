@@ -225,6 +225,15 @@ extension ChatViewModel {
         updatedRoom.participants[i] = x
         room.accept(updatedRoom)
         
+        var copy = mes.value
+        copy.insert(Room.Message(messageId: "-1",
+                                 text: nil,
+                                 senderId: User.current!.id,
+                                 createdAt: Date(),
+                                 type: .created, readUserIds: [User.current!.id]),
+                    at: 0)
+        mes.accept(copy)
+        
         let _ = ConnectionManager.likeBack(user: room.value.ownerId, context: .Room)
             .subscribe()
     }

@@ -20,6 +20,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         didSet {
             profilesCarousel.type = .custom
             profilesCarousel.isPagingEnabled = true
+            profilesCarousel.delegate = self
         }
     }
 
@@ -188,11 +189,10 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         return view
         
     }
-
+    
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
         case .wrap: return 0
-        case .spacing: return 0.5
         case .visibleItems: return 3
         case .radius: return 220
             
@@ -204,8 +204,8 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
 
         let MAX_SCALE: Float = 1
         let MAX_Shift: Float = 25
-        let distance: Float = 32
-        let multiplier: CGFloat = 1.0
+        let distance: Float = 35
+        let multiplier: CGFloat = 0.9
 
         let shift: Float = fminf(1, fmaxf(-1, Float(offset)))
         let scale: CGFloat = CGFloat(1 + (1 - abs(shift)) * (MAX_SCALE - 1))
