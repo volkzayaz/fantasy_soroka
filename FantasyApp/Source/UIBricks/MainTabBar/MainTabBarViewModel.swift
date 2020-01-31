@@ -180,6 +180,14 @@ struct MainTabBarViewModel : MVVM_ViewModel {
         
         Dispatcher.dispatch(action: TriggerRoomsRefresh())
         
+        ///Connections counter
+        
+        ConnectionManager.connectionRequests(source: .incomming)
+            .subscribe(onSuccess: { (x) in
+                Dispatcher.dispatch(action: ChangeIncommingConnections(count: x.count))
+            })
+            .disposed(by: bag)
+        
         /////progress indicator
         
         indicator.asDriver()
