@@ -140,6 +140,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                 self?.securitySettingsView.switches.first?.isOn = false
             })
         
+        securitySettingsView.removeFromSuperview()
     }
     
     @objc func close() {

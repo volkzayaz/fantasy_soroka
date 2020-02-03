@@ -17,7 +17,6 @@ extension SubscriptionViewModel {
     enum Page: Int {
         case unlimRooms = 0
         case fantasyX3
-        case screenProtect
         case teleport
         case member
     }

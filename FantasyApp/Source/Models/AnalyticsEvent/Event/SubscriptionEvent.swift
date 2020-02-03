@@ -22,7 +22,7 @@ extension Analytics.Event {
             switch context {
             case .fantasyX3: ctx = "DeckLimit"
             case .member: ctx = "ProfileMembership"
-            case .screenProtect: ctx = "RoomScreenProtect"
+            //case .screenProtect: ctx = "RoomScreenProtect"
             case .teleport: ctx = "SearchActiveCity"
             case .unlimRooms: ctx = "RoomFrozenLimit"
             }

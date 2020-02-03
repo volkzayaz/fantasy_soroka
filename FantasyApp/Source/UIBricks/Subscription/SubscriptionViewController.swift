@@ -72,7 +72,7 @@ extension SubscriptionViewController {
         
         let x = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         
-        pageControl.currentPage = min(4, x)
+        pageControl.currentPage = min(3, x)
         
     }
     

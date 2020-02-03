@@ -19,9 +19,6 @@ class MonetizationViewController: UIViewController {
                   MonetizationModel(image: R.image.memberX3()!,
                                     title: "x3 New Fantasies Daily",
                                     description: "Discover more new fantasy cards every day"),
-                  MonetizationModel(image: R.image.memberScreenProtect()!,
-                                    title: "ScreenProtect",
-                                    description: "Protect your profile and rooms from being screenshotted or screenrecorded from other devices"),
                   MonetizationModel(image: R.image.memberActiveCity()!,
                                   title: "Change Active City",
                                   description: "Switch your profile to other active cities to play with new people around the world"),
@@ -145,7 +142,7 @@ class MonetizationSubscribeButton: SecondaryButton {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .screenProtect)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .member)
         
         x.present(nav, animated: true, completion: nil)
         
