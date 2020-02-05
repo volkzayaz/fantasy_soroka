@@ -186,9 +186,9 @@ extension TeleportViewModel {
             
         }
         
-//        guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
-//            return router.showSubscription()
-//        }
+        guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
+            return router.showSubscription()
+        }
         
         switch response {
         case .editForm(let form):
