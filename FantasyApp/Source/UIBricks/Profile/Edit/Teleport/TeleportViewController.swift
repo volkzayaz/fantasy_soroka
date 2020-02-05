@@ -29,15 +29,15 @@ class TeleportViewController: UIViewController, MVVM_View {
                 
                 return cell
                 
-            case .location(let x):
+            case .location(let title, let subtitle, let isSelected, let icon):
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCurrentCell,
                                                          for: ip)!
                 
-                cell.locationNameLabel.text = "My current location"
-                cell.countryNameLabel.text = x
-                cell.indicatorImageView.image = R.image.location()
-                cell.tickButton.isSelected = true
+                cell.locationNameLabel.text = title
+                cell.countryNameLabel.text = subtitle
+                cell.indicatorImageView.image = icon
+                cell.tickButton.isSelected = isSelected
                 
                 return cell
                 

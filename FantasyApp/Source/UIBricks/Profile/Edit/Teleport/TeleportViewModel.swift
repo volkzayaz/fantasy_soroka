@@ -16,19 +16,64 @@ extension TeleportViewModel {
     
     var dataSource: Driver<[AnimatableSectionModel<String, Data>]> {
         
-        return mode.asDriver()
-            .flatMapLatest { mode in
+        let communitySection: Driver<[Data]> = appState
+            .changesOf { $0.currentUser?.community }
+            .notNil()
+            .flatMapLatest { x in
                 
-                return Driver.combineLatest(self.data.asDriver(),
-                                            self.currentLocationName.asDriver())
-                                            //appState.changesOf { $0.currentUser?.community.changePolicy } { ($0, $1) }
-                .map { (data, currentLocationName) in
+                guard let lastKnownLocation = x.lastKnownLocation else {
+                    return .just([Data.location(title: "My Current Loction",
+                                                subtitle: "Not determined",
+                                                isSelected: false,
+                                                icon: R.image.currentLocation()!)])
+                }
+                
+                return CLGeocoder().rx.city(near: lastKnownLocation.clLocation)
+                    .asDriver(onErrorJustReturn: nil)
+                    .map { maybeCurrentPhysicalLocation in
+                        
+                        guard let currentLocation = maybeCurrentPhysicalLocation else {
+                            return [Data.location(title: "My Current Loction",
+                                                  subtitle: "Unknown location",
+                                                  isSelected: true,
+                                                  icon: R.image.currentLocation()!)]
+                        }
+                        
+                        let didGuyTeleported: Bool = x.changePolicy == .teleport
+                        
+                        var response: [Data] = [ .location(title: "My Current Loction",
+                                                           subtitle: currentLocation,
+                                                           isSelected: !didGuyTeleported,
+                                                           icon: R.image.currentLocation()!) ]
+                        
+                        if let community = x.value, didGuyTeleported {
+                            response.append( .location(title: community.name,
+                                                       subtitle: community.country,
+                                                       isSelected: true,
+                                                       icon: R.image.teleportedLocation()! ) )
+                        }
+                        
+                        return response
+                        
+                }
+        }
+        
+        let data = CommunityManager.allCommunities()
+                                   .trackView(viewIndicator: indicator)
+                                   .silentCatch()
+                                   .map { Dictionary(grouping: $0, by: { $0.country }) }
+                                   .asDriver(onErrorJustReturn: [:])
+
+        return Driver.combineLatest(mode.asDriver(),
+                                    data,
+                                    communitySection)
+                .map { (mode, data, communitySection) in
                     
                     switch mode {
                     case .countries:
                         return [
                             AnimatableSectionModel(model: "current location",
-                                                   items: [Data.location(currentLocationName)]),
+                                                   items: communitySection),
                             
                             AnimatableSectionModel(model: "available locations",
                                                    items: data
@@ -41,7 +86,7 @@ extension TeleportViewModel {
                     case .communities(let fromCountry):
                         return [
                             AnimatableSectionModel(model: "current location",
-                                                   items: [Data.location(currentLocationName)]),
+                                                   items: communitySection),
                             
                             AnimatableSectionModel(model: "available locations",
                             items: (data[fromCountry] ?? []).sorted(by: { $0.name < $1.name }).map { Data.community($0) })
@@ -50,8 +95,6 @@ extension TeleportViewModel {
                     }
                     
                 }
-                
-            }
         
     }
     
@@ -63,13 +106,13 @@ extension TeleportViewModel {
     enum Data: IdentifiableType, Equatable {
         case community(Community)
         case country(String, Int)
-        case location(String)
+        case location(title: String, subtitle: String, isSelected: Bool, icon: UIImage)
         
         var identity: String {
             switch self {
             case .community(let x):  return x.name + x.country
             case .country(let x, _): return x
-            case .location(let x):   return "currentLocation" + x
+            case .location(let t, let x, _, _): return "currentLocation" + t + x
             }
         }
         
@@ -85,8 +128,6 @@ extension TeleportViewModel {
 struct TeleportViewModel : MVVM_ViewModel {
     
     fileprivate let mode = BehaviorRelay(value: Mode.countries)
-    fileprivate let data = BehaviorRelay<[String: [Community]]>(value: [:])
-    fileprivate let currentLocationName = BehaviorRelay<String>(value: "")
     
     enum Response {
         case editForm(BehaviorRelay<EditProfileForm>)
@@ -98,22 +139,6 @@ struct TeleportViewModel : MVVM_ViewModel {
     init(router: TeleportRouter, response: Response) {
         self.router = router
         self.response = response
-        
-        CommunityManager.allCommunities()
-            .trackView(viewIndicator: indicator)
-            .silentCatch()
-            .map { Dictionary(grouping: $0, by: { $0.country }) }
-            .bind(to: data)
-            .disposed(by: bag)
-        
-        if let x = appStateSlice.currentUser?.community.lastKnownLocation {
-            CLGeocoder().rx
-                .city(near: CLLocation(latitude: x.latitude, longitude: x.longitude))
-                .asObservable()
-                .map { $0 ?? "" }
-                .bind(to: currentLocationName)
-                .disposed(by: bag)
-        }
         
         /////progress indicator
         
@@ -147,7 +172,13 @@ extension TeleportViewModel {
                                changePolicy: .teleport,
                                lastKnownLocation: User.current?.community.lastKnownLocation)
         
-        case .location:
+        case .location(let title, _, _, _):
+            
+            ///TODO: this meant to be: "do not react if user clicks on teleported cell"
+            guard title == "My Current Loction" else {
+                return
+            }
+            
             requiresSubscriptionCheck = false
             x = User.Community(value: nil,
                                changePolicy: .locationBased,
@@ -155,9 +186,9 @@ extension TeleportViewModel {
             
         }
         
-        guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
-            return router.showSubscription()
-        }
+//        guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
+//            return router.showSubscription()
+//        }
         
         switch response {
         case .editForm(let form):

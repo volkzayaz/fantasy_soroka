@@ -87,6 +87,12 @@ struct PickCommunityViewModel {
         manager.requestWhenInUseAuthorization()
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
         
+        needsLocationPermission.filter { !$0 }
+            .drive(onNext: { [weak m = manager] _ in
+                m?.requestWhenInUseAuthorization()
+            })
+            .disposed(by: bag)
+        
         ////reactions
         
         appState.changesOf { $0.currentUser?.community.changePolicy }

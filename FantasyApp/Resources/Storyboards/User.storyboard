@@ -1030,16 +1030,16 @@ activated when it reaches</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="VtI-d3-XDd">
-                                                            <rect key="frame" x="259" y="40" width="60" height="26"/>
+                                                            <rect key="frame" x="237" y="35" width="82" height="36"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestSticker" translatesAutoresizingMaskIntoConstraints="NO" id="pBM-MA-AJE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="26"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="36"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestMessage" translatesAutoresizingMaskIntoConstraints="NO" id="Pyq-qj-gvH">
-                                                                    <rect key="frame" x="15" y="0.0" width="24" height="26"/>
+                                                                    <rect key="frame" x="15" y="0.0" width="36" height="36"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outgoingRequestLike" translatesAutoresizingMaskIntoConstraints="NO" id="FoQ-MI-yzk">
-                                                                    <rect key="frame" x="34" y="0.0" width="26" height="26"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="36" height="36"/>
                                                                 </imageView>
                                                             </subviews>
                                                         </stackView>
@@ -1718,8 +1718,8 @@ We've implemented a lot of new and exciting features</string>
         <image name="likeIndicator" width="40" height="40"/>
         <image name="location" width="20" height="20"/>
         <image name="memberParrot" width="57" height="60"/>
-        <image name="outgoingRequestLike" width="26" height="26"/>
-        <image name="outgoingRequestMessage" width="24" height="24"/>
+        <image name="outgoingRequestLike" width="36" height="36"/>
+        <image name="outgoingRequestMessage" width="36" height="36"/>
         <image name="outgoingRequestSticker" width="20" height="20"/>
         <image name="profileBack" width="40" height="40"/>
         <image name="profileLookingFor" width="20" height="20"/>
