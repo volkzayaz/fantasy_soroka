@@ -55,7 +55,7 @@ extension DiscoveryFilterViewModel {
     }
 
     var showLocationSection: Driver<Bool> {
-        return appState.map { $0.currentUser?.searchPreferences != nil }
+        return .just(true) //appState.map { $0.currentUser?.searchPreferences != nil }
     }
 }
 

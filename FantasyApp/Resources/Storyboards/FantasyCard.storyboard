@@ -538,7 +538,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl3-8M-dDU">
-                                <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <state key="normal" image="profileBack"/>
                                 <connections>
                                     <action selector="popBack:" destination="OfO-JC-MZH" eventType="touchUpInside" id="Gt4-oZ-BQk"/>
@@ -672,7 +672,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WhatsInsideCollectionDetailsCell" rowHeight="362" id="bWW-J6-x8A" customClass="WhatsInsideCollectionDetailsCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="303.5" width="345" height="362"/>
+                                        <rect key="frame" x="0.0" y="303.5" width="345" height="362"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bWW-J6-x8A" id="hyU-ym-b8X">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="362"/>
@@ -894,7 +894,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lej-fb-B2h">
-                                <rect key="frame" x="74.5" y="10" width="226" height="33"/>
+                                <rect key="frame" x="102.5" y="10" width="170" height="33"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGb-Uq-XYX" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="110" height="33"/>
@@ -908,10 +908,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESi-Ue-Mgq" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="116" y="0.0" width="110" height="33"/>
+                                        <rect key="frame" x="116" y="0.0" width="54" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="9zK-cB-fUH"/>
-                                            <constraint firstAttribute="width" constant="110" id="nlI-ly-tIK"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <connections>

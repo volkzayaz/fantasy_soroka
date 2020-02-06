@@ -31,7 +31,7 @@ extension FantasyCollectionDetailsViewModel {
     }
     
     var purchaseAvailable: Bool {
-        return collection.isPurchased
+        return !collection.isPurchased
     }
     
 }
