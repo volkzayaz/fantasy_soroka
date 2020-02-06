@@ -120,6 +120,12 @@ extension User {
             
         }
         
+        var searchPrefs: SearchPreferences? = nil
+        if let x = pfUser["searchPrefs"] as? Data,
+           let s = try? JSONDecoder().decode(SearchPreferences.self, from: x) {
+            searchPrefs = s
+        }
+        
         id = objectId
         bio = User.Bio(registrationDate: pfUser.createdAt!,
                        name: name,
@@ -133,7 +139,7 @@ extension User {
                        expirience: maybeExpirience,
                        answers: answers)
         
-        searchPreferences = nil
+        searchPreferences = searchPrefs
         fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
         community = User.Community(value: maybeCommunity,
                                    changePolicy: changePolicy,
@@ -150,6 +156,10 @@ extension User {
         guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
         
         let lookingForV2: String = bio.lookingFor.map { "\($0.rawValue)" }.joined(separator: ", ")
+        var searchPrefs: Data? = nil
+        if let x = searchPreferences {
+            searchPrefs = try! JSONEncoder().encode(x)
+        }
         
         var dict = [
             "realname"                  : bio.name,
@@ -160,6 +170,8 @@ extension User {
             "lookingForV2"              : lookingForV2 as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
+        
+            "searchPrefs"               : searchPrefs as Any,
             
             "belongsTo"                 : community.value?.pfObject as Any,
             "communityChangePolicy"     : community.changePolicy.rawValue,

@@ -7,17 +7,28 @@
 //
 
 import Foundation
+import RxSwift
 
-struct UpdateSearchPreferences: Action {
+struct UpdateSearchPreferences: ActionCreator {
     
     let with: SearchPreferences
     
-    func perform(initialState: AppState) -> AppState {
+    func perform(initialState: AppState) -> Observable<AppState> {
+        
+        guard var user = initialState.currentUser else {
+            return .just(initialState)
+        }
+        
+        user.searchPreferences = with
+        
         var x = initialState
+        x.currentUser = user
         
-        x.currentUser?.searchPreferences = with
+        return user.toCurrentPFUser.rxSave()
+            .asObservable()
+            .map { _ in x }
+            .startWith(x)
         
-        return x
     }
     
 }
