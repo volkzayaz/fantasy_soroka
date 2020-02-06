@@ -22,7 +22,7 @@ extension TeleportViewModel {
             .flatMapLatest { x in
                 
                 guard let lastKnownLocation = x.lastKnownLocation else {
-                    return .just([Data.location(title: "My Current Loction",
+                    return .just([Data.location(title: R.string.localizable.teleportCurrentLocation(),
                                                 subtitle: "Not determined",
                                                 isSelected: false,
                                                 icon: R.image.currentLocation()!)])
@@ -33,7 +33,7 @@ extension TeleportViewModel {
                     .map { maybeCurrentPhysicalLocation in
                         
                         guard let currentLocation = maybeCurrentPhysicalLocation else {
-                            return [Data.location(title: "My Current Loction",
+                            return [Data.location(title: R.string.localizable.teleportCurrentLocation(),
                                                   subtitle: "Unknown location",
                                                   isSelected: true,
                                                   icon: R.image.currentLocation()!)]
@@ -41,7 +41,7 @@ extension TeleportViewModel {
                         
                         let didGuyTeleported: Bool = x.changePolicy == .teleport
                         
-                        var response: [Data] = [ .location(title: "My Current Loction",
+                        var response: [Data] = [ .location(title: R.string.localizable.teleportCurrentLocation(),
                                                            subtitle: currentLocation,
                                                            isSelected: !didGuyTeleported,
                                                            icon: R.image.currentLocation()!) ]
@@ -175,7 +175,7 @@ extension TeleportViewModel {
         case .location(let title, _, _, _):
             
             ///TODO: this meant to be: "do not react if user clicks on teleported cell"
-            guard title == "My Current Loction" else {
+            guard title == R.string.localizable.teleportCurrentLocation() else {
                 return
             }
             

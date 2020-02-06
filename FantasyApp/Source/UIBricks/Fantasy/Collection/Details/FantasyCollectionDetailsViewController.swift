@@ -211,6 +211,10 @@ class TopCollectionPurchaseCell: UITableViewCell {
             viewModel.price
                 .drive(buyButton.rx.title(for: .normal))
                 .disposed(by: rx.disposeBag)
+            
+            if !viewModel.purchaseAvailable {
+                buyButton.isHidden = true
+            }
         }
     }
     
@@ -337,6 +341,10 @@ class BottomCollectionPurchaseCell: UITableViewCell {
                 .map { "Buy for \($0)" }
                 .drive(buyButton.rx.title(for: .normal))
                 .disposed(by: rx.disposeBag)
+            
+            if !viewModel.purchaseAvailable {
+                buyButton.removeFromSuperview()
+            }
         }
     }
     

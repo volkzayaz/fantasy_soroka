@@ -30,6 +30,10 @@ extension FantasyCollectionDetailsViewModel {
             .asDriver(onErrorJustReturn: [])
     }
     
+    var purchaseAvailable: Bool {
+        return collection.isPurchased
+    }
+    
 }
 
 struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {

@@ -82,6 +82,11 @@ class TeleportViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak tv = tableView] (x) in
+                tv?.deselectRow(at: x, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
         viewModel.upgradeButtonHidden
             .drive(teleportToBadge.rx.isHidden)
             .disposed(by: rx.disposeBag)
