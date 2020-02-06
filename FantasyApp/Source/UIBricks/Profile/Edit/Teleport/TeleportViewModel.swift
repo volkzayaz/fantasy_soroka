@@ -187,7 +187,9 @@ extension TeleportViewModel {
         }
         
         guard !requiresSubscriptionCheck || (User.current?.subscription.isSubscribed ?? false) else {
-            return router.showSubscription()
+            return router.showSubscription {
+                self.selected(data: data)
+            }
         }
         
         switch response {

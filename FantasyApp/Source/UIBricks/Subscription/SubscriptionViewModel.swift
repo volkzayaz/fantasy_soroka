@@ -35,10 +35,12 @@ extension SubscriptionViewModel {
 struct SubscriptionViewModel : MVVM_ViewModel {
     
     let startPage: Page
+    private let completion: (() -> Void)?
     
-    init(router: SubscriptionRouter, page: Page) {
+    init(router: SubscriptionRouter, page: Page, completion: ( () -> Void)? = nil ) {
         self.router = router
         startPage = page
+        self.completion = completion
         
         Analytics.report(Analytics.Event.PurchaseInterest(context: page))
         
@@ -61,11 +63,15 @@ extension SubscriptionViewModel {
     
     func subscribe() {
         
+        let copy = self.completion
+        
         PurchaseManager.purhcaseSubscription()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned o = router.owner] _ in
-                o.dismiss(animated: true, completion: nil)
+                o.dismiss(animated: true, completion: {
+                    copy?()
+                })
             })
             .disposed(by: self.bag)
         
