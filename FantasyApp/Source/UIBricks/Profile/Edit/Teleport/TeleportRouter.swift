@@ -21,7 +21,7 @@ struct TeleportRouter : MVVM_Router {
         
     }
 
-    func showSubscription(completion: () -> Void) {
+    func showSubscription(completion: @escaping () -> Void) {
         
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
