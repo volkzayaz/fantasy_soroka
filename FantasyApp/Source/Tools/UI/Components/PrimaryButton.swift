@@ -15,7 +15,7 @@ public class PrimaryButton: UIButton {
         case selector
     }
     
-    var useTransparency = false
+    var useTransparency = true
 
     public var mode: Mode = .normal {
         didSet {
@@ -72,6 +72,12 @@ public class PrimaryButton: UIButton {
         super.init(coder: coder)
         setup()
     }
+    
+    func setBugFixMode() {
+        setTitleColor(UIColor.fantasyPink, for: .highlighted)
+        setTitleColor(UIColor.fantasyPink, for: .selected)
+        setTitleColor(.white, for: .normal)
+    }
 }
 
 extension PrimaryButton {
@@ -79,10 +85,7 @@ extension PrimaryButton {
         setupBackgroundColor()
         clipsToBounds = true
         
-        setTitleColor(UIColor.fantasyPink, for: .highlighted)
-        setTitleColor(UIColor.fantasyPink, for: .selected)
-        setTitleColor(.white, for: .normal)
-        
+        setTitleColor(.clear, for: .normal)
         titleLabel?.backgroundColor = .clear
         titleLabel?.font = titleFont
         contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)

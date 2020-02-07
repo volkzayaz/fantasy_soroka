@@ -14,9 +14,21 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     var viewModel: RoomDetailsViewModel!
 
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var fantasiesButton: PrimaryButton!
-    @IBOutlet private var chatButton: PrimaryButton!
-    @IBOutlet private var playButton: PrimaryButton!
+    @IBOutlet private var fantasiesButton: PrimaryButton! {
+        didSet {
+            fantasiesButton.useTransparency = false
+        }
+    }
+    @IBOutlet private var chatButton: PrimaryButton!{
+        didSet {
+            chatButton.useTransparency = false
+        }
+    }
+    @IBOutlet private var playButton: PrimaryButton!{
+        didSet {
+            playButton.useTransparency = false
+        }
+    }
     @IBOutlet private var chatContainerView: UIView!
     @IBOutlet private var commonFantasiesContainerView: UIView!
     
@@ -26,6 +38,8 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         configure()
 
+        [fantasiesButton, chatButton, playButton].forEach { $0?.setBugFixMode(); }
+        
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
