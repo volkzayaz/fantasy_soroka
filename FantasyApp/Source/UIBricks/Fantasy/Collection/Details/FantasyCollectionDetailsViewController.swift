@@ -326,7 +326,7 @@ class BottomCollectionPurchaseCell: UITableViewCell {
     
     @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var buyButton: PrimaryButton! {
+    @IBOutlet var buyButton: PrimaryButton! {
         didSet {
             buyButton.mode = .selector
             buyButton.titleFont = .boldFont(ofSize: 16)
@@ -337,14 +337,17 @@ class BottomCollectionPurchaseCell: UITableViewCell {
     
     var viewModel: FantasyCollectionDetailsViewModel!{
         didSet {
+            
+            if !viewModel.purchaseAvailable {
+                buyButton.removeFromSuperview()
+                return
+            }
+            
             viewModel.price
                 .map { "Buy for \($0)" }
                 .drive(buyButton.rx.title(for: .normal))
                 .disposed(by: rx.disposeBag)
             
-            if !viewModel.purchaseAvailable {
-                buyButton.removeFromSuperview()
-            }
         }
     }
     
