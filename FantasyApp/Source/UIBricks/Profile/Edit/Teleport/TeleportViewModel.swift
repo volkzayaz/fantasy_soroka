@@ -25,18 +25,23 @@ extension TeleportViewModel {
                     return .just([Data.location(title: R.string.localizable.teleportCurrentLocation(),
                                                 subtitle: "Not determined",
                                                 isSelected: false,
-                                                icon: R.image.currentLocation()!)])
+                                                icon: R.image.currentLocation()!,
+                                                assosiatedCommunity: nil)])
                 }
                 
-                return CLGeocoder().rx.city(near: lastKnownLocation.clLocation)
-                    .asDriver(onErrorJustReturn: nil)
-                    .map { maybeCurrentPhysicalLocation in
+                return Single.zip(CommunityManager.communities(near: lastKnownLocation.clLocation),
+                                  CLGeocoder().rx.city(near: lastKnownLocation.clLocation))
+                    .asDriver(onErrorJustReturn: ([], nil))
+                    .map { (communities, maybeCurrentPhysicalLocation) in
+                        
+                        let assosiatedCommunity = communities.first
                         
                         guard let currentLocation = maybeCurrentPhysicalLocation else {
                             return [Data.location(title: R.string.localizable.teleportCurrentLocation(),
                                                   subtitle: "Unknown location",
                                                   isSelected: true,
-                                                  icon: R.image.currentLocation()!)]
+                                                  icon: R.image.currentLocation()!,
+                                                  assosiatedCommunity: nil)]
                         }
                         
                         let didGuyTeleported: Bool = x.changePolicy == .teleport
@@ -44,13 +49,15 @@ extension TeleportViewModel {
                         var response: [Data] = [ .location(title: R.string.localizable.teleportCurrentLocation(),
                                                            subtitle: currentLocation,
                                                            isSelected: !didGuyTeleported,
-                                                           icon: R.image.currentLocation()!) ]
+                                                           icon: R.image.currentLocation()!,
+                                                           assosiatedCommunity: assosiatedCommunity) ]
                         
                         if let community = x.value, didGuyTeleported {
                             response.append( .location(title: community.name,
                                                        subtitle: community.country,
                                                        isSelected: true,
-                                                       icon: R.image.teleportedLocation()! ) )
+                                                       icon: R.image.teleportedLocation()!,
+                                                       assosiatedCommunity: community) )
                         }
                         
                         return response
@@ -106,13 +113,13 @@ extension TeleportViewModel {
     enum Data: IdentifiableType, Equatable {
         case community(Community)
         case country(String, Int)
-        case location(title: String, subtitle: String, isSelected: Bool, icon: UIImage)
+        case location(title: String, subtitle: String, isSelected: Bool, icon: UIImage, assosiatedCommunity: Community?)
         
         var identity: String {
             switch self {
             case .community(let x):  return x.name + x.country
             case .country(let x, _): return x
-            case .location(let t, let x, _, _): return "currentLocation" + t + x
+            case .location(let t, let x, _, _, _): return "currentLocation" + t + x
             }
         }
         
@@ -172,7 +179,7 @@ extension TeleportViewModel {
                                changePolicy: .teleport,
                                lastKnownLocation: User.current?.community.lastKnownLocation)
         
-        case .location(let title, _, _, _):
+        case .location(let title, _, _, _, let assosiatedCommunity):
             
             ///TODO: this meant to be: "do not react if user clicks on teleported cell"
             guard title == R.string.localizable.teleportCurrentLocation() else {
@@ -180,7 +187,7 @@ extension TeleportViewModel {
             }
             
             requiresSubscriptionCheck = false
-            x = User.Community(value: nil,
+            x = User.Community(value: assosiatedCommunity,
                                changePolicy: .locationBased,
                                lastKnownLocation: User.current?.community.lastKnownLocation)
             

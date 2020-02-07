@@ -29,7 +29,7 @@ class TeleportViewController: UIViewController, MVVM_View {
                 
                 return cell
                 
-            case .location(let title, let subtitle, let isSelected, let icon):
+            case .location(let title, let subtitle, let isSelected, let icon, _):
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.teleportCurrentCell,
                                                          for: ip)!
