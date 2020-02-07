@@ -15,7 +15,11 @@ public class PrimaryButton: UIButton {
         case selector
     }
     
-    var useTransparency = true
+    var useTransparency = true {
+        didSet {
+            setupTransparencyMask()
+        }
+    }
 
     public var mode: Mode = .normal {
         didSet {

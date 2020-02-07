@@ -16,17 +16,26 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var fantasiesButton: PrimaryButton! {
         didSet {
-            fantasiesButton.useTransparency = false
+            fantasiesButton.useTransparency = viewModel.room._value.isDraftRoom
+            if !viewModel.room._value.isDraftRoom {
+                fantasiesButton.setBugFixMode()
+            }
         }
     }
     @IBOutlet private var chatButton: PrimaryButton!{
         didSet {
-            chatButton.useTransparency = false
+            chatButton.useTransparency = viewModel.room._value.isDraftRoom
+            if !viewModel.room._value.isDraftRoom {
+                chatButton.setBugFixMode()
+            }
         }
     }
     @IBOutlet private var playButton: PrimaryButton!{
         didSet {
-            playButton.useTransparency = false
+            playButton.useTransparency = viewModel.room._value.isDraftRoom
+            if !viewModel.room._value.isDraftRoom {
+                playButton.setBugFixMode()
+            }
         }
     }
     @IBOutlet private var chatContainerView: UIView!
@@ -38,8 +47,6 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         configure()
 
-        [fantasiesButton, chatButton, playButton].forEach { $0?.setBugFixMode(); }
-        
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
         }).disposed(by: rx.disposeBag)
