@@ -36,11 +36,11 @@ extension ChatViewModel {
                         return .roomCreated(x)
                         
                     case .like:
-                        let event = x.isOwn ? "You liked \(peer.name) profile" : "\(peer.name) liked your profile"
+                        let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.outgoingRequestLike()!, event, x)
                         
                     case .invited:
-                        let event = x.isOwn ? "You invited \(peer.name) to the rooom" : "\(peer.name) liked your profile"
+                        let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.outgoingRequestLink()!, event, x)
                         
                     case .message:
@@ -48,20 +48,19 @@ extension ChatViewModel {
                         
                     case .sp_enabled, .sp_disabled: fallthrough
                     case .settings_changed:
-                        let event = isAdmin ? "You changed the Room settings" : "\(peer.name) changed the Room settings"
+                        let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomSettingsChanged()!, event, x)
                         
                     case .frozen:
-                        let event = x.isOwn ? "Your Rooms limit exceeded" : "\(peer.name) Rooms limit exceeded"
+                        let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomFrozen()!, event, x)
                         
                     case .unfrozen:
-                        let event = "The Room is Unfrozen"
+                        let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomUnfrozen()!, event, x)
                         
                     case .unfrozenPaid:
-                        let name = x.isOwn ? "you" : "\(peer.name)"
-                        let event =  "The Room is Unfrozen because \(name) became a member"
+                        let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomUnfrozen()!, event, x)
                     
                     case .message_deleted, .deleted:

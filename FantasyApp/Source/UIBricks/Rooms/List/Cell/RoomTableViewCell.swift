@@ -23,7 +23,13 @@ class RoomTableViewCell: UITableViewCell {
         
         nameLabel.text = "\(participant.userSlice.name)"
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
-        lastMessageLabel.text = model.lastMessage?.text ?? "new room"
+        
+        if let x = model.lastMessage {
+            lastMessageLabel.text = x.typeDescription(peer: participant.userSlice.name)
+        }
+        else {
+            lastMessageLabel.text = "new room"
+        }
         
         unreadCounterLabel.text = "\(model.unreadCount ?? 0)"
         unreadCounterLabel.isHidden = model.unreadCount == 0

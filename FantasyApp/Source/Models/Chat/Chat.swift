@@ -59,6 +59,46 @@ extension Room {
             case created
             case deleted, sp_enabled, sp_disabled, settings_changed, frozen, unfrozen, unfrozenPaid
         }
+        
+        func typeDescription(peer: String) -> String {
+            
+            switch type {
+                
+            case .created:
+                return "new room"
+                
+            case .like:
+                return isOwn ? "You liked \(peer) profile" : "\(peer) liked your profile"
+                
+            case .invited:
+                return isOwn ? "You invited \(peer) to the rooom" : "\(peer) liked your profile"
+                
+            case .message:
+                return text ?? ""
+                
+            case .sp_enabled, .sp_disabled: fallthrough
+            case .settings_changed:
+                return "Room settings changed"
+                
+            case .frozen:
+                return isOwn ? "Your Rooms limit exceeded" : "\(peer) Rooms limit exceeded"
+                
+            case .unfrozen:
+                return "The Room is Unfrozen"
+                
+            case .unfrozenPaid:
+                let name = isOwn ? "you" : "\(peer)"
+                return "The Room is Unfrozen because \(name) became a member"
+                
+            case .message_deleted:
+                return "Message deleted"
+                
+            case .deleted:
+                return "Room deleted"
+                
+            }
+            
+        }
     }
     
     struct MessageInRoom: Codable, SocketData {
