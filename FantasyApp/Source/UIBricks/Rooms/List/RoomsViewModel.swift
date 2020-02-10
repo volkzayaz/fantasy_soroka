@@ -45,13 +45,10 @@ struct RoomsViewModel: MVVM_ViewModel {
 
         ///indicator
         
-        indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
-            h?.setLoadingStatus(loading)
-        }).disposed(by: bag)
     }
 
     let router: RoomsRouter
-    fileprivate let indicator: ViewIndicator = ViewIndicator()
+    let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
 }
 

@@ -28,8 +28,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-kF-4Fk">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-kF-4Fk">
                                 <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="91Q-kF-4Fk" secondAttribute="height" id="36G-Rn-4fE"/>
                                     <constraint firstAttribute="width" constant="60" id="3UE-HC-X2y">
@@ -45,12 +46,19 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rve-31-dia" appends="YES" id="jOH-EL-4X2"/>
+                                </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HuV-6u-lMV">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HuV-6u-lMV">
                                 <rect key="frame" x="88" y="20" width="40" height="18"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="OER-JU-CKG" appends="YES" id="ZGx-Gq-wGf"/>
+                                </connections>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpP-Ah-3wV">
                                 <rect key="frame" x="88" y="53" width="78" height="27"/>
@@ -482,6 +490,16 @@
                 <tapGestureRecognizer id="giH-FV-zlG">
                     <connections>
                         <segue destination="oMI-EE-ldF" kind="show" id="KaL-TR-PqC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rve-31-dia">
+                    <connections>
+                        <segue destination="jOr-13-C53" kind="show" id="DzX-Zp-GfS"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="OER-JU-CKG">
+                    <connections>
+                        <segue destination="jOr-13-C53" kind="show" id="bEq-mX-N0P"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1978,5 +1996,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="sqa-Wz-1NI"/>
         <segue reference="KaL-TR-PqC"/>
+        <segue reference="DzX-Zp-GfS"/>
     </inferredMetricsTieBreakers>
 </document>

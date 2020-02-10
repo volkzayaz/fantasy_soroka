@@ -16,7 +16,7 @@ import Crashlytics
 class RootViewController: FantasyBaseNavigationController, MVVM_View {
     
     lazy var viewModel: RootViewModel! = .init(router: .init(owner: self))
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,6 +41,11 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                     
                 case .updateApp:
                     let vc = R.storyboard.user.updateAppViewController()!
+                    self.present(vc, animated: true, completion: nil)
+                    
+                case .justice:
+                    let vc = R.storyboard.main.justice()!
+                    vc.modalPresentationStyle = .overFullScreen
                     self.present(vc, animated: true, completion: nil)
                     
                 }

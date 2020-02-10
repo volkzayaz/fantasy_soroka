@@ -46,11 +46,26 @@ class RoomsViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addFantasyGradient()
         navigationItem.title = "Rooms"
  
         emptyView.emptyView = UIImageView(image: R.image.room_placeholder())
+        
+        viewModel.indicator.asDriver()
+            .drive(onNext: { [weak self] (loading) in
+                
+                if loading {
+                    self?.tableView.refreshControl?.beginRefreshing()
+                    let offsetPoint = CGPoint.init(x: 0, y: -(self?.tableView.refreshControl?.frame.size.height ?? 0))
+                    self?.tableView.setContentOffset(offsetPoint, animated: true)
+                }
+                else {
+                    self?.tableView.refreshControl?.endRefreshing()
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
         
          viewModel.dataSource
             .map { $0.count == 0 }
@@ -58,6 +73,9 @@ class RoomsViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.dataSource
+            .do(onNext: { [weak self] (_) in
+                self?.tableView.refreshControl?.endRefreshing()
+            })
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
 
@@ -81,8 +99,8 @@ extension RoomsViewController {
 
     @objc func pullToRefresh() {
         viewModel.refreshRooms()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+     
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.tableView.refreshControl?.endRefreshing()
         }
     }

@@ -19,12 +19,16 @@ extension DiscoveryManager {
                 
                 let noGo = /*response.map { $0.otherUserId } +*/ [User.current!.id]
                 
-                return User.query
+                var query =  User.query
                     .whereKey("objectId", notContainedIn: noGo)
                     .whereKey("belongsTo", equalTo: filter.community.pfObject)
                     .whereKey("gender", equalTo: filter.filter.gender.rawValue)
-                    //.whereKey("sexuality", equalTo: filter.filter.sexuality.rawValue)
-                    .rx.fetchAllObjects()
+                
+                if filter.filter.sexuality != .all {
+                    query = query.whereKey("sexuality", equalTo: filter.filter.sexuality.rawValue)
+                }
+                    
+                return query.rx.fetchAllObjects()
             }
             .map { x in
                 return x.compactMap { try? User(pfUser: $0 as! PFUser) }

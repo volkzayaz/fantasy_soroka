@@ -204,6 +204,7 @@ enum Sexuality: String, CaseIterable, Equatable, Codable {
     case homoflexible = "Homoflexible"
     case gay = "Gay"
     
+    case all = "All"
 }
 
 extension Sexuality: SwipebleModel {
