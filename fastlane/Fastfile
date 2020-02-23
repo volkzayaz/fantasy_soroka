@@ -75,7 +75,7 @@ platform :ios do
       
       ensure_git_branch( branch: 'master' )
       ##building ipa
-      gym(scheme: "FantayApp",
+      gym(scheme: "FantasyApp",
           configuration: "Release",
           export_method: "app-store",
           include_bitcode: true)
