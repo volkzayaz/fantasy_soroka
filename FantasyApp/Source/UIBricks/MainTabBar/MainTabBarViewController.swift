@@ -40,11 +40,13 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
                 }
                     
                 
-                let j = try! JSONDecoder().decode(Justice.self, from: x)
+                guard let j = try? JSONDecoder().decode(Justice.self, from: x) else {
+                    return
+                }
                 
                 if j.trigger {
                  
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
                         
                         self.dismiss(animated: false) {
                             AuthenticationManager.logout()
