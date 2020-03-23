@@ -225,21 +225,26 @@ extension Sexuality: SwipebleModel {
 
 enum Gender: String, CaseIterable, Equatable, Codable {
     
-    case transgenderMale = "MtF"
     case male
     case female
-    case transgenderFemale = "FtM"
     case nonBinary
 
     var pretty: String {
         switch self {
-        case .transgenderMale: return "Transgender Male"
         case .male: return "Male"
         case .female: return "Female"
-        case .transgenderFemale: return "Transgender Female"
         case .nonBinary: return "Non-binary"
         }
     }
+
+    public init(from decoder: Decoder) throws {
+        self = try Gender(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .nonBinary
+    }
+
+    init?(fromFantasyRawValue: String){
+        self = Gender(rawValue: fromFantasyRawValue) ?? .nonBinary
+    }
+
 }
 
 extension Gender: SwipebleModel {
@@ -279,7 +284,7 @@ enum RelationshipStatus: Equatable, Codable {
         }
         
         if str.starts(with: "with") {
-            self = .couple(partnerGender: Gender(rawValue: String(str.split(separator: " ").last!))!)
+            self = .couple(partnerGender: Gender(fromFantasyRawValue: String(str.split(separator: " ").last!))!)
             return
         }
         
