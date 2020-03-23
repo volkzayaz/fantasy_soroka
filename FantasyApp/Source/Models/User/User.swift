@@ -343,9 +343,9 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
             
         case .relationship: return "Relationship"
         case .someoneToPlayWith: return "Someone to play with"
-        case .princesDaySlutNight: return "Princes by day, slut by night"
+        case .princesDaySlutNight: return "Princess by day, slut by night"
         case .friendship: return "Friendship"
-        case .ethicalNonMono: return "Ethical non-monogamous relationship"
+        case .ethicalNonMono: return "Ethically non-monogamous relationship"
         case .sleepPartners: return "Sleep partners"
         case .bdsm: return "BDSM Relationship"
         case .polyNetwork: return "Poly network"

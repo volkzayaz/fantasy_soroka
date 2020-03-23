@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var signinButton: UIButton!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet var buttonToKeybosrdConstraint: NSLayoutConstraint!
+    @IBOutlet var buttonToKeyboardConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,7 @@ class LoginViewController: UIViewController, MVVM_View {
             .merge()
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
-                    self.buttonToKeybosrdConstraint.constant += delta
+                    self.buttonToKeyboardConstraint.constant += delta
                     self.view.layoutIfNeeded()
                 })
             })

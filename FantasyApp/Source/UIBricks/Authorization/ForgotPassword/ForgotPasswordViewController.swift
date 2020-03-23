@@ -20,7 +20,7 @@ class ForgotPasswordViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var codeWasSentView: UIView!
     @IBOutlet private weak var wrongEmailView: UIView!
 
-    @IBOutlet var buttonToKeybosrdConstraint: NSLayoutConstraint! // 20
+    @IBOutlet var buttonToKeyboardConstraint: NSLayoutConstraint! // 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,17 +70,17 @@ class ForgotPasswordViewController: UIViewController, MVVM_View {
             .rx.notification( UIResponder.keyboardWillHideNotification )
             .map(mapper)
 
-        let constraintBaseVal = self.buttonToKeybosrdConstraint.constant
+        let constraintBaseVal = self.buttonToKeyboardConstraint.constant
 
         Observable.of(show, hide)
             .merge()
             .subscribe(onNext: { [unowned self] (duration, delta) in
                 UIView.animate(withDuration: TimeInterval(duration), animations: {
 
-                    var val = self.buttonToKeybosrdConstraint.constant
+                    var val = self.buttonToKeyboardConstraint.constant
                     val += delta
 
-                    self.buttonToKeybosrdConstraint.constant = val >= constraintBaseVal ? val : constraintBaseVal
+                    self.buttonToKeyboardConstraint.constant = val >= constraintBaseVal ? val : constraintBaseVal
                     self.view.layoutIfNeeded()
                 })
             })
