@@ -11,7 +11,7 @@ import Moya
 
 struct ServerConfig: Codable {
     
-    let IAPSubscriptionProductId: String
+    let subscriptionProductIDs: Set<String>?
     let minSupportedIOSVersion: CodableVersion
     let screenProtectEnabled: Bool
     let fantasyCardsShare: ShareLinks

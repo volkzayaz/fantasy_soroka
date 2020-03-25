@@ -13,10 +13,19 @@ var immutableNonPersistentState: ImmutableNonPersistentState!
 
 struct ImmutableNonPersistentState {
     
-    let subscriptionProductID: String
+    let subscriptionProductIDs: Set<String>?
+    
     let screenProtectEnabled: Bool
 
     let shareCardImageURL: String
     let shareCollectionImageURL: String
     
 }
+
+var premiumIds: Set<String> = [
+    "com.fantasyapp.iosclient.iap.premium",
+    "com.fantasyapp.iosclient.iap.premium.1month",
+    "com.fantasyapp.iosclient.iap.premium.months3",
+    "com.fantasyapp.iosclient.iap.premium.months6",
+    "com.fantasyapp.iosclient.iap.premium.year"
+]

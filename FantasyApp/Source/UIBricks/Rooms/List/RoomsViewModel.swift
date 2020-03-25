@@ -70,6 +70,8 @@ extension RoomsViewModel {
 
     func createRoom() {
         
+        Analytics.report(Analytics.Event.DraftRoomCreated())
+        
         RoomManager.createDraftRoom()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)

@@ -109,7 +109,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                     self.viewModel.showParticipant(participant: participant)
                     
                 case .invite:
-                    self.viewModel.shareLink()
+                    self.viewModel.shareLink(type: .add)
                     
                 case .waiting:
                     break;
@@ -193,7 +193,7 @@ private extension RoomSettingsViewController {
     }
 
     @IBAction func copyLink() {
-        self.viewModel.shareLink()
+        self.viewModel.shareLink(type: .share)
     }
 
     @IBAction func editNotificationSettings() {

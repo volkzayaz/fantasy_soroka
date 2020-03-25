@@ -9,7 +9,7 @@
 import Foundation
 
 extension SKProduct {
-    fileprivate static var formatter: NumberFormatter {
+    static var formatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter
