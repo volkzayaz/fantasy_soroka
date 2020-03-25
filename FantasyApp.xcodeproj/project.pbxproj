@@ -148,6 +148,7 @@
 		7368A0A423DF353E00A7E2AE /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7368A0A223DF353D00A7E2AE /* EventCell.xib */; };
 		7368A0A523DF353E00A7E2AE /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7368A0A323DF353D00A7E2AE /* EventCell.swift */; };
 		736D235A235A057A00430863 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2359235A057A00430863 /* AboutCell.swift */; };
+		736E2874242B49A300E08D4A /* MarkUserSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736E2873242B49A300E08D4A /* MarkUserSignUp.swift */; };
 		7374F6A8235B8435000D6D20 /* ConnectionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7374F6A7235B8435000D6D20 /* ConnectionCells.swift */; };
 		7379ECFE2309714100E661A7 /* FantasyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFB2309714100E661A7 /* FantasyListRouter.swift */; };
 		7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFC2309714100E661A7 /* FantasyListViewController.swift */; };
@@ -562,6 +563,7 @@
 		7368A0A223DF353D00A7E2AE /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		7368A0A323DF353D00A7E2AE /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		736D2359235A057A00430863 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
+		736E2873242B49A300E08D4A /* MarkUserSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkUserSignUp.swift; sourceTree = "<group>"; };
 		7374F6A7235B8435000D6D20 /* ConnectionCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCells.swift; sourceTree = "<group>"; };
 		7379ECFB2309714100E661A7 /* FantasyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListRouter.swift; sourceTree = "<group>"; };
 		7379ECFC2309714100E661A7 /* FantasyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewController.swift; sourceTree = "<group>"; };
@@ -1475,6 +1477,7 @@
 				7361F33023350265007B84B0 /* ConectionResource.swift */,
 				73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */,
 				733096812353586F0039D013 /* DeleteUser.swift */,
+				736E2873242B49A300E08D4A /* MarkUserSignUp.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2939,6 +2942,7 @@
 				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				84BE526E2367636C00FD362F /* FantasyDeckItemOverlayView.swift in Sources */,
+				736E2874242B49A300E08D4A /* MarkUserSignUp.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */,
 				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
