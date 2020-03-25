@@ -295,6 +295,10 @@ extension UserProfileViewModel {
     var userIdText: Driver<String> {
 
         var id = ""
+        
+        if User.current?.id == "oIbkHpVCqv" {
+            id = user.id
+        }
 
         #if ADHOC || DEBUG
           id = user.id
