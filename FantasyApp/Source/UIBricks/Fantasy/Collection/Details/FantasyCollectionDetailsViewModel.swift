@@ -18,7 +18,8 @@ extension FantasyCollectionDetailsViewModel {
     
     var price: Driver<String> {
 
-        return SwiftyStoreKit.rx_productDetails(product: collection.productId!)
+        return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
+            .map { $0.first! }
             .map { "\($0.localizedPrice)" }
             .asDriver(onErrorJustReturn: "error")
             

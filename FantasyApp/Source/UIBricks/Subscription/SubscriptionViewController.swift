@@ -22,6 +22,35 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     
     @IBOutlet weak var pricaeLabel: UILabel!
     
+    var offers: [SubscriptionOffer] = []
+    
+    @IBOutlet weak var priceLabel1: UILabel!
+    @IBOutlet weak var durationLabel1: UILabel!
+    @IBOutlet weak var dailyCharge1: UILabel!
+    @IBOutlet weak var savePercent1: UILabel!
+    
+    @IBAction func tryOffer1(_ sender: Any) {
+        viewModel.subscribe(offer: offers[0])
+    }
+    
+    @IBOutlet weak var priceLabel2: UILabel!
+    @IBOutlet weak var durationLabel2: UILabel!
+    @IBOutlet weak var dailyCharge2: UILabel!
+    @IBOutlet weak var savePercent2: UILabel!
+    
+    @IBAction func tapOffer2(_ sender: Any) {
+        viewModel.subscribe(offer: offers[1])
+    }
+    
+    @IBOutlet weak var priceLabel3: UILabel!
+    @IBOutlet weak var durationLabel3: UILabel!
+    @IBOutlet weak var dailyCharge3: UILabel!
+    @IBOutlet weak var savePercent3: UILabel!
+    
+    @IBAction func tapOffer3(_ sender: Any) {
+        viewModel.subscribe(offer: offers[2])
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,8 +61,44 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     
         edgesForExtendedLayout = []
      
-        viewModel.price
-            .drive(pricaeLabel.rx.text)
+        [priceLabel1,
+         durationLabel1,
+         dailyCharge1,
+         savePercent1,
+        priceLabel2,
+        durationLabel2,
+        dailyCharge2,
+        savePercent2,
+        priceLabel3,
+        durationLabel3,
+        dailyCharge3,
+        savePercent3]
+            .forEach { $0?.text = "" }
+        
+        viewModel.offers.drive(onNext: { [unowned self] x in
+            
+            guard x.count > 0 else {
+                return
+            }
+            
+            self.offers = x
+            
+            self.priceLabel1.text = x[0].plan.price
+            self.durationLabel1.text = x[0].plan.duration
+            self.dailyCharge1.text = x[0].plan.dailyCharge
+            self.savePercent1.text = x[0].discount
+            
+            self.priceLabel2.text = x[1].plan.price
+            self.durationLabel2.text = x[1].plan.duration
+            self.dailyCharge2.text = x[1].plan.dailyCharge
+            self.savePercent2.text = x[1].discount
+            
+            self.priceLabel3.text = x[2].plan.price
+            self.durationLabel3.text = x[2].plan.duration
+            self.dailyCharge3.text = x[2].plan.dailyCharge
+            self.savePercent3.text = x[2].discount
+            
+        })
             .disposed(by: rx.disposeBag)
         
     }
@@ -52,7 +117,7 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     }
     
     @IBAction func subscribe(_ sender: Any) {
-        viewModel.subscribe()
+        viewModel.subscribe(offer: offers[1])
     }
     
     @IBAction func cancel(_ sender: Any) {

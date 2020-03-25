@@ -155,7 +155,6 @@
 		7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */; };
 		7379ED09230975A800E661A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED02230975A800E661A7 /* Analytics.swift */; };
 		7379ED0A230975A800E661A7 /* AnalyticsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED03230975A800E661A7 /* AnalyticsScreen.swift */; };
-		7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */; };
 		7379ED0D230975A800E661A7 /* AnalyticsUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */; };
 		7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED1D230D3E7F00E661A7 /* BuyCollection.swift */; };
 		7379ED21230D54A100E661A7 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379ED20230D54A100E661A7 /* PurchaseManager.swift */; };
@@ -570,7 +569,6 @@
 		7379ECFD2309714100E661A7 /* FantasyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyListViewModel.swift; sourceTree = "<group>"; };
 		7379ED02230975A800E661A7 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		7379ED03230975A800E661A7 /* AnalyticsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsScreen.swift; sourceTree = "<group>"; };
-		7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalyticsService.swift; sourceTree = "<group>"; };
 		7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUserProperty.swift; sourceTree = "<group>"; };
 		7379ED16230D3C5000E661A7 /* FantasyCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionRouter.swift; sourceTree = "<group>"; };
 		7379ED17230D3C5000E661A7 /* FantasyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCollectionViewController.swift; sourceTree = "<group>"; };
@@ -1637,18 +1635,9 @@
 			children = (
 				7379ED02230975A800E661A7 /* Analytics.swift */,
 				7379ED03230975A800E661A7 /* AnalyticsScreen.swift */,
-				7379ED04230975A800E661A7 /* Amplitude */,
 				7379ED08230975A800E661A7 /* AnalyticsUserProperty.swift */,
 			);
 			path = Analytics;
-			sourceTree = "<group>";
-		};
-		7379ED04230975A800E661A7 /* Amplitude */ = {
-			isa = PBXGroup;
-			children = (
-				7379ED07230975A800E661A7 /* AmplitudeAnalyticsService.swift */,
-			);
-			path = Amplitude;
 			sourceTree = "<group>";
 		};
 		7379ED15230D3C3D00E661A7 /* Collection */ = {
@@ -2945,7 +2934,6 @@
 				736E2874242B49A300E08D4A /* MarkUserSignUp.swift in Sources */,
 				7312B0A322D7422100DB0F36 /* MVVM.swift in Sources */,
 				84AB4901232A16DD00F3609A /* RoomDetailsRouter.swift in Sources */,
-				7379ED0C230975A800E661A7 /* AmplitudeAnalyticsService.swift in Sources */,
 				7312B0A422D7422100DB0F36 /* CatchError.swift in Sources */,
 				7353BDDB22EC8BFF001D46A6 /* ImagePicker.swift in Sources */,
 				73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */,

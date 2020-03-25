@@ -17,5 +17,33 @@ extension Analytics.Event {
         }
         
     }
+
+    struct DraftRoomCreated: AnalyticsEvent {
+        
+        var name: String { return "Room Draft Created" }
+        var props: [String : String]? {
+            return [
+                "User ID": User.current?.id ?? "Unknown"
+            ]
+        }
+        
+    }
+    
+    struct DraftRoomShared: AnalyticsEvent {
+           
+        enum Of: String {
+            case share = "Share"
+            case add = "Add"
+        }; let type: Of
+        
+        var name: String { return "Room Draft Shared" }
+        var props: [String : String]? {
+            return [
+                "User ID": User.current?.id ?? "Unknown",
+                "Type" : type.rawValue
+            ]
+        }
+           
+    }
     
 }

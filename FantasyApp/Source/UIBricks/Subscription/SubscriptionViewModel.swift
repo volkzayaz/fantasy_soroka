@@ -12,6 +12,75 @@ import RxSwift
 import RxCocoa
 import SwiftyStoreKit
 
+struct SubscriptionOffer {
+    let plan: SubscriptionPlan
+    let discount: String?
+    
+    init (plan: SubscriptionPlan, compare: NSDecimalNumber?) {
+        
+        self.plan = plan
+        
+        guard let x = compare else { self.discount = ""; return }
+        
+        let y = NSDecimalNumber(integerLiteral: 1)
+        let x1 = plan.dailyDecimal.dividing(by: x)
+        let x2 = y.subtracting(x1)
+        let x3 = x2.multiplying(by: 100)
+        let res = x3.int8Value
+        
+        discount = "\(res)%"
+        
+    }
+}
+
+struct SubscriptionPlan {
+    
+    let price: String
+    let duration: String
+    let dailyDecimal: NSDecimalNumber
+    let dailyCharge: String
+    let productId: String
+    
+    init(product: SKProduct) {
+        
+        price = product.localizedPrice
+        productId = product.productIdentifier
+        
+        guard let p = product.subscriptionPeriod else {
+            duration = ""
+            dailyCharge = ""
+            dailyDecimal = 0
+            return
+        }
+        
+        switch p.unit {
+        case .day: duration = "\(p.numberOfUnits) days"
+        case .month: duration = "\(p.numberOfUnits) months"
+        case .week: duration = "\(p.numberOfUnits) weeks"
+        case .year: duration = "\(p.numberOfUnits) years"
+        }
+        
+        var divider: Int = p.numberOfUnits
+        
+        switch p.unit {
+        case .day: divider *= 1
+        case .month: divider *= 30
+        case .week: divider *= 7
+        case .year: divider *= 365
+        }
+        
+        dailyDecimal = product.price.dividing(by: NSDecimalNumber(integerLiteral: divider))
+        
+        let formatter = SKProduct.formatter
+        formatter.locale = product.priceLocale
+        let dailyCharge = formatter.string(from: dailyDecimal) ?? ""
+        
+        self.dailyCharge = "(\(dailyCharge)/day)"
+        
+    }
+    
+}
+
 extension SubscriptionViewModel {
     
     enum Page: Int {
@@ -21,12 +90,35 @@ extension SubscriptionViewModel {
         case member
     }
 
-    var price: Driver<String> {
+    var offers: Driver<[SubscriptionOffer]> {
         
-        return SwiftyStoreKit.rx_productDetails(product: immutableNonPersistentState.subscriptionProductID )
-            .map { ($0.localizedPrice) }
-            .asDriver(onErrorJustReturn: "error")
-            .startWith("_")
+        let ids = immutableNonPersistentState.subscriptionProductIDs ?? premiumIds
+        
+        return SwiftyStoreKit.rx_productDetails(products: premiumIds)
+            .retry(1)
+            .trackView(viewIndicator: indicator)
+            .map { x in
+            
+                guard x.count > 2 else {
+                    return []
+                }
+                
+                let res =
+                x.map(SubscriptionPlan.init)
+                    .sorted { (rhs, lhs) -> Bool in
+                        return rhs.dailyDecimal.compare(lhs.dailyDecimal) == .orderedDescending
+                    }
+                
+                let mostExpensive = res[0]
+                let middle = res[1]
+                let cheapest = res[2]
+                
+                return [ SubscriptionOffer(plan: cheapest, compare: mostExpensive.dailyDecimal),
+                         SubscriptionOffer(plan: mostExpensive, compare: nil),
+                         SubscriptionOffer(plan: middle, compare: mostExpensive.dailyDecimal)
+                ]
+            }
+            .asDriver(onErrorJustReturn: [])
         
     }
     
@@ -61,11 +153,11 @@ struct SubscriptionViewModel : MVVM_ViewModel {
 
 extension SubscriptionViewModel {
     
-    func subscribe() {
+    func subscribe(offer: SubscriptionOffer) {
         
         let copy = self.completion
         
-        PurchaseManager.purhcaseSubscription()
+        PurchaseManager.purhcaseSubscription(offer: offer)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned o = router.owner] _ in

@@ -44,11 +44,11 @@ extension PurchaseManager {
         
     }
     
-    static func purhcaseSubscription() -> Single<User.Subscription> {
+    static func purhcaseSubscription(offer: SubscriptionOffer) -> Single<User.Subscription> {
         
         Analytics.report(ConsiderPurchase(of: .subscription))
         
-        let goldPlanProductId = immutableNonPersistentState.subscriptionProductID
+        let goldPlanProductId = offer.plan.productId
         
         return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
             .flatMap { x in
@@ -201,17 +201,17 @@ extension SwiftyStoreKit {
         })
     }
     
-    public class func rx_productDetails(product: String) -> Single<SKProduct> {
+    public class func rx_productDetails(products: Set<String>) -> Single<Set<SKProduct>> {
         
         return Single.create(subscribe: { (subscriber) -> Disposable in
             
-            SwiftyStoreKit.retrieveProductsInfo([product]) { (res: RetrieveResults) in
+            SwiftyStoreKit.retrieveProductsInfo(products) { (res: RetrieveResults) in
                 
                 if let e = res.error {
                     return subscriber(.error(e))
                 }
                 
-                subscriber(.success( res.retrievedProducts.first! ))
+                subscriber(.success( res.retrievedProducts ))
                 
             }
             

@@ -150,7 +150,9 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
 
 extension RoomSettingsViewModel {
 
-    func shareLink() {
+    func shareLink(type: Analytics.Event.DraftRoomShared.Of) {
+        
+        Analytics.report(Analytics.Event.DraftRoomShared(type: type))
         
         buo?.showShareSheet(with: BranchLinkProperties(),
                             andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
