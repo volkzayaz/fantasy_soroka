@@ -96,7 +96,8 @@ enum Dispatcher {
                 }
                 .takeUntil(forceCompleteTrigger)
                 .catchError { (error) -> Observable<AppState> in
-                    fatalError("Action \(actionCreator.description) has errored which is unsupported. Error \(error)")
+                    fatalErrorInDebug("Action \(actionCreator.description) has errored which is unsupported. Error \(error)")
+                    return .just(state.value!)
                 }
             
             }
