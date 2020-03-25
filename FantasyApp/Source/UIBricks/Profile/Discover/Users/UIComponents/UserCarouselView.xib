@@ -19,6 +19,8 @@
                 <outlet property="labelCardNumber" destination="OGC-ZZ-aMx" id="1MS-9B-sGA"/>
                 <outlet property="labelName" destination="9Lh-Ic-UDZ" id="Pmq-Fn-2GF"/>
                 <outlet property="labelPhotoNumber" destination="ugK-ar-DMg" id="7ic-dx-8nP"/>
+                <outlet property="paidCardIcon" destination="c6u-1K-DS9" id="Q5I-bP-IiY"/>
+                <outlet property="photoCountIcon" destination="woU-0Q-bcr" id="cgW-cJ-wbO"/>
                 <outlet property="profileImageView" destination="H8E-uj-vxO" id="jtt-D0-cHh"/>
                 <outlet property="secondaryContentView" destination="pIG-z3-LB1" id="xMR-TN-uYm"/>
                 <outlet property="starImageView" destination="0bt-ke-Gfq" id="HH7-3o-qh0"/>

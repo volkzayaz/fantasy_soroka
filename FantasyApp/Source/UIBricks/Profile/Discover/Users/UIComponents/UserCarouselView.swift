@@ -19,6 +19,10 @@ class UserCarouselView: UIView {
     @IBOutlet weak var profileImageView: ProtectedImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var starImageView: UIImageView!
+    
+    
+    @IBOutlet weak var paidCardIcon: UIImageView!
+    @IBOutlet weak var photoCountIcon: UIImageView!
     @IBOutlet weak var labelCardNumber: UILabel!
     @IBOutlet weak var labelPhotoNumber: UILabel!
 
@@ -49,7 +53,8 @@ class UserCarouselView: UIView {
             make.right.equalTo(self.snp_right)
         }
 
-//        setupShadow()
+        [labelCardNumber, labelPhotoNumber, paidCardIcon, photoCountIcon].forEach { $0?.isHidden = true }
+
     }
 
     private func loadViewFromNib() -> UIView {
