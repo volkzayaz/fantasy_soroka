@@ -60,6 +60,9 @@ extension AuthenticationManager {
                     return u
             }
         }
+        .flatMap { u in
+            return MarkUserSignUp().rx.request.map { _ in u }
+        }
 
         return postAuthorizationParseMess(signal: x)
         
