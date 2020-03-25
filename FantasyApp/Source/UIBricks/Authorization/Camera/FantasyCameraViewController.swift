@@ -93,7 +93,7 @@ extension FantasyCameraViewController {
             captureSession.removeInput(captureDeviceInput)
         }
 
-        var input: AVCaptureDeviceInput!
+        var input: AVCaptureDeviceInput?
 
         do {
             input = try AVCaptureDeviceInput(device: bestDevice(in: cameraPosition))
@@ -102,12 +102,12 @@ extension FantasyCameraViewController {
             print(error.localizedDescription)
         }
 
-        guard captureSession.canAddInput(input)  else {
+        guard let i = input, captureSession.canAddInput(i)  else {
             print("Unable to access back camera!")
             return
         }
 
-        captureSession.addInput(input)
+        captureSession.addInput(i)
 
         captureSession.commitConfiguration()
     }
