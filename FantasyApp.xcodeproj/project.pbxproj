@@ -330,6 +330,7 @@
 		B719F9222389A625009AB110 /* MyFantasiesBlockedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */; };
 		B719F9232389A625009AB110 /* MyFantasiesBlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */; };
 		B719F9242389A625009AB110 /* MyFantasiesBlockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */; };
+		B71E2992242BC9DB00153ED8 /* User+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E2991242BC9DB00153ED8 /* User+Migration.swift */; };
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
 		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
@@ -749,6 +750,7 @@
 		B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedRouter.swift; sourceTree = "<group>"; };
 		B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedViewController.swift; sourceTree = "<group>"; };
 		B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedViewModel.swift; sourceTree = "<group>"; };
+		B71E2991242BC9DB00153ED8 /* User+Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Migration.swift"; sourceTree = "<group>"; };
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
 		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
@@ -1267,6 +1269,7 @@
 				73097BF7231D39C100B71053 /* Profile */,
 				73E6012A22EC5CFE00F767BF /* User.swift */,
 				7334CC7222ED9A8C00495843 /* User+Parse.swift */,
+				B71E2991242BC9DB00153ED8 /* User+Migration.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2841,6 +2844,7 @@
 				7337B84323C8CBD500EFC948 /* SubscriptionViewModel.swift in Sources */,
 				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
+				B71E2992242BC9DB00153ED8 /* User+Migration.swift in Sources */,
 				73FDD093239940F300BA3E1D /* TimeSpentCounter.swift in Sources */,
 				842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */,
 				733CA053239161DE00EF7922 /* FetchConfig.swift in Sources */,

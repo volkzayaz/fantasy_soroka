@@ -19,14 +19,14 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
     var community: Community
     
-//    var privacy: Privacy
+    //    var privacy: Privacy
     
     var searchPreferences: SearchPreferences?
     
     var discoveryFilter: DiscoveryFilter? {
         
         guard let x = searchPreferences,
-              let y = community.value else { return nil }
+            let y = community.value else { return nil }
         
         return DiscoveryFilter(filter: x, community: y)
     }
@@ -87,11 +87,11 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         case screenShield
     }
     
-//    struct Privacy: Equatable {
-//        let privateMode: Bool
-//        let disabledMode: Bool
-//        let blockedList: Set<UserSlice>
-//    }
+    //    struct Privacy: Equatable {
+    //        let privateMode: Bool
+    //        let disabledMode: Bool
+    //        let blockedList: Set<UserSlice>
+    //    }
     
     struct Fantasies: Equatable, Codable {
         var liked: [Fantasy.Card]
@@ -142,7 +142,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(bio.name)
     }
- 
+
     static var query: PFQuery<PFObject> {
         return PFUser.query()!.includeKey("belongsTo")
     }
@@ -213,8 +213,8 @@ extension Sexuality: SwipebleModel {
         return self.rawValue
     }
 
-   static func sexuality(by index: Int) -> Sexuality {
-       return allCases[index]
+    static func sexuality(by index: Int) -> Sexuality {
+        return allCases[index]
     }
 
     static func index(by sexuality: Sexuality) -> Int {
@@ -222,6 +222,9 @@ extension Sexuality: SwipebleModel {
     }
 }
 
+enum ModelMigrationError: Error {
+    case noLegacyModel
+}
 
 enum Gender: String, CaseIterable, Equatable, Codable {
     
@@ -231,20 +234,30 @@ enum Gender: String, CaseIterable, Equatable, Codable {
 
     var pretty: String {
         switch self {
-        case .male: return "Male"
-        case .female: return "Female"
+        case .male: return "Man"
+        case .female: return "Woman"
         case .nonBinary: return "Non-binary"
         }
     }
 
     public init(from decoder: Decoder) throws {
-        self = try Gender(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .nonBinary
+
+        let legacy = try GenderLegacy(rawValue: decoder.singleValueContainer().decode(RawValue.self))
+
+        guard let legacyVar = legacy else {
+            throw ModelMigrationError.noLegacyModel
+        }
+
+        self = legacyVar.toGenderV2
     }
 
-    init?(fromFantasyRawValue: String){
-        self = Gender(rawValue: fromFantasyRawValue) ?? .nonBinary
-    }
+    init?(fromFantasyRawValue: String) {
+        guard let legacy = GenderLegacy(rawValue: fromFantasyRawValue) else {
+            return nil
+        }
 
+        self = legacy.toGenderV2
+    }
 }
 
 extension Gender: SwipebleModel {
@@ -253,8 +266,8 @@ extension Gender: SwipebleModel {
         return self.pretty
     }
 
-   static func gender(by index: Int) -> Gender {
-       return allCases[index]
+    static func gender(by index: Int) -> Gender {
+        return allCases[index]
     }
 
     static func index(by gender: Gender) -> Int {
@@ -306,7 +319,7 @@ enum RelationshipStatus: Equatable, Codable {
             return "single"
         case .couple(let partnerGender):
             return "with \(partnerGender.rawValue)"
-        
+
         }
     }
     
@@ -316,14 +329,14 @@ enum RelationshipStatus: Equatable, Codable {
             return "Single"
         case .couple(let partnerGender):
             return "with \(partnerGender.pretty)"
-        
+
         }
     }
     
     var analyticsTuple: (String, String?) {
         switch self {
-            case .single                   : return ("Solo", nil)
-            case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
+        case .single                   : return ("Solo", nil)
+        case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
         }
     }
 }
