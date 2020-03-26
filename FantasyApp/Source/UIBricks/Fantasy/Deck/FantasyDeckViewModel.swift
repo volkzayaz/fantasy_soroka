@@ -12,6 +12,8 @@ import RxCocoa
 import RxDataSources
 
 import Branch
+import StoreKit
+
 
 extension FantasyDeckViewModel {
 
@@ -135,6 +137,20 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .bind(to: collections)
             .disposed(by: bag)
 
+
+
+        appState.changesOf { $0.currentUser?.fantasies.liked }
+            .notNil()
+            .filter({ (list) -> Bool in
+                return [12, 36, 60].contains(list.count)
+            })
+            .filter { [12, 36, 60].contains($0.count) }
+            .asObservable()
+            .subscribe(onNext: { (x) in
+                SKStoreReviewController.requestReview()
+            })
+        .disposed(by: bag)
+
     }
     
     let router: FantasyDeckRouter
@@ -152,6 +168,8 @@ extension FantasyDeckViewModel {
         provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
             x.accept(card)
         }
+
+
     }
 
     func subscribeTapped() {
