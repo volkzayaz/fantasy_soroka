@@ -142,7 +142,7 @@ class MonetizationSubscribeButton: SecondaryButton {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .member)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .unlimRooms)
         
         x.present(nav, animated: true, completion: nil)
         
