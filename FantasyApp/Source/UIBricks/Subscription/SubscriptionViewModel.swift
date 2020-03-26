@@ -33,6 +33,22 @@ struct SubscriptionOffer {
     }
 }
 
+extension Int {
+    
+    ///Method returns countable string based on amount of number for given noun
+    ///If self == 1 than it would return "1 apple"
+    ///But if self == 3 => "3 apples"
+    func countableString(withSingularNoun noun: String) -> String {
+        
+        if self == 1 {
+            return "\(self) \(noun)"
+        }
+        
+        return "\(self) \(noun)s"
+        
+    }
+}
+
 struct SubscriptionPlan {
     
     let price: String
@@ -54,10 +70,10 @@ struct SubscriptionPlan {
         }
         
         switch p.unit {
-        case .day: duration = "\(p.numberOfUnits) days"
-        case .month: duration = "\(p.numberOfUnits) months"
-        case .week: duration = "\(p.numberOfUnits) weeks"
-        case .year: duration = "\(p.numberOfUnits) years"
+        case .day: duration = p.numberOfUnits.countableString(withSingularNoun: "day")
+        case .month: duration = p.numberOfUnits.countableString(withSingularNoun: "month")
+        case .week: duration = p.numberOfUnits.countableString(withSingularNoun: "week")
+        case .year: duration = p.numberOfUnits.countableString(withSingularNoun: "year")
         }
         
         var divider: Int = p.numberOfUnits
