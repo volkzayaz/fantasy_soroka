@@ -45,7 +45,7 @@ extension User {
         }
         
         guard let genderString = pfUser["gender"] as? String,
-              let gender = Gender(rawValue: genderString) else {
+              let gender = Gender(fromFantasyRawValue: genderString) else {
             throw ParseMigrationError.dataCorrupted
         }
         
@@ -63,7 +63,7 @@ extension User {
         let relationStatus: RelationshipStatus
         if let x = pfUser["couple"] as? String {
             
-            if let gender = Gender(rawValue: x) { relationStatus = .couple(partnerGender: gender) }
+            if let gender = Gender(fromFantasyRawValue: x) { relationStatus = .couple(partnerGender: gender) }
             else                                { relationStatus = .single }
             
         } else {

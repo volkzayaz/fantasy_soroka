@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FOA-WO-XM8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FOA-WO-XM8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1951,7 +1951,7 @@ Describe Yourself?</string>
                         <outlet property="agrementButton" destination="MXK-t0-Q2J" id="o41-2E-8wB"/>
                         <outlet property="agrementTextView" destination="eBr-Gg-mey" id="VKB-lG-dvL"/>
                         <outlet property="birthdayTextField" destination="mBC-q4-9Kg" id="McV-yD-xQw"/>
-                        <outlet property="buttonToKeybosrdConstraint" destination="dpK-dV-LRi" id="2Ph-OD-g5E"/>
+                        <outlet property="buttonToKeyboardConstraint" destination="dpK-dV-LRi" id="PDP-JT-CV7"/>
                         <outlet property="changeUploadedPhotoBottomButton" destination="MxX-cN-cTU" id="m4m-6z-2Yk"/>
                         <outlet property="changeUploadedPhotoButton" destination="V2x-s9-OuA" id="BXL-lK-6la"/>
                         <outlet property="confirmPasswordTextField" destination="soh-bV-9j1" id="gTu-oN-bKK"/>
@@ -2218,7 +2218,7 @@ Describe Yourself?</string>
                         <viewLayoutGuide key="safeArea" id="YLX-bJ-Bnh"/>
                     </view>
                     <connections>
-                        <outlet property="buttonToKeybosrdConstraint" destination="szc-xM-OyZ" id="Knc-Cm-OCj"/>
+                        <outlet property="buttonToKeyboardConstraint" destination="szc-xM-OyZ" id="gK7-K7-hLS"/>
                         <outlet property="emailTextField" destination="cAa-dm-MVG" id="vDw-Ez-wcl"/>
                         <outlet property="passwordTextField" destination="ofr-yO-Ohv" id="nkU-Nj-EIv"/>
                         <outlet property="signinButton" destination="9kf-8p-tgP" id="fdA-Dx-Syw"/>
@@ -2453,7 +2453,7 @@ Describe Yourself?</string>
                         <viewLayoutGuide key="safeArea" id="2q5-vZ-dE2"/>
                     </view>
                     <connections>
-                        <outlet property="buttonToKeybosrdConstraint" destination="bQM-L6-2s3" id="py2-Im-zQT"/>
+                        <outlet property="buttonToKeyboardConstraint" destination="bQM-L6-2s3" id="lNQ-31-QVP"/>
                         <outlet property="codeWasSentView" destination="Zmd-zD-JH1" id="1uS-Wp-P85"/>
                         <outlet property="emailTextField" destination="CsZ-6E-X4s" id="k50-FM-tnD"/>
                         <outlet property="loadingView" destination="nzY-Qc-KOS" id="L0f-H8-iYu"/>

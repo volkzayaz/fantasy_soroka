@@ -56,7 +56,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
             
         }, titleForHeaderInSection: { dataSource, index in
             return dataSource.sectionModels[index].model
-        })
+    })
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backgroundView: UIView!
@@ -81,15 +81,17 @@ class EditProfileViewController: UIViewController, MVVM_View {
             privatePhotoCollectionView.backgroundColor = .clear
         }
     }
-    
+
+    @IBOutlet var buttonToKeyboardConstraint: NSLayoutConstraint! // 20
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addFantasyGradient()
         
-        title = "Profile"
-        
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Preview",
+        title = R.string.localizable.editProfileTitle()
+
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: R.string.localizable.editProfilePreview(),
                                                               style: .done,
                                                               target: self,
                                                               action: #selector(preview)),
@@ -126,15 +128,37 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 let containerHeight: CGFloat = height
                 
                 return CGPoint(x: offset.x, y: max(-1 * (offset.y - inset - containerHeight), inset))
-            }
-            .subscribe(onNext: { [unowned self] (x) in
-                
-                self.backgroundView.frame = .init(origin: x,
-                                                  size: self.tableView.contentSize)
-                
+        }
+        .subscribe(onNext: { [unowned self] (x) in
+
+            self.backgroundView.frame = .init(origin: x,
+                                              size: self.tableView.contentSize)
+
+        })
+            .disposed(by: rx.disposeBag)
+
+        // keyboard control
+
+        Observable.of(
+            NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification),
+            NotificationCenter.default.rx.notification( UIResponder.keyboardWillHideNotification))
+            .merge()
+            .subscribe(onNext: { [unowned self] (notification) in
+
+                guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+                let keyboardScreenEndFrame = keyboardValue.cgRectValue
+                let keyboardViewEndFrame = self.view.convert(keyboardScreenEndFrame, from: self.view.window)
+
+                if notification.name == UIResponder.keyboardWillHideNotification {
+                    self.tableView.contentInset = .zero
+                } else {
+                    self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - self.view.safeAreaInsets.bottom, right: 0)
+                }
+
+                self.tableView.scrollIndicatorInsets = self.tableView.contentInset
             })
             .disposed(by: rx.disposeBag)
-        
     }
     
     override func viewSafeAreaInsetsDidChange() {
