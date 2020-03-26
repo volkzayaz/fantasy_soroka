@@ -193,7 +193,7 @@ extension EditProfileViewModel {
     
     func changeSexuality() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeSexualityTitle(),
-                                 models: Sexuality.allCases,
+                                 models: Sexuality.allCasesV2,
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.sexuality],
                                  mode: .picker,
                                  singlePickMode: true) { x in self.updateForm { $0.sexuality = x.first! } }

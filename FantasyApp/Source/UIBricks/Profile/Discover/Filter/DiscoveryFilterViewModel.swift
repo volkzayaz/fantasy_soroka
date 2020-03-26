@@ -35,7 +35,7 @@ extension DiscoveryFilterViewModel {
     }
 
     var selectedPartnerSexuality: Int {
-        return Sexuality.index(by: form.value.sexuality)
+        return Sexuality.index(by: form.value.sexualityV2)
     }
 
     var selectedSecondPartnerGender: Gender {
@@ -47,7 +47,7 @@ extension DiscoveryFilterViewModel {
     }
 
     var sexualityCount: Int {
-        return Sexuality.allCases.count
+        return Sexuality.allCasesV2.count
     }
 
     var bodiesCount: Int {
@@ -66,7 +66,7 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
     init(router: DiscoveryFilterRouter) {
         self.router = router
 
-        form = .init(value: User.current?.searchPreferences ?? .default)
+        form = .init(value: User.current?.searchPreferences?.toSearchPreferencesV2 ?? .default)
         
         /////progress indicator
         
@@ -97,7 +97,7 @@ extension DiscoveryFilterViewModel {
     }
 
     func changePartnerSexuality(sexuality: Sexuality) {
-        updateForm { $0.sexuality = sexuality }
+        updateForm { $0.sexualityV2 = sexuality }
     }
 
     func openTeleport() {

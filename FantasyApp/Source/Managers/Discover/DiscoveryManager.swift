@@ -24,8 +24,8 @@ extension DiscoveryManager {
                     .whereKey("belongsTo", equalTo: filter.community.pfObject)
                     .whereKey("gender", equalTo: filter.filter.gender.rawValue)
                 
-                if filter.filter.sexuality != .all {
-                    query = query.whereKey("sexuality", equalTo: filter.filter.sexuality.rawValue)
+                if filter.filter.sexualityV2 != .all {
+                    query = query.whereKey("sexuality", equalTo: filter.filter.sexualityV2.rawValue)
                 }
                     
                 return query.rx.fetchAllObjects()

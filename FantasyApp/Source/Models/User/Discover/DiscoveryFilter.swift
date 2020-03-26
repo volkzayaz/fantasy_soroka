@@ -18,10 +18,33 @@ struct DiscoveryFilter: Equatable {
 struct SearchPreferences: Codable, Equatable {
     var age: Range<Int>
     var gender: Gender
-    var sexuality: Sexuality
+   private var sexuality: Sexuality
     var couple: RelationshipStatus
 
     static var `default`: SearchPreferences {
-        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .straight, couple: .single)
+        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .all, couple: .single)
     }
 }
+
+
+// MARK:- Migration
+
+extension SearchPreferences {
+
+    var sexualityV2: Sexuality {
+        set {
+            sexuality = newValue
+        }
+        get {
+            return sexuality == .all ? sexuality : .all
+        }
+    }
+
+    var toSearchPreferencesV2: SearchPreferences {
+        guard sexuality != .all else {
+            return self
+        }
+        return SearchPreferences(age: age, gender: gender, sexuality: .all, couple: couple)
+    }
+}
+

@@ -8,6 +8,8 @@
 
 import Foundation
 
+//MARK:- Migrate Gender
+
 enum GenderLegacy: String, CaseIterable, Equatable, Codable {
 
     case transgenderMale = "MtF"
@@ -24,6 +26,19 @@ enum GenderLegacy: String, CaseIterable, Equatable, Codable {
             return Gender.female
         case .nonBinary, .transgenderMale, . transgenderFemale:
             return Gender.nonBinary
+        }
+    }
+}
+
+//MARK:- Migrate Sexuality
+
+extension Sexuality {
+    var toSexualityV2: Sexuality {
+        switch self {
+        case .all, .transsexual:
+            return .heteroflexible
+        default:
+            return self
         }
     }
 }

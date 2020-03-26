@@ -95,11 +95,15 @@ class SinglePickViewController: UIViewController {
             .map { $0.first! }
             .bind(to: selectedPickerModel)
             .disposed(by: rx.disposeBag)
-
     }
     
     @IBAction func saveAction(_ sender: Any) {
-        viewModel.picked(model: selectedPickerModel.unsafeValue!)
+
+        guard let value = selectedPickerModel.unsafeValue else {
+            return
+        }
+
+        viewModel.picked(model: value)
     }
     
     @objc func save() {
