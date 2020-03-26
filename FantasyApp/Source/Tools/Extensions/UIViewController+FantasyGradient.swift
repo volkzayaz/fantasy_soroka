@@ -39,7 +39,7 @@ extension UIView {
         layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    func addFantasySubscriptionGradient() {
+    func addFantasySubscriptionGradient(radius: Bool = false) {
 
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
@@ -53,6 +53,9 @@ extension UIView {
         gradientLayer.startPoint = CGPoint(x: 0.25, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.4)
         
+        if radius {
+            gradientLayer.cornerRadius = 8
+        }
         layer.insertSublayer(gradientLayer, at: 0)
     }
 

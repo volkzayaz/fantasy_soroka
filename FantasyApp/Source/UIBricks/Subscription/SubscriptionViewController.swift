@@ -24,31 +24,55 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     
     var offers: [SubscriptionOffer] = []
     
+    var selectedIndex: Int = 1
+    
+    @IBOutlet weak var mostPopularView: UIView!
+    
+    @IBOutlet weak var offferView1: UIView!
     @IBOutlet weak var priceLabel1: UILabel!
     @IBOutlet weak var durationLabel1: UILabel!
     @IBOutlet weak var dailyCharge1: UILabel!
     @IBOutlet weak var savePercent1: UILabel!
     
     @IBAction func tryOffer1(_ sender: Any) {
-        viewModel.subscribe(offer: offers[0])
+        selectedIndex = 0
+        selectView(view: offferView1, label: priceLabel1)
     }
     
+    @IBOutlet weak var offerView2: UIView!
     @IBOutlet weak var priceLabel2: UILabel!
     @IBOutlet weak var durationLabel2: UILabel!
     @IBOutlet weak var dailyCharge2: UILabel!
     @IBOutlet weak var savePercent2: UILabel!
     
     @IBAction func tapOffer2(_ sender: Any) {
-        viewModel.subscribe(offer: offers[1])
+        selectedIndex = 1
+        selectView(view: offerView2, label: priceLabel2)
     }
     
+    @IBOutlet weak var offerView3: UIView!
     @IBOutlet weak var priceLabel3: UILabel!
     @IBOutlet weak var durationLabel3: UILabel!
     @IBOutlet weak var dailyCharge3: UILabel!
     @IBOutlet weak var savePercent3: UILabel!
     
     @IBAction func tapOffer3(_ sender: Any) {
-        viewModel.subscribe(offer: offers[2])
+        //viewModel.subscribe(offer: offers[2])
+        selectedIndex = 2
+        selectView(view: offerView3, label: priceLabel3)
+    }
+    
+    func selectView(view: UIView, label: UILabel) {
+        
+        [offferView1, offerView2, offerView3].forEach { (x: UIView?) in x?.layer.borderColor = UIColor.clear.cgColor
+        }
+
+        [priceLabel1, priceLabel2, priceLabel3].forEach { (x: UILabel?) in x?.textColor = R.color.textBlackColor()
+        }
+        
+        view.layer.borderColor = R.color.textPinkColor()!.cgColor
+        view.layer.borderWidth = 1
+        label.textColor = R.color.textPinkColor()
     }
     
     override func viewDidLoad() {
@@ -65,14 +89,14 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
          durationLabel1,
          dailyCharge1,
          savePercent1,
-        priceLabel2,
-        durationLabel2,
-        dailyCharge2,
-        savePercent2,
-        priceLabel3,
-        durationLabel3,
-        dailyCharge3,
-        savePercent3]
+         priceLabel2,
+         durationLabel2,
+         dailyCharge2,
+         savePercent2,
+         priceLabel3,
+         durationLabel3,
+         dailyCharge3,
+         savePercent3]
             .forEach { $0?.text = "" }
         
         viewModel.offers.drive(onNext: { [unowned self] x in
@@ -101,6 +125,11 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
         })
             .disposed(by: rx.disposeBag)
         
+        selectView(view: offerView2, label: priceLabel2)
+        
+        mostPopularView.backgroundColor = .clear;
+        mostPopularView.addFantasySubscriptionGradient(radius: true)
+        
     }
     
     var once = false
@@ -117,7 +146,7 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     }
     
     @IBAction func subscribe(_ sender: Any) {
-        viewModel.subscribe(offer: offers[1])
+        viewModel.subscribe(offer: offers[selectedIndex])
     }
     
     @IBAction func cancel(_ sender: Any) {
