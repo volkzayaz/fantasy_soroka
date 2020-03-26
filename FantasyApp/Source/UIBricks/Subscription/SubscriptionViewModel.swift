@@ -94,7 +94,7 @@ extension SubscriptionViewModel {
         
         let ids = immutableNonPersistentState.subscriptionProductIDs ?? premiumIds
         
-        return SwiftyStoreKit.rx_productDetails(products: premiumIds)
+        return SwiftyStoreKit.rx_productDetails(products: ids)
             .retry(1)
             .trackView(viewIndicator: indicator)
             .map { x in
