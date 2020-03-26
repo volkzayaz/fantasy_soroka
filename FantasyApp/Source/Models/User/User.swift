@@ -205,6 +205,22 @@ enum Sexuality: String, CaseIterable, Equatable, Codable {
     case gay = "Gay"
     
     case all = "All"
+
+    public init(from decoder: Decoder) throws {
+        let legacy = try Sexuality(rawValue: decoder.singleValueContainer().decode(RawValue.self))
+
+        guard let legacyVar = legacy else {
+            throw ModelMigrationError.noLegacyModel
+        }
+
+        self = legacyVar.toSexualityV2
+    }
+
+    static var allCasesV2:[Sexuality] {
+        var list = allCases
+        list.removeAll(where: { $0 == .all || $0 == .transsexual})
+        return list
+    }
 }
 
 extension Sexuality: SwipebleModel {
@@ -214,11 +230,11 @@ extension Sexuality: SwipebleModel {
     }
 
     static func sexuality(by index: Int) -> Sexuality {
-        return allCases[index]
+        return allCasesV2[index]
     }
 
     static func index(by sexuality: Sexuality) -> Int {
-        return allCases.firstIndex(of: sexuality) ?? 0
+        return allCasesV2.firstIndex(of: sexuality) ?? 0
     }
 }
 
@@ -231,12 +247,17 @@ enum Gender: String, CaseIterable, Equatable, Codable {
     case male
     case female
     case nonBinary
+//    case transgenderMale = "MtF"
+//    case transgenderFemale = "FtM"
 
     var pretty: String {
         switch self {
         case .male: return "Man"
         case .female: return "Woman"
         case .nonBinary: return "Non-binary"
+
+//        case .transgenderMale: return "MtF"
+//        case .transgenderFemale: return "FtM"
         }
     }
 

@@ -309,7 +309,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         ////Sexuality
         
-        let data = Sexuality.allCases
+        let data = Sexuality.allCasesV2
         
         Observable.just(data)
             .bind(to: sexualityPicker.rx.itemAttributedTitles) { _, item in
