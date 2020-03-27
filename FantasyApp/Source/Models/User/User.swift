@@ -213,13 +213,23 @@ enum Sexuality: String, CaseIterable, Equatable, Codable {
             throw ModelMigrationError.noLegacyModel
         }
 
-        self = legacyVar.toSexualityV2
+        let migrated = legacyVar.toSexualityV2
+        self = migrated
+    }
+
+
+    init?(fromFantasyRawValue: String) {
+        guard let legacy = Sexuality(rawValue: fromFantasyRawValue) else {
+            return nil
+        }
+
+        let migrated = legacy.toSexualityV2
+        self = migrated
     }
 
     static var allCasesV2:[Sexuality] {
-        var list = allCases
-        list.removeAll(where: { $0 == .all || $0 == .transsexual})
-        return list
+//        return allCases
+        return allCases.filter { $0 != .all && $0 != .transsexual }
     }
 }
 

@@ -50,7 +50,7 @@ extension User {
         }
         
         guard let sexualityString = pfUser["sexuality"] as? String,
-              let sexuality = Sexuality(rawValue: sexualityString) else {
+              let sexuality = Sexuality(fromFantasyRawValue: sexualityString) else {
             throw ParseMigrationError.dataCorrupted
         }
         
