@@ -157,7 +157,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 
         guard isFirstAppearance else { return }
         descriptionView.isHidden = viewModel.description.isEmpty
-        descriptionLabel.text = viewModel.description
+        descriptionLabel.attributedText = viewModel.description.getHtmlAttributed(family:UIFont.regularFont(ofSize: 11).familyName, size:11, color: .fantasyBlack)
         descriptionButton.isHidden = !descriptionLabel.isTruncated
     }
     
@@ -202,8 +202,6 @@ private extension FantasyDetailsViewController {
         descriptionTitleLabel.font = .boldFont(ofSize: 25)
 
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .fantasyBlack
-        descriptionLabel.font = .regularFont(ofSize: 15)
 
         descriptionButton.setTitle(R.string.localizable.fantasyCardReadMoreButton(), for: .normal)
         descriptionButton.setTitle(R.string.localizable.fantasyCardShowLessButton(), for: .selected)

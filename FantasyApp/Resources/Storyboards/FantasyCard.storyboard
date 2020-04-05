@@ -466,12 +466,12 @@
                         <outlet property="backgroundImageView" destination="WSq-yV-8o0" id="15I-cS-buk"/>
                         <outlet property="backgroundView" destination="67D-ww-QPD" id="OEa-1g-xfg"/>
                         <outlet property="closeButton" destination="wbX-iv-xce" id="Ofp-iO-ulw"/>
-                        <outlet property="collapsedDescriptionHeight" destination="qbA-y5-gzL" id="fEd-e2-Yam"/>
+                        <outlet property="collapsedDescriptionHeight" destination="qbA-y5-gzL" id="6bM-hF-xbk"/>
                         <outlet property="collectionView" destination="Ooe-p4-lRG" id="1cQ-mO-liJ"/>
                         <outlet property="collectionsTitleLabel" destination="lT5-LM-SCO" id="A6g-hy-oLX"/>
                         <outlet property="collectionsView" destination="eFe-Ra-cWv" id="GQP-4R-pwc"/>
                         <outlet property="descriptionButton" destination="TJA-r2-q36" id="K9T-BC-29d"/>
-                        <outlet property="descriptionLabel" destination="KGA-ox-5xs" id="5VN-kz-0vG"/>
+                        <outlet property="descriptionLabel" destination="KGA-ox-5xs" id="AoS-Ov-xrg"/>
                         <outlet property="descriptionTitleLabel" destination="Ket-2c-YPm" id="04j-01-njU"/>
                         <outlet property="descriptionView" destination="jSw-C9-BTM" id="vIQ-uL-mWJ"/>
                         <outlet property="gradientBackgroundView" destination="gzP-Zl-hoP" id="epv-le-bfN"/>
