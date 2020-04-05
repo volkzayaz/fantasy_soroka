@@ -330,6 +330,7 @@
 		B719F9222389A625009AB110 /* MyFantasiesBlockedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */; };
 		B719F9232389A625009AB110 /* MyFantasiesBlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */; };
 		B719F9242389A625009AB110 /* MyFantasiesBlockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */; };
+		B71C9F5024310CB900FE7620 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71C9F4F24310CB900FE7620 /* String+HTML.swift */; };
 		B71E2992242BC9DB00153ED8 /* User+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E2991242BC9DB00153ED8 /* User+Migration.swift */; };
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
@@ -367,6 +368,7 @@
 		B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DBF025239A4545005D27D8 /* TransparentGradientView.swift */; };
 		B7E4E3FA237E9E8600D8D9CA /* FantasyDeckTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4E3F8237E9E8600D8D9CA /* FantasyDeckTutorialView.swift */; };
 		B7E4E3FB237E9E8600D8D9CA /* FantasyDeckTutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E4E3F9237E9E8600D8D9CA /* FantasyDeckTutorialView.xib */; };
+		B7E59868242D156700C325D7 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E59867242D156700C325D7 /* CopyableLabel.swift */; };
 		B7EE6C102362DD1F00510255 /* ListRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE6C0F2362DD1F00510255 /* ListRoundedView.swift */; };
 		B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */; };
 /* End PBXBuildFile section */
@@ -750,6 +752,7 @@
 		B719F91F2389A624009AB110 /* MyFantasiesBlockedRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedRouter.swift; sourceTree = "<group>"; };
 		B719F9202389A625009AB110 /* MyFantasiesBlockedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedViewController.swift; sourceTree = "<group>"; };
 		B719F9212389A625009AB110 /* MyFantasiesBlockedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFantasiesBlockedViewModel.swift; sourceTree = "<group>"; };
+		B71C9F4F24310CB900FE7620 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		B71E2991242BC9DB00153ED8 /* User+Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Migration.swift"; sourceTree = "<group>"; };
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
@@ -787,6 +790,7 @@
 		B7DBF025239A4545005D27D8 /* TransparentGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGradientView.swift; sourceTree = "<group>"; };
 		B7E4E3F8237E9E8600D8D9CA /* FantasyDeckTutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FantasyDeckTutorialView.swift; sourceTree = "<group>"; };
 		B7E4E3F9237E9E8600D8D9CA /* FantasyDeckTutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FantasyDeckTutorialView.xib; sourceTree = "<group>"; };
+		B7E59867242D156700C325D7 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		B7EE6C0F2362DD1F00510255 /* ListRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRoundedView.swift; sourceTree = "<group>"; };
 		B7F84597235C941800CC2A62 /* FantasyCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyCameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1034,22 +1038,23 @@
 		7312B07D22D7422100DB0F36 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7312B07F22D7422100DB0F36 /* RxExtensions */,
-				7312B09222D7422100DB0F36 /* UIColor+Extension.swift */,
-				841681EF22E9B36C00FA9455 /* UIColor+Style.swift */,
-				843B6483234E5B4D00E5639B /* Date+Formatting.swift */,
-				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
-				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
-				846B49D92365FC180087B7DF /* UILabel+Truncation.swift */,
 				734C70BA23213D9200ED2E91 /* Collection+Safe.swift */,
+				843B6483234E5B4D00E5639B /* Date+Formatting.swift */,
+				7312B07F22D7422100DB0F36 /* RxExtensions */,
+				7393119523D585330054FC52 /* SKProduct+LocalPrice.swift */,
 				84AB4909232A7D7800F3609A /* String+Emojis.swift */,
-				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
+				B71C9F4F24310CB900FE7620 /* String+HTML.swift */,
 				B7546CB3235B0F7900CBDDC8 /* String+Validation.swift */,
 				B73774B523647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift */,
+				7312B09222D7422100DB0F36 /* UIColor+Extension.swift */,
+				841681EF22E9B36C00FA9455 /* UIColor+Style.swift */,
+				841681F122E9B37E00FA9455 /* UIFont+Style.swift */,
 				B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */,
 				B7B1520F2398303100C4E749 /* UIImage+TabbarUtils.swift */,
 				B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */,
-				7393119523D585330054FC52 /* SKProduct+LocalPrice.swift */,
+				846B49D92365FC180087B7DF /* UILabel+Truncation.swift */,
+				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
+				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1995,6 +2000,7 @@
 				B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */,
 				B78BE6FA23521A11003A36BA /* TransparentTextField.swift */,
 				B7DBF025239A4545005D27D8 /* TransparentGradientView.swift */,
+				B7E59867242D156700C325D7 /* CopyableLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2908,6 +2914,7 @@
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
 				B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */,
+				B7E59868242D156700C325D7 /* CopyableLabel.swift in Sources */,
 				7339BEE8239B9DED0073B883 /* BackendAnalytics.swift in Sources */,
 				73F80CD52361EC2D00212FCF /* AcceptRejectCell.swift in Sources */,
 				73E6012822EC513700F767BF /* RootViewController.swift in Sources */,
@@ -2948,6 +2955,7 @@
 				B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */,
 				738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */,
 				7312B0A222D7422100DB0F36 /* MessagePresentable.swift in Sources */,
+				B71C9F5024310CB900FE7620 /* String+HTML.swift in Sources */,
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
 				844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */,
 				843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */,

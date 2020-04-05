@@ -53,6 +53,20 @@ struct Setting<T: UserDefaultsStorable> {
     
 }
 
+extension Int : UserDefaultsStorable {
+
+    func store(for key: String) {
+        UserDefaults.standard.set(self, forKey: key)
+    }
+
+    init?(key: String) {
+
+        guard let _ = UserDefaults.standard.object(forKey: key) else { return nil }
+
+        self = UserDefaults.standard.integer(forKey: key)
+    }
+
+}
 
 extension Bool : UserDefaultsStorable {
     

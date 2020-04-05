@@ -12,6 +12,8 @@ import RxCocoa
 import RxDataSources
 
 import Branch
+import StoreKit
+
 
 extension FantasyDeckViewModel {
 
@@ -135,6 +137,34 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .bind(to: collections)
             .disposed(by: bag)
 
+
+        // Check likes cars count to display Review popup
+
+        appState.changesOf { $0.currentUser?.fantasies.liked }
+            .notNil()
+            .map { (SettingsStore.currentUser.value?.id, $0) }
+            .filter { $0.1.isEmpty == false && $0.0 != nil }
+            .asObservable()
+            .subscribe(onNext: { (tuple) in
+                let userID = tuple.0!
+                var map = SettingsStore.likedCardsCount.value
+
+                map[userID] = (map[userID] ?? 0) + 1
+
+                SettingsStore.likedCardsCount.value = map
+            })
+            .disposed(by: bag)
+
+        SettingsStore.likedCardsCount.observable
+            .filter { $0.isEmpty == false }
+            .map { (SettingsStore.currentUser.value?.id, $0) }
+            .filter { $0.1.isEmpty == false && $0.0 != nil }
+            .filter { [12, 36, 60].contains($0.1[$0.0!]) }
+            .asObservable()
+            .subscribe(onNext: { (count) in
+                SKStoreReviewController.requestReview()
+            })
+            .disposed(by: bag)
     }
     
     let router: FantasyDeckRouter
@@ -152,6 +182,8 @@ extension FantasyDeckViewModel {
         provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
             x.accept(card)
         }
+
+
     }
 
     func subscribeTapped() {

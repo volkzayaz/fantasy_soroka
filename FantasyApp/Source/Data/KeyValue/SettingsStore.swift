@@ -33,4 +33,7 @@ extension SettingsStore {
     
     static var showRoomTutorial: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.showRoomTutorial",
                                                                 initialValue: true)
+
+    static var likedCardsCount: Setting<[String:Int]> = Setting(key: "com.fantasyapp.iosclient.likedCardsCount",
+                                                                initialValue: [:])
 }
