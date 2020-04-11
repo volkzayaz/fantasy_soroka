@@ -294,8 +294,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="270"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fantasies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJ4-Ul-gGP">
-                                                    <rect key="frame" x="16" y="11" width="107" height="11"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Decks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJ4-Ul-gGP">
+                                                    <rect key="frame" x="16" y="11" width="70" height="11"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                                     <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -922,7 +922,7 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RJf-BM-2pN">
-                                        <rect key="frame" x="0.0" y="101" width="414" height="762"/>
+                                        <rect key="frame" x="0.0" y="103" width="414" height="760"/>
                                         <color key="backgroundColor" red="0.96849805116653442" green="0.96854132413864136" blue="0.97667533159255981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Iwf-Q2-Ts0" customClass="BaseFlowLayout" customModule="FantasyApp" customModuleProvider="target">
                                             <size key="itemSize" width="214" height="294"/>
@@ -1082,7 +1082,7 @@ activated when it reaches</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-3o-gJM">
-                                <rect key="frame" x="139" y="52" width="136" height="33"/>
+                                <rect key="frame" x="139" y="54" width="136" height="33"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5n4-my-7WL" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -1121,7 +1121,7 @@ activated when it reaches</string>
                             <constraint firstItem="P1G-NS-fWC" firstAttribute="trailing" secondItem="RJf-BM-2pN" secondAttribute="trailing" id="MJo-aR-LZD"/>
                             <constraint firstItem="P1G-NS-fWC" firstAttribute="bottom" secondItem="9gb-Gd-wJf" secondAttribute="bottom" id="NmL-kz-7by"/>
                             <constraint firstItem="RJf-BM-2pN" firstAttribute="top" secondItem="bSm-3o-gJM" secondAttribute="bottom" constant="16" id="PqP-Dw-6c7"/>
-                            <constraint firstItem="bSm-3o-gJM" firstAttribute="top" secondItem="P1G-NS-fWC" secondAttribute="top" constant="8" id="QHv-20-2cG"/>
+                            <constraint firstItem="bSm-3o-gJM" firstAttribute="top" secondItem="P1G-NS-fWC" secondAttribute="top" constant="10" id="QHv-20-2cG"/>
                             <constraint firstItem="9gb-Gd-wJf" firstAttribute="trailing" secondItem="P1G-NS-fWC" secondAttribute="trailing" id="YXD-0A-Ych"/>
                             <constraint firstItem="RJf-BM-2pN" firstAttribute="bottom" secondItem="P1G-NS-fWC" secondAttribute="bottom" constant="1" id="g7b-rg-xWJ"/>
                             <constraint firstItem="RJf-BM-2pN" firstAttribute="leading" secondItem="P1G-NS-fWC" secondAttribute="leading" id="mwB-uy-7NK"/>

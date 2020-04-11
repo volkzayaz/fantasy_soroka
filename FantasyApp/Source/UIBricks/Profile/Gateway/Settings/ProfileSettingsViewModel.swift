@@ -21,7 +21,14 @@ extension ProfileSettingsViewModel {
         
         return "Version \(appVersion)-\(appBuild)\n\(env)"
     }
-    
+
+    var helpImproveText: String {
+        let text = R.string.localizable.fantasySettingsHelpImprove()
+
+        guard let u = User.current  else { return text }
+
+        return text + u.id
+    }
 }
 
 struct ProfileSettingsViewModel : MVVM_ViewModel {
@@ -69,13 +76,13 @@ extension ProfileSettingsViewModel {
             .init(title: R.string.localizable.generalCancel(), style: .cancel, handler: nil),
             .init(title:  R.string.localizable.fantasySettingsDeleteAccountAlertAction(), style: .destructive, handler: { _ in
                 let _ = UserManager.deleteAccount()
-                                   .trackView(viewIndicator: self.indicator)
-                                   .silentCatch(handler: self.router.owner)
-                                   .subscribe(onNext: self.logoutActions)
+                    .trackView(viewIndicator: self.indicator)
+                    .silentCatch(handler: self.router.owner)
+                    .subscribe(onNext: self.logoutActions)
             })
         ]
 
-         router.owner.showDialog(title: R.string.localizable.fantasySettingsDeleteAccountAlertTitle(), text: R.string.localizable.fantasySettingsDeleteAccountAlertText(), style: .actionSheet, actions: actions)
+        router.owner.showDialog(title: R.string.localizable.fantasySettingsDeleteAccountAlertTitle(), text: R.string.localizable.fantasySettingsDeleteAccountAlertText(), style: .actionSheet, actions: actions)
         
         Analytics.report(Analytics.Event.ProfileDelete())
     }
@@ -110,6 +117,26 @@ extension ProfileSettingsViewModel {
 
     func rateUs() {
         SKStoreReviewController.requestReview()
+    }
+
+    func helpImproveClick() {
+        guard let u = User.current  else { return }
+
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        let env = SettingsStore.environment.value.serverAlias
+        let appVersionFullText =  "Application version - \(appVersion)-\(appBuild) \(env)"
+
+        router.showMail(for: u.id, appVersion: appVersionFullText, osVersion: UIDevice.current.systemVersion)
+    }
+
+    func helpImproveHold() {
+        guard let u = User.current  else { return }
+
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = u.id
+
+        router.showCopyUserIdMessage()
     }
 
     func dismiss() {

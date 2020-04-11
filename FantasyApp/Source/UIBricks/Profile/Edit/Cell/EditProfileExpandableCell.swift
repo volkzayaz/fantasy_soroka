@@ -22,7 +22,7 @@ class EditProfileExpandableCell: UITableViewCell, UITextViewDelegate {
     weak var tableView: UITableView?
     
     var maximumAboutChars: Int {
-        return 100
+        return 200
     }
     
     override func awakeFromNib() {
