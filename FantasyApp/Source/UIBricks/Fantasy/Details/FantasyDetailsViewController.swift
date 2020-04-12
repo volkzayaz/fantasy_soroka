@@ -45,7 +45,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet  var backgroundImageView: ProtectedImageView!
     @IBOutlet  var descriptionView: UIView!
     @IBOutlet  var descriptionTitleLabel: UILabel!
-    @IBOutlet  var descriptionLabel: UILabel!
+    @IBOutlet  var descriptionTextView: UITextView!
     @IBOutlet  var descriptionButton: UIButton!
     @IBOutlet  var preferenceSelector: FantasyDetailsPreferenceSelector!
     @IBOutlet  var preferenceView: UIView!
@@ -157,8 +157,11 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
 
         guard isFirstAppearance else { return }
         descriptionView.isHidden = viewModel.description.isEmpty
-        descriptionLabel.attributedText = viewModel.description.getHtmlAttributed(family:UIFont.regularFont(ofSize: 11).familyName, size:11, color: .fantasyBlack)
-        descriptionButton.isHidden = !descriptionLabel.isTruncated
+
+        descriptionTextView.textContainer.lineBreakMode = .byTruncatingTail
+        descriptionTextView.attributedText = viewModel.description.getHtmlAttributed(family:UIFont.regularFont(ofSize: 11).familyName, size:11, color: .fantasyBlack)
+
+        descriptionButton.isHidden = !descriptionTextView.isTextTruncated
     }
     
 }
@@ -200,8 +203,6 @@ private extension FantasyDetailsViewController {
         descriptionTitleLabel.text = R.string.localizable.fantasyCardStoryTitle()
         descriptionTitleLabel.textColor = .fantasyBlack
         descriptionTitleLabel.font = .boldFont(ofSize: 25)
-
-        descriptionLabel.numberOfLines = 0
 
         descriptionButton.setTitle(R.string.localizable.fantasyCardReadMoreButton(), for: .normal)
         descriptionButton.setTitle(R.string.localizable.fantasyCardShowLessButton(), for: .selected)
@@ -275,7 +276,6 @@ private extension FantasyDetailsViewController {
             collapsedDescriptionHeight.isActive = false
         } else {
             collapsedDescriptionHeight.isActive = true
-            //collapseStoryAnimated()
         }
         
         viewModel.expandStory()
@@ -371,4 +371,13 @@ extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
         }
     }
     
+}
+
+// MARK: - UITextViewDelegate
+
+extension FantasyDetailsViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+        return false
+    }
 }

@@ -193,16 +193,20 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGA-ox-5xs" customClass="CopyableLabel" customModule="FantasyApp" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EwB-QL-arI">
                                                         <rect key="frame" x="16" y="60" width="311" height="70"/>
-                                                        <gestureRecognizers/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="qbA-y5-gzL"/>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="pBS-I9-rap"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="N1n-eG-0ux" id="mk2-yP-SCz"/>
+                                                        </connections>
+                                                    </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJA-r2-q36">
                                                         <rect key="frame" x="16" y="146" width="100" height="30"/>
                                                         <constraints>
@@ -220,12 +224,12 @@
                                                     <constraint firstAttribute="trailing" secondItem="Ket-2c-YPm" secondAttribute="trailing" constant="16" id="0ly-G5-ifY"/>
                                                     <constraint firstItem="Ket-2c-YPm" firstAttribute="leading" secondItem="jSw-C9-BTM" secondAttribute="leading" constant="16" id="0of-bF-AJ5"/>
                                                     <constraint firstItem="Ket-2c-YPm" firstAttribute="top" secondItem="jSw-C9-BTM" secondAttribute="top" constant="16" id="7ko-Qe-Va1"/>
-                                                    <constraint firstAttribute="bottom" secondItem="KGA-ox-5xs" secondAttribute="bottom" constant="62" id="84r-bt-2uX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="EwB-QL-arI" secondAttribute="trailing" constant="16" id="Be5-ID-DLj"/>
                                                     <constraint firstItem="TJA-r2-q36" firstAttribute="leading" secondItem="jSw-C9-BTM" secondAttribute="leading" constant="16" id="Pag-fU-mPp"/>
-                                                    <constraint firstItem="KGA-ox-5xs" firstAttribute="leading" secondItem="jSw-C9-BTM" secondAttribute="leading" constant="16" id="XW8-jV-afQ"/>
-                                                    <constraint firstItem="KGA-ox-5xs" firstAttribute="top" secondItem="Ket-2c-YPm" secondAttribute="bottom" constant="12" id="bSz-Po-OG5"/>
+                                                    <constraint firstItem="EwB-QL-arI" firstAttribute="top" secondItem="Ket-2c-YPm" secondAttribute="bottom" constant="12" id="UBX-Nl-z7i"/>
                                                     <constraint firstAttribute="bottom" secondItem="TJA-r2-q36" secondAttribute="bottom" constant="16" id="iF6-ad-Ix3"/>
-                                                    <constraint firstAttribute="trailing" secondItem="KGA-ox-5xs" secondAttribute="trailing" constant="16" id="jWj-WJ-8G8"/>
+                                                    <constraint firstItem="EwB-QL-arI" firstAttribute="leading" secondItem="jSw-C9-BTM" secondAttribute="leading" constant="16" id="mzB-3L-yyd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="EwB-QL-arI" secondAttribute="bottom" constant="62" id="st5-o9-ijR"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rv-6M-7pw">
@@ -466,12 +470,12 @@
                         <outlet property="backgroundImageView" destination="WSq-yV-8o0" id="15I-cS-buk"/>
                         <outlet property="backgroundView" destination="67D-ww-QPD" id="OEa-1g-xfg"/>
                         <outlet property="closeButton" destination="wbX-iv-xce" id="Ofp-iO-ulw"/>
-                        <outlet property="collapsedDescriptionHeight" destination="qbA-y5-gzL" id="6bM-hF-xbk"/>
+                        <outlet property="collapsedDescriptionHeight" destination="pBS-I9-rap" id="D01-E7-erf"/>
                         <outlet property="collectionView" destination="Ooe-p4-lRG" id="1cQ-mO-liJ"/>
                         <outlet property="collectionsTitleLabel" destination="lT5-LM-SCO" id="A6g-hy-oLX"/>
                         <outlet property="collectionsView" destination="eFe-Ra-cWv" id="GQP-4R-pwc"/>
                         <outlet property="descriptionButton" destination="TJA-r2-q36" id="K9T-BC-29d"/>
-                        <outlet property="descriptionLabel" destination="KGA-ox-5xs" id="AoS-Ov-xrg"/>
+                        <outlet property="descriptionTextView" destination="EwB-QL-arI" id="vAz-qV-WvY"/>
                         <outlet property="descriptionTitleLabel" destination="Ket-2c-YPm" id="04j-01-njU"/>
                         <outlet property="descriptionView" destination="jSw-C9-BTM" id="vIQ-uL-mWJ"/>
                         <outlet property="gradientBackgroundView" destination="gzP-Zl-hoP" id="epv-le-bfN"/>

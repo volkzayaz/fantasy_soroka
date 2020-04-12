@@ -333,6 +333,7 @@
 		B71C9F5024310CB900FE7620 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71C9F4F24310CB900FE7620 /* String+HTML.swift */; };
 		B71E2992242BC9DB00153ED8 /* User+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E2991242BC9DB00153ED8 /* User+Migration.swift */; };
 		B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */; };
+		B720EED5244217DB009385CB /* UITextView+Truncated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B720EED4244217DB009385CB /* UITextView+Truncated.swift */; };
 		B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */; };
 		B723A9F92385B95300C72A7C /* ProfileSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */; };
 		B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */; };
@@ -755,6 +756,7 @@
 		B71C9F4F24310CB900FE7620 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		B71E2991242BC9DB00153ED8 /* User+Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Migration.swift"; sourceTree = "<group>"; };
 		B71ED75423685466004C6D28 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
+		B720EED4244217DB009385CB /* UITextView+Truncated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Truncated.swift"; sourceTree = "<group>"; };
 		B723A9F62385B93A00C72A7C /* ProfileSettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsHeaderView.swift; sourceTree = "<group>"; };
 		B723A9F82385B95300C72A7C /* ProfileSettingsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsHeaderView.xib; sourceTree = "<group>"; };
 		B72BB57623D3201B00D2CDE5 /* FantasyAnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyAnimatedImage.swift; sourceTree = "<group>"; };
@@ -1055,6 +1057,7 @@
 				846B49D92365FC180087B7DF /* UILabel+Truncation.swift */,
 				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
 				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
+				B720EED4244217DB009385CB /* UITextView+Truncated.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3007,6 +3010,7 @@
 				73E13B70238BF56800CE1B06 /* WebSocketService.swift in Sources */,
 				B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */,
 				73EEFC39235C953D00480E79 /* EditRelationshipViewController.swift in Sources */,
+				B720EED5244217DB009385CB /* UITextView+Truncated.swift in Sources */,
 				84B8AD0322DCCC650026862E /* APIProvider.swift in Sources */,
 				84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */,
 				B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */,
