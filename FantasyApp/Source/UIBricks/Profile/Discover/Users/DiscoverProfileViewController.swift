@@ -36,7 +36,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
         let s = NSMutableAttributedString(string: R.string.localizable.fantasyUsersSearchHeaderTitle(), attributes: [.font : UIFont.boldFont(ofSize: 18), .foregroundColor: UIColor.white])
 
-        s.addAttributes([.font : UIFont.regularFont(ofSize: 18)], range: NSRange(location: 7, length: 3 ))
+//        s.addAttributes([.font : UIFont.regularFont(ofSize: 18)], range: NSRange(location: 7, length: 3 ))
 
         let label = UILabel()
         label.attributedText = s

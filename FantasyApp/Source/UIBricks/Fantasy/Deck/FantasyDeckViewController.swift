@@ -52,8 +52,20 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     @IBOutlet weak var timeLeftLabel: UILabel!
     @IBOutlet weak var subsbcriptionLabel: UILabel!
     @IBOutlet weak var subscribeButton: SecondaryButton!
-    @IBOutlet weak var cardsButton: PrimaryButton!
-    @IBOutlet weak var collectionsButton: PrimaryButton!
+    @IBOutlet weak var cardsButton: PrimaryButton! {
+        didSet {
+            cardsButton.useTransparency = false
+            cardsButton.setTitleColor(UIColor.fantasyPink, for: .selected)
+            cardsButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
+    @IBOutlet weak var collectionsButton: PrimaryButton! {
+        didSet {
+            collectionsButton.useTransparency = false
+            collectionsButton.setTitleColor(UIColor.fantasyPink, for: .selected)
+            collectionsButton.setTitleColor(UIColor.white, for: .normal)
+        }
+    }
     @IBOutlet weak var collectionsCountLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {

@@ -31,7 +31,7 @@ class ConnectionViewController: UIViewController, MVVM_View {
             
         }
         else {
-        
+
             let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.incommingConnectionCell,
                                               for: ip)!
             
@@ -48,13 +48,17 @@ class ConnectionViewController: UIViewController, MVVM_View {
     @IBOutlet weak var incommingButton: PrimaryButton! {
         didSet {
             incommingButton.mode = .selector
-//            incommingButton.titleFont = .mediumFont(ofSize: 15)
+            incommingButton.useTransparency = false
+            incommingButton.setTitleColor(UIColor.fantasyPink, for: .selected)
+            incommingButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
     @IBOutlet weak var outgoingButton: PrimaryButton! {
         didSet {
             outgoingButton.mode = .selector
-//            outgoingButton.titleFont = .mediumFont(ofSize: 15)
+            outgoingButton.useTransparency = false
+            outgoingButton.setTitleColor(UIColor.fantasyPink, for: .selected)
+            outgoingButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
     
@@ -75,20 +79,20 @@ class ConnectionViewController: UIViewController, MVVM_View {
             })
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
-    
+
         viewModel.requests
             .map { $0.first!.items.count == 0 }
             .drive(emptyView.rx.isEmpty)
             .disposed(by: rx.disposeBag)
         
         viewModel.sourceDriver.map { source in
-                let image = source == .incomming ? R.image.incommingConnectionsPlaceholder() : R.image.outgoingConnectionsPlaceholder()
+            let image = source == .incomming ? R.image.incommingConnectionsPlaceholder() : R.image.outgoingConnectionsPlaceholder()
             
-                return UIImageView(image: image)
-            }
-            .drive(emptyView.rx.emptyView)
-            .disposed(by: rx.disposeBag)
-            
+            return UIImageView(image: image)
+        }
+        .drive(emptyView.rx.emptyView)
+        .disposed(by: rx.disposeBag)
+
         collectionView.rx.modelSelected(ConnectedUser.self)
             .subscribe(onNext: { [unowned self] (x) in
                 self.viewModel.show(room: x.room)
@@ -121,7 +125,7 @@ extension ConnectionViewController {
         
         viewModel.sourceChanged(source: .outgoing )
     }
- 
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -151,7 +155,7 @@ class BaseFlowLayout: UICollectionViewFlowLayout {
     func configureFor(bounds: CGRect) {
         
         if tableMode == .outgoing {
-        
+
             minimumInteritemSpacing = 0
             minimumLineSpacing = 0
             sectionInset = .init(top: 0, left: 0, bottom: 40, right: 0)
