@@ -3237,7 +3237,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3272,7 +3272,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3288,7 +3288,7 @@
 				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Andriy Yaroshenko AppStore";
+				PROVISIONING_PROFILE_SPECIFIER = "Fantasy App Store";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3360,7 +3360,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3377,7 +3377,7 @@
 				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Andriy Yaroshenko AdHoc";
+				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
