@@ -159,7 +159,7 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .filter { $0.isEmpty == false }
             .map { (SettingsStore.currentUser.value?.id, $0) }
             .filter { $0.1.isEmpty == false && $0.0 != nil }
-            .filter { [12, 36, 60].contains($0.1[$0.0!]) }
+            .filter { [12, 36, 84].contains($0.1[$0.0!]) }
             .asObservable()
             .subscribe(onNext: { (count) in
                 SKStoreReviewController.requestReview()

@@ -1,3 +1,4 @@
+source 'https://github.com/CocoaPods/Specs.git'
 workspace '../FantasyApp.xcworkspace'
 project '../FantasyApp.xcodeproj'
 
