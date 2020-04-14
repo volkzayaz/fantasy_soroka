@@ -149,5 +149,12 @@
 		<key>test</key>
 		<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
 	</dict>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+      <string>googlegmail</string>
+      <string>ms-outlook</string>
+      <string>readdle-spark</string>
+      <string>ymail</string>
+  </array>
 </dict>
 </plist>

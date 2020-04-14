@@ -56,28 +56,45 @@ struct ProfileSettingsRouter : MVVM_Router {
     }
 
     func showCopyUserIdMessage() {
-
-        let alert = UIAlertController(title: "Information!", message: "Your user id copied.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: R.string.localizable.generalOk(), style: .cancel, handler: nil))
-
-        owner.present(alert, animated: true, completion: nil)
+      
+        let alert = UIAlertController(title: R.string.localizable.fantasySettingsCopyUseridAlertSuccess(), message: R.string.localizable.fantasySettingsCopyUseridAlertText(), preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: R.string.localizable.generalOk(), style: .cancel, handler: nil))
+      
+      owner.present(alert, animated: true, completion: nil)
+  }
+  
+  func showMail(for userID: String, appVersion: String, osVersion:String) {
+    
+    let email = R.string.localizable.fantasySettingsReportBugDestinationEmail()
+    let subject = R.string.localizable.fantasySettingsReportBugSubject()
+    let message = R.string.localizable.fantasySettingsReportBugText(userID, appVersion, osVersion)
+    
+    if MFMailComposeViewController.canSendMail() {
+      
+      let composePicker = MFMailComposeViewController()
+      composePicker.mailComposeDelegate = owner
+      composePicker.setToRecipients([email])
+      composePicker.setSubject(subject)
+      composePicker.setMessageBody(message, isHTML: false)
+      
+      owner.present(composePicker, animated: true, completion: nil)
+      
+      return
     }
-
-    func showMail(for userID: String, appVersion: String, osVersion:String) {
-
-        let email = "feedback@fantasyapp.com"
-        let subject = "Fantasy Match — Feedback — Bug Report"
-        let message = "User ID - \(userID)\n\(appVersion)\niOS version - \(osVersion)"
-
-        guard MFMailComposeViewController.canSendMail() else { return }
-
-        let composePicker = MFMailComposeViewController()
-        composePicker.mailComposeDelegate = owner
-        composePicker.setToRecipients([email])
-        composePicker.setSubject(subject)
-        composePicker.setMessageBody(message, isHTML: false)
-
-        owner.present(composePicker, animated: true, completion: nil)
+    
+    guard let url = URL.emailUrl(to: email, subject: subject, body: message) else {
+        print("Can't build email url.")
+        return
     }
+    
+    guard UIApplication.shared.canOpenURL(url) else {
+      print("Can't open email url.")
+      return
+    }
+    
+    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+  }
+  
+
 
 }
