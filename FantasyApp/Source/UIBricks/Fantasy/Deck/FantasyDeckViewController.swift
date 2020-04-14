@@ -80,11 +80,12 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
                                      for: indexPath)!
 
-            cell.fantasiesCount = model.cardsCount
+            cell.fantasiesCountLabel.text = "\(model.cardsCount) \(model.itemsNamePlural)"
             cell.set(imageURL: model.imageURL)
             cell.title = model.title
-            cell.isPaid = model.productId != nil
-
+            //cell.isPaid = model.productId != nil
+            cell.paidLabel.text = model.category
+            
             return cell
         }
     )

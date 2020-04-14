@@ -46,7 +46,7 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
 
     var isPaid: Bool = false {
         didSet {
-            paidView.isHidden = !isPaid
+           // paidView.isHidden = !isPaid
         }
     }
 

@@ -13,7 +13,7 @@ class FantasyDeckItemView: UIView {
 
     var isPaid: Bool = false {
         didSet {
-            paidCardView.isHidden = !isPaid
+            //paidCardView.isHidden = !isPaid
         }
     }
 
@@ -48,7 +48,11 @@ class FantasyDeckItemView: UIView {
 
     private var gradientLayer = CAGradientLayer()
 
-    var card: Fantasy.Card!
+    var card: Fantasy.Card! {
+        didSet {
+            paidCardLabel.text = card.category //R.string.localizable.fantasyCardPaidIndicator()
+        }
+    }
     var viewModel: FantasyDeckViewModel!
     
     override init(frame: CGRect) {
@@ -203,7 +207,6 @@ private extension FantasyDeckItemView {
         storyLabel.font = .boldFont(ofSize: 16)
         storyLabel.textAlignment = .center
 
-        paidCardLabel.text = R.string.localizable.fantasyCardPaidIndicator()
         paidCardLabel.textColor = .title
         paidCardLabel.font = .semiBoldFont(ofSize: 15)
 

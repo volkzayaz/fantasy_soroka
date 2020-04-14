@@ -63,8 +63,6 @@ struct AppState: Equatable {
     var openCard: OpenCard?
     var openCollection: OpenCollection?
     
-    var justice: Bool = false
-    
     struct FantasiesDeck: Equatable {
         
         var cards:[Fantasy.Card]?

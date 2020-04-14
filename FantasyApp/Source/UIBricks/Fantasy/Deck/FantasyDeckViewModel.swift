@@ -62,7 +62,7 @@ extension FantasyDeckViewModel {
 
     var collectionsCountText: Driver<NSAttributedString> {
         return collections.asDriver().map { collections in
-            let count = collections.filter { !$0.isPurchased }.count
+            let count = collections.count
             let string = R.string.localizable.fantasyDeckCollectionsCount(count)
             let attributedString = NSMutableAttributedString(string: string)
             attributedString.addAttribute(
@@ -132,7 +132,6 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
             .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
                 return Fantasy.Manager.fetchCollections()
             }
-            .map { $0.filter { !$0.isPurchased } }
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)

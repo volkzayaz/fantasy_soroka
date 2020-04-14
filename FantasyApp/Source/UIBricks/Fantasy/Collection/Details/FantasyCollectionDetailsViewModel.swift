@@ -35,11 +35,18 @@ extension FantasyCollectionDetailsViewModel {
         return !collection.isPurchased
     }
     
+    var collectionPurchased: Bool {
+        return collection.isPurchased || appStateSlice.currentUser?.fantasies.purchasedCollections.contains(where: { $0.id == collection.id }) ?? false
+    }
+    
 }
 
 struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     let collection: Fantasy.Collection
+    
+    let reloadTrigger = BehaviorSubject<Void>( value: () )
+    
     private var timeSpentCounter = TimeSpentCounter()
     private let context: Analytics.Event.CollectionViewed.NavigationContext
     
@@ -79,19 +86,18 @@ extension FantasyCollectionDetailsViewModel {
     
     func buy() {
         
+        if collectionPurchased {
+            router.showCollection(collection: collection)
+            return;
+        }
+        
         PurchaseManager.purhcase(collection: collection)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [weak o = router.owner] in
                 Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
                 
-                if let vc = (((o?.presentingViewController as? RootViewController)?.viewControllers.first as? MainTabBarViewController)?.viewControllers?.first as? UINavigationController)?.viewControllers.first as? FantasyDeckViewController {
-                    
-                    vc.cardsTapped()
-                  
-                }
-                
-                o?.dismiss(animated: true, completion: nil)
+                self.reloadTrigger.onNext( () )
                 
             })
             .disposed(by: bag)
@@ -112,6 +118,37 @@ extension FantasyCollectionDetailsViewModel {
                                                           context: context,
                                                           spentTime: timeSpentCounter.finish()))
         
+    }
+    
+    func openAuthorFB() {
+        
+        guard let src = collection.author?.srcFb,
+            let url = URL(string: src) else {
+            return
+        }
+        
+        router.showSafari(for: url)
+        
+    }
+    
+    func openAuthorInsta() {
+        
+        guard let src = collection.author?.srcInstagram,
+            let url = URL(string: src) else {
+            return
+        }
+        
+        router.showSafari(for: url)
+    }
+    
+    func openAuthorWeb() {
+        
+        guard let src = collection.author?.srcWeb,
+            let url = URL(string: src) else {
+            return
+        }
+        
+        router.showSafari(for: url)
     }
     
 }

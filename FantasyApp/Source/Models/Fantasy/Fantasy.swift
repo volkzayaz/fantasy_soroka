@@ -26,6 +26,9 @@ extension Fantasy {
             case category = "type"
             case collectionName
             case art
+            
+            case isLikedByYou
+            case isDislikedByYou
         }
         
         let id: String
@@ -39,6 +42,9 @@ extension Fantasy {
         let category: String
         let collectionName: String
         let art: String
+        
+        let isLikedByYou: Bool
+        let isDislikedByYou: Bool
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection
@@ -69,6 +75,11 @@ extension Fantasy {
             
             case loveThis
             case highlights
+            
+            case category = "type"
+            case itemsNamePlural
+            case hint = "hintText"
+            case author
         }
         
         let id: String
@@ -83,8 +94,28 @@ extension Fantasy {
         let loveThis: String
         let highlights: String
         
+        let category: String
+        let itemsNamePlural: String
+        let hint: String
+        
+        let author: Author?
+        
         var identity: String {
             return id
+        }
+        
+        struct Author: Codable, Equatable {
+          
+            let title: String
+            let subTitle: String
+            let about: String
+            
+            let srcWeb: String?
+            let srcInstagram: String?
+            let srcFb: String?
+            
+            let imageSrc: String?
+            
         }
     }
     
@@ -191,7 +222,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", details: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: nil, loveThis: "", highlights: "")
+        return Fantasy.Collection(id: "", title: "", details: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: nil, loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil)
         
     }
     
