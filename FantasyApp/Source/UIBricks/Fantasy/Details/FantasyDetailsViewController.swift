@@ -159,8 +159,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
         descriptionView.isHidden = viewModel.description.isEmpty
 
         descriptionTextView.textContainer.lineBreakMode = .byTruncatingTail
-        descriptionTextView.attributedText = viewModel.description.getHtmlAttributed(family:UIFont.regularFont(ofSize: 11).familyName, size:11, color: .fantasyBlack)
-
+        descriptionTextView.attributedText = viewModel.description.getHtmlAttributed()
         descriptionButton.isHidden = !descriptionTextView.isTextTruncated
     }
     

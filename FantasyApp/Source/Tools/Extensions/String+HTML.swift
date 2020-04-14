@@ -9,43 +9,43 @@
 import Foundation
 
 extension String {
-
-    var htmlAttributed: NSAttributedString? {
-        do {
-            guard let data = data(using: String.Encoding.utf8) else {
-                return nil
-            }
-            return try NSAttributedString(data: data,
-                                          options: [.documentType: NSAttributedString.DocumentType.html,
-                                                    .characterEncoding: String.Encoding.utf8.rawValue],
-                                          documentAttributes: nil)
-        } catch {
-            print("error: ", error)
-            return nil
-        }
+  
+  var htmlAttributed: NSAttributedString? {
+    do {
+      guard let data = data(using: String.Encoding.utf8) else {
+        return nil
+      }
+      return try NSAttributedString(data: data,
+                                    options: [.documentType: NSAttributedString.DocumentType.html,
+                                              .characterEncoding: String.Encoding.utf8.rawValue],
+                                    documentAttributes: nil)
+    } catch {
+      print("error: ", error)
+      return nil
     }
-
-    func getHtmlAttributed(family: String?, size: CGFloat, color: UIColor) -> NSAttributedString? {
-        do {
-            let htmlCSSString = "<style>" +
-                "html *" +
-                "{" +
-                "font-size: \(size)pt !important;" +
-                "color: #\(color.hexString!) !important;" +
-                "font-family: \(family ?? "Helvetica"), Helvetica !important;" +
-            "}</style> \(self)"
-
-            guard let data = htmlCSSString.data(using: String.Encoding.utf8) else {
-                return nil
-            }
-
-            return try NSAttributedString(data: data,
-                                          options: [.documentType: NSAttributedString.DocumentType.html,
-                                                    .characterEncoding: String.Encoding.utf8.rawValue],
-                                          documentAttributes: nil)
-        } catch {
-            print("error: ", error)
-            return nil
-        }
+  }
+  
+  func getHtmlAttributed() -> NSAttributedString? {
+    do {
+      
+      let size = 16
+      let sizeH1 = 18
+      let font = UIFont.regularFont(ofSize: CGFloat(size)).familyName
+      let color = UIColor.fantasyBlack.hexString!
+      
+      let css = "<style>html *{font-size:\(size);color:#\(color);font-family:\(font);}h1{font-size:\(sizeH1);}</style>\(self)"
+      
+      guard let data = css.data(using: String.Encoding.utf8) else {
+        return nil
+      }
+      
+      return try NSAttributedString(data: data,
+                                    options: [.documentType: NSAttributedString.DocumentType.html,
+                                              .characterEncoding: String.Encoding.utf8.rawValue],
+                                    documentAttributes: nil)
+    } catch {
+      print("error: ", error)
+      return nil
     }
+  }
 }
