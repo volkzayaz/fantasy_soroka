@@ -40,6 +40,10 @@ class FantasyPinkNavigationController: FantasyBaseNavigationController, UINaviga
         setNavigationBarHidden(viewController.prefersNavigationBarHidden, animated: true)
 
     }
+    
+    @objc func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 //MARK:- FantasyNavigationController

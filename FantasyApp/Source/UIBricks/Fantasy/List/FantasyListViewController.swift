@@ -27,7 +27,9 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
             
         case .fantasy(let card):
             cell.set(protectedCard: card)
-        
+            
+            cell.viewedIndicator.isHidden = card.entity.isLikedByYou == true || card.entity.isDislikedByYou == true
+            
         case .empty(_):
             cell.backgroundColor = .init(fromHex: 0xF7F7FA)
         

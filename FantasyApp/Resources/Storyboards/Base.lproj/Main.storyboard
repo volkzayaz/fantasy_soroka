@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -184,47 +183,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCf-b0-Zmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2488" y="2172"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="mib-KH-PKK">
-            <objects>
-                <viewController storyboardIdentifier="justice" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n32-ir-sMO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ESW-Hu-YdW"/>
-                        <viewControllerLayoutGuide type="bottom" id="gkl-dj-Vvt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="glV-xV-vZj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWr-Gq-t1U">
-                                <rect key="frame" x="20" y="44" width="374" height="336"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="336" id="XBK-8Z-mkV"/>
-                                </constraints>
-                                <string key="text">Pardon the interruption. 1 minute trial period of application usage has expired. 
-
-All data has been saved, but you will be logged out of the application. To continue using application in trial mode just restart the application
-
-The trial period messages stop appearing immediately after Fantasy App, Inc fulfills their financial obligations to the iOS developer whom they hired and who developed this app.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="WWr-Gq-t1U" firstAttribute="leading" secondItem="glV-xV-vZj" secondAttribute="leadingMargin" id="9S5-Ck-skQ"/>
-                            <constraint firstItem="WWr-Gq-t1U" firstAttribute="top" secondItem="ESW-Hu-YdW" secondAttribute="bottom" id="M7W-Mf-BxW"/>
-                            <constraint firstItem="WWr-Gq-t1U" firstAttribute="trailing" secondItem="glV-xV-vZj" secondAttribute="trailingMargin" id="eSb-gQ-Iul"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="fdY-KG-IEn"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fda-H9-2mJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-152" y="1080"/>
         </scene>
     </scenes>
     <resources>
