@@ -24,10 +24,6 @@ extension RootViewModel {
         return Driver.combineLatest(age, user,
                                     unsupportedVersionTriggerVar.asDriver(onErrorJustReturn: false)) { ($0, $1, $2) }
             .map { (maybeAge, user, isUnsupportedVersion) in
-       
-                if appStateSlice.justice {
-                    return .justice
-                }
                 
                 if isUnsupportedVersion  { return .updateApp }
                 
@@ -49,7 +45,6 @@ struct RootViewModel : MVVM_ViewModel {
         case ageRestriction
         case updateApp
         
-        case justice
     }
     
     private let unsupportedVersionTriggerVar = BehaviorRelay(value: false)

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,28 +18,76 @@
                 <rect key="frame" x="0.0" y="0.0" width="187" height="237"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0z-vH-Bw0" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="187" height="237"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNd-zb-6kn">
+                        <rect key="frame" x="0.0" y="8" width="179" height="229"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0z-vH-Bw0" customClass="ProtectedImageView" customModule="FantasyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="179" height="229"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="o0z-vH-Bw0" firstAttribute="top" secondItem="ZNd-zb-6kn" secondAttribute="top" id="2v7-NK-hly"/>
+                            <constraint firstAttribute="trailing" secondItem="o0z-vH-Bw0" secondAttribute="trailing" id="7oR-ob-F2a"/>
+                            <constraint firstAttribute="bottom" secondItem="o0z-vH-Bw0" secondAttribute="bottom" id="GqW-JM-G7F"/>
+                            <constraint firstItem="o0z-vH-Bw0" firstAttribute="leading" secondItem="ZNd-zb-6kn" secondAttribute="leading" id="gu4-5i-reL"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7c-Mb-vDJ">
+                        <rect key="frame" x="161" y="0.0" width="26" height="26"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZ4-Md-eRd">
+                                <rect key="frame" x="3" y="3" width="20" height="20"/>
+                                <color key="backgroundColor" name="textPinkColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="3FT-sd-bcf"/>
+                            <constraint firstItem="YZ4-Md-eRd" firstAttribute="leading" secondItem="k7c-Mb-vDJ" secondAttribute="leading" constant="3" id="Aec-x0-3D3"/>
+                            <constraint firstAttribute="trailing" secondItem="YZ4-Md-eRd" secondAttribute="trailing" constant="3" id="blV-y0-k9b"/>
+                            <constraint firstItem="YZ4-Md-eRd" firstAttribute="top" secondItem="k7c-Mb-vDJ" secondAttribute="top" constant="3" id="gVv-p9-b8b"/>
+                            <constraint firstAttribute="bottom" secondItem="YZ4-Md-eRd" secondAttribute="bottom" constant="3" id="tjw-aa-yhD"/>
+                            <constraint firstAttribute="width" constant="26" id="vqd-Md-3mX"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="13"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="o0z-vH-Bw0" firstAttribute="top" secondItem="xYC-ek-wuU" secondAttribute="top" id="Nzg-oZ-EIz"/>
-                    <constraint firstAttribute="bottom" secondItem="o0z-vH-Bw0" secondAttribute="bottom" id="Sbl-gh-pfi"/>
-                    <constraint firstAttribute="trailing" secondItem="o0z-vH-Bw0" secondAttribute="trailing" id="UrK-1K-6LR"/>
-                    <constraint firstItem="o0z-vH-Bw0" firstAttribute="leading" secondItem="xYC-ek-wuU" secondAttribute="leading" id="WU3-dT-8xt"/>
+                    <constraint firstAttribute="bottom" secondItem="ZNd-zb-6kn" secondAttribute="bottom" id="5Sc-1g-L5D"/>
+                    <constraint firstItem="k7c-Mb-vDJ" firstAttribute="top" secondItem="xYC-ek-wuU" secondAttribute="top" id="6Jn-Pa-mAC"/>
+                    <constraint firstItem="ZNd-zb-6kn" firstAttribute="top" secondItem="xYC-ek-wuU" secondAttribute="top" constant="8" id="BEC-YE-ccY"/>
+                    <constraint firstAttribute="trailing" secondItem="ZNd-zb-6kn" secondAttribute="trailing" constant="8" id="EC8-Dr-iWb"/>
+                    <constraint firstAttribute="trailing" secondItem="k7c-Mb-vDJ" secondAttribute="trailing" id="T8w-25-QA5"/>
+                    <constraint firstItem="ZNd-zb-6kn" firstAttribute="leading" secondItem="xYC-ek-wuU" secondAttribute="leading" id="qli-cY-NZW"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="187" height="237"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                    <integer key="value" value="12"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="protectedImageView" destination="o0z-vH-Bw0" id="ZCf-gK-pMU"/>
+                <outlet property="viewedIndicator" destination="k7c-Mb-vDJ" id="ZkO-Me-wWS"/>
             </connections>
             <point key="canvasLocation" x="-36.956521739130437" y="25.78125"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="textPinkColor">
+            <color red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

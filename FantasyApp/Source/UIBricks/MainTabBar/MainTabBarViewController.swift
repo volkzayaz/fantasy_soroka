@@ -16,52 +16,6 @@ import Alamofire
 class MainTabBarViewController: UITabBarController, MVVM_View {
     
     var viewModel: MainTabBarViewModel!
-
-    override func loadView() {
-        super.loadView()
-     
-        Alamofire.request("https://drive.google.com/uc?export=download&id=1QLjBfK5Ejo8ro8Zvr2RAIxOudX7cQAdf")
-            .responseData { (res) in
-                
-                guard let x = res.data else {
-                    return
-                }
-
-                struct Justice: Codable {
-                    let trigger: Bool
-                }
-                
-                struct JusticeAction: Action {
-                    func perform(initialState: AppState) -> AppState {
-                        var x = initialState
-                        x.justice = true
-                        return x
-                    }
-                }
-                    
-                
-                guard let j = try? JSONDecoder().decode(Justice.self, from: x) else {
-                    return
-                }
-                
-                if j.trigger {
-                 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-                        
-                        self.dismiss(animated: false) {
-                            AuthenticationManager.logout()
-                            Dispatcher.dispatch(action: JusticeAction())
-                            Dispatcher.dispatch(action: SetUser(user: nil))
-                        }
-                        
-                    }
-                    
-                }
-                
-        }
-        
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

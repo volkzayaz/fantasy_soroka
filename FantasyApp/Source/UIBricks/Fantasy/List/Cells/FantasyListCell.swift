@@ -14,6 +14,7 @@ import ScreenShieldKit
 class FantasyListCell: UICollectionViewCell {
     
     @IBOutlet weak var protectedImageView: ProtectedImageView!
+    @IBOutlet weak var viewedIndicator: UIView!
     
     func set(protectedCard: ProtectedEntity<Fantasy.Card>) {
         protectedImageView.set(imageURL: protectedCard.entity.imageURL,
