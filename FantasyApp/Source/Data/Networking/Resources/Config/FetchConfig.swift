@@ -15,10 +15,16 @@ struct ServerConfig: Codable {
     let minSupportedIOSVersion: CodableVersion
     let screenProtectEnabled: Bool
     let fantasyCardsShare: ShareLinks
+    let termsAndConditions: Legal
     
     struct ShareLinks: Codable {
         let card: String
         let collection: String
+    }
+    
+    struct Legal: Codable {
+        let title: String
+        let body: String
     }
 }
 
