@@ -167,6 +167,27 @@ extension Reactive where Base: PFObject {
         
     }
     
+    func refresh() -> Single<PFObject> {
+        
+        return Observable.create({ (subscriber) -> Disposable in
+            self.base.refreshInBackground(block: { (maybeValue, error) in
+                
+                if let x = error {
+                    subscriber.onError(x)
+                    return
+                }
+                
+                subscriber.onNext( maybeValue! )
+                subscriber.onCompleted()
+            })
+            
+            return Disposables.create {
+            }
+        })
+        .asSingle()
+        
+    }
+    
 }
 
 
