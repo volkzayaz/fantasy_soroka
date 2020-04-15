@@ -42,7 +42,10 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                 case .updateApp:
                     let vc = R.storyboard.user.updateAppViewController()!
                     self.present(vc, animated: true, completion: nil)
-                    
+                 
+                case .blocked:
+                    let vc = R.storyboard.authorization.blockedViewController()!
+                    self.setViewControllers([vc], animated: true)
                 }
             })
             .disposed(by: rx.disposeBag)
