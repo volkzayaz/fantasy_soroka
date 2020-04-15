@@ -113,7 +113,7 @@
 "fantasy.card.title" = "Fantasy";
 "fantasy.card.like.swipe.action" = "Like";
 "fantasy.card.dislike.swipe.action" = "Dislike";
-"fantasy.card.story.title" = "Story";
+"fantasy.card.story.title" = "Details";
 "fantasy.card.read.more.button" = "Read More";
 "fantasy.card.show.less.button" = "Show Less";
 "fantasy.card.preference.title" = "Preference";
@@ -150,6 +150,13 @@
 "fantasy.settings.delete.account.alert.text" = "You will be logged out. All your data will be erased. This can not be undone";
 "fantasy.settings.delete.account.alert.action" = "Delete account";
 "fantasy.settings.helpImprove" = "Help us to improve. Report a bug \nID:";
+"fantasy.settings.copy.userid.alert.success" =  "Success";
+"fantasy.settings.copy.userid.alert.text" =  "User ID copied";
+
+
+"fantasy.settings.report.bug.destination.email" = "feedback@fantasyapp.com";
+"fantasy.settings.report.bug.subject" = "Fantasy Match — Feedback — Bug Report";
+"fantasy.settings.report.bug.text" = "User ID - %@\n%@\niOS version - %@";
 
 
 "fantasy.users.filter" = "Filters";

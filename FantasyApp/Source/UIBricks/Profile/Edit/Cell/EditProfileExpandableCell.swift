@@ -47,7 +47,7 @@ class EditProfileExpandableCell: UITableViewCell, UITextViewDelegate {
     
         let x = (textView.text as NSString).replacingCharacters(in: range, with: text)
         
-        return x.count <= 100
+        return x.count <= maximumAboutChars
         
     }
 
