@@ -19,6 +19,15 @@ struct ImmutableNonPersistentState {
 
     let shareCardImageURL: String
     let shareCollectionImageURL: String
+ 
+    let legal: Legal
+    
+    struct Legal {
+        
+        let title: String
+        let description: String
+        
+    }
     
 }
 

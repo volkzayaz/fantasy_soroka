@@ -1950,6 +1950,7 @@ Describe Yourself?</string>
                         <outlet property="agrementBackgroundRoundedView" destination="1Xe-rj-Te8" id="b25-De-nCG"/>
                         <outlet property="agrementButton" destination="MXK-t0-Q2J" id="o41-2E-8wB"/>
                         <outlet property="agrementTextView" destination="eBr-Gg-mey" id="VKB-lG-dvL"/>
+                        <outlet property="agrementTitle" destination="dkF-7d-Cnk" id="cm3-rU-gME"/>
                         <outlet property="birthdayTextField" destination="mBC-q4-9Kg" id="McV-yD-xQw"/>
                         <outlet property="buttonToKeyboardConstraint" destination="dpK-dV-LRi" id="PDP-JT-CV7"/>
                         <outlet property="changeUploadedPhotoBottomButton" destination="MxX-cN-cTU" id="m4m-6z-2Yk"/>

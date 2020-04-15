@@ -73,7 +73,10 @@ struct RootViewModel : MVVM_ViewModel {
                     subscriptionProductIDs: config.subscriptionProductIDs,
                     screenProtectEnabled: config.screenProtectEnabled,
                     shareCardImageURL: config.fantasyCardsShare.card,
-                    shareCollectionImageURL: config.fantasyCardsShare.collection)
+                    shareCollectionImageURL: config.fantasyCardsShare.collection,
+                    legal: .init(title: config.termsAndConditions.title,
+                                 description: config.termsAndConditions.body)
+                )
                 t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
             })
             .disposed(by: bag)
