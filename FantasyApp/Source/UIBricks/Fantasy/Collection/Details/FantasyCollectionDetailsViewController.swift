@@ -42,7 +42,9 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
                 for: ip)!
                 
-                cell.detailsLabel.text = description
+                
+                cell.detailsLabel.setHTMLFromString(htmlText: description)
+                
                 cell.sectionTitleLabel.text = title
                 cell.tableView = tableView
                 
@@ -440,3 +442,17 @@ class CardCollectionCell: UICollectionViewCell {
     
 }
 
+
+
+extension UILabel {
+    func setHTMLFromString(htmlText: String) {
+        let modifiedFont = String(format:"<span style=\"font-family: '-apple-system', 'SFProText'; font-size: \(self.font!.pointSize); color: #484e5e \">%@</span>", htmlText)
+
+        let attrStr = try! NSAttributedString(
+            data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+
+        self.attributedText = attrStr
+    }
+}
