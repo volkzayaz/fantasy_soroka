@@ -33,7 +33,7 @@ extension String {
       let font = UIFont.regularFont(ofSize: CGFloat(size)).familyName
       let color = UIColor.fantasyBlack.hexString!
       
-      let css = "<style>html *{font-size:\(size);color:#\(color);font-family:\(font);}h1{font-size:\(sizeH1);}</style>\(self)"
+      let css = "<style>html *{font-size:\(size);color:#\(color);font-family:\(font);}h2{font-size:\(sizeH1);color:#\(color);font-family:\(font);}</style>\(self)"
       
       guard let data = css.data(using: String.Encoding.utf8) else {
         return nil
