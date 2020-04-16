@@ -30,8 +30,16 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet var paidImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var fantasiesCountLabel: UILabel!
+    @IBOutlet weak var myDeckIndicator: UIImageView!
     private var gradientLayer = CAGradientLayer()
 
+    var model: Fantasy.Collection! {
+        didSet {
+            fantasiesCountLabel.text = "\(model.cardsCount) \(model.itemsNamePlural)"
+            paidLabel.text = model.category
+        }
+    }
+    
     var title: String = "" {
         didSet {
             titleLabel.text = title
@@ -44,9 +52,9 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    var isPaid: Bool = false {
+    var isPurchased: Bool = false {
         didSet {
-           // paidView.isHidden = !isPaid
+            myDeckIndicator.isHidden = !isPurchased
         }
     }
 

@@ -23,7 +23,7 @@ extension Fantasy {
             case likes
             case dislikes
             case blocks
-            case category = "type"
+            case category = "coverRubric"
             case collectionName
             case art
             
@@ -76,8 +76,8 @@ extension Fantasy {
             case loveThis
             case highlights
             
-            case category = "type"
-            case itemsNamePlural
+            case category = "coverRubric"
+            case itemsNamePlural = "coverItems"
             case hint = "hintText"
             case author
         }

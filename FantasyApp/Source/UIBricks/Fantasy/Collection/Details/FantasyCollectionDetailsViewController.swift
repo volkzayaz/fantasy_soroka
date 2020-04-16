@@ -48,6 +48,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
             .disposed(by: rx.disposeBag)
         
         viewModel.reloadTrigger
+            .delay(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.collTableView.reloadData()
             })

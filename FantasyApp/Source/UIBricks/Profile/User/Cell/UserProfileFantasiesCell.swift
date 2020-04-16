@@ -38,7 +38,7 @@ class UserProfileFantasiesCell: UITableViewCell {
             
             cell.imageView.regularImageView.image = i
             cell.fantasiesCount = sneakPeek.amountlikedCardsByUser
-            cell.isPaid = sneakPeek.isPaid
+            cell.isPurchased = false //sneakPeek.isPaid
             
             return cell
             

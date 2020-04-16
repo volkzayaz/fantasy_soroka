@@ -74,10 +74,11 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
                                      for: indexPath)!
 
+            cell.model = model
             cell.fantasiesCount = model.cardsCount
             cell.set(imageURL: model.imageURL)
             cell.title = model.title
-            cell.isPaid = model.productId != nil
+            cell.isPurchased = model.isPurchased
 
             return cell
         }
