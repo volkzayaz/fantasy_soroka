@@ -24,10 +24,6 @@ extension RootViewModel {
         return Driver.combineLatest(age, user,
                                     unsupportedVersionTriggerVar.asDriver(onErrorJustReturn: false)) { ($0, $1, $2) }
             .map { (maybeAge, user, isUnsupportedVersion) in
-       
-                if appStateSlice.justice {
-                    return .justice
-                }
                 
                 if isUnsupportedVersion  { return .updateApp }
                 
@@ -36,6 +32,20 @@ extension RootViewModel {
                 return user ? .authentication : .mainApp
             }
             .distinctUntilChanged()
+    }
+    
+    var blocked: Driver<Bool> {
+        
+        return (PFUser.current()?.rx.refresh().map { $0 as? PFUser }.asDriver(onErrorJustReturn: nil) ?? .just(nil))
+            .map { maybeBlockedUser in
+                
+                if let x = maybeBlockedUser?["isBlocked"] as? Bool {
+                    return x
+                }
+                
+                return false
+            }
+        
     }
     
 }
@@ -49,7 +59,6 @@ struct RootViewModel : MVVM_ViewModel {
         case ageRestriction
         case updateApp
         
-        case justice
     }
     
     private let unsupportedVersionTriggerVar = BehaviorRelay(value: false)
@@ -70,7 +79,10 @@ struct RootViewModel : MVVM_ViewModel {
                     subscriptionProductIDs: config.subscriptionProductIDs,
                     screenProtectEnabled: config.screenProtectEnabled,
                     shareCardImageURL: config.fantasyCardsShare.card,
-                    shareCollectionImageURL: config.fantasyCardsShare.collection)
+                    shareCollectionImageURL: config.fantasyCardsShare.collection,
+                    legal: .init(title: config.termsAndConditions.title,
+                                 description: config.termsAndConditions.body)
+                )
                 t?.accept(CocoaVersion.current < config.minSupportedIOSVersion.cocoaVersion)
             })
             .disposed(by: bag)

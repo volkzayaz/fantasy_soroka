@@ -24,6 +24,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
             agrementBackgroundRoundedView.addFantasyRoundedCorners()
         }
     }
+    
+    
+    @IBOutlet weak var agrementTitle: UILabel!
     @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
             agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
@@ -401,6 +404,15 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.viewModel.confirmPasswordChanged(password: x ?? "")
             })
             .disposed(by: rx.disposeBag)
+        
+        ///
+        agrementTitle.text = immutableNonPersistentState?.legal.title ?? ""
+        
+        agrementTextView.attributedText = try? NSAttributedString(data: (immutableNonPersistentState?.legal.description ?? "").data(using: .unicode)!,
+                                                             options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
+        agrementTextView.font = UIFont.regularFont(ofSize: 15)
+        agrementTextView.textColor = R.color.textBlackColor()
+        agrementTextView.tintColor = R.color.textPinkColor()
     }
 }
 

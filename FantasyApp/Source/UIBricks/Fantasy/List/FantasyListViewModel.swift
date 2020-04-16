@@ -18,17 +18,30 @@ extension FantasyListViewModel {
         
         return Driver.combineLatest(
             protectPolicy,
-            provider
+            provider,
+            Fantasy.Request.FetchCards(reactionType: .liked).rx.request.asDriver(onErrorJustReturn: []),
+            Fantasy.Request.FetchCards(reactionType: .disliked).rx.request.asDriver(onErrorJustReturn: [])
         )
-        .map { isSubscribed, cards in
+        .map { isSubscribed, cards, myLiked, myDisliked in
             
             guard cards.count > 0 else {
                 return [AnimatableSectionModel(model: "", items: [.empty(0),.empty(1),.empty(2),.empty(3)])]
             }
             
             return [AnimatableSectionModel(model: "",
-                                           items:  cards.map { .fantasy(ProtectedEntity(entity: $0,
-                                                                                        isProtected: isSubscribed))})]
+                                           items:
+                 cards.map { card in
+                    
+                    let liked = myLiked.contains { $0.id == card.id }
+                    let disliked = myDisliked.contains { $0.id == card.id }
+                    
+                    return .fantasy(ProtectedEntity(entity: card,
+                                             isProtected: isSubscribed),
+                             liked || disliked
+                    )
+            })
+                
+            ]
             
         }
         
@@ -60,12 +73,12 @@ extension FantasyListViewModel {
     }
     
     enum CardType: IdentifiableType, Equatable {
-        case fantasy(ProtectedEntity<Fantasy.Card>)
+        case fantasy(ProtectedEntity<Fantasy.Card>, Bool)
         case empty(Int)
         
         var identity: String {
             switch self {
-            case .fantasy(let c): return c.entity.identity
+            case .fantasy(let c, _): return c.entity.identity
             case .empty(let x): return "\(x)"
             }
         }

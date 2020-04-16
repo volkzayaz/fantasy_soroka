@@ -10,10 +10,96 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
-class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITableViewDataSource {
+class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
     
     var viewModel: FantasyCollectionDetailsViewModel!
+    
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, VM.Model>>(
+        configureCell: { [unowned self] (_, tableView, ip, x) in
+            
+            let viewModel = self.viewModel!
+            
+            switch x {
+                
+            case .top:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.topCollectionPurchaseCell,
+                                                                         for: ip)!
+                
+                ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
+                    .drive(cell.cardImageView.rx.image)
+                    .disposed(by: cell.rx.disposeBag)
+                
+                cell.nameLabel.text = viewModel.collection.title
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .expandable(let title, let description):
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
+                for: ip)!
+                
+                
+                cell.detailsLabel.setHTMLFromString(htmlText: description)
+                
+                cell.sectionTitleLabel.text = title
+                cell.tableView = tableView
+                
+                cell.perform(change: viewModel.expanded[title] ?? false)
+                
+                cell.change = { [weak self] x in
+                    self?.viewModel.expanded[title] = x
+                }
+                
+                return cell
+                
+            case .whatsInside:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.whatsInsideCollectionDetailsCell,
+                                                         for: ip)!
+                
+                cell.cardsCountLabel.text = "\(viewModel.collection.cardsCount) \(viewModel.collection.itemsNamePlural)"
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .author:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.authorCollectionCell, for: ip)!
+                
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .bottom:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.bottomCollectionPurchaseCell,
+                                                         for: ip)!
+                
+                ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
+                    .drive(cell.cardImageView.rx.image)
+                    .disposed(by: cell.rx.disposeBag)
+                
+                cell.nameLabel.text = viewModel.collection.title
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .share:
+                           
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCollectionCell,
+                                                         for: ip)!
+                
+                cell.viewModel = viewModel
+                
+                return cell
+                           
+            }
+            
+        })
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollableBackgroundView: UIView! {
@@ -28,6 +114,12 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = ""
+        
+        viewModel.dataSource
+            .drive(collTableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        
         ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
             .drive(imageView.rx.image)
             .disposed(by: rx.disposeBag)
@@ -45,6 +137,12 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
         })
             .disposed(by: rx.disposeBag)
         
+        viewModel.reloadTrigger
+            .delay(2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.collTableView.reloadData()
+            })
+            .disposed(by: rx.disposeBag)
     }
     
     override var prefersNavigationBarHidden: Bool {
@@ -73,122 +171,6 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
         self.dismiss(animated: true, completion: nil)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.topCollectionPurchaseCell,
-                                                     for: indexPath)!
-            
-            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
-                .drive(cell.cardImageView.rx.image)
-                .disposed(by: cell.rx.disposeBag)
-            
-            cell.nameLabel.text = viewModel.collection.title
-            cell.viewModel = viewModel
-            
-            return cell
-        }
-        else if indexPath.section == 1 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
-            for: indexPath)!
-            
-            cell.detailsLabel.text = viewModel.collection.details
-            cell.sectionTitleLabel.text = "Details"
-            cell.tableView = tableView
-            
-            cell.perform(change: viewModel.deatilsCollapsed)
-            
-            cell.change = { [weak self] x in
-                self?.viewModel.deatilsCollapsed = x
-            }
-            
-            return cell
-            
-        }
-        else if indexPath.section == 2 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.whatsInsideCollectionDetailsCell,
-                                                     for: indexPath)!
-            
-            cell.cardsCountLabel.text = "\(viewModel.collection.cardsCount) cards"
-            cell.viewModel = viewModel
-            
-            return cell
-            
-        }
-        else if indexPath.section == 3 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
-                                                     for: indexPath)!
-            
-            cell.detailsLabel.text = viewModel.collection.highlights
-            cell.sectionTitleLabel.text = "Highlights"
-            cell.tableView = tableView
-            
-            cell.perform(change: viewModel.highlightsCollapsed)
-            
-            cell.change = { [weak self] x in
-                self?.viewModel.highlightsCollapsed = x
-            }
-            
-            return cell
-            
-        }
-        else if indexPath.section == 4 {
-                
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
-                                                     for: indexPath)!
-            
-            cell.detailsLabel.text = viewModel.collection.loveThis
-            cell.sectionTitleLabel.text = "You'll Love This Collection If"
-            cell.tableView = tableView
-            
-            cell.perform(change: viewModel.loveThisCollapsed)
-            
-            cell.change = { [weak self] x in
-                self?.viewModel.loveThisCollapsed = x
-            }
-            
-            return cell
-                
-        }
-        else if indexPath.section == 5 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.bottomCollectionPurchaseCell,
-            for: indexPath)!
-            
-            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
-                .drive(cell.cardImageView.rx.image)
-                .disposed(by: cell.rx.disposeBag)
-            
-            cell.nameLabel.text = viewModel.collection.title
-            cell.viewModel = viewModel
-            
-            return cell
-            
-        } else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCollectionCell,
-            for: indexPath)!
-            
-            cell.viewModel = viewModel
-            
-            return cell
-            
-        }
-        
-        
-    }
-    
 } 
 
 ///TableViews
@@ -197,6 +179,7 @@ class TopCollectionPurchaseCell: UITableViewCell {
     
     @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var collectionCategoryLabel: UILabel!
     @IBOutlet weak var buyButton: PrimaryButton! {
         didSet {
             buyButton.mode = .selector
@@ -205,15 +188,24 @@ class TopCollectionPurchaseCell: UITableViewCell {
             buyButton.setTitle("", for: .normal)
         }
     }
+    @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var hintView: UIView!
     
     var viewModel: FantasyCollectionDetailsViewModel! {
         didSet {
-            viewModel.price
-                .drive(buyButton.rx.title(for: .normal))
-                .disposed(by: rx.disposeBag)
+            if viewModel.collectionPurchased {
+                buyButton.setTitle("Open", for: .normal)
+            }
+            else {
+                viewModel.price
+                    .drive(buyButton.rx.title(for: .normal))
+                    .disposed(by: rx.disposeBag)
+            }
             
-            if !viewModel.purchaseAvailable {
-                buyButton.isHidden = true
+            collectionCategoryLabel.text = viewModel.collection.category
+            hintLabel.text = viewModel.collection.hint
+            if viewModel.collection.hint.count == 0 {
+                hintView.isHidden = true
             }
         }
     }
@@ -238,10 +230,10 @@ class FantasyCollectionDetailsCell: UITableViewCell {
     
     @IBOutlet weak var collapseButton: UIButton! {
         didSet {
-            collapseButton.backgroundColor = .fantasyLightGrey
-            collapseButton.setTitleColor(.fantasyPink, for: .normal)
-            collapseButton.titleLabel?.font = .boldFont(ofSize: 14)
-            collapseButton.layer.cornerRadius = collapseButton.frame.height / 2.0
+            collapseButton?.backgroundColor = .fantasyLightGrey
+            collapseButton?.setTitleColor(.fantasyPink, for: .normal)
+            collapseButton?.titleLabel?.font = .boldFont(ofSize: 14)
+            collapseButton?.layer.cornerRadius = collapseButton.frame.height / 2.0
         }
     }
     
@@ -326,6 +318,7 @@ class BottomCollectionPurchaseCell: UITableViewCell {
     
     @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var collectionCategoryLabel: UILabel!
     @IBOutlet var buyButton: PrimaryButton! {
         didSet {
             buyButton.mode = .selector
@@ -338,15 +331,17 @@ class BottomCollectionPurchaseCell: UITableViewCell {
     var viewModel: FantasyCollectionDetailsViewModel!{
         didSet {
             
-            if !viewModel.purchaseAvailable {
-                buyButton.removeFromSuperview()
-                return
-            }
+            collectionCategoryLabel.text = viewModel.collection.category
             
-            viewModel.price
-                .map { "Buy for \($0)" }
-                .drive(buyButton.rx.title(for: .normal))
-                .disposed(by: rx.disposeBag)
+            if viewModel.collectionPurchased {
+                buyButton.setTitle("Open", for: .normal)
+            }
+            else {
+                viewModel.price
+                    .map { $0 == "Get" ? "Get" : "Buy for \($0)" }
+                    .drive(buyButton.rx.title(for: .normal))
+                    .disposed(by: rx.disposeBag)
+            }
             
         }
     }
@@ -376,6 +371,62 @@ class ShareCollectionCell: UITableViewCell {
     
 }
 
+class AuthorCollectionCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
+    
+    @IBOutlet var fbButton: UIButton!
+    @IBOutlet var instaButton: UIButton!
+    @IBOutlet var webButton: UIButton!
+    
+    var viewModel: FantasyCollectionDetailsViewModel!{
+        didSet {
+            
+            let author = viewModel.collection.author
+            
+            nameLabel.text = viewModel.collection.author?.title
+            statusLabel.text = viewModel.collection.author?.subTitle
+            descriptionLabel.text = viewModel.collection.author?.about
+            
+            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.author?.imageSrc ?? "")
+                .map { $0 ?? R.image.noPhoto() }
+                .drive(photoImageView.rx.image)
+                .disposed(by: rx.disposeBag)
+            
+            if author?.srcFb?.count ?? 0 == 0 {
+                fbButton.removeFromSuperview()
+            }
+            
+            if author?.srcInstagram?.count ?? 0 == 0 {
+                instaButton.removeFromSuperview()
+            }
+            
+            if author?.srcWeb?.count ?? 0 == 0 {
+                webButton.removeFromSuperview()
+            }
+            
+        }
+    }
+    
+    @IBAction func facebook(_ sender: Any) {
+        viewModel.openAuthorFB()
+    }
+    
+    @IBAction func instagram(_ sender: Any) {
+        viewModel.openAuthorInsta()
+    }
+    
+    @IBAction func website(_ sender: Any) {
+        viewModel.openAuthorWeb()
+    }
+    
+}
+
+
+
 class CardCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var andMoreLable: UILabel!
@@ -392,3 +443,16 @@ class CardCollectionCell: UICollectionViewCell {
 }
 
 
+
+extension UILabel {
+    func setHTMLFromString(htmlText: String) {
+        let modifiedFont = String(format:"<span style=\"font-family: '-apple-system', 'SFProText'; font-size: \(self.font!.pointSize); color: #484e5e \">%@</span>", htmlText)
+
+        let attrStr = try! NSAttributedString(
+            data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+
+        self.attributedText = attrStr
+    }
+}

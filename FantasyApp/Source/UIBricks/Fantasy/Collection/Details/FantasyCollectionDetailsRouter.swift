@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 struct FantasyCollectionDetailsRouter : MVVM_Router {
     
@@ -15,18 +16,31 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
         self.owner = owner
     }
     
-    /**
-     
-     func showNextModule(with data: String) {
-     
-        let nextViewController = owner.storyboard.instantiate()
-        let nextRouter = NextRouter(owner: nextViewController)
-        let nextViewModel = NextViewModel(router: nextRuter, data: data)
-        
-        nextViewController.viewModel = nextViewModel
-        owner.present(nextViewController)
-     }
-     
-     */
+    func showSafari(for url: URL) {
+        let vc = SFSafariViewController(url: url, configuration: SFSafariViewController.Configuration())
+        owner.present(vc, animated: true, completion: nil)
+    }
     
+    func showCollection(collection: Fantasy.Collection) {
+        
+        let vc = R.storyboard.fantasyCard.fantasyListViewController()!
+        let nav = FantasyPinkNavigationController(rootViewController: vc)
+        vc.viewModel = FantasyListViewModel(router: .init(owner: vc),
+                                            cardsProvider:
+            Fantasy.Manager.fetchCollectionsCards(collection: collection).asDriver(onErrorJustReturn: []),
+                                            detailsProvider: { card in
+                                                OwnFantasyDetailsProvider(card: card,
+                                                                          initialReaction: .neutral,
+                                                                          navigationContext: .CollectionDetails,
+                                                                          preferenceEnabled: false)
+        })
+        
+        vc.title = "Deck"
+        nav.modalPresentationStyle = .overFullScreen
+        vc.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.back(), style: .done, target: nav, action: "dismiss")
+        
+        owner.present(nav, animated: true, completion: nil)
+        
+    }
+        
 }

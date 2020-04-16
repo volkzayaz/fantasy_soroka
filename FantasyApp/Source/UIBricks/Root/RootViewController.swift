@@ -42,13 +42,18 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                 case .updateApp:
                     let vc = R.storyboard.user.updateAppViewController()!
                     self.present(vc, animated: true, completion: nil)
-                    
-                case .justice:
-                    let vc = R.storyboard.main.justice()!
-                    vc.modalPresentationStyle = .overFullScreen
-                    self.present(vc, animated: true, completion: nil)
-                    
+                
                 }
+            })
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.blocked
+            .filter { $0 }
+            .drive(onNext: { [unowned self] (_) in
+                
+                let vc = R.storyboard.authorization.blockedViewController()!
+                self.setViewControllers([vc], animated: true)
+
             })
             .disposed(by: rx.disposeBag)
     }

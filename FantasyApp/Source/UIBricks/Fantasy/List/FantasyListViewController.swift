@@ -25,9 +25,11 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
         
         switch x {
             
-        case .fantasy(let card):
+        case .fantasy(let card, let hidden):
             cell.set(protectedCard: card)
-        
+            
+            cell.viewedIndicator.isHidden = hidden
+            
         case .empty(_):
             cell.backgroundColor = .init(fromHex: 0xF7F7FA)
         
@@ -75,7 +77,7 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
                 
                 let x: FantasyListViewModel.CardType? = try? self.collectionView.rx.model(at: ip)
                 
-                guard case .fantasy(let model)? = x else {
+                guard case .fantasy(let model, _)? = x else {
                     return
                 }
                 

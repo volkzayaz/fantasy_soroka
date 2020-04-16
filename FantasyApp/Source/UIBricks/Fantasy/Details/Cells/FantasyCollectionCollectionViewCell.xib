@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,6 +48,9 @@
                             <constraint firstAttribute="trailing" secondItem="YSl-Oc-2bI" secondAttribute="trailing" constant="8" id="kd0-m0-oMn"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyDeckIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="zlT-SI-0IF">
+                        <rect key="frame" x="12" y="167" width="80" height="20"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aA1-g7-JLK">
                         <rect key="frame" x="12" y="213" width="160" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -62,14 +65,17 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Noc-Rv-VqL" secondAttribute="trailing" constant="16" id="47T-by-MXP"/>
                     <constraint firstAttribute="trailing" secondItem="RcO-65-YXF" secondAttribute="trailing" id="5g8-Sp-iz7"/>
                     <constraint firstAttribute="bottom" secondItem="RcO-65-YXF" secondAttribute="bottom" id="9cU-Kk-47W"/>
                     <constraint firstItem="RcO-65-YXF" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="9td-I5-kO6"/>
                     <constraint firstItem="aA1-g7-JLK" firstAttribute="top" secondItem="Tcm-x2-gnr" secondAttribute="bottom" constant="4" id="Dh5-JX-eVa"/>
                     <constraint firstItem="RcO-65-YXF" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" id="HKP-BM-qVU"/>
                     <constraint firstAttribute="trailing" secondItem="Tcm-x2-gnr" secondAttribute="trailing" constant="12" id="IXC-4Q-cIB"/>
+                    <constraint firstItem="Tcm-x2-gnr" firstAttribute="top" secondItem="zlT-SI-0IF" secondAttribute="bottom" constant="4" id="NWu-KS-RG8"/>
                     <constraint firstItem="aA1-g7-JLK" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="QGx-2L-GYn"/>
                     <constraint firstItem="Tcm-x2-gnr" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="UTy-pE-9yz"/>
+                    <constraint firstItem="zlT-SI-0IF" firstAttribute="leading" secondItem="Tcm-x2-gnr" secondAttribute="leading" id="bA7-ff-G2S"/>
                     <constraint firstAttribute="bottom" secondItem="aA1-g7-JLK" secondAttribute="bottom" constant="12" id="g93-5G-LCe"/>
                     <constraint firstItem="Noc-Rv-VqL" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" constant="12" id="gaD-6y-cfO"/>
                     <constraint firstItem="Noc-Rv-VqL" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="wXd-r3-2KE"/>
@@ -80,6 +86,7 @@
             <connections>
                 <outlet property="fantasiesCountLabel" destination="aA1-g7-JLK" id="UJ4-6b-XdE"/>
                 <outlet property="imageView" destination="RcO-65-YXF" id="e0b-sC-blV"/>
+                <outlet property="myDeckIndicator" destination="zlT-SI-0IF" id="bfw-Sh-rHy"/>
                 <outlet property="paidImageView" destination="W1q-8j-ypv" id="3NE-U5-8Z5"/>
                 <outlet property="paidLabel" destination="YSl-Oc-2bI" id="0TX-cv-AbJ"/>
                 <outlet property="paidView" destination="Noc-Rv-VqL" id="K9Q-It-OFO"/>
@@ -89,6 +96,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="MyDeckIndicator" width="80" height="20"/>
         <image name="paidCollection" width="10" height="12"/>
     </resources>
 </document>
