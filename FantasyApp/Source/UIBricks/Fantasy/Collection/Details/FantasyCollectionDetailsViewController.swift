@@ -228,10 +228,10 @@ class FantasyCollectionDetailsCell: UITableViewCell {
     
     @IBOutlet weak var collapseButton: UIButton! {
         didSet {
-            collapseButton.backgroundColor = .fantasyLightGrey
-            collapseButton.setTitleColor(.fantasyPink, for: .normal)
-            collapseButton.titleLabel?.font = .boldFont(ofSize: 14)
-            collapseButton.layer.cornerRadius = collapseButton.frame.height / 2.0
+            collapseButton?.backgroundColor = .fantasyLightGrey
+            collapseButton?.setTitleColor(.fantasyPink, for: .normal)
+            collapseButton?.titleLabel?.font = .boldFont(ofSize: 14)
+            collapseButton?.layer.cornerRadius = collapseButton.frame.height / 2.0
         }
     }
     

@@ -27,8 +27,6 @@ extension Fantasy {
             case collectionName
             case art
             
-            case isLikedByYou
-            case isDislikedByYou
         }
         
         let id: String
@@ -43,8 +41,6 @@ extension Fantasy {
         let collectionName: String
         let art: String
         
-        let isLikedByYou: Bool
-        let isDislikedByYou: Bool
         
         ///surrogate property
         ///whether this card belongs to free collection or payed collection
