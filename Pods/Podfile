@@ -27,6 +27,7 @@ target 'FantasyApp' do
     
     #analytics
     pod 'Amplitude-iOS', '~> 4.8'
+    pod 'AppsFlyerFramework'
 
     #deep linking
     pod 'Branch', '~> 0.29.3'

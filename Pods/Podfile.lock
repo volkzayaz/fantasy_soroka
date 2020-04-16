@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
   - Amplitude-iOS (4.9.3)
+  - AppsFlyerFramework (5.2.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -89,6 +90,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
+  - AppsFlyerFramework
   - Branch (~> 0.29.3)
   - Crashlytics (~> 3.13)
   - FBSDKCoreKit (= 5.7.0)
@@ -116,6 +118,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Amplitude-iOS
+    - AppsFlyerFramework
     - Bolts
     - Branch
     - Crashlytics
@@ -152,6 +155,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Amplitude-iOS: 122e026c44db8460e5efcf84859aa290a0ae9786
+  AppsFlyerFramework: 9b2a932d826a278413dab7d59ffbe104a972132b
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
@@ -185,6 +189,6 @@ SPEC CHECKSUMS:
   YPImagePicker: bdaa46782668e260fdd9709f19043a9f469fd2ad
   ZendeskSDK: 99679d8420a6d862773e2ddef0ebcc51b282317d
 
-PODFILE CHECKSUM: 5d9e63c1c5dc0713748b4d9f34bb5b8cb21d4501
+PODFILE CHECKSUM: 7861eea339ae405396567af54b0bc197e02baa14
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1
