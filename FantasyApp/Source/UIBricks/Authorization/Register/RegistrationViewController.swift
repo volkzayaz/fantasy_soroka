@@ -406,9 +406,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         ///
-        agrementTitle.text = immutableNonPersistentState.legal.title
+        agrementTitle.text = immutableNonPersistentState?.legal.title ?? ""
         
-        agrementTextView.attributedText = try? NSAttributedString(data: immutableNonPersistentState.legal.description.data(using: .unicode)!,
+        agrementTextView.attributedText = try? NSAttributedString(data: (immutableNonPersistentState?.legal.description ?? "").data(using: .unicode)!,
                                                              options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
         agrementTextView.font = UIFont.regularFont(ofSize: 15)
         agrementTextView.textColor = R.color.textBlackColor()
