@@ -75,11 +75,10 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
                                      for: indexPath)!
 
             cell.model = model
-            cell.fantasiesCount = model.cardsCount
             cell.set(imageURL: model.imageURL)
             cell.title = model.title
             cell.isPurchased = model.isPurchased
-
+            
             return cell
         }
     )

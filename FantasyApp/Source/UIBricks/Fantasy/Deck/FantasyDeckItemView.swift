@@ -160,7 +160,8 @@ private extension FantasyDeckItemView {
             paidCardView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             paidCardView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             paidCardView.heightAnchor.constraint(equalToConstant: 34),
-
+            paidCardView.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -16),
+            
             shareButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             shareButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             shareButton.widthAnchor.constraint(equalToConstant: 40),
