@@ -13,6 +13,7 @@ import SwiftyStoreKit
 import RxSwift
 import RxCocoa
 import Branch
+import RxDataSources
 
 extension FantasyCollectionDetailsViewModel {
     
@@ -39,6 +40,49 @@ extension FantasyCollectionDetailsViewModel {
         return collection.isPurchased || appStateSlice.currentUser?.fantasies.purchasedCollections.contains(where: { $0.id == collection.id }) ?? false
     }
     
+    var dataSource: Driver<[SectionModel<String, Model>]> {
+     
+        let x = collection
+        
+        var result: [SectionModel<String, Model>] = [
+            SectionModel(model: "top",
+                         items: [.top])
+        ]
+        
+        if let t = x.customBlock {
+            result.append(.init(model: "Custom Block",
+                                items: [.expandable(title: t.title, description: t.description)]))
+        }
+        
+        if let t = x.details {
+            result.append(.init(model: "Details",
+                                items: [.expandable(title: "Details", description: t)]))
+        }
+        
+        result.append(.init(model: "What's inside",
+                            items: [.whatsInside]))
+        
+        if let t = x.highlights {
+            result.append(.init(model: "Highlights",
+                                items: [.expandable(title: "Highlights", description: t)]))
+        }
+        
+        if let t = x.loveThis {
+            result.append(.init(model: "LoveThis",
+                                items: [.expandable(title: "You'll Love This Collection", description: t)]))
+        }
+        
+        if let t = x.author {
+            result.append(.init(model: "Author",
+                                items: [.author]))
+        }
+        
+        result.append(.init(model: "Bottom", items: [.bottom]))
+        result.append(.init(model: "Share", items: [.share]))
+        
+        return .just(result)
+    }
+    
 }
 
 struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
@@ -49,10 +93,6 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     private var timeSpentCounter = TimeSpentCounter()
     private let context: Analytics.Event.CollectionViewed.NavigationContext
-    
-    var deatilsCollapsed: Bool = false
-    var highlightsCollapsed: Bool = false
-    var loveThisCollapsed: Bool = false
     
     init(router: FantasyCollectionDetailsRouter,
          collection: Fantasy.Collection,
@@ -80,6 +120,18 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     private var buo: BranchUniversalObject!
+    
+    enum Model {
+        case top
+        case expandable(title: String, description: String)
+        case whatsInside
+        case author
+        case bottom
+        case share
+    }
+    
+    var expanded: [String: Bool] = [:]
+    
 }
 
 extension FantasyCollectionDetailsViewModel {

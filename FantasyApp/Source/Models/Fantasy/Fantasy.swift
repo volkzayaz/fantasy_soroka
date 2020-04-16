@@ -80,25 +80,28 @@ extension Fantasy {
             case itemsNamePlural = "coverItems"
             case hint = "hintText"
             case author
+            case customBlock
         }
         
         let id: String
         let title: String
-        let details: String
+        
         let whatsInside: String
         let imageURL: String
         let cardsCount: Int
         let isPurchased: Bool
         let productId: String? ///absence of ProductID means product is free
         
-        let loveThis: String
-        let highlights: String
+        let details: String?
+        let loveThis: String?
+        let highlights: String?
         
         let category: String
         let itemsNamePlural: String
         let hint: String
         
         let author: Author?
+        let customBlock: CustomBlock?
         
         var identity: String {
             return id
@@ -115,6 +118,13 @@ extension Fantasy {
             let srcFb: String?
             
             let imageSrc: String?
+            
+        }
+        
+        struct CustomBlock: Codable, Equatable {
+            
+            let title: String
+            let description: String
             
         }
     }
@@ -222,7 +232,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", details: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: nil, loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil)
+        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: "", details: nil, loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
         
     }
     

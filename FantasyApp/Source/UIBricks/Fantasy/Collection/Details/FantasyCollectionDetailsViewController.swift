@@ -10,10 +10,94 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
-class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITableViewDataSource {
+class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
     
     var viewModel: FantasyCollectionDetailsViewModel!
+    
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, VM.Model>>(
+        configureCell: { [unowned self] (_, tableView, ip, x) in
+            
+            let viewModel = self.viewModel!
+            
+            switch x {
+                
+            case .top:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.topCollectionPurchaseCell,
+                                                                         for: ip)!
+                
+                ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
+                    .drive(cell.cardImageView.rx.image)
+                    .disposed(by: cell.rx.disposeBag)
+                
+                cell.nameLabel.text = viewModel.collection.title
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .expandable(let title, let description):
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
+                for: ip)!
+                
+                cell.detailsLabel.text = description
+                cell.sectionTitleLabel.text = title
+                cell.tableView = tableView
+                
+                cell.perform(change: viewModel.expanded[title] ?? false)
+                
+                cell.change = { [weak self] x in
+                    self?.viewModel.expanded[title] = x
+                }
+                
+                return cell
+                
+            case .whatsInside:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.whatsInsideCollectionDetailsCell,
+                                                         for: ip)!
+                
+                cell.cardsCountLabel.text = "\(viewModel.collection.cardsCount) \(viewModel.collection.itemsNamePlural)"
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .author:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.authorCollectionCell, for: ip)!
+                
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .bottom:
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.bottomCollectionPurchaseCell,
+                                                         for: ip)!
+                
+                ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
+                    .drive(cell.cardImageView.rx.image)
+                    .disposed(by: cell.rx.disposeBag)
+                
+                cell.nameLabel.text = viewModel.collection.title
+                cell.viewModel = viewModel
+                
+                return cell
+                
+            case .share:
+                           
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCollectionCell,
+                                                         for: ip)!
+                
+                cell.viewModel = viewModel
+                
+                return cell
+                           
+            }
+            
+        })
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollableBackgroundView: UIView! {
@@ -29,6 +113,10 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
         super.viewDidLoad()
 
         title = ""
+        
+        viewModel.dataSource
+            .drive(collTableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
         
         ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
             .drive(imageView.rx.image)
@@ -79,138 +167,6 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View, UITab
     
     @IBAction func popBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        var x = 7
-        
-        if viewModel.collection.author != nil {
-            x+=1
-        }
-        
-        return x
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.topCollectionPurchaseCell,
-                                                     for: indexPath)!
-            
-            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
-                .drive(cell.cardImageView.rx.image)
-                .disposed(by: cell.rx.disposeBag)
-            
-            cell.nameLabel.text = viewModel.collection.title
-            cell.viewModel = viewModel
-            
-            return cell
-        }
-        else if indexPath.section == 1 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
-            for: indexPath)!
-            
-            cell.detailsLabel.text = viewModel.collection.details
-            cell.sectionTitleLabel.text = "Details"
-            cell.tableView = tableView
-            
-            cell.perform(change: viewModel.deatilsCollapsed)
-            
-            cell.change = { [weak self] x in
-                self?.viewModel.deatilsCollapsed = x
-            }
-            
-            return cell
-            
-        }
-        else if indexPath.section == 2 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.whatsInsideCollectionDetailsCell,
-                                                     for: indexPath)!
-            
-            cell.cardsCountLabel.text = "\(viewModel.collection.cardsCount) \(viewModel.collection.itemsNamePlural)"
-            cell.viewModel = viewModel
-            
-            return cell
-            
-        }
-        else if indexPath.section == 3 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
-                                                     for: indexPath)!
-            
-            cell.detailsLabel.text = viewModel.collection.highlights
-            cell.sectionTitleLabel.text = "Highlights"
-            cell.tableView = tableView
-            
-            cell.perform(change: viewModel.highlightsCollapsed)
-            
-            cell.change = { [weak self] x in
-                self?.viewModel.highlightsCollapsed = x
-            }
-            
-            return cell
-            
-        }
-        else if indexPath.section == 4 {
-                
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.fantasyCollectionDetailsCell,
-                                                     for: indexPath)!
-            
-            cell.detailsLabel.text = viewModel.collection.loveThis
-            cell.sectionTitleLabel.text = "You'll Love This Collection If"
-            cell.tableView = tableView
-            
-            cell.perform(change: viewModel.loveThisCollapsed)
-            
-            cell.change = { [weak self] x in
-                self?.viewModel.loveThisCollapsed = x
-            }
-            
-            return cell
-                
-        }
-        else if let _ = viewModel.collection.author, indexPath.section == 5 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.authorCollectionCell, for: indexPath)!
-            
-            cell.viewModel = viewModel
-            
-            return cell
-        }
-        else if indexPath.section == 5 || (indexPath.section == 6 && viewModel.collection.author != nil) {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.bottomCollectionPurchaseCell,
-            for: indexPath)!
-            
-            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.collection.imageURL)
-                .drive(cell.cardImageView.rx.image)
-                .disposed(by: cell.rx.disposeBag)
-            
-            cell.nameLabel.text = viewModel.collection.title
-            cell.viewModel = viewModel
-            
-            return cell
-            
-        }
-        else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCollectionCell,
-            for: indexPath)!
-            
-            cell.viewModel = viewModel
-            
-            return cell
-            
-        }
-        
-        
     }
     
 } 
@@ -438,15 +394,15 @@ class AuthorCollectionCell: UITableViewCell {
                 .drive(photoImageView.rx.image)
                 .disposed(by: rx.disposeBag)
             
-            if author?.srcFb == nil {
+            if author?.srcFb?.count ?? 0 == 0 {
                 fbButton.removeFromSuperview()
             }
             
-            if author?.srcInstagram == nil {
+            if author?.srcInstagram?.count ?? 0 == 0 {
                 instaButton.removeFromSuperview()
             }
             
-            if author?.srcWeb == nil {
+            if author?.srcWeb?.count ?? 0 == 0 {
                 webButton.removeFromSuperview()
             }
             

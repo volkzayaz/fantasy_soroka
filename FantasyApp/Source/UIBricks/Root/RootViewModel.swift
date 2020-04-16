@@ -21,23 +21,31 @@ extension RootViewModel {
                             .map { $0 == nil }
                             .distinctUntilChanged()
         
-        let blocked: Driver<PFUser?> = PFUser.current()?.rx.refresh().map { $0 as? PFUser }.asDriver(onErrorJustReturn: nil) ?? .just(nil)
-        
-        return Driver.combineLatest(age, user, blocked,
-                                    unsupportedVersionTriggerVar.asDriver(onErrorJustReturn: false)) { ($0, $1, $2, $3) }
-            .map { (maybeAge, user, maybeBlockedUser, isUnsupportedVersion) in
+        return Driver.combineLatest(age, user,
+                                    unsupportedVersionTriggerVar.asDriver(onErrorJustReturn: false)) { ($0, $1, $2) }
+            .map { (maybeAge, user, isUnsupportedVersion) in
                 
                 if isUnsupportedVersion  { return .updateApp }
                 
                 guard maybeAge == nil else { return .ageRestriction }
                 
-                if let x = maybeBlockedUser?["isBlocked"] as? Bool, x == true {
-                    return .blocked
-                }
-                
                 return user ? .authentication : .mainApp
             }
             .distinctUntilChanged()
+    }
+    
+    var blocked: Driver<Bool> {
+        
+        return (PFUser.current()?.rx.refresh().map { $0 as? PFUser }.asDriver(onErrorJustReturn: nil) ?? .just(nil))
+            .map { maybeBlockedUser in
+                
+                if let x = maybeBlockedUser?["isBlocked"] as? Bool {
+                    return x
+                }
+                
+                return false
+            }
+        
     }
     
 }
@@ -50,8 +58,6 @@ struct RootViewModel : MVVM_ViewModel {
         
         case ageRestriction
         case updateApp
-        
-        case blocked
         
     }
     

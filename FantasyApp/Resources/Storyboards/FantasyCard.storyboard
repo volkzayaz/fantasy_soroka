@@ -1006,9 +1006,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="OfO-JC-MZH" id="Q2g-A8-9m4"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.96849805116653442" green="0.96854132413864136" blue="0.97667533159255981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
