@@ -71,7 +71,7 @@ extension ChatViewModel {
                 }
                 
                 if room.isWaitingForMyResponse {
-                    items.append(.acceptReject)
+                    items.insert(.acceptReject, at: 0)
                 }
                 
                 items.append(.connection(requestTypes))
