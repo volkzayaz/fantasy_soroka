@@ -82,7 +82,7 @@ extension Fantasy {
         let id: String
         let title: String
         
-        let whatsInside: String
+        let whatsInside: String?
         let imageURL: String
         let cardsCount: Int
         let isPurchased: Bool
@@ -94,7 +94,7 @@ extension Fantasy {
         
         let category: String
         let itemsNamePlural: String
-        let hint: String
+        let hint: String?
         
         let author: Author?
         let customBlock: CustomBlock?

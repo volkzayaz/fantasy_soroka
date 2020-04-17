@@ -48,7 +48,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
                 cell.sectionTitleLabel.text = title
                 cell.tableView = tableView
                 
-                cell.perform(change: viewModel.expanded[title] ?? false)
+                cell.perform(change: viewModel.expanded[title] ?? false, animated: false)
                 
                 cell.change = { [weak self] x in
                     self?.viewModel.expanded[title] = x
@@ -204,7 +204,7 @@ class TopCollectionPurchaseCell: UITableViewCell {
             
             collectionCategoryLabel.text = viewModel.collection.category
             hintLabel.text = viewModel.collection.hint
-            if viewModel.collection.hint.count == 0 {
+            if viewModel.collection.hint == nil {
                 hintView.isHidden = true
             }
         }
@@ -239,10 +239,10 @@ class FantasyCollectionDetailsCell: UITableViewCell {
     
     @IBAction func collapseAction(_ sender: UIButton) {
         let shouldCollapse = detailsLabel.isTruncated
-        perform(change: shouldCollapse)
+        perform(change: shouldCollapse, animated: true)
     }
     
-    func perform(change: Bool) {
+    func perform(change: Bool, animated: Bool) {
      
         self.change?(change)
         
@@ -250,8 +250,10 @@ class FantasyCollectionDetailsCell: UITableViewCell {
         
         collapseButton.setTitle(change ? "Show Less" : "Read More", for: .normal)
         
-        tableView?.beginUpdates()
-        tableView?.endUpdates()
+        if animated {
+            tableView?.beginUpdates()
+            tableView?.endUpdates()
+        }
         
     }
     
