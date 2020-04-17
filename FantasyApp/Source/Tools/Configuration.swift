@@ -133,10 +133,7 @@ extension Configuration {
     static func startAppsFlyer() {
         AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
         AppsFlyerTracker.shared().appleAppID = "1230109516"
-        
-        #if DEBUG || ADHOC
-        AppsFlyerTracker.shared().isDebug = true
-        #endif
+        AppsFlyerTracker.shared().isDebug = !RunScheme.appstore
         
         NotificationCenter.default.addObserver(
             AppsFlyerTracker.shared(),
