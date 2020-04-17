@@ -11,7 +11,9 @@ import Foundation
 ////only mutated by FetchConfig() from MainTabViewModel
 var immutableNonPersistentState: ImmutableNonPersistentState! {
     didSet {
-        SettingsStore.isAppsFlyerEnabled.value = immutableNonPersistentState.isAppsFlyerEnabled
+        if immutableNonPersistentState.isAppsFlyerEnabled {
+            Configuration.startAppsFlyer()
+        }
     }
 }
 

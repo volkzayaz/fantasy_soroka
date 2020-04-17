@@ -120,22 +120,6 @@ extension Configuration {
         Zendesk.instance?.setIdentity(ident)
         
         ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
-        
-        // MARK: - AppsFlyer
-        if SettingsStore.isAppsFlyerEnabled.value {
-            AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
-            AppsFlyerTracker.shared().appleAppID = "1230109516"
-            
-            #if DEBUG || ADHOC
-            AppsFlyerTracker.shared().isDebug = true
-            #endif
-            
-            NotificationCenter.default.addObserver(
-                AppsFlyerTracker.shared(),
-                selector: #selector(AppsFlyerTracker.trackAppLaunch),
-                name: UIApplication.didBecomeActiveNotification,
-                object: nil)
-        }
     }
 
     private static func registerActors() {
@@ -144,7 +128,24 @@ extension Configuration {
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }
-
+    
+    // MARK: - AppsFlyer
+    static func startAppsFlyer() {
+        AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
+        AppsFlyerTracker.shared().appleAppID = "1230109516"
+        
+        #if DEBUG || ADHOC
+        AppsFlyerTracker.shared().isDebug = true
+        #endif
+        
+        NotificationCenter.default.addObserver(
+            AppsFlyerTracker.shared(),
+            selector: #selector(AppsFlyerTracker.trackAppLaunch),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+        
+        AppsFlyerTracker.shared().trackAppLaunch()
+    }
 }
 
 enum ServerURL {}
