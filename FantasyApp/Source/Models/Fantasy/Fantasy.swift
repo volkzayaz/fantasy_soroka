@@ -82,15 +82,15 @@ extension Fantasy {
         let id: String
         let title: String
         
-        let whatsInside: String?
+        let whatsInside: String
         let imageURL: String
         let cardsCount: Int
         let isPurchased: Bool
         let productId: String? ///absence of ProductID means product is free
         
-        let details: String?
-        let loveThis: String?
-        let highlights: String?
+        let details: String
+        let loveThis: String
+        let highlights: String
         
         let category: String
         let itemsNamePlural: String
@@ -228,7 +228,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: "", details: nil, loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
+        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: "", details: "", loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
         
     }
     

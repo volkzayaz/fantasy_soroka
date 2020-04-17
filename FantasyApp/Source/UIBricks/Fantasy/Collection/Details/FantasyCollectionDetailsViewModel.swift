@@ -54,22 +54,22 @@ extension FantasyCollectionDetailsViewModel {
                                 items: [.expandable(title: t.title, description: t.description)]))
         }
         
-        if let t = x.details {
+        if x.details.count > 0 {
             result.append(.init(model: "Details",
-                                items: [.expandable(title: "Details", description: t)]))
+                                items: [.expandable(title: "Details", description: x.details)]))
         }
         
         result.append(.init(model: "What's inside",
                             items: [.whatsInside]))
         
-        if let t = x.highlights {
+        if x.highlights.count > 0 {
             result.append(.init(model: "Highlights",
-                                items: [.expandable(title: "Highlights", description: t)]))
+                                items: [.expandable(title: "Highlights", description: x.highlights)]))
         }
         
-        if let t = x.loveThis {
+        if x.loveThis.count > 0 {
             result.append(.init(model: "LoveThis",
-                                items: [.expandable(title: "You'll Love This Collection", description: t)]))
+                                items: [.expandable(title: "You'll Love This Collection", description: x.loveThis)]))
         }
         
         if let t = x.author {
