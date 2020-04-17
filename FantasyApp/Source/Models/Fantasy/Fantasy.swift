@@ -94,7 +94,7 @@ extension Fantasy {
         
         let category: String
         let itemsNamePlural: String
-        let hint: String?
+        let hint: String
         
         let author: Author?
         let customBlock: CustomBlock?

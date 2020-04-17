@@ -204,7 +204,7 @@ class TopCollectionPurchaseCell: UITableViewCell {
             
             collectionCategoryLabel.text = viewModel.collection.category
             hintLabel.text = viewModel.collection.hint
-            if viewModel.collection.hint == nil {
+            if viewModel.collection.hint.count == 0 {
                 hintView.isHidden = true
             }
         }
