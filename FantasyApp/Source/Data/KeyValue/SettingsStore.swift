@@ -10,6 +10,9 @@ import Foundation
 enum SettingsStore {}
 extension SettingsStore {
     
+    static var isAppsFlyerEnabled: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.settings.isAppsFlyerEnabled",
+                                                           initialValue: true)
+    
     static var environment: Setting<Environment> = Setting(key: "com.fantasyapp.iosclient.settings.environment",
                                                            initialValue: .default)
     

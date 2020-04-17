@@ -25,19 +25,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationSupportsShakeToEdit = true
         
-        AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
-        AppsFlyerTracker.shared().appleAppID = "1230109516"
-        AppsFlyerTracker.shared().delegate = self
-        
-        #if DEBUG || ADHOC
-        AppsFlyerTracker.shared().isDebug = true
-        #endif
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(sendLaunch),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil)
+        if SettingsStore.isAppsFlyerEnabled.value {
+            AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
+            AppsFlyerTracker.shared().appleAppID = "1230109516"
+            AppsFlyerTracker.shared().delegate = self
+            
+            #if DEBUG || ADHOC
+            AppsFlyerTracker.shared().isDebug = true
+            #endif
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(sendLaunch),
+                name: UIApplication.didBecomeActiveNotification,
+                object: nil)
+        }
         
         return true
     }
@@ -64,6 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error)
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        AppsFlyerTracker.shared().trackAppLaunch()
     }
 
 }

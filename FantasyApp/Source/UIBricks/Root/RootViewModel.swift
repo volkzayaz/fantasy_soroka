@@ -80,6 +80,7 @@ struct RootViewModel : MVVM_ViewModel {
                     screenProtectEnabled: config.screenProtectEnabled,
                     shareCardImageURL: config.fantasyCardsShare.card,
                     shareCollectionImageURL: config.fantasyCardsShare.collection,
+                    isAppsFlyerEnabled: config.isAppsFlyerEnabled,
                     legal: .init(title: config.termsAndConditions.title,
                                  description: config.termsAndConditions.body)
                 )
