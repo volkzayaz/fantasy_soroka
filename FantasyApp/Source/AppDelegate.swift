@@ -12,8 +12,6 @@ import Branch
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-import AppsFlyerLib
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,22 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Configuration.setup(launchOptions: launchOptions)
         
         application.applicationSupportsShakeToEdit = true
-        
-        if SettingsStore.isAppsFlyerEnabled.value {
-            AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
-            AppsFlyerTracker.shared().appleAppID = "1230109516"
-            AppsFlyerTracker.shared().delegate = self
-            
-            #if DEBUG || ADHOC
-            AppsFlyerTracker.shared().isDebug = true
-            #endif
-            
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(sendLaunch),
-                name: UIApplication.didBecomeActiveNotification,
-                object: nil)
-        }
         
         return true
     }
@@ -66,19 +48,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error)
-    }
-}
-
-extension AppDelegate: AppsFlyerTrackerDelegate {
-    func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
-        
-    }
-    
-    func onConversionDataFail(_ error: Error) {
-        
-    }
-    
-    @objc func sendLaunch(app: Any) {
-        AppsFlyerTracker.shared().trackAppLaunch()
     }
 }
