@@ -74,7 +74,7 @@ extension Fantasy.Request {
         }
         
         var task: Task {
-            return .requestParameters(parameters: ["isPaid" : true], encoding: URLEncoding.default)
+            return .requestPlain
         }
         
     }
@@ -170,8 +170,10 @@ extension Fantasy.Request {
         let of: User
         
         struct SneakPeek: Codable, Equatable {
-            let isPaid: Bool
+            //let isPaid: Bool
             let amountlikedCardsByUser: Int
+            let coverRubric: String
+            let coverItems: String
         }; typealias responseType = [SneakPeek]
         
         var method: Moya.Method {
