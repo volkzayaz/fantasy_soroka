@@ -27,6 +27,7 @@ extension EditProfileViewModel {
                 let about = SectionModel(model: R.string.localizable.editProfileAbout(),
                                          items: [Model.expandable(text: (user.bio.about ?? ""),
                                                                   placeholder: R.string.localizable.editProfileAbout(),
+                                                                  maxLenth: 200,
                                                                   title: nil,
                                                                   editAction: self.changeAbout)])
                 
@@ -87,17 +88,20 @@ extension EditProfileViewModel {
                                          items:
                     [
                         Model.expandable(text: user.bio.answers[q1] ?? "",
-                            placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         maxLenth: 100,
                             title: q1,
                             editAction: { self.change(answer: $0, to: q1) }),
                         
                         Model.expandable(text: user.bio.answers[q2] ?? "",
                                          placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         maxLenth: 100,
                                          title: q2,
                                          editAction: { self.change(answer: $0, to: q2) }),
                         
                         Model.expandable(text: user.bio.answers[q3] ?? "",
                                          placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         maxLenth: 100,
                                          title: q3,
                                          editAction: { self.change(answer: $0, to: q3) }),
                         
@@ -149,7 +153,7 @@ struct EditProfileViewModel : MVVM_ViewModel {
     fileprivate let bag = DisposeBag()
  
     enum Model {
-        case expandable(text: String, placeholder: String, title: String?, editAction: ((String?) -> Void)?)
+      case expandable(text: String, placeholder: String, maxLenth: Int, title: String?, editAction: ((String?) -> Void)?)
         case attribute(String, value: String, image: UIImage, editAction: (() -> Void)?)
     }
     

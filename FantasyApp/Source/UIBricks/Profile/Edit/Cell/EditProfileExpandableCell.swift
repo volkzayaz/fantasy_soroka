@@ -21,21 +21,20 @@ class EditProfileExpandableCell: UITableViewCell, UITextViewDelegate {
     
     weak var tableView: UITableView?
     
-    var maximumAboutChars: Int {
-        return 200
+  var maximumAboutChars: Int = 100 {
+    didSet {
+      updateSymbolLenght()
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        let max = maximumAboutChars
-        
-        expandableTextView.rx.text
-            .map { "\(max - ($0?.count ?? 0))" }
-            .bind(to: symbolsLeftLabel.rx.text)
-            .disposed(by: rx.disposeBag)
-        
-    }
+  }
+  
+  func updateSymbolLenght() {
+      let max = maximumAboutChars
+             
+             expandableTextView.rx.text
+                 .map { "\(max - ($0?.count ?? 0))" }
+                 .bind(to: symbolsLeftLabel.rx.text)
+                 .disposed(by: rx.disposeBag)
+  }
     
     func dropTitle() {
         stackTitleLabel.removeFromSuperview()

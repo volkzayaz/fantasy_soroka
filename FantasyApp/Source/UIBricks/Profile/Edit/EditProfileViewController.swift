@@ -21,7 +21,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
             
             switch x {
                 
-            case .expandable(let text, let placeholder, let maybeTitle, let action):
+            case .expandable(let text, let placeholder, let maxLenght, let maybeTitle, let action):
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.editProfileExpandableCell,
                                                          for: ip)!
                 
@@ -29,6 +29,7 @@ class EditProfileViewController: UIViewController, MVVM_View {
                 cell.expandableTextView.placeholder = placeholder
                 cell.action = action
                 cell.tableView = tableView
+                cell.maximumAboutChars = maxLenght
                 
                 if let title = maybeTitle {
                     cell.stackTitleLabel.text = title
