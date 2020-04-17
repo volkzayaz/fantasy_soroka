@@ -67,11 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error)
     }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        AppsFlyerTracker.shared().trackAppLaunch()
-    }
-
 }
 
 extension AppDelegate: AppsFlyerTrackerDelegate {
