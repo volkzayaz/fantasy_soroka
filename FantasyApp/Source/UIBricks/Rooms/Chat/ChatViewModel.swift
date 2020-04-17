@@ -28,7 +28,13 @@ extension ChatViewModel {
         return Driver.combineLatest(requestTypes, mes.asDriver(), room.asDriver())
             .map { requestTypes, messages, room in
                 
-                var items = messages.map { x -> Row in
+                var items = [Row]()
+                
+                if room.isWaitingForMyResponse {
+                    items.append(.acceptReject)
+                }
+                
+                items += messages.map { x -> Row in
                     
                     switch x.type {
                         
@@ -68,10 +74,6 @@ extension ChatViewModel {
                     
                     }
                     
-                }
-                
-                if room.isWaitingForMyResponse {
-                    items.insert(.acceptReject, at: 0)
                 }
                 
                 items.append(.connection(requestTypes))
