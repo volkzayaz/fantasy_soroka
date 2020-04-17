@@ -15,7 +15,10 @@ extension Analytics {
     
     static func report(_ event: AnalyticsEvent) {
         Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
-        AppsFlyerTracker.shared().trackEvent(event.name, withValues: event.props)
+        
+        if immutableNonPersistentState.isAppsFlyerEnabled {
+            AppsFlyerTracker.shared().trackEvent(event.name, withValues: event.props)
+        }
 
 //        print("Analytics:  Event = \(event.name)")
 //        if let x = event.props {
