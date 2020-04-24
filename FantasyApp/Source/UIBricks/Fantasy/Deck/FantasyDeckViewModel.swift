@@ -139,20 +139,21 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
 
         // Check likes cars count to display Review popup
 
-        appState.changesOf { $0.currentUser?.fantasies.liked }
-            .notNil()
-            .map { (SettingsStore.currentUser.value?.id, $0) }
-            .filter { $0.1.isEmpty == false && $0.0 != nil }
-            .asObservable()
-            .subscribe(onNext: { (tuple) in
-                let userID = tuple.0!
-                var map = SettingsStore.likedCardsCount.value
-
-                map[userID] = (map[userID] ?? 0) + 1
-
-                SettingsStore.likedCardsCount.value = map
-            })
-            .disposed(by: bag)
+        ///TODO: liked fantasies cards is no longer stored value and can't be accessed locally
+//        appState.changesOf { $0.currentUser?.fantasies.liked }
+//            .notNil()
+//            .map { (SettingsStore.currentUser.value?.id, $0) }
+//            .filter { $0.1.isEmpty == false && $0.0 != nil }
+//            .asObservable()
+//            .subscribe(onNext: { (tuple) in
+//                let userID = tuple.0!
+//                var map = SettingsStore.likedCardsCount.value
+//
+//                map[userID] = (map[userID] ?? 0) + 1
+//
+//                SettingsStore.likedCardsCount.value = map
+//            })
+//            .disposed(by: bag)
 
         SettingsStore.likedCardsCount.observable
             .filter { $0.isEmpty == false }

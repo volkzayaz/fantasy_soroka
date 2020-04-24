@@ -140,7 +140,7 @@ extension User {
                        answers: answers)
         
         searchPreferences = searchPrefs
-        fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
+        fantasies = .init(purchasedCollections: [])
         community = User.Community(value: maybeCommunity,
                                    changePolicy: changePolicy,
                                    lastKnownLocation: maybeLastKnownLocation)

@@ -94,9 +94,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     //    }
     
     struct Fantasies: Equatable, Codable {
-        var liked: [Fantasy.Card]
-        var disliked: [Fantasy.Card]
-        
         var purchasedCollections: [Fantasy.Collection]
     }
     

@@ -87,15 +87,9 @@ struct FantasyCardInteraction: ActionCreator {
             }
             
             ///Updating User preferences
-            state.currentUser?.fantasies.liked.removeAll { $0 == self.card }
-            state.currentUser?.fantasies.disliked.removeAll { $0 == self.card }
             switch self.type {
-            case .like:
-                state.currentUser?.fantasies.liked.append(self.card)
-                
-            case .dislike:
-                state.currentUser?.fantasies.disliked.append(self.card)
-                
+            case .like: fallthrough
+            case .dislike: fallthrough
             case .block: fallthrough
             case .neutral: break
             }
