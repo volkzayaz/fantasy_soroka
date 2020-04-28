@@ -54,19 +54,19 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
-        let vc = (viewControllers![1] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
+        let vc = (viewControllers![2] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
         vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
 
         //selectedIndex = 3
         
         viewModel.unreadRooms
             .map { $0 > 0 ? "\($0)" : nil }
-            .drive( tabBar.items![3].rx.badgeValue )
+            .drive( tabBar.items![1].rx.badgeValue )
             .disposed(by: rx.disposeBag)
         
         viewModel.unreadConnections
             .map { $0 > 0 ? "\($0)" : nil }
-            .drive( tabBar.items![2].rx.badgeValue )
+            .drive( tabBar.items![3].rx.badgeValue )
             .disposed(by: rx.disposeBag)
         
         viewModel.appBadge

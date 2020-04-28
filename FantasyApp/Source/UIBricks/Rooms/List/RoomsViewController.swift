@@ -48,7 +48,7 @@ class RoomsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         
         view.addFantasyGradient()
-        navigationItem.title = "Rooms"
+        navigationItem.title = "Play"
  
         emptyView.emptyView = UIImageView(image: R.image.room_placeholder())
         

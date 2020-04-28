@@ -19,7 +19,7 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         viewModel.state
             .drive(onNext: { [unowned self] (x) in
                 

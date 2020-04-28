@@ -367,6 +367,13 @@ enum RelationshipStatus: Equatable, Codable {
         case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
         }
     }
+    
+    var parseField: String {
+        switch self {
+        case .single                   : return "single"
+        case .couple(let partnerGender): return partnerGender.rawValue
+        }
+    }
 }
 
 enum LookingFor: Int, Codable, Equatable, CaseIterable {

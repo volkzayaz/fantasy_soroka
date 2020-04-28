@@ -97,7 +97,7 @@
 
 "chat.input.view.placeholder" = "Send a message";
 
-"fantasy.deck.title" = "Library";
+"fantasy.deck.title" = "Learn";
 "fantasy.deck.cards.button" = "Feed";
 "fantasy.deck.collections.button" = "Decks";
 "fantasy.deck.time.limit.description" = "The daily limit\nhas been reached";
@@ -160,10 +160,13 @@
 
 
 "fantasy.users.filter" = "Filters";
-"fantasy.users.search.header.title" = "Community";
+"fantasy.users.search.header.title" = "Flirt";
 "fantasy.users.search.yourCity" = "Your city";
 "fantasy.users.search.yourCityWillBeActive" = "will be activated when it reaches";
 
 "fantasy.settings.made.with.mature" = "https://fantasyapp.com/en/blog/mature-love-basis-of-alternative-relationships/";
 
 "teleport.currentLocation" = "My Current Location";
+
+"userUnavailableTitle" = "Oops";
+"userUnavailableMessage" = "User profile is not available";

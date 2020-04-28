@@ -15,7 +15,9 @@ struct ChatRouter: MVVM_Router {
         self.owner = owner
     }
     
-    func showUser(user: User) {
+    func showUser(user: User?) {
+        
+        guard let user = unwrap(maybeUser: user, for: owner) else { return }
         
         let vc = R.storyboard.user.userProfileViewController()!
         vc.viewModel = .init(router: .init(owner: vc), user: user, bottomActionsAvailable: false)
