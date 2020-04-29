@@ -42,6 +42,8 @@ public class PrimaryButton: UIButton {
     public override var isEnabled: Bool {
         didSet {
             setupBackgroundColor()
+            
+            setBugFixMode()
         }
     }
 
@@ -78,9 +80,16 @@ public class PrimaryButton: UIButton {
     }
     
     func setBugFixMode() {
-        setTitleColor(UIColor.fantasyPink, for: .highlighted)
-        setTitleColor(UIColor.fantasyPink, for: .selected)
-        setTitleColor(.white, for: .normal)
+        
+        if !useTransparency {
+            
+            setTitleColor(UIColor.fantasyPink, for: .highlighted)
+            setTitleColor(UIColor.fantasyPink, for: .selected)
+            setTitleColor(isEnabled ? .white : .fantasyPink,
+                          for: .normal)
+            
+        }
+        
     }
 }
 
@@ -93,6 +102,8 @@ extension PrimaryButton {
         titleLabel?.backgroundColor = .clear
         titleLabel?.font = titleFont
         contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+        
+        setBugFixMode()
     }
 
     func setupBackgroundColor() {
