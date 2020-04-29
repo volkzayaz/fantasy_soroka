@@ -141,9 +141,13 @@ extension UserManager {
             .rx.fetchFirstObject()
             .map { x in
                 
-                guard let x = x else { return nil }
+                guard let x = x as? PFUser else { return nil }
                 
-                return try User(pfUser: x as! PFUser)
+                if let isBlocked = x["isBlocked"] as? Bool, isBlocked == true {
+                    return nil
+                }
+                
+                return try User(pfUser: x)
             }
     }
     

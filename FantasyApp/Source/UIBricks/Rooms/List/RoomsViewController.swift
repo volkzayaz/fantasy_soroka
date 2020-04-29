@@ -87,6 +87,8 @@ class RoomsViewController: UIViewController, MVVM_View {
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
 
         createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(self.addNewRoom))
     }
 }
 

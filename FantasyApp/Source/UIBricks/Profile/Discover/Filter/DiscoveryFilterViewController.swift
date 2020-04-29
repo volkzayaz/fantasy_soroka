@@ -88,11 +88,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             .drive(secondPartnerStackView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        switchSignal.drive(onNext: { [unowned self] (x) in
-            let c: RelationshipStatus = x ? .couple(partnerGender: self.viewModel.selectedSecondPartnerGender) : .single
-            self.viewModel.changeCouple(x: c)
-        }).disposed(by: rx.disposeBag)
-
         // Output Data bindings
         viewModel.community
             .map { $0?.name }
@@ -113,6 +108,14 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             $0.textColor = R.color.textBlackColor()
         }
     }
+    
+    var smoothPickerHack = false
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        smoothPickerHack = true
+    }
+    
 }
 
 //MARK:- Actions
@@ -135,6 +138,11 @@ extension DiscoveryFilterViewController {
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
     }
+    
+    @IBAction func coupleSwitch(_ x: UISwitch) {
+        let c: RelationshipStatus = x.isOn ? .couple(partnerGender: self.viewModel.selectedSecondPartnerGender) : .single
+        self.viewModel.changeCouple(x: c)
+    }
 }
 
 //MARK:- SmoothPickerViewDelegate, SmoothPickerViewDataSource
@@ -143,6 +151,10 @@ extension DiscoveryFilterViewController: SmoothPickerViewDelegate, SmoothPickerV
 
     func didSelectItem(index: Int, view: UIView, pickerView: SmoothPickerView) {
 
+        ///smooth picker calls this method for initial view load even though nobody selected anything
+        ///internal bug in the library
+        guard smoothPickerHack else { return }
+        
         guard let v = view as? SwipeView,
             let d = v.data else  { return }
 
