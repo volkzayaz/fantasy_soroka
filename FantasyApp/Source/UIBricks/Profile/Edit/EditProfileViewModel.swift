@@ -70,7 +70,7 @@ extension EditProfileViewModel {
                                         value: user.community.value?.name ?? "No community",
                                         image: R.image.profileCommunity()!,
                                         editAction: self.changeActiveCity),
-                        Model.attribute("Expience",
+                        Model.attribute("Experience",
                                         value: user.bio.expirience?.description ?? "Choose",
                                         image: R.image.profileExpirience()!,
                                         editAction: self.changeExpirience),

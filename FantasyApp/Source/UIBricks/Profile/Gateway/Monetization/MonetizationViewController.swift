@@ -15,7 +15,7 @@ class MonetizationViewController: UIViewController {
     
     let models = [MonetizationModel(image: R.image.memberUnlimRooms()!,
                                     title: "Unlimited Rooms To Play",
-                                    description: "Chat, play, and swipe to see mutual fantasies with as many people as you want"),
+                                    description: "Chat, play, and swipe to see mutual cards with as many people as you want"),
                   MonetizationModel(image: R.image.memberX3()!,
                                     title: "x3 New Fantasies Daily",
                                     description: "Discover more new fantasy cards every day"),

@@ -174,13 +174,13 @@ extension RoomDetailsViewController {
                                                     
                                                     let text: String
                                                     if count == 0 {
-                                                        text = "Swipe to see new\nmutual Fantasies!\nYou have no mutual Fantasies yet"
+                                                        text = "Swipe to see new\nmutual Cards!\nYou have no mutual Cards yet"
                                                     }
                                                     else if count == 1 {
-                                                        text = "1 mutual Fantasy"
+                                                        text = "1 mutual Card"
                                                     }
                                                     else {
-                                                        text = "\(count) mutual Fantasies"
+                                                        text = "\(count) mutual Cards"
                                                     }
                                                     
                                                     let att = NSMutableAttributedString(string: text, attributes: [.font: UIFont.boldFont(ofSize: 25)])
@@ -190,7 +190,7 @@ extension RoomDetailsViewController {
                                                                           range: text.nsRange(from: range))
                                                     }
                                                     
-                                                    if let range = text.range(of: "You have no mutual Fantasies yet") {
+                                                    if let range = text.range(of: "You have no mutual Cards yet") {
                                                         
                                                         att.addAttributes([.foregroundColor : UIColor.gray],
                                                                           range: text.nsRange(from: range))
