@@ -69,7 +69,9 @@ extension RegistrationViewModel {
                 switch step {
                     
                     ///apply validations here
-                case .notice:       return form.agreementTick
+                case .notice:
+                    return form.agreementTick && form.personalDataTick && form.sensetiveDataTick && form.agreeToEmailsTick
+                    
                 case .name:         return form.name.isValidUsernameLenght
                 case .birthday:     return form.brithdate != nil
                 case .sexuality:    return true
@@ -269,6 +271,18 @@ extension RegistrationViewModel {
     
     func agreementChanged(agrred: Bool) {
         updateForm { $0.agreementTick = agrred }
+    }
+    
+    func personalDataChanged(agrred: Bool) {
+        updateForm { $0.personalDataTick = agrred }
+    }
+    
+    func sensetiveDataChanged(agrred: Bool) {
+        updateForm { $0.sensetiveDataTick = agrred }
+    }
+    
+    func agreeToReceiveEmailChanged(agrred: Bool) {
+        updateForm { $0.agreeToEmailsTick = agrred }
     }
 
     func nameChanged(name: String) {

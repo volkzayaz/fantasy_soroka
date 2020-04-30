@@ -66,8 +66,6 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
     init(router: DiscoveryFilterRouter) {
         self.router = router
 
-        print(User.current?.searchPreferences)
-        
         form = .init(value: User.current?.searchPreferences ?? .default)
         
         /////progress indicator
@@ -111,8 +109,6 @@ extension DiscoveryFilterViewModel {
     }
 
     func submit() {
-        
-        print(form.value)
         
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))
         router.owner.navigationController?.dismiss(animated: true, completion: nil)
