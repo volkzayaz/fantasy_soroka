@@ -22,7 +22,6 @@ class RoomsViewController: UIViewController, MVVM_View {
             control.addTarget(self, action: "pullToRefresh", for: .valueChanged)
             
             tableView.refreshControl = control
-            tableView.backgroundColor = R.color.bgLightGrey()
         }
     }
     @IBOutlet private var createRoomButton: SecondaryButton!
@@ -70,6 +69,13 @@ class RoomsViewController: UIViewController, MVVM_View {
          viewModel.dataSource
             .map { $0.count == 0 }
             .drive(emptyView.rx.isEmpty)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.dataSource
+            .map { $0.count == 0 ? UIColor.white : R.color.bgLightGrey()! }
+            .drive(onNext: { [weak self] (x) in
+                self?.tableView.backgroundColor = x
+            })
             .disposed(by: rx.disposeBag)
         
         viewModel.dataSource
