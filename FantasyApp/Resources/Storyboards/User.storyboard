@@ -182,8 +182,9 @@
                                                     <color key="textColor" name="textLightGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKa-2b-A7R">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKa-2b-A7R">
                                                     <rect key="frame" x="0.0" y="30.5" width="414" height="17.5"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                     <color key="textColor" name="textLightGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -192,6 +193,7 @@
                                         </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="wCw-N5-a8e" firstAttribute="top" secondItem="WK0-fc-EFx" secondAttribute="top" id="3Sq-y3-c3t"/>
                                         <constraint firstAttribute="trailing" secondItem="wCw-N5-a8e" secondAttribute="trailing" id="XrP-cy-ER7"/>
@@ -201,6 +203,7 @@
                                     <connections>
                                         <outlet property="dateLabel" destination="ugM-oh-2x7" id="dyA-WJ-PLi"/>
                                         <outlet property="userIDLabel" destination="eKa-2b-A7R" id="xN8-NF-q5T"/>
+                                        <outletCollection property="gestureRecognizers" destination="uIf-cF-JE7" appends="YES" id="LLj-XP-QUS"/>
                                     </connections>
                                 </view>
                                 <prototypes>
@@ -477,6 +480,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKK-n0-TcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="uIf-cF-JE7">
+                    <connections>
+                        <action selector="copyUserID:" destination="WK0-fc-EFx" id="sGY-9z-BPV"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1189.8550724637682" y="110.49107142857143"/>
         </scene>

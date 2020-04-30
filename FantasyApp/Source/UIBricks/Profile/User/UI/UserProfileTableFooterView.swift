@@ -27,4 +27,14 @@ class UserProfileTableFooterView: UIView {
                 .disposed(by: disposeBag)
         }
     }
+    
+    @IBAction func copyUserID(_ sender: Any) {
+        
+        UIPasteboard.general.string = userIDLabel.text
+        
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        
+    }
+    
 }
