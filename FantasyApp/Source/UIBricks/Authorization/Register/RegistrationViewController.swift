@@ -25,54 +25,152 @@ class RegistrationViewController: UIViewController, MVVM_View {
         }
     }
     
-    
     @IBOutlet weak var agrementTitle: UILabel!
+    
     @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+            agrementTextView.text = """
+            We believe that the key to true intimacy is open communication about sex and sexual fantasies. That’s why we’ve created Fantasy Match. 
+            We want to change the way people think and talk about sex. To do so, our platform provides ideas for sexual fantasies, while creating a space for people to discuss sexuality in a positive and open way. There is nothing to hide. Let’s talk. 
+            Talking about relationships and sex requires civility. Be kind, respectful, and decent or you will be blocked. Report any violations you may see in the app. Let’s build a mindful community together! 
+            We follow FOSTA / SESTA bills strictly and strive to fight against online sex trafficking. If you find any online sex trafficking activity in the app, please report it or reach out at feedback.fantasyapp.com immediately.
+            """
 
-            let text = agrementTextView.text ?? ""
-            let attr = NSMutableAttributedString(attributedString: agrementTextView.attributedText)
-
-            attr.addAttributes([
-                .link : viewModel.reportUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com")!))
-            agrementTextView.attributedText = attr
-            agrementTextView.font = UIFont.regularFont(ofSize: 15)
-            agrementTextView.textColor = R.color.textBlackColor()
-            agrementTextView.tintColor = R.color.textPinkColor()
         }
     }
 
-    @IBOutlet private weak var termsTextView: UITextView! {
+    @IBOutlet private weak var iveReadTermsTextView: UITextView! {
         didSet {
-            let text = "I agree to the Terms of Service, Privacy Policy and Fantasy Community Rules."
-            let attr = NSMutableAttributedString(string: text)
+            let text = "I've read and accept Fantasy Match Terms and Conditions, Privacy Policy and Fantasy Community Rules."
 
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
             attr.addAttributes([
                 .link : viewModel.termsUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "Terms of Service")!))
-
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: "Terms and Conditions")!))
+            
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
                                range: text.nsRange(from: text.range(of: "Privacy Policy")!))
-
+            
             attr.addAttributes([
                 .link : viewModel.communityRulesUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
+                .font: UIFont.semiBoldFont(ofSize: 14)],
                                range: text.nsRange(from: text.range(of: "Fantasy Community Rules")!))
 
-            termsTextView.attributedText = attr
-            termsTextView.font = UIFont.regularFont(ofSize: 15)
-            termsTextView.textColor = R.color.textBlackColor()
-            termsTextView.tintColor = R.color.textBlackColor()
-            termsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            
+            iveReadTermsTextView.attributedText = attr
+            iveReadTermsTextView.tintColor = R.color.textPinkColor()
+            iveReadTermsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
+    
+    @IBOutlet private weak var personalDataTextView: UITextView! {
+        didSet {
+            let text = "I give permission to process¹ my personal data under Fantasy Match Privacy Policy and Terms and Conditions.\n¹ You can remove your personal and sensitive data from the Service whenever you want."
+            
+            
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
+            attr.addAttributes([
+                .link : viewModel.termsUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: "Terms and Conditions")!))
+            
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+            
+            attr.addAttributes([
+                .foregroundColor: R.color.textLightGrayColor()!
+            ],
+                               range: text.nsRange(from: text.range(of: "¹ You can remove your personal and sensitive data from the Service whenever you want.")!))
 
+            personalDataTextView.attributedText = attr
+            personalDataTextView.tintColor = R.color.textPinkColor()
+            personalDataTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
+    @IBOutlet private weak var sensetiveDataTextView: UITextView! {
+        didSet {
+            
+            let text = "I give permission to process² my sensitive data (sexual preferences and/or sexual orientation) under Fantasy Match Privacy Policy. Your public profile will show your sexual orientation only for registered users.\n² Your public profile will show your sexual orientation only for registered users."
+            
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+            
+            attr.addAttributes([
+                .foregroundColor: R.color.textLightGrayColor()!
+            ],
+                               range: text.nsRange(from: text.range(of: "² Your public profile will show your sexual orientation only for registered users.")!))
+            
+            sensetiveDataTextView.attributedText = attr
+            sensetiveDataTextView.tintColor = R.color.textPinkColor()
+            sensetiveDataTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+
+    }
+        
+    @IBOutlet private weak var agreeToEmailsTextView: UITextView! {
+        didSet {
+            
+            let text = "I agree to receive³ emails from Fantasy Match according to the Terms and Conditions and Privacy Policy.\n³ You can unsubscribe at any time."
+            
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
+            attr.addAttributes([
+                .link : viewModel.termsUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: "Terms and Conditions")!))
+            
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+            
+            attr.addAttributes([
+                .foregroundColor: R.color.textLightGrayColor()!
+            ],
+                               range: text.nsRange(from: text.range(of: "³ You can unsubscribe at any time.")!))
+            
+            agreeToEmailsTextView.attributedText = attr
+            agreeToEmailsTextView.tintColor = R.color.textPinkColor()
+            agreeToEmailsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+
+    }
+    
     @IBOutlet private weak var agrementButton: UIButton!
 
     // Name section
@@ -431,6 +529,21 @@ extension RegistrationViewController: UIScrollViewDelegate {
     @IBAction func termsAgreementClick(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         viewModel.agreementChanged(agrred: sender.isSelected)
+    }
+    
+    @IBAction func personalDataClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.personalDataChanged(agrred: sender.isSelected)
+    }
+    
+    @IBAction func sensetiveDataClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.sensetiveDataChanged(agrred: sender.isSelected)
+    }
+    
+    @IBAction func agreeToEmailsClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.agreeToReceiveEmailChanged(agrred: sender.isSelected)
     }
     
     @IBAction func relationshipChanged(_ sender: UIButton) {

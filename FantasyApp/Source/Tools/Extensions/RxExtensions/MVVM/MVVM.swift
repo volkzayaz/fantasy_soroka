@@ -47,3 +47,20 @@ extension MVVM_Router where T : UIViewController {
     }
     
 }
+
+extension MVVM_Router {
+    
+    func unwrap(maybeUser: User?, for owner: UIViewController) -> User? {
+        
+        if let x = maybeUser {
+            return x
+        }
+        
+        owner.presentMessage(message: .init(title: R.string.localizable.userUnavailableTitle(),
+                                            description: R.string.localizable.userUnavailableMessage()))
+        
+        return nil
+    }
+    
+}
+

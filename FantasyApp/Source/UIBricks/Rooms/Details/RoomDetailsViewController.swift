@@ -16,26 +16,17 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var fantasiesButton: PrimaryButton! {
         didSet {
-            fantasiesButton.useTransparency = viewModel.room._value.isDraftRoom
-            if !viewModel.room._value.isDraftRoom {
-                fantasiesButton.setBugFixMode()
-            }
+            fantasiesButton.useTransparency = false
         }
     }
     @IBOutlet private var chatButton: PrimaryButton!{
         didSet {
-            chatButton.useTransparency = viewModel.room._value.isDraftRoom
-            if !viewModel.room._value.isDraftRoom {
-                chatButton.setBugFixMode()
-            }
+            chatButton.useTransparency = false
         }
     }
     @IBOutlet private var playButton: PrimaryButton!{
         didSet {
-            playButton.useTransparency = viewModel.room._value.isDraftRoom
-            if !viewModel.room._value.isDraftRoom {
-                playButton.setBugFixMode()
-            }
+            playButton.useTransparency = false
         }
     }
     @IBOutlet private var chatContainerView: UIView!
@@ -206,7 +197,8 @@ extension RoomDetailsViewController {
                                                     return att
                                                     
                                                 },
-                                                protectPolicy: User.changesOfSubscriptionStatus)
+                                                protectPolicy: User.changesOfSubscriptionStatus,
+                                                useUnread: false)
             
         }
         else if segue.identifier == R.segue.roomDetailsViewController.showChat.identifier {

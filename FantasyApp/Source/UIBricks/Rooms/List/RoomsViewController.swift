@@ -22,7 +22,6 @@ class RoomsViewController: UIViewController, MVVM_View {
             control.addTarget(self, action: "pullToRefresh", for: .valueChanged)
             
             tableView.refreshControl = control
-            tableView.backgroundColor = R.color.bgLightGrey()
         }
     }
     @IBOutlet private var createRoomButton: SecondaryButton!
@@ -48,7 +47,7 @@ class RoomsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         
         view.addFantasyGradient()
-        navigationItem.title = "Rooms"
+        navigationItem.title = "Play"
  
         emptyView.emptyView = UIImageView(image: R.image.room_placeholder())
         
@@ -73,6 +72,13 @@ class RoomsViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.dataSource
+            .map { $0.count == 0 ? UIColor.white : R.color.bgLightGrey()! }
+            .drive(onNext: { [weak self] (x) in
+                self?.tableView.backgroundColor = x
+            })
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.dataSource
             .do(onNext: { [weak self] (_) in
                 self?.tableView.refreshControl?.endRefreshing()
             })
@@ -87,6 +93,8 @@ class RoomsViewController: UIViewController, MVVM_View {
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
 
         createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(self.addNewRoom))
     }
 }
 

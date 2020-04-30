@@ -5,6 +5,8 @@
 //  Created by Yonat Sharon on 21/06/2019.
 //
 
+import UIKit
+
 extension MultiSlider {
     func setup() {
         trackView.backgroundColor = actualTintColor
@@ -17,6 +19,13 @@ extension MultiSlider {
         accessibilityIdentifier = "multi_slider"
         accessibilityLabel = "slider"
         accessibilityTraits = [.adjustable]
+
+        minimumView.isHidden = true
+        maximumView.isHidden = true
+
+        if #available(iOS 11.0, *) {
+            valueLabelFormatter.addObserverForAllProperties(observer: self)
+        }
     }
 
     private func setupPanGesture() {
@@ -37,11 +46,18 @@ extension MultiSlider {
         maximumView.removeFromSuperview()
         switch orientation {
         case .vertical:
-            addConstrainedSubview(trackView, constrain: .top, .bottom, .centerXWithinMargins)
+            let centerAttribute: NSLayoutConstraint.Attribute
+            if #available(iOS 12, *) {
+                centerAttribute = .centerX // iOS 12 doesn't like .topMargin, .rightMargin
+            } else {
+                centerAttribute = .centerXWithinMargins
+            }
+            addConstrainedSubview(trackView, constrain: .top, .bottom, centerAttribute)
             trackView.constrain(.width, to: trackWidth)
-            trackView.addConstrainedSubview(slideView, constrain: .left, .right, .bottomMargin, .topMargin)
-            addConstrainedSubview(minimumView, constrain: .bottomMargin, .centerXWithinMargins)
-            addConstrainedSubview(maximumView, constrain: .topMargin, .centerXWithinMargins)
+            trackView.addConstrainedSubview(slideView, constrain: .left, .right)
+            constrainVerticalTrackViewToLayoutMargins()
+            addConstrainedSubview(minimumView, constrain: .bottomMargin, centerAttribute)
+            addConstrainedSubview(maximumView, constrain: .topMargin, centerAttribute)
         default:
             let centerAttribute: NSLayoutConstraint.Attribute
             if #available(iOS 12, *) {
@@ -51,11 +67,8 @@ extension MultiSlider {
             }
             addConstrainedSubview(trackView, constrain: .left, .right, centerAttribute)
             trackView.constrain(.height, to: trackWidth)
-            if #available(iOS 12, *) {
-                trackView.addConstrainedSubview(slideView, constrain: .top, .bottom, .left, .right) // iOS 12 β doesn't like .leftMargin, .rightMargin
-            } else {
-                trackView.addConstrainedSubview(slideView, constrain: .top, .bottom, .leftMargin, .rightMargin)
-            }
+            trackView.addConstrainedSubview(slideView, constrain: .top, .bottom)
+            constrainHorizontalTrackViewToLayoutMargins()
             addConstrainedSubview(minimumView, constrain: .leftMargin, centerAttribute)
             addConstrainedSubview(maximumView, constrain: .rightMargin, centerAttribute)
         }
@@ -68,9 +81,24 @@ extension MultiSlider {
         let halfThumb = thumbDiameter / 2 - 1 // 1 pixel for semi-transparent boundary
         if orientation == .vertical {
             trackView.layoutMargins = UIEdgeInsets(top: halfThumb, left: 0, bottom: halfThumb, right: 0)
+            constrain(.width, to: max(thumbSize.width, trackWidth), relation: .greaterThanOrEqual)
         } else {
             trackView.layoutMargins = UIEdgeInsets(top: 0, left: halfThumb, bottom: 0, right: halfThumb)
+            constrainHorizontalTrackViewToLayoutMargins()
+            constrain(.height, to: max(thumbSize.height, trackWidth), relation: .greaterThanOrEqual)
         }
+    }
+
+    /// workaround to a problem in iOS 12-13, of constraining to `leftMargin` and `rightMargin`.
+    func constrainHorizontalTrackViewToLayoutMargins() {
+        trackView.constrain(slideView, at: .left, diff: trackView.layoutMargins.left)
+        trackView.constrain(slideView, at: .right, diff: -trackView.layoutMargins.right)
+    }
+
+    /// workaround to a problem in iOS 12-13, of constraining to `topMargin` and `bottomMargin`.
+    func constrainVerticalTrackViewToLayoutMargins() {
+        trackView.constrain(slideView, at: .top, diff: trackView.layoutMargins.top)
+        trackView.constrain(slideView, at: .bottom, diff: -trackView.layoutMargins.bottom)
     }
 
     func repositionThumbViews() {
@@ -110,7 +138,7 @@ extension MultiSlider {
     private func outerTrackView(constraining: NSLayoutConstraint.Attribute, to thumbView: UIView) -> UIView {
         let view = UIView()
         view.backgroundColor = outerTrackColor
-        trackView.addConstrainedSubview(view, constrain: .top, .bottom, .leading, .trailing)
+        trackView.addConstrainedSubview(view, constrain: .top, .bottom, .left, .right)
         trackView.removeFirstConstraint { $0.firstItem === view && $0.firstAttribute == constraining }
         trackView.constrain(view, at: constraining, to: thumbView, at: .center(in: orientation))
         trackView.sendSubviewToBack(view)
@@ -166,6 +194,12 @@ extension MultiSlider {
             labelValue = value[i]
         }
         valueLabels[i].text = valueLabelFormatter.string(from: NSNumber(value: Double(labelValue)))
+    }
+
+    func updateAllValueLabels() {
+        for i in 0 ..< valueLabels.count {
+            updateValueLabel(i)
+        }
     }
 
     func updateValueCount(_ count: Int) {
@@ -246,5 +280,217 @@ extension MultiSlider {
     func updateTrackViewCornerRounding() {
         trackView.layer.cornerRadius = hasRoundTrackEnds ? trackWidth / 2 : 1
         outerTrackViews.forEach { $0.layer.cornerRadius = trackView.layer.cornerRadius }
+    }
+}
+
+extension UIView {
+
+    /// Sweeter: The color used to tint the view, as inherited from its superviews.
+    public var actualTintColor: UIColor {
+        var tintedView: UIView? = self
+        while let currentView = tintedView, nil == currentView.tintColor {
+            tintedView = currentView.superview
+        }
+        return tintedView?.tintColor ?? UIColor(red: 0, green: 0.5, blue: 1, alpha: 1)
+    }
+
+    /// Sweeter: Set constant attribute. Example: `constrain(.width, to: 17)`
+    @discardableResult public func constrain(
+        _ at: NSLayoutConstraint.Attribute,
+        to: CGFloat = 0,
+        ratio: CGFloat = 1,
+        relation: NSLayoutConstraint.Relation = .equal,
+        priority: UILayoutPriority = .required
+    ) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: self, attribute: at, relatedBy: relation,
+            toItem: nil, attribute: .notAnAttribute, multiplier: ratio, constant: to
+        )
+        constraint.priority = priority
+        addConstraintWithoutConflict(constraint)
+        return constraint
+    }
+
+    /// Sweeter: Pin subview at a specific place. Example: `constrain(label, at: .top)`
+    @discardableResult public func constrain(
+        _ subview: UIView,
+        at: NSLayoutConstraint.Attribute,
+        diff: CGFloat = 0,
+        ratio: CGFloat = 1,
+        relation: NSLayoutConstraint.Relation = .equal,
+        priority: UILayoutPriority = .required
+    ) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: subview, attribute: at, relatedBy: relation,
+            toItem: self, attribute: at, multiplier: ratio, constant: diff
+        )
+        constraint.priority = priority
+        addConstraintWithoutConflict(constraint)
+        return constraint
+    }
+
+    /// Sweeter: Pin two subviews to each other. Example:
+    ///
+    /// `constrain(label, at: .leading, to: textField)`
+    ///
+    /// `constrain(textField, at: .top, to: label, at: .bottom, diff: 8)`
+    @discardableResult public func constrain(
+        _ subview: UIView,
+        at: NSLayoutConstraint.Attribute,
+        to subview2: UIView,
+        at at2: NSLayoutConstraint.Attribute = .notAnAttribute,
+        diff: CGFloat = 0,
+        ratio: CGFloat = 1,
+        relation: NSLayoutConstraint.Relation = .equal,
+        priority: UILayoutPriority = .required
+    ) -> NSLayoutConstraint {
+        let at2real = at2 == .notAnAttribute ? at : at2
+        let constraint = NSLayoutConstraint(
+            item: subview, attribute: at, relatedBy: relation,
+            toItem: subview2, attribute: at2real, multiplier: ratio, constant: diff
+        )
+        constraint.priority = priority
+        addConstraintWithoutConflict(constraint)
+        return constraint
+    }
+
+    /// Sweeter: Add subview pinned to specific places. Example: `addConstrainedSubview(button, constrain: .centerX, .centerY)`
+    @discardableResult public func addConstrainedSubview(_ subview: UIView, constrain: NSLayoutConstraint.Attribute...) -> [NSLayoutConstraint] {
+        return addConstrainedSubview(subview, constrainedAttributes: constrain)
+    }
+
+    @discardableResult func addConstrainedSubview(_ subview: UIView, constrainedAttributes: [NSLayoutConstraint.Attribute]) -> [NSLayoutConstraint] {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(subview)
+        return constrainedAttributes.map { self.constrain(subview, at: $0) }
+    }
+
+    func addConstraintWithoutConflict(_ constraint: NSLayoutConstraint) {
+        removeConstraints(constraints.filter {
+            constraint.firstItem === $0.firstItem
+                && constraint.secondItem === $0.secondItem
+                && constraint.firstAttribute == $0.firstAttribute
+                && constraint.secondAttribute == $0.secondAttribute
+        })
+        addConstraint(constraint)
+    }
+
+    /// Sweeter: Search the view hierarchy recursively for a subview that conforms to `predicate`
+    public func viewInHierarchy(frontFirst: Bool = true, where predicate: (UIView) -> Bool) -> UIView? {
+        if predicate(self) { return self }
+        let views = frontFirst ? subviews.reversed() : subviews
+        for subview in views {
+            if let found = subview.viewInHierarchy(frontFirst: frontFirst, where: predicate) {
+                return found
+            }
+        }
+        return nil
+    }
+
+    /// Sweeter: Search the view hierarchy recursively for a subview with `aClass`
+    public func viewWithClass<T>(_ aClass: T.Type, frontFirst: Bool = true) -> T? {
+        return viewInHierarchy(frontFirst: frontFirst, where: { $0 is T }) as? T
+    }
+    
+}
+
+//
+//  AvailableHapticFeedback.swift
+//
+//  Created by Yonat Sharon on 25.10.2018.
+//
+
+import UIKit
+
+/// Wrapper for UIFeedbackGenerator that compiles on iOS 9
+open class AvailableHapticFeedback {
+    public enum Style: CaseIterable {
+        case selection
+        case impactLight, impactMedium, impactHeavy
+        case notificationSuccess, notificationWarning, notificationError
+    }
+
+    public let style: Style
+
+    public init(style: Style = .selection) {
+        self.style = style
+    }
+
+    open func prepare() {
+        if #available(iOS 10.0, *) {
+            feedbackGenerator.prepare()
+        }
+    }
+
+    open func generateFeedback() {
+        if #available(iOS 10.0, *) {
+            feedbackGenerator.generate(style: style)
+        }
+    }
+
+    open func end() {
+        _anyFeedbackGenerator = nil
+    }
+
+    @available(iOS 10.0, *)
+    var feedbackGenerator: UIFeedbackGenerator & AvailableHapticFeedbackGenerator {
+        if nil == _anyFeedbackGenerator {
+            createFeedbackGenerator()
+        }
+        // swiftlint:disable force_cast force_unwrapping
+        return _anyFeedbackGenerator! as! UIFeedbackGenerator & AvailableHapticFeedbackGenerator
+        // swiftlint:enable force_cast force_unwrapping
+    }
+
+    private var _anyFeedbackGenerator: Any?
+
+    @available(iOS 10.0, *)
+    private func createFeedbackGenerator() {
+        switch style {
+        case .selection:
+            _anyFeedbackGenerator = UISelectionFeedbackGenerator()
+        case .impactLight:
+            _anyFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        case .impactMedium:
+            _anyFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        case .impactHeavy:
+            _anyFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        case .notificationSuccess, .notificationWarning, .notificationError:
+            _anyFeedbackGenerator = UINotificationFeedbackGenerator()
+        }
+    }
+}
+
+protocol AvailableHapticFeedbackGenerator {
+    func generate(style: AvailableHapticFeedback.Style)
+}
+
+@available(iOS 10.0, *)
+extension UISelectionFeedbackGenerator: AvailableHapticFeedbackGenerator {
+    func generate(style: AvailableHapticFeedback.Style) {
+        selectionChanged()
+    }
+}
+
+@available(iOS 10.0, *)
+extension UIImpactFeedbackGenerator: AvailableHapticFeedbackGenerator {
+    func generate(style: AvailableHapticFeedback.Style) {
+        impactOccurred()
+    }
+}
+
+@available(iOS 10.0, *)
+extension UINotificationFeedbackGenerator: AvailableHapticFeedbackGenerator {
+    func generate(style: AvailableHapticFeedback.Style) {
+        let notificationFeedbackType: UINotificationFeedbackGenerator.FeedbackType
+        switch style {
+        case .notificationWarning:
+            notificationFeedbackType = .warning
+        case .notificationError:
+            notificationFeedbackType = .error
+        default:
+            notificationFeedbackType = .success
+        }
+        notificationOccurred(notificationFeedbackType)
     }
 }

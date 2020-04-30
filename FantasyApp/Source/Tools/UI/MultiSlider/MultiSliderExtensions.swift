@@ -156,7 +156,7 @@ extension NSLayoutConstraint.Attribute {
         case .vertical:
             return .top
         default:
-            return .trailing
+            return .right
         }
     }
 
@@ -165,7 +165,7 @@ extension NSLayoutConstraint.Attribute {
         case .vertical:
             return .bottom
         default:
-            return .leading
+            return .left
         }
     }
 }
@@ -203,5 +203,36 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+}
+
+extension NSObject {
+    func addObserverForAllProperties(
+        observer: NSObject,
+        options: NSKeyValueObservingOptions = [],
+        context: UnsafeMutableRawPointer? = nil
+    ) {
+        performForAllKeyPaths { keyPath in
+            addObserver(observer, forKeyPath: keyPath, options: options, context: context)
+        }
+    }
+
+    func removeObserverForAllProperties(
+        observer: NSObject,
+        context: UnsafeMutableRawPointer? = nil
+    ) {
+        performForAllKeyPaths { keyPath in
+            removeObserver(observer, forKeyPath: keyPath, context: context)
+        }
+    }
+
+    func performForAllKeyPaths(_ action: (String) -> Void) {
+        var count: UInt32 = 0
+        guard let properties = class_copyPropertyList(object_getClass(self), &count) else { return }
+        defer { free(properties) }
+        for i in 0 ..< Int(count) {
+            let keyPath = String(cString: property_getName(properties[i]))
+            action(keyPath)
+        }
     }
 }

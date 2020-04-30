@@ -23,9 +23,20 @@ extension DiscoveryManager {
                     .whereKey("objectId", notContainedIn: noGo)
                     .whereKey("belongsTo", equalTo: filter.community.pfObject)
                     .whereKey("gender", equalTo: filter.filter.gender.rawValue)
+                    .whereKey("isBlocked", notEqualTo: NSNumber(booleanLiteral: true))
+                    .whereKey("couple", equalTo: filter.filter.couple.parseField)
+                    
                 
                 if filter.filter.sexualityV2 != .all {
                     query = query.whereKey("sexuality", equalTo: filter.filter.sexualityV2.rawValue)
+                }
+                
+                if let minDate = Calendar.current.date(byAdding: .year, value: -filter.filter.age.upperBound, to: Date()) {
+                    query = query.whereKey("birthday", greaterThan: minDate)
+                }
+                
+                if let maxDate = Calendar.current.date(byAdding: .year, value: -filter.filter.age.lowerBound, to: Date()) {
+                    query = query.whereKey("birthday", lessThan: maxDate)
                 }
                     
                 return query.rx.fetchAllObjects()

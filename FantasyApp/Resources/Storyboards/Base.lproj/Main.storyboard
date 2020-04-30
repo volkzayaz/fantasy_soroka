@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rD1-8M-Box">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rD1-8M-Box">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -116,9 +116,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="sAf-SH-0GH" kind="relationship" relationship="viewControllers" id="aN5-Lf-cbO"/>
+                        <segue destination="NlQ-0E-WzG" kind="relationship" relationship="viewControllers" id="Hwd-5G-js6"/>
                         <segue destination="XBn-ky-axQ" kind="relationship" relationship="viewControllers" id="Vye-b6-AeV"/>
                         <segue destination="AGp-U5-2Fc" kind="relationship" relationship="viewControllers" id="5Rz-Vz-lua"/>
-                        <segue destination="NlQ-0E-WzG" kind="relationship" relationship="viewControllers" id="Hwd-5G-js6"/>
                         <segue destination="l0T-vF-a2a" kind="relationship" relationship="viewControllers" id="oUH-Nh-sa2"/>
                     </connections>
                 </tabBarController>

@@ -135,11 +135,20 @@ extension UserManager {
         
     }    ///isSubscribed = 0;
     
-    static func getUser(id: String) -> Single<User> {
+    static func getUser(id: String) -> Single<User?> {
         return User.query
             .whereKey("objectId", equalTo: id )
             .rx.fetchFirstObject()
-            .map { try User(pfUser: $0 as! PFUser) }
+            .map { x in
+                
+                guard let x = x as? PFUser else { return nil }
+                
+                if let isBlocked = x["isBlocked"] as? Bool, isBlocked == true {
+                    return nil
+                }
+                
+                return try User(pfUser: x)
+            }
     }
     
 }

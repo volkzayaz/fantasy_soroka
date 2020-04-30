@@ -30,19 +30,22 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         didSet {
             ageSlider.thumbImage = R.image.sliderThumbImage()
             ageSlider.orientation = .horizontal
-            ageSlider.valueLabelPosition = .bottom
+            ageSlider.valueLabelPosition = .notAnAttribute
             ageSlider.minimumValue = 21.0
             ageSlider.maximumValue = 100.0
             ageSlider.snapStepSize = 1.0
             ageSlider.trackWidth = 2
             ageSlider.showsThumbImageShadow = false
             ageSlider.keepsDistanceBetweenThumbs = true
+            ageSlider.distanceBetweenThumbs = 10
             ageSlider.outerTrackColor = R.color.listBackgroundColor()
             ageSlider.tintColor = R.color.textPinkColor()
             ageSlider.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
         }
     }
 
+    @IBOutlet weak var ageLabel: UILabel!
+    
     // Couple section
     @IBOutlet weak var secondPartnerSwitch: UISwitch! {
         didSet {
@@ -88,11 +91,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             .drive(secondPartnerStackView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        switchSignal.drive(onNext: { [unowned self] (x) in
-            let c: RelationshipStatus = x ? .couple(partnerGender: self.viewModel.selectedSecondPartnerGender) : .single
-            self.viewModel.changeCouple(x: c)
-        }).disposed(by: rx.disposeBag)
-
         // Output Data bindings
         viewModel.community
             .map { $0?.name }
@@ -112,7 +110,20 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             $0.font = UIFont.regularFont(ofSize: 15)
             $0.textColor = R.color.textBlackColor()
         }
+        
+        viewModel.ageDriver
+            .map { "Age: \($0.lowerBound) - \($0.upperBound)" }
+            .drive(ageLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
+    
+    var smoothPickerHack = false
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        smoothPickerHack = true
+    }
+    
 }
 
 //MARK:- Actions
@@ -135,6 +146,11 @@ extension DiscoveryFilterViewController {
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
     }
+    
+    @IBAction func coupleSwitch(_ x: UISwitch) {
+        let c: RelationshipStatus = x.isOn ? .couple(partnerGender: self.viewModel.selectedSecondPartnerGender) : .single
+        self.viewModel.changeCouple(x: c)
+    }
 }
 
 //MARK:- SmoothPickerViewDelegate, SmoothPickerViewDataSource
@@ -143,6 +159,10 @@ extension DiscoveryFilterViewController: SmoothPickerViewDelegate, SmoothPickerV
 
     func didSelectItem(index: Int, view: UIView, pickerView: SmoothPickerView) {
 
+        ///smooth picker calls this method for initial view load even though nobody selected anything
+        ///internal bug in the library
+        guard smoothPickerHack else { return }
+        
         guard let v = view as? SwipeView,
             let d = v.data else  { return }
 

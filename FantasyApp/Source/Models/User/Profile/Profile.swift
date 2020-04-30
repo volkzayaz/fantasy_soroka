@@ -36,6 +36,9 @@ struct EditProfileForm {
 
 struct RegisterForm {
     var agreementTick: Bool = false
+    var personalDataTick: Bool = false
+    var sensetiveDataTick: Bool = false
+    var agreeToEmailsTick: Bool = false
     
     var name: String = ""
     var brithdate: Date?

@@ -140,7 +140,7 @@ extension User {
                        answers: answers)
         
         searchPreferences = searchPrefs
-        fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
+        fantasies = .init(purchasedCollections: [])
         community = User.Community(value: maybeCommunity,
                                    changePolicy: changePolicy,
                                    lastKnownLocation: maybeLastKnownLocation)
@@ -171,6 +171,8 @@ extension User {
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
         
+            "couple"                    : bio.relationshipStatus.parseField,
+            
             "searchPrefs"               : searchPrefs as Any,
             
             "belongsTo"                 : community.value?.pfObject as Any,
@@ -179,11 +181,6 @@ extension User {
             
             "notificationSettings"      : notificationSettings.pfObject,
         ] as [String : Any]
-        
-        switch bio.relationshipStatus {
-        case .single:                    dict["couple"] = "single"
-        case .couple(let partnerGender): dict["couple"] = partnerGender.rawValue
-        }
         
         user.setValuesForKeys(dict)
         

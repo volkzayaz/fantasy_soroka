@@ -94,9 +94,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     //    }
     
     struct Fantasies: Equatable, Codable {
-        var liked: [Fantasy.Card]
-        var disliked: [Fantasy.Card]
-        
         var purchasedCollections: [Fantasy.Collection]
     }
     
@@ -368,6 +365,13 @@ enum RelationshipStatus: Equatable, Codable {
         switch self {
         case .single                   : return ("Solo", nil)
         case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
+        }
+    }
+    
+    var parseField: String {
+        switch self {
+        case .single                   : return "single"
+        case .couple(let partnerGender): return partnerGender.rawValue
         }
     }
 }

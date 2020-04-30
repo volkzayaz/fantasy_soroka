@@ -29,6 +29,10 @@ extension DiscoveryFilterViewModel {
     var age: Range<Int> {
         return form.value.age
     }
+    
+    var ageDriver: Driver<Range<Int>> {
+        return form.asDriver().map { $0.age }
+    }
 
     var selectedPartnerGender: Int {
         return Gender.index(by: form.value.gender)
@@ -66,7 +70,7 @@ struct DiscoveryFilterViewModel : MVVM_ViewModel {
     init(router: DiscoveryFilterRouter) {
         self.router = router
 
-        form = .init(value: User.current?.searchPreferences?.toSearchPreferencesV2 ?? .default)
+        form = .init(value: User.current?.searchPreferences ?? .default)
         
         /////progress indicator
         
@@ -109,6 +113,7 @@ extension DiscoveryFilterViewModel {
     }
 
     func submit() {
+        
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))
         router.owner.navigationController?.dismiss(animated: true, completion: nil)
     }
