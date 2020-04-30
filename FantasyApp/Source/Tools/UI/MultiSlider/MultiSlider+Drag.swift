@@ -5,9 +5,14 @@
 //  Created by Yonat Sharon on 25.10.2018.
 //
 
+import UIKit
+
 extension MultiSlider: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        guard let panGesture = otherGestureRecognizer as? UIPanGestureRecognizer else { return false }
+        let velocity = panGesture.velocity(in: self)
+        let panOrientation: NSLayoutConstraint.Axis = abs(velocity.y) > abs(velocity.x) ? .vertical : .horizontal
+        return panOrientation != orientation
     }
 
     @objc open func didDrag(_ panGesture: UIPanGestureRecognizer) {
@@ -53,8 +58,17 @@ extension MultiSlider: UIGestureRecognizerDelegate {
 
     /// adjusted position that doesn't cross prev/next thumb and total range
     private func boundedDraggedThumbPosition(targetPosition: CGFloat, stepSizeInView: CGFloat) -> CGFloat {
-        var delta = snapStepSize > 0 ? stepSizeInView : thumbViews[draggedThumbIndex].frame.size(in: orientation) / 2
-        delta = keepsDistanceBetweenThumbs ? delta : 0
+        var delta: CGFloat
+        switch (distanceBetweenThumbs, snapStepSize) {
+        case (0, _):
+            delta = 0
+        case let (_, snapStepSize) where snapStepSize > 0:
+            delta = stepSizeInView
+        case let (distance, _) where distance > 0 && distance < maximumValue - minimumValue:
+            delta = (distance / (maximumValue - minimumValue)) * slideView.bounds.size(in: orientation)
+        default:
+            delta = thumbViews[draggedThumbIndex].frame.size(in: orientation) / 2
+        }
         if orientation == .horizontal { delta = -delta }
         let bottomLimit = draggedThumbIndex > 0
             ? thumbViews[draggedThumbIndex - 1].center.coordinate(in: orientation) - delta

@@ -1606,6 +1606,7 @@ activated when it reaches</string>
                     <size key="freeformSize" width="414" height="950"/>
                     <connections>
                         <outlet property="activeCityImageView" destination="iLt-J4-MI5" id="Feo-sl-7em"/>
+                        <outlet property="ageLabel" destination="Ejk-h8-EkV" id="PgO-up-UuG"/>
                         <outlet property="ageSlider" destination="Mdk-zv-GGl" id="bH9-aX-BCW"/>
                         <outlet property="cityLabel" destination="9NS-4E-Ebr" id="ykV-vp-kcs"/>
                         <outlet property="citySectionView" destination="BIM-HY-Gw2" id="lkG-i8-c1M"/>

@@ -30,19 +30,22 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         didSet {
             ageSlider.thumbImage = R.image.sliderThumbImage()
             ageSlider.orientation = .horizontal
-            ageSlider.valueLabelPosition = .bottom
+            ageSlider.valueLabelPosition = .notAnAttribute
             ageSlider.minimumValue = 21.0
             ageSlider.maximumValue = 100.0
             ageSlider.snapStepSize = 1.0
             ageSlider.trackWidth = 2
             ageSlider.showsThumbImageShadow = false
             ageSlider.keepsDistanceBetweenThumbs = true
+            ageSlider.distanceBetweenThumbs = 10
             ageSlider.outerTrackColor = R.color.listBackgroundColor()
             ageSlider.tintColor = R.color.textPinkColor()
             ageSlider.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
         }
     }
 
+    @IBOutlet weak var ageLabel: UILabel!
+    
     // Couple section
     @IBOutlet weak var secondPartnerSwitch: UISwitch! {
         didSet {
@@ -107,6 +110,11 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             $0.font = UIFont.regularFont(ofSize: 15)
             $0.textColor = R.color.textBlackColor()
         }
+        
+        viewModel.ageDriver
+            .map { "Age: \($0.lowerBound) - \($0.upperBound)" }
+            .drive(ageLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
     
     var smoothPickerHack = false

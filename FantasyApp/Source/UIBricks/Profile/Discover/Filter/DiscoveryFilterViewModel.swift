@@ -29,6 +29,10 @@ extension DiscoveryFilterViewModel {
     var age: Range<Int> {
         return form.value.age
     }
+    
+    var ageDriver: Driver<Range<Int>> {
+        return form.asDriver().map { $0.age }
+    }
 
     var selectedPartnerGender: Int {
         return Gender.index(by: form.value.gender)
