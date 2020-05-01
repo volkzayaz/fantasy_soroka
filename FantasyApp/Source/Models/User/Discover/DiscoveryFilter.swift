@@ -22,7 +22,7 @@ struct SearchPreferences: Codable, Equatable {
     var couple: RelationshipStatus
 
     static var `default`: SearchPreferences {
-        return SearchPreferences(age: 18..<30, gender: .male, sexuality: .all, couple: .couple(partnerGender: .male))
+        return SearchPreferences(age: 21..<69, gender: .male, sexuality: .all, couple: .couple(partnerGender: .male))
     }
 }
 

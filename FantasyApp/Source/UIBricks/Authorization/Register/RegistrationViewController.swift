@@ -110,7 +110,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var sensetiveDataTextView: UITextView! {
         didSet {
             
-            let text = "I give permission to process² my sensitive data (sexual preferences and/or sexual orientation) under Fantasy Match Privacy Policy. Your public profile will show your sexual orientation only for registered users.\n² Your public profile will show your sexual orientation only for registered users."
+            let text = "I give permission to process² my sensitive data (sexual preferences and/or sexual orientation) under Fantasy Match Privacy Policy.\n² Your public profile will show your sexual orientation only to registered users."
             
             let attr = NSMutableAttributedString(string: text,
              attributes: [
@@ -127,7 +127,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             attr.addAttributes([
                 .foregroundColor: R.color.textLightGrayColor()!
             ],
-                               range: text.nsRange(from: text.range(of: "² Your public profile will show your sexual orientation only for registered users.")!))
+                               range: text.nsRange(from: text.range(of: "² Your public profile will show your sexual orientation only to registered users.")!))
             
             sensetiveDataTextView.attributedText = attr
             sensetiveDataTextView.tintColor = R.color.textPinkColor()
