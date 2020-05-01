@@ -198,7 +198,7 @@ extension RoomDetailsViewController {
                                                     
                                                 },
                                                 protectPolicy: User.changesOfSubscriptionStatus,
-                                                useUnread: false)
+                                                hideUnread: true)
             
         }
         else if segue.identifier == R.segue.roomDetailsViewController.showChat.identifier {

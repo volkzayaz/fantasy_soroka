@@ -16,7 +16,7 @@ extension FantasyListViewModel {
 
     var dataSource: Driver<[AnimatableSectionModel<String, CardType>]> {
         
-        let useUnread = self.useUnread
+        let hideUnread = self.hideUnread
         
         return Driver.combineLatest(
             protectPolicy,
@@ -39,7 +39,7 @@ extension FantasyListViewModel {
                     
                     return .fantasy(ProtectedEntity(entity: card,
                                              isProtected: isSubscribed),
-                             useUnread && (liked || disliked)
+                             hideUnread || (liked || disliked)
                     )
             })
                 
@@ -95,7 +95,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
     fileprivate let provider: Driver<[Fantasy.Card]>
     fileprivate let protectPolicy: Driver<Bool>
     fileprivate let detailsProvider: (Fantasy.Card) -> FantasyDetailProvider
-    fileprivate let useUnread: Bool
+    fileprivate let hideUnread: Bool
     
     let titleProvider: FantasyListTitleProvider
     
@@ -106,13 +106,13 @@ struct FantasyListViewModel : MVVM_ViewModel {
          detailsProvider: @escaping (Fantasy.Card) -> FantasyDetailProvider,
          titleProvider: @escaping FantasyListTitleProvider = FantasyListViewModel.countTitleProvider,
          protectPolicy: Driver<Bool> = .just(false),
-         useUnread: Bool = true) {
+         hideUnread: Bool = false) {
         self.router = router
         self.provider = cardsProvider
         self.detailsProvider = detailsProvider
         self.protectPolicy = protectPolicy
         self.titleProvider = titleProvider
-        self.useUnread = useUnread
+        self.hideUnread = hideUnread
         
         /////progress indicator
         
