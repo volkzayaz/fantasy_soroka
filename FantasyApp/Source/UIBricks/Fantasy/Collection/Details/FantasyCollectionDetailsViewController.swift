@@ -110,7 +110,9 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
         }
     }
     @IBOutlet weak var collTableView: CoolTable!
-    
+    @IBOutlet weak var imageContainer: UIView!
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -125,16 +127,23 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         collTableView.rx.contentOffset
-        .map { offset in
-            return CGPoint(x: offset.x, y: -1 * (offset.y))
-        }
-        .subscribe(onNext: { [unowned self] (x) in
-            
-            self.scrollableBackgroundView.frame = .init(origin: x,
-                                                        size: CGSize(width: self.view.frame.size.width,
-                                                                     height: max(self.view.frame.size.height,
-                                                                                 self.collTableView.contentSize.height)))
-        })
+            .subscribe(onNext: { [unowned self] offset in
+                
+                let imageStretchHeight = abs(offset.y) - self.imageContainer.frame.height
+                print(imageStretchHeight)
+
+                if imageStretchHeight >= 0 {
+                    self.imageHeightConstraint.constant = imageStretchHeight
+                } else {
+                    self.imageHeightConstraint.constant = 0
+                }
+                self.view.layoutIfNeeded()
+                
+                self.scrollableBackgroundView.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y)),
+                                                            size: CGSize(width: self.view.frame.size.width,
+                                                                         height: max(self.view.frame.size.height,
+                                                                                     self.collTableView.contentSize.height)))
+            })
             .disposed(by: rx.disposeBag)
         
         viewModel.reloadTrigger
@@ -171,7 +180,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
         self.dismiss(animated: true, completion: nil)
     }
     
-} 
+}
 
 ///TableViews
 
