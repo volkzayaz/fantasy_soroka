@@ -130,8 +130,8 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] offset in
                 
                 let imageStretchHeight = abs(offset.y) - self.imageContainer.frame.height
-                 
-                if imageStretchHeight > self.view.frame.height * 0.13 {
+                
+                if imageStretchHeight > self.view.frame.height * 0.13 && offset.y.isLess(than: 0)  {
                     self.dismiss(animated: true, completion: nil)
                     return
                 }
