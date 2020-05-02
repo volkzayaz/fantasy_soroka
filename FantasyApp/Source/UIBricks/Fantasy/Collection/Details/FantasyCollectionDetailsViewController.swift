@@ -130,6 +130,11 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] offset in
                 
                 let imageStretchHeight = abs(offset.y) - self.imageContainer.frame.height
+                 
+                if imageStretchHeight > self.view.frame.height * 0.13 {
+                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
 
                 if imageStretchHeight >= 0 {
                     self.imageHeightConstraint.constant = imageStretchHeight
@@ -137,7 +142,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
                     self.imageHeightConstraint.constant = 0
                 }
                 self.view.layoutIfNeeded()
-                
+                                
                 self.scrollableBackgroundView.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y)),
                                                             size: CGSize(width: self.view.frame.size.width,
                                                                          height: max(self.view.frame.size.height,
