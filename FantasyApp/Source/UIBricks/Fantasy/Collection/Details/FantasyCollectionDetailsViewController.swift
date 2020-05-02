@@ -130,7 +130,6 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] offset in
                 
                 let imageStretchHeight = abs(offset.y) - self.imageContainer.frame.height
-                print(imageStretchHeight)
 
                 if imageStretchHeight >= 0 {
                     self.imageHeightConstraint.constant = imageStretchHeight
