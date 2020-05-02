@@ -303,13 +303,14 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
             return
         }
         
+        let detailsStartOffset = view.bounds.height - (view.bounds.height - unzoomedBackgroundConstraint.constant) - (navigationBar.frame.maxY - 30)
         let areaRadius = view.bounds.height / 5
         let topAreaRange = 0 ... view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius
         let centerAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius ...
             view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio + areaRadius
         let bottomAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio +
-            areaRadius ... scrollView.contentSize.height
-        
+            areaRadius ... detailsStartOffset
+
         if centerAreaRange.contains(scrollView.contentOffset.y) {
             animateContentOffsetChange(contentOffset:
                 CGPoint(x: 0, y: view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio))
@@ -317,8 +318,7 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
         } else if topAreaRange.contains(scrollView.contentOffset.y) {
             animateDisappearance()
         } else if bottomAreaRange.contains(scrollView.contentOffset.y) {
-            animateContentOffsetChange(contentOffset:
-                CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height))
+            animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: detailsStartOffset))
             shareButton.isHidden = false
         }
     }
@@ -345,6 +345,8 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
 
         if scrollView.contentOffset.y < cap {
             backgroundImageCenterY.constant = min(0, scrollView.contentOffset.y - cap)
+        } else {
+            backgroundImageCenterY.constant = 0
         }
     }
     
