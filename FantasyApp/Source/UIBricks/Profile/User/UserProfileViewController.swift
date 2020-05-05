@@ -151,12 +151,15 @@ class UserProfileViewController: UIViewController, MVVM_View {
         footerView.viewModel = viewModel
 
         profileTableView.rx.contentOffset
-            .map { [unowned self] offset in
-                return CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top))
-            }
-            .subscribe(onNext: { [unowned self] (x) in
+            .subscribe(onNext: { [unowned self] offset in
+                let stretchHeight = abs(offset.y) - self.photosCollectionView.frame.height
                 
-                self.scrollableBackground.frame = .init(origin: x,
+                if stretchHeight > self.view.frame.height * 0.05 && offset.y.isLess(than: 0)  {
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
+                
+                self.scrollableBackground.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top)),
                                                         size: self.profileTableView.contentSize)
             })
             .disposed(by: rx.disposeBag)
