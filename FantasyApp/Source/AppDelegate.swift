@@ -12,12 +12,18 @@ import Branch
 import FBSDKLoginKit
 import FBSDKCoreKit
 
+import SwiftyStoreKit
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { _, _ in
+            return true
+        }
         
         Configuration.setup(launchOptions: launchOptions)
         

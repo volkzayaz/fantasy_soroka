@@ -3267,7 +3267,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.96;
+				MARKETING_VERSION = 2.0.97;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.fantasyapp.iosclient";
@@ -3301,7 +3301,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.96;
+				MARKETING_VERSION = 2.0.97;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Fantasy App Store";
@@ -3390,7 +3390,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.96;
+				MARKETING_VERSION = 2.0.97;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
@@ -3532,7 +3532,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc Rich Push";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient.FantasyAppRichPush";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
