@@ -155,12 +155,14 @@ class UserProfileViewController: UIViewController, MVVM_View {
                 let stretchHeight = abs(offset.y) - self.photosCollectionView.frame.height
                 
                 if stretchHeight > self.view.frame.height * 0.05 && offset.y.isLess(than: 0)  {
-                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                     return
                 }
                 
+                
+                let height = max(self.view.frame.size.height, self.profileTableView.contentSize.height)
                 self.scrollableBackground.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top)),
-                                                        size: self.profileTableView.contentSize)
+                                                        size: CGSize(width: self.view.frame.size.width, height: height))
             })
             .disposed(by: rx.disposeBag)
         
@@ -270,11 +272,6 @@ class UserProfileViewController: UIViewController, MVVM_View {
     }
     
     @IBAction func back() {
-        if let nav = navigationController {
-            nav.popViewController(animated: true)
-            return
-        }
-
         dismiss(animated: true, completion: nil)
     }
     

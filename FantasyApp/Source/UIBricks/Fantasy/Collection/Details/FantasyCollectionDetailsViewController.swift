@@ -115,7 +115,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
     
     let tableHeaderView: UIView = {
         let headerView = UIView()
-        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20)
+        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20 + (UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0))
         return headerView
     }()
 

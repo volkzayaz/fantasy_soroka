@@ -28,7 +28,9 @@ struct RoomSettingsRouter: MVVM_Router {
         
         let vc = R.storyboard.user.userProfileViewController()!
         vc.viewModel = .init(router: .init(owner: vc), user: user, bottomActionsAvailable: false)
-        owner.navigationController?.pushViewController(vc, animated: true)
+        let navigationController = FantasyNavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        owner.navigationController?.present(navigationController, animated: true, completion: nil)
         
     }
     
