@@ -112,6 +112,12 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet weak var collTableView: CoolTable!
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    
+    let tableHeaderView: UIView = {
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20)
+        return headerView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,21 +135,21 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
         collTableView.rx.contentOffset
             .subscribe(onNext: { [unowned self] offset in
                 
-                let imageStretchHeight = abs(offset.y) - self.imageContainer.frame.height
+                let imageStretchHeight = abs(offset.y) - (self.imageContainer.frame.height - self.tableHeaderView.frame.height)
                 
                 if imageStretchHeight > self.view.frame.height * 0.13 && offset.y.isLess(than: 0)  {
                     self.dismiss(animated: true, completion: nil)
                     return
                 }
 
-                if imageStretchHeight >= 0 {
+                if imageStretchHeight >= 0 && offset.y.isLess(than: 0) {
                     self.imageHeightConstraint.constant = imageStretchHeight
                 } else {
                     self.imageHeightConstraint.constant = 0
                 }
                 self.view.layoutIfNeeded()
                                 
-                self.scrollableBackgroundView.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y)),
+                self.scrollableBackgroundView.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y - self.tableHeaderView.frame.height)),
                                                             size: CGSize(width: self.view.frame.size.width,
                                                                          height: max(self.view.frame.size.height,
                                                                                      self.collTableView.contentSize.height)))
@@ -165,8 +171,9 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let top = (imageView.frame.size.height) - scrollableBackgroundView.layer.cornerRadius
+        collTableView.tableHeaderView = tableHeaderView
         
+        let top = (imageView.frame.size.height - tableHeaderView.frame.height) - scrollableBackgroundView.layer.cornerRadius
         collTableView.contentInset = .init(top: top,
                                            left: 0, bottom: 0, right: 0)
         collTableView.setContentOffset(.init(x: 0, y: -top), animated: true)
