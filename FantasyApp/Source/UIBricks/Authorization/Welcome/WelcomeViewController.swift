@@ -17,24 +17,24 @@ class WelcomeViewController: UIViewController, MVVM_View {
 
     @IBOutlet private weak var termsTextView: UITextView! {
         didSet {
-            let text = "We take your privacy seriously. By signing in, you agree to our Terms of Service, Privacy Policy and Fantasy Community Rules."
+            let text = R.string.localizable.authWelcomeTermsText(R.string.localizable.authTerms(), R.string.localizable.authPrivacy(), R.string.localizable.authRules())
             let attr = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont.regularFont(ofSize: 12)])
 
             attr.addAttributes([
                 .link : viewModel.termsUrl,
                 .font: UIFont.boldFont(ofSize: 12)],
-                               range: text.nsRange(from: text.range(of: "Terms of Service")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
 
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
                 .font: UIFont.boldFont(ofSize: 12)],
-                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
 
             attr.addAttributes([
                 .link : viewModel.communityRulesUrl,
                 .font: UIFont.boldFont(ofSize: 12)],
-                               range: text.nsRange(from: text.range(of: "Fantasy Community Rules")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRules())!))
 
             termsTextView.attributedText = attr
             termsTextView.textColor = .white

@@ -50,7 +50,7 @@ class ChatHeaderCell: UITableViewCell {
     
     func set(user: Room.Participant.UserSlice) {
         
-        let str: NSString = "\(user.name) sent\nnew room request" as NSString
+        let str: NSString = R.string.localizable.roomChatRoomRequest(user.name) as NSString
         
         let para = NSMutableParagraphStyle()
         para.alignment = .center

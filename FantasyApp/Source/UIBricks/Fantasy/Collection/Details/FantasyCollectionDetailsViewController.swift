@@ -214,7 +214,7 @@ class TopCollectionPurchaseCell: UITableViewCell {
     var viewModel: FantasyCollectionDetailsViewModel! {
         didSet {
             if viewModel.collectionPurchased {
-                buyButton.setTitle("Open", for: .normal)
+                buyButton.setTitle(R.string.localizable.fantasyDeckDetailsBuyButton(), for: .normal)
             }
             else {
                 viewModel.price
@@ -268,7 +268,8 @@ class FantasyCollectionDetailsCell: UITableViewCell {
         
         detailsLabel.numberOfLines = change ? 0 : 2
         
-        collapseButton.setTitle(change ? "Show Less" : "Read More", for: .normal)
+        collapseButton.setTitle(change ? R.string.localizable.fantasyDeckDetailsShowLess() :
+            R.string.localizable.fantasyDeckDetailsReadMore(), for: .normal)
         
         if animated {
             tableView?.beginUpdates()
@@ -356,11 +357,12 @@ class BottomCollectionPurchaseCell: UITableViewCell {
             collectionCategoryLabel.text = viewModel.collection.category
             
             if viewModel.collectionPurchased {
-                buyButton.setTitle("Open", for: .normal)
+                buyButton.setTitle(R.string.localizable.fantasyDeckDetailsBuyButton(), for: .normal)
             }
             else {
                 viewModel.price
-                    .map { $0 == "Get" ? "Get" : "Buy for \($0)" }
+                    .map { $0 == R.string.localizable.fantasyDeckDetailsPriceGet() ? R.string.localizable.fantasyDeckDetailsPriceGet() :
+                        R.string.localizable.fantasyDeckDetailsBuyFor($0) }
                     .drive(buyButton.rx.title(for: .normal))
                     .disposed(by: rx.disposeBag)
             }

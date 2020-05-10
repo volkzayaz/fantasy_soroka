@@ -17,7 +17,22 @@ class NoUsersCarouselView: UIView {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var secondaryContentView: UIView!
-
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = R.string.localizable.profileDiscoverUsersNoUsersTitle()
+        }
+    }
+    @IBOutlet weak var searchButton: UIButton! {
+        didSet {
+            searchButton.setTitle(R.string.localizable.profileDiscoverUsersNoUsersSearchOptions(), for: .normal)
+        }
+    }
+    @IBOutlet weak var inviteButton: UIButton! {
+        didSet {
+            inviteButton.setTitle(R.string.localizable.profileDiscoverUsersNoUsersInvite(), for: .normal)
+        }
+    }
+    
     var delegate: NoUsersCarouselViewDelegate?
     private let corner: CGFloat = 20.0
 

@@ -233,11 +233,21 @@ private extension FantasyDetailsViewController {
             return
         }
         
-        showDialog(title: "Block", text: "Let us know if you think this card is offensive or has nudity, profanity, or pornography", style: .actionSheet, negativeText: "Cancel", negativeCallback: nil, positiveText: "Block card") { [weak self] in
+        showDialog(
+        title: R.string.localizable.fantasyDetailsBlockTitle(),
+        text: R.string.localizable.fantasyDetailsBlockText(),
+        style: .actionSheet,
+        negativeText: R.string.localizable.generalCancel(),
+        negativeCallback: nil,
+        positiveText: R.string.localizable.fantasyDetailsBlockPositiveText()) { [weak self] in
             
             self?.viewModel.blockCard()
-            
-            self?.showMessage(title: "Thank you", text: "You will never see the card again. We will inspect the content of this fantasy", style: .alert, buttonText: "Ok", callback: { [weak self] in
+            self?.showMessage(
+                title: R.string.localizable.fantasyDetailsBlockTitle(),
+                text: R.string.localizable.fantasyDetailsBlockText(),
+                style: .alert,
+                buttonText: R.string.localizable.generalOk(),
+                callback: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })
             

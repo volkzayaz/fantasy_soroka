@@ -165,13 +165,13 @@ extension RoomDetailsViewController {
                                                     
                                                     let text: String
                                                     if count == 0 {
-                                                        text = "Swipe to see new\nmutual Cards!\nYou have no mutual Cards yet"
+                                                        text = R.string.localizable.roomDetailsSwipeTitle()
                                                     }
                                                     else if count == 1 {
-                                                        text = "1 mutual Card"
+                                                        text = R.string.localizable.roomDetailsOneMutualCard()
                                                     }
                                                     else {
-                                                        text = "\(count) mutual Cards"
+                                                        text = R.string.localizable.roomDetailsMutualCards(count)
                                                     }
                                                     
                                                     let att = NSMutableAttributedString(string: text, attributes: [.font: UIFont.boldFont(ofSize: 25)])
@@ -181,7 +181,7 @@ extension RoomDetailsViewController {
                                                                           range: text.nsRange(from: range))
                                                     }
                                                     
-                                                    if let range = text.range(of: "You have no mutual Cards yet") {
+                                                    if let range = text.range(of: R.string.localizable.roomDetailsNoMutualCards()) {
                                                         
                                                         att.addAttributes([.foregroundColor : UIColor.gray],
                                                                           range: text.nsRange(from: range))

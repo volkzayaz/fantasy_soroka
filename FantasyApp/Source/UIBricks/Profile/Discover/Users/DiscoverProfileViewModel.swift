@@ -134,7 +134,7 @@ extension DiscoverProfileViewModel {
 
     func inviteFriends() {
         router.invite(
-            ["Hey! We have things to swipe together 🍓Check out Fantasy Match!",
+            [R.string.localizable.roomBranchObjectDescription(),
              NSURL(string: "http://bit.ly/fantasymatch")!
         ])
     }

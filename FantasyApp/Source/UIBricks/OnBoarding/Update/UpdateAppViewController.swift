@@ -27,7 +27,7 @@ class UpdateAppViewController: UIViewController {
         super.viewDidLoad()
 
         view.addFantasyGradient()
-        title = "Update App"
+        title = R.string.localizable.onboardingUpdateTitle()
         // Do any additional setup after loading the view.
     }
     

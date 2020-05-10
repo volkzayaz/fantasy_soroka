@@ -61,8 +61,7 @@ extension PurchaseManager {
                 throw FantasyError.canceled
             }
             
-            throw FantasyError.generic(description: "There's been an error processing your payment. Try restoring your purchases from settings or contact support.")
-            
+            throw FantasyError.generic(description: R.string.localizable.errorPaymentProcessing())
         }
         
     }

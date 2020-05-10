@@ -89,10 +89,9 @@ struct SubscriptionPlan {
         
         let formatter = SKProduct.formatter
         formatter.locale = product.priceLocale
+        
         let dailyCharge = formatter.string(from: dailyDecimal) ?? ""
-        
-        self.dailyCharge = "(\(dailyCharge)/day)"
-        
+        self.dailyCharge = R.string.localizable.subscriptionDailyCharge(dailyCharge)
     }
     
 }

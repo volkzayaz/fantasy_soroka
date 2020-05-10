@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -86,6 +86,7 @@
             <connections>
                 <outlet property="acceptButton" destination="TaP-Pq-CoU" id="Bk2-rR-JHT"/>
                 <outlet property="rejectButton" destination="lA8-V2-Kv7" id="9fM-A7-kf8"/>
+                <outlet property="titleLabel" destination="FKF-1y-oq2" id="p2u-ni-3O9"/>
             </connections>
             <point key="canvasLocation" x="-44.927536231884062" y="-7.7008928571428568"/>
         </tableViewCell>

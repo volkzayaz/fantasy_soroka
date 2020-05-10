@@ -23,7 +23,7 @@ extension TeleportViewModel {
                 
                 guard let lastKnownLocation = x.lastKnownLocation else {
                     return .just([Data.location(title: R.string.localizable.teleportCurrentLocation(),
-                                                subtitle: "Not determined",
+                                                subtitle: R.string.localizable.teleportNotDetermined(),
                                                 isSelected: false,
                                                 icon: R.image.currentLocation()!,
                                                 assosiatedCommunity: nil)])
@@ -38,7 +38,7 @@ extension TeleportViewModel {
                         
                         guard let currentLocation = maybeCurrentPhysicalLocation else {
                             return [Data.location(title: R.string.localizable.teleportCurrentLocation(),
-                                                  subtitle: "Unknown location",
+                                                  subtitle: R.string.localizable.teleportUnknownLocation(),
                                                   isSelected: true,
                                                   icon: R.image.currentLocation()!,
                                                   assosiatedCommunity: nil)]

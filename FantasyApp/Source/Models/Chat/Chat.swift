@@ -65,36 +65,36 @@ extension Room {
             switch type {
                 
             case .created:
-                return "new room"
+                return R.string.localizable.chatMessageTypeCreated()
                 
             case .like:
-                return isOwn ? "You liked \(peer) profile" : "\(peer) liked your profile"
+                return isOwn ? R.string.localizable.chatMessageTypeLikeOwn(peer) : R.string.localizable.chatMessageTypeLike(peer)
                 
             case .invited:
-                return isOwn ? "You invited \(peer) to the rooom" : "\(peer) liked your profile"
+                return isOwn ? R.string.localizable.chatMessageTypeInvitedOwn(peer) : R.string.localizable.chatMessageTypeInvited(peer)
                 
             case .message:
                 return text ?? ""
                 
             case .sp_enabled, .sp_disabled: fallthrough
             case .settings_changed:
-                return "Room settings changed"
+                return R.string.localizable.chatMessageTypeSettingsChanged()
                 
             case .frozen:
-                return isOwn ? "Your Rooms limit exceeded" : "\(peer) Rooms limit exceeded"
+                return isOwn ? R.string.localizable.chatMessageTypeFrozenOwn() : R.string.localizable.chatMessageTypeFrozen(peer)
                 
             case .unfrozen:
-                return "The Room is Unfrozen"
+                return R.string.localizable.chatMessageTypeUnfrozen()
                 
             case .unfrozenPaid:
-                let name = isOwn ? "you" : "\(peer)"
-                return "The Room is Unfrozen because \(name) became a member"
+                let name = isOwn ? R.string.localizable.chatMessageTypeYou() : "\(peer)"
+                return R.string.localizable.chatMessageTypeUnfrozenPaid(name)
                 
             case .message_deleted:
-                return "Message deleted"
+                return R.string.localizable.chatMessageTypeMessageDeleted()
                 
             case .deleted:
-                return "Room deleted"
+                return R.string.localizable.chatMessageTypeDeleted()
                 
             }
             

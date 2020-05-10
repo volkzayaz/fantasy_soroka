@@ -17,7 +17,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoUsersCarouselView" customModule="FantasyApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iVJ-jX-weT" id="iJy-te-33k"/>
+                <outlet property="inviteButton" destination="n94-DS-DPf" id="uxI-oF-7aL"/>
+                <outlet property="searchButton" destination="73u-Ky-whm" id="Zkc-or-8uC"/>
                 <outlet property="secondaryContentView" destination="SIV-6M-Ecc" id="Td5-cI-VJi"/>
+                <outlet property="titleLabel" destination="0co-9d-b5U" id="In2-ao-G1c"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

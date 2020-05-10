@@ -28,7 +28,7 @@ class RoomTableViewCell: UITableViewCell {
             lastMessageLabel.text = x.typeDescription(peer: participant.userSlice.name)
         }
         else {
-            lastMessageLabel.text = "new room"
+            lastMessageLabel.text = R.string.localizable.roomListNewRoom()
         }
         
         unreadCounterLabel.text = "\(model.unreadCount ?? 0)"

@@ -12,7 +12,12 @@ class RoomCreatedCell: UITableViewCell {
     
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
-
+    @IBOutlet weak var eventLabel: UILabel! {
+        didSet {
+            eventLabel.text = R.string.localizable.roomChatRoomCreated()
+        }
+    }
+    
     var viewModel: ChatViewModel! {
         didSet {
             ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.left.avatarURL)

@@ -29,19 +29,13 @@ class RegistrationViewController: UIViewController, MVVM_View {
     
     @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementTextView.text = """
-            We believe that the key to true intimacy is open communication about sex and sexual fantasies. That’s why we’ve created Fantasy Match. 
-            We want to change the way people think and talk about sex. To do so, our platform provides ideas for sexual fantasies, while creating a space for people to discuss sexuality in a positive and open way. There is nothing to hide. Let’s talk. 
-            Talking about relationships and sex requires civility. Be kind, respectful, and decent or you will be blocked. Report any violations you may see in the app. Let’s build a mindful community together! 
-            We follow FOSTA / SESTA bills strictly and strive to fight against online sex trafficking. If you find any online sex trafficking activity in the app, please report it or reach out at feedback.fantasyapp.com immediately.
-            """
-
+            agrementTextView.text = R.string.localizable.authRegisterAgrementText()
         }
     }
 
     @IBOutlet private weak var iveReadTermsTextView: UITextView! {
         didSet {
-            let text = "I've read and accept Fantasy Match Terms and Conditions, Privacy Policy and Fantasy Community Rules."
+            let text = R.string.localizable.authRegisterIveReadTermsText(R.string.localizable.authTerms(), R.string.localizable.authPrivacy(), "Fantasy \(R.string.localizable.authRules())")
 
             let attr = NSMutableAttributedString(string: text,
              attributes: [
@@ -53,20 +47,19 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 .link : viewModel.termsUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Terms and Conditions")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
             
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
             
             attr.addAttributes([
                 .link : viewModel.communityRulesUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)],
-                               range: text.nsRange(from: text.range(of: "Fantasy Community Rules")!))
+                               range: text.nsRange(from: text.range(of: "Fantasy \(R.string.localizable.authRules())")!))
 
-            
             iveReadTermsTextView.attributedText = attr
             iveReadTermsTextView.tintColor = R.color.textPinkColor()
             iveReadTermsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -75,8 +68,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     
     @IBOutlet private weak var personalDataTextView: UITextView! {
         didSet {
-            let text = "I give permission to process¹ my personal data under Fantasy Match Privacy Policy and Terms and Conditions.\n¹ You can remove your personal and sensitive data from the Service whenever you want."
-            
+            let text = R.string.localizable.authRegisterPersonalDataText(R.string.localizable.authTerms(), R.string.localizable.authPrivacy()) + R.string.localizable.authRegisterPersonalDataTextRemove()
             
             let attr = NSMutableAttributedString(string: text,
              attributes: [
@@ -88,18 +80,18 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 .link : viewModel.termsUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Terms and Conditions")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
             
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
             
             attr.addAttributes([
                 .foregroundColor: R.color.textLightGrayColor()!
             ],
-                               range: text.nsRange(from: text.range(of: "¹ You can remove your personal and sensitive data from the Service whenever you want.")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRegisterPersonalDataTextRemove())!))
 
             personalDataTextView.attributedText = attr
             personalDataTextView.tintColor = R.color.textPinkColor()
@@ -110,7 +102,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var sensetiveDataTextView: UITextView! {
         didSet {
             
-            let text = "I give permission to process² my sensitive data (sexual preferences and/or sexual orientation) under Fantasy Match Privacy Policy.\n² Your public profile will show your sexual orientation only to registered users."
+            let text = R.string.localizable.authRegisterSensetiveData(R.string.localizable.authPrivacy()) + R.string.localizable.authRegisterSensetiveData1()
             
             let attr = NSMutableAttributedString(string: text,
              attributes: [
@@ -122,12 +114,12 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 .link : viewModel.privacyUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
             
             attr.addAttributes([
                 .foregroundColor: R.color.textLightGrayColor()!
             ],
-                               range: text.nsRange(from: text.range(of: "² Your public profile will show your sexual orientation only to registered users.")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRegisterSensetiveData1())!))
             
             sensetiveDataTextView.attributedText = attr
             sensetiveDataTextView.tintColor = R.color.textPinkColor()
@@ -138,8 +130,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
     @IBOutlet private weak var agreeToEmailsTextView: UITextView! {
         didSet {
-            
-            let text = "I agree to receive³ emails from Fantasy Match according to the Terms and Conditions and Privacy Policy.\n³ You can unsubscribe at any time."
+            let text = R.string.localizable.authRegisterAgreeToEmails(R.string.localizable.authTerms(), R.string.localizable.authPrivacy()) + R.string.localizable.authRegisterAgreeToEmailsUnsubscribe()
             
             let attr = NSMutableAttributedString(string: text,
              attributes: [
@@ -151,18 +142,18 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 .link : viewModel.termsUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Terms and Conditions")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
             
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
                 .font: UIFont.semiBoldFont(ofSize: 14)
                 ],
-                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
             
             attr.addAttributes([
                 .foregroundColor: R.color.textLightGrayColor()!
             ],
-                               range: text.nsRange(from: text.range(of: "³ You can unsubscribe at any time.")!))
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRegisterAgreeToEmailsUnsubscribe())!))
             
             agreeToEmailsTextView.attributedText = attr
             agreeToEmailsTextView.tintColor = R.color.textPinkColor()
@@ -326,8 +317,8 @@ class RegistrationViewController: UIViewController, MVVM_View {
         viewModel.photo
             .drive(onNext: { [unowned self] (image) in
                 self.uploadedPhotoImageView.image = image
-                self.sendingImageTitleLabel.text = (image == nil) ? "Adding Main Photo" : "Main Photo Added"
-                self.sendingImageDescriptionLabel.text = (image == nil) ? "Photo sending…" : "Your photo was sent"
+                self.sendingImageTitleLabel.text = (image == nil) ? R.string.localizable.authRegisterAddingMainPhoto() : R.string.localizable.authRegisterMainPhotoAdded()
+                self.sendingImageDescriptionLabel.text = (image == nil) ? R.string.localizable.authRegisterPhotoSending() : R.string.localizable.authRegisterPhotoSent()
             })
             .disposed(by: rx.disposeBag)
 
@@ -335,7 +326,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (flag) in
                 self.uploadPhotoSuccessContainerView.isHidden = flag
                 self.uploadPhotoProblemContainerView.isHidden = !flag
-                self.sendingImageTitleLabel.text = flag ? "Change Main Photo" : "Adding Main Photo"
+                self.sendingImageTitleLabel.text = flag ? R.string.localizable.authRegisterChangeMainPhoto() : R.string.localizable.authRegisterAddingMainPhoto()
             })
             .disposed(by: rx.disposeBag)
 
@@ -564,13 +555,13 @@ extension RegistrationViewController: UIScrollViewDelegate {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.localizable.authRegisterTakePhoto(), style: .default, handler: { _ in
             FantasyCameraViewController.present(on: self) { [unowned self] (image) in
                 self.viewModel.photoSelected(photo: image, source: .Taken)
             }
         }))
 
-        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.localizable.authRegisterChoosePhoto(), style: .default, handler: { _ in
 
             self.imagePicker = FantasyImagePickerController(presentationController: self) { [unowned self](image) in
                 FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
@@ -582,7 +573,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
             self.imagePicker?.present()
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: R.string.localizable.generalCancel(), style: .cancel, handler:nil))
 
         present(alert, animated: true, completion: nil)
     }

@@ -24,7 +24,7 @@ class FantasySearchViewController: UIViewController, MVVM_View {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.regularFantasySearch,
                                                  for: ip)!
         
-        cell.textLabel?.text = "\(x.card.text) + isBlured = \(x.isBlurred)"
+        cell.textLabel?.text = R.string.localizable.fantasySearchCellText(x.card.text, "\(x.isBlurred)")
         
         return cell
             

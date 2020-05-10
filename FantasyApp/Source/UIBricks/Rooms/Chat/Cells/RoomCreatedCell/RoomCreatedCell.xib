@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -63,6 +63,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="eventLabel" destination="EHG-pz-oFJ" id="eKm-dk-LKR"/>
                 <outlet property="leftImageView" destination="MwH-Bb-Z9T" id="fdr-18-rep"/>
                 <outlet property="rightImageView" destination="Axf-CL-067" id="FhM-xV-XYA"/>
             </connections>

@@ -112,7 +112,7 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         }
         
         viewModel.ageDriver
-            .map { "Age: \($0.lowerBound) - \($0.upperBound)" }
+            .map { R.string.localizable.profileDiscoverFilterAge("\($0.lowerBound)", "\($0.upperBound)") }
             .drive(ageLabel.rx.text)
             .disposed(by: rx.disposeBag)
     }

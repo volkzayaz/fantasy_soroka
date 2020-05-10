@@ -132,7 +132,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
             
             let text: String
             if count == 0 {
-                text = "Swipe to see\nnew Fantasies!"
+                text = R.string.localizable.fantasyListSwipeToSee()
             }
             else if count == 1 {
                 text = "1 " + R.string.localizable.fantasyDeckCardsCountOne()

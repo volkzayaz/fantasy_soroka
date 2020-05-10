@@ -35,7 +35,7 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
                                                                           preferenceEnabled: false)
         })
         
-        vc.title = "Deck"
+        vc.title = R.string.localizable.fantasyDeckDetailsTitle()
         nav.modalPresentationStyle = .overFullScreen
         vc.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.back(), style: .done, target: nav, action: "dismiss")
         

@@ -17,13 +17,13 @@ extension SKProduct {
 
     var localizedPrice: String {
         if self.price == 0.00 {
-            return "Get"
+            return R.string.localizable.paymentGet()
         } else {
             let formatter = SKProduct.formatter
             formatter.locale = self.priceLocale
 
             guard let formattedPrice = formatter.string(from: self.price) else {
-                return "Unknown Price"
+                return R.string.localizable.paymentUnknownPrice()
             }
 
             return formattedPrice

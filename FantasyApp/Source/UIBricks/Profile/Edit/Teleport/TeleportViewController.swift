@@ -47,7 +47,7 @@ class TeleportViewController: UIViewController, MVVM_View {
                                                          for: ip)!
                 
                 cell.textLabel?.text = country
-                cell.detailTextLabel?.text = "\(cityCount) Cities"
+                cell.detailTextLabel?.text = R.string.localizable.teleportCities(cityCount)
             
                 return cell
             }
@@ -63,7 +63,7 @@ class TeleportViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Teleport"
+        title = R.string.localizable.teleportTitle()
         
         navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain,
                                                  target: self, action: #selector(back))

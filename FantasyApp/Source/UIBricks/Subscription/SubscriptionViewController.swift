@@ -78,7 +78,7 @@ class SubscriptionViewController: UITableViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Get Membership"
+        navigationItem.title = R.string.localizable.subscriptionNavigationTitle()
         
         roundedView.addFantasyRoundedCorners()
         navigationController?.view.addFantasySubscriptionGradient()

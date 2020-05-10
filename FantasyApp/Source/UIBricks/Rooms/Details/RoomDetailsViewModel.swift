@@ -15,10 +15,10 @@ extension RoomDetailsViewModel {
     var title: String {
         
         guard let peer = room.value.participants.first(where: { $0.userId != User.current?.id }), peer.userId != nil else {
-            return "Draft Room"
+            return R.string.localizable.roomDetailsDraft()
         }
         
-        return "Room with \(peer.userSlice.name)"
+        return R.string.localizable.roomDetailsRoomWith(peer.userSlice.name)
     }
     
     var navigationEnabled: Driver<Bool> {

@@ -47,7 +47,7 @@ class RoomsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         
         view.addFantasyGradient()
-        navigationItem.title = "Play"
+        navigationItem.title = R.string.localizable.roomListTitle()
  
         emptyView.emptyView = UIImageView(image: R.image.room_placeholder())
         
@@ -94,7 +94,7 @@ class RoomsViewController: UIViewController, MVVM_View {
 
         createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(self.addNewRoom))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.roomListAdd(), style: .done, target: self, action: #selector(self.addNewRoom))
     }
 }
 
