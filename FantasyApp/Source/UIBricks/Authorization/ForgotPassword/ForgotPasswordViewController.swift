@@ -14,12 +14,62 @@ class ForgotPasswordViewController: UIViewController, MVVM_View {
     
     var viewModel: ForgotPasswordViewModel!
 
-    @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var resetPasswordButton: UIButton!
+    @IBOutlet private weak var emailTextField: UITextField! {
+        didSet {
+            emailTextField.placeholder = R.string.localizable.forgotPasswordEmailPlaceholder()
+        }
+    }
+    @IBOutlet private weak var resetPasswordButton: UIButton! {
+           didSet {
+                resetPasswordButton.setTitle(R.string.localizable.forgotPasswordCreateNewPasswordButton(), for: .normal)
+           }
+       }
     @IBOutlet private weak var loadingView: UIView!
     @IBOutlet private weak var codeWasSentView: UIView!
     @IBOutlet private weak var wrongEmailView: UIView!
-
+    
+    @IBOutlet private weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = R.string.localizable.forgotPasswordTitle()
+        }
+    }
+    
+    @IBOutlet private weak var descriptionLabel: UILabel! {
+        didSet {
+            descriptionLabel.text = R.string.localizable.forgotPasswordDescription()
+        }
+    }
+    
+    @IBOutlet private weak var infoLabel: UILabel! {
+        didSet {
+            infoLabel.text = R.string.localizable.forgotPasswordInfo()
+        }
+    }
+    
+    @IBOutlet private weak var sendingLabel: UILabel! {
+        didSet {
+            sendingLabel.text = R.string.localizable.forgotPasswordSending()
+        }
+    }
+    
+    @IBOutlet private weak var waitLabel: UILabel! {
+        didSet {
+            waitLabel.text = R.string.localizable.forgotPasswordWait()
+        }
+    }
+    
+    @IBOutlet private weak var codeSentLabel: UILabel! {
+        didSet {
+            codeSentLabel.text = R.string.localizable.forgotPasswordCodeSent()
+        }
+    }
+    
+    @IBOutlet private weak var checkMessageLabel: UILabel! {
+        didSet {
+            checkMessageLabel.text = R.string.localizable.forgotPasswordCheckMessage()
+        }
+    }
+    
     @IBOutlet var buttonToKeyboardConstraint: NSLayoutConstraint! // 20
     
     override func viewDidLoad() {

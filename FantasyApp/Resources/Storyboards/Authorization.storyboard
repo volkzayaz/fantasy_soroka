@@ -131,7 +131,12 @@
                         <viewLayoutGuide key="safeArea" id="GId-hn-I78"/>
                     </view>
                     <connections>
+                        <outlet property="dontPostInfoLabel" destination="10s-tg-JLq" id="Muy-tp-s7h"/>
+                        <outlet property="getStartedButton" destination="3Ot-vD-Al1" id="yGf-gf-e0l"/>
+                        <outlet property="signInButton" destination="fSN-cn-P1L" id="SkJ-WT-tHm"/>
+                        <outlet property="signUpFBButton" destination="REm-5i-h73" id="FHi-ac-KxC"/>
                         <outlet property="termsTextView" destination="rYX-qO-Ttn" id="MMD-4y-S3v"/>
+                        <outlet property="titleLabel" destination="7xy-r2-dJw" id="fg0-ms-pK1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBH-0s-bZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1967,7 +1972,7 @@ Describe Yourself?</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-263.04347826086956" y="646.875"/>
+            <point key="canvasLocation" x="-530" y="647"/>
         </scene>
         <!--Age Restriction View Conrtoller-->
         <scene sceneID="C17-qY-TpX">
@@ -2184,8 +2189,11 @@ Describe Yourself?</string>
                     <connections>
                         <outlet property="buttonToKeyboardConstraint" destination="szc-xM-OyZ" id="gK7-K7-hLS"/>
                         <outlet property="emailTextField" destination="cAa-dm-MVG" id="vDw-Ez-wcl"/>
+                        <outlet property="forgotPasswordButton" destination="OgC-Rr-pZH" id="fKG-ee-ptq"/>
                         <outlet property="passwordTextField" destination="ofr-yO-Ohv" id="nkU-Nj-EIv"/>
                         <outlet property="signinButton" destination="9kf-8p-tgP" id="fdA-Dx-Syw"/>
+                        <outlet property="signupButton" destination="yom-MZ-K7x" id="pAG-ij-08m"/>
+                        <outlet property="welcomeTitleLabel" destination="Nl1-O0-wOg" id="EnS-oo-c7j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vqC-lj-osW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2418,10 +2426,17 @@ Describe Yourself?</string>
                     </view>
                     <connections>
                         <outlet property="buttonToKeyboardConstraint" destination="bQM-L6-2s3" id="lNQ-31-QVP"/>
+                        <outlet property="checkMessageLabel" destination="R8v-cM-JZN" id="FOh-se-Ei2"/>
+                        <outlet property="codeSentLabel" destination="A6B-ho-mwU" id="g1M-Xd-Bau"/>
                         <outlet property="codeWasSentView" destination="Zmd-zD-JH1" id="1uS-Wp-P85"/>
+                        <outlet property="descriptionLabel" destination="VuX-xg-y1G" id="lSh-4B-2Am"/>
                         <outlet property="emailTextField" destination="CsZ-6E-X4s" id="k50-FM-tnD"/>
+                        <outlet property="infoLabel" destination="QbV-Sl-76f" id="8YE-Ce-UbW"/>
                         <outlet property="loadingView" destination="nzY-Qc-KOS" id="L0f-H8-iYu"/>
                         <outlet property="resetPasswordButton" destination="B0F-eb-NGH" id="6zQ-yJ-pHq"/>
+                        <outlet property="sendingLabel" destination="jwM-aB-3lg" id="DC0-B6-xu8"/>
+                        <outlet property="titleLabel" destination="hdX-Kb-u2N" id="Kvq-il-VNO"/>
+                        <outlet property="waitLabel" destination="3LF-fQ-AjE" id="uLG-zN-TAO"/>
                         <outlet property="wrongEmailView" destination="DGK-ul-bUe" id="wUN-6g-zfj"/>
                     </connections>
                 </viewController>

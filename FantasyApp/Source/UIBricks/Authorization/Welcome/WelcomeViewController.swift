@@ -44,6 +44,36 @@ class WelcomeViewController: UIViewController, MVVM_View {
             termsTextView.textAlignment = .center
         }
     }
+    
+    @IBOutlet weak var signInButton: UIButton! {
+        didSet {
+            signInButton.setTitle(R.string.localizable.welcomeSignInButton(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = R.string.localizable.welcomeTitle()
+        }
+    }
+    
+    @IBOutlet weak var getStartedButton: UIButton! {
+        didSet {
+            getStartedButton.setTitle(R.string.localizable.welcomeGetStarted(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var signUpFBButton: UIButton! {
+         didSet {
+             signUpFBButton.setTitle(R.string.localizable.welcomeSignUpFacebook(), for: .normal)
+         }
+     }
+    
+    @IBOutlet weak var dontPostInfoLabel: UILabel! {
+         didSet {
+             dontPostInfoLabel.text = R.string.localizable.welcomeDontPostInfo()
+         }
+     }
 
 }
 

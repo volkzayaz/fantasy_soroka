@@ -62,6 +62,12 @@ class ConnectionViewController: UIViewController, MVVM_View {
         }
     }
     
+    @IBOutlet weak var pendingLabel: UILabel! {
+        didSet {
+            pendingLabel.text = R.string.localizable.notificationsPending()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -332,7 +332,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileAnswerCell" rowHeight="74" id="BA6-US-fF7" customClass="UserProfileAnswerCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="528.5" width="374" height="74"/>
+                                        <rect key="frame" x="20" y="528.5" width="374" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BA6-US-fF7" id="ofC-Xy-5PL">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
@@ -471,12 +471,14 @@
                         <outlet property="actionButtonsStackView" destination="LFH-sl-KCb" id="MKY-Ga-jeK"/>
                         <outlet property="actionContainer" destination="50A-mP-roc" id="Nmu-VK-oHA"/>
                         <outlet property="blurHeightConstraint" destination="rjw-x3-hEB" id="oVX-GX-yiH"/>
+                        <outlet property="decksTitleLabel" destination="cJ4-Ul-gGP" id="aG7-se-nS2"/>
                         <outlet property="footerView" destination="WK0-fc-EFx" id="nT2-7a-3db"/>
                         <outlet property="indicatorStackView" destination="dhp-7F-cz4" id="tcH-tn-uXW"/>
                         <outlet property="optionsButton" destination="Iac-9R-aVX" id="fWM-Is-lSy"/>
                         <outlet property="photosCollectionView" destination="rrs-r4-IZO" id="mKd-ur-LNP"/>
                         <outlet property="profileTableView" destination="H4V-fG-Dng" id="juQ-X5-Hoa"/>
                         <outlet property="scrollableBackground" destination="fpQ-Xm-qKY" id="Jdr-an-SrT"/>
+                        <outlet property="secretPhotosInfoLabel" destination="mvc-2Z-YlY" id="juL-Ht-EHE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKK-n0-TcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,12 +518,24 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search for Fantasy Match" id="cg0-BV-Umz"/>
                     <connections>
+                        <outlet property="allowGeoButton" destination="STk-sG-XFG" id="e6Y-ZM-Iae"/>
+                        <outlet property="allowGeoDescriptionLabel" destination="4Mg-cK-nn2" id="yGg-yf-hhX"/>
+                        <outlet property="allowGeoLabel" destination="TKk-Wd-Rdv" id="TsY-Ke-8ca"/>
                         <outlet property="allowGeolocationView" destination="Zsa-53-sF4" id="maa-yi-0I8"/>
                         <outlet property="cityNotActiveView" destination="OD3-RV-LXg" id="8KR-Fo-f1e"/>
+                        <outlet property="dontAllowGeoButton" destination="yhS-9e-RJJ" id="Pu8-Se-V9E"/>
                         <outlet property="goToSettingsView" destination="FH2-xN-97a" id="LSb-jE-aSi"/>
+                        <outlet property="inviteButton" destination="tfk-hA-yJP" id="CAP-Nb-Dej"/>
+                        <outlet property="joinButton" destination="eLn-CN-7r9" id="4Dx-Mm-Apw"/>
+                        <outlet property="noFilterDescriptionLabel" destination="D4h-iy-14o" id="v7N-UD-a0b"/>
+                        <outlet property="noFilterTitleLabel" destination="bgW-SP-S2b" id="JTL-ZR-32l"/>
                         <outlet property="noFilterView" destination="TYG-Zf-Hsb" id="9qf-Ph-JVZ"/>
                         <outlet property="notActiveCityNameLabel" destination="ahz-f2-kFB" id="8Ou-1n-Znb"/>
                         <outlet property="profilesCarousel" destination="0Se-hg-s60" id="eVP-0o-vtQ"/>
+                        <outlet property="searchLocationDescriptionLabel" destination="nJc-ok-4TX" id="Rs2-io-92y"/>
+                        <outlet property="searchLocationTitleLabel" destination="aBF-tc-KZG" id="0Vg-5L-yog"/>
+                        <outlet property="settingsButton" destination="nmL-Oy-unW" id="7Nw-g6-XBz"/>
+                        <outlet property="usersLabel" destination="Q9h-Sx-NtX" id="gcd-uv-qJ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmj-hS-riL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1142,6 +1156,7 @@ activated when it reaches</string>
                         <outlet property="gradientView" destination="9gb-Gd-wJf" id="nNJ-uT-jzv"/>
                         <outlet property="incommingButton" destination="5n4-my-7WL" id="o9I-xW-ryd"/>
                         <outlet property="outgoingButton" destination="xX0-i5-BYr" id="mTO-km-haB"/>
+                        <outlet property="pendingLabel" destination="ZKH-wL-03A" id="jvH-Z0-APX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zdC-z3-tie" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1199,6 +1214,11 @@ activated when it reaches</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Eu-Mx-zij"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="7g9-SU-GnN" id="Jb2-Wn-KUH"/>
+                        <outlet property="settingsButton" destination="2sG-MT-qDj" id="QWr-Ub-a52"/>
+                        <outlet property="titleLabel" destination="gjX-KK-SsL" id="EQs-tu-16P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xST-Oe-7Gr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1716,6 +1736,8 @@ We've implemented a lot of new and exciting features</string>
                     <connections>
                         <outlet property="buyButton" destination="dP9-pO-HKE" id="p7L-zJ-UPg"/>
                         <outlet property="daView" destination="q4r-zU-MIQ" id="LoB-px-1Eo"/>
+                        <outlet property="descriptionLabel" destination="bsr-Lb-gfZ" id="S3s-E3-a2M"/>
+                        <outlet property="titleLabel" destination="AfI-9C-UpQ" id="ebS-Qw-5kj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyn-I0-ezO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

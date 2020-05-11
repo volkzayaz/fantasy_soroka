@@ -326,6 +326,7 @@
 		84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */; };
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
+		882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DD27D2469E5DD008D9626 /* Localizable.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -749,6 +750,7 @@
 		84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsRouter.swift; sourceTree = "<group>"; };
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
+		882DD27D2469E5DD008D9626 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -1063,6 +1065,7 @@
 				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
 				B720EED4244217DB009385CB /* UITextView+Truncated.swift */,
 				2518808C24464150002CCF2E /* URL+Email.swift */,
+				882DD27D2469E5DD008D9626 /* Localizable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2848,6 +2851,7 @@
 				7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */,
 				734C70C223214B8D00ED2E91 /* UserProfileViewModel.swift in Sources */,
 				7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */,
+				882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */,
 				7322312323056731009DD37F /* ResetSwipeState.swift in Sources */,
 				73097C0A231D40B100B71053 /* EditProfileExpandableCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,

@@ -290,3 +290,52 @@
 "profile.discover.user.unlike" = "Unlike";
 "profile.discover.user.deleteConnection" = "Delete Connection";
 "profile.discover.user.registered" = "Registered %@";
+
+// New
+"updateApp.title" = "Update App";
+"updateApp.description" = "Your application version is no longer supported. Please, update the app.\nWe've implemented a lot of new and exciting features";
+"updateApp.updateNow" = "Update Now";
+
+"searchLocation.title" = "Where Are You Now?";
+"searchLocation.description" = "Enable your geolocation. Knowing your location helps us locate people around you. ";
+"searchLocation.goToSettings" = "Go To Settings";
+
+"userProfile.secretPhotosInfo" = "Secret Photos can be seen when you create a Room together";
+"userProfile.decks" = "Decks";
+
+"notifications.pending" = "Pending...";
+
+"noFilterView.title" = "Choose Options";
+"noFilterView.description" = "Choose whom you want\nto search for.";
+
+"allowGeolocation.title" = "Allow Geolocation";
+"allowGeolocation.description" = "Knowing your location helps us locate people around you. ";
+"allowGeolocation.dontAllow" = "Don’t Allow";
+"allowGeolocation.allow" = "Allow";
+
+"cityNotActiveView.users" = "users";
+"cityNotActiveView.invite" = "Invite Friends";
+"cityNotActiveView.join" = "Join Active City";
+
+"welcome.signInButton" = "Sign in";
+"welcome.title" = "THE APP FOR OPEN-MINDED COUPLES AND SOLOS";
+"welcome.getStarted" = "Get Started";
+"welcome.signUpFacebook" = "or Sign up with Facebook";
+"welcome.dontPostInfo" = "We don’t post anything on Facebook";
+
+"login.welcomeBack" = "Welcome Back";
+"login.signUpButton" = "Sign up";
+"login.emailPlaceholder" = "Email";
+"login.passwordPlaceholder" = "Password";
+"login.forgotPassword" = "Forgot Password?";
+"login.signInButton" = "Sign in";
+
+"forgotPassword.title" = "Forgot Password";
+"forgotPassword.description" = "Please enter the same contact details you used to create your profile, so we can send you instructions for creating a new password";
+"forgotPassword.emailPlaceholder" = "Email";
+"forgotPassword.info" = "Your details were not recognized";
+"forgotPassword.sending" = "Sending…";
+"forgotPassword.wait" = "Please wait while we send you the code";
+"forgotPassword.createNewPasswordButton" = "Create New Password";
+"forgotPassword.codeSent" = "The code was sent";
+"forgotPassword.checkMessage" = "Please check the message";

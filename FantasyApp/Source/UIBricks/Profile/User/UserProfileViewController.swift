@@ -136,6 +136,18 @@ class UserProfileViewController: UIViewController, MVVM_View {
             blurHeightConstraint.constant = UIApplication.shared.statusBarFrame.height
         }
     }
+    
+    @IBOutlet weak var secretPhotosInfoLabel: UILabel! {
+        didSet {
+            secretPhotosInfoLabel.text = R.string.localizable.userProfileSecretPhotosInfo()
+        }
+    }
+    
+    @IBOutlet weak var decksTitleLabel: UILabel! {
+        didSet {
+            decksTitleLabel.text = R.string.localizable.userProfileDecks()
+        }
+    }
 
     @IBOutlet weak var footerView: UserProfileTableFooterView!
     

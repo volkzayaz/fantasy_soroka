@@ -30,6 +30,78 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     @IBOutlet weak var cityNotActiveView: UIView!
     @IBOutlet weak var goToSettingsView: UIView!
     @IBOutlet weak var notActiveCityNameLabel: UILabel!
+    
+    @IBOutlet weak var noFilterTitleLabel: UILabel! {
+        didSet {
+            noFilterTitleLabel.text = R.string.localizable.noFilterViewTitle()
+        }
+    }
+    
+    @IBOutlet weak var noFilterDescriptionLabel: UILabel! {
+        didSet {
+            noFilterDescriptionLabel.text = R.string.localizable.noFilterViewDescription()
+        }
+    }
+    
+    @IBOutlet weak var allowGeoLabel: UILabel! {
+        didSet {
+            allowGeoLabel.text = R.string.localizable.allowGeolocationTitle()
+        }
+    }
+    
+    @IBOutlet weak var allowGeoDescriptionLabel: UILabel! {
+        didSet {
+            allowGeoDescriptionLabel.text = R.string.localizable.allowGeolocationDescription()
+        }
+    }
+    
+    @IBOutlet weak var allowGeoButton: UIButton! {
+        didSet {
+            allowGeoButton.setTitle(R.string.localizable.allowGeolocationAllow(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var dontAllowGeoButton: UIButton! {
+        didSet {
+            dontAllowGeoButton.setTitle(R.string.localizable.allowGeolocationDontAllow(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var usersLabel: UILabel! {
+        didSet {
+            usersLabel.text = R.string.localizable.cityNotActiveViewUsers()
+        }
+    }
+    
+    @IBOutlet weak var inviteButton: UIButton! {
+        didSet {
+            inviteButton.setTitle(R.string.localizable.cityNotActiveViewInvite(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var joinButton: UIButton! {
+        didSet {
+            joinButton.setTitle(R.string.localizable.cityNotActiveViewJoin(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var searchLocationTitleLabel: UILabel! {
+        didSet {
+            searchLocationTitleLabel.text = R.string.localizable.searchLocationTitle()
+        }
+    }
+    
+    @IBOutlet weak var searchLocationDescriptionLabel: UILabel! {
+        didSet {
+            searchLocationDescriptionLabel.text = R.string.localizable.searchLocationDescription()
+        }
+    }
+    
+    @IBOutlet weak var settingsButton: UIButton! {
+        didSet {
+            inviteButton.setTitle(R.string.localizable.searchLocationGoToSettings(), for: .normal)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
