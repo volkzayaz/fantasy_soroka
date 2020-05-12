@@ -405,7 +405,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(data)
             .bind(to: sexualityPicker.rx.itemAttributedTitles) { _, item in
-                return NSAttributedString(string: item.rawValue,
+                return NSAttributedString(string: item.pretty,
                                           attributes: [
                                             NSAttributedString.Key.foregroundColor: UIColor.white,
                                             NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)

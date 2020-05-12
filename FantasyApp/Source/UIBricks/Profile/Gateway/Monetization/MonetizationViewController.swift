@@ -14,17 +14,17 @@ import RxCocoa
 class MonetizationViewController: UIViewController {
     
     let models = [MonetizationModel(image: R.image.memberUnlimRooms()!,
-                                    title: "Unlimited Rooms To Play",
-                                    description: "Chat, play, and swipe to see mutual cards with as many people as you want"),
+                                    title: R.string.localizable.monetizationMemberUnlimRoomsTitle(),
+                                    description: R.string.localizable.monetizationMemberUnlimRoomsSubtitle()),
                   MonetizationModel(image: R.image.memberX3()!,
-                                    title: "x3 New Fantasies Daily",
-                                    description: "Discover more new fantasy cards every day"),
+                                    title: R.string.localizable.monetizationMemberX3Title(),
+                                    description: R.string.localizable.monetizationMemberX3Subtitle()),
                   MonetizationModel(image: R.image.memberActiveCity()!,
-                                  title: "Change Active City",
-                                  description: "Switch your profile to other active cities to play with new people around the world"),
+                                  title: R.string.localizable.monetizationMemberActiveCityTitle(),
+                                  description: R.string.localizable.monetizationMemberActiveCitySubtitle()),
                   MonetizationModel(image: R.image.memberParrot()!,
-                                    title: "Member Badge",
-                                    description: "Get a badge stating that you support Fantasy's values of sexual mindfulness, openness, and exploration"),
+                                    title: R.string.localizable.monetizationMemberParrotTitle(),
+                                    description: R.string.localizable.monetizationMemberParrotSubtitle()),
     ]
     
     @IBOutlet weak var tableView: UITableView!
@@ -32,7 +32,7 @@ class MonetizationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Club Membership"
+        title = R.string.localizable.monetizationTitle()
         
         appState.map { $0.currentUser?.subscription.isSubscribed ?? false }
             .drive(onNext: { [weak v = view] (isSubscribed) in
@@ -157,7 +157,7 @@ class SubscriptionUpdatingLabel: UILabel {
         super.awakeFromNib()
         
         appState.map { $0.currentUser?.subscription.isSubscribed ?? false }
-            .map { $0 ? "Manage Membership" : "Get Club Membership" }
+            .map { $0 ? R.string.localizable.monetizationManageMembership() : R.string.localizable.monetizationGetClubMembership() }
             .drive(rx.text)
             .disposed(by: rx.disposeBag)
     }

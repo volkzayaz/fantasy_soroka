@@ -22,6 +22,8 @@
 "general.videos" = "videos";
 "general.save" = "Save";
 "general.next" = "Next";
+"general.share" = "Share";
+"general.saveChanges" = "Save changes";
 
 "general.text.field.show" = "SHOW";
 "general.text.field.hide" = "HIDE";
@@ -322,6 +324,7 @@
 "welcome.getStarted" = "Get Started";
 "welcome.signUpFacebook" = "or Sign up with Facebook";
 "welcome.dontPostInfo" = "We don’t post anything on Facebook";
+"welcome.agreeButton" = "I Agree";
 
 "login.welcomeBack" = "Welcome Back";
 "login.signUpButton" = "Sign up";
@@ -339,3 +342,241 @@
 "forgotPassword.createNewPasswordButton" = "Create New Password";
 "forgotPassword.codeSent" = "The code was sent";
 "forgotPassword.checkMessage" = "Please check the message";
+
+"profile.settingButton" = "Settings";
+"profile.editProfileButton" = "Edit Profile >";
+"profile.memberBadgeTitle" = "Member Badge";
+"profile.memberBadgeDescription" = "Get a badge stating that you support Fantasy's values";
+"profile.membership" = "Membership";
+"profile.myLibrary" = "My Library";
+"profile.activeCity" = "Active City";
+"profile.feedback" = "Feedback";
+"profile.rateUs" = "Rate Us";
+"profile.support" = "Support";
+
+"editProfile.publicPhotos" = "Public photos";
+"editProfile.publicPhotos.description" = "A complete profile requires 6 photos";
+"editProfile.seretPhotos" = "Secret photos";
+"editProfile.seretPhotos.description" = "Visible only to matched users";
+
+"editRelationship.title" = "What's Your Relationship Status?";
+"editRelationship.description" = "How Would You Describe Your Partner?";
+
+"settings.title" = "Settings";
+"settings.notification" = "Notification";
+"settings.restorePurchase" = "Restore Purchases";
+"settings.contacUs" = "Contact Us";
+"settings.privacyPolicy" = "Privacy Policy";
+"settings.terms" = "Terms and Conditions";
+"settings.rules" = "Community Rules";
+"settings.rateUs" = "Rate Us";
+"settings.deleteAccount" = "Delete Account";
+"settings.logout" = "Log Out";
+
+"myFantasisSettings.cards" = "Cards";
+"myFantasisSettings.cardsTypes" = "See Liked, Disliked, and Blocked Cards";
+"myFantasisSettings.reactionHistory" = "Reaction History";
+"myFantasisSettings.blocked" = "Blocked";
+
+"notifications.title" = "Notifications";
+"notifications.newMatches" = "New matches";
+"notifications.newMessages" = "New messages";
+"notifications.newFantasy" = "New fantasy match";
+"notifications.push" = "Push";
+"notifications.empty.incoming.title" = "No Incoming Room Requests";
+"notifications.empty.incoming.subtitle" = "New Room Requests from other users will be displayed here";
+"notifications.empty.outgoing.title" = "No Outgoing Room Requests";
+"notifications.empty.outgoing.subtitle" = "The history of your actions with users will be displayed here";
+
+"fantasyCards.fantastMatch" = "Fantasy Match!";
+"fantasyCards.fantastMatch.description" = "You Both Swiped Right";
+
+"registration.notice" = "Notice";
+"registration.signInButton" = "Sign in";
+"registration.notice.desctiprion" = "We are a ❤️-positive community";
+"registration.notice.acceprRules" = "Your privacy is important to us, we designed our legal documents according to the California Consumer Privacy Act and General Data Protection Regulation. We never sell your personal data to anyone.";
+"registration.notice.agreeButton" = "I Agree";
+
+"registration.name.title" = "What's Your Name?";
+"registration.name.placeholder" = "Your Name";
+"registration.name.alreadyInUse" = "Username already in use";
+"registration.name.atLeast2Letters" = "Your name must be at least 2 letters";
+
+"registration.describeYourSelf.title" = "How Would You\nDescribe Yourself?";
+"registration.birthday.title" = "What’s Your Birthday?";
+"registration.birthday.placeholder" = "Choose the Date";
+
+"registration.relationship.title" = "What’s Your Relationships Status?";
+"registration.relationship.question" = "How Would You Describe Your Partner?";
+"registration.relationship.soloButton" = "Solo";
+"registration.relationship.coupleButton" = "Couple";
+
+"registration.sexuality.title" = "What’s Your Sexuality?";
+"registration.sexuality.subtitle" = "Your sexuality will appear on your profile";
+"registration.sexuality.continueButton" = "Continue";
+
+"registration.email.title" = "Email";
+"registration.email.subtitle" = "We will send you an activation link";
+"registration.email.inUse" = "Email already in use";
+"registration.email.invalid" = "Invalid email address";
+"registration.email.placeholder" = "Email";
+
+"registration.createPassword.title" = "Create Password";
+"registration.createPassword.subtitle" = "Must be at least 8 characters";
+"registration.createPassword.atLeast8letters" = "Must be at least 8 characters";
+"registration.createPassword.passwordPlaceholder" = "Password";
+"registration.createPassword.confirmPasswordPlaceholder" = "Confirm Password";
+
+
+"registration.addMainPhoto.title" = "Add Main Photo";
+"registration.addMainPhoto.rules" = "Please follow the rules:";
+"registration.addMainPhoto.rule1" = "You must be in the photo";
+"registration.addMainPhoto.rule2" = "Show your face";
+"registration.addMainPhoto.rule3" = "Don't use low-quality photos or images containing text";
+"registration.addMainPhoto.rule4" = "Photos depicting nudity, sex acts, genitals, nipples, children, and other illegal content are prohibited";
+"registration.addMainPhoto.checkRules" = "Please check the rules";
+"registration.addMainPhoto.changePhotoButton" = "Change Photo";
+
+"takePhoto.title" = "Take a Photo";
+"takePhoto.tip" = "Please hold the camera to your face so that it clearly falls into the frame";
+"photoPreview.tip" = "Please move the photo so that your\nface is in the frame";
+"photoPreview.title" = "Photo Preview";
+"photoPreview.retakeButton" = "Retake";
+"photoPreview.nextButton" = "Next";
+
+"ageLimit.title" = "Age Limit";
+"ageLimit.info" = "To join Fantasy you need to be at least 21 years old";
+"ageLimit.comeBackLater" = "Come back later";
+
+"accountBlocked.title" = "Blocked";
+"accountBlocked.description" = "Your account\nhas been blocked";
+"accountBlocked.bottomNote" = "Please note, that if you are subscribed to the Club Membership, you will need to cancel your subscription manually";
+
+"fantasyCollection.author" = "Author";
+"fantasyCollection.whatsInside" = "What's inside";
+
+"getMembership.unlimitedRooms.title" = "Unlimited Rooms to Play";
+"getMembership.unlimitedRooms.subtitle" = "Chat, play, and swipe to see mutual cards with as many people as you want";
+
+"getMembership.x3NewFantasies.title" = "x3 New Fantasies Daily";
+"getMembership.x3NewFantasies.subtitle" = "Discover more new fantasy cards every day";
+
+"getMembership.changeActiveCity.title" = "Change Active City";
+"getMembership.changeActiveCity.subtitle" = "Switch your profile to other active cities to play with new people around the world";
+
+"getMembership.memberBadge.title" = "Member Badge";
+"getMembership.memberBadge.subtitle" = "Get a badge stating that you support Fantasy's values";
+
+"getMembership.continueButton" = "Continue";
+"getMembership.noThanksButton" = "No Thanks";
+
+"getMembership.getTitle" = "Get Club Membership";
+"getMembership.getButton" = "Get Membership";
+"getMembership.recurringBilling" = "Recurring billing, no refunds, cancel any time";
+"getMembership.subscriptionConditions" = "Subscription Conditions:\n- The subscription renews automatically. The payment for your subscription will be withdrawn automatically when your previous paid period expires\n- Payment will be charged from your Itunes account after you have confirmed the purchase\n- Your subscription automatically renews unless auto-renewal is turned off at least 24-hours before the end of the current period\n- Your account will be charged for the renewal within 24 hours prior to the end of the current period. We will inform you of the cost of renewal\n- You can manage your subscription and switch off auto-renewal by going to your Settings in the Itunes store after the purchase\n- You cannot cancel the current subscription during the active subscription period\n- The unused free trial will be forfeited when you purchase a subscription during a trial period\n- By tapping continue, you agree to our Terms of Service, Privacy Policy, and Community Rules";
+
+"getMembership.mostPopular" = " Most popular ";
+"getMembership.3months" = "3 months";
+"getMembership.save" = "Save";
+"getMembership.tryToday" = "Save";
+
+
+"connection.title" = "Notifications";
+"connection.incomingButton" = "Incoming";
+"connection.outgoingButton" = "Outgoing";
+
+"gender.male" = "Man";
+"gender.female" = "Woman";
+"gender.nonBinary" = "Non-binary";
+
+"sexuality.asexual" = "Asexual";
+"sexuality.questioning" = "Questioning";
+"sexuality.sapiosexual" = "Sapiosexual";
+"sexuality.transsexual" = "Transsexual";
+"sexuality.straight" = "Straight";
+"sexuality.heteroflexible" = "Heteroflexible";
+"sexuality.pansexual" = "Pansexual";
+"sexuality.queer" = "Queer";
+"sexuality.bisexual" = "Bisexual";
+"sexuality.lesbian" = "Lesbian";
+"sexuality.homoflexible" = "Homoflexible";
+"sexuality.gay" = "Gay";
+"sexuality.all" = "All";
+
+"search.searchButton" = "Search";
+"search.searchOptions" = "Search Options";
+"search.location" = "Location";
+"search.location" = "Location";
+"search.activeCity" = "Active City";
+"search.partner" = "Partner";
+"search.sex" = "Sex";
+"search.lookingFor" = "Whom are you looking for?";
+"search.sexuality" = "Sexuality";
+"search.describePartner" = "How Would You Describe Your Partner?";
+"search.age" = "Age";
+"search.couple" = "Couple";
+"search.secondPartner" = "Second Partner";
+"search.secondPartner" = "Second Partner";
+"search.teleportToActiveCity" = "Teleport To An Active City";
+
+"userGateway.membership" = "Membership";
+"userGateway.getMembership" = "Get Membership";
+"userGateway.manageClubMembership" = "Manage Club Membership";
+"userGateway.unlimitedRooms" = "Unlimited Rooms To Play, x3 New Fantasies Daily and more";
+
+"monetization.title" = "Club Membership";
+"monetization.manageMembership" = "Manage Membership";
+"monetization.getClubMembership" = "Get Club Membership";
+"monetization.upgradeButton" = "Upgrade";
+
+"monetization.memberUnlimRooms.title" = "Unlimited Rooms To Play";
+"monetization.memberUnlimRooms.subtitle" = "Chat, play, and swipe to see mutual cards with as many people as you want";
+
+"monetization.memberX3.title" = "x3 New Fantasies Dailyy";
+"monetization.memberX3.subtitle" = "Discover more new fantasy cards every day";
+
+"monetization.memberActiveCity.title" = "Change Active City";
+"monetization.memberActiveCity.subtitle" = "Switch your profile to other active cities to play with new people around the world";
+
+"monetization.memberParrot.title" = "Member Badge";
+"monetization.memberParrot.subtitle" = "Get a badge stating that you support Fantasy's values of sexual mindfulness, openness, and exploration";
+
+"relationshipStatus.single" = "Single";
+"relationshipStatus.with" = "with %@";
+
+"fantasy.collection.details" = "Details";
+"fantasy.collection.shareButton" = "Share Collection";
+"fantasy.collection.highlights" = "Highlights";
+"fantasy.collection.youWillLove" = "You'll Love This Collection";
+
+"roomsOnboarding.inviteParner" = "INVITE PARTNER";
+"roomsOnboarding.mutualFantasies" = "SEE MUTUAL\nFANTASIES";
+"roomsOnboarding.play" = "PLAY NEW\nFANTASIES";
+"roomsOnboarding.gotButton" = "Got it";
+
+"personalQuestion.question1" = "Which 3 words describe me the best?";
+"personalQuestion.question2" = "What do I value in other people?";
+"personalQuestion.question3" = "What are my hobbies & interests?";
+
+"expirience.professional" = "Professional";
+"expirience.iveDoneItAll" = "I’ve done it all";
+"expirience.veryExpirienced" = "Very experienced";
+"expirience.upForAnything" = "Up for anything";
+"expirience.somewhereInTheMiddle" = "Somewhere in the middle";
+"expirience.alilBitOfThisNThat" = "A little of this, a little of that";
+"expirience.newButReadyForAnything" = "New but ready for (almost) anything";
+"expirience.curiousAndLooking" = "Curious and looking";
+"expirience.vanilla" = "Vanilla";
+"expirience.brandNew" = "Brand new";
+
+"lookingFor.relationship" = "Relationship";
+"lookingFor.someoneToPlayWith" = "Someone to play with";
+"lookingFor.princesDaySlutNight" = "Princess by day, slut by night";
+"lookingFor.friendship" = "Friendship";
+"lookingFor.ethicalNonMono" = "Ethically non-monogamous relationship";
+"lookingFor.sleepPartners" = "Sleep partners";
+"lookingFor.bdsm" = "BDSM Relationship";
+"lookingFor.polyNetwork" = "Poly network";
+"lookingFor.unicorn" = "Unicorn";
+"lookingFor.beAUnicorn" = "To be a unicorn";
+"lookingFor.joinAnEstablishedCouple" = "To join an established couple";

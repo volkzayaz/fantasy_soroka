@@ -61,15 +61,11 @@ class ConnectionViewController: UIViewController, MVVM_View {
             outgoingButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
-    
-    @IBOutlet weak var pendingLabel: UILabel! {
-        didSet {
-            pendingLabel.text = R.string.localizable.notificationsPending()
-        }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = R.string.localizable.connectionTitle()
         
         viewModel.requests
             .do(onNext: { [unowned self] (sections) in

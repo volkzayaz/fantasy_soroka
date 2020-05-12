@@ -45,7 +45,7 @@ extension EditProfileViewModel {
                                                               image: R.image.profileGender()!,
                                                               editAction: nil),
                                                    .attribute(R.string.localizable.editProfileSexuaity(),
-                                                              value: user.bio.sexuality.rawValue,
+                                                              value: user.bio.sexuality.pretty,
                                                               image: R.image.profileSexuality()!,
                                                               editAction: nil),
                                                    .attribute(R.string.localizable.editProfileRelationship(),

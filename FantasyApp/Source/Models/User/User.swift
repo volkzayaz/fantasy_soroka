@@ -202,10 +202,28 @@ enum Sexuality: String, CaseIterable, Equatable, Codable {
     case gay = "Gay"
     
     case all = "All"
+    
+    var pretty: String {
+        switch self {
+        case .asexual: return R.string.localizable.sexualityAsexual()
+        case .questioning: return R.string.localizable.sexualityQuestioning()
+        case .sapiosexual: return R.string.localizable.sexualitySapiosexual()
+        case .transsexual: return R.string.localizable.sexualityTranssexual()
+        case .straight: return R.string.localizable.sexualityStraight()
+        case .heteroflexible: return R.string.localizable.sexualityHeteroflexible()
+        case .pansexual: return R.string.localizable.sexualityPansexual()
+        case .queer: return R.string.localizable.sexualityQueer()
+        case .bisexual: return R.string.localizable.sexualityBisexual()
+        case .lesbian: return R.string.localizable.sexualityLesbian()
+        case .homoflexible: return R.string.localizable.sexualityHomoflexible()
+        case .gay: return R.string.localizable.sexualityGay()
+        case .all: return R.string.localizable.sexualityAll()
+        }
+    }
 
     public init(from decoder: Decoder) throws {
         let legacy = try Sexuality(rawValue: decoder.singleValueContainer().decode(RawValue.self))
-
+        
         guard let legacyVar = legacy else {
             throw ModelMigrationError.noLegacyModel
         }
@@ -259,9 +277,9 @@ enum Gender: String, CaseIterable, Equatable, Codable {
 
     var pretty: String {
         switch self {
-        case .male: return "Man"
-        case .female: return "Woman"
-        case .nonBinary: return "Non-binary"
+        case .male: return R.string.localizable.genderMale()
+        case .female: return R.string.localizable.genderFemale()
+        case .nonBinary: return R.string.localizable.genderNonBinary()
 
 //        case .transgenderMale: return "MtF"
 //        case .transgenderFemale: return "FtM"
@@ -354,9 +372,9 @@ enum RelationshipStatus: Equatable, Codable {
     var pretty: String {
         switch self {
         case .single:
-            return "Single"
+            return R.string.localizable.relationshipStatusSingle()
         case .couple(let partnerGender):
-            return "with \(partnerGender.pretty)"
+            return R.string.localizable.relationshipStatusWith(partnerGender.pretty)
 
         }
     }
@@ -394,17 +412,17 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         
         switch self {
             
-        case .relationship: return "Relationship"
-        case .someoneToPlayWith: return "Someone to play with"
-        case .princesDaySlutNight: return "Princess by day, slut by night"
-        case .friendship: return "Friendship"
-        case .ethicalNonMono: return "Ethically non-monogamous relationship"
-        case .sleepPartners: return "Sleep partners"
-        case .bdsm: return "BDSM Relationship"
-        case .polyNetwork: return "Poly network"
-        case .unicorn: return "Unicorn"
-        case .beAUnicorn: return "To be a unicorn"
-        case .joinAnEstablishedCouple: return "To join an established couple"
+        case .relationship: return R.string.localizable.lookingForRelationship()
+        case .someoneToPlayWith: return R.string.localizable.lookingForSomeoneToPlayWith()
+        case .princesDaySlutNight: return R.string.localizable.lookingForPrincesDaySlutNight()
+        case .friendship: return R.string.localizable.lookingForFriendship()
+        case .ethicalNonMono: return R.string.localizable.lookingForEthicalNonMono()
+        case .sleepPartners: return R.string.localizable.lookingForSleepPartners()
+        case .bdsm: return R.string.localizable.lookingForBdsm()
+        case .polyNetwork: return R.string.localizable.lookingForPolyNetwork()
+        case .unicorn: return R.string.localizable.lookingForUnicorn()
+        case .beAUnicorn: return R.string.localizable.lookingForBeAUnicorn()
+        case .joinAnEstablishedCouple: return R.string.localizable.lookingForJoinAnEstablishedCouple()
             
         }
         
@@ -429,16 +447,16 @@ enum Expirience: Int, Codable, Equatable, CaseIterable {
         
         switch self {
             
-        case .professional: return "Professional"
-        case .iveDoneItAll: return "I’ve done it all"
-        case .veryExpirienced: return "Very experienced"
-        case .upForAnything: return "Up for anything"
-        case .somewhereInTheMiddle: return "Somewhere in the middle"
-        case .alilBitOfThisNThat: return "A little of this, a little of that"
-        case .newButReadyForAnything: return "New but ready for (almost) anything"
-        case .curiousAndLooking: return "Curious and looking"
-        case .vanilla: return "Vanilla"
-        case .brandNew: return "Brand new"
+        case .professional: return R.string.localizable.expirienceProfessional()
+        case .iveDoneItAll: return R.string.localizable.expirienceIveDoneItAll()
+        case .veryExpirienced: return R.string.localizable.expirienceVeryExpirienced()
+        case .upForAnything: return R.string.localizable.expirienceUpForAnything()
+        case .somewhereInTheMiddle: return R.string.localizable.expirienceSomewhereInTheMiddle()
+        case .alilBitOfThisNThat: return R.string.localizable.expirienceAlilBitOfThisNThat()
+        case .newButReadyForAnything: return R.string.localizable.expirienceNewButReadyForAnything()
+        case .curiousAndLooking: return R.string.localizable.expirienceCuriousAndLooking()
+        case .vanilla: return R.string.localizable.expirienceVanilla()
+        case .brandNew: return R.string.localizable.expirienceBrandNew()
             
         }
         
@@ -447,9 +465,9 @@ enum Expirience: Int, Codable, Equatable, CaseIterable {
 }
 
 extension User.Bio.PersonalQuestion {
-    static let question1: String = "Which 3 words describe me the best?"
-    static let question2: String = "What do I value in other people?"
-    static let question3: String = "What are my hobbies & interests?"
+    static let question1: String = R.string.localizable.personalQuestionQuestion1()
+    static let question2: String = R.string.localizable.personalQuestionQuestion2()
+    static let question3: String = R.string.localizable.personalQuestionQuestion3()
 }
 
 

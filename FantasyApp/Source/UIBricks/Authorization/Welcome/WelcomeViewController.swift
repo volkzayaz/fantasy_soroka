@@ -17,7 +17,8 @@ class WelcomeViewController: UIViewController, MVVM_View {
 
     @IBOutlet private weak var termsTextView: UITextView! {
         didSet {
-            let text = R.string.localizable.authWelcomeTermsText(R.string.localizable.authTerms(), R.string.localizable.authPrivacy(), R.string.localizable.authRules())
+            let terms = R.string.localizable.authTerms()
+            let text = R.string.localizable.authWelcomeTermsText(terms, R.string.localizable.authPrivacy(), R.string.localizable.authRules())
             let attr = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont.regularFont(ofSize: 12)])
 

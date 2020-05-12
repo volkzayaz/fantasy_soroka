@@ -66,6 +66,9 @@
                                 <state key="normal" title="Edit Profile &gt;">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.editProfileButton"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="jOr-13-C53" kind="show" identifier="showEdit" id="Whe-rJ-tQY"/>
                                 </connections>
@@ -76,6 +79,9 @@
                                 <state key="normal" title="Settings">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.settingButton"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="6IV-XE-f6j" kind="presentation" modalPresentationStyle="fullScreen" id="pU6-Ri-O2b"/>
                                 </connections>
@@ -121,6 +127,9 @@
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.membership"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="memberParrot" translatesAutoresizingMaskIntoConstraints="NO" id="jNj-uE-f90">
                                                                         <rect key="frame" x="-4.5" y="0.0" width="114" height="24"/>
@@ -163,6 +172,9 @@
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.myLibrary"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gatewayFantasies" translatesAutoresizingMaskIntoConstraints="NO" id="pLb-Cz-jwQ">
                                                                         <rect key="frame" x="-0.5" y="0.0" width="106" height="34"/>
@@ -206,6 +218,9 @@
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.activeCity"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gatewayTeleport" translatesAutoresizingMaskIntoConstraints="NO" id="LNG-DO-D3T">
                                                                         <rect key="frame" x="4.5" y="0.0" width="96" height="34"/>
@@ -257,6 +272,9 @@
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.feedback"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gatewayFeedback" translatesAutoresizingMaskIntoConstraints="NO" id="S42-zt-uDk">
                                                                         <rect key="frame" x="-2.5" y="0.0" width="110" height="34"/>
@@ -300,6 +318,9 @@
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.rateUs"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gatewayRateUs" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-Wg-GwD">
                                                                         <rect key="frame" x="8.5" y="0.0" width="88" height="34"/>
@@ -343,6 +364,9 @@
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.support"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gatewaySupport" translatesAutoresizingMaskIntoConstraints="NO" id="DlQ-gT-zx0">
                                                                         <rect key="frame" x="4.5" y="0.0" width="96" height="34"/>
@@ -411,12 +435,18 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" name="bgLightGrey"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.memberBadgeTitle"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get a badge stating that you support Fantasy's values" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-K4-WpE">
                                         <rect key="frame" x="26" y="161.5" width="199" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" name="bgLightGrey"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.memberBadgeDescription"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -530,6 +560,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.notification"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -554,6 +587,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.restorePurchase"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -575,6 +611,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.contacUs"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -592,6 +631,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.privacyPolicy"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -609,6 +651,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.terms"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -626,6 +671,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.rules"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -643,6 +691,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.rateUs"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -664,6 +715,9 @@
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.deleteAccount"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -685,6 +739,9 @@
                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                     <color key="textColor" name="textPinkColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.logout"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -812,10 +869,16 @@ ID: #userid#</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="g26-b3-Vwr">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="pfq-aE-paw" customClass="FantasyTextItem" customModule="FantasyApp" customModuleProvider="target">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="general.done"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="done:" destination="ABr-g6-V4z" id="XcQ-QY-EU7"/>
                             </connections>
                         </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.title"/>
+                        </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
                         <outlet property="heartLoadingView" destination="bLk-h5-CWu" id="sba-22-SoE"/>
@@ -929,10 +992,16 @@ ID: #userid#</string>
                     </view>
                     <navigationItem key="navigationItem" title="My Library" id="NJj-zj-fal">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="8BJ-XN-d4F" customClass="FantasyTextItem" customModule="FantasyApp" customModuleProvider="target">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.title"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <segue destination="oXI-uq-QgF" kind="show" id="Xal-ct-f2M"/>
                             </connections>
                         </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile.myLibrary"/>
+                        </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
                         <outlet property="cardsButton" destination="UaF-aI-cWK" id="9MU-uy-gb4"/>
@@ -1029,6 +1098,9 @@ ID: #userid#</string>
                                     <constraint firstAttribute="width" constant="254" id="x1Y-Cg-slL"/>
                                 </constraints>
                                 <state key="normal" title="Save changes"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="general.saveChanges"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveAction:" destination="g5R-rf-vDO" eventType="touchUpInside" id="29Q-HT-yjZ"/>
                                 </connections>
@@ -1095,6 +1167,9 @@ ID: #userid#</string>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30588235289999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="editRelationship.description"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="38f-mx-0LP">
                                         <rect key="frame" x="27.5" y="118" width="320" height="216"/>
@@ -1113,6 +1188,9 @@ ID: #userid#</string>
                                                 <state key="normal" title="Solo">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="registration.relationship.soloButton"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="soloButton:" destination="iGN-vG-fZf" eventType="touchUpInside" id="PbU-N9-hD4"/>
                                                 </connections>
@@ -1125,6 +1203,9 @@ ID: #userid#</string>
                                                 <state key="normal" title="Couple">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="registration.relationship.coupleButton"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="partnerAction:" destination="iGN-vG-fZf" eventType="touchUpInside" id="6C8-sA-oXY"/>
                                                 </connections>
@@ -1138,6 +1219,9 @@ ID: #userid#</string>
                                             <constraint firstAttribute="width" constant="254" id="QNL-rr-t2S"/>
                                         </constraints>
                                         <state key="normal" title="Save changes"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="general.saveChanges"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="saveAction:" destination="g5R-rf-vDO" eventType="touchUpInside" id="gwb-fo-NBK"/>
                                             <action selector="saveChanges:" destination="iGN-vG-fZf" eventType="touchUpInside" id="tEO-yr-ozY"/>
@@ -1160,6 +1244,9 @@ ID: #userid#</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" red="0.28235294119999998" green="0.30588235289999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="editRelationship.title"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1216,6 +1303,9 @@ ID: #userid#</string>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="editProfile.publicPhotos"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yXa-6h-ZLs" customClass="ProfilePhotoCollectionView" customModule="FantasyApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="72" width="375" height="111"/>
@@ -1236,18 +1326,27 @@ ID: #userid#</string>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="editProfile.seretPhotos"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A complete profile requires 6 photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wB-UZ-OGJ">
                                             <rect key="frame" x="16" y="46" width="250" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="editProfile.publicPhotos.description"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visible only to matched users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7T6-VN-jQJ">
                                             <rect key="frame" x="16" y="233.5" width="201.5" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="editProfile.seretPhotos.description"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="secret" translatesAutoresizingMaskIntoConstraints="NO" id="kzf-ry-Zy6">
                                             <rect key="frame" x="16" y="209" width="16" height="16"/>
@@ -1631,6 +1730,9 @@ ID: #userid#</string>
                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="notifications.newMatches"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1660,6 +1762,9 @@ ID: #userid#</string>
                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="notifications.newMessages"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1689,6 +1794,9 @@ ID: #userid#</string>
                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="notifications.newFantasy"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1708,7 +1816,11 @@ ID: #userid#</string>
                             <outlet property="delegate" destination="ZqY-5d-N3z" id="jh7-5a-rn4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notifications" id="VjW-XK-bYu"/>
+                    <navigationItem key="navigationItem" title="Notifications" id="VjW-XK-bYu">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="notifications.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="newFantasySwitch" destination="Q7X-F5-vkS" id="OSc-RM-KEp"/>
                         <outlet property="newMatchSwitch" destination="keR-5C-JXs" id="scz-7e-hxs"/>
@@ -1812,6 +1924,9 @@ ID: #userid#</string>
                                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.title"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaA-bA-4zw" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="42.5" width="382" height="158"/>
@@ -1827,6 +1942,9 @@ ID: #userid#</string>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.cards"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See Liked, Disliked, and Blocked Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
                                                                                 <rect key="frame" x="0.0" y="22" width="352" height="22"/>
@@ -1836,6 +1954,9 @@ ID: #userid#</string>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textLightGrayColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.cardsTypes"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
@@ -1854,6 +1975,9 @@ ID: #userid#</string>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.reactionHistory"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="fkp-oq-OTO">
                                                                                 <rect key="frame" x="332" y="0.0" width="20" height="44"/>
@@ -1893,6 +2017,9 @@ ID: #userid#</string>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.blocked"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="CRK-4M-Inx">
                                                                                 <rect key="frame" x="332" y="0.0" width="20" height="44"/>
@@ -1989,7 +2116,7 @@ ID: #userid#</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5195.652173913044" y="351.5625"/>
+            <point key="canvasLocation" x="5192" y="445"/>
         </scene>
     </scenes>
     <resources>
@@ -2024,7 +2151,7 @@ ID: #userid#</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TB4-RF-Fev"/>
+        <segue reference="sqa-Wz-1NI"/>
         <segue reference="95r-Ip-glt"/>
         <segue reference="DzX-Zp-GfS"/>
     </inferredMetricsTieBreakers>

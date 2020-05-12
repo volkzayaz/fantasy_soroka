@@ -56,7 +56,7 @@ extension FantasyCollectionDetailsViewModel {
         
         if x.details.count > 0 {
             result.append(.init(model: "Details",
-                                items: [.expandable(title: "Details", description: x.details)]))
+                                items: [.expandable(title: R.string.localizable.fantasyCollectionDetails(), description: x.details)]))
         }
         
         result.append(.init(model: "What's inside",
@@ -64,12 +64,12 @@ extension FantasyCollectionDetailsViewModel {
         
         if x.highlights.count > 0 {
             result.append(.init(model: "Highlights",
-                                items: [.expandable(title: "Highlights", description: x.highlights)]))
+                                items: [.expandable(title: R.string.localizable.fantasyCollectionHighlights(), description: x.highlights)]))
         }
         
         if x.loveThis.count > 0 {
             result.append(.init(model: "LoveThis",
-                                items: [.expandable(title: "You'll Love This Collection", description: x.loveThis)]))
+                                items: [.expandable(title: R.string.localizable.fantasyCollectionYouWillLove(), description: x.loveThis)]))
         }
         
         if let t = x.author {
