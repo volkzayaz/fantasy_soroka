@@ -382,6 +382,7 @@ class ShareCollectionCell: UITableViewCell {
     
     @IBOutlet weak var shareButton: PrimaryButton! {
         didSet {
+            shareButton.layer.mask?.removeFromSuperlayer()
             shareButton.useTransparency = false
             shareButton.normalBackgroundColor = UIColor(fromHex: 0xEDEDF1)
             shareButton.setupBackgroundColor()

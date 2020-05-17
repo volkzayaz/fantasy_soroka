@@ -42,7 +42,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-vD-Al1" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                <rect key="frame" x="60" y="454" width="294" height="52"/>
+                                <rect key="frame" x="60" y="624" width="294" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="oks-yJ-nzi"/>
                                 </constraints>
@@ -53,7 +53,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REm-5i-h73">
-                                <rect key="frame" x="120.5" y="522" width="173" height="26"/>
+                                <rect key="frame" x="120.5" y="692" width="173" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="kfV-2y-AfT"/>
                                 </constraints>
@@ -65,19 +65,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE APP FOR OPEN-MINDED COUPLES AND SOLOS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xy-r2-dJw">
-                                <rect key="frame" x="52" y="361" width="310" height="43"/>
+                                <rect key="frame" x="52" y="531" width="310" height="43"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fantasyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="0CS-IC-BOv">
-                                <rect key="frame" x="133" y="151" width="148" height="170"/>
+                                <rect key="frame" x="133" y="151" width="148" height="340"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="cbB-MS-0nI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We don’t post anything on Facebook" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10s-tg-JLq">
-                                <rect key="frame" x="103.5" y="560" width="207" height="14.5"/>
+                                <rect key="frame" x="103.5" y="730" width="207" height="14.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

@@ -3276,7 +3276,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.97;
+				MARKETING_VERSION = 2.0.98;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.fantasyapp.iosclient";
@@ -3310,7 +3310,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.97;
+				MARKETING_VERSION = 2.0.98;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Fantasy App Store";
@@ -3400,7 +3400,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.97;
+				MARKETING_VERSION = 2.0.98;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";

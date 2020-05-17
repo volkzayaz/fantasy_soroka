@@ -784,6 +784,9 @@
                                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                     <color key="textColor" name="textBlackColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasy.settings.madeWithMature.title.firstPart"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footerHeart" translatesAutoresizingMaskIntoConstraints="NO" id="WxM-yO-zla">
                                                                     <rect key="frame" x="100" y="0.0" width="15" height="15"/>
@@ -798,6 +801,9 @@
                                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                     <color key="textColor" name="textBlackColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasy.settings.madeWithMature.title.secondPart"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <connections>
@@ -1599,6 +1605,9 @@ ID: #userid#</string>
                                         <state key="normal" title="Liked">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="reationHistory.likedButton"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="likedAction:" destination="hhw-En-1aU" eventType="touchUpInside" id="rhQ-aw-i1H"/>
                                         </connections>
@@ -1611,6 +1620,9 @@ ID: #userid#</string>
                                         <state key="normal" title="Disliked">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="reationHistory.dislikedButton"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="dislikedAction:" destination="hhw-En-1aU" eventType="touchUpInside" id="4Zv-M6-AzZ"/>
                                         </connections>
@@ -1632,7 +1644,11 @@ ID: #userid#</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TSx-5c-Z2f"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Reaction History" id="LvG-9v-Tqw"/>
+                    <navigationItem key="navigationItem" title="Reaction History" id="LvG-9v-Tqw">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasiesSettings.reactionHistory.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="dislikedButton" destination="8CG-6K-QQY" id="pSS-z0-eAb"/>
                         <outlet property="likedButton" destination="OaF-RK-PoI" id="UJl-c3-PSy"/>
@@ -1667,7 +1683,11 @@ ID: #userid#</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jax-v5-ZSl"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Blocked" id="w1h-S0-CaO"/>
+                    <navigationItem key="navigationItem" title="Blocked" id="w1h-S0-CaO">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasiesSettings.blocked.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vi-QA-9f4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1943,7 +1963,7 @@ ID: #userid#</string>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.cards"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasiesSettings.cards"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See Liked, Disliked, and Blocked Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Cc-J6v">
@@ -1955,7 +1975,7 @@ ID: #userid#</string>
                                                                                 <color key="textColor" name="textLightGrayColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.cardsTypes"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasiesSettings.cardsTypes"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
@@ -1976,7 +1996,7 @@ ID: #userid#</string>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.reactionHistory"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasiesSettings.reactionHistory"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="fkp-oq-OTO">
@@ -2018,7 +2038,7 @@ ID: #userid#</string>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasisSettings.blocked"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myFantasiesSettings.blocked.title"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="CRK-4M-Inx">
@@ -2092,7 +2112,11 @@ ID: #userid#</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dkl-E7-Zh4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Library Settings" id="YkQ-5F-XW3"/>
+                    <navigationItem key="navigationItem" title="My Library Settings" id="YkQ-5F-XW3">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myLibrarySettings.navTitle"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="950"/>
                     <connections>
                         <outlet property="collectionImageView" destination="OIQ-RQ-mgV" id="zwP-dW-eAd"/>
@@ -2151,7 +2175,7 @@ ID: #userid#</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sqa-Wz-1NI"/>
+        <segue reference="TB4-RF-Fev"/>
         <segue reference="95r-Ip-glt"/>
         <segue reference="DzX-Zp-GfS"/>
     </inferredMetricsTieBreakers>

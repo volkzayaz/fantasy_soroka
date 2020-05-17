@@ -18,8 +18,7 @@ extension ProfileSettingsViewModel {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
         let env = SettingsStore.environment.value.serverAlias
-        
-        return "Version \(appVersion)-\(appBuild)\n\(env)"
+        return R.string.localizable.fantasySettingsVersion("\(appVersion)-\(appBuild)\n\(env)")
     }
 
     var helpImproveText: String {

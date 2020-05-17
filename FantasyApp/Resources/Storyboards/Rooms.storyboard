@@ -213,6 +213,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Get-aC-cnw">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c49-ZI-kpd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <subviews>
@@ -316,11 +320,15 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="g4r-FQ-Xkh" firstAttribute="bottom" secondItem="5tj-zr-HlS" secondAttribute="bottom" id="5C1-nJ-5MD"/>
+                            <constraint firstItem="Get-aC-cnw" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="J0M-fW-6a9"/>
+                            <constraint firstItem="g4r-FQ-Xkh" firstAttribute="trailing" secondItem="Get-aC-cnw" secondAttribute="trailing" id="Ood-hj-hIt"/>
                             <constraint firstItem="5tj-zr-HlS" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="k9U-iO-ABT"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="llA-gf-odc"/>
                             <constraint firstItem="g4r-FQ-Xkh" firstAttribute="trailing" secondItem="5tj-zr-HlS" secondAttribute="trailing" id="n9z-3C-Rxe"/>
+                            <constraint firstItem="Get-aC-cnw" firstAttribute="top" secondItem="5tj-zr-HlS" secondAttribute="bottom" id="npS-dG-gGz"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="trailing" secondItem="g4r-FQ-Xkh" secondAttribute="trailing" id="r5f-ea-lGu"/>
                             <constraint firstItem="5tj-zr-HlS" firstAttribute="top" secondItem="c49-ZI-kpd" secondAttribute="bottom" id="wAy-mT-Rgt"/>
+                            <constraint firstAttribute="bottom" secondItem="Get-aC-cnw" secondAttribute="bottom" id="wBV-vj-mNh"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="top" secondItem="g4r-FQ-Xkh" secondAttribute="top" id="zCX-kE-AQ6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g4r-FQ-Xkh"/>
@@ -336,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cqf-tm-JBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3917" y="1485"/>
+            <point key="canvasLocation" x="3915.9420289855075" y="1484.5982142857142"/>
         </scene>
         <!--FantasyListViewController-->
         <scene sceneID="8id-f6-1UV">
@@ -353,7 +361,19 @@
                     <view key="view" contentMode="scaleToFill" id="nG0-FH-boz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEb-Rj-WM7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Avl-O8-pTW" firstAttribute="trailing" secondItem="cEb-Rj-WM7" secondAttribute="trailing" id="BrN-vq-kY7"/>
+                            <constraint firstAttribute="bottom" secondItem="cEb-Rj-WM7" secondAttribute="bottom" id="Ef0-UI-VEG"/>
+                            <constraint firstItem="cEb-Rj-WM7" firstAttribute="top" secondItem="nG0-FH-boz" secondAttribute="top" id="oYR-yI-o9A"/>
+                            <constraint firstItem="cEb-Rj-WM7" firstAttribute="leading" secondItem="Avl-O8-pTW" secondAttribute="leading" id="uDG-rM-oAD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Avl-O8-pTW"/>
                     </view>
                 </viewController>
@@ -408,6 +428,9 @@
                                                             <constraint firstAttribute="height" constant="30" id="Yeo-mW-Ndc"/>
                                                         </constraints>
                                                         <state key="normal" title="Share"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="general.share"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="copyLink" destination="TEk-cf-ND1" eventType="touchUpInside" id="EgC-IL-lth"/>
                                                         </connections>

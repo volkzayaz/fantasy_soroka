@@ -186,3 +186,46 @@ class BaseFlowLayout: UICollectionViewFlowLayout {
     }
 
 }
+
+final class EmptyIncomingView: UIView {
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = R.image.emptyIncoming()
+        return imageView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.text = R.string.localizable.notificationsEmptyIncomingTitle()
+        label.textColor = R.color.textBlackColor()
+        return label
+    }()
+    
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.text = R.string.localizable.notificationsEmptyIncomingSubtitle()
+        label.textColor = R.color.textBlackColor()
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+     
+    private func layout() {
+        addSubview(logoImageView)
+        logoImageView.snp.makeConstraints {
+            $0.size.equalTo(80)
+            $0.centerX.equalToSuperview()
+        }
+    }
+}
