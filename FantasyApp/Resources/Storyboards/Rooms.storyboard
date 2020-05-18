@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Room Tutorial View Controller-->
         <scene sceneID="6es-hI-s5o">
             <objects>
-                <viewController storyboardIdentifier="RoomTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZQJ-et-LyK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoomTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZQJ-et-LyK" customClass="RoomTutorialViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lBu-Lv-7df">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,20 +24,44 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="gZL-mQ-bQG">
                                 <rect key="frame" x="20" y="72" width="374" height="672"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step1" translatesAutoresizingMaskIntoConstraints="NO" id="TA2-Vf-YFP">
-                                        <rect key="frame" x="0.0" y="0.0" width="243" height="224"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step2" translatesAutoresizingMaskIntoConstraints="NO" id="MXF-TW-dk9">
-                                        <rect key="frame" x="0.0" y="224" width="332" height="224"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step3" translatesAutoresizingMaskIntoConstraints="NO" id="S3o-hh-jjg">
-                                        <rect key="frame" x="0.0" y="448" width="288" height="224"/>
-                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA6-4b-uQH">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.666666666666664" height="224"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPG-Gp-LEA">
+                                        <rect key="frame" x="0.0" y="224" width="41.666666666666664" height="224"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o83-vR-pQV">
+                                        <rect key="frame" x="0.0" y="448" width="41.666666666666664" height="224"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-Ov-vRe">
                                 <rect key="frame" x="80" y="814" width="254" height="52"/>
-                                <state key="normal" image="GotItTutorial"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="Xx8-6r-0nX"/>
+                                    <constraint firstAttribute="height" constant="52" id="beQ-mo-5W7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Got It">
+                                    <color key="titleColor" red="0.12806296348571777" green="0.63350671529769897" blue="0.87061887979507446" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="roomsOnboarding.gotButton"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="26"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="j46-wu-42H" kind="custom" customClass="DismissSegue" customModule="FantasyApp" customModuleProvider="target" id="35L-xo-Zi1"/>
                                 </connections>
@@ -58,6 +82,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GY1-xQ-GBh"/>
                     </view>
+                    <connections>
+                        <outlet property="firstLabel" destination="YA6-4b-uQH" id="INF-5l-NmY"/>
+                        <outlet property="secondLabel" destination="lPG-Gp-LEA" id="pvd-CA-yZg"/>
+                        <outlet property="thirdLabel" destination="o83-vR-pQV" id="EaJ-sQ-qXe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esT-Co-NxD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -829,12 +858,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="GotItTutorial" width="254" height="52"/>
         <image name="Onboarding_Background" width="375" height="667"/>
         <image name="indicator" width="10" height="14"/>
-        <image name="tutorial_step1" width="243" height="87"/>
-        <image name="tutorial_step2" width="332" height="88"/>
-        <image name="tutorial_step3" width="288" height="87"/>
         <namedColor name="listBackgroundColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

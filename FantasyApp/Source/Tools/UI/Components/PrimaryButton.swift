@@ -53,12 +53,6 @@ public class PrimaryButton: UIButton {
             setupTransparencyMask()
         }
     }
-
-    override public func setTitle(_ title: String?, for state: UIControl.State) {
-        super.setTitle(title, for: state)
-        setupTransparencyMask()
-    }
-
     override public func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.height / 2

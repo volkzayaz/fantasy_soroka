@@ -30,7 +30,7 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet var paidImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var fantasiesCountLabel: UILabel!
-    @IBOutlet weak var myDeckIndicator: UIImageView!
+    @IBOutlet weak var myDeckIndicator: UIView!
     private var gradientLayer = CAGradientLayer()
 
     var model: Fantasy.Collection! {

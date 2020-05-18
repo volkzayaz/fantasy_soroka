@@ -87,13 +87,16 @@ class ConnectionViewController: UIViewController, MVVM_View {
             .drive(emptyView.rx.isEmpty)
             .disposed(by: rx.disposeBag)
         
-        viewModel.sourceDriver.map { source in
-            let image = source == .incomming ? R.image.incommingConnectionsPlaceholder() : R.image.outgoingConnectionsPlaceholder()
-            
-            return UIImageView(image: image)
-        }
-        .drive(emptyView.rx.emptyView)
-        .disposed(by: rx.disposeBag)
+        viewModel.sourceDriver
+            .drive(onNext: { [unowned self] source in
+                self.emptyView.subviews.forEach { $0.removeFromSuperview() }
+                
+                let view = source == .incomming ? EmptyIncomingView() : EmptyOutgoingView()
+                self.emptyView.addSubview(view)
+                view.snp.makeConstraints { $0.edges.equalToSuperview() }
+            })
+            .disposed(by: rx.disposeBag)
+        
 
         collectionView.rx.modelSelected(ConnectedUser.self)
             .subscribe(onNext: { [unowned self] (x) in
@@ -200,6 +203,7 @@ final class EmptyIncomingView: UIView {
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.text = R.string.localizable.notificationsEmptyIncomingTitle()
         label.textColor = R.color.textBlackColor()
+        label.textAlignment = .center
         return label
     }()
     
@@ -208,6 +212,8 @@ final class EmptyIncomingView: UIView {
         label.font = UIFont.systemFont(ofSize: 15)
         label.text = R.string.localizable.notificationsEmptyIncomingSubtitle()
         label.textColor = R.color.textBlackColor()
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -224,8 +230,83 @@ final class EmptyIncomingView: UIView {
     private func layout() {
         addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            $0.size.equalTo(80)
+            $0.size.equalTo(70)
+            $0.centerY.equalToSuperview().multipliedBy(0.8)
             $0.centerX.equalToSuperview()
+        }
+        
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(logoImageView.snp.bottom).offset(16)
+            $0.left.equalTo(55)
+            $0.right.equalTo(-55)
+        }
+        
+        addSubview(subtitleLabel)
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.left.right.equalTo(titleLabel)
+        }
+    }
+}
+
+
+final class EmptyOutgoingView: UIView {
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = R.image.emptyOutgoing()
+        return imageView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.text = R.string.localizable.notificationsEmptyOutgoingTitle()
+        label.textColor = R.color.textBlackColor()
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.text = R.string.localizable.notificationsEmptyOutgoingSubtitle()
+        label.textColor = R.color.textBlackColor()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+     
+    private func layout() {
+        addSubview(logoImageView)
+        logoImageView.snp.makeConstraints {
+            $0.size.equalTo(70)
+            $0.centerY.equalToSuperview().multipliedBy(0.8)
+            $0.centerX.equalToSuperview()
+        }
+        
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(logoImageView.snp.bottom).offset(16)
+            $0.left.equalTo(55)
+            $0.right.equalTo(-55)
+        }
+        
+        addSubview(subtitleLabel)
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.left.right.equalTo(titleLabel)
         }
     }
 }

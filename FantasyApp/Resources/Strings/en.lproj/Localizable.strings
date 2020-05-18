@@ -174,7 +174,7 @@
 
 //geolocation-notice-during-registration
 "allowGeolocation.title" = "Join the Community";
-"allowGeolocation.description" = "Enable your geolocation. Thus we'll know if your city is activated in our system.";
+"allowGeolocation.description" = "Enable your geolocation.\nThus we'll know if your city is activated in our system.";
 "allowGeolocation.dontAllow" = "Don’t Allow";
 "allowGeolocation.allow" = "Allow";
 
@@ -270,6 +270,7 @@
 //cards-count-is-showing-from-backend-right-now
 "fantasy.deck.cards.count.one" = "Card";
 "fantasy.deck.cards.count.several" = "Cards";
+"fantasy.deck.mydeck" = "My Deck";
 
 
 // Learn - Decks
@@ -298,6 +299,7 @@
 
 "fantasyCollection.details" = "Details";
 "fantasyCollection.whatsInside" = "What's Inside";
+"fantasyCard.andMore" = "And more...😉"; //text-in-the-block-whats-inside-last-card
 "fantasyCollection.highlights" = "Highlights";
 "fantasyCollection.youWillLove" = "You'll Love This Collection";
 "fantasyCollection.author" = "Author";
@@ -334,12 +336,20 @@
 "room.list.add" = "Add";
 "rooms.add.new.room" = "Add New Room";
 
+//placeholder-tutorial Проверить что UI может адаптироваться/растягиваться в других языках
+"createRoom.firstStep" = "Add New Room";
+"createRoom.secondStep" = "Share Invite Link";
+"createRoom.thirdStep" = "Play with Partner";
+"createRoom.title" = "Create a Room To Play";
+"createRoom.description" = "Enjoy chatting and playing";
+
 "room.list.newRoom" = "new Room";
 
 "room.frozenRoomUnreachable" = "This Room is currently frozen. You or the other Room participant has reached the available Rooms' limit. Would you like to subscribe to Club Membership to unfreeze all Rooms?";
 
 "room.creation.title" = "New Room Settings";
 
+//notifications-insinde-rooms
 "chat.messageType.created" = "created";
 "chat.messageType.like.own" = "You liked %@ profile";
 "chat.messageType.like" = "%@ liked your profile";
@@ -387,10 +397,13 @@
 // Play - Rooms - Add New Room - Onboarding
 
 
-"room.creation.tutorial.title" = "Add New Room";
-"roomsOnboarding.inviteParner" = "INVITE PARTNER";
-"roomsOnboarding.mutualFantasies" = "SEE MUTUAL\nCARDS";
-"roomsOnboarding.play" = "PLAY WITH\nNEW CARDS";
+"room.creation.tutorial.title" = "Play In Rooms";
+"roomsOnboarding.inviteParner.part1" = "ADD NEW";
+"roomsOnboarding.inviteParner.part2" = "ROOM";
+"roomsOnboarding.mutualFantasies.part1" = "SHARE";
+"roomsOnboarding.mutualFantasies.part2" = "INVITE LINK";
+"roomsOnboarding.play.part1" = "PLAY WITH";
+"roomsOnboarding.play.part" = "NEW CARDS";
 
 "roomsOnboarding.gotButton" = "Got It"; // now it's picture will be used
 "room.creation.tutorial.button.title" = "Let's Go"; // unused
@@ -691,9 +704,8 @@
 // Profile - Membership
 
 
-"monetization.title" = "Club Membership";
-
 //title-for-non-subscribed-user
+"monetization.title" = "Club Membership";
 "monetization.getClubMembership" = "Get Club Membership";
 "monetization.upgradeButton" = "Upgrade";
 
@@ -716,15 +728,26 @@
 // Profile - My Library
 
 
-"settings.title" = "Settings";
+"profile.myLibrary" = "My Library"; //same as in Profile - Main (up)
+"settings.title" = "Settings"; //same as in Profile - My Library - Settings (below)
 
 // Profile - My Library - Settings
 
+
+"myLibrarySettings.navTitle" = "My Library Settings";
+"settings.title" = "Settings";
 "myFantasiesSettings.cards" = "Cards";
 "myFantasiesSettings.cardsTypes" = "See Liked, Disliked, and Blocked Cards";
 "myFantasiesSettings.reactionHistory" = "Reaction History";
 "myFantasiesSettings.blocked.title" = "Blocked";
+
 "myFantasiesSettings.reactionHistory.title" = "Reaction History";
+//talk: reation > reaction - поправить, чтобы написание было правильным -- myFantasiesSettings.reactionHistory.likedButton + myFantasiesSettings.reactionHistory.dislikedButton
+"reationHistory.likedButton" = "Liked";
+"reationHistory.dislikedButton" = "Disliked";
+
+//talk: add Title
+"myFantasiesSettings.blocked.navTitle" = "Blocked";
 
 
 // Profile - Settings
@@ -904,15 +927,4 @@
 
 // anton: NEW
 
-"createRoom.title" = "Create a Room To Play";
-"createRoom.description" = "Enjoy chatting and playing";
-"createRoom.firstStep" = "Add New Room";
-"createRoom.secondStep" = "Share Invite Link";
-"createRoom.thirdStep" = "Play with Partner";
 
-"reationHistory.likedButton" = "Liked";
-"reationHistory.dislikedButton" = "Disliked";
-
-"myLibrarySettings.navTitle" = "My Library Settings";
-
-"fantasyCard.andMore" = "And more...😉";

@@ -327,6 +327,7 @@
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 		882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DD27D2469E5DD008D9626 /* Localizable.swift */; };
+		88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -752,6 +753,7 @@
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
 		882DD27D2469E5DD008D9626 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		882DD27F2469E8AE008D9626 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTutorialViewController.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -2067,6 +2069,7 @@
 				843B648E234F197B00E5639B /* RoomSettingsViewModel.swift */,
 				844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */,
 				843B6490234F198500E5639B /* RoomSettingsViewController.swift */,
+				88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */,
 			);
 			path = RoomSettings;
 			sourceTree = "<group>";
@@ -2882,6 +2885,7 @@
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
 				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
+				88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
