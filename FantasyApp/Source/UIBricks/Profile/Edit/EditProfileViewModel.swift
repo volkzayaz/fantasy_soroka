@@ -167,7 +167,7 @@ extension EditProfileViewModel {
     
     func changeLookingFor() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeLookingForTitle(),
-                                 models: LookingFor.allCases,
+                                 models: LookingFor.sortedCases,
                                  defaultModels: User.current!.applied(editForm: form.value).bio.lookingFor,
                                  mode: .table,
                                  singlePickMode: false) { x in self.updateForm { $0.lookingFor = x } }
@@ -181,7 +181,7 @@ extension EditProfileViewModel {
         }
         
         router.presentSinglePick(title: R.string.localizable.editProfileChangeExpirienceTitle(),
-                                 models: Expirience.allCases,
+                                 models: [("", Expirience.allCases)],
                                  defaultModels: defaultModel,
                                  mode: .table,
                                  singlePickMode: true) { x in self.updateForm { $0.expirience = x.first } }
@@ -189,7 +189,7 @@ extension EditProfileViewModel {
     
     func changeGender() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeGenderTitle(),
-                                 models: Gender.allCases,
+                                 models: [("", Gender.allCases)],
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.gender],
                                  mode: .picker,
                                  singlePickMode: true) { x in self.updateForm { $0.gender = x.first! } }
@@ -197,7 +197,7 @@ extension EditProfileViewModel {
     
     func changeSexuality() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeSexualityTitle(),
-                                 models: Sexuality.allCasesV2,
+                                 models: [("", Sexuality.allCasesV2)],
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.sexuality],
                                  mode: .picker,
                                  singlePickMode: true) { x in self.updateForm { $0.sexuality = x.first! } }

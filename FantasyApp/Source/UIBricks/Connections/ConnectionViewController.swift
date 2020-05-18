@@ -51,6 +51,7 @@ class ConnectionViewController: UIViewController, MVVM_View {
             incommingButton.useTransparency = false
             incommingButton.setTitleColor(UIColor.fantasyPink, for: .selected)
             incommingButton.setTitleColor(UIColor.white, for: .normal)
+            incommingButton.setTitle(R.string.localizable.connectionIncomingButton(), for: .normal)
         }
     }
     @IBOutlet weak var outgoingButton: PrimaryButton! {
@@ -59,6 +60,7 @@ class ConnectionViewController: UIViewController, MVVM_View {
             outgoingButton.useTransparency = false
             outgoingButton.setTitleColor(UIColor.fantasyPink, for: .selected)
             outgoingButton.setTitleColor(UIColor.white, for: .normal)
+            outgoingButton.setTitle(R.string.localizable.connectionOutgoingButton(), for: .normal)
         }
     }
 

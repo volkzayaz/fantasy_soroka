@@ -13,7 +13,7 @@ import RxCocoa
 
 extension SinglePickViewModel {
     
-    var models: [SinglePickModel] {
+    var models: [(String, [SinglePickModel])] {
         return _models
     }
     
@@ -25,7 +25,7 @@ extension SinglePickViewModel {
 
 struct SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_ViewModel {
 
-    private let _models: [T]
+    private let _models: [(String, [T])]
     private var _pickedModels: [T]
     let title: String
     let mode: SinglePickViewController.Mode
@@ -34,7 +34,7 @@ struct SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_V
     
     init(router: SinglePickRouter,
          title: String,
-         models: [T],
+         models: [(String, [T])],
          pickedModels: [T],
          mode: SinglePickViewController.Mode,
          singlePickMode: Bool,

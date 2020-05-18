@@ -35,7 +35,7 @@ struct EditProfileRouter : MVVM_Router {
     }
     
     func presentSinglePick<T: SinglePickModel>(title: String,
-                                               models: [T],
+                                               models: [(String, [T])],
                                                defaultModels: [T],
                                                mode: SinglePickViewController.Mode,
                                                singlePickMode: Bool,

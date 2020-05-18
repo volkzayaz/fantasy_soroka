@@ -399,6 +399,7 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     case relationship = 0
     case someoneToPlayWith
     case princesDaySlutNight
+    case princeDaySlutNight
     case friendship
     case ethicalNonMono
     case sleepPartners
@@ -407,6 +408,12 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     case unicorn
     case beAUnicorn
     case joinAnEstablishedCouple
+    case ideas
+    case techniques
+    case sexIQ
+    case partner
+    case friends
+    case new
     
     var description: String {
         
@@ -415,6 +422,7 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         case .relationship: return R.string.localizable.lookingForRelationship()
         case .someoneToPlayWith: return R.string.localizable.lookingForSomeoneToPlayWith()
         case .princesDaySlutNight: return R.string.localizable.lookingForPrincesDaySlutNight()
+        case .princeDaySlutNight: return R.string.localizable.lookingForPrinceDaySlutNight()
         case .friendship: return R.string.localizable.lookingForFriendship()
         case .ethicalNonMono: return R.string.localizable.lookingForEthicalNonMono()
         case .sleepPartners: return R.string.localizable.lookingForSleepPartners()
@@ -423,11 +431,44 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         case .unicorn: return R.string.localizable.lookingForUnicorn()
         case .beAUnicorn: return R.string.localizable.lookingForBeAUnicorn()
         case .joinAnEstablishedCouple: return R.string.localizable.lookingForJoinAnEstablishedCouple()
+        case .ideas: return R.string.localizable.lookingForIdeas()
+        case .techniques: return R.string.localizable.lookingForTechniques()
+        case .sexIQ: return R.string.localizable.lookingForSexIQ()
+        case .partner: return R.string.localizable.lookingForPartner()
+        case .friends: return R.string.localizable.lookingForFriends()
+        case .new: return R.string.localizable.lookingForNew()
             
         }
-        
     }
     
+    
+    
+    static var sortedCases: [(String, [LookingFor])] {
+        [
+            (R.string.localizable.lookingForSectionLearn(), [
+                .ideas,
+                .techniques,
+                .sexIQ
+            ]),
+            (R.string.localizable.lookingForSectionPlay(), [
+                .partner,
+                .friends,
+                .new
+            ]),
+            (R.string.localizable.lookingForSectionFlirt(), [
+                .relationship,
+                .someoneToPlayWith,
+                .princesDaySlutNight,
+                .princeDaySlutNight,
+                .friendship,
+                .ethicalNonMono,
+                .bdsm,
+                .unicorn,
+                .beAUnicorn,
+                .joinAnEstablishedCouple
+            ])
+        ]
+    }
 }
 
 enum Expirience: Int, Codable, Equatable, CaseIterable {

@@ -859,35 +859,30 @@
 
 
 "editProfile.changeLookingForTitle" = "What Are You Here For?";
-//!! add: вынести заголовок раздела  - "editProfile.changeLookingForTitle.header" = "My Intentions";
+"editProfile.changeLookingForTitle.header" = "My Intentions";
 
-//!! add: вынести подзаголовок "lookingFor.section.learn" = "To Learn";
-//!! add: "lookingFor.relationship" = "Learn new ideas";
-//!! add: "lookingFor.relationship" = "Learn seducing techniques";
-//!! add: "lookingFor.relationship" = "Learn how to boost my sex IQ";
+"lookingFor.section.learn" = "To Learn";
+"lookingFor.ideas" = "Learn new ideas";
+"lookingFor.techniques" = "Learn seducing techniques";
+"lookingFor.sexIQ" = "Learn how to boost my sex IQ";
 
-//!! add: вынести подзаголовок "lookingFor.section.play" = "To PLay";
-//!! add: "lookingFor.relationship" = "Play with my partner";
-//!! add: "lookingFor.relationship" = "Play with my friends";
-//!! add: "lookingFor.relationship" = "Play with someone new";
+"lookingFor.section.play" = "To PLay";
+"lookingFor.partner" = "Play with my partner";
+"lookingFor.friends" = "Play with my friends";
+"lookingFor.new" = "Play with someone new";
 
-//!! add: вынести подзаголовок "lookingFor.section.play" = "To Flirt";
+"lookingFor.section.flirt" = "To Flirt";
 "lookingFor.relationship" = "Find a relationship";
 "lookingFor.someoneToPlayWith" = "Find someone to play with";
 "lookingFor.princesDaySlutNight" = "Find princess by day, slut by night";
-//!! add: "lookingFor.princeDaySlutNight" = "Find prince by day, slut by night";
+"lookingFor.princeDaySlutNight" = "Find prince by day, slut by night";
 "lookingFor.friendship" = "Find a friendship";
 "lookingFor.ethicalNonMono" = "Find CNM relationship";
 
-//!! remove:
-"lookingFor.sleepPartners" = "Sleep partners";
-//
+"lookingFor.sleepPartners" = "Sleep partners"; // anton: to remove but may be used in previous versions
 
 "lookingFor.bdsm" = "Find a BDSM relationship";
-
-//!! remove:
-"lookingFor.polyNetwork" = "Poly network";
-//
+"lookingFor.polyNetwork" = "Poly network"; // anton: to remove but may be used in previous versions
 
 
 "lookingFor.unicorn" = "Find a unicorn";
