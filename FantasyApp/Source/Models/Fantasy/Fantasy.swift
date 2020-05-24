@@ -210,13 +210,13 @@ extension Fantasy.Collection {
         
         let buo = BranchUniversalObject(canonicalIdentifier: "collection/\(id)")
         buo.title = "Fantasy"
-        buo.contentDescription = R.string.localizable.branchObjectCardShareDescription()
+        buo.contentDescription = R.string.localizable.branchObjectCollectionShareDescription()
         buo.publiclyIndex = true
         buo.imageUrl = immutableNonPersistentState.shareCollectionImageURL
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
-                                andShareText: R.string.localizable.branchObjectCardShareDescription(),
+                                andShareText: R.string.localizable.branchObjectCollectionShareDescription(),
                                 from: v) { (activityType, completed) in
 
             }

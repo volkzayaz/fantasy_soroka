@@ -48,7 +48,7 @@
 
 
 "welcome.signInButton" = "Sign in";
-"welcome.title" = "THE APP FOR OPEN-MINDED COUPLES AND SOLOS";
+"welcome.title" = "Sex Education\nand Community to\nLearn, Play and  Flirt";
 "welcome.getStarted" = "Get Started";
 "welcome.signUpFacebook" = "or Sign up with Facebook";
 "welcome.dontPostInfo" = "We don’t post anything on Facebook";
@@ -111,7 +111,7 @@
 // Registration - Start
 
 
-"registration.sexuality.continueButton" = "Continue"; // почему-то кнопка которая везде по регистрации имеет такое странное название
+"registration.sexuality.continueButton" = "Continue"; // !!action!! кнопка имеет такое странное название, причесать
 
 "registration.name.title" = "What's Your Name?";
 "registration.name.placeholder" = "Your Name";
@@ -258,7 +258,7 @@
 
 "fantasy.details.block.title" = "Block";
 "fantasy.details.block.text" = "Let us know if you think this card is offensive or has nudity, profanity, or pornography";
-"fantasy.details.block.positiveText" = "Block card";
+"fantasy.details.block.positiveText" = "Block Card";
 "fantasy.details.block.sent.title" = "Thank you";
 "fantasy.details.block.sent.text" = "You will never see the card again. We will inspect the content of this card";
 
@@ -311,7 +311,8 @@
 "fantasy.deck.details.buyButton" = "Open";
 "fantasy.deck.details.buyFor" = "Buy for %@";
 
-"fantasy.collection.shareButton" = "Share Collection";
+"fantasy.collection.shareButton" = "Share Deck";
+"branchObject.collectionShare.description" = "Join me on Fantasy Match & check out this Deck";
 
 
 // Learn - Search
@@ -319,7 +320,6 @@
 
 
 "fantasy.list.cardsInfo" = "%d cards. Bought = %@";
-"fantasy.list.swipeToSee" = "Swipe to see\nnew Fantasies!";
 
 
 
@@ -336,7 +336,7 @@
 "room.list.add" = "Add";
 "rooms.add.new.room" = "Add New Room";
 
-//placeholder-tutorial Проверить что UI может адаптироваться/растягиваться в других языках
+// !!action!! placeholder-tutorial-to-remember: сделать чтобы UI растягивался при большом количестве текста
 "createRoom.firstStep" = "Add New Room";
 "createRoom.secondStep" = "Share Invite Link";
 "createRoom.thirdStep" = "Play with Partner";
@@ -481,13 +481,13 @@
 
 "fantasy.users.search.header.title" = "Flirt";
 
-//"fantasy.users.filter" используется в двух кейсах, на кнопке внизу при регистрации, и после выбора фильтров вверху слева, сейчас названия одинаковые, но их было бы хорошо разнести
+// !!action!! "fantasy.users.filter" используется в двух кейсах, на кнопке внизу при регистрации, и после выбора фильтров вверху слева, сейчас названия одинаковые, но их было бы хорошо разнести
 //"fantasy.users.filter" = "Options";
 
 
 //case-first-screen-when-user-registered
 "noFilterView.title" = "Choose Options";
-"noFilterView.description" = "Choose whom you want\nto search for.";
+"noFilterView.description" = "Choose who you want\nto flirt with.";
 "fantasy.users.filter" = "Options";
 
 //case-when-city-is-not-activated
@@ -498,7 +498,7 @@
 "cityNotActiveView.join" = "Join Active City";
 
 //case-when-there-is-no-new-profiles
-"profile.discover.users.noUsers.title" = "No new\nFantasy-seekers today";
+"profile.discover.users.noUsers.title" = "No new\nFlirt seekers today";
 "profile.discover.users.noUsers.searchOptions" = "Search Options";
 "profile.discover.users.noUsers.invite" = "Invite Friends";
 
@@ -656,7 +656,7 @@
 "getMembership.mostPopular" = " Most popular ";
 
 
-//"getMembership.3months" = "3 months"; берется с кода, необходимо перевести day/month/week и тд
+// !!action!! "getMembership.3months" = "3 months"; - берется с кода, необходимо вынести и перевести day/week/month/year
 "subscription.dailyCharge" = "%@/day";
 
 "getMembership.save" = "Save";
@@ -742,13 +742,13 @@
 "myFantasiesSettings.blocked.title" = "Blocked";
 
 "myFantasiesSettings.reactionHistory.title" = "Reaction History";
-//talk: reation > reaction - поправить, чтобы написание было правильным -- myFantasiesSettings.reactionHistory.likedButton + myFantasiesSettings.reactionHistory.dislikedButton
+// !!action!! reation > reaction - поправить, чтобы написание было правильным -- myFantasiesSettings.reactionHistory.likedButton + myFantasiesSettings.reactionHistory.dislikedButton
 "reationHistory.likedButton" = "Liked";
 "reationHistory.dislikedButton" = "Disliked";
 
-//talk: add Title
-"myFantasiesSettings.blocked.navTitle" = "Blocked";
+"myFantasiesSettings.blocked.navTitle" = "Blocked"; // might be unused, check it! (using "myFantasiesSettings.blocked.title")
 
+"fantasy.list.swipeToSee" = "Swipe to see\nnew Cards!"; // placeholder in Reaction History & Blocked when no cards
 
 // Profile - Settings
 
@@ -791,7 +791,7 @@
 "fantasy.settings.madeWithMature.title.secondPart" = "for lovers";
 "fantasy.settings.made.with.mature" = "https://fantasyapp.com/en/blog/mature-love-basis-of-alternative-relationships/";
 
-"fantasy.settings.helpImprove" = "Help us to improve. Report a bug \nID:";
+"fantasy.settings.helpImprove" = "Help us to improve. Report a bug\nID:";
 "fantasy.settings.copy.userid.alert.success" =  "Success";
 "fantasy.settings.copy.userid.alert.text" =  "User ID copied";
 "fantasy.settings.report.bug.destination.email" = "feedback@fantasyapp.com";
@@ -836,16 +836,16 @@
 "editProfile.experience" = "Experience";
 "editProfile.lookingFor" = "Looking for";
 
-"editProfile.question1" = "What are you looking for?";
-"editProfile.question2" = "Facts about me that surprise people";
-"editProfile.question3" = "Two truths and a lie";
-
 "personalQuestion.question1" = "Which 3 words describe me the best?";
 "personalQuestion.question2" = "What do I value in other people?";
 "personalQuestion.question3" = "What are my hobbies & interests?";
 "editProfile.questionPlaceholder" = "Tap to answer";
 
-"editProfile.changeExpirienceTitle" = "What’s Your Experience?";
+"editProfile.question1" = "What are you looking for?"; //not used
+"editProfile.question2" = "Facts about me that surprise people"; //not used
+"editProfile.question3" = "Two truths and a lie"; //not used
+
+"editProfile.changeExpirienceTitle" = "What’s Your Flirt Experience?";
 "expirience.professional" = "Professional";
 "expirience.iveDoneItAll" = "I’ve done it all";
 "expirience.veryExpirienced" = "Very experienced";
@@ -878,13 +878,9 @@
 "lookingFor.princeDaySlutNight" = "Find prince by day, slut by night";
 "lookingFor.friendship" = "Find a friendship";
 "lookingFor.ethicalNonMono" = "Find CNM relationship";
-
 "lookingFor.sleepPartners" = "Sleep partners"; // anton: to remove but may be used in previous versions
-
 "lookingFor.bdsm" = "Find a BDSM relationship";
 "lookingFor.polyNetwork" = "Poly network"; // anton: to remove but may be used in previous versions
-
-
 "lookingFor.unicorn" = "Find a unicorn";
 "lookingFor.beAUnicorn" = "To be a unicorn";
 "lookingFor.joinAnEstablishedCouple" = "To join an established couple";
@@ -898,28 +894,24 @@
 
 
 // Placeholders - Blocked
-//same as below?! Where is "auth.blocked.title" is used?! and "accountBlocked.description"?!
+// !!action!! что используется - "auth.blocked.title" или "accountBlocked.description"?!
 
+"accountBlocked.title" = "Blocked";
 "auth.blocked.title" = "Your profile has been blocked for the activity that violates our %@ and %@";
+"accountBlocked.description" = "Your account\nhas been blocked";
 "auth.terms" = "Terms and Conditions";
 "auth.rules" = "Community Rules";
 "auth.privacy" = "Privacy Policy";
-
-"accountBlocked.title" = "Blocked";
-"accountBlocked.description" = "Your account\nhas been blocked";
 "accountBlocked.bottomNote" = "Please note, that if you are subscribed to the Club Membership, you will need to cancel your subscription manually";
 
 
 // Placeholders - Force Update
+// !!action!! что используется - "onboarding.update.title" или "updateApp.title"?!
 
 
 "onboarding.update.title" = "Update App";
-
 "updateApp.title" = "Update App";
+
 "updateApp.description" = "Your application version is no longer supported. Please, update the app.\nWe've implemented a lot of new and exciting features";
 "updateApp.updateNow" = "Update Now";
-
-
-// anton: NEW
-
 

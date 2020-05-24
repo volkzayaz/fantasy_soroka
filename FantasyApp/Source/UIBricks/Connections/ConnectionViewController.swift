@@ -85,8 +85,8 @@ class ConnectionViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
 
         viewModel.requests
-            .map { $0.first!.items.count == 0 }
-            .drive(emptyView.rx.isEmpty)
+            .map { $0.first!.items.count != 0 }
+            .drive(emptyView.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
         viewModel.sourceDriver
