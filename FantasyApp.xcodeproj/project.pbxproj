@@ -763,6 +763,14 @@
 		88DF09D324731C680070C487 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		88DF09D424731C730070C487 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		88DF09D5247469D70070C487 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D6247C35D40070C487 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D7247C35DF0070C487 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D8247C35EE0070C487 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D9247C36320070C487 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09DA247C36480070C487 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DB247C36570070C487 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DC247C36680070C487 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DD247C36770070C487 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -2552,6 +2560,14 @@
 				"pt-PT",
 				"pt-BR",
 				ru,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
+				"es-MX",
+				da,
+				sv,
+				uk,
+				pl,
 			);
 			mainGroup = 7312B03722D73AD100DB0F36;
 			productRefGroup = 7312B04122D73AD100DB0F36 /* Products */;
@@ -3158,6 +3174,14 @@
 				88DF09D324731C680070C487 /* pt-PT */,
 				88DF09D424731C730070C487 /* pt-BR */,
 				88DF09D5247469D70070C487 /* ru */,
+				88DF09D6247C35D40070C487 /* zh-Hans */,
+				88DF09D7247C35DF0070C487 /* zh-Hant */,
+				88DF09D8247C35EE0070C487 /* ja */,
+				88DF09D9247C36320070C487 /* es-MX */,
+				88DF09DA247C36480070C487 /* da */,
+				88DF09DB247C36570070C487 /* sv */,
+				88DF09DC247C36680070C487 /* uk */,
+				88DF09DD247C36770070C487 /* pl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3307,7 +3331,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.fantasyapp.iosclient";
@@ -3341,7 +3365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient";
@@ -3431,7 +3455,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
@@ -3523,7 +3547,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev Rich Push";
@@ -3548,7 +3572,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient.FantasyAppRichPush";
@@ -3573,7 +3597,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient.FantasyAppRichPush";
