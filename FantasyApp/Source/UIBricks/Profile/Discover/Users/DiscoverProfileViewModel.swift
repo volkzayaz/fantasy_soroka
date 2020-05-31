@@ -30,6 +30,7 @@ extension DiscoverProfileViewModel {
             locationActor.near,
             appState.map { $0.currentUser?.searchPreferences == nil }
         ).map { flirtAccess, locationPermission, near, isFilterEmpty in
+                    
             guard flirtAccess != false else {
                 return .activateFlirtAccess
             }
@@ -165,5 +166,6 @@ extension DiscoverProfileViewModel {
         form.accept(x)
     }
 }
+
 
 

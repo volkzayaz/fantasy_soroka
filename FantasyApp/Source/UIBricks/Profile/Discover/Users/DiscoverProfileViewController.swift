@@ -78,6 +78,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         }
     }
     
+    
     @IBOutlet weak var inviteButton: UIButton! {
         didSet {
             inviteButton.setTitle(R.string.localizable.cityNotActiveViewInvite(), for: .normal)
@@ -104,7 +105,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     
     @IBOutlet weak var settingsButton: UIButton! {
         didSet {
-            inviteButton.setTitle(R.string.localizable.searchLocationGoToSettings(), for: .normal)
+            settingsButton.setTitle(R.string.localizable.searchLocationGoToSettings(), for: .normal)
         }
     }
 
