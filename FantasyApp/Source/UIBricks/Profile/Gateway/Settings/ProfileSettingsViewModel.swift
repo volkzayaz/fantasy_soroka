@@ -28,9 +28,13 @@ extension ProfileSettingsViewModel {
 
         return text + u.id
     }
+    
+    var isFlirtAccess: Driver<Bool> { appState.changesOf { $0.currentUser?.bio.flirtAccess != false }}
 }
 
 struct ProfileSettingsViewModel : MVVM_ViewModel {
+    
+    fileprivate let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
 
     init(router: ProfileSettingsRouter) {
         self.router = router
@@ -38,6 +42,16 @@ struct ProfileSettingsViewModel : MVVM_ViewModel {
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
                 h?.setLoadingStatus(loading)
+            })
+            .disposed(by: bag)
+        
+        form.skip(1) // initial value
+            .flatMapLatest { form in
+                return UserManager.submitEdits(form: form)
+                    .silentCatch(handler: router.owner)
+            }
+            .subscribe(onNext: { (user) in
+                Dispatcher.dispatch(action: SetUser(user: user))
             })
             .disposed(by: bag)
     }
@@ -140,5 +154,15 @@ extension ProfileSettingsViewModel {
 
     func dismiss() {
         router.dismiss()
+    }
+    
+    func changeFlirtAccess(isActive: Bool) {
+        if isActive {
+            router.presentFlirtAccess()
+        } else {
+            var x = form.value
+            x.flirtAccess = isActive
+            form.accept(x)
+        }
     }
 }

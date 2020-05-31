@@ -19,6 +19,12 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
     @IBOutlet weak var heartLoadingView: AnimatedFantasyLogoView!
     @IBOutlet weak var parrotImageView: FantasyAnimatedImage!
     @IBOutlet weak var helpImproveLabel: UILabel!
+    
+    @IBOutlet weak var flirtAccessSwitch: UISwitch!{
+        didSet {
+            flirtAccessSwitch.onTintColor = R.color.textPinkColor()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +32,11 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         
         versionLabel.text = viewModel.version
-
         helpImproveLabel.text = viewModel.helpImproveText
+        
+        viewModel.isFlirtAccess
+            .drive(flirtAccessSwitch.rx.isOn)
+            .disposed(by: rx.disposeBag)
     }
 
     @IBAction func tapMadeWith(_ sender: Any) {
@@ -37,6 +46,11 @@ class ProfileSettingsViewController: UITableViewController, MVVM_View {
         }
 
         UIApplication.shared.open(u, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func flirtAccessChanged(_ sender: Any) {
+        viewModel.changeFlirtAccess(isActive: flirtAccessSwitch.isOn)
+        flirtAccessSwitch.isOn = false
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
@@ -63,7 +77,6 @@ extension ProfileSettingsViewController {
      @IBAction func longPressParrot(_ sender: Any) {
          parrotImageView.startAnimation()
      }
-
 
     @IBAction func longPressHelpImprove(_ sender: Any) {
         viewModel.helpImproveHold()

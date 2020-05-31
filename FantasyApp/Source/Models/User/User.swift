@@ -53,6 +53,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var lookingFor: [LookingFor]
         var expirience: Expirience?
         var answers: PersonalQuestion
+        var flirtAccess: Bool?
         
         struct Photos: Equatable, Codable {
             

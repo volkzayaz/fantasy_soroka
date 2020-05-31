@@ -535,6 +535,121 @@
             </objects>
             <point key="canvasLocation" x="2586.9565217391305" y="760.71428571428567"/>
         </scene>
+        <!--Flirt Access View Controller-->
+        <scene sceneID="PH6-F5-Qmp">
+            <objects>
+                <viewController storyboardIdentifier="FlirtAccessViewController" id="3Y8-ef-JHy" customClass="FlirtAccessViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xCJ-HG-QjS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aSb-mq-bw2"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OmX-gT-dPQ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="dGC-AY-G5U">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="general.cancel"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <segue destination="3Y8-ef-JHy" kind="custom" customClass="DismissSegue" customModule="FantasyApp" customModuleProvider="target" id="Y8y-iY-hrz"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.title"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activateButton" destination="dbc-6T-mhC" id="VQW-It-kw9"/>
+                        <outlet property="activateView" destination="aRY-zI-YZk" id="JCX-Y7-VoL"/>
+                        <outlet property="checkActivateButton" destination="nTt-Ue-BOQ" id="YGG-g0-LbX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xfe-fe-H45" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="aRY-zI-YZk">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-Sa-EuU">
+                            <rect key="frame" x="0.0" y="102.5" width="375" height="531"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchActivateImage" translatesAutoresizingMaskIntoConstraints="NO" id="zxL-ta-1xc">
+                                    <rect key="frame" x="-27.5" y="40" width="430" height="330"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Flirt Access" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8T0-5t-brs">
+                                    <rect key="frame" x="140.5" y="352" width="94" height="22"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="18"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.title"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I agree that my profile will be visible and can be found by other community members" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiq-FQ-RaF">
+                                    <rect key="frame" x="57.5" y="381" width="300" height="36"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.agreeText"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-6T-mhC" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="459" width="255" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="52" id="I0k-hW-5fu"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                    <state key="normal" title="Activate">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.activate"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="activateClick:" destination="3Y8-ef-JHy" eventType="touchUpInside" id="DIp-bx-Omv"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTt-Ue-BOQ" customClass="TickButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="11.5" y="387" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="46" id="ekF-Lm-e0U"/>
+                                        <constraint firstAttribute="height" constant="46" id="fw7-qu-lVK"/>
+                                    </constraints>
+                                    <color key="tintColor" name="bgGradient1"/>
+                                    <connections>
+                                        <action selector="activateTickClick:" destination="3Y8-ef-JHy" eventType="touchUpInside" id="X5m-HN-YDv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="uiq-FQ-RaF" firstAttribute="leading" secondItem="nTt-Ue-BOQ" secondAttribute="trailing" id="1Wk-Ea-B44"/>
+                                <constraint firstAttribute="trailing" secondItem="dbc-6T-mhC" secondAttribute="trailing" constant="60" id="G3A-eQ-7Bf"/>
+                                <constraint firstItem="uiq-FQ-RaF" firstAttribute="centerX" secondItem="8T0-5t-brs" secondAttribute="centerX" constant="20" id="MPe-Ym-DNe"/>
+                                <constraint firstItem="uiq-FQ-RaF" firstAttribute="top" secondItem="8T0-5t-brs" secondAttribute="bottom" constant="8" id="MfQ-uy-1Rq"/>
+                                <constraint firstItem="dbc-6T-mhC" firstAttribute="top" secondItem="uiq-FQ-RaF" secondAttribute="bottom" constant="42" id="OBb-Bb-G60"/>
+                                <constraint firstItem="nTt-Ue-BOQ" firstAttribute="top" secondItem="uiq-FQ-RaF" secondAttribute="top" constant="-13" id="Zpw-mg-M8n"/>
+                                <constraint firstItem="8T0-5t-brs" firstAttribute="centerX" secondItem="kaF-Sa-EuU" secondAttribute="centerX" id="aZ1-e4-69Q"/>
+                                <constraint firstItem="8T0-5t-brs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zxL-ta-1xc" secondAttribute="bottom" priority="999" constant="70" id="lv6-dT-szw"/>
+                                <constraint firstAttribute="bottom" secondItem="dbc-6T-mhC" secondAttribute="bottom" constant="20" id="qQb-A3-i3M"/>
+                                <constraint firstItem="uiq-FQ-RaF" firstAttribute="width" secondItem="kaF-Sa-EuU" secondAttribute="width" multiplier="0.8" id="t7M-PD-BKc"/>
+                                <constraint firstItem="dbc-6T-mhC" firstAttribute="leading" secondItem="kaF-Sa-EuU" secondAttribute="leading" constant="60" id="ttg-K9-rA0"/>
+                                <constraint firstItem="zxL-ta-1xc" firstAttribute="top" secondItem="kaF-Sa-EuU" secondAttribute="top" constant="40" id="wG9-c8-vTN"/>
+                                <constraint firstItem="zxL-ta-1xc" firstAttribute="centerX" secondItem="kaF-Sa-EuU" secondAttribute="centerX" id="yGu-6p-EKW"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="kaF-Sa-EuU" firstAttribute="centerY" secondItem="aRY-zI-YZk" secondAttribute="centerY" id="4tf-BJ-mof"/>
+                        <constraint firstItem="kaF-Sa-EuU" firstAttribute="leading" secondItem="E07-yb-4aD" secondAttribute="leading" id="AIM-F1-TYl"/>
+                        <constraint firstItem="E07-yb-4aD" firstAttribute="trailing" secondItem="kaF-Sa-EuU" secondAttribute="trailing" id="qt1-bD-Z4E"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="E07-yb-4aD"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="4400.8000000000002" y="-1087.1064467766118"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="Sbd-CA-pyZ">
             <objects>
@@ -570,12 +685,45 @@
                                             <segue destination="ZqY-5d-N3z" kind="show" id="Piv-fn-GmF"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HUl-1Q-4pA">
+                                        <rect key="frame" x="0.0" y="99" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HUl-1Q-4pA" id="5pU-hQ-ozc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1sz-XT-Lpv">
+                                                    <rect key="frame" x="311" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="flirtAccessChanged:" destination="ABr-g6-V4z" eventType="valueChanged" id="H1c-GX-8c8"/>
+                                                        <action selector="newFantasyMatchSettingsChanged:" destination="ZqY-5d-N3z" eventType="valueChanged" id="Zhl-Sj-EUg"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flirt Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szf-tT-uIh">
+                                                    <rect key="frame" x="15" y="13" width="296" height="18"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                    <color key="textColor" name="textBlackColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings.flirtAccess"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="1sz-XT-Lpv" secondAttribute="trailing" constant="15" id="9Uj-hK-irm"/>
+                                                <constraint firstItem="Szf-tT-uIh" firstAttribute="centerY" secondItem="5pU-hQ-ozc" secondAttribute="centerY" id="SMw-k2-51Q"/>
+                                                <constraint firstItem="1sz-XT-Lpv" firstAttribute="centerY" secondItem="Szf-tT-uIh" secondAttribute="centerY" id="St5-um-CdJ"/>
+                                                <constraint firstItem="Szf-tT-uIh" firstAttribute="leading" secondItem="5pU-hQ-ozc" secondAttribute="leading" constant="15" id="pAV-c9-Qmt"/>
+                                                <constraint firstItem="1sz-XT-Lpv" firstAttribute="leading" secondItem="Szf-tT-uIh" secondAttribute="trailing" priority="999" id="rLd-gP-Hay"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Subscripition" id="djg-vI-lz9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TrO-5U-qO5" style="IBUITableViewCellStyleDefault" id="F1K-hA-Qjv">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="198.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F1K-hA-Qjv" id="wvw-42-2IK">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -599,7 +747,7 @@
                             <tableViewSection headerTitle="Support" id="ofd-RC-vpB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="4xx-ek-yLW" style="IBUITableViewCellStyleDefault" id="W1n-yp-mcP">
-                                        <rect key="frame" x="0.0" y="254.5" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="298" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W1n-yp-mcP" id="kb1-tE-h6b">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -619,7 +767,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Bgy-Xx-hwf" style="IBUITableViewCellStyleDefault" id="eRb-X2-MgX">
-                                        <rect key="frame" x="0.0" y="298" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="341.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eRb-X2-MgX" id="Cft-1K-tsp">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -639,7 +787,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="wkj-kR-1z0" style="IBUITableViewCellStyleDefault" id="oFV-mb-hRg">
-                                        <rect key="frame" x="0.0" y="341.5" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="385" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oFV-mb-hRg" id="T5R-7z-MlC">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -659,7 +807,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8Vv-hK-Xls" style="IBUITableViewCellStyleDefault" id="SUV-Eh-O9z">
-                                        <rect key="frame" x="0.0" y="385" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="428.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SUV-Eh-O9z" id="odY-zj-LAG">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -679,7 +827,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Vnq-2f-QPX" style="IBUITableViewCellStyleDefault" id="AXA-i4-5Kg">
-                                        <rect key="frame" x="0.0" y="428.5" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="472" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AXA-i4-5Kg" id="Ouo-3g-iEi">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -703,7 +851,7 @@
                             <tableViewSection id="l0U-Ut-KdT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="qaf-ho-WvR" style="IBUITableViewCellStyleDefault" id="VEg-Xj-dq9">
-                                        <rect key="frame" x="0.0" y="508" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="551.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VEg-Xj-dq9" id="GWu-Vz-1ny">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -727,7 +875,7 @@
                             <tableViewSection id="C5t-kp-4Ln">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="zDz-pi-cXY" style="IBUITableViewCellStyleDefault" id="68X-hH-gDR">
-                                        <rect key="frame" x="0.0" y="587.5" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="631" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="68X-hH-gDR" id="NUr-ep-Z9b">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -747,7 +895,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editProfileFooterCell" rowHeight="296" id="tgJ-nj-HB2">
-                                        <rect key="frame" x="0.0" y="631" width="375" height="296"/>
+                                        <rect key="frame" x="0.0" y="674.5" width="375" height="296"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tgJ-nj-HB2" id="pqv-Aw-8rB">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="296"/>
@@ -887,6 +1035,7 @@ ID: #userid#</string>
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
+                        <outlet property="flirtAccessSwitch" destination="1sz-XT-Lpv" id="sxj-rK-cSW"/>
                         <outlet property="heartLoadingView" destination="bLk-h5-CWu" id="sba-22-SoE"/>
                         <outlet property="helpImproveLabel" destination="k7R-TS-0bw" id="Dz3-MW-Pxy"/>
                         <outlet property="parrotImageView" destination="pf3-cV-hOe" id="Wxy-Nb-Zxf"/>
@@ -2157,9 +2306,13 @@ ID: #userid#</string>
         <image name="memberParrot" width="57" height="60"/>
         <image name="parrotTrafaretTransparent" width="90" height="200"/>
         <image name="profileLock" width="20" height="20"/>
+        <image name="searchActivateImage" width="215" height="165"/>
         <image name="secret" width="80" height="80"/>
         <namedColor name="activityIndicatorColor">
             <color red="0.63137254901960782" green="0.52156862745098043" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="bgGradient1">
+            <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="bgLightGrey">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

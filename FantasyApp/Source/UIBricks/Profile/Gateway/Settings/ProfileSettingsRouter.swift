@@ -21,29 +21,29 @@ struct ProfileSettingsRouter : MVVM_Router {
     init(owner: ProfileSettingsViewController) {
         self.owner = owner
     }
-
+    
     func dismiss() {
         owner.navigationController?.dismiss(animated: true, completion: nil)
     }
-
+    
     func showSafari(for url: URL) {
         let vc = SFSafariViewController(url: url, configuration: SFSafariViewController.Configuration())
         owner.present(vc, animated: true, completion: nil)
     }
-
+    
     func showSupport(for username: String, email: String?) {
-
+        
         let ident = Identity.createAnonymous(name: username, email: email)
         Zendesk.instance?.setIdentity(ident)
         SupportUI.instance?.helpCenterLocaleOverride = Locale.autoupdatingCurrent.languageCode
-
+        
         var requestConfig: RequestUiConfiguration {
             let config = RequestUiConfiguration()
             config.subject = "Help iOS App"
             config.tags = ["ios"]
             return config
         }
-
+        
         let nav = UINavigationController(rootViewController: RequestUi.buildRequestList(with: [requestConfig]))
         nav.modalPresentationStyle = .fullScreen
         nav.navigationBar.tintColor = .fantasyPink
@@ -51,50 +51,59 @@ struct ProfileSettingsRouter : MVVM_Router {
             NSAttributedString.Key.font: UIFont.boldFont(ofSize: 18.0),
             NSAttributedString.Key.foregroundColor: UIColor.fantasyPink
         ]
-
+        
         owner.present(nav, animated: true, completion: nil)
     }
-
+    
     func showCopyUserIdMessage() {
-      
+        
         let alert = UIAlertController(title: R.string.localizable.fantasySettingsCopyUseridAlertSuccess(), message: R.string.localizable.fantasySettingsCopyUseridAlertText(), preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: R.string.localizable.generalOk(), style: .cancel, handler: nil))
-      
-      owner.present(alert, animated: true, completion: nil)
-  }
-  
-  func showMail(for userID: String, appVersion: String, osVersion:String) {
-    
-    let email = R.string.localizable.fantasySettingsReportBugDestinationEmail()
-    let subject = R.string.localizable.fantasySettingsReportBugSubject()
-    let message = R.string.localizable.fantasySettingsReportBugText(userID, appVersion, osVersion)
-    
-    if MFMailComposeViewController.canSendMail() {
-      
-      let composePicker = MFMailComposeViewController()
-      composePicker.mailComposeDelegate = owner
-      composePicker.setToRecipients([email])
-      composePicker.setSubject(subject)
-      composePicker.setMessageBody(message, isHTML: false)
-      
-      owner.present(composePicker, animated: true, completion: nil)
-      
-      return
+        alert.addAction(UIAlertAction(title: R.string.localizable.generalOk(), style: .cancel, handler: nil))
+        
+        owner.present(alert, animated: true, completion: nil)
     }
     
-    guard let url = URL.emailUrl(to: email, subject: subject, body: message) else {
-        print("Can't build email url.")
-        return
+    func showMail(for userID: String, appVersion: String, osVersion:String) {
+        
+        let email = R.string.localizable.fantasySettingsReportBugDestinationEmail()
+        let subject = R.string.localizable.fantasySettingsReportBugSubject()
+        let message = R.string.localizable.fantasySettingsReportBugText(userID, appVersion, osVersion)
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+            let composePicker = MFMailComposeViewController()
+            composePicker.mailComposeDelegate = owner
+            composePicker.setToRecipients([email])
+            composePicker.setSubject(subject)
+            composePicker.setMessageBody(message, isHTML: false)
+            
+            owner.present(composePicker, animated: true, completion: nil)
+            
+            return
+        }
+        
+        guard let url = URL.emailUrl(to: email, subject: subject, body: message) else {
+            print("Can't build email url.")
+            return
+        }
+        
+        guard UIApplication.shared.canOpenURL(url) else {
+            print("Can't open email url.")
+            return
+        }
+        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    guard UIApplication.shared.canOpenURL(url) else {
-      print("Can't open email url.")
-      return
-    }
-    
-    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-  }
-  
+    func presentFlirtAccess() {
+        let x = R.storyboard.userGateway.flirtAccessViewController()!
+        x.viewModel = .init(router: .init(owner: x))
+        
+        let nav = FantasyPinkNavigationController(rootViewController: x)
+        nav.modalPresentationStyle = .fullScreen
 
-
+        owner.present(nav, animated: true, completion: nil)
+        
+    }
+    
 }

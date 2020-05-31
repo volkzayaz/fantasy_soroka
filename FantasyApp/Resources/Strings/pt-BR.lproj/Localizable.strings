@@ -47,28 +47,28 @@
 // Registration - First Screen
 
 
-"welcome.signInButton" = "Sign in";
-"welcome.title" = "SED EDUCATION\nAND COMMUNITY TO\nLEARN, PLAY AND FLIRT";
+"welcome.signInButton" = "Sign In";
+"welcome.title" = "SEXUAL WELLNESS\nCOMMUNITY PLATFORM\nTO LEARN, PLAY AND FLIRT";
 "welcome.getStarted" = "Get Started";
-"welcome.signUpFacebook" = "or Sign up with Facebook";
+"welcome.signUpFacebook" = "or Sign Up with Facebook";
 "welcome.dontPostInfo" = "We don’t post anything on Facebook";
 
-"auth.welcome.termsText" = "We take your privacy seriously. By signing in, you agree to our %@, %@ and Fantasy %@.";
+"auth.welcome.termsText" = "We take your privacy seriously. By signing in, you agree to our %@, %@ and Fantasy Match %@.";
 
-"authorization.newFBUser" = "We're sorry, but we currently do not accept new registrations using Facebook. Please, use standart authorization flow";
-"authorization.migrationDataCorrupted" = "Great news! We've launched the new app version. Now you can Learn, Play, and Flirt in a safe and sex-positive environment. The app no longer supports old profiles. Since you have not completed your profile, it was deleted. Please Sign Up to use the new Fantasy Match version";
-"authorization.newFBApplication" = "We're sorry, but we no longer accept registrations via Facebook. Please 'Sign Up' to use Fantasy Match.";
+"authorization.newFBUser" = "We're sorry, but we currently do not accept new registrations using Facebook. Please, use 'Get Started' authorization flow";
+"authorization.migrationDataCorrupted" = "Great news! We've launched the new app. Now you can Learn, Play, and Flirt in a safe space. The app no longer supports old profiles. Since you have not completed your profile, it was deleted. Please Sign Up to use the new Fantasy Match app";
+"authorization.newFBApplication" = "We're sorry, but we no longer accept registrations via Facebook. Please use 'Get Started' to use Fantasy Match";
 
 
 // Registration - Sign Up
 
 
 "login.welcomeBack" = "Welcome Back";
-"login.signUpButton" = "Sign up";
+"login.signUpButton" = "Sign Up";
 "login.emailPlaceholder" = "Email";
 "login.passwordPlaceholder" = "Password";
 "login.forgotPassword" = "Forgot Password?";
-"login.signInButton" = "Sign in";
+"login.signInButton" = "Sign In";
 
 
 // Registration - Forgot Password
@@ -89,7 +89,7 @@
 
 
 "registration.notice" = "Notice";
-"registration.signInButton" = "Sign in";
+"registration.signInButton" = "Sign In";
 "registration.notice.desctiprion" = "We are a ❤️-positive community";
 
 "auth.register.agrementText" = "We believe that the key to true intimacy is open communication about sex and sexual fantasies. That’s why we’ve created Fantasy Match.\nWe want to change the way people think and talk about sex. To do so, our platform provides ideas for sexual fantasies, while creating a space for people to discuss sexuality in a positive and open way. There is nothing to hide. Let’s talk.\nTalking about relationships and sex requires civility. Be kind, respectful, and decent or you will be blocked. Report any violations you may see in the app. Let’s build a mindful community together!\nWe follow FOSTA / SESTA bills strictly and strive to fight against online sex trafficking. If you find any online sex trafficking activity in the app, please report it or reach out at feedback.fantasyapp.com immediately.";
@@ -100,7 +100,7 @@
 "auth.register.personalDataText" = "I give permission to process¹ my personal data under Fantasy Match %@ and %@.\n";
 "auth.register.personalDataTextRemove" = "¹ You can remove your personal and sensitive data from the Service whenever you want.";
 "auth.register.sensetiveData" = "I give permission to process² my sensitive data (sexual preferences and/or sexual orientation) under Fantasy Match %@.\n";
-"auth.register.sensetiveData1" = "² Your public profile will show your sexual orientation only to registered users.n";
+"auth.register.sensetiveData1" = "² Your public profile will show your sexual orientation only to registered users";
 "auth.register.agreeToEmails" = "I agree to receive³ emails from Fantasy Match according to the %@ and %@.\n";
 "auth.register.agreeToEmails.unsubscribe" = "³ You can unsubscribe at any time.";
 
@@ -350,7 +350,7 @@
 "room.creation.title" = "New Room Settings";
 
 //notifications-insinde-rooms
-"chat.messageType.created" = "created";
+"chat.messageType.created" = "the Room is created";
 "chat.messageType.like.own" = "You liked %@ profile";
 "chat.messageType.like" = "%@ liked your profile";
 "chat.messageType.invited.own" = "You invited %@ to the Rooom";
@@ -484,6 +484,9 @@
 // !!action!! "fantasy.users.filter" используется в двух кейсах, на кнопке внизу при регистрации, и после выбора фильтров вверху слева, сейчас названия одинаковые, но их было бы хорошо разнести
 //"fantasy.users.filter" = "Options";
 
+"flirtAccess.title" = "Flirt Access";
+"flirtAccess.agreeText" = "I agree to make my profile visible and shown to other community members";
+"flirtAccess.activate" = "Activate";
 
 //case-first-screen-when-user-registered
 "noFilterView.title" = "Choose Options";
@@ -499,7 +502,7 @@
 
 //case-when-there-is-no-new-profiles
 "profile.discover.users.noUsers.title" = "No new\nFlirt seekers today";
-"profile.discover.users.noUsers.searchOptions" = "Search Options";
+"profile.discover.users.noUsers.searchOptions" = "Flirt Options";
 "profile.discover.users.noUsers.invite" = "Invite Friends";
 
 //placeholer-picture-is-not-localized
@@ -509,7 +512,7 @@
 // Flirt - Options Filter
 
 
-"search.searchOptions" = "Search Options";
+"search.searchOptions" = "Flirt Options";
 
 "search.location" = "Location";
 "search.location" = "Location";
@@ -750,11 +753,13 @@
 
 "fantasy.list.swipeToSee" = "Swipe to see\nnew Cards!"; // placeholder in Reaction History & Blocked when no cards
 
+
 // Profile - Settings
 
 
 "fantasy.settings.section.account" = "Account";
 "settings.notification" = "Notification";
+"settings.flirtAccess" = "Flirt Access";
 
 "notifications.title" = "Notifications";
 "notifications.newMatches" = "New matches";

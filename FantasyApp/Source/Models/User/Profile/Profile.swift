@@ -31,7 +31,7 @@ struct EditProfileForm {
     var communityChange: User.Community?
     
     var answers: User.Bio.PersonalQuestion
-    
+    var flirtAccess: Bool?
 }
 
 struct RegisterForm {
@@ -106,7 +106,7 @@ extension User {
         applicator(lhs: &bio.about, rhs: editForm.about)
         applicator(lhs: &community, rhs: editForm.communityChange)
         applicator(lhs: &bio.answers, rhs: editForm.answers)
-        
+        applicator(lhs: &bio.flirtAccess, rhs: editForm.flirtAccess)
     }
     
 }

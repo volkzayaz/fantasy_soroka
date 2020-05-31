@@ -338,7 +338,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileAnswerCell" rowHeight="74" id="BA6-US-fF7" customClass="UserProfileAnswerCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="528.5" width="374" height="74"/>
+                                        <rect key="frame" x="0.0" y="528.5" width="374" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BA6-US-fF7" id="ofC-Xy-5PL">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
@@ -522,10 +522,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search for Fantasy Match" id="cg0-BV-Umz"/>
                     <connections>
+                        <outlet property="activateButton" destination="MDE-oa-WkS" id="5XP-tZ-etJ"/>
+                        <outlet property="activateView" destination="gz9-uW-Ulp" id="2A7-pi-eqp"/>
                         <outlet property="allowGeoButton" destination="STk-sG-XFG" id="e6Y-ZM-Iae"/>
                         <outlet property="allowGeoDescriptionLabel" destination="4Mg-cK-nn2" id="yGg-yf-hhX"/>
                         <outlet property="allowGeoLabel" destination="TKk-Wd-Rdv" id="TsY-Ke-8ca"/>
                         <outlet property="allowGeolocationView" destination="Zsa-53-sF4" id="maa-yi-0I8"/>
+                        <outlet property="checkActivateButton" destination="j9L-uL-6K5" id="AhF-PZ-ntR"/>
                         <outlet property="cityNotActiveView" destination="OD3-RV-LXg" id="8KR-Fo-f1e"/>
                         <outlet property="dontAllowGeoButton" destination="yhS-9e-RJJ" id="Pu8-Se-V9E"/>
                         <outlet property="goToSettingsView" destination="FH2-xN-97a" id="LSb-jE-aSi"/>
@@ -607,6 +610,88 @@ to search for.</string>
                         <constraint firstItem="ePp-sN-oGh" firstAttribute="leading" secondItem="XPq-QD-zDz" secondAttribute="leading" id="VBK-Ad-sHc"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="XPq-QD-zDz"/>
+                </view>
+                <view contentMode="scaleToFill" id="gz9-uW-Ulp">
+                    <rect key="frame" x="0.0" y="0.0" width="416" height="736"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uxj-pE-3uQ">
+                            <rect key="frame" x="0.0" y="102.5" width="416" height="531"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchActivateImage" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-1h-GUS">
+                                    <rect key="frame" x="-7" y="40" width="430" height="330"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Flirt Access" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-6C-Ru1">
+                                    <rect key="frame" x="161" y="352" width="94" height="22"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="18"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.title"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I agree that my profile will be visible and can be found by other community members" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LlD-p0-sRX">
+                                    <rect key="frame" x="61.5" y="381" width="333" height="36"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.agreeText"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDE-oa-WkS" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="459" width="296" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="52" id="y9f-N8-Nhz"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                    <state key="normal" title="Activate">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.activate"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="activateClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="Mz9-jd-Crd"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9L-uL-6K5" customClass="TickButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="15.5" y="387" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="46" id="Udv-4g-xKH"/>
+                                        <constraint firstAttribute="width" constant="46" id="tYJ-CX-Liw"/>
+                                    </constraints>
+                                    <color key="tintColor" name="bgGradient1"/>
+                                    <connections>
+                                        <action selector="activateTickClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="aYc-2C-SYD"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="MDE-oa-WkS" firstAttribute="leading" secondItem="Uxj-pE-3uQ" secondAttribute="leading" constant="60" id="3gc-2j-OEb"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="top" secondItem="Y3U-6C-Ru1" secondAttribute="bottom" constant="8" id="5Tr-Mc-7u4"/>
+                                <constraint firstItem="2FJ-1h-GUS" firstAttribute="top" secondItem="Uxj-pE-3uQ" secondAttribute="top" constant="40" id="A3S-Qm-hBI"/>
+                                <constraint firstAttribute="trailing" secondItem="MDE-oa-WkS" secondAttribute="trailing" constant="60" id="FzV-o9-R5v"/>
+                                <constraint firstItem="2FJ-1h-GUS" firstAttribute="centerX" secondItem="Uxj-pE-3uQ" secondAttribute="centerX" id="IcJ-6Y-WAG"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="centerX" secondItem="Y3U-6C-Ru1" secondAttribute="centerX" constant="20" id="WXC-Gn-Eqq"/>
+                                <constraint firstItem="Y3U-6C-Ru1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2FJ-1h-GUS" secondAttribute="bottom" priority="999" constant="70" id="X2U-yc-Mr1"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="leading" secondItem="j9L-uL-6K5" secondAttribute="trailing" id="brb-52-nCN"/>
+                                <constraint firstAttribute="bottom" secondItem="MDE-oa-WkS" secondAttribute="bottom" constant="20" id="dfc-FR-Szk"/>
+                                <constraint firstItem="MDE-oa-WkS" firstAttribute="top" secondItem="LlD-p0-sRX" secondAttribute="bottom" constant="42" id="dle-ih-oM9"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="width" secondItem="Uxj-pE-3uQ" secondAttribute="width" multiplier="0.8" id="mVy-no-mXU"/>
+                                <constraint firstItem="Y3U-6C-Ru1" firstAttribute="centerX" secondItem="Uxj-pE-3uQ" secondAttribute="centerX" id="twZ-Zy-eZF"/>
+                                <constraint firstItem="j9L-uL-6K5" firstAttribute="top" secondItem="LlD-p0-sRX" secondAttribute="top" constant="-13" id="z4T-oS-MD3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Uxj-pE-3uQ" firstAttribute="leading" secondItem="mW8-T8-omy" secondAttribute="leading" id="7s9-OQ-mFH"/>
+                        <constraint firstItem="mW8-T8-omy" firstAttribute="trailing" secondItem="Uxj-pE-3uQ" secondAttribute="trailing" id="Lfb-6r-Puk"/>
+                        <constraint firstItem="Uxj-pE-3uQ" firstAttribute="centerY" secondItem="gz9-uW-Ulp" secondAttribute="centerY" id="eOu-gk-wik"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="mW8-T8-omy"/>
                 </view>
                 <view contentMode="scaleToFill" id="Zsa-53-sF4">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="520"/>
@@ -1248,13 +1333,13 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="629"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="627.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="87"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="86.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-fj-wTM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1263,10 +1348,10 @@ activated when it reaches</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-Cd-I9r" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="43" width="382" height="44"/>
+                                                        <rect key="frame" x="0.0" y="42.5" width="382" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-ZW-YUQ">
-                                                                <rect key="frame" x="16" y="11" width="76.5" height="22"/>
+                                                                <rect key="frame" x="16" y="11" width="72" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="BOR-Mo-7dm"/>
                                                                 </constraints>
@@ -1278,20 +1363,20 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityCheckImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-J4-MI5">
-                                                                <rect key="frame" x="275.5" y="16" width="12" height="12"/>
+                                                                <rect key="frame" x="267.5" y="16" width="12" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="12" id="eEl-Ey-JRP"/>
                                                                     <constraint firstAttribute="width" secondItem="iLt-J4-MI5" secondAttribute="height" multiplier="1:1" id="zwz-mJ-FHC"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NS-4E-Ebr">
-                                                                <rect key="frame" x="301.5" y="13" width="49.5" height="18"/>
+                                                                <rect key="frame" x="293.5" y="13.5" width="47.5" height="17.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                 <color key="textColor" name="textPinkColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="bXt-su-CJ0">
-                                                                <rect key="frame" x="356" y="0.0" width="10" height="44"/>
+                                                                <rect key="frame" x="346" y="0.0" width="20" height="44"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1316,13 +1401,13 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-1k-Qk9">
-                                                <rect key="frame" x="0.0" y="111" width="382" height="290"/>
+                                                <rect key="frame" x="0.0" y="110.5" width="382" height="289.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-W8-g6m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="165"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="164.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8z-qv-z4e">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1331,7 +1416,7 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHi-3I-88t" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="42" width="382" height="123"/>
+                                                                <rect key="frame" x="0.0" y="41.5" width="382" height="123"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Rug-h3-Yph">
                                                                         <rect key="frame" x="16" y="16" width="366" height="49"/>
@@ -1411,7 +1496,7 @@ activated when it reaches</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="U7d-3r-Pig">
-                                                        <rect key="frame" x="0.0" y="177" width="382" height="113"/>
+                                                        <rect key="frame" x="0.0" y="176.5" width="382" height="113"/>
                                                         <subviews>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3Y-JS-oLB" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="123"/>
@@ -1528,10 +1613,10 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyJ-oa-jxg" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="425" width="382" height="44"/>
+                                                <rect key="frame" x="0.0" y="424" width="382" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-Ul-yCK">
-                                                        <rect key="frame" x="16" y="11" width="50" height="22"/>
+                                                        <rect key="frame" x="16" y="11" width="48.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="lx7-gv-8iE"/>
                                                         </constraints>
@@ -1560,13 +1645,13 @@ activated when it reaches</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-Jj-sjy">
-                                                <rect key="frame" x="0.0" y="493" width="382" height="136"/>
+                                                <rect key="frame" x="0.0" y="492" width="382" height="135.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6er-11-nia">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="136"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="135.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0I-xQ-K38">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1575,10 +1660,10 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3R-VX-lKE" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="40" width="382" height="96"/>
+                                                                <rect key="frame" x="0.0" y="39.5" width="382" height="96"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-kD-la2">
-                                                                        <rect key="frame" x="16" y="11" width="350" height="18"/>
+                                                                        <rect key="frame" x="16" y="11" width="350" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1587,7 +1672,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egU-Il-qSz" customClass="SmoothPickerView" customModule="SmoothPicker">
-                                                                        <rect key="frame" x="0.0" y="39" width="382" height="46"/>
+                                                                        <rect key="frame" x="0.0" y="38.5" width="382" height="46.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <connections>
                                                                             <outlet property="dataSource" destination="iyx-6x-4MS" id="BdF-tS-vAT"/>
@@ -1595,7 +1680,7 @@ activated when it reaches</string>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2J-iQ-ozP" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="39" width="80" height="46"/>
+                                                                        <rect key="frame" x="0.0" y="38.5" width="80" height="46.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="Zuw-Op-aaU"/>
@@ -1607,7 +1692,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tY-Ad-NRt" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="302" y="39" width="80" height="46"/>
+                                                                        <rect key="frame" x="302" y="38.5" width="80" height="46.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="direction">
@@ -1815,12 +1900,16 @@ We've implemented a lot of new and exciting features</string>
         <image name="requestMessage" width="40" height="40"/>
         <image name="requestSticker" width="40" height="40"/>
         <image name="roomUpgrade" width="101" height="30"/>
+        <image name="searchActivateImage" width="215" height="165"/>
         <image name="searchEnableLocationPlanetImage" width="220" height="300"/>
         <image name="searchEnableLocationToSettings" width="220" height="300"/>
         <image name="searchFantasyLogo" width="80" height="80"/>
         <image name="searchFiltersOnboardingImage" width="220" height="300"/>
         <image name="secret" width="80" height="80"/>
         <image name="stub" width="476" height="462"/>
+        <namedColor name="bgGradient1">
+            <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textBlackColor">
             <color red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

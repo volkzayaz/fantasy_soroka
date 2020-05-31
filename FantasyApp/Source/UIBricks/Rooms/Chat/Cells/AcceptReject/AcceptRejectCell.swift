@@ -14,7 +14,7 @@ class AcceptRejectCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = R.string.localizable.roomChatAcceptRejectReject()
+            titleLabel.text = R.string.localizable.roomChatAcceptRejectTitle()
         }
     }
     

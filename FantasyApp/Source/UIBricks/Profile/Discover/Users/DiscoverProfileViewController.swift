@@ -29,8 +29,13 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     @IBOutlet weak var allowGeolocationView: UIView!
     @IBOutlet weak var cityNotActiveView: UIView!
     @IBOutlet weak var goToSettingsView: UIView!
-    @IBOutlet weak var notActiveCityNameLabel: UILabel!
     
+    @IBOutlet weak var activateView: UIView!
+    @IBOutlet weak var activateButton: UIButton!
+    @IBOutlet weak var checkActivateButton: UIButton!
+
+    @IBOutlet weak var notActiveCityNameLabel: UILabel!
+
     @IBOutlet weak var noFilterTitleLabel: UILabel! {
         didSet {
             noFilterTitleLabel.text = R.string.localizable.noFilterViewTitle()
@@ -120,6 +125,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         goToSettingsView.addFantasyRoundedCorners()
         cityNotActiveView.addFantasyRoundedCorners()
         allowGeolocationView.addFantasyRoundedCorners()
+        activateView.addFantasyRoundedCorners()
         view.addFantasyTripleGradient()
 
         viewModel.profiles
@@ -135,6 +141,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 self.hideView(self.allowGeolocationView)
                 self.hideView(self.goToSettingsView)
                 self.hideView(self.noFilterView)
+                self.hideView(self.activateView)
                 self.profilesCarousel.isHidden = true
 
                 switch mode {
@@ -157,6 +164,11 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 case .noSearchPreferences:
                     self.showView(self.noFilterView)
+                    
+                case .activateFlirtAccess:
+                    self.showView(self.activateView)
+                    self.activateButton.isEnabled = false
+                    self.checkActivateButton.isSelected = false
                 }
                 
             })
@@ -228,6 +240,14 @@ extension DiscoverProfileViewController {
 
     @IBAction func filtersClick(_ sender: Any) {
         viewModel.presentFilter()
+    }
+    
+    @IBAction func activateClick(_ sender: UIButton) {
+        viewModel.activateFlirtAccess()
+    }
+    
+    @IBAction func activateTickClick(_ sender: UIButton) {
+        activateButton.isEnabled = sender.isSelected
     }
 
     @objc func presentFilter() {

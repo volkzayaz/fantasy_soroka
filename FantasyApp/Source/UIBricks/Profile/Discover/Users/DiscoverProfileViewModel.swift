@@ -20,57 +20,49 @@ extension DiscoverProfileViewModel {
         case noLocationPermission
         case absentCommunity(nearestCity: String?)
         case noSearchPreferences
+        case activateFlirtAccess
     }
     
     var mode: Driver<Mode> {
-        
-        return locationActor.needsLocationPermission
-            .flatMapLatest { status -> Driver<Mode?> in
-                
-                guard status == false else {
-                    return .just(.noLocationPermission)
-                }
+        return Driver.combineLatest(
+            appState.changesOf { $0.currentUser?.bio.flirtAccess },
+            locationActor.needsLocationPermission,
+            locationActor.near,
+            appState.map { $0.currentUser?.searchPreferences == nil }
+        ).map { flirtAccess, locationPermission, near, isFilterEmpty in
+            guard flirtAccess != false else {
+                return .activateFlirtAccess
+            }
+            
+            guard locationPermission == false else {
+                return .noLocationPermission
+            }
+            
+            switch near {
+            case .bigCity(let name)?: return .absentCommunity(nearestCity: name)
+            case .none: return .absentCommunity(nearestCity: nil)
+            case .community(_)?: break
+            }
 
-                return Driver
-                    .combineLatest(self.locationActor.near,
-                                   appState.map { $0.currentUser?.searchPreferences == nil }) { ($0, $1) }
-                    .map { (near, isFilterEmpty) -> Mode? in
-                        
-                        switch near {
+            if isFilterEmpty {
+                return .noSearchPreferences
+            }
 
-                        case .bigCity(let name)?:
-                            return .absentCommunity(nearestCity: name)
-
-                        case .none:
-                            return .absentCommunity(nearestCity: nil)
-                            
-                        case .community(_)?: break
-
-                        }
-                        
-                        if isFilterEmpty {
-                            return .noSearchPreferences
-                        }
-                        
-                        return .profiles
-                        
-                }
+            return .profiles
         }
-        .notNil()
-        
     }
-
+    
     var filterButtonEnabled: Driver<Bool> {
-
+        
         return Driver.combineLatest(
             appState.changesOf { $0.currentUser?.community.value }
                 .map { $0 != nil },
-                 mode.map { (m) -> Bool in
-                   switch m {
-                   case .noSearchPreferences, .noLocationPermission: return false
-                   default:  return true
-                   }
-               }){ ($0, $1) }
+            mode.map { (m) -> Bool in
+                switch m {
+                case .noSearchPreferences, .noLocationPermission, .activateFlirtAccess: return false
+                default:  return true
+                }
+        }){ ($0, $1) }
             .map { $0.0 && $0.1}
     }
 }
@@ -80,9 +72,10 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
     let profiles = BehaviorRelay<[Profile]>(value: [])
     
     fileprivate var viewedProfiles: Set<Profile> = []
-    
-    let locationActor = PickCommunityViewModel()
+    fileprivate let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
 
+    let locationActor = PickCommunityViewModel()
+    
     init(router: DiscoverProfileRouter) {
         self.router = router
         
@@ -107,6 +100,15 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
             })
             .disposed(by: bag)
         
+        form.skip(1) // initial value
+            .flatMapLatest { form in
+                return UserManager.submitEdits(form: form)
+                    .silentCatch(handler: router.owner)
+            }
+            .subscribe(onNext: { (user) in
+                Dispatcher.dispatch(action: SetUser(user: user))
+            })
+            .disposed(by: bag)
     }
     
     let router: DiscoverProfileRouter
@@ -131,30 +133,36 @@ extension DiscoverProfileViewModel {
     func presentFilter() {
         router.presentFilter()
     }
-
+    
     func inviteFriends() {
         router.invite(
             [R.string.localizable.roomBranchObjectDescription(),
              NSURL(string: "http://bit.ly/fantasymatch")!
         ])
     }
-
+    
     func joinActiveCity() {
         router.openTeleport()
     }
-
+    
     // Location
-
+    
     func goToSettings() {
         UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
     }
-
+    
     func allowLocationService() {
-
+        
     }
-
+    
     func notAllowLocationService() {
-
+        
+    }
+    
+    func activateFlirtAccess() {
+        var x = form.value
+        x.flirtAccess = true
+        form.accept(x)
     }
 }
 
