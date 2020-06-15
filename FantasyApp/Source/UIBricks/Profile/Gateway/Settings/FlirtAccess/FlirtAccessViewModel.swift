@@ -34,5 +34,6 @@ struct FlirtAccessViewModel: MVVM_ViewModel {
         var x = form.value
         x.flirtAccess = true
         form.accept(x)
+        Analytics.report(Analytics.Event.FlirtAccess(isActivated: true))
     }
 }
