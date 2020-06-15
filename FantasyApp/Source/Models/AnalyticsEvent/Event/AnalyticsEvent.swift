@@ -71,4 +71,15 @@ extension Analytics.Event {
         var name: String { return "Profile Logout" }
     }
     
+    
+    struct FlirtAccess: AnalyticsEvent {
+        
+        var name: String { return "Flirt Access" }
+        
+        let isActivated: Bool
+        
+        var props: [String : String]? {
+            return ["Flirt Access": isActivated ? "Activated" : "Deactivated"]
+        }
+    }
 }

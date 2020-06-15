@@ -164,6 +164,7 @@ extension DiscoverProfileViewModel {
         var x = form.value
         x.flirtAccess = true
         form.accept(x)
+        Analytics.report(Analytics.Event.FlirtAccess(isActivated: true))
     }
 }
 

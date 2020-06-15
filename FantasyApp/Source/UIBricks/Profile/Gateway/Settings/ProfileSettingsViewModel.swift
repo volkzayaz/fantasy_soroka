@@ -163,6 +163,7 @@ extension ProfileSettingsViewModel {
             var x = form.value
             x.flirtAccess = isActive
             form.accept(x)
+            Analytics.report(Analytics.Event.FlirtAccess(isActivated: isActive))
         }
     }
 }
