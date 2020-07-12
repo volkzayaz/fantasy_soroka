@@ -56,5 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(error)
     }
 
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        RemoteConfigManager.fetch()
+    }
 }
 

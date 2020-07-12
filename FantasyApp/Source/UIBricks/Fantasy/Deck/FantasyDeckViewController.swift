@@ -312,6 +312,10 @@ extension FantasyDeckViewController {
         subsbcriptionLabel.text = R.string.localizable.fantasyDeckSubscriptionLabel()
         subsbcriptionLabel.font = .regularFont(ofSize: 15)
         subsbcriptionLabel.textColor = .basicGrey
+                
+        if RemoteConfigManager.learnDefaultScreen == .decks {
+            collectionsTapped()
+        }
     }
 }
 

@@ -327,6 +327,10 @@
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 		882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DD27D2469E5DD008D9626 /* Localizable.swift */; };
+		885EEF0824BA19A400BA187A /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */; };
+		8887A80524BA1DE300B6CF45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */; };
+		8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */; };
+		8887A80B24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */; };
 		88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */; };
 		88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */; };
 		88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */; };
@@ -756,6 +760,10 @@
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
 		882DD27D2469E5DD008D9626 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		882DD27F2469E8AE008D9626 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferRouter.swift; sourceTree = "<group>"; };
+		8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferController.swift; sourceTree = "<group>"; };
 		88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTutorialViewController.swift; sourceTree = "<group>"; };
 		88DF09CD24731BC70070C487 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DF09CE24731BCF0070C487 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -979,6 +987,7 @@
 				7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */,
 				7312B0D622D7516900DB0F36 /* FantasyApp-Bridging-Header.h */,
 				7312B05D22D7403300DB0F36 /* Info.plist */,
+				8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */,
 			);
 			path = support_files;
 			sourceTree = "<group>";
@@ -1045,7 +1054,7 @@
 		7312B07522D741D500DB0F36 /* UIBricks */ = {
 			isa = PBXGroup;
 			children = (
-				7337B83D23C8CBBA00EFC948 /* Subscription */,
+				8887A80624BB146300B6CF45 /* Payment */,
 				7361F33223351F2A007B84B0 /* Connections */,
 				84C1D0422327BA8200648DE1 /* Rooms */,
 				7322310D23040DA4009DD37F /* Fantasy */,
@@ -1206,6 +1215,7 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				885EEF0624BA196600BA187A /* RemoteConfig */,
 				73EBBA6E234E044F00B79121 /* Push */,
 				7361F32D2334F436007B84B0 /* Connection */,
 				7361F31223322BB4007B84B0 /* Community */,
@@ -2328,6 +2338,32 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		885EEF0624BA196600BA187A /* RemoteConfig */ = {
+			isa = PBXGroup;
+			children = (
+				885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */,
+			);
+			path = RemoteConfig;
+			sourceTree = "<group>";
+		};
+		8887A80624BB146300B6CF45 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				7337B83D23C8CBBA00EFC948 /* Subscription */,
+				8887A80724BB146B00B6CF45 /* SubscriptionLimitedOffer */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		8887A80724BB146B00B6CF45 /* SubscriptionLimitedOffer */ = {
+			isa = PBXGroup;
+			children = (
+				8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */,
+				8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */,
+			);
+			path = SubscriptionLimitedOffer;
+			sourceTree = "<group>";
+		};
 		88DF09DE247EF0310070C487 /* FlirtAccess */ = {
 			isa = PBXGroup;
 			children = (
@@ -2618,6 +2654,7 @@
 				84C1D0392327B95300648DE1 /* Pansexual.png in Resources */,
 				73F80CD72361ED0200212FCF /* AcceptRejectCell.xib in Resources */,
 				841681E922E9AE6E00FA9455 /* SF-Pro-Text-ThinItalic.otf in Resources */,
+				8887A80524BA1DE300B6CF45 /* GoogleService-Info.plist in Resources */,
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
 				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
@@ -2970,6 +3007,7 @@
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				7384B0F82386E15A00869016 /* UIDismissSegue.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
+				8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */,
 				733CA05B23951D7000EF7922 /* FantasyCollectionViewController.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
@@ -3033,6 +3071,7 @@
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
+				885EEF0824BA19A400BA187A /* RemoteConfigManager.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */,
 				738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */,
@@ -3099,6 +3138,7 @@
 				B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */,
 				7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */,
 				B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */,
+				8887A80B24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift in Sources */,
 				733F41C02364AE88004EC466 /* MonetizationViewController.swift in Sources */,
 				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
@@ -3335,9 +3375,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3354,7 +3394,7 @@
 				MARKETING_VERSION = 2.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.fantasyapp.iosclient";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -3372,7 +3412,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3461,7 +3501,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3558,7 +3598,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3583,7 +3623,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3608,7 +3648,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

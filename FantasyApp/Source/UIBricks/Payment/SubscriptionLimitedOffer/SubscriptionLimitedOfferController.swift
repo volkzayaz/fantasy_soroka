@@ -1,13 +1,12 @@
 //
-//  SubscriptionViewController.swift
+//  SubscriptionLimitedOfferController.swift
 //  FantasyApp
 //
-//  Created by Vlad Soroka on 10.01.2020.
-//Copyright © 2020 Fantasy App. All rights reserved.
+//  Created by Vodolazkyi Anton on 12.07.2020.
+//  Copyright © 2020 Fantasy App. All rights reserved.
 //
 
 import UIKit
-
 import RxSwift
 import RxCocoa
 

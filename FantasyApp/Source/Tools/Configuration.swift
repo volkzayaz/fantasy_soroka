@@ -15,6 +15,7 @@ import Branch
 import ZendeskSDK
 import ZendeskCoreSDK
 import ScreenShieldKit
+import Firebase
 
 enum Configuration {}
 extension Configuration {
@@ -34,6 +35,9 @@ extension Configuration {
 
         // MARK: - Fabric
         Fabric.with([Crashlytics.self])
+        
+        // MARK: - Firebase
+        FirebaseApp.configure()
 
         // MARK: - Parse
         Parse.initialize(with: ParseClientConfiguration { (config) in

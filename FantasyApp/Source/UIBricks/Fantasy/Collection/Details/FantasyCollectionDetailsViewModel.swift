@@ -18,12 +18,15 @@ import RxDataSources
 extension FantasyCollectionDetailsViewModel {
     
     var price: Driver<String> {
-
-        return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
-            .map { $0.first! }
-            .map { "\($0.localizedPrice)" }
-            .asDriver(onErrorJustReturn: "error")
-            
+        if RemoteConfigManager.showPriceInDeck {
+            return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
+                .map { $0.first! }
+                .map { "\($0.localizedPrice)" }
+                .asDriver(onErrorJustReturn: "error")
+        } else {
+            return Observable.just(R.string.localizable.paymentGet())
+                .asDriver(onErrorJustReturn: "")
+        }
     }
     
     ///if collection is not purchased, there only will be a single card inside
@@ -41,7 +44,7 @@ extension FantasyCollectionDetailsViewModel {
     }
     
     var dataSource: Driver<[SectionModel<String, Model>]> {
-     
+        
         let x = collection
         
         var result: [SectionModel<String, Model>] = [
@@ -137,11 +140,22 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
 extension FantasyCollectionDetailsViewModel {
     
     func buy() {
-        
         if collectionPurchased {
             router.showCollection(collection: collection)
             return;
         }
+        
+        SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
+            .map { $0.first! }
+            .subscribe(onSuccess: {
+                Analytics.report(Analytics.Event.PurchaseCollectionInterest(
+                    context: .collection,
+                    collectionName: $0.localizedTitle,
+                    isPriceVisable: RemoteConfigManager.showPriceInDeck
+                    )
+                )
+            })
+            .disposed(by: bag)
         
         PurchaseManager.purhcase(collection: collection)
             .trackView(viewIndicator: indicator)
@@ -176,7 +190,7 @@ extension FantasyCollectionDetailsViewModel {
         
         guard let src = collection.author?.srcFb,
             let url = URL(string: src) else {
-            return
+                return
         }
         
         router.showSafari(for: url)
@@ -187,7 +201,7 @@ extension FantasyCollectionDetailsViewModel {
         
         guard let src = collection.author?.srcInstagram,
             let url = URL(string: src) else {
-            return
+                return
         }
         
         router.showSafari(for: url)
@@ -197,7 +211,7 @@ extension FantasyCollectionDetailsViewModel {
         
         guard let src = collection.author?.srcWeb,
             let url = URL(string: src) else {
-            return
+                return
         }
         
         router.showSafari(for: url)

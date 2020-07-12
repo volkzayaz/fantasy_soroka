@@ -13,7 +13,7 @@ extension Analytics.Event {
     struct PurchaseInterest: AnalyticsEvent {
         
         let context: SubscriptionViewModel.Page
-
+        
         var name: String { return "Purchase Interest" }
         
         var props: [String : String]? {
@@ -31,4 +31,35 @@ extension Analytics.Event {
         }
     }
     
+}
+
+extension Analytics.Event {
+    
+    struct PurchaseCollectionInterest: AnalyticsEvent {
+        
+        enum Context {
+            case collection, promo
+            
+            var name: String {
+                switch self {
+                case .collection: return "Collection Page"
+                case .promo: return "Promo Page"
+                }
+            }
+        }
+        
+        let context: Context
+        let collectionName: String
+        let isPriceVisable: Bool
+        
+        var name: String { return "Purchase Collection Interest" }
+        
+        var props: [String : String]? {
+            [
+                "Collection Interest Context": context.name,
+                "Collection Price Visibility": String(isPriceVisable),
+                "Name": collectionName
+            ]
+        }
+    }
 }

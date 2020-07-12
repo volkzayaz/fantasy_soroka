@@ -46,6 +46,10 @@ target 'FantasyApp' do
 
     #feedback
     pod 'ZendeskSDK'
+    
+    #firebase
+    pod 'Firebase/RemoteConfig', '6.21.0'
+
 end
 
 target 'FantasyAppTests' do
