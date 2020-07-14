@@ -132,7 +132,7 @@ extension DiscoverProfileViewModel {
     }
     
     func presentFilter() {
-        router.presentFilter()
+        self.router.presentFilter()
     }
     
     func inviteFriends() {
@@ -158,6 +158,14 @@ extension DiscoverProfileViewModel {
     
     func notAllowLocationService() {
         
+    }
+    
+    func viewDidAppear() {
+        guard appStateSlice.currentUser?.subscription.isSubscribed == false else { return }
+        
+        PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferShownInFlirtAfterNumber), event: .subscriptionOfferShownInFlirt) {
+            router.presentSubscriptionLimitedOffer()
+        }
     }
     
     func activateFlirtAccess() {

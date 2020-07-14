@@ -54,5 +54,12 @@ struct DiscoverProfileRouter : MVVM_Router {
 
         owner.present(activityViewController, animated: true, completion: nil)
     }
-
+    
+    func presentSubscriptionLimitedOffer() {
+        let vc = R.storyboard.subscription.subscriptionLimitedOfferController()!
+        let navigationController = FantasyNavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        vc.viewModel = SubscriptionLimitedOfferViewModel(router: .init(owner: vc))
+        owner.present(navigationController, animated: true, completion: nil)
+    }
 }

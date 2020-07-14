@@ -13,10 +13,19 @@ extension Analytics.Event {
     struct PurchaseInterest: AnalyticsEvent {
         
         let context: SubscriptionViewModel.Page
+        let itemName: String?
+        let discount: String?
+        
+        init(context: SubscriptionViewModel.Page, itemName: String? = nil, discount: String? = nil) {
+            self.context = context
+            self.itemName = itemName
+            self.discount = discount
+        }
         
         var name: String { return "Purchase Interest" }
         
         var props: [String : String]? {
+            var params = [String: String]()
             
             var ctx = ""
             switch context {
@@ -25,9 +34,20 @@ extension Analytics.Event {
             //case .screenProtect: ctx = "RoomScreenProtect"
             case .teleport: ctx = "SearchActiveCity"
             case .unlimRooms: ctx = "RoomFrozenLimit"
+            case .subscriptionOffer: ctx = "SubscriptionOffer"
             }
             
-            return ["Context":  ctx]
+            params["Context"] = ctx
+            
+            if let itemName = itemName {
+                params["Item Name"] = itemName
+            }
+            
+            if let discount = discount {
+                params["Item Discount"] = discount
+            }
+            
+            return params
         }
     }
     

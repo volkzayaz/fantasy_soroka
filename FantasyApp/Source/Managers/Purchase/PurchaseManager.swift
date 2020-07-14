@@ -44,13 +44,11 @@ extension PurchaseManager {
         
     }
     
-    static func purhcaseSubscription(offer: SubscriptionOffer) -> Single<User.Subscription> {
+    static func purhcaseSubscription(with productId: String) -> Single<User.Subscription> {
         
         Analytics.report(ConsiderPurchase(of: .subscription))
-        
-        let goldPlanProductId = offer.plan.productId
-        
-        return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
+                
+        return SwiftyStoreKit.rx_purchase(product: productId)
             .flatMap { x in
                 return self.sendRecipeToServer(forceRefresh: false,
                                                transactionToFinish: x.transaction)
