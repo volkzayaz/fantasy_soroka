@@ -301,7 +301,7 @@
                                                                                                 <fragment content="10%">
                                                                                                     <attributes>
                                                                                                         <color key="NSColor" red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                        <font key="NSFont" metaFont="cellTitle"/>
+                                                                                                        <font key="NSFont" metaFont="label" size="12"/>
                                                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                                     </attributes>
                                                                                                 </fragment>
@@ -413,7 +413,7 @@
                                                                                                 <fragment content="10%">
                                                                                                     <attributes>
                                                                                                         <color key="NSColor" red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                        <font key="NSFont" metaFont="cellTitle"/>
+                                                                                                        <font key="NSFont" metaFont="label" size="12"/>
                                                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                                     </attributes>
                                                                                                 </fragment>
@@ -490,7 +490,7 @@
                                                                                                 <fragment content="Save">
                                                                                                     <attributes>
                                                                                                         <color key="NSColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                        <font key="NSFont" metaFont="cellTitle"/>
+                                                                                                        <font key="NSFont" metaFont="label" size="12"/>
                                                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                                     </attributes>
                                                                                                 </fragment>
@@ -506,7 +506,7 @@
                                                                                                 <fragment content="10%">
                                                                                                     <attributes>
                                                                                                         <color key="NSColor" red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                        <font key="NSFont" metaFont="cellTitle"/>
+                                                                                                        <font key="NSFont" metaFont="label" size="12"/>
                                                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                                     </attributes>
                                                                                                 </fragment>
@@ -1335,6 +1335,7 @@
                         <outlet property="saveLabel" destination="eLh-XQ-tC0" id="tpg-au-sAZ"/>
                         <outlet property="saveView" destination="erC-hO-y5a" id="9fl-F1-Lus"/>
                         <outlet property="subscribeButton" destination="eAO-gR-9xW" id="z8O-c1-fvj"/>
+                        <outlet property="trialLabel" destination="Mou-ur-gLb" id="nQL-Ed-SMR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxo-px-zGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

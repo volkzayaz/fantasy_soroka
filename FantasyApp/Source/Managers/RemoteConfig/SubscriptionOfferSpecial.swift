@@ -11,7 +11,8 @@ struct SubscriptionOfferSpecial: Codable {
     let currentSubscriptionOffer: String
     let subscriptionOffers: [Offer]
     
-    var currentOffer: Offer { subscriptionOffers.first(where: { $0.name == currentSubscriptionOffer }) ?? Offer.default }
+    var currentSpecialOffer: Offer { subscriptionOffers.first(where: { $0.name == currentSubscriptionOffer }) ?? Offer.specialDefault }
+    var currentPromoOffer: Offer { subscriptionOffers.first(where: { $0.name == currentSubscriptionOffer }) ?? Offer.promoDefault }
 }
 
 extension SubscriptionOfferSpecial {
@@ -22,11 +23,18 @@ extension SubscriptionOfferSpecial {
         let specialProduct: String
         let specialAnalyticsName: String
         
-        static let `default` = Offer(
-            name: "SubscriptionOffer1wSpecial1",
+        static let specialDefault = Offer(
+            name: "SubscriptionOffer1wSpecial",
             currentProduct: "com.fantasyapp.iosclient.iap.premium",
-            specialProduct: "com.fantasyapp.iosclient.iap.premium.special",
-            specialAnalyticsName: "Club Membership Weekly Special 1"
+            specialProduct: "com.fantasyapp.iosclient.iap.premium.special2",
+            specialAnalyticsName: "Club Membership Weekly Special"
         )
+        
+        static let promoDefault = Offer(
+             name: "SubscriptionOffer1wPromo",
+             currentProduct: "com.fantasyapp.iosclient.iap.premium",
+             specialProduct: "com.fantasyapp.iosclient.iap.premium.special",
+             specialAnalyticsName: "Club Membership Weekly Promo"
+         )
     }
 }

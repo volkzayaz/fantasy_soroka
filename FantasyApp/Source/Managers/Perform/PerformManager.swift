@@ -15,7 +15,8 @@ enum PerformRule {
 }
 
 enum PerformEvent: String {
-    case subscriptionOfferShownInFlirt
+    case subscriptionPromoOfferShownInFlirt
+    case subscriptionSpecialOfferShownInFlirt
 }
 
 enum PerformAccessLevel {
@@ -37,6 +38,10 @@ final class PerformManager {
         case .on(let count):
             guard var value: Int = StorageManager.getValue(for: key) else {
                 StorageManager.setValue(value: 1, forKey: key)
+                
+                if 1 == count {
+                    callback()
+                }
                 return
             }
 

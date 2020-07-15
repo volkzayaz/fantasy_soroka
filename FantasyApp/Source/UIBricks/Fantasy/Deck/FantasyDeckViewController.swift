@@ -313,7 +313,7 @@ extension FantasyDeckViewController {
         subsbcriptionLabel.font = .regularFont(ofSize: 15)
         subsbcriptionLabel.textColor = .basicGrey
                 
-        if RemoteConfigManager.learnDefaultScreen == .decks {
+        if RemoteConfigManager.learnDefaultScreen == .decks && viewModel.room == nil  {
             collectionsTapped()
         }
     }

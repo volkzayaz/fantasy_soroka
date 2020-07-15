@@ -13,8 +13,10 @@ struct RemoteConfigManager {
     enum Key {
         static let showPriceInDeck = "collection_price_visible"
         static let learnDefaultScreen = "learn_default_screen"
-        static let subscriptionOfferShownInFlirtAfterNumber = "subscription_offer_shown_in_flirt_after_number"
-        static let subscriptionOfferSpecial = "subscription_offer_special"
+        static let subscriptionOfferPromoShownInFlirtAfterNumber = "subscription_offer_promo_shown_in_flirt_after_number"
+        static let subscriptionOfferSpecialShownInFlirtAfterNumber = "subscription_offer_special_shown_in_flirt_after_number"
+        static let subscriptionOfferPromo = "subscription_offer_promo"
+        static let subscriptionOfferSpecial  = "subscription_offer_special"
     }
     
     enum LearnScreen: String {
@@ -30,21 +32,36 @@ struct RemoteConfigManager {
         RemoteConfig.remoteConfig().configValue(forKey: Key.showPriceInDeck).boolValue
     }
     
-    static var subscriptionOfferShownInFlirtAfterNumber: Int {
-        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferShownInFlirtAfterNumber).numberValue?.intValue ?? 2
+    static var subscriptionOfferPromoShownInFlirtAfterNumber: Int {
+        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferPromoShownInFlirtAfterNumber).numberValue?.intValue ?? 2
+    }
+    
+    static var subscriptionOfferSpecialShownInFlirtAfterNumber: Int {
+        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferSpecialShownInFlirtAfterNumber).numberValue?.intValue ?? 6
+    }
+    
+    static var subscriptionOfferPromo: SubscriptionOfferSpecial.Offer {
+        let data = RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferPromo).dataValue
+        
+        do {
+            let config = try decoder.decode(SubscriptionOfferSpecial.self, from: data)
+            return config.currentPromoOffer
+        } catch {
+            return SubscriptionOfferSpecial.Offer.promoDefault
+        }
     }
     
     static var subscriptionOfferSpecial: SubscriptionOfferSpecial.Offer {
         let data = RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferSpecial).dataValue
-        
+
         do {
             let config = try decoder.decode(SubscriptionOfferSpecial.self, from: data)
-            return config.currentOffer
+            return config.currentSpecialOffer
         } catch {
-            return SubscriptionOfferSpecial.Offer.default
+            return SubscriptionOfferSpecial.Offer.specialDefault
         }
     }
-    
+
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

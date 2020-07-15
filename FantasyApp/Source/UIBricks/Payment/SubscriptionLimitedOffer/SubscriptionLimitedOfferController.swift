@@ -19,6 +19,7 @@ final class SubscriptionLimitedOfferController: UITableViewController, MVVM_View
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var saveLabel: UILabel!
     @IBOutlet weak var saveView: UIView!
+    @IBOutlet weak var trialLabel: UILabel!
     
     var viewModel: SubscriptionLimitedOfferViewModel!
     var plan: SubscriptionLimitedOfferViewModel.Plan?
@@ -26,7 +27,12 @@ final class SubscriptionLimitedOfferController: UITableViewController, MVVM_View
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = R.string.localizable.subscriptionLimitedOfferNavigationTitle()
+        navigationItem.title = viewModel.offerType == .promo ? R.string.localizable.subscriptionLimitedOfferNavigationTitle() :
+            R.string.localizable.subscriptionOnetimeOfferNavigationTitle()
+        
+        if viewModel.offerType == .special {
+            trialLabel.text = nil
+        }
         
         roundedView.clipsToBounds = true
         roundedView.layer.cornerRadius = 20

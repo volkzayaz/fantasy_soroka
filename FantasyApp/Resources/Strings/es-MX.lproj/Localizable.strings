@@ -333,15 +333,15 @@
 
 
 "room.list.title" = "Play";
-"room.list.add" = "Add";
-"rooms.add.new.room" = "Add New Room";
+"room.list.add" = "Invite";
+"rooms.add.new.room" = "Invite a Partner";
 
 // !!action!! placeholder-tutorial-to-remember: сделать чтобы UI растягивался при большом количестве текста
-"createRoom.firstStep" = "Add New Room";
+"createRoom.firstStep" = "Invite a Partner";
 "createRoom.secondStep" = "Share Invite Link";
-"createRoom.thirdStep" = "Play with Partner";
+"createRoom.thirdStep" = "See Mutual Turn-Ons";
 "createRoom.title" = "Create a Room To Play";
-"createRoom.description" = "Enjoy chatting and playing";
+"createRoom.description" = "Swipe erotic cards together and see what excites you both";
 
 "room.list.newRoom" = "new Room";
 
@@ -368,7 +368,7 @@
 // Play - Rooms - Add New Room
 
 
-"room.creation.invite" = "Invite Someone";
+"room.creation.invite" = "Invite a Partner";
 
 "room.creation.participants" = "Participants";
 "room.creation.participants.see.all" = "See All";
@@ -377,7 +377,7 @@
 "room.participant.status.accepted" = "Accepted";
 "room.participant.status.rejected" = "Rejected";
 
-"room.invite.add" = "Add";
+"room.invite.add" = "Invite";
 "room.invite.waiting" = "Waiting";
 
 "room.creation.invite.copy" = "Copy"; // unuesd
@@ -398,12 +398,12 @@
 
 
 "room.creation.tutorial.title" = "Play In Rooms";
-"roomsOnboarding.inviteParner.part1" = "ADD NEW";
-"roomsOnboarding.inviteParner.part2" = "ROOM";
-"roomsOnboarding.mutualFantasies.part1" = "SHARE";
-"roomsOnboarding.mutualFantasies.part2" = "INVITE LINK";
-"roomsOnboarding.play.part1" = "PLAY WITH";
-"roomsOnboarding.play.part" = "NEW CARDS";
+"roomsOnboarding.inviteParner.part1" = "COPY"; // ADD NEW
+"roomsOnboarding.inviteParner.part2" = "LINK"; // ROOM
+"roomsOnboarding.mutualFantasies.part1" = "SHARE"; // SHARE
+"roomsOnboarding.mutualFantasies.part2" = "LINK"; // INVITE LINK
+"roomsOnboarding.play.part1" = "PLAY"; // PLAY WITH
+"roomsOnboarding.play.part" = "TOGETHER"; // NEW CARDS
 
 "roomsOnboarding.gotButton" = "Got It"; // now it's picture will be used
 "room.creation.tutorial.button.title" = "Let's Go"; // unused
@@ -655,6 +655,7 @@
 // Subscription - Limited offer
 
 "subscription.limitedOffer.navigation.title" = "Limited Offer";
+"subscription.onetimeOffer.navigation.title" = "One Time Offer";
 "subscription.limitedOffer.3DaysTrial" = "3 DAYS FREE TRIAL";
 "subscription.limitedOffer.save" = "Save %d%%";
 "subscription.limitedOffer.for" = "for ";
@@ -787,9 +788,9 @@
 "settings.rateUs" = "Rate Us";
 
 "settings.deleteAccount" = "Delete Account";
-"fantasy.settings.delete.account.alert.title" = "Delete account?";
+"fantasy.settings.delete.account.alert.title" = "Delete Account?";
 "fantasy.settings.delete.account.alert.text" = "You will be logged out. All your data will be erased. You cannot undo the deletion";
-"fantasy.settings.delete.account.alert.action" = "Delete account";
+"fantasy.settings.delete.account.alert.action" = "Delete Account";
 
 "settings.logout" = "Log Out";
 "fantasy.settings.logout.alert.title" = "Log Out";

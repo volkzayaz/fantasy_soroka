@@ -12,14 +12,20 @@ import SwiftyStoreKit
 
 struct SubscriptionLimitedOfferViewModel : MVVM_ViewModel {
     
+    enum OfferType {
+        case promo, special
+    }
+    
     let router: SubscriptionLimitedOfferRouter
+    let offerType: OfferType
     
     private let indicator: ViewIndicator = ViewIndicator()
     private let bag = DisposeBag()
     private let completion: (() -> Void)?
     
-    init(router: SubscriptionLimitedOfferRouter, completion: ( () -> Void)? = nil ) {
+    init(router: SubscriptionLimitedOfferRouter, offerType: OfferType, completion: ( () -> Void)? = nil ) {
         self.router = router
+        self.offerType = offerType
         self.completion = completion
         
         /////progress indicator
@@ -34,7 +40,7 @@ struct SubscriptionLimitedOfferViewModel : MVVM_ViewModel {
 extension SubscriptionLimitedOfferViewModel {
     
     var offer: Driver<Plan?> {
-        let offer = RemoteConfigManager.subscriptionOfferSpecial
+        let offer = offerType == .promo ? RemoteConfigManager.subscriptionOfferPromo : RemoteConfigManager.subscriptionOfferSpecial
         let ids = Set(arrayLiteral: offer.currentProduct, offer.specialProduct)
         
         return SwiftyStoreKit.rx_productDetails(products: ids)
