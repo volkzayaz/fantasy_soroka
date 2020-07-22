@@ -135,6 +135,24 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     var expanded: [String: Bool] = [:]
     
+    private func openOfferIfNeeded(for offerType: DeckLimitedOfferViewModel.OfferType) {
+        let decksOffer = offerType == .special ? RemoteConfigManager.specialDecksOffer : RemoteConfigManager.priceDecksOffer
+        
+        guard let deckOffer = decksOffer.first(where: { $0.id == collection.id }), collectionPurchased == false else {
+            return
+        }
+        let offers = deckOffer.deckOffers.filter { $0.isEnabled }
+        
+        offers.forEach { offer in
+            PerformManager.perform(rule: .on(offer.triggerCount), event: .customName(offer.name.replacingOccurrences(of: " ", with: ""))) {
+                self.router.presentDeckLimitedOffer(
+                    offerType: offerType,
+                    collection: collection,
+                    deckOffer: offer
+                )
+            }
+        }
+    }
 }
 
 extension FantasyCollectionDetailsViewModel {
@@ -159,15 +177,15 @@ extension FantasyCollectionDetailsViewModel {
         
         PurchaseManager.purhcase(collection: collection)
             .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [weak o = router.owner] in
+            .subscribe(onNext: { [weak o = router.owner] _ in
                 Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
                 
                 self.reloadTrigger.onNext( () )
-                
+                }, onError: { [weak o = router.owner] error in
+                    self.openOfferIfNeeded(for: .promo)
+                    o?.present(error: error)
             })
             .disposed(by: bag)
-        
     }
     
     mutating func share() {
@@ -176,14 +194,17 @@ extension FantasyCollectionDetailsViewModel {
     
     mutating func viewAppeared() {
         timeSpentCounter.start()
+        openOfferIfNeeded(for: .special)
     }
     
     mutating func viewWillDisappear() {
-        
-        Analytics.report(Analytics.Event.CollectionViewed(collection: collection,
-                                                          context: context,
-                                                          spentTime: timeSpentCounter.finish()))
-        
+        Analytics.report(
+            Analytics.Event.CollectionViewed(
+                collection: collection,
+                context: context,
+                spentTime: timeSpentCounter.finish()
+            )
+        )
     }
     
     func openAuthorFB() {

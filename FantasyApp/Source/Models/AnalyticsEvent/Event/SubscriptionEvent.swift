@@ -71,15 +71,29 @@ extension Analytics.Event {
         let context: Context
         let collectionName: String
         let isPriceVisable: Bool
+        let discount: String?
+        
+        init(context: Context, collectionName: String, isPriceVisable: Bool, discount: String? = nil) {
+            self.context = context
+            self.collectionName = collectionName
+            self.isPriceVisable = isPriceVisable
+            self.discount = discount
+        }
         
         var name: String { return "Purchase Collection Interest" }
         
         var props: [String : String]? {
-            [
+            var params = [
                 "Collection Interest Context": context.name,
                 "Collection Price Visibility": String(isPriceVisable),
                 "Name": collectionName
             ]
+            
+            if let discount = discount {
+                params["Discount"] = discount
+            }
+            
+            return params
         }
     }
 }

@@ -17,6 +17,8 @@ struct RemoteConfigManager {
         static let subscriptionOfferSpecialShownInFlirtAfterNumber = "subscription_offer_special_shown_in_flirt_after_number"
         static let subscriptionOfferPromo = "subscription_offer_promo"
         static let subscriptionOfferSpecial  = "subscription_offer_special"
+        static let decksOfferSpecial = "decks_offer_special"
+        static let decksOfferPrice = "decks_offer_price"
     }
     
     enum LearnScreen: String {
@@ -61,7 +63,27 @@ struct RemoteConfigManager {
             return SubscriptionOfferSpecial.Offer.specialDefault
         }
     }
+    
+    static var specialDecksOffer: [CollectionOffer] {
+        let data = RemoteConfig.remoteConfig().configValue(forKey: Key.decksOfferSpecial).dataValue
 
+        do {
+            return try decoder.decode([CollectionOffer].self, from: data)
+        } catch {
+            return []
+        }
+    }
+    
+    static var priceDecksOffer: [CollectionOffer] {
+        let data = RemoteConfig.remoteConfig().configValue(forKey: Key.decksOfferPrice).dataValue
+
+        do {
+            return try decoder.decode([CollectionOffer].self, from: data)
+        } catch { 
+            return []
+        }
+    }
+    
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

@@ -40,7 +40,22 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
         vc.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.back(), style: .done, target: nav, action: "dismiss")
         
         owner.present(nav, animated: true, completion: nil)
-        
     }
-        
+    
+    func presentDeckLimitedOffer(
+        offerType: DeckLimitedOfferViewModel.OfferType,
+        collection: Fantasy.Collection,
+        deckOffer: CollectionOffer.Offer
+    ) {
+        let vc = R.storyboard.subscription.deckLimitedOfferController()!
+        let navigationController = FantasyNavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        vc.viewModel = DeckLimitedOfferViewModel(
+            router: .init(owner: vc),
+            offerType: offerType,
+            collection: collection,
+            deckOffer: deckOffer
+        )
+        owner.present(navigationController, animated: true, completion: nil)
+    }
 }

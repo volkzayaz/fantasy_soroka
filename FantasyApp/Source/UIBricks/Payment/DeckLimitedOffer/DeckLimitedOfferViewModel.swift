@@ -1,8 +1,8 @@
 //
-//  SubscriptionLimitedOfferViewModel.swift
+//  DeckLimitedOfferViewModel.swift
 //  FantasyApp
 //
-//  Created by Vodolazkyi Anton on 12.07.2020.
+//  Created by Vodolazkyi Anton on 20.07.2020.
 //  Copyright © 2020 Fantasy App. All rights reserved.
 //
 
@@ -10,23 +10,33 @@ import RxSwift
 import RxCocoa
 import SwiftyStoreKit
 
-struct SubscriptionLimitedOfferViewModel : MVVM_ViewModel {
+struct DeckLimitedOfferViewModel : MVVM_ViewModel {
     
     enum OfferType {
         case promo, special
     }
     
-    let router: SubscriptionLimitedOfferRouter
     let offerType: OfferType
+    let collection: Fantasy.Collection
+    let deckOffer: CollectionOffer.Offer
+    let router: DeckLimitedOfferRouter
     
     private let indicator: ViewIndicator = ViewIndicator()
     private let bag = DisposeBag()
     private let completion: (() -> Void)?
     
-    init(router: SubscriptionLimitedOfferRouter, offerType: OfferType, completion: ( () -> Void)? = nil ) {
+    init(
+        router: DeckLimitedOfferRouter,
+        offerType: OfferType,
+        collection: Fantasy.Collection,
+        deckOffer: CollectionOffer.Offer,
+        completion: (() -> Void)? = nil
+    ) {
         self.router = router
         self.offerType = offerType
+        self.collection = collection
         self.completion = completion
+        self.deckOffer = deckOffer
         
         /////progress indicator
         indicator.asDriver()
@@ -37,11 +47,12 @@ struct SubscriptionLimitedOfferViewModel : MVVM_ViewModel {
     }
 }
 
-extension SubscriptionLimitedOfferViewModel {
+extension DeckLimitedOfferViewModel {
     
-    var offer: Driver<LimitedOffer?> {
-        let offer = offerType == .promo ? RemoteConfigManager.subscriptionOfferPromo : RemoteConfigManager.subscriptionOfferSpecial
-        let ids = Set(arrayLiteral: offer.currentProduct, offer.specialProduct)
+    var offer: Driver<DeckOffer?> {
+        let ids = Set(arrayLiteral: deckOffer.currentDeck, deckOffer.specialDeck)
+        let offerType = self.offerType
+        let analyticsName = deckOffer.specialAnalyticsName
         
         return SwiftyStoreKit.rx_productDetails(products: ids)
             .retry(1)
@@ -52,20 +63,29 @@ extension SubscriptionLimitedOfferViewModel {
                 let sortedProducts = products
                     .sorted(by: { $0.price.doubleValue < $1.price.doubleValue })
                 
-                return LimitedOffer(
+                return DeckOffer(
                     product: sortedProducts[0],
                     defaultProduct: sortedProducts[1],
-                    analyticsName: offer.specialAnalyticsName
+                    analyticsName: analyticsName,
+                    offerType: offerType
                 )
         }
         .asDriver(onErrorJustReturn: nil)
     }
 }
 
-extension SubscriptionLimitedOfferViewModel {
+extension DeckLimitedOfferViewModel {
     
-    func subscribe(plan: LimitedOffer) {
+    func subscribe(plan: DeckOffer) {
         let copy = self.completion
+        
+        Analytics.report(Analytics.Event.PurchaseCollectionInterest(
+            context: .promo,
+            collectionName: plan.analyticsName,
+            isPriceVisable: true,
+            discount: String(plan.savePercent)
+            )
+        )
         
         PurchaseManager.purhcaseSubscription(with: plan.productId)
             .trackView(viewIndicator: indicator)
@@ -79,19 +99,27 @@ extension SubscriptionLimitedOfferViewModel {
     }
 }
 
-struct LimitedOffer {
+
+struct DeckOffer {
     let price: NSAttributedString
     let name: String
     let productId: String
     let savePercent: Int
     let analyticsName: String
     
-    init(product: SKProduct, defaultProduct: SKProduct, analyticsName: String) {
+    init(product: SKProduct, defaultProduct: SKProduct, analyticsName: String, offerType: DeckLimitedOfferViewModel.OfferType) {
         self.name = product.localizedTitle
         self.productId = product.productIdentifier
         self.analyticsName = analyticsName
         
         let priceAttr = NSMutableAttributedString()
+        priceAttr.append(
+            ((offerType == .promo ? R.string.localizable.deckLimitedOfferTitle() : R.string.localizable.deckOnetimeOfferTitle()) + "\n").toAttributed(
+                with: .systemFont(ofSize: 15, weight: .regular),
+                alignment: .center,
+                color: R.color.textBlackColor() ?? .black
+            )
+        )
         priceAttr.append(
             R.string.localizable.subscriptionLimitedOfferFor().toAttributed(
                 with: .systemFont(ofSize: 15, weight: .medium),
@@ -101,7 +129,7 @@ struct LimitedOffer {
         )
         
         priceAttr.append(
-            "\(defaultProduct.localizedPrice) ".toAttributed(
+            defaultProduct.localizedPrice.toAttributed(
                 with: .systemFont(ofSize: 15, weight: .medium),
                 alignment: .center,
                 color: R.color.textLightGrayColor() ?? .black,
@@ -111,7 +139,7 @@ struct LimitedOffer {
         )
         
         priceAttr.append(
-            product.localizedPrice.toAttributed(
+            "  \(product.localizedPrice)".toAttributed(
                 with: .systemFont(ofSize: 22, weight: .bold),
                 alignment: .center,
                 color: R.color.textPinkColor() ?? .black

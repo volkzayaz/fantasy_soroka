@@ -340,6 +340,10 @@
 		88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */; };
 		88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */; };
 		88F8DDB524BCFC6400900A6E /* StorageManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB424BCFC6400900A6E /* StorageManger.swift */; };
+		88F8DDB824C61E7600900A6E /* DeckLimitedOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */; };
+		88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */; };
+		88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */; };
+		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -795,6 +799,10 @@
 		88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessViewModel.swift; sourceTree = "<group>"; };
 		88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessRouter.swift; sourceTree = "<group>"; };
 		88F8DDB424BCFC6400900A6E /* StorageManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManger.swift; sourceTree = "<group>"; };
+		88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckLimitedOfferRouter.swift; sourceTree = "<group>"; };
+		88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckLimitedOfferController.swift; sourceTree = "<group>"; };
+		88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckLimitedOfferViewModel.swift; sourceTree = "<group>"; };
+		88F8DDBD24C781D200900A6E /* CollectionOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionOffer.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -2356,6 +2364,7 @@
 			children = (
 				885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */,
 				8887A81024BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift */,
+				88F8DDBD24C781D200900A6E /* CollectionOffer.swift */,
 			);
 			path = RemoteConfig;
 			sourceTree = "<group>";
@@ -2365,6 +2374,7 @@
 			children = (
 				7337B83D23C8CBBA00EFC948 /* Subscription */,
 				8887A80724BB146B00B6CF45 /* SubscriptionLimitedOffer */,
+				88F8DDB624C61E5A00900A6E /* DeckLimitedOffer */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -2403,6 +2413,16 @@
 				88F8DDB424BCFC6400900A6E /* StorageManger.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		88F8DDB624C61E5A00900A6E /* DeckLimitedOffer */ = {
+			isa = PBXGroup;
+			children = (
+				88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */,
+				88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */,
+				88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */,
+			);
+			path = DeckLimitedOffer;
 			sourceTree = "<group>";
 		};
 		B719F91E2389A4D3009AB110 /* Blocked */ = {
@@ -2901,6 +2921,7 @@
 				733CA0722397BE1900EF7922 /* UpdateAppViewController.swift in Sources */,
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
+				88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
 				73C287EB23D9CC0F004B15E6 /* ChangeIncommingConnections.swift in Sources */,
 				73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */,
@@ -2955,6 +2976,7 @@
 				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
+				88F8DDB824C61E7600900A6E /* DeckLimitedOfferRouter.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */,
 				73FDD08B23990DAF00BA3E1D /* AnalyticsEvent.swift in Sources */,
@@ -3082,6 +3104,7 @@
 				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				73432AD2238AC7DD008CF2F1 /* ChatHeaderCell.swift in Sources */,
+				88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */,
 				73FDD08D2399134900BA3E1D /* AuthorizationEvents.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
@@ -3089,6 +3112,7 @@
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */,
 				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
+				88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				84BE526E2367636C00FD362F /* FantasyDeckItemOverlayView.swift in Sources */,
 				736E2874242B49A300E08D4A /* MarkUserSignUp.swift in Sources */,
@@ -3413,7 +3437,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3427,7 +3451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3448,7 +3472,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3461,7 +3485,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient";
@@ -3537,7 +3561,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3551,7 +3575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
@@ -3634,7 +3658,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3643,7 +3667,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev Rich Push";
@@ -3659,7 +3683,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3668,7 +3692,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";
@@ -3684,7 +3708,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3693,7 +3717,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";

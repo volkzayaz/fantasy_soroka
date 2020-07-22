@@ -14,9 +14,10 @@ enum PerformRule {
     case every(Int)
 }
 
-enum PerformEvent: String {
+enum PerformEvent {
     case subscriptionPromoOfferShownInFlirt
     case subscriptionSpecialOfferShownInFlirt
+    case customName(String)
 }
 
 enum PerformAccessLevel {
@@ -26,7 +27,7 @@ enum PerformAccessLevel {
 final class PerformManager {
             
     static func perform(rule: PerformRule, event: PerformEvent, accessLevel: PerformAccessLevel = .global, callback: PerformCallback) {
-        let key = "perform_event.\(event.rawValue).\(rule.name).\(accessLevel.name)"
+        let key = "perform_event.\(event.name).\(rule.name).\(accessLevel.name)"
 
         switch rule {
         case .once:
@@ -77,6 +78,17 @@ extension PerformRule {
         case .once: return "once"
         case .every(let count): return "count_\(count)"
         case .on(let count): return "on_count_\(count)"
+        }
+    }
+}
+
+extension PerformEvent {
+    
+    var name: String {
+        switch self {
+        case .subscriptionPromoOfferShownInFlirt: return "subscriptionPromoOfferShownInFlirt"
+        case .subscriptionSpecialOfferShownInFlirt: return "subscriptionSpecialOfferShownInFlirt"
+        case .customName(let name): return "customName.\(name)"
         }
     }
 }

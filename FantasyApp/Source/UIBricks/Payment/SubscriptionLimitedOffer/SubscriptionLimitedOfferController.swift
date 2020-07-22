@@ -22,7 +22,7 @@ final class SubscriptionLimitedOfferController: UITableViewController, MVVM_View
     @IBOutlet weak var trialLabel: UILabel!
     
     var viewModel: SubscriptionLimitedOfferViewModel!
-    var plan: SubscriptionLimitedOfferViewModel.Plan?
+    var plan: LimitedOffer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
