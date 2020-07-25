@@ -12,31 +12,31 @@ import RxSwift
 import RxCocoa
 
 class WelcomeViewController: UIViewController, MVVM_View {
-
+    
     var viewModel: WelcomeViewModel!
-
+    
     @IBOutlet private weak var termsTextView: UITextView! {
         didSet {
             let terms = R.string.localizable.authTerms()
             let text = R.string.localizable.authWelcomeTermsText(terms, R.string.localizable.authPrivacy(), R.string.localizable.authRules())
             let attr = NSMutableAttributedString(string: text, attributes: [
-            .font: UIFont.regularFont(ofSize: 12)])
-
+                .font: UIFont.regularFont(ofSize: 12)])
+            
             attr.addAttributes([
                 .link : viewModel.termsUrl,
                 .font: UIFont.boldFont(ofSize: 12)],
                                range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
-
+            
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
                 .font: UIFont.boldFont(ofSize: 12)],
                                range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
-
+            
             attr.addAttributes([
                 .link : viewModel.communityRulesUrl,
                 .font: UIFont.boldFont(ofSize: 12)],
                                range: text.nsRange(from: text.range(of: R.string.localizable.authRules())!))
-
+            
             termsTextView.attributedText = attr
             termsTextView.textColor = .white
             termsTextView.tintColor = .white
@@ -65,31 +65,33 @@ class WelcomeViewController: UIViewController, MVVM_View {
     }
     
     @IBOutlet weak var signUpFBButton: UIButton! {
-         didSet {
-             signUpFBButton.setTitle(R.string.localizable.welcomeSignUpFacebook(), for: .normal)
-         }
-     }
+        didSet {
+            signUpFBButton.isHidden = true
+            signUpFBButton.setTitle(R.string.localizable.welcomeSignUpFacebook(), for: .normal)
+        }
+    }
     
     @IBOutlet weak var dontPostInfoLabel: UILabel! {
-         didSet {
-             dontPostInfoLabel.text = R.string.localizable.welcomeDontPostInfo()
-         }
-     }
-
+        didSet {
+            dontPostInfoLabel.isHidden = true
+            dontPostInfoLabel.text = R.string.localizable.welcomeDontPostInfo()
+        }
+    }
+    
 }
 
 // MAKR:- Actions
 
 extension WelcomeViewController {
-
+    
     @IBAction func register(_ sender: Any) {
         viewModel.presentRegister()
     }
-
+    
     @IBAction func facebookSignIn(_ sender: Any) {
         viewModel.authorizeUsingFacebook()
     }
-
+    
     @IBAction func presentSignIn() {
         viewModel.presentSignIn()
     }
@@ -98,13 +100,13 @@ extension WelcomeViewController {
 //MARK:- UITextViewDelegate
 
 extension WelcomeViewController: UITextViewDelegate {
-
+    
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-
+        
         guard UIApplication.shared.canOpenURL(URL) else { return false }
-
+        
         UIApplication.shared.open(URL, options: [:], completionHandler: nil)
         return true
     }
-
+    
 }

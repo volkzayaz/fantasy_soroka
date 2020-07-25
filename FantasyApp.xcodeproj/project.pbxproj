@@ -328,6 +328,7 @@
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
 		882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DD27D2469E5DD008D9626 /* Localizable.swift */; };
 		885EEF0824BA19A400BA187A /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */; };
+		88648A8B24CB728A0062C7A5 /* ApphudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648A8A24CB728A0062C7A5 /* ApphudManager.swift */; };
 		8887A80524BA1DE300B6CF45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */; };
 		8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */; };
 		8887A80B24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */; };
@@ -770,6 +771,7 @@
 		882DD27D2469E5DD008D9626 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		882DD27F2469E8AE008D9626 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		88648A8A24CB728A0062C7A5 /* ApphudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApphudManager.swift; sourceTree = "<group>"; };
 		8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferRouter.swift; sourceTree = "<group>"; };
 		8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferController.swift; sourceTree = "<group>"; };
@@ -1234,6 +1236,7 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				88648A8924CB72750062C7A5 /* AppHud */,
 				88F8DDB324BCFC4800900A6E /* Storage */,
 				8887A81424BCFA4200B6CF45 /* Perform */,
 				885EEF0624BA196600BA187A /* RemoteConfig */,
@@ -2369,6 +2372,14 @@
 			path = RemoteConfig;
 			sourceTree = "<group>";
 		};
+		88648A8924CB72750062C7A5 /* AppHud */ = {
+			isa = PBXGroup;
+			children = (
+				88648A8A24CB728A0062C7A5 /* ApphudManager.swift */,
+			);
+			path = AppHud;
+			sourceTree = "<group>";
+		};
 		8887A80624BB146300B6CF45 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -3031,6 +3042,7 @@
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
 				88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
+				88648A8B24CB728A0062C7A5 /* ApphudManager.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
@@ -3437,7 +3449,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3451,7 +3463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.6;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3472,7 +3484,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3485,7 +3497,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.6;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient";
@@ -3561,7 +3573,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3575,7 +3587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.6;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
@@ -3656,9 +3668,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3667,10 +3679,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.6;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev Rich Push";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3683,7 +3695,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3692,7 +3704,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.6;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";
@@ -3708,7 +3720,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3717,7 +3729,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.6;
+				MARKETING_VERSION = 2.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";

@@ -55,6 +55,9 @@ extension Configuration {
         // unncomment to disable debug mode
         //Branch.setUseTestBranchKey(true)
         
+        // MARK: - AppHud
+        ApphudManager.configure()
+        
         let branch = Branch.getInstance()
         //branch?.setDebug()
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in

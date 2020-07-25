@@ -31,9 +31,7 @@ extension PurchaseManager {
     }
     
     static func restorePurchases() -> Single<User.Subscription> {
-        
         return Single.deferred({
-            
             guard let _ = PFUser.current()?.sessionToken else {
                 return Single.error( FantasyError.unauthorized )
             }

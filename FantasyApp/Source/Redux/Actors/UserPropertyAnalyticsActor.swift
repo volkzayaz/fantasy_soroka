@@ -85,6 +85,8 @@ class UserPropertyActor {
                 Amplitude.instance()?.setUserId(user.id)
                 Amplitude.instance()?.identify(newIdentity)
                 
+                // Apphud
+                ApphudManager.updateUserId(user.id)
                 
                 ///user .add for increment operations
                 
