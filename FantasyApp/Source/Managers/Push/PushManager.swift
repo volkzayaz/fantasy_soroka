@@ -13,6 +13,7 @@ extension PushManager {
     
     static func updateDeviceToken(data: Data) {
         PFInstallation.current()?.setDeviceTokenFrom(data)
+        ApphudManager.submitNotificationsToken(data)
         let _ = PFInstallation.current()?.rxSave().retry(2).subscribe()
     }
     
@@ -62,6 +63,8 @@ extension PushManager: UNUserNotificationCenterDelegate {
         
         //Branch.getInstance()?.handlePushNotification(  userInfo)
         
+        ApphudManager.handlePush(with: response.notification)
+        
         guard let data = try? JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo, options: []) else {
             return
         }
@@ -70,9 +73,16 @@ extension PushManager: UNUserNotificationCenterDelegate {
             Dispatcher.dispatch(action: ChangeOpeRoomRef(roomRef: x.roomRef) )
             return
         }
-        
     }
-    
+        
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        ApphudManager.handlePush(with: notification)
+        completionHandler([])
+    }
 }
 
 struct NewMessageNotification: Decodable {

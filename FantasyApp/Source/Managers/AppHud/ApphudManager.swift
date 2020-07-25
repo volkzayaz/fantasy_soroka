@@ -23,6 +23,14 @@ public final class ApphudManager {
         Apphud.updateUserID(userId)
     }
     
+    public static func submitNotificationsToken(_ token: Data) {
+        Apphud.submitPushNotificationsToken(token: token, callback: nil)
+    }
+    
+    public static func handlePush(with notification: UNNotification) {
+        Apphud.handlePushNotification(apsInfo: notification.request.content.userInfo)
+    }
+    
     // MARK: - Private
     
     private static func migrate() {
