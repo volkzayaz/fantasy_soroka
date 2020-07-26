@@ -77,7 +77,7 @@ class FantasyDeckItemView: UIView {
         super.layoutSubviews()
 
         paidCardView.layer.cornerRadius = paidCardView.frame.height / 2.0
-        storyView.layer.cornerRadius = storyView.frame.height / 2.0
+        shareButton.layer.cornerRadius = shareButton.frame.height / 2.0
         gradientLayer.frame = bounds
     }
 
@@ -163,12 +163,12 @@ private extension FantasyDeckItemView {
             paidCardView.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -16),
             
             shareButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-            shareButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            shareButton.widthAnchor.constraint(equalToConstant: 40),
+            shareButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            shareButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 75),
             shareButton.heightAnchor.constraint(equalToConstant: 40),
 
             storyView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-            storyView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            storyView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             storyView.heightAnchor.constraint(equalToConstant: 40),
 
             paidCardImageView.leftAnchor.constraint(equalTo: paidCardView.leftAnchor, constant: 12),
@@ -197,11 +197,15 @@ private extension FantasyDeckItemView {
         paidCardView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
         paidCardView.clipsToBounds = true
 
-        storyView.backgroundColor = UIColor.white.withAlphaComponent(0.25)
+        storyView.backgroundColor = UIColor.clear
         storyView.clipsToBounds = true
 
         paidCardImageView.image = R.image.paidCard()
-        shareButton.setImage(R.image.shareCard(), for: .normal)
+        
+        shareButton.backgroundColor = UIColor.white.withAlphaComponent(0.25)
+        shareButton.setTitle(R.string.localizable.generalShare(), for: .normal)
+        shareButton.clipsToBounds = true
+        shareButton.titleLabel?.font = .boldFont(ofSize: 16)
 
         storyLabel.text = R.string.localizable.fantasyCardStoryIndicator()
         storyLabel.textColor = .title

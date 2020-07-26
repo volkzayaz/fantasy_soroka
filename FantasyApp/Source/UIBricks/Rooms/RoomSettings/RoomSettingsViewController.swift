@@ -169,6 +169,7 @@ private extension RoomSettingsViewController {
         
         inviteLabel.font = .boldFont(ofSize: 15)
         inviteLabel.textColor = .fantasyBlack
+        
         inviteLabel.text = R.string.localizable.roomCreationInvite()
 
         notificationsLabel.font = .boldFont(ofSize: 15)
