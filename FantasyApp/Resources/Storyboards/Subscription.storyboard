@@ -1607,7 +1607,7 @@
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="getMembership.recurringBilling"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="getDeck.nonrecurringBilling"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y3-cv-rgh">
@@ -1625,7 +1625,7 @@
                                                     <color key="textColor" name="textLightGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="getMembership.subscriptionConditions"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="getDeck.purchaseConditions"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>

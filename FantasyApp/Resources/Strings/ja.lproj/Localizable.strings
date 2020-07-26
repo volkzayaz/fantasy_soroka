@@ -341,7 +341,7 @@
 "createRoom.secondStep" = "Share Invite Link";
 "createRoom.thirdStep" = "See Mutual Turn-Ons";
 "createRoom.title" = "Create a Room To Play";
-"createRoom.description" = "Swipe erotic cards together and see what excites you both";
+"createRoom.description" = "Swipe erotic cards with a partner in a Room and see what excites you both";
 
 "room.list.newRoom" = "new Room";
 
@@ -399,12 +399,12 @@
 
 
 "room.creation.tutorial.title" = "Play In Rooms";
-"roomsOnboarding.inviteParner.part1" = "COPY"; // ADD NEW
-"roomsOnboarding.inviteParner.part2" = "LINK"; // ROOM
-"roomsOnboarding.mutualFantasies.part1" = "SHARE"; // SHARE
+"roomsOnboarding.inviteParner.part1" = "TAP"; // ADD NEW
+"roomsOnboarding.inviteParner.part2" = "INVITE"; // ROOM
+"roomsOnboarding.mutualFantasies.part1" = "COPY"; // SHARE
 "roomsOnboarding.mutualFantasies.part2" = "LINK"; // INVITE LINK
-"roomsOnboarding.play.part1" = "PLAY"; // PLAY WITH
-"roomsOnboarding.play.part" = "TOGETHER"; // NEW CARDS
+"roomsOnboarding.play.part1" = "SHARE"; // PLAY WITH
+"roomsOnboarding.play.part" = "LINK"; // NEW CARDS
 
 "roomsOnboarding.gotButton" = "Got It"; // now it's picture will be used
 "room.creation.tutorial.button.title" = "Let's Go"; // unused
@@ -651,9 +651,11 @@
 "getMembership.changeActiveCity.subtitle" = "Switch your profile to other active cities to play with new people around the world";
 
 "getMembership.memberBadge.title" = "Member Badge";
-"getMembership.memberBadge.subtitle" = "Get a badge stating that you support Fantasy's values";
+"getMembership.memberBadge.subtitle" = "Get a badge stating that you support Fantasy Match values";
+
 
 // Subscription - Limited offer
+
 
 "subscription.limitedOffer.navigation.title" = "Limited Offer";
 "subscription.onetimeOffer.navigation.title" = "One Time Offer";
@@ -661,16 +663,22 @@
 "subscription.limitedOffer.save" = "Save %d%%";
 "subscription.limitedOffer.for" = "for ";
 
+
 // Deck Offer
+
 
 "deck.limitedOffer.title" = "Limited offer — get this deck";
 "deck.onetimeOffer.title" = "One time offer — get this deck";
+
+"getDeck.nonrecurringBilling" = "Single purchase, no refunds, no subscription needed!";
+
+"getDeck.purchaseConditions" = "Purchase Conditions:\n- This is a single purchase\n- Payment will be charged from your Itunes account after you have confirmed the purchase\n- You agree that this purchase is for personal use only, which gives you non-transferable, non-sublicensable, revocable license for this deck with cards (collectively digital content)\n- By tapping continue, you agree to our Terms of Service, Privacy Policy, and Community Rules";
+
 
 // Subscription - Main - Subscription Packages
 
 
 "getMembership.mostPopular" = " Most popular ";
-
 
 // !!action!! "getMembership.3months" = "3 months"; - берется с кода, необходимо вынести и перевести day/week/month/year
 "subscription.dailyCharge" = "%@/day";
@@ -707,7 +715,7 @@
 "userGateway.manageClubMembership" = "Manage Club Membership";
 
 "profile.memberBadgeTitle" = "Member Badge"; //usused
-"profile.memberBadgeDescription" = "Get a badge stating that you support Fantasy's values"; //usused
+"profile.memberBadgeDescription" = "Get a badge stating that you support Fantasy Match values"; //usused
 
 "profile.membership" = "Membership";
 "profile.myLibrary" = "My Library";
@@ -738,7 +746,7 @@
 "monetization.memberActiveCity.subtitle" = "Switch your profile to other active cities to play with new people around the world";
 
 "monetization.memberParrot.title" = "Member Badge";
-"monetization.memberParrot.subtitle" = "Get a badge stating that you support our values of sexual mindfulness, openness, and exploration";
+"monetization.memberParrot.subtitle" = "Get a badge stating that you support Fantasy Match values";
 
 
 // Profile - My Library
