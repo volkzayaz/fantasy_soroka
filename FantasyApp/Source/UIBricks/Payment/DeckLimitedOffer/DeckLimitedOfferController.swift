@@ -50,6 +50,14 @@ final class DeckLimitedOfferController: UITableViewController, MVVM_View {
         viewModel.offer.drive(onNext: { [unowned self] x in
             guard let plan = x else { return }
             
+            Analytics.report(Analytics.Event.PurchaseCollectionInterest(
+                context: .promo,
+                collectionName: plan.analyticsName,
+                isPriceVisable: true,
+                discount: String(plan.savePercent)
+                )
+            )
+            
             self.saveLabel.text = R.string.localizable.subscriptionLimitedOfferSave(plan.savePercent)
             self.plan = plan
             self.nameLabel.text = plan.name

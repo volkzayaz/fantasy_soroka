@@ -79,18 +79,12 @@ extension DeckLimitedOfferViewModel {
     func subscribe(plan: DeckOffer) {
         let copy = self.completion
         
-        Analytics.report(Analytics.Event.PurchaseCollectionInterest(
-            context: .promo,
-            collectionName: plan.analyticsName,
-            isPriceVisable: true,
-            discount: String(plan.savePercent)
-            )
-        )
-        
-        PurchaseManager.purhcaseSubscription(with: plan.productId)
+        PurchaseManager.purhcase(collection: collection)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned o = router.owner] _ in
+                Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
+
                 o.dismiss(animated: true, completion: {
                     copy?()
                 })

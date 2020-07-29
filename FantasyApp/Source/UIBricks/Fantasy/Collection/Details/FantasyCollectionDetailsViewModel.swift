@@ -148,7 +148,10 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
                 self.router.presentDeckLimitedOffer(
                     offerType: offerType,
                     collection: collection,
-                    deckOffer: offer
+                    deckOffer: offer,
+                    completion: {
+                        self.reloadTrigger.onNext( () )
+                }
                 )
             }
         }
@@ -162,18 +165,6 @@ extension FantasyCollectionDetailsViewModel {
             router.showCollection(collection: collection)
             return;
         }
-        
-        SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
-            .map { $0.first! }
-            .subscribe(onSuccess: {
-                Analytics.report(Analytics.Event.PurchaseCollectionInterest(
-                    context: .collection,
-                    collectionName: $0.localizedTitle,
-                    isPriceVisable: RemoteConfigManager.showPriceInDeck
-                    )
-                )
-            })
-            .disposed(by: bag)
         
         PurchaseManager.purhcase(collection: collection)
             .trackView(viewIndicator: indicator)

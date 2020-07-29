@@ -45,7 +45,8 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
     func presentDeckLimitedOffer(
         offerType: DeckLimitedOfferViewModel.OfferType,
         collection: Fantasy.Collection,
-        deckOffer: CollectionOffer.Offer
+        deckOffer: CollectionOffer.Offer,
+        completion: (() -> Void)?
     ) {
         let vc = R.storyboard.subscription.deckLimitedOfferController()!
         let navigationController = FantasyNavigationController(rootViewController: vc)
@@ -54,7 +55,8 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
             router: .init(owner: vc),
             offerType: offerType,
             collection: collection,
-            deckOffer: deckOffer
+            deckOffer: deckOffer,
+            completion: completion
         )
         owner.present(navigationController, animated: true, completion: nil)
     }
