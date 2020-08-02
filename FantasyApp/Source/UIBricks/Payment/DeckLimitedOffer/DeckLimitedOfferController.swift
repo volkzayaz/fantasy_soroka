@@ -51,7 +51,7 @@ final class DeckLimitedOfferController: UITableViewController, MVVM_View {
             guard let plan = x else { return }
             
             Analytics.report(Analytics.Event.PurchaseCollectionInterest(
-                context: .promo,
+                context: self.viewModel.offerType == .promo ? .promo : .collection,
                 collectionName: plan.analyticsName,
                 isPriceVisable: true,
                 discount: String(plan.savePercent)

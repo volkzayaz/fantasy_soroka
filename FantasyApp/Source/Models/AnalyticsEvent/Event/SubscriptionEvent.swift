@@ -62,8 +62,8 @@ extension Analytics.Event {
             
             var name: String {
                 switch self {
-                case .collection: return "PriceVisibilityOffer"
-                case .promo: return "ComeBackOffer"
+                case .collection: return "PriceVisibilityPromoOffer"
+                case .promo: return "ComeBackSpecialOffer"
                 }
             }
         }

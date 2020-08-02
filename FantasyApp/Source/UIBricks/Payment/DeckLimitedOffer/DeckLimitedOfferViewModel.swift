@@ -79,7 +79,7 @@ extension DeckLimitedOfferViewModel {
     func subscribe(plan: DeckOffer) {
         let copy = self.completion
         
-        PurchaseManager.purhcase(collection: collection)
+        PurchaseManager.purhcaseCollection(with: plan.productId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned o = router.owner] _ in

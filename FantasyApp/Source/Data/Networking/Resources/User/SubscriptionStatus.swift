@@ -60,7 +60,6 @@ extension User.Request {
     
     struct PurchaseCollection: AuthorizedAPIResource {
         
-        let collection: Fantasy.Collection
         let recieptData: Data
         
         var path: String {

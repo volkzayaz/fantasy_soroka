@@ -14,9 +14,9 @@ enum PurchaseManager {}
 
 extension PurchaseManager {
     
-    static func purhcase(collection: Fantasy.Collection) -> Single< Void > {
+    static func purhcaseCollection(with productId: String?) -> Single< Void > {
         
-        guard let pid = collection.productId else {
+        guard let pid = productId else {
             fatalErrorInDebug("Can't purchase collection without productID")
             return .just( () )
         }
@@ -25,7 +25,7 @@ extension PurchaseManager {
         
         return SwiftyStoreKit.rx_purchase(product: pid)
             .flatMap { _ in SwiftyStoreKit.rx_fetchReceipt(forceRefresh: false) }
-            .flatMap { x in User.Request.PurchaseCollection(collection: collection, recieptData: x).rx.request }
+            .flatMap { x in User.Request.PurchaseCollection(recieptData: x).rx.request }
             .map { _ in }
         
     }

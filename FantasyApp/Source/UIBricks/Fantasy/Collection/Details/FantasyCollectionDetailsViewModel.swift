@@ -166,7 +166,7 @@ extension FantasyCollectionDetailsViewModel {
             return;
         }
         
-        PurchaseManager.purhcase(collection: collection)
+        PurchaseManager.purhcaseCollection(with: collection.productId)
             .trackView(viewIndicator: indicator)
             .subscribe(onNext: { [weak o = router.owner] _ in
                 Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
