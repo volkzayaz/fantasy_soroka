@@ -149,17 +149,17 @@
 
 "registration.addMainPhoto.title" = "Add Main Photo";
 "registration.addMainPhoto.rules" = "Please follow the rules:";
-"registration.addMainPhoto.rule1" = "Upload the photo of yourself with no erotic context";
+"registration.addMainPhoto.rule1" = "Upload photo of yourself with no erotic context";
 "registration.addMainPhoto.rule2" = "Show your entire face";
 "registration.addMainPhoto.rule3" = "Don't use low-quality, blurred or heavily edited photos or images containing text";
-"registration.addMainPhoto.rule4" = "Photos depicting nudity, sex acts, genitals, nipples, children, and illegal content are prohibited";
+"registration.addMainPhoto.rule4" = "Photos depicting nudity, sex acts, genitals, nipples, children, or illegal content are prohibited";
 "registration.addMainPhoto.checkRules" = "Please check the rules";
 "registration.addMainPhoto.changePhotoButton" = "Change Photo";
 
 "auth.register.addingMainPhoto" = "Adding Main Photo";
 "auth.register.mainPhotoAdded" = "Main Photo Added";
-"auth.register.photoSending" = "Photo sending…";
-"auth.register.photoSent" = "Your photo was sent";
+"auth.register.photoSending" = "Uploading photo…";
+"auth.register.photoSent" = "Photo has been uploaded";
 "auth.register.changeMainPhoto" = "Change Main Photo";
 "auth.register.takePhoto" = "Take a Photo";
 "auth.register.choosePhoto" = "Choose a Photo";
@@ -336,12 +336,11 @@
 "room.list.add" = "Invite";
 "rooms.add.new.room" = "Invite a Partner";
 
-// !!action!! placeholder-tutorial-to-remember: сделать чтобы UI растягивался при большом количестве текста
 "createRoom.firstStep" = "Invite a Partner";
 "createRoom.secondStep" = "Share Invite Link";
 "createRoom.thirdStep" = "See Mutual Turn-Ons";
 "createRoom.title" = "Create a Room To Play";
-"createRoom.description" = "Swipe erotic cards with a partner in a Room and see what excites you both";
+"createRoom.description" = "Swipe erotic cards with your partner in the Room and see what excites you both";
 
 "room.list.newRoom" = "new Room";
 
