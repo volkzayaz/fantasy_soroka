@@ -60,7 +60,7 @@
 "authorization.newFBApplication" = "We're sorry, but we no longer accept registrations via Facebook. Please use 'Get Started' to use Fantasy Match";
 
 
-// Registration - Sign Up
+// Registration - Sign In
 
 
 "login.welcomeBack" = "Welcome Back";
@@ -85,16 +85,34 @@
 "forgotPassword.checkMessage" = "Please check the message";
 
 
+// Registration - Onboarding // !! new registration
+
+
+"registration.onboardingTitle1" = "Before We Begin";
+"registration.onboardingContent1" = "Welcome Fantasizer! Let's start by creating a profile so you get more customized content";
+
+"registration.onboardingTitle2" = "Before We Begin";
+"registration.onboardingContent2" = "Your profile is private. Nobody sees you without your consent. YOU are in full control!";
+
+"registration.onboardingTitle3" = Before We Begin";
+"registration.onboardingContent3" = "Good vibes only here. Kind, respectful, and decent communication is the name of the game!";
+"registration.onboardingAge3" = "21+";
+
+"registration.onboardingButtonWait" = "Wait";
+"registration.onboardingButtonWaitTime" = "sec";
+"registration.onboardingButton" = "Next";
+
+
 // Registration - Notice
 
-
-"registration.notice" = "Notice";
 "registration.signInButton" = "Sign In";
-"registration.notice.desctiprion" = "We are a ❤️-positive community";
+"registration.notice" = "Notice";
+"registration.notice.desctiprion" = "We never sell your personal data to anyone"; // !! new registration - updated text
 
+// !! new registration - this is an old text which is not used
 "auth.register.agrementText" = "We believe that the key to true intimacy is open communication about sex and sexual fantasies. That’s why we’ve created Fantasy Match.\nWe want to change the way people think and talk about sex. To do so, our platform provides ideas for sexual fantasies, while creating a space for people to discuss sexuality in a positive and open way. There is nothing to hide. Let’s talk.\nTalking about relationships and sex requires civility. Be kind, respectful, and decent or you will be blocked. Report any violations you may see in the app. Let’s build a mindful community together!\nWe follow FOSTA / SESTA bills strictly and strive to fight against online sex trafficking. If you find any online sex trafficking activity in the app, please report it or reach out at feedback.fantasyapp.com immediately.";
 
-"registration.notice.acceprRules" = "Your privacy is important to us, we designed our legal documents according to the California Consumer Privacy Act and General Data Protection Regulation. We never sell your personal data to anyone.";
+"registration.notice.acceprRules" = "Your privacy is important to us, we designed our legal documents according to the California Consumer Privacy Act and General Data Protection Regulation. We never sell your personal data to anyone."; // edit copy here when new Registration is ready
 
 "auth.register.iveReadTermsText" = "I've read and accept Fantasy Match %@, %@ and %@.";
 "auth.register.personalDataText" = "I give permission to process¹ my personal data under Fantasy Match %@ and %@.\n";
@@ -111,7 +129,7 @@
 // Registration - Start
 
 
-"registration.sexuality.continueButton" = "Continue"; // !!action!! кнопка имеет такое странное название, причесать
+"registration.sexuality.continueButton" = "Continue"; // кнопка имеет такое странное название, причесать
 
 "registration.name.title" = "What's Your Name?";
 "registration.name.placeholder" = "Your Name";
@@ -121,6 +139,7 @@
 "registration.describeYourSelf.title" = "How Would You\nDescribe Yourself?";
 
 "registration.birthday.title" = "What’s Your Birthday?";
+"registration.birthday.subtitle" = "You have to be at least 21 yo"; // !! new registration
 "registration.birthday.placeholder" = "Choose the Date";
 
 "ageLimit.title" = "Age Limit";
@@ -147,7 +166,8 @@
 "registration.createPassword.passwordPlaceholder" = "Password";
 "registration.createPassword.confirmPasswordPlaceholder" = "Confirm Password";
 
-"registration.addMainPhoto.title" = "Add Main Photo";
+"registration.addMainPhoto.title" = "Add Real Photo";
+"registration.addMainPhoto.subtitle" = "Your profile is private by default"; // !! new registration
 "registration.addMainPhoto.rules" = "Please follow the rules:";
 "registration.addMainPhoto.rule1" = "Upload photo of yourself with no erotic context";
 "registration.addMainPhoto.rule2" = "Show your entire face";
@@ -157,8 +177,10 @@
 "registration.addMainPhoto.changePhotoButton" = "Change Photo";
 
 "auth.register.addingMainPhoto" = "Adding Main Photo";
+"auth.register.addingMainPhoto.subtitle" = "Your profile is private by default"; // !! new registration
 "auth.register.mainPhotoAdded" = "Main Photo Added";
-"auth.register.photoSending" = "Uploading photo…";
+"auth.register.mainPhotoAdded.subtitle" = "You are ready to join the community!"; // !! new registration
+"auth.register.photoSending" = "Uploading photo...";
 "auth.register.photoSent" = "Photo has been uploaded";
 "auth.register.changeMainPhoto" = "Change Main Photo";
 "auth.register.takePhoto" = "Take a Photo";

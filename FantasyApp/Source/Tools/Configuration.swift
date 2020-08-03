@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import Amplitude_iOS
 import Parse
 import Branch
@@ -32,9 +30,6 @@ extension Configuration {
          */
         
         let env = SettingsStore.environment.value
-
-        // MARK: - Fabric
-        Fabric.with([Crashlytics.self])
         
         // MARK: - Firebase
         FirebaseApp.configure()

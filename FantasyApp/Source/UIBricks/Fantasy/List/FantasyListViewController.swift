@@ -89,7 +89,6 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
             })
             .disposed(by: rx.disposeBag)
         
-        
     }
 
     override func viewDidLayoutSubviews() {

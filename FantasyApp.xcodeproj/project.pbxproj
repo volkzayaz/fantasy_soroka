@@ -2582,7 +2582,7 @@
 				7312B03C22D73AD100DB0F36 /* Sources */,
 				7312B03D22D73AD100DB0F36 /* Frameworks */,
 				7312B03E22D73AD100DB0F36 /* Resources */,
-				73953D3522EED6C300242243 /* Fabric */,
+				73953D3522EED6C300242243 /* Crashlytics */,
 				C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */,
 				843B6496235051DA00E5639B /* Embed Frameworks */,
 				844C84EE23505F9F00BDC60F /* ShellScript */,
@@ -2847,7 +2847,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift\"\n";
 		};
-		73953D3522EED6C300242243 /* Fabric */ = {
+		73953D3522EED6C300242243 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2855,16 +2855,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = Fabric;
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" e84ce1420f7f93176fb81a16a43f00b1cdbc00ff 23e218800f398f44a1b99535f0a9e70571f31c508860c4e4be496e02abcf6b7c\n";
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
 		};
 		844C84EE23505F9F00BDC60F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
