@@ -16,8 +16,27 @@ class RegistrationViewController: UIViewController, MVVM_View {
     var imagePicker: FantasyImagePickerController?    
     var viewModel: RegistrationViewModel!
 
+    @IBOutlet private weak var delayedStepForwardButton: UIButton!
     @IBOutlet private weak var stepForwardButton: UIButton!
 
+    @IBOutlet private weak var onboarding1BackgroundRoundedView: UIView! {
+        didSet {
+            onboarding1BackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
+    
+    @IBOutlet private weak var onboarding2BackgroundRoundedView: UIView! {
+        didSet {
+            onboarding2BackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
+    
+    @IBOutlet private weak var onboarding3BackgroundRoundedView: UIView! {
+        didSet {
+            onboarding3BackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
+    
     // Notice section
     @IBOutlet private weak var agrementBackgroundRoundedView: UIView! {
         didSet {
@@ -26,10 +45,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
     }
     
     @IBOutlet weak var agrementTitle: UILabel!
-    
     @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementTextView.text = R.string.localizable.authRegisterAgrementText()
+            agrementTextView.text = R.string.localizable.registrationNoticeAgreementText()
         }
     }
 
@@ -220,6 +238,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var photoImageView: UIImageView!
 
     @IBOutlet private weak var sendingImageTitleLabel: UILabel!
+    @IBOutlet private weak var sendingImageSubtitleLabel: UILabel!
     @IBOutlet private weak var sendingImageDescriptionLabel: UILabel!
     @IBOutlet private weak var uploadedPhotoImageView: UIImageView!
     @IBOutlet private weak var changeUploadedPhotoButton: UIButton!
@@ -271,6 +290,15 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
 
         // buttons management
+        viewModel.showDelayedNextButton
+            .map { !$0 }
+            .drive(delayedStepForwardButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.delayedNextButtonTitle
+            .drive(delayedStepForwardButton.rx.title())
+            .disposed(by: rx.disposeBag)
+        
         viewModel.showContinueButton
             .map { !$0 }
             .drive(stepForwardButton.rx.isHidden)
@@ -287,6 +315,10 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         // --
 
+        viewModel.forwardButtonEnabled
+            .drive(delayedStepForwardButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
+        
         viewModel.forwardButtonEnabled
             .drive(agrementButton.rx.isEnabled)
             .disposed(by: rx.disposeBag)
@@ -318,6 +350,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (image) in
                 self.uploadedPhotoImageView.image = image
                 self.sendingImageTitleLabel.text = (image == nil) ? R.string.localizable.authRegisterAddingMainPhoto() : R.string.localizable.authRegisterMainPhotoAdded()
+                self.sendingImageSubtitleLabel.text = (image == nil) ? R.string.localizable.registrationAddMainPhotoSubtitle() : R.string.localizable.registrationMainPhotoAddedSubtitle()
                 self.sendingImageDescriptionLabel.text = (image == nil) ? R.string.localizable.authRegisterPhotoSending() : R.string.localizable.authRegisterPhotoSent()
             })
             .disposed(by: rx.disposeBag)
@@ -335,10 +368,10 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (step) in
                 
                 let x: [RegistrationViewModel.Step: UIResponder] = [
-                    .name: self.nameTextField,
-                    .birthday: self.birthdayTextField,
                     .email: self.emailTextField,
-                    .password: self.passwordTextField
+                    .password: self.passwordTextField,
+                    .name: self.nameTextField,
+                    .birthday: self.birthdayTextField
                 ]
                 
                 x[step]?.becomeFirstResponder()
@@ -494,11 +527,11 @@ class RegistrationViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
-        ///
-        agrementTitle.text = immutableNonPersistentState?.legal.title ?? ""
+//        agrementTitle.text = immutableNonPersistentState?.legal.title ?? ""
+//
+//        agrementTextView.attributedText = try? NSAttributedString(data: (immutableNonPersistentState?.legal.description ?? "").data(using: .unicode)!,
+//                                                             options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
         
-        agrementTextView.attributedText = try? NSAttributedString(data: (immutableNonPersistentState?.legal.description ?? "").data(using: .unicode)!,
-                                                             options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
         agrementTextView.font = UIFont.regularFont(ofSize: 15)
         agrementTextView.textColor = R.color.textBlackColor()
         agrementTextView.tintColor = R.color.textPinkColor()
@@ -643,7 +676,7 @@ extension RegistrationViewController: UITextFieldDelegate {
 
             let x = text.replacingCharacters(in: textRange, with: string)
 
-            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z0-9 ].*", options: [])
+            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z0-9& ].*", options: [])
             let result = regex?.firstMatch(in: x, options: [], range: NSMakeRange(0, x.count)) == nil
 
             return x.first != " " && x.suffix(2) != "  " && result && x.count <= 18

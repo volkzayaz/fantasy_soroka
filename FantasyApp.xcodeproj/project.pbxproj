@@ -331,6 +331,7 @@
 		88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */; };
 		88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */; };
 		88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */; };
+		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -779,6 +780,7 @@
 		88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessRouter.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
@@ -1298,6 +1300,7 @@
 				7330FBA82358C63E008C08CF /* TickButton.swift */,
 				7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */,
 				7337B84423CA389000EFC948 /* SubscribeButton.swift */,
+				A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -2863,6 +2866,7 @@
 				84268C2B2360EE7A00E43197 /* FantasyDetailsTransitionAnimator.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
 				842A19FD23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift in Sources */,
+				A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,

@@ -58,6 +58,9 @@ extension Analytics.Event {
         }
         
         case started(from: StartedSource)
+        case onboarding1
+        case onboarding2
+        case onboarding3
         case notice
         case name
         case gender
@@ -75,6 +78,9 @@ extension Analytics.Event {
         var name: String {
             switch self {
             case .started(_)     : return "Sign-Up: Started"
+            case .onboarding1    : return "Sign-Up: Onboarding 1 Passed"
+            case .onboarding2    : return "Sign-Up: Onboarding 2 Passed"
+            case .onboarding3    : return "Sign-Up: Onboarding 3 Passed"
             case .notice         : return "Sign-Up: Notice Filled"
             case .name           : return "Sign-Up: Name Filled"
             case .gender         : return "Sign-Up: Gender Filled"
@@ -106,7 +112,7 @@ extension Analytics.Event {
                     "Time Spent": "\(timeSpent)"
                 ]
 
-            case .notice, .name, .gender, .birthdayFilled, .birthdayFailed, .relation, .sexuality, .email, .password, .photoUploadGood, .photoUploadBad:
+            case .onboarding1, .onboarding2, .onboarding3, .notice, .name, .gender, .birthdayFilled, .birthdayFailed, .relation, .sexuality, .email, .password, .photoUploadGood, .photoUploadBad:
                 return nil
                 
             }
