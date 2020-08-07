@@ -88,11 +88,14 @@
 // Registration - Onboarding
 
 
-"registration.onboarding" = "Before We Begin";
+"registration.onboarding.title1" = "Before We Begin";
+"registration.onboarding.title2" = "Before We Begin";
+"registration.onboarding.title3" = "Before We Begin";
 "registration.onboarding.nextButton" = "Next";
 "registration.onboarding.waitFormat" = "Wait %d sec";
 "registration.onboarding.message1" = "Welcome \nLovers! 😎\nLet's start by creating a profile so you get more customized content 🌈";
 "registration.onboarding.message2" = "Your profile is private 👌🏻. Nobody sees you without your consent. YOU are in full control!";
+"registration.onboarding.age" = "21+";
 "registration.onboarding.message3" = "Good vibes only here 💋. Kind, respectful, and decent communication is the name of the game!";
 
 
@@ -131,6 +134,7 @@
 "registration.describeYourSelf.title" = "How Would You\nDescribe Yourself?";
 
 "registration.birthday.title" = "What’s Your Birthday?";
+"registration.birthday.subtitle" = "You have to be at least 21 yo";
 "registration.birthday.placeholder" = "Choose the Date";
 
 "ageLimit.title" = "Age Limit";
