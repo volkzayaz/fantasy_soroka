@@ -331,6 +331,7 @@
 		88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */; };
 		88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */; };
 		88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */; };
+		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
@@ -780,6 +781,7 @@
 		88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessRouter.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
@@ -1107,6 +1109,7 @@
 				7312B08422D7422100DB0F36 /* NWise.swift */,
 				7312B08622D7422100DB0F36 /* MVVM */,
 				7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */,
+				A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */,
 			);
 			path = RxExtensions;
 			sourceTree = "<group>";
@@ -3121,6 +3124,7 @@
 				734C70BB23213D9200ED2E91 /* Collection+Safe.swift in Sources */,
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,
+				A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */,
 				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
 				B719F9242389A625009AB110 /* MyFantasiesBlockedViewModel.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,

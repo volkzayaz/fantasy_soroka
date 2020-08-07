@@ -2225,6 +2225,8 @@ Describe Yourself?</string>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="97H-h1-q95" id="3tB-lT-mJg"/>
+                                    <outletCollection property="gestureRecognizers" destination="SXY-5N-GoZ" appends="YES" id="eJc-NL-Lcj"/>
+                                    <outletCollection property="gestureRecognizers" destination="CUf-gI-aDS" appends="YES" id="INL-Cw-KGe"/>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-a6-CE4" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
@@ -2295,6 +2297,7 @@ Describe Yourself?</string>
                         <outlet property="agrementButton" destination="MXK-t0-Q2J" id="o41-2E-8wB"/>
                         <outlet property="agrementTextView" destination="hkB-zp-vuG" id="wny-HR-BOP"/>
                         <outlet property="agrementTitle" destination="3KS-kS-vte" id="Laj-Ti-Zbq"/>
+                        <outlet property="backwardSwipeGestureRecognizer" destination="SXY-5N-GoZ" id="fYy-F1-pbp"/>
                         <outlet property="birthdayTextField" destination="mBC-q4-9Kg" id="McV-yD-xQw"/>
                         <outlet property="buttonToKeyboardConstraint" destination="dpK-dV-LRi" id="PDP-JT-CV7"/>
                         <outlet property="changeUploadedPhotoBottomButton" destination="MxX-cN-cTU" id="m4m-6z-2Yk"/>
@@ -2305,6 +2308,7 @@ Describe Yourself?</string>
                         <outlet property="emailExistWarningView" destination="lTe-rD-UZm" id="Jq3-ze-s1I"/>
                         <outlet property="emailTextField" destination="r49-X2-9ik" id="fyz-iH-SFY"/>
                         <outlet property="emailValidationAlertView" destination="1d5-f3-k6d" id="K2y-FS-rrD"/>
+                        <outlet property="forwardSwipeGestureRecognizer" destination="CUf-gI-aDS" id="XsN-Eg-bs2"/>
                         <outlet property="genderPickerView" destination="ZcY-2P-nND" id="fVK-qD-TQ2"/>
                         <outlet property="iveReadTermsTextView" destination="uFE-mW-IDL" id="9P5-ME-nnG"/>
                         <outlet property="nameTextField" destination="OQM-0W-OTI" id="BiK-ko-3mv"/>
@@ -2354,6 +2358,16 @@ Describe Yourself?</string>
                         <action selector="changeUploadedPhotoButtonClick:" destination="97H-h1-q95" id="lBK-TD-G1p"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="CUf-gI-aDS">
+                    <connections>
+                        <action selector="stepForward:" destination="97H-h1-q95" id="s7T-wu-kDZ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="SXY-5N-GoZ">
+                    <connections>
+                        <action selector="back:" destination="97H-h1-q95" id="vgl-H8-k8T"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-531.8840579710145" y="646.875"/>
         </scene>
@@ -2369,7 +2383,7 @@ Describe Yourself?</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAD-yS-Lp9">
-                                        <rect key="frame" x="169" y="11" width="76" height="21"/>
+                                        <rect key="frame" x="167.5" y="11" width="79.5" height="21"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -2384,7 +2398,7 @@ Describe Yourself?</string>
                                                 <rect key="frame" x="111.5" y="299.5" width="191" height="80"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Come back later" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-dI-MDd">
-                                                <rect key="frame" x="151.5" y="489.5" width="111" height="17.5"/>
+                                                <rect key="frame" x="149.5" y="490.5" width="115.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                 <color key="textColor" name="textBlackColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2393,7 +2407,7 @@ Describe Yourself?</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To join Fantasy you need to be at least 21 years old" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5D3-JG-2yf">
-                                                <rect key="frame" x="60" y="436.5" width="294" height="42"/>
+                                                <rect key="frame" x="60" y="436.5" width="294" height="43"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                                 <color key="textColor" name="textBlackColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3082,7 +3096,7 @@ face is in the frame</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2b-Ru-rGS">
-                                        <rect key="frame" x="174" y="11" width="66.5" height="21"/>
+                                        <rect key="frame" x="171" y="11" width="72.5" height="21"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -3102,7 +3116,7 @@ has been blocked</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please note, that if you are subscribed to the Club Membership, you will need to cancel your subscription manually" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHz-Ht-M1f">
-                                                <rect key="frame" x="8" y="739" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="738" width="398" height="29"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                 <color key="textColor" name="textBlackColor"/>
                                                 <nil key="highlightedColor"/>

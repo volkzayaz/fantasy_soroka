@@ -101,6 +101,17 @@ extension RegistrationViewModel {
             }
     }
     
+    var backwardSwipeEnabled: Driver<Bool> {
+        currentStep.map { $0 == .onboarding2 || $0 == .onboarding3 }
+    }
+    
+    var forwardSwipeEnabled: Driver<Bool> {
+        Driver.combineLatest(currentStep, onboardingTimer)
+            .map { step, timer in
+                (step == .onboarding1 || step == .onboarding2) && timer <= 0
+            }
+    }
+    
     var partnersGenderHidden: Driver<Bool> {
         return form.asDriver().map { x in
             if case .couple(_)? = x.relationshipStatus { return false }

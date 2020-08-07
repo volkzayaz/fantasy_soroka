@@ -18,7 +18,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
 
     @IBOutlet private weak var delayedStepForwardButton: UIButton!
     @IBOutlet private weak var stepForwardButton: UIButton!
-
+    @IBOutlet private var backwardSwipeGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet private var forwardSwipeGestureRecognizer: UISwipeGestureRecognizer!
+    
     @IBOutlet private weak var onboarding1BackgroundRoundedView: UIView! {
         didSet {
             onboarding1BackgroundRoundedView.addFantasyRoundedCorners()
@@ -325,6 +327,14 @@ class RegistrationViewController: UIViewController, MVVM_View {
 
         viewModel.forwardButtonEnabled
             .drive(stepForwardButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.backwardSwipeEnabled
+            .drive(backwardSwipeGestureRecognizer.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.forwardSwipeEnabled
+            .drive(forwardSwipeGestureRecognizer.rx.isEnabled)
             .disposed(by: rx.disposeBag)
         
         viewModel.partnersGenderHidden
