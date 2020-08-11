@@ -197,7 +197,7 @@ Let's start by creating a profile so you get more customized content 🌈</strin
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="48" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Yxz-VP-2xN" customClass="PageIndicator" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="181" y="457" width="52" height="12"/>
+                                                        <rect key="frame" x="183" y="457" width="48" height="12"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="pagesCount">
@@ -266,7 +266,7 @@ Let's start by creating a profile so you get more customized content 🌈</strin
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="48" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="iTO-e5-G1q" customClass="PageIndicator" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="181.5" y="457" width="52" height="12"/>
+                                                        <rect key="frame" x="183.5" y="457" width="48" height="12"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="pagesCount">
@@ -349,7 +349,7 @@ Let's start by creating a profile so you get more customized content 🌈</strin
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="48" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Z3A-qE-ErC" customClass="PageIndicator" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="181" y="457" width="52" height="12"/>
+                                                        <rect key="frame" x="183" y="457" width="48" height="12"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="pagesCount">
@@ -1626,7 +1626,7 @@ Describe Yourself?</string>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="registration.addMainPhoto.subtitle"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="auth.register.addMainPhoto.subtitle"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-1C-QwZ">
@@ -1718,7 +1718,7 @@ Describe Yourself?</string>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="registration.addMainPhoto.subtitle"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="auth.register.addingMainPhoto.subtitle"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJu-2T-VWZ">

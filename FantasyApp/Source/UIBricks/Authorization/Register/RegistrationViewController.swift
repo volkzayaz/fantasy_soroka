@@ -360,7 +360,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (image) in
                 self.uploadedPhotoImageView.image = image
                 self.sendingImageTitleLabel.text = (image == nil) ? R.string.localizable.authRegisterAddingMainPhoto() : R.string.localizable.authRegisterMainPhotoAdded()
-                self.sendingImageSubtitleLabel.text = (image == nil) ? R.string.localizable.registrationAddMainPhotoSubtitle() : R.string.localizable.registrationMainPhotoAddedSubtitle()
+                self.sendingImageSubtitleLabel.text = (image == nil) ? R.string.localizable.authRegisterAddingMainPhotoSubtitle() : R.string.localizable.authRegisterMainPhotoAddedSubtitle()
                 self.sendingImageDescriptionLabel.text = (image == nil) ? R.string.localizable.authRegisterPhotoSending() : R.string.localizable.authRegisterPhotoSent()
             })
             .disposed(by: rx.disposeBag)
