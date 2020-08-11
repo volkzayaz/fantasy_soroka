@@ -1626,7 +1626,7 @@ Describe Yourself?</string>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="auth.register.addMainPhoto.subtitle"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="registration.addMainPhoto.subtitle"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-1C-QwZ">
