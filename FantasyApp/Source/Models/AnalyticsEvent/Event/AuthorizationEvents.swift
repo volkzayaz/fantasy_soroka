@@ -62,14 +62,14 @@ extension Analytics.Event {
         case onboarding2
         case onboarding3
         case notice
+        case email
+        case password
         case name
         case gender
         case birthdayFilled
         case birthdayFailed
         case relation
         case sexuality
-        case email
-        case password
         case photo(from: PhotoSource)
         case photoUploadGood
         case photoUploadBad
@@ -82,14 +82,14 @@ extension Analytics.Event {
             case .onboarding2    : return "Sign-Up: Onboarding 2 Passed"
             case .onboarding3    : return "Sign-Up: Onboarding 3 Passed"
             case .notice         : return "Sign-Up: Notice Filled"
+            case .email          : return "Sign-Up: Email Filled"
+            case .password       : return "Sign-Up: Password Filled"
             case .name           : return "Sign-Up: Name Filled"
             case .gender         : return "Sign-Up: Gender Filled"
             case .birthdayFilled : return "Sign-Up: Birthday Filled"
             case .birthdayFailed : return "Sign-Up: Birthday Failed"
             case .relation       : return "Sign-Up: Relationship Status Filled"
             case .sexuality      : return "Sign-Up: Sexuality Filled"
-            case .email          : return "Sign-Up: Email Filled"
-            case .password       : return "Sign-Up: Password Filled"
             case .photo(_)       : return "Sign-Up: Photo Filled"
             case .photoUploadGood: return "Sign-Up: Photo Uploaded Well"
             case .photoUploadBad : return "Sign-Up: Photo Uploaded Failed"
