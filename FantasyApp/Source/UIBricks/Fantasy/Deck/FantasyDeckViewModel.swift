@@ -177,15 +177,15 @@ struct FantasyDeckViewModel : MVVM_ViewModel {
 extension FantasyDeckViewModel {
     
     enum SwipeDirection { case left, right, down }
-
+    
     func swiped(card: Fantasy.Card, direction: SwipeDirection) {
         provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
             x.accept(card)
         }
-
-
+        
+        
     }
-
+    
     func subscribeTapped() {
         router.showSubscription()
     }
@@ -203,7 +203,7 @@ extension FantasyDeckViewModel {
         ///view lifecycle events are not passed through
         viewTillOpenCardTimer.restart()
     }
-
+    
     func show(collection: Fantasy.Collection) {
         router.show(collection: collection)
     }
@@ -211,11 +211,28 @@ extension FantasyDeckViewModel {
     mutating func cardShown(card: Fantasy.Card) {
         viewTillOpenCardTimer.start()
     }
- 
-    mutating func share(card: Fantasy.Card) {
-        self.buo = card.share(presenter: router.owner)
+    
+    func share(card: Fantasy.Card) {
+        Fantasy.Request.ShareCard(id: card.id).rx.request
+            .subscribe(onSuccess: { response in
+                self.shareURL(response.url, card: card)
+            })
+            .disposed(by: bag)
     }
     
+    private func shareURL(_ url: String, card: Fantasy.Card) {
+        guard let urlToShare = URL(string: url) else { return }
+        
+        let textToShare = R.string.localizable.branchObjectCardShareDescription()
+        let objectsToShare = [textToShare, urlToShare] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.completionWithItemsHandler = { _, isShared, _, _ in
+            guard isShared else { return }
+            
+            Analytics.report(Analytics.Event.CardShared(card: card, context: self.provider.navigationContext))
+        }
+        router.owner.present(activityVC, animated: true, completion: nil)
+    }
 }
 
 //MARK:- Tutorial

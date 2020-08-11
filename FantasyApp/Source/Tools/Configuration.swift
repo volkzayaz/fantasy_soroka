@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import Amplitude_iOS
 import Parse
 import Branch
 import ZendeskSDK
 import ZendeskCoreSDK
 import ScreenShieldKit
+import Firebase
 
 enum Configuration {}
 extension Configuration {
@@ -31,9 +30,9 @@ extension Configuration {
          */
         
         let env = SettingsStore.environment.value
-
-        // MARK: - Fabric
-        Fabric.with([Crashlytics.self])
+        
+        // MARK: - Firebase
+        FirebaseApp.configure()
 
         // MARK: - Parse
         Parse.initialize(with: ParseClientConfiguration { (config) in
@@ -50,6 +49,9 @@ extension Configuration {
         // MARK: - Branch
         // unncomment to disable debug mode
         //Branch.setUseTestBranchKey(true)
+        
+        // MARK: - AppHud
+        ApphudManager.configure()
         
         let branch = Branch.getInstance()
         //branch?.setDebug()

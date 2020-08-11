@@ -103,6 +103,7 @@ extension SubscriptionViewModel {
         case fantasyX3
         case teleport
         case member
+        case subscriptionOffer
     }
 
     var offers: Driver<[SubscriptionOffer]> {
@@ -172,7 +173,7 @@ extension SubscriptionViewModel {
         
         let copy = self.completion
         
-        PurchaseManager.purhcaseSubscription(offer: offer)
+        PurchaseManager.purhcaseSubscription(with: offer.plan.productId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned o = router.owner] _ in

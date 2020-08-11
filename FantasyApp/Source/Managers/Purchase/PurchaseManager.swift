@@ -14,9 +14,9 @@ enum PurchaseManager {}
 
 extension PurchaseManager {
     
-    static func purhcase(collection: Fantasy.Collection) -> Single< Void > {
+    static func purhcaseCollection(with productId: String?) -> Single< Void > {
         
-        guard let pid = collection.productId else {
+        guard let pid = productId else {
             fatalErrorInDebug("Can't purchase collection without productID")
             return .just( () )
         }
@@ -25,15 +25,13 @@ extension PurchaseManager {
         
         return SwiftyStoreKit.rx_purchase(product: pid)
             .flatMap { _ in SwiftyStoreKit.rx_fetchReceipt(forceRefresh: false) }
-            .flatMap { x in User.Request.PurchaseCollection(collection: collection, recieptData: x).rx.request }
+            .flatMap { x in User.Request.PurchaseCollection(recieptData: x).rx.request }
             .map { _ in }
         
     }
     
     static func restorePurchases() -> Single<User.Subscription> {
-        
         return Single.deferred({
-            
             guard let _ = PFUser.current()?.sessionToken else {
                 return Single.error( FantasyError.unauthorized )
             }
@@ -44,13 +42,11 @@ extension PurchaseManager {
         
     }
     
-    static func purhcaseSubscription(offer: SubscriptionOffer) -> Single<User.Subscription> {
+    static func purhcaseSubscription(with productId: String) -> Single<User.Subscription> {
         
         Analytics.report(ConsiderPurchase(of: .subscription))
-        
-        let goldPlanProductId = offer.plan.productId
-        
-        return SwiftyStoreKit.rx_purchase(product: goldPlanProductId)
+                
+        return SwiftyStoreKit.rx_purchase(product: productId)
             .flatMap { x in
                 return self.sendRecipeToServer(forceRefresh: false,
                                                transactionToFinish: x.transaction)

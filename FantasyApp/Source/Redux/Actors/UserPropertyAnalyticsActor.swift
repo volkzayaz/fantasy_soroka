@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 import Amplitude_iOS
-import Crashlytics
 import Branch
 
 var _AnalyticsHackyTown: String? = nil
@@ -32,17 +31,11 @@ class UserPropertyActor {
             
             return i
         }
-        
-        Crashlytics.sharedInstance().setObjectValue(SettingsStore.environment.value.serverAlias, forKey: "Environment")
-        
+                
         ///Generic User Properties
         appState.changesOf { $0.currentUser }
             .asObservable().observeOn(SerialDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { maybeUser in
-                
-                ///Crashlytics
-                Crashlytics.sharedInstance().setUserIdentifier(maybeUser?.id)
-                Crashlytics.sharedInstance().setUserName(maybeUser?.bio.name)
                 
                 ///Barnch
                 if let id = maybeUser?.id {
@@ -85,6 +78,8 @@ class UserPropertyActor {
                 Amplitude.instance()?.setUserId(user.id)
                 Amplitude.instance()?.identify(newIdentity)
                 
+                // Apphud
+                ApphudManager.updateUserId(user.id)
                 
                 ///user .add for increment operations
                 

@@ -2,14 +2,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 workspace '../FantasyApp.xcworkspace'
 project '../FantasyApp.xcodeproj'
 
-platform :ios, '11.0'
+platform :ios, '11.2'
 use_frameworks!
 inhibit_all_warnings!
 
 target 'FantasyApp' do
 
     #infrastructure
-    pod 'Crashlytics', '~> 3.13'
     pod 'R.swift', '5.0.3'
     pod 'SwiftyStoreKit'
 
@@ -46,6 +45,14 @@ target 'FantasyApp' do
 
     #feedback
     pod 'ZendeskSDK'
+    
+    #firebase
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/RemoteConfig', '6.21.0'
+    
+    # IAP
+    pod 'ApphudSDK', '0.14'
+
 end
 
 target 'FantasyAppTests' do

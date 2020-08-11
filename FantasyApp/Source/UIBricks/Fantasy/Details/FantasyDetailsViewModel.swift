@@ -154,8 +154,26 @@ extension FantasyDetailsViewModel {
         collapsedStory = true
     }
     
-    mutating func share() {
-        self.buo = provider.card.share(presenter: router.owner)
+    func share() {
+        Fantasy.Request.ShareCard(id: provider.card.id).rx.request
+            .subscribe(onSuccess: { response in
+                self.shareURL(response.url, card: self.provider.card)
+            })
+            .disposed(by: bag)
+    }
+    
+    private func shareURL(_ url: String, card: Fantasy.Card) {
+        guard let urlToShare = URL(string: url) else { return }
+        
+        let textToShare = R.string.localizable.branchObjectCardShareDescription()
+        let objectsToShare = [textToShare, urlToShare] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.completionWithItemsHandler = { _, isShared, _, _ in
+            guard isShared else { return }
+            
+            Analytics.report(Analytics.Event.CardShared(card: card, context: self.provider.navigationContext))
+        }
+        router.owner.present(activityVC, animated: true, completion: nil)
     }
     
     private mutating func reportReactionTime(reaction: Fantasy.Card.Reaction) {

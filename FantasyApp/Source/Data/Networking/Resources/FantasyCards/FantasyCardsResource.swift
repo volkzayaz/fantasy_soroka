@@ -299,9 +299,32 @@ extension Fantasy.Request {
         var task: Task {
             return .requestPlain
         }
-        
     }
     
+    
+    struct ShareCard: AuthorizedAPIResource {
+        
+        let id: String
+        
+        typealias responseType = ShareUrl
+        
+        struct ShareUrl: Codable {
+            let url: String
+        }
+        
+        var method: Moya.Method {
+            return .put
+        }
+        
+        var path: String {
+            return "/fantasy-cards/\(id)/share"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+    }
+        
     struct FetchCollection: AuthorizedAPIResource {
         
         let id: String

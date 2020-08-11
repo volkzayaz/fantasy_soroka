@@ -132,7 +132,7 @@ extension DiscoverProfileViewModel {
     }
     
     func presentFilter() {
-        router.presentFilter()
+        self.router.presentFilter()
     }
     
     func inviteFriends() {
@@ -160,6 +160,18 @@ extension DiscoverProfileViewModel {
         
     }
     
+    func viewDidAppear() {
+        guard appStateSlice.currentUser?.subscription.isSubscribed == false else { return }
+        
+        PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferPromoShownInFlirtAfterNumber), event: .subscriptionPromoOfferShownInFlirt) {
+            router.presentSubscriptionLimitedOffer(offerType: .promo)
+        }
+        
+        PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferSpecialShownInFlirtAfterNumber), event: .subscriptionSpecialOfferShownInFlirt) {
+            router.presentSubscriptionLimitedOffer(offerType: .special)
+        }
+    }
+    
     func activateFlirtAccess() {
         var x = form.value
         x.flirtAccess = true
@@ -167,6 +179,3 @@ extension DiscoverProfileViewModel {
         Analytics.report(Analytics.Event.FlirtAccess(isActivated: true))
     }
 }
-
-
-

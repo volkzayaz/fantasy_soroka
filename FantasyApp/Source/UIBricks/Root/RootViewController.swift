@@ -11,8 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-import Crashlytics
-
 class RootViewController: FantasyBaseNavigationController, MVVM_View {
     
     lazy var viewModel: RootViewModel! = .init(router: .init(owner: self))

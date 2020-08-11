@@ -16,11 +16,9 @@ struct DiscoveryFilterRouter : MVVM_Router {
     }
     
     func openTeleport() {
-        
         let x = R.storyboard.user.teleportViewController()!
         x.viewModel = .init(router: .init(owner: x), response: .directApplication)
         owner.navigationController?.pushViewController(x, animated: true)
-        
     }
 
     func cancel() {

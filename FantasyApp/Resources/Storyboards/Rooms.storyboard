@@ -458,7 +458,7 @@
                                                         </constraints>
                                                         <state key="normal" title="Share"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="general.share"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="room.creation.invite.action"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="copyLink" destination="TEk-cf-ND1" eventType="touchUpInside" id="EgC-IL-lth"/>

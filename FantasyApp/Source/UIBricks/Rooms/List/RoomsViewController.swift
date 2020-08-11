@@ -56,7 +56,7 @@ class RoomsViewController: UIViewController, MVVM_View {
 
         viewModel.indicator.asDriver()
             .drive(onNext: { [weak self] (loading) in
-                
+
                 if loading {
                     self?.tableView.refreshControl?.beginRefreshing()
                     let offsetPoint = CGPoint.init(x: 0, y: -(self?.tableView.refreshControl?.frame.size.height ?? 0))
@@ -65,22 +65,22 @@ class RoomsViewController: UIViewController, MVVM_View {
                 else {
                     self?.tableView.refreshControl?.endRefreshing()
                 }
-                
+
             })
             .disposed(by: rx.disposeBag)
-        
+
          viewModel.dataSource
             .map { $0.count != 0 }
             .drive(emptyView.rx.isHidden)
             .disposed(by: rx.disposeBag)
-        
+
         viewModel.dataSource
             .map { $0.count == 0 ? UIColor.white : R.color.bgLightGrey()! }
             .drive(onNext: { [weak self] (x) in
                 self?.tableView.backgroundColor = x
             })
             .disposed(by: rx.disposeBag)
-        
+
         viewModel.dataSource
             .do(onNext: { [weak self] (_) in
                 self?.tableView.refreshControl?.endRefreshing()
@@ -96,7 +96,7 @@ class RoomsViewController: UIViewController, MVVM_View {
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
 
         createRoomButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal)
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.roomListAdd(), style: .done, target: self, action: #selector(self.addNewRoom))
     }
 }
@@ -186,6 +186,7 @@ final class EmptyRoomsView: UIView {
         label.text = R.string.localizable.createRoomDescription()
         label.textColor = R.color.textBlackColor()
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -203,8 +204,8 @@ final class EmptyRoomsView: UIView {
         addSubview(firstStepView)
         firstStepView.snp.makeConstraints {
             $0.height.equalTo(67)
-            $0.width.equalTo(220)
-            $0.centerY.equalToSuperview().multipliedBy(0.6)
+            $0.width.equalTo(250)
+            $0.centerY.equalToSuperview().multipliedBy(0.52)
             $0.centerX.equalToSuperview()
         }
         
@@ -248,16 +249,26 @@ final class EmptyRoomsView: UIView {
             $0.right.equalTo(firstStepLabel)
         }
         
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(thirdStepView.snp.bottom).offset(75)
+        let titleContainerView = UIView()
+        addSubview(titleContainerView)
+        titleContainerView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(thirdStepView.snp.bottom)
+            $0.height.equalToSuperview().multipliedBy(0.16)
         }
         
-        addSubview(subtitleLabel)
+        titleContainerView.addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.bottom.equalTo(titleContainerView.snp.bottom)
+            $0.left.equalTo(46)
+            $0.right.equalTo(-46)
+        }
+        
+        titleContainerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.bottom.equalTo(subtitleLabel.snp.top).offset(-4)
+            $0.centerX.equalToSuperview()
         }
     }
 }

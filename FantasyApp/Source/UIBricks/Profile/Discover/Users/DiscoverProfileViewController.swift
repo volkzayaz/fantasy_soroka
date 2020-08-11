@@ -189,7 +189,12 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 self.navigationItem.rightBarButtonItem = item
 
             }).disposed(by: rx.disposeBag)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        viewModel.viewDidAppear()
     }
 }
 
