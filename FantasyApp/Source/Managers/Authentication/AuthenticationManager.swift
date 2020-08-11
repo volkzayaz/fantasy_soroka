@@ -14,7 +14,49 @@ import Parse
 enum AuthenticationManager {}
 extension AuthenticationManager {
     
-    static func register(with form: RegisterForm) -> Single<User> {
+    static private let temporaryPassword = "FantasyMatch"
+    
+    // Registration is performed in 2 steps: registerIncomplete and finishRegistration. First should be called after email is entered. On this step the temporary password is used. It is for cases like when a user removes the app before completing registration, or uses another device to finish registration with the same email. In such cases they may use different password later. So, we update the password on the last step after finishing registration. Parse will have profileStatus field with corresponding values for users passed registration steps: incompleteSignUp and active.
+    static func registerIncomplete(with form: RegisterForm) -> Single<PFUser> {
+        guard let email = form.email else {
+            return .error(FantasyError.generic(description: "Missing email"))
+        }
+        
+        return Observable<PFUser>.create { subscriber -> Disposable in
+            if let pfUser = PFUser.current(), pfUser.username == form.email {
+                subscriber.onNext( pfUser )
+                subscriber.onCompleted()
+            } else {
+                PFUser.logInWithUsername(inBackground: email, password: temporaryPassword) { (maybeUser, maybeError) in
+                    if let _ = maybeError {
+                        let pfUser = PFUser()
+                        pfUser.username = email
+                        pfUser.email = email
+                        pfUser.password = temporaryPassword
+                        pfUser.profileStatus = .incompleteSignUp
+                        
+                        pfUser.signUpInBackground(block: { (didSignUp, maybeError) in
+                            if let e = maybeError {
+                                return subscriber.onError(e)
+                            }
+                            
+                            subscriber.onNext( pfUser )
+                            subscriber.onCompleted()
+                        })
+                    } else {
+                        subscriber.onNext( maybeUser! )
+                        subscriber.onCompleted()
+                    }
+                }
+            }
+            
+            return Disposables.create()
+        }.flatMap { pfUser in
+            return MarkUserSignUp().rx.request.map { _ in pfUser }
+        }.asSingle()
+    }
+    
+    static func finishRegistration(with form: RegisterForm) -> Single<User> {
         
 //        let form = RegisterForm(agreementTick: true,
 //                                name: "Pete3 Jackson",
@@ -25,29 +67,24 @@ extension AuthenticationManager {
 //                                email: "pete3@jackson.com",
 //                                password: "1234", confirmPassword: "",
 //                                photo: form.photo)
-//        
-        ///
-        
-        let pfUser = PFUser()
-
-        pfUser.username = form.email
-        pfUser.email = form.email
-        pfUser.password = form.password
+//
+        guard let pfUser = PFUser.current() else {
+            return .error(FantasyError.generic(description: "Sign Up failure. User was not created."))
+        }
         
         pfUser.apply(editForm: form.toEditProfileForm)
+        pfUser.profileStatus = .active
         
         let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
             
-            pfUser.signUpInBackground(block: { (didSignUp, maybeError) in
-                
+            pfUser.saveInBackground { (didSave, maybeError) in
                 if let e = maybeError {
                     return subscriber.onError(e)
                 }
                 
                 subscriber.onNext( pfUser )
                 subscriber.onCompleted()
-                
-            })
+            }
             
             return Disposables.create()
         }
@@ -143,12 +180,10 @@ extension AuthenticationManager {
     }
  
     static func isUnique(email: String)-> Single<Bool> {
-        
         return User.query
             .whereKey("email", equalTo: email)
             .rx.fetchFirstObject()
-            .map { $0 == nil }
-        
+            .map { $0 == nil || ($0 as? PFUser)?.profileStatus == PFUser.ProfileStatus.incompleteSignUp }
     }
     
     static func currentUser() -> User? {

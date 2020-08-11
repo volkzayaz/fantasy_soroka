@@ -293,7 +293,7 @@ extension RegistrationViewModel {
         if currentStepRelay.value == .onboarding1 || currentStepRelay.value == .onboarding2 || currentStepRelay.value == .onboarding3 {
             nextStep = onboardingNextStepRelay.value
         } else {
-            nextStep = Step(rawValue: reachedStepRelay.value.rawValue + 1)
+            nextStep = Step(rawValue: currentStepRelay.value.rawValue + 1)
         }
         
         if nextStep != reachedStepRelay.value {
@@ -301,10 +301,9 @@ extension RegistrationViewModel {
         }
         
         guard let next = nextStep else {
-            
             var timerCopy = timerSpentForRegistration
             
-            AuthenticationManager.register(with: form.value)
+            AuthenticationManager.finishRegistration(with: form.value)
                 .trackView(viewIndicator: indicator)
                 .silentCatch(handler: router.owner)
                 .subscribe(onNext: { (user) in
@@ -314,6 +313,17 @@ extension RegistrationViewModel {
                                                                             timeSpent: timerCopy.finish()))
                 })
                 .disposed(by: bag)
+            
+            return
+        }
+        
+        if currentStepRelay.value.rawValue == Step.email.rawValue {
+            AuthenticationManager.registerIncomplete(with: form.value)
+                .trackView(viewIndicator: indicator)
+                .silentCatch(handler: router.owner)
+            .subscribe(onNext: { _ in
+                self.reachedStepRelay.accept( next )
+            }).disposed(by: bag)
             
             return
         }

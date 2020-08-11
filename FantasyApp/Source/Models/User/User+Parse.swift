@@ -193,6 +193,21 @@ extension User {
 
 extension PFUser {
     
+    enum ProfileStatus: String {
+        case incompleteSignUp
+        case active
+    }
+    
+    var profileStatus: ProfileStatus? {
+        get {
+            (self["profileStatus"] as? String).flatMap { ProfileStatus(rawValue: $0) }
+        }
+        
+        set {
+            self["profileStatus"] = newValue?.rawValue
+        }
+    }
+    
     func apply(editForm: EditProfileForm) {
         
         let setter: (String, Any?) -> () = { key, maybeValue in
