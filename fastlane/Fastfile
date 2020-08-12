@@ -34,6 +34,13 @@ platform :ios do
         configuration = "Release"
     end
 
+    ##select adhoc provisioning profile
+    match(
+        app_identifier: "com.fantasyapp.iosclient,com.fantasyapp.iosclient.FantasyAppRichPush",
+        type: "adhoc",
+        readonly: true
+    )
+
     ##building ipa
     gym(scheme: "FantasyApp",
         configuration: configuration,
@@ -42,13 +49,6 @@ platform :ios do
             method: "ad-hoc",
             compileBitcode: false
         }
-    )
-
-    ##select adhoc provisioning profile
-    match(
-        app_identifier: "com.fantasyapp.iosclient,com.fantasyapp.iosclient.FantasyAppRichPush",
-        type: "adhoc",
-        readonly: true
     )
 
     ###uploading to firebase
