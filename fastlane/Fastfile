@@ -43,7 +43,14 @@ platform :ios do
             compileBitcode: false
         }
     )
-        
+
+    ##select adhoc provisioning profile
+    match(
+        app_identifier: "com.fantasyapp.iosclient",
+        type: "adhoc",
+        readonly: true
+    )
+
     ###uploading to firebase
     firebase_app_distribution(
         app: "1:730700349275:ios:b23a8045cf4a0fdc0f247e",
