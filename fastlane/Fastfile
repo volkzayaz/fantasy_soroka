@@ -18,6 +18,10 @@ platform :ios do
         version_number = 0
         configuration = ""
         
+	#workaround for https://github.com/fastlane/fastlane/issues/15383
+	version = get_version_number()
+	increment_version_number(version_number: version)
+
         #parsing options
         if options[:patch]
             version_number = increment_version_number(bump_type: "patch")
