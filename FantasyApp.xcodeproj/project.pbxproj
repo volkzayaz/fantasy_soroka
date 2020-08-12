@@ -340,13 +340,13 @@
 		88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */; };
 		88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */; };
 		88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */; };
-		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
-		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		88F8DDB524BCFC6400900A6E /* StorageManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB424BCFC6400900A6E /* StorageManger.swift */; };
 		88F8DDB824C61E7600900A6E /* DeckLimitedOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */; };
 		88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */; };
 		88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */; };
 		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
+		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
+		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -3480,6 +3480,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -3513,6 +3514,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -3604,6 +3606,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = AdHoc;
 		};
