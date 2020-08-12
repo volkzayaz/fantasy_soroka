@@ -37,6 +37,7 @@ platform :ios do
     ##select adhoc provisioning profile
     match(
         app_identifier: "com.fantasyapp.iosclient,com.fantasyapp.iosclient.FantasyAppRichPush",
+	git_url: "https://github.com/fantasyapptech/ios-certificates",
         type: "adhoc",
         readonly: true
     )
