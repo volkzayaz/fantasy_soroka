@@ -17,16 +17,15 @@ platform :ios do
         
         version_number = 0
         configuration = ""
-        
-	#workaround for https://github.com/fastlane/fastlane/issues/15383
-	version = get_version_number()
-	increment_version_number(version_number: version)
 
         #parsing options
+	#increment_version_number does not work properly with MARKETING_VERSION.
+	#increment_version_number_in_xcodeproj from fastlane versioning plugin is user instead.
+
         if options[:patch]
-            version_number = increment_version_number(bump_type: "patch")
+            version_number = increment_version_number_in_xcodeproj(bump_type: "patch")
             else
-            version_number = increment_version_number(bump_type: "minor")
+            version_number = increment_version_number_in_xcodeproj(bump_type: "minor")
         end
     
     if options[:adhoc]
