@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Amplitude_iOS
 
 struct WelcomeRouterRouter : MVVM_Router {
     
@@ -16,8 +17,8 @@ struct WelcomeRouterRouter : MVVM_Router {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             Analytics.report(Analytics.Event.FirstScreen())
+            Amplitude.instance()?.setUserProperties(["Profile Status: Type": "Incomplete Sign-Up"])
         }
-        
     }
 
     func presentRegister() {

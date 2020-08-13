@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Branch
 import Parse
+import Amplitude_iOS
 
 enum AuthenticationManager {}
 extension AuthenticationManager {
@@ -52,8 +53,12 @@ extension AuthenticationManager {
             
             return Disposables.create()
         }.flatMap { pfUser in
-            return MarkUserSignUp().rx.request.map { _ in pfUser }
-        }.asSingle()
+            MarkUserSignUp().rx.request.map { _ in pfUser }
+        }.do(onNext: { pfUser in
+            if let userID = pfUser.objectId {
+                Amplitude.instance()?.setUserId(userID)
+            }
+        }).asSingle()
     }
     
     static func finishRegistration(with form: RegisterForm) -> Single<User> {
