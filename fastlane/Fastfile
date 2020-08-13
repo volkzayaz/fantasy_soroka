@@ -77,8 +77,11 @@ platform :ios do
 
           
     ###keeping record
-    commit_version_bump(message: "Version bump to v#{version_number}")
-    add_git_tag tag: version_number
+    commit_version_bump(message: "Update version, build number")
+    if version_number 
+        add_git_tag tag: version_number
+    end
+
     #push_to_git_remote
     
   end
