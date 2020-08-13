@@ -169,7 +169,6 @@ struct RegistrationViewModel : MVVM_ViewModel {
     fileprivate let form = BehaviorRelay(value: RegisterForm())
     fileprivate let currentStepRelay = BehaviorRelay(value: Step.onboarding1)
     fileprivate let reachedStepRelay = BehaviorRelay(value: Step.onboarding1)
-    fileprivate let onboardingNextStepRelay = BehaviorRelay<Step?>(value: Step.onboarding1)
     
     fileprivate var onboardingTimer: Driver<Int> {
         currentStepRelay.filter { $0 == .onboarding1 || $0 == .onboarding2 || $0 == .onboarding3 }
@@ -229,14 +228,6 @@ struct RegistrationViewModel : MVVM_ViewModel {
         reachedStepRelay
             .bind(to: currentStepRelay)
             .disposed(by: bag)
-        
-        BehaviorRelay.combineLatest(currentStepRelay, reachedStepRelay, onboardingTimer.asObservable())
-            .filter { currentStep, reachedStep, _ in
-                currentStep == reachedStep
-            }.map { _, reachedStep, timer in
-                (reachedStep.rawValue > Step.onboarding3.rawValue || timer > 0) ? reachedStep : Step(rawValue: reachedStep.rawValue + 1)
-            }.bind(to: onboardingNextStepRelay)
-            .disposed(by: bag)
     }
     
     let router: RegistrationRouter
@@ -289,13 +280,7 @@ extension RegistrationViewModel {
             return
         }
         
-        var nextStep: Step? = nil
-        if currentStepRelay.value == .onboarding1 || currentStepRelay.value == .onboarding2 || currentStepRelay.value == .onboarding3 {
-            nextStep = onboardingNextStepRelay.value
-        } else {
-            nextStep = Step(rawValue: currentStepRelay.value.rawValue + 1)
-        }
-        
+        let nextStep = Step(rawValue: currentStepRelay.value.rawValue + 1)
         if nextStep != reachedStepRelay.value {
             reportStepPassed(step: reachedStepRelay.value)
         }
@@ -322,13 +307,17 @@ extension RegistrationViewModel {
                 .trackView(viewIndicator: indicator)
                 .silentCatch(handler: router.owner)
             .subscribe(onNext: { _ in
-                self.reachedStepRelay.accept( next )
+                self.reachedStepRelay.accept(next)
             }).disposed(by: bag)
             
             return
         }
         
-        reachedStepRelay.accept( next )
+        if currentStepRelay.value == reachedStepRelay.value {
+            reachedStepRelay.accept(next)
+        } else {
+            currentStepRelay.accept(next)
+        }
 
         // start photo uploading
         if currentStepRelay.value == .addingPhoto,
