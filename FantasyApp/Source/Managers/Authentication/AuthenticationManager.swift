@@ -79,6 +79,7 @@ extension AuthenticationManager {
         
         pfUser.apply(editForm: form.toEditProfileForm)
         pfUser.profileStatus = .active
+        pfUser.password = form.password
         
         let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
             
