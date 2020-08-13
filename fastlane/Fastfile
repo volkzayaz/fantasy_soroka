@@ -15,7 +15,6 @@ platform :ios do
         
         ensure_git_branch( branch: 'develop|hotfix' )
         
-        version_number = 0
         configuration = ""
 
         #parsing options
