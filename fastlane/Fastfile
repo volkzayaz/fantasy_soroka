@@ -24,7 +24,7 @@ platform :ios do
 
         if options[:patch]
             version_number = increment_version_number_in_xcodeproj(bump_type: "patch")
-        else if options[:minor]
+        elseif options[:minor]
             version_number = increment_version_number_in_xcodeproj(bump_type: "minor")
         end
     
