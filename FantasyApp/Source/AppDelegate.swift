@@ -18,6 +18,7 @@ import SwiftyStoreKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private let appLaunchedKey = "app_launched_at_least_once"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -28,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Configuration.setup(launchOptions: launchOptions)
         
         application.applicationSupportsShakeToEdit = true
+        
+        if Bool(self.appLaunchedKey) == nil {
+            Analytics.setUserProps(props: ["Profile Status: Type": "Incomplete Sign-Up"])
+            true.store(for: self.appLaunchedKey)
+        }
         
         return true
     }

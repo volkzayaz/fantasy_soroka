@@ -46,10 +46,7 @@ class UserPropertyActor {
                 
                 ///Amplitude
                 guard let user = maybeUser else {
-
-                    Amplitude.instance()?.setUserProperties(["Profile Status: Type": "Log Out"])
                     Amplitude.instance()?.setUserId(nil)
-                    
                     return
                 }
                 
