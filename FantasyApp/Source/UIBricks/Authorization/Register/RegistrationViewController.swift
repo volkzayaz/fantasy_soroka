@@ -369,7 +369,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (flag) in
                 self.uploadPhotoSuccessContainerView.isHidden = flag
                 self.uploadPhotoProblemContainerView.isHidden = !flag
-                self.sendingImageTitleLabel.text = flag ? R.string.localizable.authRegisterChangeMainPhoto() : R.string.localizable.authRegisterAddingMainPhoto()
+                self.sendingImageTitleLabel.text = flag ? R.string.localizable.authRegisterChangeMainPhoto() : R.string.localizable.authRegisterMainPhotoAdded()
             })
             .disposed(by: rx.disposeBag)
 

@@ -93,7 +93,7 @@ extension Analytics.Event {
             case .photo(_)       : return "Sign-Up: Photo Filled"
             case .photoUploadGood: return "Sign-Up: Photo Uploaded Well"
             case .photoUploadBad : return "Sign-Up: Photo Uploaded Failed"
-            case .completed(_)   : return "Sign-Up: Completed"
+            case .completed(_, _)   : return "Sign-Up: Completed"
                 
             }
         }
