@@ -94,7 +94,15 @@ platform :ios do
           export_method: "app-store",
           include_bitcode: true)
 
-      upload_to_app_store(skip_screenshots: true,
+
+      if options[:username]
+          username = options[:username]
+      else
+          username = *
+      end
+
+      upload_to_app_store(username: username,
+			  skip_screenshots: true,
                           skip_app_version_update: true,
                           skip_metadata: true)
       ##cleaning up
