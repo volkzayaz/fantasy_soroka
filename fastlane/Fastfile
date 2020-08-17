@@ -98,7 +98,7 @@ platform :ios do
       if options[:username]
           username = options[:username]
       else
-          username = *
+          username = "*"
       end
 
       upload_to_app_store(username: username,
