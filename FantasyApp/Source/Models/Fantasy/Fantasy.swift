@@ -176,13 +176,14 @@ extension Fantasy.Card {
         
         let buo = BranchUniversalObject(canonicalIdentifier: "card/\(id)/\(User.current!.id)")
         buo.title = "Fantasy"
-        buo.contentDescription = R.string.localizable.branchObjectCardShareDescription()
+        buo.contentDescription = text
         buo.publiclyIndex = true
         buo.imageUrl = immutableNonPersistentState.shareCardImageURL
+        let text = self.text
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
-                                andShareText: R.string.localizable.branchObjectCardShareDescription(),
+                                andShareText: text,
                                 from: v) { (activityType, completed) in
 
             }

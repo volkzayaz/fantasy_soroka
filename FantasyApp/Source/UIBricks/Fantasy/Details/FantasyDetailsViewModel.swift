@@ -165,7 +165,7 @@ extension FantasyDetailsViewModel {
     private func shareURL(_ url: String, card: Fantasy.Card) {
         guard let urlToShare = URL(string: url) else { return }
         
-        let textToShare = R.string.localizable.branchObjectCardShareDescription()
+        let textToShare = card.text
         let objectsToShare = [textToShare, urlToShare] as [Any]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.completionWithItemsHandler = { _, isShared, _, _ in
