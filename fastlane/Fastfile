@@ -3,18 +3,18 @@ fastlane_version "2.136.0"
 default_platform :ios
 
 platform :ios do
-    
+
     before_all do
-        
+
         ENV["SLACK_URL"] = "https://hooks.slack.com/services" + "/TH0QEA8U9/BNZN41NN7/dbYCOhlavcLeauUL777XPVoG"
         ensure_git_status_clean
-        
+
     end
 
     lane :beta do |options|
-        
+
         ensure_git_branch( branch: 'develop|hotfix' )
-        
+
         configuration = ""
 
         #parsing options
@@ -27,7 +27,7 @@ platform :ios do
         elseif options[:minor]
             version_number = increment_version_number_in_xcodeproj(bump_type: "minor")
 	end
-    
+
     if options[:adhoc]
         configuration = "AdHoc"
     else
@@ -43,6 +43,7 @@ platform :ios do
     )
 
     ##building ipa
+    xcode_select("/Applications/Xcode 11.app")
     gym(scheme: "FantasyApp",
         configuration: configuration,
         include_bitcode: false,
@@ -58,14 +59,14 @@ platform :ios do
         groups: "Basic",
         release_notes: changelog_from_git_commits
     )
-    
+
     ##cleaning up
     File.delete("../FantasyApp.ipa")
     File.delete("../FantasyApp.app.dSYM.zip")
-    
+
     ##notifying testers
     slack( message: "New beta build is available. Check build details below or at your emails. \n\n*🛑 Please delete 💥 previous build from your device 📱 to avoid unexpected issues 😭*\n\n",
-          
+
           use_webhook_configured_username_and_icon: true,
           payload: {
           'Version number' => get_version_number(target: "FantasyApp"),
@@ -74,19 +75,19 @@ platform :ios do
           default_payloads: []
           )
 
-          
+
     ###keeping record
     commit_version_bump(message: "Update version, build number")
-    if version_number 
+    if version_number
         add_git_tag tag: version_number
     end
 
     #push_to_git_remote
-    
+
   end
 
   lane :release do |options|
-      
+
       ensure_git_branch( branch: 'master' )
       ##building ipa
       gym(scheme: "FantasyApp",
@@ -99,15 +100,15 @@ platform :ios do
                           skip_metadata: true)
       ##cleaning up
       clean_build_artifacts
-      
+
   end
-  
+
   lane :refresh_dsym do |options|
 
     download_dsyms(version: "latest")
     upload_symbols_to_crashlytics
     clean_build_artifacts
-     
+
   end
-  
+
 end
