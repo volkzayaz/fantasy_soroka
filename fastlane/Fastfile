@@ -21,12 +21,12 @@ platform :ios do
 	#increment_version_number does not work properly with MARKETING_VERSION.
 	#increment_version_number_in_xcodeproj from fastlane versioning plugin is user instead.
 
-	increment_build_number
-        if options[:patch]
-            version_number = increment_version_number_in_xcodeproj(bump_type: "patch")
-        elseif options[:minor]
-            version_number = increment_version_number_in_xcodeproj(bump_type: "minor")
-	end
+  	increment_build_number
+    if options[:patch]
+        version_number = increment_version_number_in_xcodeproj(bump_type: "patch")
+    elsif options[:minor]
+        version_number = increment_version_number_in_xcodeproj(bump_type: "minor")
+	  end
 
     if options[:adhoc]
         configuration = "AdHoc"
