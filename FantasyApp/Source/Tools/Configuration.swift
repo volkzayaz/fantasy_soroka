@@ -55,8 +55,8 @@ extension Configuration {
         
         let branch = Branch.getInstance()
         //branch?.setDebug()
-        branch?.registerFacebookDeepLinkingClass(AppLinkUtility.self)
-        branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+        branch.registerFacebookDeepLinkingClass(AppLinkUtility.self)
+        branch.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
             guard let identifier = params?["$canonical_identifier"] as? String else {
                 return

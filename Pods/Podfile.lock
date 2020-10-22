@@ -8,9 +8,7 @@ PODS:
   - Bolts/AppLinks (1.9.1):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.1)
-  - Branch (0.29.3):
-    - Branch/Core (= 0.29.3)
-  - Branch/Core (0.29.3)
+  - Branch (0.35.1)
   - Differentiator (4.0.1)
   - FBSDKCoreKit (5.15.1):
     - FBSDKCoreKit/Basics (= 5.15.1)
@@ -139,7 +137,7 @@ PODS:
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
   - ApphudSDK (= 0.14)
-  - Branch (~> 0.29.3)
+  - Branch
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Crashlytics
@@ -215,7 +213,7 @@ SPEC CHECKSUMS:
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
   ApphudSDK: 9d150407ac14dee437ba245fce0ff247e6373b66
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
-  Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
+  Branch: 43863eab4c2339a58fa552f2f277139c3839dfb4
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
@@ -256,6 +254,6 @@ SPEC CHECKSUMS:
   YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
   ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: b16e7e5e41e9137b4195ee0295f83ab73e0e542a
+PODFILE CHECKSUM: b8361ae3ef65ac386a8adfcf04186f4374f63276
 
 COCOAPODS: 1.9.3

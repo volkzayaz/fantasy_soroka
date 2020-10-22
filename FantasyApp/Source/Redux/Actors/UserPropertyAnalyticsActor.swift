@@ -39,9 +39,9 @@ class UserPropertyActor {
                 
                 ///Barnch
                 if let id = maybeUser?.id {
-                    Branch.getInstance()?.setIdentity(id)
+                    Branch.getInstance().setIdentity(id)
                 } else {
-                    Branch.getInstance()?.logout()
+                    Branch.getInstance().logout()
                 }
                 
                 ///Amplitude
