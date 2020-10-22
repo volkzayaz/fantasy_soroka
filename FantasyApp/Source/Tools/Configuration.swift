@@ -46,15 +46,16 @@ extension Configuration {
         // MARK: - Facebook
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
+        // MARK: - AppHud
+        ApphudManager.configure()
+        
         // MARK: - Branch
         // unncomment to disable debug mode
         //Branch.setUseTestBranchKey(true)
         
-        // MARK: - AppHud
-        ApphudManager.configure()
-        
         let branch = Branch.getInstance()
         //branch?.setDebug()
+        branch?.registerFacebookDeepLinkingClass(AppLinkUtility.self)
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
             guard let identifier = params?["$canonical_identifier"] as? String else {
