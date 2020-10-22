@@ -107,7 +107,7 @@ platform :ios do
   lane :refresh_dsym do |options|
 
     download_dsyms(version: "latest")
-    upload_symbols_to_crashlytics
+    upload_symbols_to_crashlytics(binary_path: "./Pods/Pods/FirebaseCrashlytics/upload-symbols")
     clean_build_artifacts
 
   end
