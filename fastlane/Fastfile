@@ -106,7 +106,13 @@ platform :ios do
 
   lane :refresh_dsym do |options|
 
-    download_dsyms(version: "latest")
+    if options[:version]
+        version = options[:version]
+    else
+        version = "latest"
+    end
+
+    download_dsyms(version: version)
     upload_symbols_to_crashlytics(binary_path: "./Pods/Pods/FirebaseCrashlytics/upload-symbols")
     clean_build_artifacts
 
