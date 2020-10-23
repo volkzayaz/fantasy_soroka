@@ -155,30 +155,7 @@ extension AuthenticationManager {
     static func loginWithFacebook() -> Single<User> {
         
         let x: Observable<PFUser> = Observable.create { (subscriber) -> Disposable in
-            
-            let permissions = ["public_profile", "email", "user_photos"]
-
-            PFFacebookUtils.facebookLoginManager().logOut()
-            PFFacebookUtils.logInInBackground(withReadPermissions: permissions) { (maybeUser, maybeError) in
-                
-                if let e = maybeError {
-                    return subscriber.onError(e)
-                }
-                
-                if maybeUser?.isNew ?? false {
-                    return subscriber.onError( FantasyError.generic(description: R.string.localizable.authorizationNewFBUser()) )
-                }
-                
-                if maybeUser == nil && maybeError == nil {
-                    subscriber.onError( FantasyError.canceled )
-                    return
-                }
-                
-                subscriber.onNext( maybeUser! )
-                subscriber.onCompleted()
-                
-            }
-                        
+            subscriber.onCompleted()
             return Disposables.create()
         }
             

@@ -2,24 +2,19 @@ PODS:
   - Alamofire (4.9.1)
   - Amplitude-iOS (4.10.0)
   - ApphudSDK (0.14)
-  - Bolts (1.9.1):
-    - Bolts/AppLinks (= 1.9.1)
-    - Bolts/Tasks (= 1.9.1)
-  - Bolts/AppLinks (1.9.1):
-    - Bolts/Tasks
   - Bolts/Tasks (1.9.1)
   - Branch (0.35.1)
   - Differentiator (4.0.1)
-  - FBSDKCoreKit (5.15.1):
-    - FBSDKCoreKit/Basics (= 5.15.1)
-    - FBSDKCoreKit/Core (= 5.15.1)
-  - FBSDKCoreKit/Basics (5.15.1)
-  - FBSDKCoreKit/Core (5.15.1):
+  - FBSDKCoreKit (8.0.0):
+    - FBSDKCoreKit/Basics (= 8.0.0)
+    - FBSDKCoreKit/Core (= 8.0.0)
+  - FBSDKCoreKit/Basics (8.0.0)
+  - FBSDKCoreKit/Core (8.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.15.1):
-    - FBSDKLoginKit/Login (= 5.15.1)
-  - FBSDKLoginKit/Login (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
+  - FBSDKLoginKit (8.0.0):
+    - FBSDKLoginKit/Login (= 8.0.0)
+  - FBSDKLoginKit/Login (8.0.0):
+    - FBSDKCoreKit (~> 8.0.0)
   - Firebase/CoreOnly (6.34.0):
     - FirebaseCore (= 6.10.4)
   - Firebase/Crashlytics (6.34.0):
@@ -82,14 +77,10 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - Parse (1.17.3):
-    - Parse/Core (= 1.17.3)
-  - Parse/Core (1.17.3):
-    - Bolts/Tasks (~> 1.9)
-  - Parse/FacebookUtils (1.17.3):
-    - Bolts (~> 1.9)
-    - FBSDKLoginKit (~> 5.x)
-    - Parse/Core
+  - Parse (1.19.1):
+    - Parse/Core (= 1.19.1)
+  - Parse/Core (1.19.1):
+    - Bolts/Tasks (= 1.9.1)
   - pop (1.0.12)
   - PromisesObjC (1.2.11)
   - PryntTrimmerView (4.0.2)
@@ -147,8 +138,7 @@ DEPENDENCIES:
   - KMPlaceholderTextView
   - Koloda (~> 5.0)
   - Moya (= 13.0.1)
-  - Parse (= 1.17.3)
-  - Parse/FacebookUtils (= 1.17.3)
+  - Parse
   - R.swift (= 5.0.3)
   - RxCocoa (~> 5.0)
   - RxCoreLocation (~> 1.4)
@@ -215,8 +205,8 @@ SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Branch: 43863eab4c2339a58fa552f2f277139c3839dfb4
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
-  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
-  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  FBSDKCoreKit: 9d27fe97a2fa2abe5eeefea8240e837623ab88e0
+  FBSDKLoginKit: 2cbaf5405379731b22f2ebc224f7c30f62378171
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
@@ -232,7 +222,7 @@ SPEC CHECKSUMS:
   Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
+  Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
@@ -254,6 +244,6 @@ SPEC CHECKSUMS:
   YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
   ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: b8361ae3ef65ac386a8adfcf04186f4374f63276
+PODFILE CHECKSUM: cf16162094926cdab2cc15fc58db78b88ae06130
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

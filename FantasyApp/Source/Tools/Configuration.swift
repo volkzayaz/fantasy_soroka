@@ -14,6 +14,7 @@ import ZendeskSDK
 import ZendeskCoreSDK
 import ScreenShieldKit
 import Firebase
+import FBSDKCoreKit
 
 enum Configuration {}
 extension Configuration {
@@ -42,9 +43,6 @@ extension Configuration {
             
             config.server = ServerURL.parse
         })
-
-        // MARK: - Facebook
-        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
         // MARK: - AppHud
         ApphudManager.configure()
