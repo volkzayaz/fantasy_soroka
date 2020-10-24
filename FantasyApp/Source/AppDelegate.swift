@@ -64,6 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         RemoteConfigManager.fetch()
+        Configuration.startAppsFlyer()
     }
 }
-

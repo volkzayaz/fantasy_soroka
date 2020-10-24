@@ -8,6 +8,7 @@
 
 import Amplitude_iOS
 import RxSwift
+import AppsFlyerLib
 
 enum Analytics {}
 extension Analytics {
@@ -15,6 +16,10 @@ extension Analytics {
     static func report(_ event: AnalyticsEvent) {
         Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
         
+        if let state = immutableNonPersistentState, state.isAppsFlyerEnabled {
+            AppsFlyerLib.shared().logEvent(event.name, withValues: event.props)
+        }
+
 //        print("Analytics:  Event = \(event.name)")
 //        if let x = event.props {
 //            print("Properties: \(event.props)")

@@ -16,6 +16,7 @@ struct ServerConfig: Codable {
     let screenProtectEnabled: Bool
     let fantasyCardsShare: ShareLinks
     let termsAndConditions: Legal
+    let isAppsFlyerEnabled: Bool
     
     struct ShareLinks: Codable {
         let card: String
