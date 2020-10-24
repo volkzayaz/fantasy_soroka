@@ -17,7 +17,7 @@ extension Analytics {
         Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
         
         if immutableNonPersistentState.isAppsFlyerEnabled {
-            AppsFlyerTracker.shared().trackEvent(event.name, withValues: event.props)
+            AppsFlyerLib.shared().logEvent(event.name, withValues: event.props)
         }
 
 //        print("Analytics:  Event = \(event.name)")

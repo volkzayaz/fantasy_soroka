@@ -132,17 +132,17 @@ extension Configuration {
     
     // MARK: - AppsFlyer
     static func startAppsFlyer() {
-        AppsFlyerTracker.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
-        AppsFlyerTracker.shared().appleAppID = "1230109516"
-        AppsFlyerTracker.shared().isDebug = !RunScheme.appstore
+        AppsFlyerLib.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
+        AppsFlyerLib.shared().appleAppID = "1230109516"
+        AppsFlyerLib.shared().isDebug = !RunScheme.appstore
         
         NotificationCenter.default.addObserver(
-            AppsFlyerTracker.shared(),
-            selector: #selector(AppsFlyerTracker.trackAppLaunch),
+            AppsFlyerLib.shared(),
+            selector: #selector(AppsFlyerLib.start),
             name: UIApplication.didBecomeActiveNotification,
             object: nil)
         
-        AppsFlyerTracker.shared().trackAppLaunch()
+        AppsFlyerLib.shared().start()
     }
 }
 
