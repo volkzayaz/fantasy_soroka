@@ -346,6 +346,7 @@
 		88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */; };
 		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
 		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
+		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
@@ -810,6 +811,7 @@
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
+		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
@@ -1242,6 +1244,7 @@
 			isa = PBXGroup;
 			children = (
 				88648A8924CB72750062C7A5 /* AppHud */,
+				A2A95CE025449835006A4F3F /* AppsFlyer */,
 				88F8DDB324BCFC4800900A6E /* Storage */,
 				8887A81424BCFA4200B6CF45 /* Perform */,
 				885EEF0624BA196600BA187A /* RemoteConfig */,
@@ -2442,6 +2445,14 @@
 			path = DeckLimitedOffer;
 			sourceTree = "<group>";
 		};
+		A2A95CE025449835006A4F3F /* AppsFlyer */ = {
+			isa = PBXGroup;
+			children = (
+				A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */,
+			);
+			path = AppsFlyer;
+			sourceTree = "<group>";
+		};
 		B719F91E2389A4D3009AB110 /* Blocked */ = {
 			isa = PBXGroup;
 			children = (
@@ -2847,7 +2858,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift",
+				$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2933,6 +2944,7 @@
 			files = (
 				73432ACA238A8E7C008CF2F1 /* TextMessageCell.swift in Sources */,
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
+				A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */,
 				B7D68496238E68D100E99993 /* GatewayProfileButton.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
 				733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */,

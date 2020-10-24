@@ -13,7 +13,6 @@ import Branch
 import ZendeskSDK
 import ZendeskCoreSDK
 import ScreenShieldKit
-import AppsFlyerLib
 import Firebase
 import FBSDKCoreKit
 
@@ -128,19 +127,6 @@ extension Configuration {
             UserPropertyActor(),
         ]
         actors.forEach { ActorLocator.shared.register($0) }
-    }
-    
-    // MARK: - AppsFlyer
-    static func startAppsFlyer() {
-        guard let state = immutableNonPersistentState, state.isAppsFlyerEnabled else {
-            return
-        }
-        
-        AppsFlyerLib.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
-        AppsFlyerLib.shared().appleAppID = "1230109516"
-        AppsFlyerLib.shared().isDebug = !RunScheme.appstore
-        
-        AppsFlyerLib.shared().start()
     }
 }
 
