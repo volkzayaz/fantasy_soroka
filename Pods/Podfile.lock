@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
   - Amplitude-iOS (4.10.0)
-  - ApphudSDK (0.14)
+  - ApphudSDK (0.18.5)
   - Bolts/Tasks (1.9.1)
   - Branch (0.35.1)
   - Differentiator (4.0.1)
@@ -127,7 +127,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
-  - ApphudSDK (= 0.14)
+  - ApphudSDK
   - Branch
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -201,7 +201,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
-  ApphudSDK: 9d150407ac14dee437ba245fce0ff247e6373b66
+  ApphudSDK: 448bb69007715ffc9fbde3be4a9e2a0ccf1971ee
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Branch: 43863eab4c2339a58fa552f2f277139c3839dfb4
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
@@ -244,6 +244,6 @@ SPEC CHECKSUMS:
   YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
   ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: cf16162094926cdab2cc15fc58db78b88ae06130
+PODFILE CHECKSUM: 054962b32f7974ffddde94194c0067c954a6c56f
 
 COCOAPODS: 1.10.0
