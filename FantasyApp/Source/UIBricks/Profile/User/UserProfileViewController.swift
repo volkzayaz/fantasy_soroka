@@ -24,7 +24,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
             
             let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.profilePhotoStubCell, for: ip)!
             
-            cell.amountLabel.text = "\(x) Secret Photos"
+            cell.amountLabel.text = R.string.localizable.profileDiscoverUserSecretPhotos(x)
             
             return cell
             
@@ -151,13 +151,18 @@ class UserProfileViewController: UIViewController, MVVM_View {
         footerView.viewModel = viewModel
 
         profileTableView.rx.contentOffset
-            .map { [unowned self] offset in
-                return CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top))
-            }
-            .subscribe(onNext: { [unowned self] (x) in
+            .subscribe(onNext: { [unowned self] offset in
+                let stretchHeight = abs(offset.y) - self.photosCollectionView.frame.height
                 
-                self.scrollableBackground.frame = .init(origin: x,
-                                                        size: self.profileTableView.contentSize)
+                if stretchHeight > self.view.frame.height * 0.05 && offset.y.isLess(than: 0)  {
+                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
+                
+                let height = max(self.view.frame.size.height, self.profileTableView.contentSize.height)
+                self.scrollableBackground.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y - self.view.safeAreaInsets.top)),
+                                                        size: CGSize(width: self.view.frame.size.width, height: height))
             })
             .disposed(by: rx.disposeBag)
         
@@ -201,7 +206,7 @@ class UserProfileViewController: UIViewController, MVVM_View {
                     switch action.descriptior {
                     case .openRoomButton:
                         let b = SecondaryButton()
-                        b.setTitle("Open Room", for: .normal)
+                        b.setTitle(R.string.localizable.profileDiscoverUserOpenRoom(), for: .normal)
                         b.rx.controlEvent(.touchUpInside)
                             .subscribe(onNext: action.action)
                             .disposed(by: b.rx.disposeBag)
@@ -258,20 +263,15 @@ class UserProfileViewController: UIViewController, MVVM_View {
         
         let actions: [UIAlertAction] = avaliableSheetActions.map { (name, action) in
             UIAlertAction(title: name, style: .default, handler: { _ in action() })
-            } + [UIAlertAction(title: "Cancel", style: .cancel, handler: nil)]
+            } + [UIAlertAction(title: R.string.localizable.generalCancel(), style: .cancel, handler: nil)]
         
-        self.showDialog(title: "", text: "Pick an action",
+        self.showDialog(title: "", text: R.string.localizable.profileDiscoverUserPickAction(),
                         style: .actionSheet,
                         actions: actions)
         
     }
     
     @IBAction func back() {
-        if let nav = navigationController {
-            nav.popViewController(animated: true)
-            return
-        }
-
         dismiss(animated: true, completion: nil)
     }
     

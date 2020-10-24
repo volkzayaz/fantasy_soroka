@@ -17,7 +17,7 @@ protocol SinglePickModel {
 
 protocol SinglePickViewModelType {
     
-    var models: [SinglePickModel] { get }
+    var models: [(String, [SinglePickModel])] { get }
     var pickedModels: [SinglePickModel] { get }
     
     var mode: SinglePickViewController.Mode { get }
@@ -73,7 +73,7 @@ class SinglePickViewController: UIViewController {
         
         ///Picker
         
-        let data = viewModel.models
+        let data = viewModel.models.flatMap { $0.1 }
         let picked = viewModel.pickedModels.first
         
         Observable.just(data)
@@ -114,15 +114,18 @@ class SinglePickViewController: UIViewController {
 
 extension SinglePickViewController: UITableViewDataSource, UITableViewDelegate {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.models.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.models.count
+        return viewModel.models[section].1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.singlePickTableCell, for: indexPath)!
         
-        let model = viewModel.models[indexPath.row]
+        let model = viewModel.models[indexPath.section].1[indexPath.row]
         
         cell.pickLabel.text = model.textRepresentation
         cell.selectionButton.isSelected = false
@@ -134,14 +137,24 @@ extension SinglePickViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let model = viewModel.models[indexPath.row]
-        
+        let model = viewModel.models[indexPath.section].1[indexPath.row]
         viewModel.picked(model: model)
         
         let cell = tableView.cellForRow(at: indexPath)! as! SinglePickTableCell
         cell.selectionButton.isSelected = !cell.selectionButton.isSelected
-        
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let label = UILabel(frame: .init(x: 17, y: 10, width: 200, height: 18))
+        label.text = viewModel.models[section].0
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.textColor = R.color.textBlackColor()
+        view.addSubview(label)
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
+    }
 }

@@ -45,11 +45,8 @@ class UserProfilePhotoCell: UICollectionViewCell {
             
         case .privateStub(let x):
             stubCell.isHidden = false
-            stubCell.text = "\(x) more photos availabel after you match"
-            
+            stubCell.text = R.string.localizable.profileDiscoverUserMorePhotos(x)
         }
-        
-        
     }
     
     override func prepareForReuse() {

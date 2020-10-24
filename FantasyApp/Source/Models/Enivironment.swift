@@ -47,8 +47,8 @@ extension Environment {
     var amplitudeKey: String {
         switch self {
             
-        case .dev       : return "43d33719cb8721c70c1935aaeb791d1d"
-        case .staging   : return "8ce166f7a21add33a5f1cb1de1bb2fca"
+        case .dev       : return "aebe0a7d31981dbbbda58d004e01fe90"
+        case .staging   : return "aebe0a7d31981dbbbda58d004e01fe90"
         case .production: return "be790981c8f961486368e7af48ffa984"
             
         }

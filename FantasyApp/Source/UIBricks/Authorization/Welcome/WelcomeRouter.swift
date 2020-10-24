@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import Amplitude_iOS
 
 struct WelcomeRouterRouter : MVVM_Router {
     
     unowned private(set) var owner: UIViewController
+    
     init(owner: UIViewController) {
         self.owner = owner
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             Analytics.report(Analytics.Event.FirstScreen())
         }
-        
     }
 
     func presentRegister() {

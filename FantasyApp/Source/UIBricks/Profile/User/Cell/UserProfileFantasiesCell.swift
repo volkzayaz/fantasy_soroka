@@ -37,8 +37,10 @@ class UserProfileFantasiesCell: UITableViewCell {
             ].randomElement()!
             
             cell.imageView.regularImageView.image = i
-            cell.fantasiesCount = sneakPeek.amountlikedCardsByUser
             cell.isPurchased = false //sneakPeek.isPaid
+            
+            cell.fantasiesCountLabel.text = "\(sneakPeek.amountlikedCardsByUser) \(sneakPeek.coverItems)"
+            cell.paidLabel.text = sneakPeek.coverRubric
             
             return cell
             

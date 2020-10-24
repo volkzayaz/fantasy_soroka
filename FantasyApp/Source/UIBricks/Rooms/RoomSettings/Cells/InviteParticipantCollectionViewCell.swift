@@ -42,7 +42,7 @@ class InviteParticipantCollectionViewCell: UICollectionViewCell {
             animation.autoreverses = false
             imageView.layer.add(animation, forKey: "rotate")
             
-            titleLabel.text = "Waiting"
+            titleLabel.text = R.string.localizable.roomInviteWaiting()
             
         }
         else {
@@ -50,7 +50,7 @@ class InviteParticipantCollectionViewCell: UICollectionViewCell {
             imageView.layer.removeAllAnimations()
             imageView.image = R.image.invite()
 
-            titleLabel.text = "Add"
+            titleLabel.text = R.string.localizable.roomInviteAdd()
             
         }
         

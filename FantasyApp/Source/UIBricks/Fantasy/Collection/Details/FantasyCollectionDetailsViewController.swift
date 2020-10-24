@@ -48,7 +48,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
                 cell.sectionTitleLabel.text = title
                 cell.tableView = tableView
                 
-                cell.perform(change: viewModel.expanded[title] ?? false)
+                cell.perform(change: viewModel.expanded[title] ?? false, animated: false)
                 
                 cell.change = { [weak self] x in
                     self?.viewModel.expanded[title] = x
@@ -110,7 +110,15 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
         }
     }
     @IBOutlet weak var collTableView: CoolTable!
+    @IBOutlet weak var imageContainer: UIView!
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
     
+    let tableHeaderView: UIView = {
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20 + (UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0))
+        return headerView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -125,16 +133,27 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         collTableView.rx.contentOffset
-        .map { offset in
-            return CGPoint(x: offset.x, y: -1 * (offset.y))
-        }
-        .subscribe(onNext: { [unowned self] (x) in
-            
-            self.scrollableBackgroundView.frame = .init(origin: x,
-                                                        size: CGSize(width: self.view.frame.size.width,
-                                                                     height: max(self.view.frame.size.height,
-                                                                                 self.collTableView.contentSize.height)))
-        })
+            .subscribe(onNext: { [unowned self] offset in
+                
+                let imageStretchHeight = abs(offset.y) - (self.imageContainer.frame.height - self.tableHeaderView.frame.height)
+                
+                if imageStretchHeight > self.view.frame.height * 0.13 && offset.y.isLess(than: 0)  {
+                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
+
+                if imageStretchHeight >= 0 && offset.y.isLess(than: 0) {
+                    self.imageHeightConstraint.constant = imageStretchHeight
+                } else {
+                    self.imageHeightConstraint.constant = 0
+                }
+                self.view.layoutIfNeeded()
+                                
+                self.scrollableBackgroundView.frame = .init(origin: CGPoint(x: offset.x, y: -1 * (offset.y - self.tableHeaderView.frame.height)),
+                                                            size: CGSize(width: self.view.frame.size.width,
+                                                                         height: max(self.view.frame.size.height,
+                                                                                     self.collTableView.contentSize.height)))
+            })
             .disposed(by: rx.disposeBag)
         
         viewModel.reloadTrigger
@@ -152,8 +171,9 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let top = (imageView.frame.size.height) - scrollableBackgroundView.layer.cornerRadius
+        collTableView.tableHeaderView = tableHeaderView
         
+        let top = (imageView.frame.size.height - tableHeaderView.frame.height) - scrollableBackgroundView.layer.cornerRadius
         collTableView.contentInset = .init(top: top,
                                            left: 0, bottom: 0, right: 0)
         collTableView.setContentOffset(.init(x: 0, y: -top), animated: true)
@@ -171,7 +191,7 @@ class FantasyCollectionDetailsViewController: UIViewController, MVVM_View {
         self.dismiss(animated: true, completion: nil)
     }
     
-} 
+}
 
 ///TableViews
 
@@ -194,7 +214,7 @@ class TopCollectionPurchaseCell: UITableViewCell {
     var viewModel: FantasyCollectionDetailsViewModel! {
         didSet {
             if viewModel.collectionPurchased {
-                buyButton.setTitle("Open", for: .normal)
+                buyButton.setTitle(R.string.localizable.fantasyDeckDetailsBuyButton(), for: .normal)
             }
             else {
                 viewModel.price
@@ -239,19 +259,22 @@ class FantasyCollectionDetailsCell: UITableViewCell {
     
     @IBAction func collapseAction(_ sender: UIButton) {
         let shouldCollapse = detailsLabel.isTruncated
-        perform(change: shouldCollapse)
+        perform(change: shouldCollapse, animated: true)
     }
     
-    func perform(change: Bool) {
+    func perform(change: Bool, animated: Bool) {
      
         self.change?(change)
         
         detailsLabel.numberOfLines = change ? 0 : 2
         
-        collapseButton.setTitle(change ? "Show Less" : "Read More", for: .normal)
+        collapseButton.setTitle(change ? R.string.localizable.fantasyDeckDetailsShowLess() :
+            R.string.localizable.fantasyDeckDetailsReadMore(), for: .normal)
         
-        tableView?.beginUpdates()
-        tableView?.endUpdates()
+        if animated {
+            tableView?.beginUpdates()
+            tableView?.endUpdates()
+        }
         
     }
     
@@ -334,11 +357,12 @@ class BottomCollectionPurchaseCell: UITableViewCell {
             collectionCategoryLabel.text = viewModel.collection.category
             
             if viewModel.collectionPurchased {
-                buyButton.setTitle("Open", for: .normal)
+                buyButton.setTitle(R.string.localizable.fantasyDeckDetailsBuyButton(), for: .normal)
             }
             else {
                 viewModel.price
-                    .map { $0 == "Get" ? "Get" : "Buy for \($0)" }
+                    .map { $0 == R.string.localizable.fantasyDeckDetailsPriceGet() ? R.string.localizable.fantasyDeckDetailsPriceGet() :
+                        R.string.localizable.fantasyDeckDetailsBuyFor($0) }
                     .drive(buyButton.rx.title(for: .normal))
                     .disposed(by: rx.disposeBag)
             }
@@ -358,6 +382,7 @@ class ShareCollectionCell: UITableViewCell {
     
     @IBOutlet weak var shareButton: PrimaryButton! {
         didSet {
+            shareButton.layer.mask?.removeFromSuperlayer()
             shareButton.useTransparency = false
             shareButton.normalBackgroundColor = UIColor(fromHex: 0xEDEDF1)
             shareButton.setupBackgroundColor()

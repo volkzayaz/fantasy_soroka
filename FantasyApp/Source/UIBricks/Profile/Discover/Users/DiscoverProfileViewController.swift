@@ -29,7 +29,85 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
     @IBOutlet weak var allowGeolocationView: UIView!
     @IBOutlet weak var cityNotActiveView: UIView!
     @IBOutlet weak var goToSettingsView: UIView!
+    
+    @IBOutlet weak var activateView: UIView!
+    @IBOutlet weak var activateButton: UIButton!
+    @IBOutlet weak var checkActivateButton: UIButton!
+
     @IBOutlet weak var notActiveCityNameLabel: UILabel!
+
+    @IBOutlet weak var noFilterTitleLabel: UILabel! {
+        didSet {
+            noFilterTitleLabel.text = R.string.localizable.noFilterViewTitle()
+        }
+    }
+    
+    @IBOutlet weak var noFilterDescriptionLabel: UILabel! {
+        didSet {
+            noFilterDescriptionLabel.text = R.string.localizable.noFilterViewDescription()
+        }
+    }
+    
+    @IBOutlet weak var allowGeoLabel: UILabel! {
+        didSet {
+            allowGeoLabel.text = R.string.localizable.allowGeolocationTitle()
+        }
+    }
+    
+    @IBOutlet weak var allowGeoDescriptionLabel: UILabel! {
+        didSet {
+            allowGeoDescriptionLabel.text = R.string.localizable.allowGeolocationDescription()
+        }
+    }
+    
+    @IBOutlet weak var allowGeoButton: UIButton! {
+        didSet {
+            allowGeoButton.setTitle(R.string.localizable.allowGeolocationAllow(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var dontAllowGeoButton: UIButton! {
+        didSet {
+            dontAllowGeoButton.setTitle(R.string.localizable.allowGeolocationDontAllow(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var usersLabel: UILabel! {
+        didSet {
+            usersLabel.text = R.string.localizable.cityNotActiveViewUsers()
+        }
+    }
+    
+    
+    @IBOutlet weak var inviteButton: UIButton! {
+        didSet {
+            inviteButton.setTitle(R.string.localizable.cityNotActiveViewInvite(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var joinButton: UIButton! {
+        didSet {
+            joinButton.setTitle(R.string.localizable.cityNotActiveViewJoin(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var searchLocationTitleLabel: UILabel! {
+        didSet {
+            searchLocationTitleLabel.text = R.string.localizable.searchLocationTitle()
+        }
+    }
+    
+    @IBOutlet weak var searchLocationDescriptionLabel: UILabel! {
+        didSet {
+            searchLocationDescriptionLabel.text = R.string.localizable.searchLocationDescription()
+        }
+    }
+    
+    @IBOutlet weak var settingsButton: UIButton! {
+        didSet {
+            settingsButton.setTitle(R.string.localizable.searchLocationGoToSettings(), for: .normal)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +126,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         goToSettingsView.addFantasyRoundedCorners()
         cityNotActiveView.addFantasyRoundedCorners()
         allowGeolocationView.addFantasyRoundedCorners()
+        activateView.addFantasyRoundedCorners()
         view.addFantasyTripleGradient()
 
         viewModel.profiles
@@ -63,6 +142,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 self.hideView(self.allowGeolocationView)
                 self.hideView(self.goToSettingsView)
                 self.hideView(self.noFilterView)
+                self.hideView(self.activateView)
                 self.profilesCarousel.isHidden = true
 
                 switch mode {
@@ -85,6 +165,11 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 case .noSearchPreferences:
                     self.showView(self.noFilterView)
+                    
+                case .activateFlirtAccess:
+                    self.showView(self.activateView)
+                    self.activateButton.isEnabled = false
+                    self.checkActivateButton.isSelected = false
                 }
                 
             })
@@ -104,7 +189,12 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 self.navigationItem.rightBarButtonItem = item
 
             }).disposed(by: rx.disposeBag)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        viewModel.viewDidAppear()
     }
 }
 
@@ -156,6 +246,14 @@ extension DiscoverProfileViewController {
 
     @IBAction func filtersClick(_ sender: Any) {
         viewModel.presentFilter()
+    }
+    
+    @IBAction func activateClick(_ sender: UIButton) {
+        viewModel.activateFlirtAccess()
+    }
+    
+    @IBAction func activateTickClick(_ sender: UIButton) {
+        activateButton.isEnabled = sender.isSelected
     }
 
     @objc func presentFilter() {

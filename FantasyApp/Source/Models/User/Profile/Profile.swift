@@ -31,11 +31,14 @@ struct EditProfileForm {
     var communityChange: User.Community?
     
     var answers: User.Bio.PersonalQuestion
-    
+    var flirtAccess: Bool?
 }
 
 struct RegisterForm {
     var agreementTick: Bool = false
+    var personalDataTick: Bool = false
+    var sensetiveDataTick: Bool = false
+    var agreeToEmailsTick: Bool = false
     
     var name: String = ""
     var brithdate: Date?
@@ -103,7 +106,7 @@ extension User {
         applicator(lhs: &bio.about, rhs: editForm.about)
         applicator(lhs: &community, rhs: editForm.communityChange)
         applicator(lhs: &bio.answers, rhs: editForm.answers)
-        
+        applicator(lhs: &bio.flirtAccess, rhs: editForm.flirtAccess)
     }
     
 }

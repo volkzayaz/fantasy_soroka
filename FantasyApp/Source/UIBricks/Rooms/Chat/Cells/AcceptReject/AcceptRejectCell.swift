@@ -12,8 +12,15 @@ class AcceptRejectCell: UITableViewCell {
     
     var viewModel: ChatViewModel!
     
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = R.string.localizable.roomChatAcceptRejectTitle()
+        }
+    }
+    
     @IBOutlet weak var rejectButton: UIButton! {
         didSet {
+            rejectButton.setTitle(R.string.localizable.roomChatAcceptRejectReject(), for: .normal)
             rejectButton.addTarget(self, action: #selector(AcceptRejectCell.reject), for: .touchUpInside)
             rejectButton.backgroundColor = .clear
             rejectButton.layer.borderColor = UIColor(fromHex: 0xd364b1).cgColor
@@ -22,6 +29,7 @@ class AcceptRejectCell: UITableViewCell {
     }
     @IBOutlet weak var acceptButton: UIButton! {
         didSet {
+            acceptButton.setTitle(R.string.localizable.roomChatAcceptRejectAccept(), for: .normal)
             acceptButton.addTarget(self, action: #selector(AcceptRejectCell.accept), for: .touchUpInside)
             acceptButton.backgroundColor = .clear
             acceptButton.addFantasyGradient(roundCorners: true)

@@ -15,10 +15,40 @@ class LoginViewController: UIViewController, MVVM_View {
     
     var viewModel: LoginViewModel!
 
-    @IBOutlet private weak var signinButton: UIButton!
-    @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var signinButton: UIButton! {
+        didSet {
+            signinButton.setTitle(R.string.localizable.loginSignInButton(), for: .normal)
+        }
+    }
+    @IBOutlet private weak var emailTextField: UITextField! {
+        didSet {
+            emailTextField.placeholder = R.string.localizable.loginEmailPlaceholder()
+        }
+    }
+    @IBOutlet private weak var passwordTextField: UITextField! {
+           didSet {
+               passwordTextField.placeholder = R.string.localizable.loginPasswordPlaceholder()
+           }
+       }
     @IBOutlet var buttonToKeyboardConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var welcomeTitleLabel: UILabel! {
+        didSet {
+            welcomeTitleLabel.text = R.string.localizable.loginWelcomeBack()
+        }
+    }
+    
+    @IBOutlet weak var signupButton: UIButton! {
+        didSet {
+            signupButton.setTitle(R.string.localizable.loginSignUpButton(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var forgotPasswordButton: UIButton! {
+         didSet {
+             forgotPasswordButton.setTitle(R.string.localizable.loginForgotPassword(), for: .normal)
+         }
+     }
 
     override func viewDidLoad() {
         super.viewDidLoad()

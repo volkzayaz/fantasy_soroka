@@ -58,11 +58,13 @@ extension RoomsViewModel {
         
         guard room.freezeStatus != .frozen else {
             
-            return router.owner.showDialog(title: "Club Membership",
-                                           text: R.string.localizable.roomFrozenRoomUnreachable(),
-                                           style: .alert, negativeText: "Upgrade",
-                                           negativeCallback: router.showSubscription,
-                                           positiveText: "No, thanks")
+            return router.owner.showDialog(
+                title: R.string.localizable.roomUpgradeSuggestionTitle(),
+                text: R.string.localizable.roomFrozenRoomUnreachable(),
+                style: .alert,
+                negativeText: R.string.localizable.roomUpgradeSuggestionNegativeText2(),
+                negativeCallback: router.showSubscription,
+                positiveText: R.string.localizable.roomUpgradeSuggestionPositiveText())
         }
             
         router.roomTapped(room)

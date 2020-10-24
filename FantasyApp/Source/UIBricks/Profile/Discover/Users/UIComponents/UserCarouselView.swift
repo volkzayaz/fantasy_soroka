@@ -86,7 +86,9 @@ extension UserCarouselView {
     func setUser(_ data: User) {
 
         let photoCount = data.bio.photos.public.images.count + data.bio.photos.private.images.count
-        let cardCount = data.fantasies.liked.count + data.fantasies.disliked.count
+        
+        ///Liked fantasies
+        let cardCount = 0 // data.fantasies.liked.count + data.fantasies.disliked.count
 
         labelName.text = data.bio.name
         labelPhotoNumber.text = "\(photoCount)"

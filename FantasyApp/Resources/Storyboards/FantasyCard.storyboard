@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lVj-KC-ORv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lVj-KC-ORv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -536,25 +536,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nR-kO-aRZ">
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJc-bQ-r8G">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="2nR-kO-aRZ" secondAttribute="height" id="aw1-lu-tIJ"/>
+                                    <constraint firstAttribute="width" secondItem="PJc-bQ-r8G" secondAttribute="height" multiplier="1:1" id="Jtl-hM-AkL"/>
                                 </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nR-kO-aRZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl3-8M-dDU">
-                                <rect key="frame" x="10" y="10" width="80" height="80"/>
-                                <state key="normal" image="profileBack"/>
-                                <connections>
-                                    <action selector="popBack:" destination="OfO-JC-MZH" eventType="touchUpInside" id="Gt4-oZ-BQk"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LD9-EW-JvN" userLabel="scrollableBackground">
                                 <rect key="frame" x="0.0" y="338" width="375" height="329"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="07I-oh-Fw5" customClass="CoolTable" customModule="FantasyApp" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="07I-oh-Fw5" customClass="CoolTable" customModule="FantasyApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="375" width="375" height="292"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -594,6 +591,9 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasyCollection.author"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZZ-lX-cRO">
                                                     <rect key="frame" x="15" y="87" width="322" height="21.5"/>
@@ -776,6 +776,9 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasy.collection.details"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN5-CO-5cF">
                                                     <rect key="frame" x="15" y="53" width="315" height="28"/>
@@ -834,6 +837,9 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" name="textBlackColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasyCollection.whatsInside"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" text="26 cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-Uy-UUy">
                                                     <rect key="frame" x="15" y="53" width="315" height="45"/>
@@ -866,6 +872,9 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasyCard.andMore"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EfJ-gs-MZC">
                                                                         <rect key="frame" x="0.0" y="0.0" width="156" height="231"/>
@@ -986,7 +995,9 @@
                                                         <constraint firstAttribute="width" constant="254" id="DHA-Df-kdH"/>
                                                         <constraint firstAttribute="height" constant="52" id="rhZ-c2-pcF"/>
                                                     </constraints>
-                                                    <state key="normal" title="Share Collection"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasy.collection.shareButton"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="shareButton:" destination="j0K-if-uW7" eventType="touchUpInside" id="bCI-v6-Hlh"/>
                                                         <action selector="shareButton:" destination="Bfm-08-3FC" eventType="touchUpInside" id="nSG-Uz-v8f"/>
@@ -1007,24 +1018,37 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl3-8M-dDU">
+                                <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                <state key="normal" image="profileBack"/>
+                                <connections>
+                                    <action selector="popBack:" destination="OfO-JC-MZH" eventType="touchUpInside" id="Gt4-oZ-BQk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96849805116653442" green="0.96854132413864136" blue="0.97667533159255981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="07I-oh-Fw5" firstAttribute="top" secondItem="2nR-kO-aRZ" secondAttribute="bottom" placeholder="YES" id="2rf-H2-6O8"/>
+                            <constraint firstItem="07I-oh-Fw5" firstAttribute="top" secondItem="PJc-bQ-r8G" secondAttribute="bottom" placeholder="YES" id="2rf-H2-6O8"/>
+                            <constraint firstItem="PJc-bQ-r8G" firstAttribute="top" secondItem="7w1-Ip-CCp" secondAttribute="top" id="6by-CN-1bs"/>
                             <constraint firstItem="Jl3-8M-dDU" firstAttribute="top" secondItem="Xzq-qc-OW7" secondAttribute="top" constant="10" id="6vi-Nv-xZu"/>
                             <constraint firstItem="2nR-kO-aRZ" firstAttribute="trailing" secondItem="Xzq-qc-OW7" secondAttribute="trailing" id="AEA-No-gLV"/>
+                            <constraint firstItem="PJc-bQ-r8G" firstAttribute="trailing" secondItem="Xzq-qc-OW7" secondAttribute="trailing" id="Dvd-ac-ipI"/>
+                            <constraint firstItem="2nR-kO-aRZ" firstAttribute="height" secondItem="PJc-bQ-r8G" secondAttribute="height" id="Msg-6W-a5m"/>
                             <constraint firstItem="2nR-kO-aRZ" firstAttribute="leading" secondItem="Xzq-qc-OW7" secondAttribute="leading" id="RSi-WX-lDG"/>
                             <constraint firstItem="07I-oh-Fw5" firstAttribute="trailing" secondItem="Xzq-qc-OW7" secondAttribute="trailing" id="Y2S-Ci-qZj"/>
+                            <constraint firstItem="PJc-bQ-r8G" firstAttribute="leading" secondItem="Xzq-qc-OW7" secondAttribute="leading" id="ZfJ-em-JE3"/>
                             <constraint firstItem="07I-oh-Fw5" firstAttribute="top" secondItem="Xzq-qc-OW7" secondAttribute="top" priority="999" id="blM-hc-0fC"/>
                             <constraint firstItem="Jl3-8M-dDU" firstAttribute="leading" secondItem="Xzq-qc-OW7" secondAttribute="leading" constant="10" id="cO1-Ri-yCx"/>
+                            <constraint firstItem="2nR-kO-aRZ" firstAttribute="top" secondItem="PJc-bQ-r8G" secondAttribute="top" id="csy-ay-tkS"/>
                             <constraint firstItem="07I-oh-Fw5" firstAttribute="leading" secondItem="Xzq-qc-OW7" secondAttribute="leading" id="jaw-HM-2jM"/>
                             <constraint firstItem="07I-oh-Fw5" firstAttribute="bottom" secondItem="Xzq-qc-OW7" secondAttribute="bottom" id="nFb-pK-vIQ"/>
-                            <constraint firstItem="2nR-kO-aRZ" firstAttribute="top" secondItem="7w1-Ip-CCp" secondAttribute="top" id="oOn-og-ZSV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xzq-qc-OW7"/>
                     </view>
                     <connections>
                         <outlet property="collTableView" destination="07I-oh-Fw5" id="V0b-4Z-BJk"/>
+                        <outlet property="imageContainer" destination="PJc-bQ-r8G" id="zmC-gK-dqd"/>
+                        <outlet property="imageHeightConstraint" destination="Msg-6W-a5m" id="Ta3-gG-G8C"/>
                         <outlet property="imageView" destination="2nR-kO-aRZ" id="Bw7-Z3-9qI"/>
                         <outlet property="scrollableBackgroundView" destination="LD9-EW-JvN" id="d6Y-tH-55r"/>
                     </connections>
@@ -1212,6 +1236,9 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.96871703860000002" green="0.9686463475" blue="0.98088699580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasyCards.fantastMatch"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FMt-VP-eXa">
                                                     <rect key="frame" x="16" y="8" width="48" height="57"/>
@@ -1229,6 +1256,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.96871703860000002" green="0.9686463475" blue="0.98088699580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasyCards.fantastMatch.description"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>

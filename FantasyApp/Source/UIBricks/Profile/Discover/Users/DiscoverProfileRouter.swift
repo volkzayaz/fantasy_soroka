@@ -20,9 +20,9 @@ struct DiscoverProfileRouter : MVVM_Router {
     
         let vc = R.storyboard.user.userProfileViewController()!
         vc.viewModel = .init(router: .init(owner: vc), user: profile)
-        vc.modalPresentationStyle = .overFullScreen
-
-        owner.navigationController?.pushViewController(vc, animated: true)
+        let navigationController = FantasyNavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        owner.navigationController?.present(navigationController, animated: true, completion: nil)
     }
     
     func presentFilter() {
@@ -54,5 +54,12 @@ struct DiscoverProfileRouter : MVVM_Router {
 
         owner.present(activityViewController, animated: true, completion: nil)
     }
-
+    
+    func presentSubscriptionLimitedOffer(offerType: SubscriptionLimitedOfferViewModel.OfferType) {
+        let vc = R.storyboard.subscription.subscriptionLimitedOfferController()!
+        let navigationController = FantasyNavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        vc.viewModel = SubscriptionLimitedOfferViewModel(router: .init(owner: vc), offerType: offerType)
+        owner.present(navigationController, animated: true, completion: nil)
+    }
 }

@@ -52,8 +52,8 @@ extension RoomSettingsViewModel {
                 }
 
                 return room.ownerId == User.current?.id ?
-                    "Delete Room" :
-                    "Leave Room"
+                    R.string.localizable.roomSettingsDelete() :
+                    R.string.localizable.roomSettingsLeave()
             }
         
     }
@@ -65,8 +65,9 @@ extension RoomSettingsViewModel {
                 
                 let isNewRoom = room.isDraftRoom
                 
-                return isNewRoom ? "New Room Settings" : "Room Settings"
-
+                return isNewRoom ?
+                    R.string.localizable.roomsAddNewRoom() :
+                    R.string.localizable.roomSettingsRoomSettings()
             }
         
     }
@@ -93,8 +94,8 @@ struct RoomSettingsViewModel: MVVM_ViewModel {
         if let invitationLink = maybeLink {
         
             self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-            buo?.title = "Fantasy"
-            buo?.contentDescription = "Hey! We have things to swipe together 🍓Check out Fantasy Match!"
+            buo?.title = R.string.localizable.roomBranchObjectTitle()
+            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
             buo?.publiclyIndex = true
             buo?.locallyIndex = true
             buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
@@ -155,7 +156,7 @@ extension RoomSettingsViewModel {
         Analytics.report(Analytics.Event.DraftRoomShared(type: type))
         
         buo?.showShareSheet(with: BranchLinkProperties(),
-                            andShareText: "Hey! We have things to swipe together 🍓Check out Fantasy Match!",
+                            andShareText: R.string.localizable.roomBranchObjectDescription(),
                             from: router.owner) { (activityType, completed) in
 
         }
@@ -183,11 +184,14 @@ extension RoomSettingsViewModel {
         
         guard User.current?.subscription.isSubscribed ?? false else {
             
-            return router.owner.showDialog(title: "Club Membership",
-                                           text: R.string.localizable.roomSettingsUpgradeSuggestion(),
-                                           style: .alert, negativeText: "Subscribe",
-                                           negativeCallback: router.showSubscription,
-                                           positiveText: "No, thanks", positiveCallback: turnoff)
+            return router.owner.showDialog(
+                title: R.string.localizable.roomUpgradeSuggestionTitle(),
+                text: R.string.localizable.roomSettingsUpgradeSuggestion(),
+                style: .alert,
+                negativeText: R.string.localizable.roomUpgradeSuggestionNegativeText(),
+                negativeCallback: router.showSubscription,
+                positiveText: R.string.localizable.roomUpgradeSuggestionPositiveText(),
+                positiveCallback: turnoff)
             
         }
         

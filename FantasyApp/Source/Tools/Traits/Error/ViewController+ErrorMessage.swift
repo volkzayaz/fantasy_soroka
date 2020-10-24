@@ -69,7 +69,7 @@ extension UIViewController {
                                                 message: text,
                                                 preferredStyle: style)
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        alertController.addAction(UIAlertAction(title: R.string.localizable.generalCancel(), style: .cancel) { _ in
             
         })
         
@@ -77,7 +77,7 @@ extension UIViewController {
             
         })
         
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+        alertController.addAction(UIAlertAction(title: R.string.localizable.generalOk(), style: .default) { _ in
             callback( alertController.textFields?.first?.text ?? "" )
         })
         

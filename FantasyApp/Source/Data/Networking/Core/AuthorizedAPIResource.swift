@@ -20,6 +20,7 @@ extension AuthorizedAPIResource {
         }
         
         return ["Content-Type": "application/json",
+                "Accept-Language": Locale.preferredLanguages.joined(separator: ","),
                 "authorization": token]
     }
 }

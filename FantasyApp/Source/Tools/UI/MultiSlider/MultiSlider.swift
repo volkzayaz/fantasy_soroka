@@ -15,12 +15,12 @@ open class MultiSlider: UIControl {
             if isSettingValue { return }
             adjustThumbCountToValueCount()
             adjustValuesToStepAndLimits()
-            for i in 0 ..< valueLabels.count {
-                updateValueLabel(i)
-            }
+            updateAllValueLabels()
             accessibilityValue = value.description
         }
     }
+
+    @objc public internal(set) var draggedThumbIndex: Int = -1
 
     @IBInspectable open dynamic var minimumValue: CGFloat = 0 { didSet { adjustValuesToStepAndLimits() } }
     @IBInspectable open dynamic var maximumValue: CGFloat = 1 { didSet { adjustValuesToStepAndLimits() } }
@@ -32,6 +32,9 @@ open class MultiSlider: UIControl {
     /// generate haptic feedback when hitting snap steps
     @IBInspectable open dynamic var isHapticSnap: Bool = true
 
+    var selectionFeedbackGenerator = AvailableHapticFeedback()
+
+    
     @IBInspectable open dynamic var thumbCount: Int {
         get {
             return thumbViews.count
@@ -67,16 +70,21 @@ open class MultiSlider: UIControl {
     /// value label shows difference from previous thumb value (true) or absolute value (false = default)
     @IBInspectable open dynamic var isValueLabelRelative: Bool = false {
         didSet {
-            for i in 0 ..< valueLabels.count {
-                updateValueLabel(i)
-            }
+            updateAllValueLabels()
         }
     }
 
     // MARK: - Appearance
 
+    @IBInspectable open dynamic var isVertical: Bool {
+        get { return orientation == .vertical }
+        set { orientation = newValue ? .vertical : .horizontal }
+    }
+
     @objc open dynamic var orientation: NSLayoutConstraint.Axis = .vertical {
         didSet {
+            let oldConstraintAttribute: NSLayoutConstraint.Attribute = oldValue == .vertical ? .width : .height
+            removeFirstConstraint(where: { $0.firstAttribute == oldConstraintAttribute && $0.firstItem === self && $0.secondItem == nil })
             setupOrientation()
             invalidateIntrinsicContentSize()
             repositionThumbViews()
@@ -110,10 +118,11 @@ open class MultiSlider: UIControl {
         }
         set {
             minimumView.image = newValue
+            minimumView.isHidden = newValue == nil
             layoutTrackEdge(
                 toView: minimumView,
                 edge: .bottom(in: orientation),
-                superviewEdge: orientation == .vertical ? .bottomMargin : .leadingMargin
+                superviewEdge: orientation == .vertical ? .bottomMargin : .leftMargin
             )
         }
     }
@@ -124,10 +133,11 @@ open class MultiSlider: UIControl {
         }
         set {
             maximumView.image = newValue
+            maximumView.isHidden = newValue == nil
             layoutTrackEdge(
                 toView: maximumView,
                 edge: .top(in: orientation),
-                superviewEdge: orientation == .vertical ? .topMargin : .trailingMargin
+                superviewEdge: orientation == .vertical ? .topMargin : .rightMargin
             )
         }
     }
@@ -147,7 +157,13 @@ open class MultiSlider: UIControl {
         }
     }
 
-    @IBInspectable public dynamic var keepsDistanceBetweenThumbs: Bool = true
+    /// minimal distance to keep between thumbs (half a thumb by default)
+    @IBInspectable public dynamic var distanceBetweenThumbs: CGFloat = -1
+
+    @IBInspectable public dynamic var keepsDistanceBetweenThumbs: Bool {
+        get { return distanceBetweenThumbs != 0 }
+        set { distanceBetweenThumbs = newValue ? -1 : 0 }
+    }
 
     @objc open dynamic var valueLabelFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -155,7 +171,15 @@ open class MultiSlider: UIControl {
         formatter.minimumIntegerDigits = 1
         formatter.roundingMode = .halfEven
         return formatter
-    }()
+    }() {
+        didSet {
+            updateAllValueLabels()
+            if #available(iOS 11.0, *) {
+                oldValue.removeObserverForAllProperties(observer: self)
+                valueLabelFormatter.addObserverForAllProperties(observer: self)
+            }
+        }
+    }
 
     // MARK: - Subviews
 
@@ -172,10 +196,8 @@ open class MultiSlider: UIControl {
     let panGestureView = UIView()
     let margin: CGFloat = 32
     var isSettingValue = false
-    var draggedThumbIndex: Int = -1
     lazy var defaultThumbImage: UIImage? = .circle()
-    var selectionFeedbackGenerator = AvailableHapticFeedback()
-
+    
     // MARK: - Overrides
 
     open override func tintColorDidChange() {
@@ -203,6 +225,13 @@ open class MultiSlider: UIControl {
         return panGestureView.hitTest(panGestureView.convert(point, from: self), with: event)
     }
 
+    // swiftlint:disable:next block_based_kvo
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if object as? NumberFormatter === valueLabelFormatter {
+            updateAllValueLabels()
+        }
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -211,6 +240,12 @@ open class MultiSlider: UIControl {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+
+    deinit {
+        if #available(iOS 11.0, *) {
+            valueLabelFormatter.removeObserverForAllProperties(observer: self)
+        }
     }
 
     open override func prepareForInterfaceBuilder() {
@@ -224,217 +259,5 @@ open class MultiSlider: UIControl {
         let oldThumbCount = thumbCount
         thumbCount = 0
         thumbCount = oldThumbCount
-    }
-}
-
-extension UIView {
-
-    /// Sweeter: The color used to tint the view, as inherited from its superviews.
-    public var actualTintColor: UIColor {
-        var tintedView: UIView? = self
-        while let currentView = tintedView, nil == currentView.tintColor {
-            tintedView = currentView.superview
-        }
-        return tintedView?.tintColor ?? UIColor(red: 0, green: 0.5, blue: 1, alpha: 1)
-    }
-
-    /// Sweeter: Set constant attribute. Example: `constrain(.width, to: 17)`
-    @discardableResult public func constrain(
-        _ at: NSLayoutConstraint.Attribute,
-        to: CGFloat = 0,
-        ratio: CGFloat = 1,
-        relation: NSLayoutConstraint.Relation = .equal,
-        priority: UILayoutPriority = .required
-    ) -> NSLayoutConstraint {
-        let constraint = NSLayoutConstraint(
-            item: self, attribute: at, relatedBy: relation,
-            toItem: nil, attribute: .notAnAttribute, multiplier: ratio, constant: to
-        )
-        constraint.priority = priority
-        addConstraintWithoutConflict(constraint)
-        return constraint
-    }
-
-    /// Sweeter: Pin subview at a specific place. Example: `constrain(label, at: .top)`
-    @discardableResult public func constrain(
-        _ subview: UIView,
-        at: NSLayoutConstraint.Attribute,
-        diff: CGFloat = 0,
-        ratio: CGFloat = 1,
-        relation: NSLayoutConstraint.Relation = .equal,
-        priority: UILayoutPriority = .required
-    ) -> NSLayoutConstraint {
-        let constraint = NSLayoutConstraint(
-            item: subview, attribute: at, relatedBy: relation,
-            toItem: self, attribute: at, multiplier: ratio, constant: diff
-        )
-        constraint.priority = priority
-        addConstraintWithoutConflict(constraint)
-        return constraint
-    }
-
-    /// Sweeter: Pin two subviews to each other. Example:
-    ///
-    /// `constrain(label, at: .leading, to: textField)`
-    ///
-    /// `constrain(textField, at: .top, to: label, at: .bottom, diff: 8)`
-    @discardableResult public func constrain(
-        _ subview: UIView,
-        at: NSLayoutConstraint.Attribute,
-        to subview2: UIView,
-        at at2: NSLayoutConstraint.Attribute = .notAnAttribute,
-        diff: CGFloat = 0,
-        ratio: CGFloat = 1,
-        relation: NSLayoutConstraint.Relation = .equal,
-        priority: UILayoutPriority = .required
-    ) -> NSLayoutConstraint {
-        let at2real = at2 == .notAnAttribute ? at : at2
-        let constraint = NSLayoutConstraint(
-            item: subview, attribute: at, relatedBy: relation,
-            toItem: subview2, attribute: at2real, multiplier: ratio, constant: diff
-        )
-        constraint.priority = priority
-        addConstraintWithoutConflict(constraint)
-        return constraint
-    }
-
-    /// Sweeter: Add subview pinned to specific places. Example: `addConstrainedSubview(button, constrain: .centerX, .centerY)`
-    @discardableResult public func addConstrainedSubview(_ subview: UIView, constrain: NSLayoutConstraint.Attribute...) -> [NSLayoutConstraint] {
-        return addConstrainedSubview(subview, constrainedAttributes: constrain)
-    }
-
-    @discardableResult func addConstrainedSubview(_ subview: UIView, constrainedAttributes: [NSLayoutConstraint.Attribute]) -> [NSLayoutConstraint] {
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(subview)
-        return constrainedAttributes.map { self.constrain(subview, at: $0) }
-    }
-
-    func addConstraintWithoutConflict(_ constraint: NSLayoutConstraint) {
-        removeConstraints(constraints.filter {
-            constraint.firstItem === $0.firstItem
-                && constraint.secondItem === $0.secondItem
-                && constraint.firstAttribute == $0.firstAttribute
-                && constraint.secondAttribute == $0.secondAttribute
-        })
-        addConstraint(constraint)
-    }
-
-    /// Sweeter: Search the view hierarchy recursively for a subview that conforms to `predicate`
-    public func viewInHierarchy(frontFirst: Bool = true, where predicate: (UIView) -> Bool) -> UIView? {
-        if predicate(self) { return self }
-        let views = frontFirst ? subviews.reversed() : subviews
-        for subview in views {
-            if let found = subview.viewInHierarchy(frontFirst: frontFirst, where: predicate) {
-                return found
-            }
-        }
-        return nil
-    }
-
-    /// Sweeter: Search the view hierarchy recursively for a subview with `aClass`
-    public func viewWithClass<T>(_ aClass: T.Type, frontFirst: Bool = true) -> T? {
-        return viewInHierarchy(frontFirst: frontFirst, where: { $0 is T }) as? T
-    }
-    
-}
-
-//
-//  AvailableHapticFeedback.swift
-//
-//  Created by Yonat Sharon on 25.10.2018.
-//
-
-import UIKit
-
-/// Wrapper for UIFeedbackGenerator that compiles on iOS 9
-open class AvailableHapticFeedback {
-    public enum Style: CaseIterable {
-        case selection
-        case impactLight, impactMedium, impactHeavy
-        case notificationSuccess, notificationWarning, notificationError
-    }
-
-    public let style: Style
-
-    public init(style: Style = .selection) {
-        self.style = style
-    }
-
-    open func prepare() {
-        if #available(iOS 10.0, *) {
-            feedbackGenerator.prepare()
-        }
-    }
-
-    open func generateFeedback() {
-        if #available(iOS 10.0, *) {
-            feedbackGenerator.generate(style: style)
-        }
-    }
-
-    open func end() {
-        _anyFeedbackGenerator = nil
-    }
-
-    @available(iOS 10.0, *)
-    var feedbackGenerator: UIFeedbackGenerator & AvailableHapticFeedbackGenerator {
-        if nil == _anyFeedbackGenerator {
-            createFeedbackGenerator()
-        }
-        // swiftlint:disable force_cast force_unwrapping
-        return _anyFeedbackGenerator! as! UIFeedbackGenerator & AvailableHapticFeedbackGenerator
-        // swiftlint:enable force_cast force_unwrapping
-    }
-
-    private var _anyFeedbackGenerator: Any?
-
-    @available(iOS 10.0, *)
-    private func createFeedbackGenerator() {
-        switch style {
-        case .selection:
-            _anyFeedbackGenerator = UISelectionFeedbackGenerator()
-        case .impactLight:
-            _anyFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        case .impactMedium:
-            _anyFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        case .impactHeavy:
-            _anyFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        case .notificationSuccess, .notificationWarning, .notificationError:
-            _anyFeedbackGenerator = UINotificationFeedbackGenerator()
-        }
-    }
-}
-
-protocol AvailableHapticFeedbackGenerator {
-    func generate(style: AvailableHapticFeedback.Style)
-}
-
-@available(iOS 10.0, *)
-extension UISelectionFeedbackGenerator: AvailableHapticFeedbackGenerator {
-    func generate(style: AvailableHapticFeedback.Style) {
-        selectionChanged()
-    }
-}
-
-@available(iOS 10.0, *)
-extension UIImpactFeedbackGenerator: AvailableHapticFeedbackGenerator {
-    func generate(style: AvailableHapticFeedback.Style) {
-        impactOccurred()
-    }
-}
-
-@available(iOS 10.0, *)
-extension UINotificationFeedbackGenerator: AvailableHapticFeedbackGenerator {
-    func generate(style: AvailableHapticFeedback.Style) {
-        let notificationFeedbackType: UINotificationFeedbackGenerator.FeedbackType
-        switch style {
-        case .notificationWarning:
-            notificationFeedbackType = .warning
-        case .notificationError:
-            notificationFeedbackType = .error
-        default:
-            notificationFeedbackType = .success
-        }
-        notificationOccurred(notificationFeedbackType)
     }
 }

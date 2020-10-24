@@ -9,9 +9,22 @@
 import UIKit
 
 class UpdateAppViewController: UIViewController {
+    
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = R.string.localizable.updateAppTitle()
+        }
+    }
+    
+    @IBOutlet weak var descriptionLabel: UILabel! {
+        didSet {
+            descriptionLabel.text = R.string.localizable.updateAppDescription()
+        }
+    }
 
     @IBOutlet weak var buyButton: PrimaryButton! {
         didSet {
+            buyButton.setTitle(R.string.localizable.updateAppUpdateNow(), for: .normal)
             buyButton.mode = .selector
             buyButton.titleFont = .boldFont(ofSize: 16)
             buyButton.addFantasyGradient()
@@ -27,7 +40,7 @@ class UpdateAppViewController: UIViewController {
         super.viewDidLoad()
 
         view.addFantasyGradient()
-        title = "Update App"
+        title = R.string.localizable.onboardingUpdateTitle()
         // Do any additional setup after loading the view.
     }
     

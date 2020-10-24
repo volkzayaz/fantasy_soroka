@@ -72,13 +72,13 @@ extension UserProfileViewModel {
                  
                  var bioSection: (String, [Row]) = ("bio", [])
                  
-                 bioSection.1.append(.bio(R.image.profileBirthday()!, "\(u.bio.yearsOld) years"))
+                 bioSection.1.append(.bio(R.image.profileBirthday()!, R.string.localizable.profileDiscoverUserYears(u.bio.yearsOld)))
                  
                  if let x = u.community.value?.name {
                      bioSection.1.append( .bio(R.image.profileLocation()!, x) )
                  }
                  
-                 bioSection.1.append( .bio(R.image.profileSexuality()!, "\(u.bio.sexuality.rawValue) \(u.bio.gender.pretty)") )
+                 bioSection.1.append( .bio(R.image.profileSexuality()!, "\(u.bio.sexuality.pretty) \(u.bio.gender.pretty)") )
                  bioSection.1.append( .bio(R.image.profileRelationships()!, u.bio.relationshipStatus.pretty) )
                  
                  if let x = u.bio.expirience {
@@ -137,17 +137,17 @@ extension UserProfileViewModel {
         return relationshipState.asDriver().notNil()
             .map { x in
                 switch x {
-                case .sameUser:     return ""
-                case .absent:       return "No relation so far"
-                case .incomming(_): return "User liked you"
+                case .sameUser:     return R.string.localizable.profileDiscoverUserRelationStateSameUser()
+                case .absent:       return R.string.localizable.profileDiscoverUserRelationStateAbsent()
+                case .incomming(_): return R.string.localizable.profileDiscoverUserRelationStateIncoming()
                     
                 case .outgoing(let x, _):
                     let str = x.map({ $0.rawValue }).joined(separator: ", ")
-                    return "You \(str) this user"
+                    return R.string.localizable.profileDiscoverUserRelationStateOutgoing(str)
                     
-                case .iRejected:    return "You rejected user"
-                case .iWasRejected: return "You were rejected"
-                case .mutual:       return "You both liked each other"
+                case .iRejected:    return R.string.localizable.profileDiscoverUserRelationStateIRejected()
+                case .iWasRejected: return R.string.localizable.profileDiscoverUserRelationStateIWasRejected()
+                case .mutual:       return R.string.localizable.profileDiscoverUserRelationStateMutual()
                 }
         }
     }
@@ -166,9 +166,9 @@ extension UserProfileViewModel {
                     
                 case .incomming(_, let room)?:
                     return [
-                        .init(descriptior: .actionSheetOption("Accept invite"),
+                        .init(descriptior: .actionSheetOption(R.string.localizable.profileDiscoverUserAcceptInvite()),
                               action: self.likeBack),
-                        .init(descriptior: .actionSheetOption("Reject invite"),
+                        .init(descriptior: .actionSheetOption(R.string.localizable.profileDiscoverUserRejectInvite()),
                               action: self.reject),
                         .init(descriptior: .openRoomButton,
                               action: { self.present(roomRef: room) })
@@ -176,7 +176,7 @@ extension UserProfileViewModel {
                 
                 case .mutual(let room)?:
                     return [
-                        .init(descriptior: .actionSheetOption("Unlike"),
+                        .init(descriptior: .actionSheetOption(R.string.localizable.profileDiscoverUserUnlike()),
                               action: self.unlike),
                         .init(descriptior: .openRoomButton,
                               action: { self.present(roomRef: room) })
@@ -199,7 +199,7 @@ extension UserProfileViewModel {
                     
                 case .iRejected?:
                     return [
-                        .init(descriptior: .actionSheetOption("Delete Connection"),
+                        .init(descriptior: .actionSheetOption(R.string.localizable.profileDiscoverUserDeleteConnection()),
                               action: self.unlike)
                     ]
                     
@@ -289,7 +289,7 @@ extension UserProfileViewModel {
 
     var registeredDateText: Driver<String> {
         let s = user.bio.registrationDate.toRegisteredDateString()
-        return Driver.just("Registered \(s)")
+        return Driver.just(R.string.localizable.profileDiscoverUserRegistered(s))
     }
 
     var userIdText: Driver<String> {

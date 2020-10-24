@@ -123,7 +123,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.generalDone(),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(RoomSettingsViewController.close))
@@ -169,6 +169,7 @@ private extension RoomSettingsViewController {
         
         inviteLabel.font = .boldFont(ofSize: 15)
         inviteLabel.textColor = .fantasyBlack
+        
         inviteLabel.text = R.string.localizable.roomCreationInvite()
 
         notificationsLabel.font = .boldFont(ofSize: 15)

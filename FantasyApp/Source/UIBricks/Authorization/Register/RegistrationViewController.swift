@@ -16,8 +16,29 @@ class RegistrationViewController: UIViewController, MVVM_View {
     var imagePicker: FantasyImagePickerController?    
     var viewModel: RegistrationViewModel!
 
+    @IBOutlet private weak var delayedStepForwardButton: UIButton!
     @IBOutlet private weak var stepForwardButton: UIButton!
-
+    @IBOutlet private var backwardSwipeGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet private var forwardSwipeGestureRecognizer: UISwipeGestureRecognizer!
+    
+    @IBOutlet private weak var onboarding1BackgroundRoundedView: UIView! {
+        didSet {
+            onboarding1BackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
+    
+    @IBOutlet private weak var onboarding2BackgroundRoundedView: UIView! {
+        didSet {
+            onboarding2BackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
+    
+    @IBOutlet private weak var onboarding3BackgroundRoundedView: UIView! {
+        didSet {
+            onboarding3BackgroundRoundedView.addFantasyRoundedCorners()
+        }
+    }
+    
     // Notice section
     @IBOutlet private weak var agrementBackgroundRoundedView: UIView! {
         didSet {
@@ -25,54 +46,142 @@ class RegistrationViewController: UIViewController, MVVM_View {
         }
     }
     
-    
     @IBOutlet weak var agrementTitle: UILabel!
     @IBOutlet private weak var agrementTextView: UITextView! {
         didSet {
-            agrementTextView.textContainerInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-
-            let text = agrementTextView.text ?? ""
-            let attr = NSMutableAttributedString(attributedString: agrementTextView.attributedText)
-
-            attr.addAttributes([
-                .link : viewModel.reportUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "feedback.fantasyapp.com")!))
-            agrementTextView.attributedText = attr
-            agrementTextView.font = UIFont.regularFont(ofSize: 15)
-            agrementTextView.textColor = R.color.textBlackColor()
-            agrementTextView.tintColor = R.color.textPinkColor()
+            agrementTextView.text = R.string.localizable.registrationNoticeAgreementText()
         }
     }
 
-    @IBOutlet private weak var termsTextView: UITextView! {
+    @IBOutlet private weak var iveReadTermsTextView: UITextView! {
         didSet {
-            let text = "I agree to the Terms of Service, Privacy Policy and Fantasy Community Rules."
-            let attr = NSMutableAttributedString(string: text)
+            let text = R.string.localizable.authRegisterIveReadTermsText(R.string.localizable.authTerms(), R.string.localizable.authPrivacy(), "Fantasy \(R.string.localizable.authRules())")
 
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
             attr.addAttributes([
                 .link : viewModel.termsUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "Terms of Service")!))
-
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
+            
             attr.addAttributes([
                 .link : viewModel.privacyUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "Privacy Policy")!))
-
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
+            
             attr.addAttributes([
                 .link : viewModel.communityRulesUrl,
-                .underlineStyle: NSUnderlineStyle.single.rawValue],
-                               range: text.nsRange(from: text.range(of: "Fantasy Community Rules")!))
+                .font: UIFont.semiBoldFont(ofSize: 14)],
+                               range: text.nsRange(from: text.range(of: "Fantasy \(R.string.localizable.authRules())")!))
 
-            termsTextView.attributedText = attr
-            termsTextView.font = UIFont.regularFont(ofSize: 15)
-            termsTextView.textColor = R.color.textBlackColor()
-            termsTextView.tintColor = R.color.textBlackColor()
-            termsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            iveReadTermsTextView.attributedText = attr
+            iveReadTermsTextView.tintColor = R.color.textPinkColor()
+            iveReadTermsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
+    
+    @IBOutlet private weak var personalDataTextView: UITextView! {
+        didSet {
+            let text = R.string.localizable.authRegisterPersonalDataText(R.string.localizable.authTerms(), R.string.localizable.authPrivacy()) + R.string.localizable.authRegisterPersonalDataTextRemove()
+            
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
+            attr.addAttributes([
+                .link : viewModel.termsUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
+            
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
+            
+            attr.addAttributes([
+                .foregroundColor: R.color.textLightGrayColor()!
+            ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRegisterPersonalDataTextRemove())!))
 
+            personalDataTextView.attributedText = attr
+            personalDataTextView.tintColor = R.color.textPinkColor()
+            personalDataTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
+    @IBOutlet private weak var sensetiveDataTextView: UITextView! {
+        didSet {
+            
+            let text = R.string.localizable.authRegisterSensetiveData(R.string.localizable.authPrivacy()) + R.string.localizable.authRegisterSensetiveData1()
+            
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
+            
+            attr.addAttributes([
+                .foregroundColor: R.color.textLightGrayColor()!
+            ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRegisterSensetiveData1())!))
+            
+            sensetiveDataTextView.attributedText = attr
+            sensetiveDataTextView.tintColor = R.color.textPinkColor()
+            sensetiveDataTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+
+    }
+        
+    @IBOutlet private weak var agreeToEmailsTextView: UITextView! {
+        didSet {
+            let text = R.string.localizable.authRegisterAgreeToEmails(R.string.localizable.authTerms(), R.string.localizable.authPrivacy()) + R.string.localizable.authRegisterAgreeToEmailsUnsubscribe()
+            
+            let attr = NSMutableAttributedString(string: text,
+             attributes: [
+                .font: UIFont.regularFont(ofSize: 14),
+                .foregroundColor: R.color.textBlackColor()!
+            ])
+            
+            attr.addAttributes([
+                .link : viewModel.termsUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authTerms())!))
+            
+            attr.addAttributes([
+                .link : viewModel.privacyUrl,
+                .font: UIFont.semiBoldFont(ofSize: 14)
+                ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authPrivacy())!))
+            
+            attr.addAttributes([
+                .foregroundColor: R.color.textLightGrayColor()!
+            ],
+                               range: text.nsRange(from: text.range(of: R.string.localizable.authRegisterAgreeToEmailsUnsubscribe())!))
+            
+            agreeToEmailsTextView.attributedText = attr
+            agreeToEmailsTextView.tintColor = R.color.textPinkColor()
+            agreeToEmailsTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+
+    }
+    
     @IBOutlet private weak var agrementButton: UIButton!
 
     // Name section
@@ -131,6 +240,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
     @IBOutlet private weak var photoImageView: UIImageView!
 
     @IBOutlet private weak var sendingImageTitleLabel: UILabel!
+    @IBOutlet private weak var sendingImageSubtitleLabel: UILabel!
     @IBOutlet private weak var sendingImageDescriptionLabel: UILabel!
     @IBOutlet private weak var uploadedPhotoImageView: UIImageView!
     @IBOutlet private weak var changeUploadedPhotoButton: UIButton!
@@ -182,6 +292,15 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
 
         // buttons management
+        viewModel.showDelayedNextButton
+            .map { !$0 }
+            .drive(delayedStepForwardButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.delayedNextButtonTitle
+            .drive(delayedStepForwardButton.rx.title())
+            .disposed(by: rx.disposeBag)
+        
         viewModel.showContinueButton
             .map { !$0 }
             .drive(stepForwardButton.rx.isHidden)
@@ -199,11 +318,23 @@ class RegistrationViewController: UIViewController, MVVM_View {
         // --
 
         viewModel.forwardButtonEnabled
+            .drive(delayedStepForwardButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.forwardButtonEnabled
             .drive(agrementButton.rx.isEnabled)
             .disposed(by: rx.disposeBag)
 
         viewModel.forwardButtonEnabled
             .drive(stepForwardButton.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.backwardSwipeEnabled
+            .drive(backwardSwipeGestureRecognizer.rx.isEnabled)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.forwardSwipeEnabled
+            .drive(forwardSwipeGestureRecognizer.rx.isEnabled)
             .disposed(by: rx.disposeBag)
         
         viewModel.partnersGenderHidden
@@ -228,8 +359,9 @@ class RegistrationViewController: UIViewController, MVVM_View {
         viewModel.photo
             .drive(onNext: { [unowned self] (image) in
                 self.uploadedPhotoImageView.image = image
-                self.sendingImageTitleLabel.text = (image == nil) ? "Adding Main Photo" : "Main Photo Added"
-                self.sendingImageDescriptionLabel.text = (image == nil) ? "Photo sending…" : "Your photo was sent"
+                self.sendingImageTitleLabel.text = (image == nil) ? R.string.localizable.authRegisterAddingMainPhoto() : R.string.localizable.authRegisterMainPhotoAdded()
+                self.sendingImageSubtitleLabel.text = (image == nil) ? R.string.localizable.authRegisterAddingMainPhotoSubtitle() : R.string.localizable.authRegisterMainPhotoAddedSubtitle()
+                self.sendingImageDescriptionLabel.text = (image == nil) ? R.string.localizable.authRegisterPhotoSending() : R.string.localizable.authRegisterPhotoSent()
             })
             .disposed(by: rx.disposeBag)
 
@@ -237,7 +369,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (flag) in
                 self.uploadPhotoSuccessContainerView.isHidden = flag
                 self.uploadPhotoProblemContainerView.isHidden = !flag
-                self.sendingImageTitleLabel.text = flag ? "Change Main Photo" : "Adding Main Photo"
+                self.sendingImageTitleLabel.text = flag ? R.string.localizable.authRegisterChangeMainPhoto() : R.string.localizable.authRegisterMainPhotoAdded()
             })
             .disposed(by: rx.disposeBag)
 
@@ -246,10 +378,10 @@ class RegistrationViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (step) in
                 
                 let x: [RegistrationViewModel.Step: UIResponder] = [
-                    .name: self.nameTextField,
-                    .birthday: self.birthdayTextField,
                     .email: self.emailTextField,
-                    .password: self.passwordTextField
+                    .password: self.passwordTextField,
+                    .name: self.nameTextField,
+                    .birthday: self.birthdayTextField
                 ]
                 
                 x[step]?.becomeFirstResponder()
@@ -316,7 +448,7 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         Observable.just(data)
             .bind(to: sexualityPicker.rx.itemAttributedTitles) { _, item in
-                return NSAttributedString(string: item.rawValue,
+                return NSAttributedString(string: item.pretty,
                                           attributes: [
                                             NSAttributedString.Key.foregroundColor: UIColor.white,
                                             NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
@@ -405,11 +537,11 @@ class RegistrationViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
-        ///
-        agrementTitle.text = immutableNonPersistentState?.legal.title ?? ""
+//        agrementTitle.text = immutableNonPersistentState?.legal.title ?? ""
+//
+//        agrementTextView.attributedText = try? NSAttributedString(data: (immutableNonPersistentState?.legal.description ?? "").data(using: .unicode)!,
+//                                                             options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
         
-        agrementTextView.attributedText = try? NSAttributedString(data: (immutableNonPersistentState?.legal.description ?? "").data(using: .unicode)!,
-                                                             options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
         agrementTextView.font = UIFont.regularFont(ofSize: 15)
         agrementTextView.textColor = R.color.textBlackColor()
         agrementTextView.tintColor = R.color.textPinkColor()
@@ -433,6 +565,21 @@ extension RegistrationViewController: UIScrollViewDelegate {
         viewModel.agreementChanged(agrred: sender.isSelected)
     }
     
+    @IBAction func personalDataClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.personalDataChanged(agrred: sender.isSelected)
+    }
+    
+    @IBAction func sensetiveDataClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.sensetiveDataChanged(agrred: sender.isSelected)
+    }
+    
+    @IBAction func agreeToEmailsClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel.agreeToReceiveEmailChanged(agrred: sender.isSelected)
+    }
+    
     @IBAction func relationshipChanged(_ sender: UIButton) {
 
         soloPartnerButton.isSelected = sender.tag == 1
@@ -451,13 +598,13 @@ extension RegistrationViewController: UIScrollViewDelegate {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.localizable.authRegisterTakePhoto(), style: .default, handler: { _ in
             FantasyCameraViewController.present(on: self) { [unowned self] (image) in
                 self.viewModel.photoSelected(photo: image, source: .Taken)
             }
         }))
 
-        alert.addAction(UIAlertAction(title: "Choose a Photo", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.localizable.authRegisterChoosePhoto(), style: .default, handler: { _ in
 
             self.imagePicker = FantasyImagePickerController(presentationController: self) { [unowned self](image) in
                 FantasyPhotoEditorViewController.present(on: self, image: image) { [unowned self] (image) in
@@ -469,7 +616,7 @@ extension RegistrationViewController: UIScrollViewDelegate {
             self.imagePicker?.present()
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: R.string.localizable.generalCancel(), style: .cancel, handler:nil))
 
         present(alert, animated: true, completion: nil)
     }
@@ -539,7 +686,7 @@ extension RegistrationViewController: UITextFieldDelegate {
 
             let x = text.replacingCharacters(in: textRange, with: string)
 
-            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z0-9 ].*", options: [])
+            let regex = try? NSRegularExpression(pattern: ".*[^A-Za-z0-9& ].*", options: [])
             let result = regex?.firstMatch(in: x, options: [], range: NSMakeRange(0, x.count)) == nil
 
             return x.first != " " && x.suffix(2) != "  " && result && x.count <= 18

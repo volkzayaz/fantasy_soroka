@@ -28,9 +28,14 @@ import Foundation
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        setCornerRadius(20)
+        backgroundLayer.fillColor = backgroundColor?.cgColor
+    }
+    
+    func setCornerRadius(_ cornerRadius: CGFloat) {
         backgroundLayer.path = UIBezierPath(roundedRect: bounds,
                                             byRoundingCorners: [.topLeft, .topRight],
-                                            cornerRadii: CGSize(width: 20, height: 20)).cgPath
-        backgroundLayer.fillColor = backgroundColor?.cgColor
+                                            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
     }
 }

@@ -62,7 +62,7 @@ extension NotificationSettingsViewController {
         let v = ProfileSettingsHeaderView.instance
 
         switch section {
-        case 0: v.setText("Push")
+        case 0: v.setText(R.string.localizable.notificationsPush())
 
         default: v.setText(" ")
         }

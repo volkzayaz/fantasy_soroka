@@ -17,8 +17,8 @@ struct MainTabBarRouter : MVVM_Router {
     
     func presentRoom(room: Room, page: RoomDetailsViewModel.DetailsPage) {
         
-        owner.selectedIndex = 2
-        let notificationController = (owner.viewControllers![2] as! UINavigationController).viewControllers.first! as! ConnectionViewController
+        owner.selectedIndex = 3
+        let notificationController = (owner.viewControllers![3] as! UINavigationController).viewControllers.first! as! ConnectionViewController
         notificationController.viewModel.router.show(room: room, page: page)
         
     }
@@ -44,7 +44,7 @@ struct MainTabBarRouter : MVVM_Router {
     
     func presentCardDetails(card: Fantasy.Card, in room: RoomIdentifier) {
         
-        owner.selectedIndex = 3
+        owner.selectedIndex = 1
         
         let vc = R.storyboard.fantasyCard.fantasyDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),

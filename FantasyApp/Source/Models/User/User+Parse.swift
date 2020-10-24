@@ -126,6 +126,8 @@ extension User {
             searchPrefs = s
         }
         
+        let flirtAccess = (pfUser["flirtAccess"] as? Bool) ?? true
+        
         id = objectId
         bio = User.Bio(registrationDate: pfUser.createdAt!,
                        name: name,
@@ -137,10 +139,11 @@ extension User {
                        photos: photos,
                        lookingFor: maybeLookingFor,
                        expirience: maybeExpirience,
-                       answers: answers)
+                       answers: answers,
+                       flirtAccess: flirtAccess)
         
         searchPreferences = searchPrefs
-        fantasies = .init(liked: [], disliked: [], purchasedCollections: [])
+        fantasies = .init(purchasedCollections: [])
         community = User.Community(value: maybeCommunity,
                                    changePolicy: changePolicy,
                                    lastKnownLocation: maybeLastKnownLocation)
@@ -170,7 +173,9 @@ extension User {
             "lookingForV2"              : lookingForV2 as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
-        
+            "flirtAccess"               : bio.flirtAccess as? Any,
+            "couple"                    : bio.relationshipStatus.parseField,
+            
             "searchPrefs"               : searchPrefs as Any,
             
             "belongsTo"                 : community.value?.pfObject as Any,
@@ -180,11 +185,6 @@ extension User {
             "notificationSettings"      : notificationSettings.pfObject,
         ] as [String : Any]
         
-        switch bio.relationshipStatus {
-        case .single:                    dict["couple"] = "single"
-        case .couple(let partnerGender): dict["couple"] = partnerGender.rawValue
-        }
-        
         user.setValuesForKeys(dict)
         
         return user
@@ -192,6 +192,21 @@ extension User {
 }
 
 extension PFUser {
+    
+    enum ProfileStatus: String {
+        case incompleteSignUp
+        case active
+    }
+    
+    var profileStatus: ProfileStatus? {
+        get {
+            (self["profileStatus"] as? String).flatMap { ProfileStatus(rawValue: $0) }
+        }
+        
+        set {
+            self["profileStatus"] = newValue?.rawValue
+        }
+    }
     
     func apply(editForm: EditProfileForm) {
         
@@ -214,6 +229,7 @@ extension PFUser {
         
         setter("gender", editForm.gender?.rawValue)
         setter("sexuality", editForm.sexuality?.rawValue)
+        setter("flirtAccess", false)
         
     }
  

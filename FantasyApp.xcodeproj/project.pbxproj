@@ -326,6 +326,27 @@
 		84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */; };
 		84C1D0732327D6CA00648DE1 /* RoomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */; };
 		84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D0742327DB7600648DE1 /* SetRooms.swift */; };
+		882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DD27D2469E5DD008D9626 /* Localizable.swift */; };
+		885EEF0824BA19A400BA187A /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */; };
+		88648A8B24CB728A0062C7A5 /* ApphudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648A8A24CB728A0062C7A5 /* ApphudManager.swift */; };
+		8887A80524BA1DE300B6CF45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */; };
+		8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */; };
+		8887A80B24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */; };
+		8887A80D24BB174300B6CF45 /* SubscriptionLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80C24BB174300B6CF45 /* SubscriptionLimitedOfferViewModel.swift */; };
+		8887A80F24BCE6BC00B6CF45 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A80E24BCE6BC00B6CF45 /* String.swift */; };
+		8887A81124BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A81024BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift */; };
+		8887A81324BCFA3A00B6CF45 /* PerformManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887A81224BCFA3A00B6CF45 /* PerformManager.swift */; };
+		88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */; };
+		88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */; };
+		88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */; };
+		88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */; };
+		88F8DDB524BCFC6400900A6E /* StorageManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB424BCFC6400900A6E /* StorageManger.swift */; };
+		88F8DDB824C61E7600900A6E /* DeckLimitedOfferRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */; };
+		88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */; };
+		88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */; };
+		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
+		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
+		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -749,8 +770,47 @@
 		84C1D06F2327D6B500648DE1 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		84C1D0722327D6CA00648DE1 /* RoomsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsRouter.swift; sourceTree = "<group>"; };
 		84C1D0742327DB7600648DE1 /* SetRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRooms.swift; sourceTree = "<group>"; };
+		882DD27D2469E5DD008D9626 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		882DD27F2469E8AE008D9626 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		88648A8A24CB728A0062C7A5 /* ApphudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApphudManager.swift; sourceTree = "<group>"; };
+		8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferRouter.swift; sourceTree = "<group>"; };
+		8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferController.swift; sourceTree = "<group>"; };
+		8887A80C24BB174300B6CF45 /* SubscriptionLimitedOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionLimitedOfferViewModel.swift; sourceTree = "<group>"; };
+		8887A80E24BCE6BC00B6CF45 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		8887A81024BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionOfferSpecial.swift; sourceTree = "<group>"; };
+		8887A81224BCFA3A00B6CF45 /* PerformManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformManager.swift; sourceTree = "<group>"; };
+		88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTutorialViewController.swift; sourceTree = "<group>"; };
+		88DF09CD24731BC70070C487 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09CE24731BCF0070C487 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09CF24731BE10070C487 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D024731BE90070C487 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D124731BFD0070C487 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D224731C550070C487 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D324731C680070C487 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D424731C730070C487 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D5247469D70070C487 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D6247C35D40070C487 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D7247C35DF0070C487 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09D8247C35EE0070C487 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09D9247C36320070C487 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DF09DA247C36480070C487 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DB247C36570070C487 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DC247C36680070C487 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DD247C36770070C487 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessViewController.swift; sourceTree = "<group>"; };
+		88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessViewModel.swift; sourceTree = "<group>"; };
+		88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtAccessRouter.swift; sourceTree = "<group>"; };
+		88F8DDB424BCFC6400900A6E /* StorageManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManger.swift; sourceTree = "<group>"; };
+		88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckLimitedOfferRouter.swift; sourceTree = "<group>"; };
+		88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckLimitedOfferController.swift; sourceTree = "<group>"; };
+		88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckLimitedOfferViewModel.swift; sourceTree = "<group>"; };
+		88F8DDBD24C781D200900A6E /* CollectionOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionOffer.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
+		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
@@ -951,6 +1011,7 @@
 				7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */,
 				7312B0D622D7516900DB0F36 /* FantasyApp-Bridging-Header.h */,
 				7312B05D22D7403300DB0F36 /* Info.plist */,
+				8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */,
 			);
 			path = support_files;
 			sourceTree = "<group>";
@@ -1017,7 +1078,7 @@
 		7312B07522D741D500DB0F36 /* UIBricks */ = {
 			isa = PBXGroup;
 			children = (
-				7337B83D23C8CBBA00EFC948 /* Subscription */,
+				8887A80624BB146300B6CF45 /* Payment */,
 				7361F33223351F2A007B84B0 /* Connections */,
 				84C1D0422327BA8200648DE1 /* Rooms */,
 				7322310D23040DA4009DD37F /* Fantasy */,
@@ -1063,6 +1124,8 @@
 				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
 				B720EED4244217DB009385CB /* UITextView+Truncated.swift */,
 				2518808C24464150002CCF2E /* URL+Email.swift */,
+				882DD27D2469E5DD008D9626 /* Localizable.swift */,
+				8887A80E24BCE6BC00B6CF45 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1076,6 +1139,7 @@
 				7312B08422D7422100DB0F36 /* NWise.swift */,
 				7312B08622D7422100DB0F36 /* MVVM */,
 				7361F3182332378A007B84B0 /* CLGeocoder+rx.swift */,
+				A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */,
 			);
 			path = RxExtensions;
 			sourceTree = "<group>";
@@ -1177,6 +1241,10 @@
 		7312B0B722D745DF00DB0F36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				88648A8924CB72750062C7A5 /* AppHud */,
+				88F8DDB324BCFC4800900A6E /* Storage */,
+				8887A81424BCFA4200B6CF45 /* Perform */,
+				885EEF0624BA196600BA187A /* RemoteConfig */,
 				73EBBA6E234E044F00B79121 /* Push */,
 				7361F32D2334F436007B84B0 /* Connection */,
 				7361F31223322BB4007B84B0 /* Community */,
@@ -1269,6 +1337,7 @@
 				7330FBA82358C63E008C08CF /* TickButton.swift */,
 				7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */,
 				7337B84423CA389000EFC948 /* SubscribeButton.swift */,
+				A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -1443,8 +1512,8 @@
 		734C528A23266ABB00B54510 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				B7C248732363807F0097BD2A /* LocationAccess */,
 				7361F31A23326CEF007B84B0 /* PickCommunityViewModel.swift */,
+				B7C248732363807F0097BD2A /* LocationAccess */,
 				734C52982326A66100B54510 /* Filter */,
 				734C52972326A65700B54510 /* Users */,
 			);
@@ -1807,6 +1876,7 @@
 			isa = PBXGroup;
 			children = (
 				B723A9F52385B8DC00C72A7C /* UI */,
+				88DF09DE247EF0310070C487 /* FlirtAccess */,
 				73EBBA74234E2BD300B79121 /* NotificationSettings */,
 				73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */,
 				73C96F1123409DFC002C3F8E /* ProfileSettingsViewController.swift */,
@@ -2063,6 +2133,7 @@
 				843B648E234F197B00E5639B /* RoomSettingsViewModel.swift */,
 				844CD704235F81B5004E6BA3 /* RoomSettingsRouter.swift */,
 				843B6490234F198500E5639B /* RoomSettingsViewController.swift */,
+				88DF09CB2471B8540070C487 /* RoomTutorialViewController.swift */,
 			);
 			path = RoomSettings;
 			sourceTree = "<group>";
@@ -2297,6 +2368,80 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		885EEF0624BA196600BA187A /* RemoteConfig */ = {
+			isa = PBXGroup;
+			children = (
+				885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */,
+				8887A81024BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift */,
+				88F8DDBD24C781D200900A6E /* CollectionOffer.swift */,
+			);
+			path = RemoteConfig;
+			sourceTree = "<group>";
+		};
+		88648A8924CB72750062C7A5 /* AppHud */ = {
+			isa = PBXGroup;
+			children = (
+				88648A8A24CB728A0062C7A5 /* ApphudManager.swift */,
+			);
+			path = AppHud;
+			sourceTree = "<group>";
+		};
+		8887A80624BB146300B6CF45 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				7337B83D23C8CBBA00EFC948 /* Subscription */,
+				8887A80724BB146B00B6CF45 /* SubscriptionLimitedOffer */,
+				88F8DDB624C61E5A00900A6E /* DeckLimitedOffer */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		8887A80724BB146B00B6CF45 /* SubscriptionLimitedOffer */ = {
+			isa = PBXGroup;
+			children = (
+				8887A80824BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift */,
+				8887A80A24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift */,
+				8887A80C24BB174300B6CF45 /* SubscriptionLimitedOfferViewModel.swift */,
+			);
+			path = SubscriptionLimitedOffer;
+			sourceTree = "<group>";
+		};
+		8887A81424BCFA4200B6CF45 /* Perform */ = {
+			isa = PBXGroup;
+			children = (
+				8887A81224BCFA3A00B6CF45 /* PerformManager.swift */,
+			);
+			path = Perform;
+			sourceTree = "<group>";
+		};
+		88DF09DE247EF0310070C487 /* FlirtAccess */ = {
+			isa = PBXGroup;
+			children = (
+				88DF09E3247EF1E20070C487 /* FlirtAccessRouter.swift */,
+				88DF09DF247EF0E90070C487 /* FlirtAccessViewController.swift */,
+				88DF09E1247EF15A0070C487 /* FlirtAccessViewModel.swift */,
+			);
+			path = FlirtAccess;
+			sourceTree = "<group>";
+		};
+		88F8DDB324BCFC4800900A6E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				88F8DDB424BCFC6400900A6E /* StorageManger.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		88F8DDB624C61E5A00900A6E /* DeckLimitedOffer */ = {
+			isa = PBXGroup;
+			children = (
+				88F8DDB724C61E7600900A6E /* DeckLimitedOfferRouter.swift */,
+				88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */,
+				88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */,
+			);
+			path = DeckLimitedOffer;
+			sourceTree = "<group>";
+		};
 		B719F91E2389A4D3009AB110 /* Blocked */ = {
 			isa = PBXGroup;
 			children = (
@@ -2443,7 +2588,7 @@
 				7312B03C22D73AD100DB0F36 /* Sources */,
 				7312B03D22D73AD100DB0F36 /* Frameworks */,
 				7312B03E22D73AD100DB0F36 /* Resources */,
-				73953D3522EED6C300242243 /* Fabric */,
+				73953D3522EED6C300242243 /* Crashlytics */,
 				C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */,
 				843B6496235051DA00E5639B /* Embed Frameworks */,
 				844C84EE23505F9F00BDC60F /* ShellScript */,
@@ -2526,6 +2671,24 @@
 			knownRegions = (
 				en,
 				Base,
+				"en-GB",
+				de,
+				fr,
+				nl,
+				it,
+				es,
+				"es-419",
+				"pt-PT",
+				"pt-BR",
+				ru,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
+				"es-MX",
+				da,
+				sv,
+				uk,
+				pl,
 			);
 			mainGroup = 7312B03722D73AD100DB0F36;
 			productRefGroup = 7312B04122D73AD100DB0F36 /* Products */;
@@ -2559,6 +2722,7 @@
 				84C1D0392327B95300648DE1 /* Pansexual.png in Resources */,
 				73F80CD72361ED0200212FCF /* AcceptRejectCell.xib in Resources */,
 				841681E922E9AE6E00FA9455 /* SF-Pro-Text-ThinItalic.otf in Resources */,
+				8887A80524BA1DE300B6CF45 /* GoogleService-Info.plist in Resources */,
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
 				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
@@ -2683,13 +2847,13 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift,
+				"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift\"\n";
 		};
-		73953D3522EED6C300242243 /* Fabric */ = {
+		73953D3522EED6C300242243 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2697,16 +2861,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = Fabric;
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" e84ce1420f7f93176fb81a16a43f00b1cdbc00ff 23e218800f398f44a1b99535f0a9e70571f31c508860c4e4be496e02abcf6b7c\n";
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
 		};
 		844C84EE23505F9F00BDC60F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2774,6 +2939,7 @@
 				733CA0722397BE1900EF7922 /* UpdateAppViewController.swift in Sources */,
 				734C52AD232A84C000B54510 /* Photo.swift in Sources */,
 				84B8AD1222DCD5800026862E /* ResponseProgress.swift in Sources */,
+				88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */,
 				7312B09F22D7422100DB0F36 /* UIView+ProgressIndicator.swift in Sources */,
 				73C287EB23D9CC0F004B15E6 /* ChangeIncommingConnections.swift in Sources */,
 				73C96F222340B05B002C3F8E /* AlbumRequest.swift in Sources */,
@@ -2804,6 +2970,7 @@
 				84268C2B2360EE7A00E43197 /* FantasyDetailsTransitionAnimator.swift in Sources */,
 				7322311223040DB6009DD37F /* FantasyDeckViewController.swift in Sources */,
 				842A19FD23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift in Sources */,
+				A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */,
 				73097C08231D3FCA00B71053 /* EditProfilePhotoCell.swift in Sources */,
 				846B49DA2365FC180087B7DF /* UILabel+Truncation.swift in Sources */,
 				7361F32223328A16007B84B0 /* TeleportViewModel.swift in Sources */,
@@ -2820,6 +2987,7 @@
 				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
 				B7EE6C102362DD1F00510255 /* ListRoundedView.swift in Sources */,
 				7399140F23CA4A8B00A45E74 /* SubscriptionEvent.swift in Sources */,
+				88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */,
 				2518808D24464150002CCF2E /* URL+Email.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
@@ -2827,6 +2995,7 @@
 				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,
 				7353BDDD22EC8F22001D46A6 /* AuthenticationManager.swift in Sources */,
+				88F8DDB824C61E7600900A6E /* DeckLimitedOfferRouter.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */,
 				73FDD08B23990DAF00BA3E1D /* AnalyticsEvent.swift in Sources */,
@@ -2836,6 +3005,7 @@
 				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
 				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
 				73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */,
+				88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				B77B34AF23CA4F2C00899D9F /* UserProfileTableFooterView.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
@@ -2848,6 +3018,7 @@
 				7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */,
 				734C70C223214B8D00ED2E91 /* UserProfileViewModel.swift in Sources */,
 				7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */,
+				882DD27E2469E5DD008D9626 /* Localizable.swift in Sources */,
 				7322312323056731009DD37F /* ResetSwipeState.swift in Sources */,
 				73097C0A231D40B100B71053 /* EditProfileExpandableCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
@@ -2868,6 +3039,7 @@
 				7312B09922D7422100DB0F36 /* ViewIndicator.swift in Sources */,
 				734C70C023214B8D00ED2E91 /* UserProfileRouter.swift in Sources */,
 				844C84F123508FA800BDC60F /* ParticipantCollectionViewCell.swift in Sources */,
+				8887A80D24BB174300B6CF45 /* SubscriptionLimitedOfferViewModel.swift in Sources */,
 				73E6011E22EC3A4000F767BF /* LoginRouter.swift in Sources */,
 				734C70B7232122D200ED2E91 /* ProfilePhotoViewModel.swift in Sources */,
 				73C96F1423409DFC002C3F8E /* ProfileSettingsViewController.swift in Sources */,
@@ -2876,7 +3048,9 @@
 				7353BDE422EC9857001D46A6 /* MainTabBarViewModel.swift in Sources */,
 				7379ED1E230D3E7F00E661A7 /* BuyCollection.swift in Sources */,
 				7390015122E1B8D000260198 /* SettingsStore.swift in Sources */,
+				88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
+				88648A8B24CB728A0062C7A5 /* ApphudManager.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
@@ -2907,6 +3081,7 @@
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				7384B0F82386E15A00869016 /* UIDismissSegue.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
+				8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */,
 				733CA05B23951D7000EF7922 /* FantasyCollectionViewController.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
@@ -2933,6 +3108,7 @@
 				739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */,
 				7361F33823351F64007B84B0 /* ConnectionRouter.swift in Sources */,
 				B783C63B2351BCB10017CE1A /* GradientLineView.swift in Sources */,
+				88F8DDB524BCFC6400900A6E /* StorageManger.swift in Sources */,
 				B7E59868242D156700C325D7 /* CopyableLabel.swift in Sources */,
 				7339BEE8239B9DED0073B883 /* BackendAnalytics.swift in Sources */,
 				73F80CD52361EC2D00212FCF /* AcceptRejectCell.swift in Sources */,
@@ -2948,6 +3124,7 @@
 				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				73432AD2238AC7DD008CF2F1 /* ChatHeaderCell.swift in Sources */,
+				88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */,
 				73FDD08D2399134900BA3E1D /* AuthorizationEvents.swift in Sources */,
 				844A3ED722EEA25300E06665 /* ErrorView.swift in Sources */,
 				7390015622E1E78B00260198 /* Dispatcher.swift in Sources */,
@@ -2955,6 +3132,7 @@
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */,
 				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
+				88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
 				84BE526E2367636C00FD362F /* FantasyDeckItemOverlayView.swift in Sources */,
 				736E2874242B49A300E08D4A /* MarkUserSignUp.swift in Sources */,
@@ -2970,6 +3148,7 @@
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
+				885EEF0824BA19A400BA187A /* RemoteConfigManager.swift in Sources */,
 				84888EEC22FB8BE200FE9A0A /* UITextField+TextVisibility.swift in Sources */,
 				B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */,
 				738A181723696FF300C54C8A /* FantasyCollectionDetailsViewController.swift in Sources */,
@@ -2982,6 +3161,7 @@
 				B7B152102398303100C4E749 /* UIImage+TabbarUtils.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
 				73EBBA5E234A1AEB00B79121 /* MyFantasiesSettingsViewModel.swift in Sources */,
+				8887A81124BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift in Sources */,
 				B7C24875236380A90097BD2A /* SearchLocationRestrictedViewController.swift in Sources */,
 				842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */,
 				B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */,
@@ -3005,6 +3185,7 @@
 				7310036422DDEFCD0057CC6A /* AppState.swift in Sources */,
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
+				8887A80F24BCE6BC00B6CF45 /* String.swift in Sources */,
 				B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */,
 				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
@@ -3022,6 +3203,7 @@
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
 				849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */,
 				B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */,
+				88DF09E2247EF15A0070C487 /* FlirtAccessViewModel.swift in Sources */,
 				84C1D0402327B95F00648DE1 /* SexualityGradientView.swift in Sources */,
 				73E13B70238BF56800CE1B06 /* WebSocketService.swift in Sources */,
 				B78BE6F82351D3A3003A36BA /* ForgotPasswordViewController.swift in Sources */,
@@ -3032,9 +3214,11 @@
 				B723A9F72385B93A00C72A7C /* ProfileSettingsHeaderView.swift in Sources */,
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
+				8887A81324BCFA3A00B6CF45 /* PerformManager.swift in Sources */,
 				B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */,
 				7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */,
 				B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */,
+				8887A80B24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift in Sources */,
 				733F41C02364AE88004EC466 /* MonetizationViewController.swift in Sources */,
 				84AB490F232A841F00F3609A /* CommonFantasiesViewModel.swift in Sources */,
 				739F7991230952A70045FCD7 /* FantasySearchRouter.swift in Sources */,
@@ -3053,6 +3237,7 @@
 				734C70BB23213D9200ED2E91 /* Collection+Safe.swift in Sources */,
 				734C70C123214B8D00ED2E91 /* UserProfileViewController.swift in Sources */,
 				B78BE6F92351D3A3003A36BA /* ForgotPasswordViewModel.swift in Sources */,
+				A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */,
 				73EBBA73234E23BE00B79121 /* NotificationSettings.swift in Sources */,
 				B719F9242389A625009AB110 /* MyFantasiesBlockedViewModel.swift in Sources */,
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
@@ -3120,6 +3305,24 @@
 			isa = PBXVariantGroup;
 			children = (
 				7312B0B422D7450B00DB0F36 /* en */,
+				882DD27F2469E8AE008D9626 /* en-GB */,
+				88DF09CD24731BC70070C487 /* de */,
+				88DF09CE24731BCF0070C487 /* fr */,
+				88DF09CF24731BE10070C487 /* nl */,
+				88DF09D024731BE90070C487 /* it */,
+				88DF09D124731BFD0070C487 /* es */,
+				88DF09D224731C550070C487 /* es-419 */,
+				88DF09D324731C680070C487 /* pt-PT */,
+				88DF09D424731C730070C487 /* pt-BR */,
+				88DF09D5247469D70070C487 /* ru */,
+				88DF09D6247C35D40070C487 /* zh-Hans */,
+				88DF09D7247C35DF0070C487 /* zh-Hant */,
+				88DF09D8247C35EE0070C487 /* ja */,
+				88DF09D9247C36320070C487 /* es-MX */,
+				88DF09DA247C36480070C487 /* da */,
+				88DF09DB247C36570070C487 /* sv */,
+				88DF09DC247C36680070C487 /* uk */,
+				88DF09DD247C36770070C487 /* pl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3131,6 +3334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3192,6 +3396,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3251,9 +3456,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3267,14 +3472,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.19;
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = FantasyAppDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -3288,7 +3494,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3301,13 +3507,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.19;
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Fantasy App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient";
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -3315,6 +3522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3376,7 +3584,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3390,14 +3598,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.19;
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
 				SWIFT_OBJC_BRIDGING_HEADER = "FantasyApp/support_files/FantasyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = AdHoc;
 		};
@@ -3415,6 +3624,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3437,6 +3647,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3459,6 +3670,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3471,9 +3683,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3482,9 +3694,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "FantasyApp Dev Rich Push";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3497,7 +3710,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3506,9 +3719,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "FantasyMatch Rich Push AppStore";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3521,7 +3735,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3530,9 +3744,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Fantasyapp AdHoc Rich Push";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

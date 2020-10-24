@@ -1,71 +1,108 @@
 PODS:
   - Alamofire (4.9.1)
-  - Amplitude-iOS (4.9.3)
-  - AppsFlyerFramework (5.2.0)
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - Branch (0.29.3):
-    - Branch/Core (= 0.29.3)
-  - Branch/Core (0.29.3)
-  - Crashlytics (3.14.0):
-    - Fabric (~> 1.10.2)
+  - Amplitude-iOS (4.10.0)
+  - ApphudSDK (0.18.5)
+  - Bolts/Tasks (1.9.1)
+  - Branch (0.35.1)
   - Differentiator (4.0.1)
-  - Fabric (1.10.2)
-  - FBSDKCoreKit (5.7.0):
-    - FBSDKCoreKit/Basics (= 5.7.0)
-    - FBSDKCoreKit/Core (= 5.7.0)
-  - FBSDKCoreKit/Basics (5.7.0)
-  - FBSDKCoreKit/Core (5.7.0):
+  - FBSDKCoreKit (8.0.0):
+    - FBSDKCoreKit/Basics (= 8.0.0)
+    - FBSDKCoreKit/Core (= 8.0.0)
+  - FBSDKCoreKit/Basics (8.0.0)
+  - FBSDKCoreKit/Core (8.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.7.0):
-    - FBSDKLoginKit/Login (= 5.7.0)
-  - FBSDKLoginKit/Login (5.7.0):
-    - FBSDKCoreKit (~> 5.0)
+  - FBSDKLoginKit (8.0.0):
+    - FBSDKLoginKit/Login (= 8.0.0)
+  - FBSDKLoginKit/Login (8.0.0):
+    - FBSDKCoreKit (~> 8.0.0)
+  - Firebase/CoreOnly (6.34.0):
+    - FirebaseCore (= 6.10.4)
+  - Firebase/Crashlytics (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.6.2)
+  - Firebase/RemoteConfig (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 4.9.1)
+  - FirebaseABTesting (4.2.0):
+    - FirebaseCore (~> 6.10)
+  - FirebaseCore (6.10.4):
+    - FirebaseCoreDiagnostics (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.7.0):
+    - GoogleDataTransport (~> 7.4)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+    - nanopb (~> 1.30906.0)
+  - FirebaseCrashlytics (4.6.2):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleDataTransport (~> 7.2)
+    - nanopb (~> 1.30906.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstallations (1.7.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - PromisesObjC (~> 1.2)
+  - FirebaseRemoteConfig (4.9.1):
+    - FirebaseABTesting (~> 4.2)
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+  - GoogleDataTransport (7.5.1):
+    - nanopb (~> 1.30906.0)
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
+    - GoogleUtilities/Environment
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/UserDefaults (6.7.2):
+    - GoogleUtilities/Logger
   - iCarousel (1.8.3)
-  - Kingfisher (5.10.1):
-    - Kingfisher/Core (= 5.10.1)
-  - Kingfisher/Core (5.10.1)
+  - Kingfisher (5.15.6):
+    - Kingfisher/Core (= 5.15.6)
+  - Kingfisher/Core (5.15.6)
   - KMPlaceholderTextView (1.4.0)
-  - Koloda (5.0):
+  - Koloda (5.0.1):
     - pop (~> 1.0)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
-  - Parse (1.17.3):
-    - Parse/Core (= 1.17.3)
-  - Parse/Core (1.17.3):
-    - Bolts/Tasks (~> 1.9)
-  - Parse/FacebookUtils (1.17.3):
-    - Bolts (~> 1.9)
-    - FBSDKLoginKit (~> 5.x)
-    - Parse/Core
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
+  - Parse (1.19.1):
+    - Parse/Core (= 1.19.1)
+  - Parse/Core (1.19.1):
+    - Bolts/Tasks (= 1.9.1)
   - pop (1.0.12)
-  - PryntTrimmerView (4.0.0)
+  - PromisesObjC (1.2.11)
+  - PryntTrimmerView (4.0.2)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
   - Result (4.1.0)
-  - RxCocoa (5.0.1):
+  - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxCoreLocation (1.4.1):
-    - RxCoreLocation/Core (= 1.4.1)
-  - RxCoreLocation/Core (1.4.1):
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
+  - RxCoreLocation (1.5.0):
+    - RxCoreLocation/Core (= 1.5.0)
+  - RxCoreLocation/Core (1.5.0):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
   - RxDataSources (4.0.1):
     - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
-  - RxRelay (5.0.1):
+  - RxRelay (5.1.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.1)
+  - RxSwift (5.1.1)
   - SlackTextViewController (1.9.6)
   - SmoothPicker (1.1.3):
     - SnapKit (~> 4.2.0)
@@ -73,35 +110,35 @@ PODS:
   - Socket.IO-Client-Swift (15.2.0):
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
-  - SteviaLayout (4.6.1)
-  - SwiftyStoreKit (0.15.0)
-  - YPImagePicker (4.1.2):
+  - SteviaLayout (4.7.3)
+  - SwiftyStoreKit (0.16.1)
+  - YPImagePicker (4.1.3):
     - PryntTrimmerView (~> 4.0.0)
-    - SteviaLayout (~> 4.6.0)
-  - ZendeskSDK (4.0.0):
-    - ZendeskSDK/Providers (= 4.0.0)
-    - ZendeskSDK/UI (= 4.0.0)
-  - ZendeskSDK/Core (4.0.0)
-  - ZendeskSDK/Providers (4.0.0):
+    - SteviaLayout (~> 4.7.3)
+  - ZendeskSDK (4.0.1):
+    - ZendeskSDK/Providers (= 4.0.1)
+    - ZendeskSDK/UI (= 4.0.1)
+  - ZendeskSDK/Core (4.0.1)
+  - ZendeskSDK/Providers (4.0.1):
     - ZendeskSDK/Core
-  - ZendeskSDK/UI (4.0.0):
+  - ZendeskSDK/UI (4.0.1):
     - ZendeskSDK/Core
     - ZendeskSDK/Providers
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
-  - AppsFlyerFramework
-  - Branch (~> 0.29.3)
-  - Crashlytics (~> 3.13)
-  - FBSDKCoreKit (= 5.7.0)
-  - FBSDKLoginKit (= 5.7.0)
+  - ApphudSDK
+  - Branch
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - Firebase/Crashlytics
+  - Firebase/RemoteConfig
   - iCarousel (~> 1.8)
   - Kingfisher (~> 5.8)
   - KMPlaceholderTextView
   - Koloda (~> 5.0)
   - Moya (= 13.0.1)
-  - Parse (= 1.17.3)
-  - Parse/FacebookUtils (= 1.17.3)
+  - Parse
   - R.swift (= 5.0.3)
   - RxCocoa (~> 5.0)
   - RxCoreLocation (~> 1.4)
@@ -118,21 +155,30 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Amplitude-iOS
-    - AppsFlyerFramework
+    - ApphudSDK
     - Bolts
     - Branch
-    - Crashlytics
     - Differentiator
-    - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
+    - FirebaseInstallations
+    - FirebaseRemoteConfig
+    - GoogleDataTransport
+    - GoogleUtilities
     - iCarousel
     - Kingfisher
     - KMPlaceholderTextView
     - Koloda
     - Moya
+    - nanopb
     - Parse
     - pop
+    - PromisesObjC
     - PryntTrimmerView
     - R.swift
     - R.swift.Library
@@ -154,41 +200,50 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Amplitude-iOS: 122e026c44db8460e5efcf84859aa290a0ae9786
-  AppsFlyerFramework: 9b2a932d826a278413dab7d59ffbe104a972132b
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Branch: 9d40910c3d7f8516376fd166cb73a31cc7f73fcf
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
+  ApphudSDK: 448bb69007715ffc9fbde3be4a9e2a0ccf1971ee
+  Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  Branch: 43863eab4c2339a58fa552f2f277139c3839dfb4
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: 0d2d450fe9447e204fa6e912e0df76dd36693699
-  FBSDKLoginKit: 4127e8260b96e0e4cc8ba0c10c95ee63941aa24a
+  FBSDKCoreKit: 9d27fe97a2fa2abe5eeefea8240e837623ab88e0
+  FBSDKLoginKit: 2cbaf5405379731b22f2ebc224f7c30f62378171
+  Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
+  FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
+  FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
+  FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
+  FirebaseCrashlytics: 1a747c9cc084a24dc6d9511c991db1cd078154eb
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FirebaseRemoteConfig: 35a729305f254fb15a2e541d4b36f3a379da7fdc
+  GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: eb36b7dfcc78d60877051c92c119a2865972961a
+  Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
-  Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
+  Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
-  Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
-  PryntTrimmerView: 67e67573ffd4c073f1308effa66aefd0cfa667a0
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
-  RxCoreLocation: 85e9a3310c22619404dcbf91258d29c44429eea8
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxCoreLocation: 4789d980742b21c087062387f6758b456221fb2f
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
-  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
-  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
   SmoothPicker: a3f4b3c3a95fff73f20d526856aeff2c32696375
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
-  SteviaLayout: 0c83442390c8a369c21f975ffbd812d11532645b
-  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
-  YPImagePicker: bdaa46782668e260fdd9709f19043a9f469fd2ad
-  ZendeskSDK: 99679d8420a6d862773e2ddef0ebcc51b282317d
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
+  YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
+  ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: 7861eea339ae405396567af54b0bc197e02baa14
+PODFILE CHECKSUM: 054962b32f7974ffddde94194c0067c954a6c56f
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0

@@ -16,6 +16,8 @@ extension FantasyListViewModel {
 
     var dataSource: Driver<[AnimatableSectionModel<String, CardType>]> {
         
+        let hideUnread = self.hideUnread
+        
         return Driver.combineLatest(
             protectPolicy,
             provider,
@@ -37,7 +39,7 @@ extension FantasyListViewModel {
                     
                     return .fantasy(ProtectedEntity(entity: card,
                                              isProtected: isSubscribed),
-                             liked || disliked
+                             hideUnread || (liked || disliked)
                     )
             })
                 
@@ -93,6 +95,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
     fileprivate let provider: Driver<[Fantasy.Card]>
     fileprivate let protectPolicy: Driver<Bool>
     fileprivate let detailsProvider: (Fantasy.Card) -> FantasyDetailProvider
+    fileprivate let hideUnread: Bool
     
     let titleProvider: FantasyListTitleProvider
     
@@ -102,13 +105,15 @@ struct FantasyListViewModel : MVVM_ViewModel {
          cardsProvider: Driver<[Fantasy.Card]>,
          detailsProvider: @escaping (Fantasy.Card) -> FantasyDetailProvider,
          titleProvider: @escaping FantasyListTitleProvider = FantasyListViewModel.countTitleProvider,
-         protectPolicy: Driver<Bool> = .just(false)) {
+         protectPolicy: Driver<Bool> = .just(false),
+         hideUnread: Bool = false) {
         self.router = router
         self.provider = cardsProvider
         self.detailsProvider = detailsProvider
         self.protectPolicy = protectPolicy
         self.titleProvider = titleProvider
-
+        self.hideUnread = hideUnread
+        
         /////progress indicator
         
         indicator.asDriver()
@@ -127,7 +132,7 @@ struct FantasyListViewModel : MVVM_ViewModel {
             
             let text: String
             if count == 0 {
-                text = "Swipe to see\nnew Fantasies!"
+                text = R.string.localizable.fantasyListSwipeToSee()
             }
             else if count == 1 {
                 text = "1 " + R.string.localizable.fantasyDeckCardsCountOne()

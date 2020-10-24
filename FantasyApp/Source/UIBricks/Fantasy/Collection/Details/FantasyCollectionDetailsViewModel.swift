@@ -18,12 +18,15 @@ import RxDataSources
 extension FantasyCollectionDetailsViewModel {
     
     var price: Driver<String> {
-
-        return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
-            .map { $0.first! }
-            .map { "\($0.localizedPrice)" }
-            .asDriver(onErrorJustReturn: "error")
-            
+        if RemoteConfigManager.showPriceInDeck {
+            return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
+                .map { $0.first! }
+                .map { "\($0.localizedPrice)" }
+                .asDriver(onErrorJustReturn: "error")
+        } else {
+            return Observable.just(R.string.localizable.paymentGet())
+                .asDriver(onErrorJustReturn: "")
+        }
     }
     
     ///if collection is not purchased, there only will be a single card inside
@@ -41,7 +44,7 @@ extension FantasyCollectionDetailsViewModel {
     }
     
     var dataSource: Driver<[SectionModel<String, Model>]> {
-     
+        
         let x = collection
         
         var result: [SectionModel<String, Model>] = [
@@ -54,22 +57,22 @@ extension FantasyCollectionDetailsViewModel {
                                 items: [.expandable(title: t.title, description: t.description)]))
         }
         
-        if let t = x.details {
+        if x.details.count > 0 {
             result.append(.init(model: "Details",
-                                items: [.expandable(title: "Details", description: t)]))
+                                items: [.expandable(title: R.string.localizable.fantasyCollectionDetails(), description: x.details)]))
         }
         
         result.append(.init(model: "What's inside",
                             items: [.whatsInside]))
         
-        if let t = x.highlights {
+        if x.highlights.count > 0 {
             result.append(.init(model: "Highlights",
-                                items: [.expandable(title: "Highlights", description: t)]))
+                                items: [.expandable(title: R.string.localizable.fantasyCollectionHighlights(), description: x.highlights)]))
         }
         
-        if let t = x.loveThis {
+        if x.loveThis.count > 0 {
             result.append(.init(model: "LoveThis",
-                                items: [.expandable(title: "You'll Love This Collection", description: t)]))
+                                items: [.expandable(title: R.string.localizable.fantasyCollectionYouWillLove(), description: x.loveThis)]))
         }
         
         if let t = x.author {
@@ -132,28 +135,48 @@ struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     var expanded: [String: Bool] = [:]
     
+    private func openOfferIfNeeded(for offerType: DeckLimitedOfferViewModel.OfferType) {
+        let decksOffer = offerType == .special ? RemoteConfigManager.specialDecksOffer : RemoteConfigManager.priceDecksOffer
+        
+        guard let deckOffer = decksOffer.first(where: { $0.id == collection.id }), collectionPurchased == false else {
+            return
+        }
+        let offers = deckOffer.deckOffers.filter { $0.isEnabled }
+        
+        offers.forEach { offer in
+            PerformManager.perform(rule: .on(offer.triggerCount), event: .customName(offer.name.replacingOccurrences(of: " ", with: ""))) {
+                self.router.presentDeckLimitedOffer(
+                    offerType: offerType,
+                    collection: collection,
+                    deckOffer: offer,
+                    completion: {
+                        self.reloadTrigger.onNext( () )
+                }
+                )
+            }
+        }
+    }
 }
 
 extension FantasyCollectionDetailsViewModel {
     
     func buy() {
-        
         if collectionPurchased {
             router.showCollection(collection: collection)
             return;
         }
         
-        PurchaseManager.purhcase(collection: collection)
+        PurchaseManager.purhcaseCollection(with: collection.productId)
             .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [weak o = router.owner] in
+            .subscribe(onNext: { [weak o = router.owner] _ in
                 Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
                 
                 self.reloadTrigger.onNext( () )
-                
+                }, onError: { [weak o = router.owner] error in
+                    self.openOfferIfNeeded(for: .promo)
+                    o?.present(error: error)
             })
             .disposed(by: bag)
-        
     }
     
     mutating func share() {
@@ -162,21 +185,24 @@ extension FantasyCollectionDetailsViewModel {
     
     mutating func viewAppeared() {
         timeSpentCounter.start()
+        openOfferIfNeeded(for: .special)
     }
     
     mutating func viewWillDisappear() {
-        
-        Analytics.report(Analytics.Event.CollectionViewed(collection: collection,
-                                                          context: context,
-                                                          spentTime: timeSpentCounter.finish()))
-        
+        Analytics.report(
+            Analytics.Event.CollectionViewed(
+                collection: collection,
+                context: context,
+                spentTime: timeSpentCounter.finish()
+            )
+        )
     }
     
     func openAuthorFB() {
         
         guard let src = collection.author?.srcFb,
             let url = URL(string: src) else {
-            return
+                return
         }
         
         router.showSafari(for: url)
@@ -187,7 +213,7 @@ extension FantasyCollectionDetailsViewModel {
         
         guard let src = collection.author?.srcInstagram,
             let url = URL(string: src) else {
-            return
+                return
         }
         
         router.showSafari(for: url)
@@ -197,7 +223,7 @@ extension FantasyCollectionDetailsViewModel {
         
         guard let src = collection.author?.srcWeb,
             let url = URL(string: src) else {
-            return
+                return
         }
         
         router.showSafari(for: url)

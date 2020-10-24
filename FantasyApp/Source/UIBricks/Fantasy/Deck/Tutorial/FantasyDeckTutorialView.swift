@@ -12,7 +12,29 @@ class FantasyDeckTutorialView: UIView {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: UIButton! {
+        didSet {
+            button.setTitle(R.string.localizable.fantasyDeckTutorialNext(), for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var firstTextLabel: UILabel! {
+        didSet {
+            firstTextLabel.text = R.string.localizable.fantasyDeckTutorialFirstText()
+        }
+    }
+    
+    @IBOutlet weak var secondTextLabel: UILabel! {
+        didSet {
+            secondTextLabel.text = R.string.localizable.fantasyDeckTutorialSecondText()
+        }
+    }
+    
+    @IBOutlet weak var thirdTextLabel: UILabel! {
+        didSet {
+            thirdTextLabel.text = R.string.localizable.fantasyDeckTutorialThirdText()
+        }
+    }
 
     private var page: Int = 0
 
@@ -60,6 +82,6 @@ extension FantasyDeckTutorialView {
 
         guard  page == 2 else { return }
 
-        button.setTitle("Got It", for: .normal)
+        button.setTitle(R.string.localizable.fantasyDeckTutorialGotIt(), for: .normal)
     }
 }

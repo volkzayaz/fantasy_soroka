@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -111,6 +111,9 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="userProfile.secretPhotosInfo"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
@@ -182,8 +185,9 @@
                                                     <color key="textColor" name="textLightGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKa-2b-A7R">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKa-2b-A7R">
                                                     <rect key="frame" x="0.0" y="30.5" width="414" height="17.5"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                     <color key="textColor" name="textLightGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -192,6 +196,7 @@
                                         </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="wCw-N5-a8e" firstAttribute="top" secondItem="WK0-fc-EFx" secondAttribute="top" id="3Sq-y3-c3t"/>
                                         <constraint firstAttribute="trailing" secondItem="wCw-N5-a8e" secondAttribute="trailing" id="XrP-cy-ER7"/>
@@ -201,6 +206,7 @@
                                     <connections>
                                         <outlet property="dateLabel" destination="ugM-oh-2x7" id="dyA-WJ-PLi"/>
                                         <outlet property="userIDLabel" destination="eKa-2b-A7R" id="xN8-NF-q5T"/>
+                                        <outletCollection property="gestureRecognizers" destination="uIf-cF-JE7" appends="YES" id="LLj-XP-QUS"/>
                                     </connections>
                                 </view>
                                 <prototypes>
@@ -299,6 +305,9 @@
                                                     <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                                     <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="userProfile.decks"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zVG-Ve-jfi">
                                                     <rect key="frame" x="0.0" y="30" width="374" height="232"/>
@@ -400,7 +409,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50A-mP-roc">
-                                <rect key="frame" x="0.0" y="777" width="414" height="85"/>
+                                <rect key="frame" x="0.0" y="811" width="414" height="85"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LFH-sl-KCb">
                                         <rect key="frame" x="105" y="27.5" width="204" height="30"/>
@@ -445,7 +454,6 @@
                             <constraint firstItem="H4V-fG-Dng" firstAttribute="trailing" secondItem="UeB-Iu-akN" secondAttribute="trailing" id="DTq-jP-RiT"/>
                             <constraint firstItem="UeB-Iu-akN" firstAttribute="trailing" secondItem="50A-mP-roc" secondAttribute="trailing" id="HnB-Vg-Dke"/>
                             <constraint firstItem="Iac-9R-aVX" firstAttribute="top" secondItem="dhp-7F-cz4" secondAttribute="bottom" constant="8" id="JDr-cQ-vyY"/>
-                            <constraint firstItem="50A-mP-roc" firstAttribute="bottom" secondItem="UeB-Iu-akN" secondAttribute="bottom" id="Jh6-MO-ipk"/>
                             <constraint firstAttribute="bottom" secondItem="H4V-fG-Dng" secondAttribute="bottom" id="Jjq-cX-QvL"/>
                             <constraint firstItem="UeB-Iu-akN" firstAttribute="trailing" secondItem="Iac-9R-aVX" secondAttribute="trailing" constant="12" id="OCF-2b-Obq"/>
                             <constraint firstItem="dhp-7F-cz4" firstAttribute="trailing" secondItem="UeB-Iu-akN" secondAttribute="trailing" constant="-10" id="Q7r-LF-Ztj"/>
@@ -456,6 +464,7 @@
                             <constraint firstItem="dYs-os-IoS" firstAttribute="leading" secondItem="UeB-Iu-akN" secondAttribute="leading" constant="12" id="fpI-zZ-2Kb"/>
                             <constraint firstItem="dYs-os-IoS" firstAttribute="top" secondItem="dhp-7F-cz4" secondAttribute="bottom" constant="8" id="hG6-d0-i9G"/>
                             <constraint firstItem="H4V-fG-Dng" firstAttribute="leading" secondItem="UeB-Iu-akN" secondAttribute="leading" id="hgN-7p-N17"/>
+                            <constraint firstAttribute="bottom" secondItem="50A-mP-roc" secondAttribute="bottom" id="lJF-zL-H6w"/>
                             <constraint firstItem="dhp-7F-cz4" firstAttribute="top" secondItem="tI9-OA-nau" secondAttribute="bottom" constant="8" id="q7A-mj-edB"/>
                             <constraint firstItem="H4V-fG-Dng" firstAttribute="top" secondItem="UeB-Iu-akN" secondAttribute="top" priority="999" id="slR-YO-rP0"/>
                             <constraint firstItem="rrs-r4-IZO" firstAttribute="top" secondItem="Hys-hZ-EQL" secondAttribute="top" id="sp4-p4-bej"/>
@@ -477,6 +486,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKK-n0-TcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="uIf-cF-JE7">
+                    <connections>
+                        <action selector="copyUserID:" destination="WK0-fc-EFx" id="sGY-9z-BPV"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1189.8550724637682" y="110.49107142857143"/>
         </scene>
@@ -508,12 +522,27 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search for Fantasy Match" id="cg0-BV-Umz"/>
                     <connections>
+                        <outlet property="activateButton" destination="MDE-oa-WkS" id="5XP-tZ-etJ"/>
+                        <outlet property="activateView" destination="gz9-uW-Ulp" id="2A7-pi-eqp"/>
+                        <outlet property="allowGeoButton" destination="STk-sG-XFG" id="e6Y-ZM-Iae"/>
+                        <outlet property="allowGeoDescriptionLabel" destination="4Mg-cK-nn2" id="yGg-yf-hhX"/>
+                        <outlet property="allowGeoLabel" destination="TKk-Wd-Rdv" id="TsY-Ke-8ca"/>
                         <outlet property="allowGeolocationView" destination="Zsa-53-sF4" id="maa-yi-0I8"/>
+                        <outlet property="checkActivateButton" destination="j9L-uL-6K5" id="AhF-PZ-ntR"/>
                         <outlet property="cityNotActiveView" destination="OD3-RV-LXg" id="8KR-Fo-f1e"/>
+                        <outlet property="dontAllowGeoButton" destination="yhS-9e-RJJ" id="Pu8-Se-V9E"/>
                         <outlet property="goToSettingsView" destination="FH2-xN-97a" id="LSb-jE-aSi"/>
+                        <outlet property="inviteButton" destination="tfk-hA-yJP" id="CAP-Nb-Dej"/>
+                        <outlet property="joinButton" destination="eLn-CN-7r9" id="4Dx-Mm-Apw"/>
+                        <outlet property="noFilterDescriptionLabel" destination="D4h-iy-14o" id="v7N-UD-a0b"/>
+                        <outlet property="noFilterTitleLabel" destination="bgW-SP-S2b" id="JTL-ZR-32l"/>
                         <outlet property="noFilterView" destination="TYG-Zf-Hsb" id="9qf-Ph-JVZ"/>
                         <outlet property="notActiveCityNameLabel" destination="ahz-f2-kFB" id="8Ou-1n-Znb"/>
                         <outlet property="profilesCarousel" destination="0Se-hg-s60" id="eVP-0o-vtQ"/>
+                        <outlet property="searchLocationDescriptionLabel" destination="nJc-ok-4TX" id="Rs2-io-92y"/>
+                        <outlet property="searchLocationTitleLabel" destination="aBF-tc-KZG" id="0Vg-5L-yog"/>
+                        <outlet property="settingsButton" destination="nmL-Oy-unW" id="7Nw-g6-XBz"/>
+                        <outlet property="usersLabel" destination="Q9h-Sx-NtX" id="gcd-uv-qJ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmj-hS-riL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,8 +556,8 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFiltersOnboardingImage" translatesAutoresizingMaskIntoConstraints="NO" id="U19-mA-Ylg">
                                     <rect key="frame" x="-12" y="40" width="440" height="600"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
-                                    <rect key="frame" x="154.5" y="352" width="107" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
+                                    <rect key="frame" x="142.5" y="352" width="131" height="22"/>
                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                     <color key="textColor" name="textBlackColor"/>
                                     <nil key="highlightedColor"/>
@@ -547,9 +576,12 @@ to search for.</string>
                                         <constraint firstAttribute="height" constant="52" id="IZF-hA-1p5"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
-                                    <state key="normal" title="Filter">
+                                    <state key="normal" title="Options">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="fantasy.users.filter"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="filtersClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="ZAF-W7-MDr"/>
                                     </connections>
@@ -579,6 +611,88 @@ to search for.</string>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="XPq-QD-zDz"/>
                 </view>
+                <view contentMode="scaleToFill" id="gz9-uW-Ulp">
+                    <rect key="frame" x="0.0" y="0.0" width="416" height="736"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uxj-pE-3uQ">
+                            <rect key="frame" x="0.0" y="102.5" width="416" height="531"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchActivateImage" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-1h-GUS">
+                                    <rect key="frame" x="-7" y="40" width="430" height="330"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Flirt Access" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-6C-Ru1">
+                                    <rect key="frame" x="161" y="352" width="94" height="22"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="18"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.title"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I agree that my profile will be visible and can be found by other community members" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LlD-p0-sRX">
+                                    <rect key="frame" x="61.5" y="381" width="333" height="36"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                    <color key="textColor" name="textBlackColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.agreeText"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDE-oa-WkS" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="459" width="296" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="52" id="y9f-N8-Nhz"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                    <state key="normal" title="Activate">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.activate"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="activateClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="Mz9-jd-Crd"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9L-uL-6K5" customClass="TickButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="15.5" y="387" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="46" id="Udv-4g-xKH"/>
+                                        <constraint firstAttribute="width" constant="46" id="tYJ-CX-Liw"/>
+                                    </constraints>
+                                    <color key="tintColor" name="bgGradient1"/>
+                                    <connections>
+                                        <action selector="activateTickClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="aYc-2C-SYD"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="MDE-oa-WkS" firstAttribute="leading" secondItem="Uxj-pE-3uQ" secondAttribute="leading" constant="60" id="3gc-2j-OEb"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="top" secondItem="Y3U-6C-Ru1" secondAttribute="bottom" constant="8" id="5Tr-Mc-7u4"/>
+                                <constraint firstItem="2FJ-1h-GUS" firstAttribute="top" secondItem="Uxj-pE-3uQ" secondAttribute="top" constant="40" id="A3S-Qm-hBI"/>
+                                <constraint firstAttribute="trailing" secondItem="MDE-oa-WkS" secondAttribute="trailing" constant="60" id="FzV-o9-R5v"/>
+                                <constraint firstItem="2FJ-1h-GUS" firstAttribute="centerX" secondItem="Uxj-pE-3uQ" secondAttribute="centerX" id="IcJ-6Y-WAG"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="centerX" secondItem="Y3U-6C-Ru1" secondAttribute="centerX" constant="20" id="WXC-Gn-Eqq"/>
+                                <constraint firstItem="Y3U-6C-Ru1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2FJ-1h-GUS" secondAttribute="bottom" priority="999" constant="70" id="X2U-yc-Mr1"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="leading" secondItem="j9L-uL-6K5" secondAttribute="trailing" id="brb-52-nCN"/>
+                                <constraint firstAttribute="bottom" secondItem="MDE-oa-WkS" secondAttribute="bottom" constant="20" id="dfc-FR-Szk"/>
+                                <constraint firstItem="MDE-oa-WkS" firstAttribute="top" secondItem="LlD-p0-sRX" secondAttribute="bottom" constant="42" id="dle-ih-oM9"/>
+                                <constraint firstItem="LlD-p0-sRX" firstAttribute="width" secondItem="Uxj-pE-3uQ" secondAttribute="width" multiplier="0.8" id="mVy-no-mXU"/>
+                                <constraint firstItem="Y3U-6C-Ru1" firstAttribute="centerX" secondItem="Uxj-pE-3uQ" secondAttribute="centerX" id="twZ-Zy-eZF"/>
+                                <constraint firstItem="j9L-uL-6K5" firstAttribute="top" secondItem="LlD-p0-sRX" secondAttribute="top" constant="-13" id="z4T-oS-MD3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Uxj-pE-3uQ" firstAttribute="leading" secondItem="mW8-T8-omy" secondAttribute="leading" id="7s9-OQ-mFH"/>
+                        <constraint firstItem="mW8-T8-omy" firstAttribute="trailing" secondItem="Uxj-pE-3uQ" secondAttribute="trailing" id="Lfb-6r-Puk"/>
+                        <constraint firstItem="Uxj-pE-3uQ" firstAttribute="centerY" secondItem="gz9-uW-Ulp" secondAttribute="centerY" id="eOu-gk-wik"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="mW8-T8-omy"/>
+                </view>
                 <view contentMode="scaleToFill" id="Zsa-53-sF4">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -604,13 +718,13 @@ to search for.</string>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knowing your location helps us locate people around you. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mg-cK-nn2">
-                            <rect key="frame" x="55" y="328.5" width="262" height="35"/>
+                            <rect key="frame" x="16" y="328.5" width="340" height="35"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                             <color key="textColor" name="textBlackColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Geolocation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKk-Wd-Rdv">
-                            <rect key="frame" x="55" y="299.5" width="262" height="21"/>
+                            <rect key="frame" x="16" y="299.5" width="340" height="21"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                             <color key="textColor" name="textBlackColor"/>
                             <nil key="highlightedColor"/>
@@ -625,13 +739,13 @@ to search for.</string>
                         <constraint firstItem="TKk-Wd-Rdv" firstAttribute="centerY" secondItem="Zsa-53-sF4" secondAttribute="centerY" constant="50" id="Ytg-ty-j9s"/>
                         <constraint firstItem="4Mg-cK-nn2" firstAttribute="top" secondItem="TKk-Wd-Rdv" secondAttribute="bottom" constant="8" id="aMa-IK-bHH"/>
                         <constraint firstItem="V4y-09-1ii" firstAttribute="trailing" secondItem="STk-sG-XFG" secondAttribute="trailing" constant="26" id="ajY-SQ-ch1"/>
-                        <constraint firstItem="V4y-09-1ii" firstAttribute="trailing" secondItem="TKk-Wd-Rdv" secondAttribute="trailing" constant="55" id="eZG-gB-UWR"/>
+                        <constraint firstItem="V4y-09-1ii" firstAttribute="trailing" secondItem="TKk-Wd-Rdv" secondAttribute="trailing" constant="16" id="eZG-gB-UWR"/>
                         <constraint firstItem="STk-sG-XFG" firstAttribute="leading" secondItem="yhS-9e-RJJ" secondAttribute="trailing" constant="13" id="ebs-eG-pe0"/>
                         <constraint firstItem="VXd-xQ-K8q" firstAttribute="centerY" secondItem="Zsa-53-sF4" secondAttribute="centerY" constant="-100" id="ir8-Yd-zc5"/>
                         <constraint firstItem="STk-sG-XFG" firstAttribute="bottom" secondItem="yhS-9e-RJJ" secondAttribute="bottom" id="mHd-3f-wPQ"/>
                         <constraint firstItem="yhS-9e-RJJ" firstAttribute="leading" secondItem="V4y-09-1ii" secondAttribute="leading" constant="26" id="ox2-vm-Yrj"/>
                         <constraint firstItem="4Mg-cK-nn2" firstAttribute="leading" secondItem="TKk-Wd-Rdv" secondAttribute="leading" id="tMi-eE-XDR"/>
-                        <constraint firstItem="TKk-Wd-Rdv" firstAttribute="leading" secondItem="V4y-09-1ii" secondAttribute="leading" constant="55" id="uXX-rD-WrC"/>
+                        <constraint firstItem="TKk-Wd-Rdv" firstAttribute="leading" secondItem="V4y-09-1ii" secondAttribute="leading" constant="16" id="uXX-rD-WrC"/>
                         <constraint firstItem="V4y-09-1ii" firstAttribute="bottom" secondItem="yhS-9e-RJJ" secondAttribute="bottom" constant="20" id="vBb-9R-Klc"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="V4y-09-1ii"/>
@@ -891,6 +1005,9 @@ activated when it reaches</string>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                             <color key="textColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.teleportToActiveCity"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="748" image="roomUpgrade" translatesAutoresizingMaskIntoConstraints="NO" id="8fX-nN-LBr">
                             <rect key="frame" x="168.5" y="80" width="208.5" height="60"/>
@@ -1028,6 +1145,9 @@ activated when it reaches</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.68627450980392157" green="0.70588235294117641" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="notifications.pending"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="VtI-d3-XDd">
                                                             <rect key="frame" x="237" y="35" width="82" height="36"/>
@@ -1191,6 +1311,11 @@ activated when it reaches</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Eu-Mx-zij"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="7g9-SU-GnN" id="Jb2-Wn-KUH"/>
+                        <outlet property="settingsButton" destination="2sG-MT-qDj" id="QWr-Ub-a52"/>
+                        <outlet property="titleLabel" destination="gjX-KK-SsL" id="EQs-tu-16P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xST-Oe-7Gr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1208,44 +1333,50 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="627.5"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="629"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="86.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="87"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-fj-wTM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.location"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-Cd-I9r" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="42.5" width="382" height="44"/>
+                                                        <rect key="frame" x="0.0" y="43" width="382" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-ZW-YUQ">
-                                                                <rect key="frame" x="16" y="11" width="72" height="22"/>
+                                                                <rect key="frame" x="16" y="11" width="76.5" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="BOR-Mo-7dm"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.activeCity"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityCheckImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-J4-MI5">
-                                                                <rect key="frame" x="267.5" y="16" width="12" height="12"/>
+                                                                <rect key="frame" x="275.5" y="16" width="12" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="12" id="eEl-Ey-JRP"/>
                                                                     <constraint firstAttribute="width" secondItem="iLt-J4-MI5" secondAttribute="height" multiplier="1:1" id="zwz-mJ-FHC"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NS-4E-Ebr">
-                                                                <rect key="frame" x="293.5" y="13.5" width="47.5" height="17.5"/>
+                                                                <rect key="frame" x="301.5" y="13" width="49.5" height="18"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                 <color key="textColor" name="textPinkColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellAccessoryImage" translatesAutoresizingMaskIntoConstraints="NO" id="bXt-su-CJ0">
-                                                                <rect key="frame" x="346" y="0.0" width="20" height="44"/>
+                                                                <rect key="frame" x="356" y="0.0" width="10" height="44"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1270,19 +1401,22 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-1k-Qk9">
-                                                <rect key="frame" x="0.0" y="110.5" width="382" height="289.5"/>
+                                                <rect key="frame" x="0.0" y="111" width="382" height="290"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-W8-g6m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="164.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="165"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8z-qv-z4e">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.partner"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHi-3I-88t" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="41.5" width="382" height="123"/>
+                                                                <rect key="frame" x="0.0" y="42" width="382" height="123"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Rug-h3-Yph">
                                                                         <rect key="frame" x="16" y="16" width="366" height="49"/>
@@ -1292,12 +1426,18 @@ activated when it reaches</string>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.sex"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whom are you looking for?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORT-OA-Vdr">
                                                                                 <rect key="frame" x="0.0" y="27.5" width="366" height="21.5"/>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textLightGrayColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.lookingFor"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
@@ -1356,7 +1496,7 @@ activated when it reaches</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="U7d-3r-Pig">
-                                                        <rect key="frame" x="0.0" y="176.5" width="382" height="113"/>
+                                                        <rect key="frame" x="0.0" y="177" width="382" height="113"/>
                                                         <subviews>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3Y-JS-oLB" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="123"/>
@@ -1369,12 +1509,18 @@ activated when it reaches</string>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textBlackColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.sexuality"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Would You Describe Your Partner?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhN-hh-T71">
                                                                                 <rect key="frame" x="0.0" y="27.5" width="366" height="21.5"/>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                                 <color key="textColor" name="textLightGrayColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.describePartner"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
@@ -1442,6 +1588,9 @@ activated when it reaches</string>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.age"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mdk-zv-GGl" customClass="MultiSlider" customModule="FantasyApp" customModuleProvider="target">
                                                                         <rect key="frame" x="16" y="45" width="350" height="57"/>
@@ -1464,19 +1613,25 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyJ-oa-jxg" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="424" width="382" height="44"/>
+                                                <rect key="frame" x="0.0" y="425" width="382" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-Ul-yCK">
-                                                        <rect key="frame" x="16" y="11" width="48.5" height="22"/>
+                                                        <rect key="frame" x="16" y="11" width="50" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="lx7-gv-8iE"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.couple"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yxx-aQ-Txl">
                                                         <rect key="frame" x="317" y="6.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="coupleSwitch:" destination="iyx-6x-4MS" eventType="valueChanged" id="tgx-aw-AeB"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1490,28 +1645,34 @@ activated when it reaches</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-Jj-sjy">
-                                                <rect key="frame" x="0.0" y="492" width="382" height="135.5"/>
+                                                <rect key="frame" x="0.0" y="493" width="382" height="136"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6er-11-nia">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="135.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="136"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0I-xQ-K38">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.secondPartner"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3R-VX-lKE" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="39.5" width="382" height="96"/>
+                                                                <rect key="frame" x="0.0" y="40" width="382" height="96"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-kD-la2">
-                                                                        <rect key="frame" x="16" y="11" width="350" height="17.5"/>
+                                                                        <rect key="frame" x="16" y="11" width="350" height="18"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.sex"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egU-Il-qSz" customClass="SmoothPickerView" customModule="SmoothPicker">
-                                                                        <rect key="frame" x="0.0" y="38.5" width="382" height="46.5"/>
+                                                                        <rect key="frame" x="0.0" y="39" width="382" height="46"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <connections>
                                                                             <outlet property="dataSource" destination="iyx-6x-4MS" id="BdF-tS-vAT"/>
@@ -1519,7 +1680,7 @@ activated when it reaches</string>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2J-iQ-ozP" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="38.5" width="80" height="46.5"/>
+                                                                        <rect key="frame" x="0.0" y="39" width="80" height="46"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="Zuw-Op-aaU"/>
@@ -1531,7 +1692,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tY-Ad-NRt" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="302" y="38.5" width="80" height="46.5"/>
+                                                                        <rect key="frame" x="302" y="39" width="80" height="46"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="direction">
@@ -1582,6 +1743,9 @@ activated when it reaches</string>
                                     <constraint firstAttribute="height" constant="52" id="It4-QZ-koC"/>
                                 </constraints>
                                 <state key="normal" title="Search"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.searchButton"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="apply:" destination="iyx-6x-4MS" eventType="touchUpInside" id="5qq-Li-Jf0"/>
                                 </connections>
@@ -1599,10 +1763,15 @@ activated when it reaches</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y43-0j-N8t"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Filter" id="96O-VU-leN"/>
+                    <navigationItem key="navigationItem" title="Search Options" id="96O-VU-leN">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.searchOptions"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="950"/>
                     <connections>
                         <outlet property="activeCityImageView" destination="iLt-J4-MI5" id="Feo-sl-7em"/>
+                        <outlet property="ageLabel" destination="Ejk-h8-EkV" id="PgO-up-UuG"/>
                         <outlet property="ageSlider" destination="Mdk-zv-GGl" id="bH9-aX-BCW"/>
                         <outlet property="cityLabel" destination="9NS-4E-Ebr" id="ykV-vp-kcs"/>
                         <outlet property="citySectionView" destination="BIM-HY-Gw2" id="lkG-i8-c1M"/>
@@ -1704,6 +1873,8 @@ We've implemented a lot of new and exciting features</string>
                     <connections>
                         <outlet property="buyButton" destination="dP9-pO-HKE" id="p7L-zJ-UPg"/>
                         <outlet property="daView" destination="q4r-zU-MIQ" id="LoB-px-1Eo"/>
+                        <outlet property="descriptionLabel" destination="bsr-Lb-gfZ" id="S3s-E3-a2M"/>
+                        <outlet property="titleLabel" destination="AfI-9C-UpQ" id="ebS-Qw-5kj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyn-I0-ezO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1729,12 +1900,16 @@ We've implemented a lot of new and exciting features</string>
         <image name="requestMessage" width="40" height="40"/>
         <image name="requestSticker" width="40" height="40"/>
         <image name="roomUpgrade" width="101" height="30"/>
+        <image name="searchActivateImage" width="215" height="165"/>
         <image name="searchEnableLocationPlanetImage" width="220" height="300"/>
         <image name="searchEnableLocationToSettings" width="220" height="300"/>
         <image name="searchFantasyLogo" width="80" height="80"/>
         <image name="searchFiltersOnboardingImage" width="220" height="300"/>
         <image name="secret" width="80" height="80"/>
         <image name="stub" width="476" height="462"/>
+        <namedColor name="bgGradient1">
+            <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textBlackColor">
             <color red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

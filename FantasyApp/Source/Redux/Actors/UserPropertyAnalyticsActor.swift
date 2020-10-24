@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 import Amplitude_iOS
-import Crashlytics
 import Branch
 
 var _AnalyticsHackyTown: String? = nil
@@ -32,31 +31,22 @@ class UserPropertyActor {
             
             return i
         }
-        
-        Crashlytics.sharedInstance().setObjectValue(SettingsStore.environment.value.serverAlias, forKey: "Environment")
-        
+                
         ///Generic User Properties
         appState.changesOf { $0.currentUser }
             .asObservable().observeOn(SerialDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { maybeUser in
                 
-                ///Crashlytics
-                Crashlytics.sharedInstance().setUserIdentifier(maybeUser?.id)
-                Crashlytics.sharedInstance().setUserName(maybeUser?.bio.name)
-                
                 ///Barnch
                 if let id = maybeUser?.id {
-                    Branch.getInstance()?.setIdentity(id)
+                    Branch.getInstance().setIdentity(id)
                 } else {
-                    Branch.getInstance()?.logout()
+                    Branch.getInstance().logout()
                 }
                 
                 ///Amplitude
                 guard let user = maybeUser else {
-
-                    Amplitude.instance()?.setUserProperties(["Profile Status: Type": "Log Out"])
                     Amplitude.instance()?.setUserId(nil)
-                    
                     return
                 }
                 
@@ -74,7 +64,9 @@ class UserPropertyActor {
                         "Profile Trait: Realtionship" : user.bio.relationshipStatus.analyticsTuple.0 as NSString?,
                         "Profile Trait: Partner's Sex" : user.bio.relationshipStatus.analyticsTuple.1 as NSString?,
                         
-                        "Profile Status: Type" : "Active" as NSString?
+                        "Profile Status: Type" : "Active" as NSString?,
+                        
+                        "Profile Status: Flirt Access" : (user.bio.flirtAccess ?? true) ? "Activated" : "Deactivated" as NSString?
                 ]
                 .reduce(AMPIdentify()) { (i, tuple) in
                     return applicator(value: tuple.value, key: tuple.key, i: i)
@@ -83,6 +75,8 @@ class UserPropertyActor {
                 Amplitude.instance()?.setUserId(user.id)
                 Amplitude.instance()?.identify(newIdentity)
                 
+                // Apphud
+                ApphudManager.updateUserId(user.id)
                 
                 ///user .add for increment operations
                 

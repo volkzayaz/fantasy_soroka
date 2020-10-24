@@ -21,12 +21,12 @@ class BlockedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.text = "Your profile has been blocked for the activity that violates our @Terms@ and @Rules@"
-        
+        textView.text = R.string.localizable.authBlockedTitle("@Terms@", "@Rules@")
+
         textView
-            .replace(placeholder: "@Terms@", with: "Terms and Conditions", url: R.string.localizable.fantasyConstantsTermsUrl())
-        
-        textView.replace(placeholder: "@Rules@", with: "Community Rules", url: R.string.localizable.fantasyConstantsCommunityRulesUrl())
+            .replace(placeholder: "@Terms@", with: R.string.localizable.authTerms(), url: R.string.localizable.fantasyConstantsTermsUrl())
+
+        textView.replace(placeholder: "@Rules@", with: R.string.localizable.authRules(), url: R.string.localizable.fantasyConstantsCommunityRulesUrl())
     }
 }
 

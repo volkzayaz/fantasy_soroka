@@ -74,7 +74,7 @@ extension Fantasy.Request {
         }
         
         var task: Task {
-            return .requestParameters(parameters: ["isPaid" : true], encoding: URLEncoding.default)
+            return .requestPlain
         }
         
     }
@@ -170,8 +170,10 @@ extension Fantasy.Request {
         let of: User
         
         struct SneakPeek: Codable, Equatable {
-            let isPaid: Bool
+            //let isPaid: Bool
             let amountlikedCardsByUser: Int
+            let coverRubric: String
+            let coverItems: String
         }; typealias responseType = [SneakPeek]
         
         var method: Moya.Method {
@@ -297,9 +299,32 @@ extension Fantasy.Request {
         var task: Task {
             return .requestPlain
         }
-        
     }
     
+    
+    struct ShareCard: AuthorizedAPIResource {
+        
+        let id: String
+        
+        typealias responseType = ShareUrl
+        
+        struct ShareUrl: Codable {
+            let url: String
+        }
+        
+        var method: Moya.Method {
+            return .put
+        }
+        
+        var path: String {
+            return "/fantasy-cards/\(id)/share"
+        }
+        
+        var task: Task {
+            return .requestPlain
+        }
+    }
+        
     struct FetchCollection: AuthorizedAPIResource {
         
         let id: String

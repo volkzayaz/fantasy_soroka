@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j46-wu-42H">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Room Tutorial View Controller-->
         <scene sceneID="6es-hI-s5o">
             <objects>
-                <viewController storyboardIdentifier="RoomTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZQJ-et-LyK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoomTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZQJ-et-LyK" customClass="RoomTutorialViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lBu-Lv-7df">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,20 +24,44 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="gZL-mQ-bQG">
                                 <rect key="frame" x="20" y="72" width="374" height="672"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step1" translatesAutoresizingMaskIntoConstraints="NO" id="TA2-Vf-YFP">
-                                        <rect key="frame" x="0.0" y="0.0" width="243" height="224"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step2" translatesAutoresizingMaskIntoConstraints="NO" id="MXF-TW-dk9">
-                                        <rect key="frame" x="0.0" y="224" width="332" height="224"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_step3" translatesAutoresizingMaskIntoConstraints="NO" id="S3o-hh-jjg">
-                                        <rect key="frame" x="0.0" y="448" width="288" height="224"/>
-                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA6-4b-uQH">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.666666666666664" height="224"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPG-Gp-LEA">
+                                        <rect key="frame" x="0.0" y="224" width="41.666666666666664" height="224"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o83-vR-pQV">
+                                        <rect key="frame" x="0.0" y="448" width="41.666666666666664" height="224"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-Ov-vRe">
                                 <rect key="frame" x="80" y="814" width="254" height="52"/>
-                                <state key="normal" image="GotItTutorial"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="Xx8-6r-0nX"/>
+                                    <constraint firstAttribute="height" constant="52" id="beQ-mo-5W7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Got It">
+                                    <color key="titleColor" red="0.12806296348571777" green="0.63350671529769897" blue="0.87061887979507446" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="roomsOnboarding.gotButton"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="26"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="j46-wu-42H" kind="custom" customClass="DismissSegue" customModule="FantasyApp" customModuleProvider="target" id="35L-xo-Zi1"/>
                                 </connections>
@@ -58,6 +82,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GY1-xQ-GBh"/>
                     </view>
+                    <connections>
+                        <outlet property="firstLabel" destination="YA6-4b-uQH" id="INF-5l-NmY"/>
+                        <outlet property="secondLabel" destination="lPG-Gp-LEA" id="pvd-CA-yZg"/>
+                        <outlet property="thirdLabel" destination="o83-vR-pQV" id="EaJ-sQ-qXe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esT-Co-NxD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -195,6 +224,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oKJ-sK-lkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="zdh-BB-Nmz">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="la4-Ub-bDd"/>
+                    </items>
+                </navigationBar>
             </objects>
             <point key="canvasLocation" x="3033" y="1485"/>
         </scene>
@@ -206,6 +242,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Get-aC-cnw">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c49-ZI-kpd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <subviews>
@@ -309,11 +349,15 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="g4r-FQ-Xkh" firstAttribute="bottom" secondItem="5tj-zr-HlS" secondAttribute="bottom" id="5C1-nJ-5MD"/>
+                            <constraint firstItem="Get-aC-cnw" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="J0M-fW-6a9"/>
+                            <constraint firstItem="g4r-FQ-Xkh" firstAttribute="trailing" secondItem="Get-aC-cnw" secondAttribute="trailing" id="Ood-hj-hIt"/>
                             <constraint firstItem="5tj-zr-HlS" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="k9U-iO-ABT"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="llA-gf-odc"/>
                             <constraint firstItem="g4r-FQ-Xkh" firstAttribute="trailing" secondItem="5tj-zr-HlS" secondAttribute="trailing" id="n9z-3C-Rxe"/>
+                            <constraint firstItem="Get-aC-cnw" firstAttribute="top" secondItem="5tj-zr-HlS" secondAttribute="bottom" id="npS-dG-gGz"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="trailing" secondItem="g4r-FQ-Xkh" secondAttribute="trailing" id="r5f-ea-lGu"/>
                             <constraint firstItem="5tj-zr-HlS" firstAttribute="top" secondItem="c49-ZI-kpd" secondAttribute="bottom" id="wAy-mT-Rgt"/>
+                            <constraint firstAttribute="bottom" secondItem="Get-aC-cnw" secondAttribute="bottom" id="wBV-vj-mNh"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="top" secondItem="g4r-FQ-Xkh" secondAttribute="top" id="zCX-kE-AQ6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g4r-FQ-Xkh"/>
@@ -329,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cqf-tm-JBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3917" y="1485"/>
+            <point key="canvasLocation" x="3915.9420289855075" y="1484.5982142857142"/>
         </scene>
         <!--FantasyListViewController-->
         <scene sceneID="8id-f6-1UV">
@@ -346,7 +390,19 @@
                     <view key="view" contentMode="scaleToFill" id="nG0-FH-boz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEb-Rj-WM7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Avl-O8-pTW" firstAttribute="trailing" secondItem="cEb-Rj-WM7" secondAttribute="trailing" id="BrN-vq-kY7"/>
+                            <constraint firstAttribute="bottom" secondItem="cEb-Rj-WM7" secondAttribute="bottom" id="Ef0-UI-VEG"/>
+                            <constraint firstItem="cEb-Rj-WM7" firstAttribute="top" secondItem="nG0-FH-boz" secondAttribute="top" id="oYR-yI-o9A"/>
+                            <constraint firstItem="cEb-Rj-WM7" firstAttribute="leading" secondItem="Avl-O8-pTW" secondAttribute="leading" id="uDG-rM-oAD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Avl-O8-pTW"/>
                     </view>
                 </viewController>
@@ -401,6 +457,9 @@
                                                             <constraint firstAttribute="height" constant="30" id="Yeo-mW-Ndc"/>
                                                         </constraints>
                                                         <state key="normal" title="Share"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="room.creation.invite.action"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="copyLink" destination="TEk-cf-ND1" eventType="touchUpInside" id="EgC-IL-lth"/>
                                                         </connections>
@@ -799,12 +858,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="GotItTutorial" width="254" height="52"/>
         <image name="Onboarding_Background" width="375" height="667"/>
         <image name="indicator" width="10" height="14"/>
-        <image name="tutorial_step1" width="243" height="87"/>
-        <image name="tutorial_step2" width="332" height="88"/>
-        <image name="tutorial_step3" width="288" height="87"/>
         <namedColor name="listBackgroundColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

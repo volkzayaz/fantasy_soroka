@@ -36,7 +36,10 @@ extension RootViewModel {
     
     var blocked: Driver<Bool> {
         
-        return (PFUser.current()?.rx.refresh().map { $0 as? PFUser }.asDriver(onErrorJustReturn: nil) ?? .just(nil))
+        return appState.changesOf { $0.currentUser?.id }
+            .flatMapLatest { _ in
+                return (PFUser.current()?.rx.refresh().map { $0 as? PFUser }.asDriver(onErrorJustReturn: nil) ?? .just(nil))
+            }
             .map { maybeBlockedUser in
                 
                 if let x = maybeBlockedUser?["isBlocked"] as? Bool {

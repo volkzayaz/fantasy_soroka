@@ -3,35 +3,47 @@ fastlane_version "2.136.0"
 default_platform :ios
 
 platform :ios do
-    
+
     before_all do
-        
+
         ENV["SLACK_URL"] = "https://hooks.slack.com/services" + "/TH0QEA8U9/BNZN41NN7/dbYCOhlavcLeauUL777XPVoG"
         ensure_git_status_clean
-        
+
     end
 
     lane :beta do |options|
-        
+
         ensure_git_branch( branch: 'develop|hotfix' )
-        
-        version_number = 0
+
         configuration = ""
-        
+
         #parsing options
-        if options[:patch]
-            version_number = increment_version_number(bump_type: "patch")
-            else
-            version_number = increment_version_number(bump_type: "minor")
-        end
-    
+	#increment_version_number does not work properly with MARKETING_VERSION.
+	#increment_version_number_in_xcodeproj from fastlane versioning plugin is user instead.
+
+  	increment_build_number
+    if options[:patch]
+        version_number = increment_version_number_in_xcodeproj(bump_type: "patch")
+    elsif options[:minor]
+        version_number = increment_version_number_in_xcodeproj(bump_type: "minor")
+	  end
+
     if options[:adhoc]
         configuration = "AdHoc"
     else
         configuration = "Release"
     end
 
+    ##select adhoc provisioning profile
+    match(
+        app_identifier: "com.fantasyapp.iosclient,com.fantasyapp.iosclient.FantasyAppRichPush",
+	git_url: "https://github.com/fantasyapptech/ios-certificates",
+        type: "adhoc",
+        readonly: true
+    )
+
     ##building ipa
+    xcode_select("/Applications/Xcode 11.app")
     gym(scheme: "FantasyApp",
         configuration: configuration,
         include_bitcode: false,
@@ -40,21 +52,21 @@ platform :ios do
             compileBitcode: false
         }
     )
-        
+
     ###uploading to firebase
     firebase_app_distribution(
         app: "1:730700349275:ios:b23a8045cf4a0fdc0f247e",
         groups: "Basic",
         release_notes: changelog_from_git_commits
     )
-    
+
     ##cleaning up
     File.delete("../FantasyApp.ipa")
     File.delete("../FantasyApp.app.dSYM.zip")
-    
+
     ##notifying testers
     slack( message: "New beta build is available. Check build details below or at your emails. \n\n*🛑 Please delete 💥 previous build from your device 📱 to avoid unexpected issues 😭*\n\n",
-          
+
           use_webhook_configured_username_and_icon: true,
           payload: {
           'Version number' => get_version_number(target: "FantasyApp"),
@@ -63,18 +75,22 @@ platform :ios do
           default_payloads: []
           )
 
-          
+
     ###keeping record
-    commit_version_bump(message: "Version bump to v#{version_number}")
-    add_git_tag tag: version_number
+    commit_version_bump(message: "Update version, build number")
+    if version_number
+        add_git_tag tag: version_number
+    end
+
     #push_to_git_remote
-    
+
   end
 
   lane :release do |options|
-      
+
       ensure_git_branch( branch: 'master' )
       ##building ipa
+      xcode_select("/Applications/Xcode 11.app")
       gym(scheme: "FantasyApp",
           configuration: "Release",
           export_method: "app-store",
@@ -85,15 +101,21 @@ platform :ios do
                           skip_metadata: true)
       ##cleaning up
       clean_build_artifacts
-      
+
   end
-  
+
   lane :refresh_dsym do |options|
 
-    download_dsyms(version: "latest")
-    upload_symbols_to_crashlytics
+    if options[:version]
+        version = options[:version]
+    else
+        version = "latest"
+    end
+
+    download_dsyms(version: version)
+    upload_symbols_to_crashlytics(binary_path: "./Pods/Pods/FirebaseCrashlytics/upload-symbols")
     clean_build_artifacts
-     
+
   end
-  
+
 end

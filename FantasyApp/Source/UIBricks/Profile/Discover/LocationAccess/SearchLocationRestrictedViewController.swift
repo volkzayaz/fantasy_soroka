@@ -9,6 +9,24 @@
 import UIKit
 
 class SearchLocationRestrictedViewController: UIViewController {
+    
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = R.string.localizable.searchLocationTitle()
+        }
+    }
+    
+    @IBOutlet weak var descriptionLabel: UILabel! {
+        didSet {
+            descriptionLabel.text = R.string.localizable.searchLocationDescription()
+        }
+    }
+
+    @IBOutlet weak var settingsButton: UIButton! {
+        didSet {
+            settingsButton.setTitle(R.string.localizable.searchLocationGoToSettings(), for: .normal)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

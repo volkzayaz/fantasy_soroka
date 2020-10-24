@@ -51,12 +51,12 @@ struct CocoaVersion : CustomStringConvertible {
         return .init(string: str)
     }
 
+    
+    let currentVersion = "3.0.1"
+    let storeVersion = "3.0.2"
+    
     static func < (left: CocoaVersion, right: CocoaVersion) -> Bool {
-        if left.major < right.major { return true }
-        if left.minor < right.minor { return true }
-        if left.patch < right.patch { return true }
-        
-        return false
+        return right.description.compare(left.description, options: .numeric) == .orderedDescending
     }
     
     var major: Int

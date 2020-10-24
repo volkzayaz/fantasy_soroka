@@ -20,11 +20,11 @@ extension RegistrationViewModel {
 
     var progressViewMultiplier: Driver<CGFloat> {
         let divisor = Step.allCases.last!.rawValue
-        return step.asDriver().map { CGFloat($0.rawValue) / CGFloat(divisor) }
+        return currentStep.map { CGFloat($0.rawValue) / CGFloat(divisor) }
     }
     
     var scrollViewOffsetMuiltiplier: Driver<CGFloat> {
-        return step.asDriver().map { CGFloat($0.rawValue - 1) }
+        return currentStep.map { CGFloat($0.rawValue - 1) }
     }
 
     var showEmaillValidationAlert: Driver<Bool> {
@@ -42,46 +42,73 @@ extension RegistrationViewModel {
             .map { ($0.password?.count ?? 0) < 8 && ($0.password?.count ?? 0) > 0}
     }
 
+    var showDelayedNextButton: Driver<Bool> {
+        return currentStep.asDriver()
+            .map { $0 == .onboarding1 || $0 == .onboarding2 || $0 == .onboarding3 }
+    }
+    
+    var delayedNextButtonTitle: Driver<String> {
+        onboardingTimer.map {
+            ($0 > 0) ? R.string.localizable.registrationOnboardingWaitFormat($0) : R.string.localizable.registrationOnboardingNextButton()
+        }
+    }
+    
     var showContinueButton: Driver<Bool> {
-        return Driver.combineLatest(showAgreementButton, showChangePhotoButton)
-            .map { !$0.0 && !$0.1 }
+        return Driver.combineLatest(showDelayedNextButton, showAgreementButton, showChangePhotoButton)
+            .map { !$0 && !$1 && !$2 }
     }
 
     var showAgreementButton: Driver<Bool> {
-        return step.asDriver()
+        return currentStep
             .map { $0 == .notice }
     }
 
     var showChangePhotoButton: Driver<Bool> {
-        return Driver.merge([step.asDriver().map { $0 == .addingPhoto},
+        return Driver.merge([currentStep.map { $0 == .addingPhoto},
                              showUploadPhotoProblem])
     }
 
     var forwardButtonEnabled: Driver<Bool> {
         return Driver.combineLatest(
-        step.asDriver(),
+        currentStep,
+        reachedStepRelay.asDriver(),
+        onboardingTimer,
         form.asDriver(),
         emailRelay.asDriver(),
         showEmailExistVar.asDriver()
-        ) { ($0, $1, $2, $3) }
-            .map { (step, form, tmpEmail, emailExist) -> Bool in
+        ).map { (currentStep, reachedStep, onboardingTimer, form, tmpEmail, emailExist) -> Bool in
                 
-                switch step {
+                switch currentStep {
                     
                     ///apply validations here
-                case .notice:       return form.agreementTick
+                case .onboarding1, .onboarding2, .onboarding3:
+                    return onboardingTimer <= 0
+                case .notice:
+                    return form.agreementTick && form.personalDataTick && form.sensetiveDataTick && form.agreeToEmailsTick
+                
+                case .email:        return (form.email?.isValidEmail ?? false) && (tmpEmail?.isValidEmail ?? false) && emailExist == false
+                case .password:     return form.password == form.confirmPassword && form.password != nil && (form.password?.count ?? 0) > 7
                 case .name:         return form.name.isValidUsernameLenght
                 case .birthday:     return form.brithdate != nil
                 case .sexuality:    return true
                 case .gender:       return true
                 case .relationship: return form.relationshipStatus != nil
-                case .email:        return (form.email?.isValidEmail ?? false) && (tmpEmail?.isValidEmail ?? false) && emailExist == false
-                case .password:     return form.password == form.confirmPassword && form.password != nil && (form.password?.count ?? 0) > 7
                 
                 case .photo:        return form.selectedPhoto != nil
                 case .addingPhoto:        return form.photo != nil
                 }
                     
+            }
+    }
+    
+    var backwardSwipeEnabled: Driver<Bool> {
+        currentStep.map { $0 == .onboarding2 || $0 == .onboarding3 }
+    }
+    
+    var forwardSwipeEnabled: Driver<Bool> {
+        Driver.combineLatest(currentStep, onboardingTimer)
+            .map { step, timer in
+                (step == .onboarding1 || step == .onboarding2) && timer <= 0
             }
     }
     
@@ -115,7 +142,7 @@ extension RegistrationViewModel {
     var defaultSexuality: Sexuality { return .heteroflexible }
     
     var currentStep: Driver<Step> {
-        return step.asDriver()
+        return currentStepRelay.asDriver()
     }
 
     var showNameLenghtAlert: Driver<Bool> {
@@ -140,7 +167,19 @@ extension RegistrationViewModel {
 struct RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate let form = BehaviorRelay(value: RegisterForm())
-    fileprivate let step = BehaviorRelay(value: Step.notice)
+    fileprivate let currentStepRelay = BehaviorRelay(value: Step.onboarding1)
+    fileprivate let reachedStepRelay = BehaviorRelay(value: Step.onboarding1)
+    
+    fileprivate var onboardingTimer: Driver<Int> {
+        currentStepRelay.filter { $0 == .onboarding1 || $0 == .onboarding2 || $0 == .onboarding3 }
+            .flatMapLatest { _ in
+                Observable.concat(Observable<Int>.timer(.seconds(0), period: .seconds(1), scheduler: MainScheduler.instance)
+                    .map { 5 - $0 }
+                    .takeWhile { $0 >= 0 }
+                    .takeUntil(BehaviorRelay.combineLatest(self.currentStepRelay, self.reachedStepRelay).filter { $0 != $1 } )
+                    ,.just(0))
+            }.asDriver(onErrorJustReturn: 0)
+    }
 
     // forms with errors
     fileprivate let showUploadPhotoProblemVar = BehaviorRelay(value: false)
@@ -185,6 +224,10 @@ struct RegistrationViewModel : MVVM_ViewModel {
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+        
+        reachedStepRelay
+            .bind(to: currentStepRelay)
+            .disposed(by: bag)
     }
     
     let router: RegistrationRouter
@@ -193,14 +236,17 @@ struct RegistrationViewModel : MVVM_ViewModel {
  
     enum Step: Int, CaseIterable {
         
-        case notice = 1
+        case onboarding1 = 1
+        case onboarding2
+        case onboarding3
+        case notice
+        case email
+        case password
         case name
         case gender
         case birthday
         case relationship
         case sexuality
-        case email
-        case password
         case photo
         case addingPhoto
     }
@@ -209,14 +255,14 @@ struct RegistrationViewModel : MVVM_ViewModel {
 extension RegistrationViewModel {
     
     func back() {
-        guard step.value.rawValue != 1 else {
+        guard currentStepRelay.value.rawValue != 1 else {
             router.dismiss()
             return
         }
         
-        let prev = Step(rawValue: step.value.rawValue - 1)!
+        let prev = Step(rawValue: currentStepRelay.value.rawValue - 1)!
         
-        step.accept( prev )
+        currentStepRelay.accept( prev )
     }
     
     func forward() {
@@ -224,7 +270,7 @@ extension RegistrationViewModel {
         ///fixme: I'm not really a 21 year old
         let years21: TimeInterval = -1 * 3600 * 24 * 366 * 21
         
-        if step.value == .birthday,
+        if currentStepRelay.value == .birthday,
             let d = form.value.brithdate,
             d.timeIntervalSinceNow > years21 {
             
@@ -234,13 +280,15 @@ extension RegistrationViewModel {
             return
         }
         
-        reportStepPassed(step: step.value)
+        let nextStep = Step(rawValue: currentStepRelay.value.rawValue + 1)
+        if nextStep != reachedStepRelay.value {
+            reportStepPassed(step: reachedStepRelay.value)
+        }
         
-        guard let next = Step(rawValue: step.value.rawValue + 1) else {
-            
+        guard let next = nextStep else {
             var timerCopy = timerSpentForRegistration
             
-            AuthenticationManager.register(with: form.value)
+            AuthenticationManager.finishRegistration(with: form.value)
                 .trackView(viewIndicator: indicator)
                 .silentCatch(handler: router.owner)
                 .subscribe(onNext: { (user) in
@@ -254,10 +302,25 @@ extension RegistrationViewModel {
             return
         }
         
-        step.accept( next )
+        if currentStepRelay.value.rawValue == Step.email.rawValue {
+            AuthenticationManager.registerIncomplete(with: form.value)
+                .trackView(viewIndicator: indicator)
+                .silentCatch(handler: router.owner)
+            .subscribe(onNext: { _ in
+                self.reachedStepRelay.accept(next)
+            }).disposed(by: bag)
+            
+            return
+        }
+        
+        if currentStepRelay.value == reachedStepRelay.value {
+            reachedStepRelay.accept(next)
+        } else {
+            currentStepRelay.accept(next)
+        }
 
         // start photo uploading
-        if step.value == .addingPhoto,
+        if currentStepRelay.value == .addingPhoto,
             let image = form.value.selectedPhoto {
             photoSelected(photo: image.image, source: image.source)
         }
@@ -269,6 +332,18 @@ extension RegistrationViewModel {
     
     func agreementChanged(agrred: Bool) {
         updateForm { $0.agreementTick = agrred }
+    }
+    
+    func personalDataChanged(agrred: Bool) {
+        updateForm { $0.personalDataTick = agrred }
+    }
+    
+    func sensetiveDataChanged(agrred: Bool) {
+        updateForm { $0.sensetiveDataTick = agrred }
+    }
+    
+    func agreeToReceiveEmailChanged(agrred: Bool) {
+        updateForm { $0.agreeToEmailsTick = agrred }
     }
 
     func nameChanged(name: String) {
@@ -326,7 +401,7 @@ extension RegistrationViewModel {
         showUploadPhotoProblemVar.accept(false)
         updateForm { $0.selectedPhoto = .init(image: photo, source: source) }
 
-        if step.value == .addingPhoto {
+        if currentStepRelay.value == .addingPhoto {
             photoChanged(photo: photo, source: source)
             return
         }
@@ -368,9 +443,18 @@ extension RegistrationViewModel {
         
         let event: Analytics.Event.SignUpPassed
         switch step {
-            
+        case .onboarding1:
+            event = .onboarding1
+        case .onboarding2:
+            event = .onboarding2
+        case .onboarding3:
+            event = .onboarding3
         case .notice:
             event = .notice
+        case .email:
+            event = .email
+        case .password:
+            event = .password
         case .name:
             event = .name
         case .gender:
@@ -381,10 +465,6 @@ extension RegistrationViewModel {
             event = .relation
         case .sexuality:
             event = .sexuality
-        case .email:
-            event = .email
-        case .password:
-            event = .password
             
         case .photo, .addingPhoto: return
         }

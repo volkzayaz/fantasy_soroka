@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import Amplitude_iOS
 import Parse
 import Branch
@@ -16,6 +14,8 @@ import ZendeskSDK
 import ZendeskCoreSDK
 import ScreenShieldKit
 import AppsFlyerLib
+import Firebase
+import FBSDKCoreKit
 
 enum Configuration {}
 extension Configuration {
@@ -32,9 +32,9 @@ extension Configuration {
          */
         
         let env = SettingsStore.environment.value
-
-        // MARK: - Fabric
-        Fabric.with([Crashlytics.self])
+        
+        // MARK: - Firebase
+        FirebaseApp.configure()
 
         // MARK: - Parse
         Parse.initialize(with: ParseClientConfiguration { (config) in
@@ -44,9 +44,9 @@ extension Configuration {
             
             config.server = ServerURL.parse
         })
-
-        // MARK: - Facebook
-        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
+        
+        // MARK: - AppHud
+        ApphudManager.configure()
         
         // MARK: - Branch
         // unncomment to disable debug mode
@@ -54,7 +54,8 @@ extension Configuration {
         
         let branch = Branch.getInstance()
         //branch?.setDebug()
-        branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+        branch.registerFacebookDeepLinkingClass(AppLinkUtility.self)
+        branch.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
             guard let identifier = params?["$canonical_identifier"] as? String else {
                 return

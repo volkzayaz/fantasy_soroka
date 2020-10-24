@@ -80,7 +80,20 @@ extension Analytics.Event {
             
             return x
         }
+    }
+    
+    struct CardShared: AnalyticsEvent {
 
+        var name: String { return "Card Shared" }
+
+        let card: Fantasy.Card
+        let context: Fantasy.Card.NavigationContext
+
+        var props: [String : String]? {
+            var x = card.analyticsProps
+            x["Context"] = context.rawValue
+            return x
+        }
     }
     
     struct CollectionViewed: AnalyticsEvent {
@@ -119,7 +132,7 @@ extension Fantasy.Card {
     
     ///which screen was before action happened
     enum NavigationContext: String {
-        case Deck, RoomPlay, RoomMutual, ProfileMatched, MyFantasies, MyFantasiesBlocked, ShareLink, CollectionDetails
+        case Deck, DeckDetails, RoomPlay, RoomMutual, ProfileMatched, MyFantasies, MyFantasiesBlocked, ShareLink, CollectionDetails
     }
     
     ///on which screen action happend
@@ -157,11 +170,11 @@ extension Fantasy.Card {
     var analyticsProps: [String: String] {
         var x = [
             "Card Id" : id,
-            "Name"   : text,
+            "Collection Name" : collectionName,
             "Category Type" : category,
+            "Name"   : text,
             "Curated" : isPaid ? "true" : "false",
             "Art"     : art,
-            "Collection Name" : collectionName,
         ]
         
         if !story.isEmpty {

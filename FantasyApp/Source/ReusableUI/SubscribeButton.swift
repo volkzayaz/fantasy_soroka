@@ -27,9 +27,12 @@ class SubscribeButton: UIButton {
     }
     
     func commonInit() {
-        setBackgroundImage(R.image.subscribeButton(), for: .normal)
-        setTitle(nil, for: .normal)
-        
+        setBackgroundImage(R.image.upgradeBackground(), for: .normal)
+        setImage(R.image.upgradeIcon()?.withRenderingMode(.alwaysOriginal), for: .normal)
+        setTitle(R.string.localizable.monetizationUpgradeButton(), for: .normal)
+        setTitleColor(R.color.textPinkColor(), for: .normal)
+        imageEdgeInsets.right = 5
+        titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         addTarget(self, action: Selector("subscribe"), for: .touchUpInside)
         
         appState.map { $0.currentUser?.subscription.isSubscribed ?? false }

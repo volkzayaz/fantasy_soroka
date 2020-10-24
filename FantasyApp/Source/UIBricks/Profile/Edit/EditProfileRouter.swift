@@ -20,7 +20,9 @@ struct EditProfileRouter : MVVM_Router {
         
         let x = R.storyboard.user.userProfileViewController()!
         x.viewModel = .init(router: .init(owner: x), user: user)
-        owner.navigationController?.pushViewController(x, animated: true)
+        let navigationController = FantasyNavigationController(rootViewController: x)
+        navigationController.modalPresentationStyle = .overFullScreen
+        owner.navigationController?.present(navigationController, animated: true, completion: nil)
         
     }
     
@@ -33,7 +35,7 @@ struct EditProfileRouter : MVVM_Router {
     }
     
     func presentSinglePick<T: SinglePickModel>(title: String,
-                                               models: [T],
+                                               models: [(String, [T])],
                                                defaultModels: [T],
                                                mode: SinglePickViewController.Mode,
                                                singlePickMode: Bool,

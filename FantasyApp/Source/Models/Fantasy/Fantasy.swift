@@ -88,9 +88,9 @@ extension Fantasy {
         let isPurchased: Bool
         let productId: String? ///absence of ProductID means product is free
         
-        let details: String?
-        let loveThis: String?
-        let highlights: String?
+        let details: String
+        let loveThis: String
+        let highlights: String
         
         let category: String
         let itemsNamePlural: String
@@ -176,13 +176,13 @@ extension Fantasy.Card {
         
         let buo = BranchUniversalObject(canonicalIdentifier: "card/\(id)/\(User.current!.id)")
         buo.title = "Fantasy"
-        buo.contentDescription = "Join me on Fantasy Match & check out this Fantasy Card"
+        buo.contentDescription = R.string.localizable.branchObjectCardShareDescription()
         buo.publiclyIndex = true
         buo.imageUrl = immutableNonPersistentState.shareCardImageURL
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
-                                andShareText: "Join me on Fantasy Match & check out this Fantasy Card",
+                                andShareText: R.string.localizable.branchObjectCardShareDescription(),
                                 from: v) { (activityType, completed) in
 
             }
@@ -210,13 +210,13 @@ extension Fantasy.Collection {
         
         let buo = BranchUniversalObject(canonicalIdentifier: "collection/\(id)")
         buo.title = "Fantasy"
-        buo.contentDescription = "Join me on Fantasy Match & check out this Collection"
+        buo.contentDescription = R.string.localizable.branchObjectCollectionShareDescription()
         buo.publiclyIndex = true
         buo.imageUrl = immutableNonPersistentState.shareCollectionImageURL
         buo.getShortUrl(with: BranchLinkProperties()) { [weak b = buo, weak v = presenter] (url, error) in
             
             b?.showShareSheet(with: BranchLinkProperties(),
-                                andShareText: "Join me on Fantasy Match & check out this Collection",
+                                andShareText: R.string.localizable.branchObjectCollectionShareDescription(),
                                 from: v) { (activityType, completed) in
 
             }
@@ -228,7 +228,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: "", details: nil, loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
+        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: "", details: "", loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
         
     }
     

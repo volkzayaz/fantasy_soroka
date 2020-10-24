@@ -11,7 +11,11 @@ import Foundation
 class EventCell: UITableViewCell {
     
     @IBOutlet weak var leftImageView: UIImageView!
-    @IBOutlet weak var eventLabel: UILabel!
+    @IBOutlet weak var eventLabel: UILabel! {
+        didSet {
+            eventLabel.text = R.string.localizable.roomChatRoomCreated()
+        }
+    }
     
     var eventImage: UIImage! {
         didSet {

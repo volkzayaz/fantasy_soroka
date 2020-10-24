@@ -27,6 +27,7 @@ extension EditProfileViewModel {
                 let about = SectionModel(model: R.string.localizable.editProfileAbout(),
                                          items: [Model.expandable(text: (user.bio.about ?? ""),
                                                                   placeholder: R.string.localizable.editProfileAbout(),
+                                                                  maxLenth: 200,
                                                                   title: nil,
                                                                   editAction: self.changeAbout)])
                 
@@ -35,7 +36,7 @@ extension EditProfileViewModel {
                                                                    value: "",
                                                                    image: R.image.profileName()!,
                                                                    editAction: nil),
-                                                   .attribute("\(user.bio.yearsOld) years",
+                                                   .attribute(R.string.localizable.profileDiscoverUserYears(user.bio.yearsOld),
                                                               value: "",
                                                               image: R.image.profileBirthday()!,
                                                               editAction: nil),
@@ -44,7 +45,7 @@ extension EditProfileViewModel {
                                                               image: R.image.profileGender()!,
                                                               editAction: nil),
                                                    .attribute(R.string.localizable.editProfileSexuaity(),
-                                                              value: user.bio.sexuality.rawValue,
+                                                              value: user.bio.sexuality.pretty,
                                                               image: R.image.profileSexuality()!,
                                                               editAction: nil),
                                                    .attribute(R.string.localizable.editProfileRelationship(),
@@ -59,21 +60,21 @@ extension EditProfileViewModel {
                     lookingFor = user.bio.lookingFor.map { $0.description }.joined(separator: ", ")
                 }
                 else {
-                    lookingFor = "Choose"
+                    lookingFor = R.string.localizable.editProfileChoose()
                 }
                 
                 let community = SectionModel(model: R.string.localizable.editProfilePrefs(),
                                          items:
                     [
-                        Model.attribute("Active city",
-                                        value: user.community.value?.name ?? "No community",
+                        Model.attribute(R.string.localizable.editProfileActiveCity(),
+                                        value: user.community.value?.name ?? R.string.localizable.editProfileNoCommunity(),
                                         image: R.image.profileCommunity()!,
                                         editAction: self.changeActiveCity),
-                        Model.attribute("Expience",
-                                        value: user.bio.expirience?.description ?? "Choose",
+                        Model.attribute(R.string.localizable.editProfileExperience(),
+                                        value: user.bio.expirience?.description ?? R.string.localizable.editProfileChoose(),
                                         image: R.image.profileExpirience()!,
                                         editAction: self.changeExpirience),
-                        Model.attribute("Looking for",
+                        Model.attribute(R.string.localizable.editProfileLookingFor(),
                                         value: lookingFor,
                                         image: R.image.profileLookingFor()!,
                                         editAction: self.changeLookingFor),
@@ -87,17 +88,20 @@ extension EditProfileViewModel {
                                          items:
                     [
                         Model.expandable(text: user.bio.answers[q1] ?? "",
-                            placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         maxLenth: 100,
                             title: q1,
                             editAction: { self.change(answer: $0, to: q1) }),
                         
                         Model.expandable(text: user.bio.answers[q2] ?? "",
                                          placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         maxLenth: 100,
                                          title: q2,
                                          editAction: { self.change(answer: $0, to: q2) }),
                         
                         Model.expandable(text: user.bio.answers[q3] ?? "",
                                          placeholder: R.string.localizable.editProfileQuestionPlaceholder(),
+                                         maxLenth: 100,
                                          title: q3,
                                          editAction: { self.change(answer: $0, to: q3) }),
                         
@@ -149,7 +153,7 @@ struct EditProfileViewModel : MVVM_ViewModel {
     fileprivate let bag = DisposeBag()
  
     enum Model {
-        case expandable(text: String, placeholder: String, title: String?, editAction: ((String?) -> Void)?)
+      case expandable(text: String, placeholder: String, maxLenth: Int, title: String?, editAction: ((String?) -> Void)?)
         case attribute(String, value: String, image: UIImage, editAction: (() -> Void)?)
     }
     
@@ -163,7 +167,7 @@ extension EditProfileViewModel {
     
     func changeLookingFor() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeLookingForTitle(),
-                                 models: LookingFor.allCases,
+                                 models: LookingFor.sortedCases,
                                  defaultModels: User.current!.applied(editForm: form.value).bio.lookingFor,
                                  mode: .table,
                                  singlePickMode: false) { x in self.updateForm { $0.lookingFor = x } }
@@ -177,7 +181,7 @@ extension EditProfileViewModel {
         }
         
         router.presentSinglePick(title: R.string.localizable.editProfileChangeExpirienceTitle(),
-                                 models: Expirience.allCases,
+                                 models: [("", Expirience.allCases)],
                                  defaultModels: defaultModel,
                                  mode: .table,
                                  singlePickMode: true) { x in self.updateForm { $0.expirience = x.first } }
@@ -185,7 +189,7 @@ extension EditProfileViewModel {
     
     func changeGender() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeGenderTitle(),
-                                 models: Gender.allCases,
+                                 models: [("", Gender.allCases)],
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.gender],
                                  mode: .picker,
                                  singlePickMode: true) { x in self.updateForm { $0.gender = x.first! } }
@@ -193,7 +197,7 @@ extension EditProfileViewModel {
     
     func changeSexuality() {
         router.presentSinglePick(title: R.string.localizable.editProfileChangeSexualityTitle(),
-                                 models: Sexuality.allCasesV2,
+                                 models: [("", Sexuality.allCasesV2)],
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.sexuality],
                                  mode: .picker,
                                  singlePickMode: true) { x in self.updateForm { $0.sexuality = x.first! } }

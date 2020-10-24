@@ -123,11 +123,6 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
             
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
 
-        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(closeOnSwipe))
-        swipeRecognizer.direction = .down
-        swipeRecognizer.delegate = self
-        view.addGestureRecognizer(swipeRecognizer)
-
         configureBackgroundConstratints()
         configureStyling()
         preferenceSelector.reaction = viewModel.currentState.value
@@ -238,11 +233,21 @@ private extension FantasyDetailsViewController {
             return
         }
         
-        showDialog(title: "Block", text: "Let us know if you think this card is offensive or has nudity, profanity, or pornography", style: .actionSheet, negativeText: "Cancel", negativeCallback: nil, positiveText: "Block card") { [weak self] in
+        showDialog(
+        title: R.string.localizable.fantasyDetailsBlockTitle(),
+        text: R.string.localizable.fantasyDetailsBlockText(),
+        style: .actionSheet,
+        negativeText: R.string.localizable.generalCancel(),
+        negativeCallback: nil,
+        positiveText: R.string.localizable.fantasyDetailsBlockPositiveText()) { [weak self] in
             
             self?.viewModel.blockCard()
-            
-            self?.showMessage(title: "Thank you", text: "You will never see the card again. We will inspect the content of this fantasy", style: .alert, buttonText: "Ok", callback: { [weak self] in
+            self?.showMessage(
+                title: R.string.localizable.fantasyDetailsBlockTitle(),
+                text: R.string.localizable.fantasyDetailsBlockText(),
+                style: .alert,
+                buttonText: R.string.localizable.generalOk(),
+                callback: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })
             
@@ -289,7 +294,8 @@ private extension FantasyDetailsViewController {
 extension FantasyDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         configureNavigationBar()
-
+        configureStack()
+        
         guard !isZoomingBlocked else { return }
 
         configureCardLayout()
@@ -307,22 +313,22 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
             return
         }
         
+        let detailsStartOffset = view.bounds.height - (view.bounds.height - unzoomedBackgroundConstraint.constant) - (navigationBar.frame.maxY - 30)
         let areaRadius = view.bounds.height / 5
         let topAreaRange = 0 ... view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius
         let centerAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio - areaRadius ...
             view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio + areaRadius
         let bottomAreaRange = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio +
-            areaRadius ... scrollView.contentSize.height
+            areaRadius ... detailsStartOffset
+
         if centerAreaRange.contains(scrollView.contentOffset.y) {
             animateContentOffsetChange(contentOffset:
                 CGPoint(x: 0, y: view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio))
             shareButton.isHidden = false
         } else if topAreaRange.contains(scrollView.contentOffset.y) {
-            animateContentOffsetChange(contentOffset: .zero)
-            shareButton.isHidden = true
+            animateDisappearance()
         } else if bottomAreaRange.contains(scrollView.contentOffset.y) {
-            animateContentOffsetChange(contentOffset:
-                CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height))
+            animateContentOffsetChange(contentOffset: CGPoint(x: 0, y: detailsStartOffset))
             shareButton.isHidden = false
         }
     }
@@ -346,10 +352,23 @@ extension FantasyDetailsViewController: UIScrollViewDelegate {
 
     private func configureCardLayout() {
         let cap = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+
         if scrollView.contentOffset.y < cap {
-            backgroundImageCenterY.constant = min(0, scrollView.contentOffset.y - cap +
-                backgroundImageView.frame.height / 3)
+            backgroundImageCenterY.constant = min(0, scrollView.contentOffset.y - cap)
+        } else {
+            backgroundImageCenterY.constant = 0
         }
+    }
+    
+    private func configureStack() {
+        let cap = view.bounds.height * FantasyDetailsViewController.initialScrollViewRatio
+        let topMaxValue = (unzoomedBackgroundConstraint.constant - navigationBar.frame.maxY) - cap
+        let topTransitionValue = max(cap, scrollView.contentOffset.y) - cap
+        let scrolledPercentToTop = 1 - (topTransitionValue / topMaxValue)
+        let maxCornerRadius: CGFloat = 20
+        let cornerRaius = scrolledPercentToTop * maxCornerRadius
+        
+        stackView.setCornerRadius(cornerRaius)
     }
 }
 
@@ -362,12 +381,6 @@ extension FantasyDetailsViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true
-    }
-
-    @objc func closeOnSwipe() {
-        if scrollView.contentOffset.y == 0 {
-            animateDisappearance()
-        }
     }
     
 }

@@ -16,26 +16,17 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var fantasiesButton: PrimaryButton! {
         didSet {
-            fantasiesButton.useTransparency = viewModel.room._value.isDraftRoom
-            if !viewModel.room._value.isDraftRoom {
-                fantasiesButton.setBugFixMode()
-            }
+            fantasiesButton.useTransparency = false
         }
     }
     @IBOutlet private var chatButton: PrimaryButton!{
         didSet {
-            chatButton.useTransparency = viewModel.room._value.isDraftRoom
-            if !viewModel.room._value.isDraftRoom {
-                chatButton.setBugFixMode()
-            }
+            chatButton.useTransparency = false
         }
     }
     @IBOutlet private var playButton: PrimaryButton!{
         didSet {
-            playButton.useTransparency = viewModel.room._value.isDraftRoom
-            if !viewModel.room._value.isDraftRoom {
-                playButton.setBugFixMode()
-            }
+            playButton.useTransparency = false
         }
     }
     @IBOutlet private var chatContainerView: UIView!
@@ -174,13 +165,13 @@ extension RoomDetailsViewController {
                                                     
                                                     let text: String
                                                     if count == 0 {
-                                                        text = "Swipe to see new\nmutual Fantasies!\nYou have no mutual Fantasies yet"
+                                                        text = R.string.localizable.roomDetailsSwipeTitle()
                                                     }
                                                     else if count == 1 {
-                                                        text = "1 mutual Fantasy"
+                                                        text = R.string.localizable.roomDetailsOneMutualCard()
                                                     }
                                                     else {
-                                                        text = "\(count) mutual Fantasies"
+                                                        text = R.string.localizable.roomDetailsMutualCards(count)
                                                     }
                                                     
                                                     let att = NSMutableAttributedString(string: text, attributes: [.font: UIFont.boldFont(ofSize: 25)])
@@ -190,7 +181,7 @@ extension RoomDetailsViewController {
                                                                           range: text.nsRange(from: range))
                                                     }
                                                     
-                                                    if let range = text.range(of: "You have no mutual Fantasies yet") {
+                                                    if let range = text.range(of: R.string.localizable.roomDetailsNoMutualCards()) {
                                                         
                                                         att.addAttributes([.foregroundColor : UIColor.gray],
                                                                           range: text.nsRange(from: range))
@@ -206,7 +197,8 @@ extension RoomDetailsViewController {
                                                     return att
                                                     
                                                 },
-                                                protectPolicy: User.changesOfSubscriptionStatus)
+                                                protectPolicy: User.changesOfSubscriptionStatus,
+                                                hideUnread: true)
             
         }
         else if segue.identifier == R.segue.roomDetailsViewController.showChat.identifier {
