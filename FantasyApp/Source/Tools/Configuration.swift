@@ -132,15 +132,13 @@ extension Configuration {
     
     // MARK: - AppsFlyer
     static func startAppsFlyer() {
+        guard let state = immutableNonPersistentState, state.isAppsFlyerEnabled else {
+            return
+        }
+        
         AppsFlyerLib.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
         AppsFlyerLib.shared().appleAppID = "1230109516"
         AppsFlyerLib.shared().isDebug = !RunScheme.appstore
-        
-        NotificationCenter.default.addObserver(
-            AppsFlyerLib.shared(),
-            selector: #selector(AppsFlyerLib.start),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil)
         
         AppsFlyerLib.shared().start()
     }
