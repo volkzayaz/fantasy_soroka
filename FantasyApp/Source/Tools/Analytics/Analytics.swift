@@ -15,7 +15,6 @@ extension Analytics {
     
     static func report(_ event: AnalyticsEvent) {
         Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
-        AppsFlyerManager.logEvent(event.name, withValues: event.props)
 
 //        print("Analytics:  Event = \(event.name)")
 //        if let x = event.props {
