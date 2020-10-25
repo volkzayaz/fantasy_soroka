@@ -35,7 +35,7 @@ target 'FantasyApp' do
     pod 'SnapKit', '~> 4.2'
     pod 'Kingfisher', '~> 5.8'
 
-    pod 'YPImagePicker', '~> 4.1.2'
+    pod 'YPImagePicker'
 
     pod 'Koloda', '~> 5.0'
     pod 'iCarousel', '~> 1.8'

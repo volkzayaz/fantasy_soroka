@@ -114,8 +114,8 @@ PODS:
   - Starscream (3.1.1)
   - SteviaLayout (4.7.3)
   - SwiftyStoreKit (0.16.1)
-  - YPImagePicker (4.1.3):
-    - PryntTrimmerView (~> 4.0.0)
+  - YPImagePicker (4.4.0):
+    - PryntTrimmerView (~> 4.0.2)
     - SteviaLayout (~> 4.7.3)
   - ZendeskSDK (4.0.1):
     - ZendeskSDK/Providers (= 4.0.1)
@@ -152,7 +152,7 @@ DEPENDENCIES:
   - SnapKit (~> 4.2)
   - Socket.IO-Client-Swift (~> 15.2.0)
   - SwiftyStoreKit
-  - YPImagePicker (~> 4.1.2)
+  - YPImagePicker
   - ZendeskSDK
 
 SPEC REPOS:
@@ -249,9 +249,9 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
-  YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
+  YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
   ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: 0fefcaa8781c38588104d2c3f0cb04c44d4f5fb3
+PODFILE CHECKSUM: 39e4414c1c84dd95a4a15200622ef0eadab214de
 
 COCOAPODS: 1.10.0
