@@ -16,6 +16,7 @@ import ScreenShieldKit
 import Firebase
 import FBSDKCoreKit
 import Segment
+import AppTrackingTransparency
 
 enum Configuration {}
 extension Configuration {
@@ -131,6 +132,10 @@ extension Configuration {
         Zendesk.instance?.setIdentity(ident)
         
         ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
+        
+        if #available(iOS 14.0, *) {
+            ATTrackingManager.requestTrackingAuthorization { _ in }
+        }
     }
 
     private static func registerActors() {
