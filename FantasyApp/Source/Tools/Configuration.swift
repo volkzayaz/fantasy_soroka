@@ -15,6 +15,7 @@ import ZendeskCoreSDK
 import ScreenShieldKit
 import Firebase
 import FBSDKCoreKit
+import Segment
 
 enum Configuration {}
 extension Configuration {
@@ -43,6 +44,16 @@ extension Configuration {
             
             config.server = ServerURL.parse
         })
+        
+        // MARK: - Segment
+        
+        let configuration = AnalyticsConfiguration(writeKey: env.segmentWriteKey)
+        configuration.trackApplicationLifecycleEvents = true
+        configuration.recordScreenViews = true
+        configuration.trackPushNotifications = true
+        configuration.trackDeepLinks = true
+        
+        Segment.Analytics.setup(with: configuration)
         
         // MARK: - AppHud
         ApphudManager.configure()

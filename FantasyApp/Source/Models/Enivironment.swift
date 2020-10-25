@@ -64,6 +64,15 @@ extension Environment {
         }
     }
     
+    var segmentWriteKey: String {
+        switch self {
+            
+        case .dev       : return "AMCCxdDYTHwOJgUD5MQVhSQBrSazrsnQ"
+        case .staging   : return "AMCCxdDYTHwOJgUD5MQVhSQBrSazrsnQ"
+        case .production: return "2jDynt9tjBYXMIzkoYLLSmynKFWYJFIM"
+            
+        }
+    }
 }
 
 enum RunScheme {

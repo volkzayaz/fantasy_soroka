@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
   - Amplitude-iOS (4.10.0)
+  - Analytics (4.1.0)
   - ApphudSDK (0.18.5)
   - AppsFlyerFramework (6.0.7)
   - Bolts/Tasks (1.9.1)
@@ -128,6 +129,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
+  - Analytics
   - ApphudSDK
   - AppsFlyerFramework
   - Branch
@@ -157,6 +159,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Amplitude-iOS
+    - Analytics
     - ApphudSDK
     - AppsFlyerFramework
     - Bolts
@@ -204,6 +207,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
+  Analytics: 21202e6dee8b74c73944084d2f876ce5cfd65e07
   ApphudSDK: 448bb69007715ffc9fbde3be4a9e2a0ccf1971ee
   AppsFlyerFramework: 32e851a0c8231492181025c03afd48d29096fd3b
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
@@ -248,6 +252,6 @@ SPEC CHECKSUMS:
   YPImagePicker: 7a34eabd0ef544ae8fbf9785c3df9ec5bbf242e3
   ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: 0d2faa64fcc3baef7aff2ee8419ae692dbed38a6
+PODFILE CHECKSUM: 0fefcaa8781c38588104d2c3f0cb04c44d4f5fb3
 
 COCOAPODS: 1.10.0
