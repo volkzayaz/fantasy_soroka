@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,7 +60,7 @@
                                                     <rect key="frame" x="0.0" y="44" width="219" height="192"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWL-wv-il6">
-                                                    <rect key="frame" x="88.5" y="130" width="42" height="20.5"/>
+                                                    <rect key="frame" x="89" y="130" width="41.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -95,19 +96,19 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="219" height="236"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mcq-3P-om6">
-                                                    <rect key="frame" x="50" y="-36" width="119" height="308"/>
+                                                    <rect key="frame" x="50" y="24.5" width="119" height="187.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="secret" translatesAutoresizingMaskIntoConstraints="NO" id="llt-Ho-UXd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="119" height="160.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="119" height="80"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qP-qK-8nd">
-                                                            <rect key="frame" x="0.0" y="165.5" width="119" height="21.5"/>
+                                                            <rect key="frame" x="0.0" y="85" width="119" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secret Photos can be seen when you create a Room together" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvc-2Z-YlY">
-                                                            <rect key="frame" x="0.0" y="236" width="119" height="72"/>
+                                                            <rect key="frame" x="0.0" y="115.5" width="119" height="72"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -218,10 +219,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bvh-yh-UXm">
-                                                    <rect key="frame" x="16" y="16" width="250" height="82"/>
+                                                    <rect key="frame" x="16" y="16" width="290" height="82"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Name, age, badges..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iYc-1j-V9c">
-                                                            <rect key="frame" x="0.0" y="0.0" width="243" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="239" height="14"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.98039215690000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -229,7 +230,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="memberParrot" translatesAutoresizingMaskIntoConstraints="NO" id="jI4-u7-b7f">
-                                                            <rect key="frame" x="0.0" y="8" width="20" height="74"/>
+                                                            <rect key="frame" x="0.0" y="22" width="20" height="60"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="1yl-tw-qAd"/>
@@ -240,7 +241,7 @@
                                                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.98039215690000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="likeIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="4hh-7i-82O">
-                                                    <rect key="frame" x="274" y="11" width="80" height="80"/>
+                                                    <rect key="frame" x="314" y="11" width="40" height="40"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -311,7 +312,7 @@
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zVG-Ve-jfi">
                                                     <rect key="frame" x="0.0" y="30" width="374" height="232"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="232" id="zne-Om-rsS"/>
                                                     </constraints>
@@ -338,7 +339,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileAnswerCell" rowHeight="74" id="BA6-US-fF7" customClass="UserProfileAnswerCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="528.5" width="374" height="74"/>
+                                        <rect key="frame" x="20" y="528.5" width="374" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BA6-US-fF7" id="ofC-Xy-5PL">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="74"/>
@@ -372,7 +373,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserProfileBioCell" rowHeight="35" id="Nda-o9-L22" customClass="UserProfileBioCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="602.5" width="374" height="35"/>
+                                        <rect key="frame" x="20" y="602.5" width="374" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nda-o9-L22" id="uUG-RD-2Rc">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="35"/>
@@ -414,11 +415,11 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LFH-sl-KCb">
                                         <rect key="frame" x="105" y="27.5" width="204" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Q6-ClW">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Q6-ClW">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
                                                 <state key="normal" title="Action Button"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tC-m0-T5w">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tC-m0-T5w">
                                                 <rect key="frame" x="110" y="0.0" width="94" height="30"/>
                                                 <state key="normal" title="Action Button"/>
                                             </button>
@@ -433,20 +434,21 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iac-9R-aVX">
-                                <rect key="frame" x="322" y="63" width="80" height="80"/>
+                                <rect key="frame" x="362" y="63" width="40" height="40"/>
                                 <state key="normal" image="profileOption"/>
                                 <connections>
                                     <action selector="showOptions" destination="E4i-Iq-Sbq" eventType="touchUpInside" id="EuP-L2-lrO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYs-os-IoS">
-                                <rect key="frame" x="12" y="63" width="80" height="80"/>
+                                <rect key="frame" x="12" y="63" width="40" height="40"/>
                                 <state key="normal" image="profileBack"/>
                                 <connections>
                                     <action selector="back" destination="E4i-Iq-Sbq" eventType="touchUpInside" id="p1C-cW-Alm"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="UeB-Iu-akN"/>
                         <color key="backgroundColor" red="0.96849805119999999" green="0.96854132410000005" blue="0.97667533159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dhp-7F-cz4" firstAttribute="leading" secondItem="UeB-Iu-akN" secondAttribute="leading" constant="10" id="0uH-hC-liB"/>
@@ -471,7 +473,6 @@
                             <constraint firstItem="rrs-r4-IZO" firstAttribute="trailing" secondItem="UeB-Iu-akN" secondAttribute="trailing" id="suC-4n-Riu"/>
                             <constraint firstItem="rrs-r4-IZO" firstAttribute="leading" secondItem="UeB-Iu-akN" secondAttribute="leading" id="zeN-OE-6MY"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="UeB-Iu-akN"/>
                     </view>
                     <connections>
                         <outlet property="actionButtonsStackView" destination="LFH-sl-KCb" id="MKY-Ga-jeK"/>
@@ -494,7 +495,7 @@
             </objects>
             <point key="canvasLocation" x="1189.8550724637682" y="110.49107142857143"/>
         </scene>
-        <!--Data Source-->
+        <!--Search for Fantasy Match-->
         <scene sceneID="Pf9-Fq-Krn">
             <objects>
                 <viewController storyboardIdentifier="DiscoverProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sJw-Y8-Mmr" customClass="DiscoverProfileViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -511,6 +512,7 @@
                                 </connections>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="jFF-Ap-2z8"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0Se-hg-s60" firstAttribute="leading" secondItem="jFF-Ap-2z8" secondAttribute="leading" id="3sU-5R-DMQ"/>
@@ -518,7 +520,6 @@
                             <constraint firstItem="0Se-hg-s60" firstAttribute="bottom" secondItem="jFF-Ap-2z8" secondAttribute="bottom" constant="-15" id="kE6-q2-baI"/>
                             <constraint firstItem="jFF-Ap-2z8" firstAttribute="trailing" secondItem="0Se-hg-s60" secondAttribute="trailing" id="zWz-Yf-8qa"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jFF-Ap-2z8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search for Fantasy Match" id="cg0-BV-Umz"/>
                     <connections>
@@ -554,7 +555,7 @@
                             <rect key="frame" x="0.0" y="102.5" width="416" height="531"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFiltersOnboardingImage" translatesAutoresizingMaskIntoConstraints="NO" id="U19-mA-Ylg">
-                                    <rect key="frame" x="-12" y="40" width="440" height="600"/>
+                                    <rect key="frame" x="98" y="40" width="220" height="300"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-SP-S2b">
                                     <rect key="frame" x="142.5" y="352" width="131" height="22"/>
@@ -570,7 +571,7 @@ to search for.</string>
                                     <color key="textColor" name="textBlackColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-wA-1Tr" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-wA-1Tr" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                     <rect key="frame" x="60" y="459" width="296" height="52"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="52" id="IZF-hA-1p5"/>
@@ -603,13 +604,13 @@ to search for.</string>
                             </constraints>
                         </view>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="XPq-QD-zDz"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="ePp-sN-oGh" firstAttribute="centerY" secondItem="TYG-Zf-Hsb" secondAttribute="centerY" id="LmO-D4-tPD"/>
                         <constraint firstItem="XPq-QD-zDz" firstAttribute="trailing" secondItem="ePp-sN-oGh" secondAttribute="trailing" id="P31-vK-Ro6"/>
                         <constraint firstItem="ePp-sN-oGh" firstAttribute="leading" secondItem="XPq-QD-zDz" secondAttribute="leading" id="VBK-Ad-sHc"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="XPq-QD-zDz"/>
                 </view>
                 <view contentMode="scaleToFill" id="gz9-uW-Ulp">
                     <rect key="frame" x="0.0" y="0.0" width="416" height="736"/>
@@ -619,7 +620,7 @@ to search for.</string>
                             <rect key="frame" x="0.0" y="102.5" width="416" height="531"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchActivateImage" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-1h-GUS">
-                                    <rect key="frame" x="-7" y="40" width="430" height="330"/>
+                                    <rect key="frame" x="100.5" y="40" width="215" height="165"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Flirt Access" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-6C-Ru1">
                                     <rect key="frame" x="161" y="352" width="94" height="22"/>
@@ -639,7 +640,7 @@ to search for.</string>
                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.agreeText"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDE-oa-WkS" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDE-oa-WkS" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                     <rect key="frame" x="60" y="459" width="296" height="52"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="52" id="y9f-N8-Nhz"/>
@@ -685,22 +686,22 @@ to search for.</string>
                             </constraints>
                         </view>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="mW8-T8-omy"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Uxj-pE-3uQ" firstAttribute="leading" secondItem="mW8-T8-omy" secondAttribute="leading" id="7s9-OQ-mFH"/>
                         <constraint firstItem="mW8-T8-omy" firstAttribute="trailing" secondItem="Uxj-pE-3uQ" secondAttribute="trailing" id="Lfb-6r-Puk"/>
                         <constraint firstItem="Uxj-pE-3uQ" firstAttribute="centerY" secondItem="gz9-uW-Ulp" secondAttribute="centerY" id="eOu-gk-wik"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="mW8-T8-omy"/>
                 </view>
                 <view contentMode="scaleToFill" id="Zsa-53-sF4">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchEnableLocationPlanetImage" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-xQ-K8q">
-                            <rect key="frame" x="-34" y="-140" width="440" height="600"/>
+                            <rect key="frame" x="76" y="10" width="220" height="300"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhS-9e-RJJ" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhS-9e-RJJ" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="26" y="448" width="153.5" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="QJQ-1h-EM9"/>
@@ -710,7 +711,7 @@ to search for.</string>
                                 <action selector="notAllowLocationClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="7st-JG-we7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STk-sG-XFG" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STk-sG-XFG" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="192.5" y="448" width="153.5" height="52"/>
                             <state key="normal" title="Allow"/>
                             <connections>
@@ -730,6 +731,7 @@ to search for.</string>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="V4y-09-1ii"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="VXd-xQ-K8q" firstAttribute="centerX" secondItem="Zsa-53-sF4" secondAttribute="centerX" id="2s6-Ub-VSv"/>
@@ -748,28 +750,27 @@ to search for.</string>
                         <constraint firstItem="TKk-Wd-Rdv" firstAttribute="leading" secondItem="V4y-09-1ii" secondAttribute="leading" constant="16" id="uXX-rD-WrC"/>
                         <constraint firstItem="V4y-09-1ii" firstAttribute="bottom" secondItem="yhS-9e-RJJ" secondAttribute="bottom" constant="20" id="vBb-9R-Klc"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="V4y-09-1ii"/>
                 </view>
                 <view contentMode="scaleToFill" id="FH2-xN-97a">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="597"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where Are You Now?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-tc-KZG">
-                            <rect key="frame" x="50" y="530.5" width="272" height="21"/>
+                            <rect key="frame" x="50" y="380.5" width="272" height="21"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                             <color key="textColor" name="textBlackColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable your geolocation. Knowing your location helps us locate people around you. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJc-ok-4TX">
-                            <rect key="frame" x="50" y="559.5" width="272" height="52.5"/>
+                            <rect key="frame" x="50" y="409.5" width="272" height="52.5"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                             <color key="textColor" name="textBlackColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchEnableLocationToSettings" translatesAutoresizingMaskIntoConstraints="NO" id="ZfR-Jd-ldB">
-                            <rect key="frame" x="-34" y="-81.5" width="440" height="600"/>
+                            <rect key="frame" x="76" y="68.5" width="220" height="300"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-Oy-unW" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-Oy-unW" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="60" y="525" width="252" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="518-sL-KWN"/>
@@ -780,6 +781,7 @@ to search for.</string>
                             </connections>
                         </button>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="pIC-IN-BnV"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="ZfR-Jd-ldB" firstAttribute="centerY" secondItem="FH2-xN-97a" secondAttribute="centerY" constant="-80" id="4CZ-gF-tEm"/>
@@ -794,16 +796,15 @@ to search for.</string>
                         <constraint firstItem="nJc-ok-4TX" firstAttribute="trailing" secondItem="aBF-tc-KZG" secondAttribute="trailing" id="gIp-Sp-gIC"/>
                         <constraint firstItem="nJc-ok-4TX" firstAttribute="top" secondItem="aBF-tc-KZG" secondAttribute="bottom" constant="8" id="rPN-UT-ETP"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="pIC-IN-BnV"/>
                 </view>
                 <view contentMode="scaleToFill" id="OD3-RV-LXg">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchFantasyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4wd-sf-EWY">
-                            <rect key="frame" x="106" y="94" width="160" height="90.5"/>
+                            <rect key="frame" x="146" y="94" width="80" height="80"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-hA-yJP" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-hA-yJP" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="60" y="378" width="252" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="HUk-Si-k54"/>
@@ -813,7 +814,7 @@ to search for.</string>
                                 <action selector="inviteFriendsClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="1eu-Wr-aax"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLn-CN-7r9" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLn-CN-7r9" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="60" y="448" width="252" height="52"/>
                             <state key="normal" title="Join Active City"/>
                             <connections>
@@ -846,6 +847,7 @@ activated when it reaches</string>
                             </subviews>
                         </stackView>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="tHd-TV-2jB"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="JvS-eG-pQh" firstAttribute="leading" secondItem="tfk-hA-yJP" secondAttribute="leading" id="9af-Qj-kSs"/>
@@ -862,7 +864,6 @@ activated when it reaches</string>
                         <constraint firstItem="4wd-sf-EWY" firstAttribute="top" secondItem="tHd-TV-2jB" secondAttribute="top" constant="50" id="sdv-mm-7LN"/>
                         <constraint firstItem="tHd-TV-2jB" firstAttribute="bottom" secondItem="eLn-CN-7r9" secondAttribute="bottom" constant="20" id="woI-oy-FIm"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="tHd-TV-2jB"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="-401" y="-602"/>
@@ -979,6 +980,7 @@ activated when it reaches</string>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QfA-6D-5n6"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="lOw-Gc-jmK" secondAttribute="bottom" id="6JT-Td-vZs"/>
@@ -986,7 +988,6 @@ activated when it reaches</string>
                             <constraint firstItem="lOw-Gc-jmK" firstAttribute="top" secondItem="QfA-6D-5n6" secondAttribute="top" id="JSl-A6-vIh"/>
                             <constraint firstItem="lOw-Gc-jmK" firstAttribute="leading" secondItem="QfA-6D-5n6" secondAttribute="leading" id="UXZ-fg-EUm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QfA-6D-5n6"/>
                     </view>
                     <connections>
                         <outlet property="activeCityHeaderView" destination="c3j-2W-i0J" id="Oco-kS-QJX"/>
@@ -1001,7 +1002,7 @@ activated when it reaches</string>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Teleport To An Active City" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd2-Y2-x4r">
-                            <rect key="frame" x="26" y="52" width="134.5" height="116"/>
+                            <rect key="frame" x="26" y="52" width="171.5" height="116"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                             <color key="textColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -1010,9 +1011,10 @@ activated when it reaches</string>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="748" image="roomUpgrade" translatesAutoresizingMaskIntoConstraints="NO" id="8fX-nN-LBr">
-                            <rect key="frame" x="168.5" y="80" width="208.5" height="60"/>
+                            <rect key="frame" x="205.5" y="95" width="171.5" height="30"/>
                         </imageView>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="dA5-1O-hJk"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="dA5-1O-hJk" firstAttribute="bottom" secondItem="Dd2-Y2-x4r" secondAttribute="bottom" constant="8" id="4CQ-Gv-eQ7"/>
@@ -1022,7 +1024,6 @@ activated when it reaches</string>
                         <constraint firstItem="Dd2-Y2-x4r" firstAttribute="top" secondItem="dA5-1O-hJk" secondAttribute="top" constant="8" id="ngF-DS-GAS"/>
                         <constraint firstItem="8fX-nN-LBr" firstAttribute="centerY" secondItem="dA5-1O-hJk" secondAttribute="centerY" id="tZE-9F-RCL"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="dA5-1O-hJk"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="1976.8115942028987" y="110.49107142857143"/>
@@ -1064,19 +1065,19 @@ activated when it reaches</string>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="deI-Aq-0Ts">
-                                                            <rect key="frame" x="162" y="-62" width="40" height="344"/>
+                                                            <rect key="frame" x="162" y="98" width="40" height="184"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requestLink" translatesAutoresizingMaskIntoConstraints="NO" id="t1C-1l-Wdo">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requestLike" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-Cr-dAH">
-                                                                    <rect key="frame" x="0.0" y="88" width="40" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="48" width="40" height="40"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requestMessage" translatesAutoresizingMaskIntoConstraints="NO" id="SrT-D0-zKU">
-                                                                    <rect key="frame" x="0.0" y="176" width="40" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="96" width="40" height="40"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requestSticker" translatesAutoresizingMaskIntoConstraints="NO" id="EDY-dm-4zy">
-                                                                    <rect key="frame" x="0.0" y="264" width="40" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="144" width="40" height="40"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1199,13 +1200,13 @@ activated when it reaches</string>
                                         </connections>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-3o-gJM">
-                                <rect key="frame" x="139" y="54" width="136" height="33"/>
+                                <rect key="frame" x="138" y="54" width="138" height="33"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5n4-my-7WL" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5n4-my-7WL" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="33"/>
                                         <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1216,8 +1217,8 @@ activated when it reaches</string>
                                             <action selector="incommingAction:" destination="fKc-RR-5Ef" eventType="touchUpInside" id="H28-ao-3c9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xX0-i5-BYr" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="71" y="0.0" width="65" height="33"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xX0-i5-BYr" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                        <rect key="frame" x="72" y="0.0" width="66" height="33"/>
                                         <color key="backgroundColor" red="0.86150974039999995" green="0.47359281780000001" blue="0.74149644370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1234,6 +1235,7 @@ activated when it reaches</string>
                                 </constraints>
                             </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="P1G-NS-fWC"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9gb-Gd-wJf" firstAttribute="leading" secondItem="P1G-NS-fWC" secondAttribute="leading" id="4g9-jw-L4O"/>
@@ -1247,7 +1249,6 @@ activated when it reaches</string>
                             <constraint firstItem="RJf-BM-2pN" firstAttribute="leading" secondItem="P1G-NS-fWC" secondAttribute="leading" id="mwB-uy-7NK"/>
                             <constraint firstItem="bSm-3o-gJM" firstAttribute="centerX" secondItem="P1G-NS-fWC" secondAttribute="centerX" id="xHK-gn-dZ4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="P1G-NS-fWC"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="RJf-BM-2pN" id="Hu8-36-Aii"/>
@@ -1268,7 +1269,7 @@ activated when it reaches</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sG-MT-qDj" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sG-MT-qDj" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                 <rect key="frame" x="60" y="790" width="294" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="aSa-ZA-5ar"/>
@@ -1291,10 +1292,11 @@ activated when it reaches</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchEnableLocationToSettings" translatesAutoresizingMaskIntoConstraints="NO" id="XYv-0G-75Y">
-                                <rect key="frame" x="-13" y="-2" width="440" height="600"/>
+                                <rect key="frame" x="97" y="148" width="220" height="300"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1Eu-Mx-zij"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gjX-KK-SsL" firstAttribute="leading" secondItem="1Eu-Mx-zij" secondAttribute="leading" constant="50" id="1Tx-P7-BhQ"/>
                             <constraint firstItem="1Eu-Mx-zij" firstAttribute="trailing" secondItem="2sG-MT-qDj" secondAttribute="trailing" constant="60" id="2dE-cm-rTJ"/>
@@ -1309,7 +1311,6 @@ activated when it reaches</string>
                             <constraint firstItem="gjX-KK-SsL" firstAttribute="centerY" secondItem="dwE-3d-1CX" secondAttribute="centerY" constant="150" id="uAP-o8-bFi"/>
                             <constraint firstItem="gjX-KK-SsL" firstAttribute="centerX" secondItem="dwE-3d-1CX" secondAttribute="centerX" id="w7Y-BS-ge4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1Eu-Mx-zij"/>
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="7g9-SU-GnN" id="Jb2-Wn-KUH"/>
@@ -1321,7 +1322,7 @@ activated when it reaches</string>
             </objects>
             <point key="canvasLocation" x="2851" y="-662"/>
         </scene>
-        <!--Data Source-->
+        <!--DiscoveryFilterViewController-->
         <scene sceneID="gao-4q-isq">
             <objects>
                 <viewController storyboardIdentifier="DiscoveryFilterViewController" title="DiscoveryFilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iyx-6x-4MS" customClass="DiscoveryFilterViewController" customModule="FantasyApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1333,13 +1334,13 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="629"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="627.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="87"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="86.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-fj-wTM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                         <color key="textColor" name="textBlackColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1348,10 +1349,10 @@ activated when it reaches</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-Cd-I9r" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="43" width="382" height="44"/>
+                                                        <rect key="frame" x="0.0" y="42.5" width="382" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-ZW-YUQ">
-                                                                <rect key="frame" x="16" y="11" width="76.5" height="22"/>
+                                                                <rect key="frame" x="16" y="11" width="72" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="BOR-Mo-7dm"/>
                                                                 </constraints>
@@ -1363,14 +1364,14 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityCheckImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-J4-MI5">
-                                                                <rect key="frame" x="275.5" y="16" width="12" height="12"/>
+                                                                <rect key="frame" x="277.5" y="16" width="12" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="12" id="eEl-Ey-JRP"/>
                                                                     <constraint firstAttribute="width" secondItem="iLt-J4-MI5" secondAttribute="height" multiplier="1:1" id="zwz-mJ-FHC"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NS-4E-Ebr">
-                                                                <rect key="frame" x="301.5" y="13" width="49.5" height="18"/>
+                                                                <rect key="frame" x="303.5" y="13.5" width="47.5" height="17.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                 <color key="textColor" name="textPinkColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1379,7 +1380,7 @@ activated when it reaches</string>
                                                                 <rect key="frame" x="356" y="0.0" width="10" height="44"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="rxv-ZW-YUQ" secondAttribute="bottom" constant="11" id="0z7-jA-YAS"/>
@@ -1401,13 +1402,13 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-1k-Qk9">
-                                                <rect key="frame" x="0.0" y="111" width="382" height="290"/>
+                                                <rect key="frame" x="0.0" y="110.5" width="382" height="289.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-W8-g6m">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="165"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="164.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8z-qv-z4e">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1416,7 +1417,7 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHi-3I-88t" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="42" width="382" height="123"/>
+                                                                <rect key="frame" x="0.0" y="41.5" width="382" height="123"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Rug-h3-Yph">
                                                                         <rect key="frame" x="16" y="16" width="366" height="49"/>
@@ -1474,7 +1475,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="A9S-yE-K6c" secondAttribute="bottom" constant="11" id="8Gr-hx-70r"/>
                                                                     <constraint firstItem="z5R-rx-HWa" firstAttribute="height" secondItem="A9S-yE-K6c" secondAttribute="height" id="9WT-Ih-0Rr"/>
@@ -1496,7 +1497,7 @@ activated when it reaches</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="U7d-3r-Pig">
-                                                        <rect key="frame" x="0.0" y="177" width="382" height="113"/>
+                                                        <rect key="frame" x="0.0" y="176.5" width="382" height="113"/>
                                                         <subviews>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3Y-JS-oLB" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="123"/>
@@ -1557,7 +1558,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="bIM-q2-7Lp" firstAttribute="bottom" secondItem="dXg-I3-SWV" secondAttribute="bottom" id="4lQ-yn-Vyf"/>
                                                                     <constraint firstItem="1GV-YI-iYw" firstAttribute="top" secondItem="ZnJ-HZ-z2b" secondAttribute="bottom" constant="3" id="4rx-Jy-VUd"/>
@@ -1597,7 +1598,7 @@ activated when it reaches</string>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="113" id="0Sh-Nn-cjn"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Ejk-h8-EkV" secondAttribute="trailing" constant="16" id="4vC-lQ-hTg"/>
@@ -1613,10 +1614,10 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyJ-oa-jxg" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="425" width="382" height="44"/>
+                                                <rect key="frame" x="0.0" y="424" width="382" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-Ul-yCK">
-                                                        <rect key="frame" x="16" y="11" width="50" height="22"/>
+                                                        <rect key="frame" x="16" y="11" width="48.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="lx7-gv-8iE"/>
                                                         </constraints>
@@ -1634,7 +1635,7 @@ activated when it reaches</string>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="J9W-Ul-yCK" firstAttribute="leading" secondItem="OyJ-oa-jxg" secondAttribute="leading" constant="16" id="7wm-bm-ezw"/>
                                                     <constraint firstAttribute="trailing" secondItem="Yxx-aQ-Txl" secondAttribute="trailing" constant="16" id="9uS-Y1-2a7"/>
@@ -1645,13 +1646,13 @@ activated when it reaches</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-Jj-sjy">
-                                                <rect key="frame" x="0.0" y="493" width="382" height="136"/>
+                                                <rect key="frame" x="0.0" y="492" width="382" height="135.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6er-11-nia">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="136"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="135.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Partner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0I-xQ-K38">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1660,10 +1661,10 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3R-VX-lKE" customClass="ListRoundedView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="40" width="382" height="96"/>
+                                                                <rect key="frame" x="0.0" y="39.5" width="382" height="96"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-kD-la2">
-                                                                        <rect key="frame" x="16" y="11" width="350" height="18"/>
+                                                                        <rect key="frame" x="16" y="11" width="350" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                         <color key="textColor" name="textBlackColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1672,7 +1673,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egU-Il-qSz" customClass="SmoothPickerView" customModule="SmoothPicker">
-                                                                        <rect key="frame" x="0.0" y="39" width="382" height="46"/>
+                                                                        <rect key="frame" x="0.0" y="38.5" width="382" height="46.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <connections>
                                                                             <outlet property="dataSource" destination="iyx-6x-4MS" id="BdF-tS-vAT"/>
@@ -1680,7 +1681,7 @@ activated when it reaches</string>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2J-iQ-ozP" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="39" width="80" height="46"/>
+                                                                        <rect key="frame" x="0.0" y="38.5" width="80" height="46.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="Zuw-Op-aaU"/>
@@ -1692,7 +1693,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tY-Ad-NRt" customClass="TransparentSideView" customModule="FantasyApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="302" y="39" width="80" height="46"/>
+                                                                        <rect key="frame" x="302" y="38.5" width="80" height="46.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="direction">
@@ -1701,7 +1702,7 @@ activated when it reaches</string>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="egU-Il-qSz" secondAttribute="trailing" id="7yG-HU-Vad"/>
                                                                     <constraint firstItem="P2J-iQ-ozP" firstAttribute="leading" secondItem="egU-Il-qSz" secondAttribute="leading" id="Mfk-ra-Qwi"/>
@@ -1737,7 +1738,7 @@ activated when it reaches</string>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="72"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgN-eb-txH" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgN-eb-txH" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                 <rect key="frame" x="60" y="859" width="294" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="It4-QZ-koC"/>
@@ -1751,6 +1752,7 @@ activated when it reaches</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y43-0j-N8t"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Y43-0j-N8t" firstAttribute="trailing" secondItem="ehO-2K-TEg" secondAttribute="trailing" id="3zX-Lh-Aez"/>
@@ -1761,7 +1763,6 @@ activated when it reaches</string>
                             <constraint firstItem="Y43-0j-N8t" firstAttribute="trailing" secondItem="mgN-eb-txH" secondAttribute="trailing" constant="60" id="k99-Rf-qgS"/>
                             <constraint firstItem="mgN-eb-txH" firstAttribute="leading" secondItem="Y43-0j-N8t" secondAttribute="leading" constant="60" id="pTd-hZ-Kjf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Y43-0j-N8t"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search Options" id="96O-VU-leN">
                         <userDefinedRuntimeAttributes>
@@ -1818,7 +1819,7 @@ activated when it reaches</string>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4r-zU-MIQ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfI-9C-UpQ">
                                 <rect key="frame" x="50" y="507.5" width="314" height="21.5"/>
@@ -1835,9 +1836,9 @@ We've implemented a lot of new and exciting features</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8Vq-j6-7XF">
-                                <rect key="frame" x="87" y="178" width="240" height="240"/>
+                                <rect key="frame" x="147" y="238" width="120" height="120"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-pO-HKE" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-pO-HKE" customClass="PrimaryButton" customModule="FantasyApp" customModuleProvider="target">
                                 <rect key="frame" x="62" y="783" width="290" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="52j-bO-eZh"/>
@@ -1848,7 +1849,8 @@ We've implemented a lot of new and exciting features</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="yyq-pq-Sxe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yyq-pq-Sxe" firstAttribute="bottom" secondItem="dP9-pO-HKE" secondAttribute="bottom" constant="27" id="41K-Uw-otb"/>
                             <constraint firstItem="8Vq-j6-7XF" firstAttribute="centerX" secondItem="Jkf-SH-Xxh" secondAttribute="centerX" id="8bW-he-Uw1"/>
@@ -1867,7 +1869,6 @@ We've implemented a lot of new and exciting features</string>
                             <constraint firstItem="AfI-9C-UpQ" firstAttribute="leading" secondItem="yyq-pq-Sxe" secondAttribute="leading" constant="50" id="dWU-5E-xIe"/>
                             <constraint firstItem="q4r-zU-MIQ" firstAttribute="trailing" secondItem="yyq-pq-Sxe" secondAttribute="trailing" id="pxb-z9-FFA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="yyq-pq-Sxe"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZuH-R1-q8s"/>
                     <connections>
@@ -1919,5 +1920,8 @@ We've implemented a lot of new and exciting features</string>
         <namedColor name="textPinkColor">
             <color red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
