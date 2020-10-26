@@ -32,7 +32,7 @@ extension ProfileSettingsViewModel {
     var isFlirtAccess: Driver<Bool> { appState.changesOf { $0.currentUser?.bio.flirtAccess != false }}
 }
 
-struct ProfileSettingsViewModel : MVVM_ViewModel {
+class ProfileSettingsViewModel : MVVM_ViewModel {
     
     fileprivate let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
 
@@ -73,8 +73,8 @@ extension ProfileSettingsViewModel {
 
         let actions: [UIAlertAction] = [
             .init(title: R.string.localizable.generalNo(), style: .cancel, handler: nil),
-            .init(title: R.string.localizable.fantasySettingsLogoutAlertAction(), style: .destructive, handler: { _ in
-                self.logoutActions()
+            .init(title: R.string.localizable.fantasySettingsLogoutAlertAction(), style: .destructive, handler: { [weak self] _ in
+                self?.logoutActions()
                 Analytics.setUserProps(props: ["Profile Status: Type": "Log Out"])
             })
         ]
@@ -92,7 +92,7 @@ extension ProfileSettingsViewModel {
                 UserManager.deleteAccount()
                     .trackView(viewIndicator: self.indicator)
                     .silentCatch(handler: self.router.owner)
-                    .subscribe(onNext: {
+                    .subscribe(onNext: { [unowned self] in
                         self.logoutActions()
                         Analytics.setUserProps(props: ["Profile Status: Type": "Deactivated"])
                     }).disposed(by: self.bag)
