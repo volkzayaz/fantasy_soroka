@@ -170,7 +170,13 @@ extension AuthenticationManager {
     }
     
     static func currentUser() -> User? {
-        return SettingsStore.currentUser.value
+        let result = SettingsStore.currentUser.value
+        guard result == nil || PFUser.current() != nil else {
+            logout()
+            return nil
+        }
+
+        return result
     }
     
     static func logout() {
