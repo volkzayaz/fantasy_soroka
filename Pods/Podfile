@@ -50,6 +50,7 @@ target 'FantasyApp' do
     #firebase
     pod 'Firebase/Crashlytics'
     pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
 
     # IAP
     pod 'ApphudSDK'
