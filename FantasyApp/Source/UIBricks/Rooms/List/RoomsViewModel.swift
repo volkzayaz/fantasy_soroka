@@ -38,7 +38,7 @@ extension RoomsViewModel {
     
 }
 
-struct RoomsViewModel: MVVM_ViewModel {
+class RoomsViewModel: MVVM_ViewModel {
     
     init(router: RoomsRouter) {
         self.router = router
@@ -77,7 +77,7 @@ extension RoomsViewModel {
         RoomManager.createDraftRoom()
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { room in
+            .subscribe(onNext: { [unowned self] room in
                 self.router.showRoomSettings(room)                
             })
             .disposed(by: bag)

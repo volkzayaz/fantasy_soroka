@@ -35,7 +35,7 @@ extension FantasyDetailsViewModel {
     
 }
 
-struct FantasyDetailsViewModel: MVVM_ViewModel {
+class FantasyDetailsViewModel: MVVM_ViewModel {
 
     private let provider: FantasyDetailProvider
     private var timeSpentCounter = TimeSpentCounter()
@@ -79,7 +79,7 @@ struct FantasyDetailsViewModel: MVVM_ViewModel {
 
 extension FantasyDetailsViewModel {
     
-    mutating func likeCard() {
+    func likeCard() {
         var reaction = currentState.value
         
         switch currentState.value {
@@ -97,7 +97,7 @@ extension FantasyDetailsViewModel {
         reportReactionTime(reaction: .like)
     }
 
-    mutating func dislikeCard() {
+    func dislikeCard() {
         
         var reaction = currentState.value
 
@@ -116,7 +116,7 @@ extension FantasyDetailsViewModel {
         reportReactionTime(reaction: .dislike)
     }
     
-    mutating func blockCard() {
+    func blockCard() {
         let reaction = Fantasy.Card.Reaction.block
 
         guard provider.shouldReact(to: reaction) else {
@@ -136,12 +136,12 @@ extension FantasyDetailsViewModel {
         router.show(collection: collection, context: .Card(provider.navigationContext))
     }
  
-    mutating func viewAppeared() {
+    func viewAppeared() {
         timeSpentCounter.start()
         viewTillFirstReactionTimer.start()
     }
     
-    mutating func viewWillDisappear() {
+    func viewWillDisappear() {
         
         Analytics.report( Analytics.Event.CardViewed(card: provider.card,
                                                      context: provider.navigationContext,
@@ -150,7 +150,7 @@ extension FantasyDetailsViewModel {
         
     }
     
-    mutating func expandStory() {
+    func expandStory() {
         collapsedStory = true
     }
     
@@ -176,7 +176,7 @@ extension FantasyDetailsViewModel {
         router.owner.present(activityVC, animated: true, completion: nil)
     }
     
-    private mutating func reportReactionTime(reaction: Fantasy.Card.Reaction) {
+    private func reportReactionTime(reaction: Fantasy.Card.Reaction) {
         
         ///we are interested only in initial reaction time
         guard provider.initialReaction == .neutral else { return }

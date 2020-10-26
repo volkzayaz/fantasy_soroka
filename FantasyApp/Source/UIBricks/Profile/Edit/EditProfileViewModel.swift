@@ -119,7 +119,7 @@ extension EditProfileViewModel {
     
 }
 
-struct EditProfileViewModel : MVVM_ViewModel {
+class EditProfileViewModel : MVVM_ViewModel {
     
     ////soure of truth
     fileprivate let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))

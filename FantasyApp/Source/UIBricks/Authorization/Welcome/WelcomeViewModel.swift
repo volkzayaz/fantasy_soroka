@@ -26,7 +26,7 @@ extension WelcomeViewModel {
     }
 }
 
-struct WelcomeViewModel : MVVM_ViewModel {
+class WelcomeViewModel : MVVM_ViewModel {
 
     /** Reference dependent viewModels, managers, stores, tracking variables...
 

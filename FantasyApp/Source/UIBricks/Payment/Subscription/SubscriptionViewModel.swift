@@ -140,7 +140,7 @@ extension SubscriptionViewModel {
     
 }
 
-struct SubscriptionViewModel : MVVM_ViewModel {
+class SubscriptionViewModel : MVVM_ViewModel {
     
     let startPage: Page
     private let completion: (() -> Void)?

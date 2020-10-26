@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct MyFantasiesSettingsViewModel : MVVM_ViewModel {
+class MyFantasiesSettingsViewModel : MVVM_ViewModel {
 
     init(router: MyFantasiesSettingsRouter) {
         self.router = router

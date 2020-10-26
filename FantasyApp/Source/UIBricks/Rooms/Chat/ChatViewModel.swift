@@ -102,7 +102,7 @@ extension ChatViewModel {
         return (room.value.me.userSlice, room.value.peer.userSlice)
     }
     
-    mutating func position(for message: Room.Message) -> MessageCellPosition {
+    func position(for message: Room.Message) -> MessageCellPosition {
         if let x = heightCache[message.nonNullHackyText] {
             return x
         }
@@ -131,7 +131,7 @@ extension ChatViewModel {
     
 }
 
-struct ChatViewModel: MVVM_ViewModel {
+class ChatViewModel: MVVM_ViewModel {
     
     private let room: SharedRoomResource
     private var heightCache: [String: MessageCellPosition] = [:]
@@ -253,7 +253,7 @@ extension ChatViewModel {
         ConnectionManager.reject(user: room.value.ownerId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [unowned self] _ in
                 self.router.owner.navigationController?.popViewController(animated: true)
             })
             .disposed(by: bag)
@@ -276,7 +276,7 @@ extension ChatViewModel {
         UserManager.getUser(id: userId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { user in
+            .subscribe(onNext: { [unowned self] user in
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)

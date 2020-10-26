@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct MyFantasiesReactionHistoryViewModel : MVVM_ViewModel {
+class MyFantasiesReactionHistoryViewModel : MVVM_ViewModel {
 
     init(router: MyFantasiesReactionHistoryRouter) {
         self.router = router

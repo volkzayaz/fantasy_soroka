@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-struct FlirtAccessViewModel: MVVM_ViewModel {
+class FlirtAccessViewModel: MVVM_ViewModel {
  
     let router: FlirtAccessRouter
     

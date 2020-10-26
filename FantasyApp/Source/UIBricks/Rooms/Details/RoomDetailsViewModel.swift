@@ -32,7 +32,7 @@ extension RoomDetailsViewModel {
 ///It is not designed to be shared outised of RoomDetails stack
 typealias SharedRoomResource = BehaviorRelay<Room>
 
-struct RoomDetailsViewModel: MVVM_ViewModel {
+class RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
         case fantasies
         case chat
@@ -73,7 +73,7 @@ extension RoomDetailsViewModel {
 
         UserManager.getUser(id: id)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { user in
+            .subscribe(onNext: { [unowned self] user in
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
@@ -85,7 +85,7 @@ extension RoomDetailsViewModel {
         
         UserManager.getUser(id: id)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { user in
+            .subscribe(onNext: { [unowned self] user in
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)

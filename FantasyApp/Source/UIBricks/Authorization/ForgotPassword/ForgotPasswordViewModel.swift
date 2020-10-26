@@ -33,7 +33,7 @@ extension ForgotPasswordViewModel {
     }
 }
 
-struct ForgotPasswordViewModel : MVVM_ViewModel {
+class ForgotPasswordViewModel : MVVM_ViewModel {
 
     fileprivate let emailVar = BehaviorRelay(value: "")
     fileprivate let showCodeWasSentVar = BehaviorRelay(value: false)
@@ -63,7 +63,7 @@ extension ForgotPasswordViewModel {
 
         AuthenticationManager.requestPassword(with: email)
             .trackView(viewIndicator: indicator)
-            .subscribe(onNext: { (res) in
+            .subscribe(onNext: { [unowned self] (res) in
                 guard res else { return }
                 self.showCodeWasSentVar.accept(true)
                 

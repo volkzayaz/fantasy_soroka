@@ -308,7 +308,7 @@ extension UserProfileViewModel {
     }
 }
 
-struct UserProfileViewModel : MVVM_ViewModel {
+class UserProfileViewModel : MVVM_ViewModel {
     
     fileprivate let user: User
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)

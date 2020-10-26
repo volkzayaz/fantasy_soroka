@@ -80,7 +80,7 @@ extension MainTabBarViewModel {
     
 }
 
-struct MainTabBarViewModel : MVVM_ViewModel {
+class MainTabBarViewModel : MVVM_ViewModel {
 
     private let locationManager = CLLocationManager()
     

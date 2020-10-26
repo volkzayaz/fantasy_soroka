@@ -51,7 +51,7 @@ extension ProfilePhotoViewModel {
     
 }
 
-struct ProfilePhotoViewModel : MVVM_ViewModel {
+class ProfilePhotoViewModel : MVVM_ViewModel {
     
     let photoNumber: Int
     let isPublic: Bool

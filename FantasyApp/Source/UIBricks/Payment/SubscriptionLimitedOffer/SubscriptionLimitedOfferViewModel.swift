@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SwiftyStoreKit
 
-struct SubscriptionLimitedOfferViewModel : MVVM_ViewModel {
+class SubscriptionLimitedOfferViewModel : MVVM_ViewModel {
     
     enum OfferType {
         case promo, special

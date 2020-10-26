@@ -68,7 +68,7 @@ extension DiscoverProfileViewModel {
     }
 }
 
-struct DiscoverProfileViewModel : MVVM_ViewModel {
+class DiscoverProfileViewModel : MVVM_ViewModel {
     
     let profiles = BehaviorRelay<[Profile]>(value: [])
     
@@ -121,7 +121,7 @@ struct DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    mutating func profileSwiped(profile: Profile) {
+    func profileSwiped(profile: Profile) {
         guard !viewedProfiles.contains(profile) else { return }
         
         viewedProfiles.insert(profile)

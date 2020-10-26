@@ -53,7 +53,7 @@ extension RootViewModel {
     
 }
 
-struct RootViewModel : MVVM_ViewModel {
+class RootViewModel : MVVM_ViewModel {
     
     enum State {
         case authentication

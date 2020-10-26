@@ -30,7 +30,7 @@ extension FantasyCollectionViewModel {
     
 }
 
-struct FantasyCollectionViewModel : MVVM_ViewModel {
+class FantasyCollectionViewModel : MVVM_ViewModel {
     
     /** Reference dependent viewModels, managers, stores, tracking variables...
      

@@ -23,7 +23,7 @@ extension SinglePickViewModel {
     
 }
 
-struct SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_ViewModel {
+class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_ViewModel {
 
     private let _models: [(String, [T])]
     private var _pickedModels: [T]
@@ -62,7 +62,7 @@ struct SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_V
 
 extension SinglePickViewModel {
     
-    mutating func picked(model: SinglePickModel) {
+    func picked(model: SinglePickModel) {
         
         if singlePickMode {
             _pickedModels = [model as! T]

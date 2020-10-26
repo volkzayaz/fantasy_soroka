@@ -23,7 +23,7 @@ extension OnboardingViewModel {
     
 }
 
-struct OnboardingViewModel : MVVM_ViewModel {
+class OnboardingViewModel : MVVM_ViewModel {
     
     /** Reference dependent viewModels, managers, stores, tracking variables...
      
