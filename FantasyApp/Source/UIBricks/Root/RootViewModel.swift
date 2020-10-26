@@ -84,6 +84,7 @@ struct RootViewModel : MVVM_ViewModel {
                     shareCardImageURL: config.fantasyCardsShare.card,
                     shareCollectionImageURL: config.fantasyCardsShare.collection,
                     isAppsFlyerEnabled: config.isAppsFlyerEnabled,
+                    isSegmentEnabled: config.isSegmentEnabled,
                     legal: .init(title: config.termsAndConditions.title,
                                  description: config.termsAndConditions.body)
                 )

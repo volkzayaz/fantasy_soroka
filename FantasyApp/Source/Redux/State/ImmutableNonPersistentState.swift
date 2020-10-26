@@ -12,6 +12,7 @@ import Foundation
 var immutableNonPersistentState: ImmutableNonPersistentState! {
     didSet {
         AppsFlyerManager.configure()
+        Configuration.setUpSegment()
     }
 }
 
@@ -24,6 +25,7 @@ struct ImmutableNonPersistentState {
     let shareCardImageURL: String
     let shareCollectionImageURL: String
     let isAppsFlyerEnabled: Bool
+    let isSegmentEnabled: Bool
     
     let legal: Legal
     

@@ -17,6 +17,7 @@ import Firebase
 import FBSDKCoreKit
 import Segment
 import AppTrackingTransparency
+import AdSupport
 
 enum Configuration {}
 extension Configuration {
@@ -24,6 +25,24 @@ extension Configuration {
     static func setup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         setupServices(launchOptions: launchOptions)
         registerActors()
+    }
+    
+    static func setUpSegment() {
+        guard immutableNonPersistentState?.isAppsFlyerEnabled == true else {
+            return
+        }
+        
+        let configuration = AnalyticsConfiguration(writeKey: SettingsStore.environment.value.segmentWriteKey)
+        configuration.trackApplicationLifecycleEvents = true
+        configuration.recordScreenViews = true
+        configuration.trackPushNotifications = true
+        configuration.trackDeepLinks = true
+        configuration.enableAdvertisingTracking = true
+        configuration.adSupportBlock = {
+            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        }
+        
+        Segment.Analytics.setup(with: configuration)
     }
     
     private static func setupServices(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -45,16 +64,6 @@ extension Configuration {
             
             config.server = ServerURL.parse
         })
-        
-        // MARK: - Segment
-        
-        let configuration = AnalyticsConfiguration(writeKey: env.segmentWriteKey)
-        configuration.trackApplicationLifecycleEvents = true
-        configuration.recordScreenViews = true
-        configuration.trackPushNotifications = true
-        configuration.trackDeepLinks = true
-        
-        Segment.Analytics.setup(with: configuration)
         
         // MARK: - AppHud
         ApphudManager.configure()

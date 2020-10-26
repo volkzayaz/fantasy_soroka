@@ -347,6 +347,7 @@
 		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
 		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
+		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
 		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
@@ -813,6 +814,7 @@
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
@@ -871,6 +873,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */,
+				A25681302546D17800199209 /* AdSupport.framework in Frameworks */,
 				7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */,
 				23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */,
 			);
@@ -905,6 +908,7 @@
 		6807B3DC917F8545520D3233 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A256812F2546D17800199209 /* AdSupport.framework */,
 				A256812B254585DB00199209 /* AppTrackingTransparency.framework */,
 				45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */,
 				58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */,
