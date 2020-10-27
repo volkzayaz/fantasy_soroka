@@ -14,6 +14,10 @@ import ZendeskSDK
 import ZendeskCoreSDK
 import ScreenShieldKit
 import Firebase
+import FBSDKCoreKit
+import Segment
+import AppTrackingTransparency
+import AdSupport
 
 enum Configuration {}
 extension Configuration {
@@ -21,6 +25,24 @@ extension Configuration {
     static func setup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         setupServices(launchOptions: launchOptions)
         registerActors()
+    }
+    
+    static func setUpSegment() {
+        guard immutableNonPersistentState?.isAppsFlyerEnabled == true else {
+            return
+        }
+        
+        let configuration = AnalyticsConfiguration(writeKey: SettingsStore.environment.value.segmentWriteKey)
+        configuration.trackApplicationLifecycleEvents = true
+        configuration.recordScreenViews = true
+        configuration.trackPushNotifications = true
+        configuration.trackDeepLinks = true
+        configuration.enableAdvertisingTracking = true
+        configuration.adSupportBlock = {
+            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        }
+        
+        Segment.Analytics.setup(with: configuration)
     }
     
     private static func setupServices(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -42,20 +64,18 @@ extension Configuration {
             
             config.server = ServerURL.parse
         })
-
-        // MARK: - Facebook
-        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
+        
+        // MARK: - AppHud
+        ApphudManager.configure()
         
         // MARK: - Branch
         // unncomment to disable debug mode
         //Branch.setUseTestBranchKey(true)
         
-        // MARK: - AppHud
-        ApphudManager.configure()
-        
         let branch = Branch.getInstance()
         //branch?.setDebug()
-        branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+        branch.registerFacebookDeepLinkingClass(AppLinkUtility.self)
+        branch.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
           
             guard let identifier = params?["$canonical_identifier"] as? String else {
                 return
@@ -121,6 +141,10 @@ extension Configuration {
         Zendesk.instance?.setIdentity(ident)
         
         ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
+        
+        if #available(iOS 14.0, *) {
+            ATTrackingManager.requestTrackingAuthorization { _ in }
+        }
     }
 
     private static func registerActors() {
@@ -129,7 +153,6 @@ extension Configuration {
         ]
         actors.forEach { ActorLocator.shared.register($0) }
     }
-
 }
 
 enum ServerURL {}

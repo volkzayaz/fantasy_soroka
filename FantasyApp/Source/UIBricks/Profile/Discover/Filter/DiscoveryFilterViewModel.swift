@@ -63,7 +63,7 @@ extension DiscoveryFilterViewModel {
     }
 }
 
-struct DiscoveryFilterViewModel : MVVM_ViewModel {
+class DiscoveryFilterViewModel : MVVM_ViewModel {
     
     fileprivate let form: BehaviorRelay<SearchPreferences>
 

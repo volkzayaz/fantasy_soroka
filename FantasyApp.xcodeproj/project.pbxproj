@@ -129,7 +129,7 @@
 		7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */; };
 		735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735481CF2367705A009132A2 /* UIView+EmptyData.swift */; };
 		7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; };
-		7355B518236F1BAB00A540B1 /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7355B518236F1BAB00A540B1 /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */; };
 		73570A79237169350097430B /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73570A78237169350097430B /* UIView+Rx.swift */; };
 		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
@@ -346,6 +346,9 @@
 		88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */; };
 		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
 		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
+		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
+		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
+		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
@@ -810,6 +813,9 @@
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
+		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
@@ -866,6 +872,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */,
+				A25681302546D17800199209 /* AdSupport.framework in Frameworks */,
 				7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */,
 				23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */,
 			);
@@ -900,6 +908,8 @@
 		6807B3DC917F8545520D3233 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A256812F2546D17800199209 /* AdSupport.framework */,
+				A256812B254585DB00199209 /* AppTrackingTransparency.framework */,
 				45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */,
 				58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */,
 			);
@@ -1242,6 +1252,7 @@
 			isa = PBXGroup;
 			children = (
 				88648A8924CB72750062C7A5 /* AppHud */,
+				A2A95CE025449835006A4F3F /* AppsFlyer */,
 				88F8DDB324BCFC4800900A6E /* Storage */,
 				8887A81424BCFA4200B6CF45 /* Perform */,
 				885EEF0624BA196600BA187A /* RemoteConfig */,
@@ -2442,6 +2453,14 @@
 			path = DeckLimitedOffer;
 			sourceTree = "<group>";
 		};
+		A2A95CE025449835006A4F3F /* AppsFlyer */ = {
+			isa = PBXGroup;
+			children = (
+				A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */,
+			);
+			path = AppsFlyer;
+			sourceTree = "<group>";
+		};
 		B719F91E2389A4D3009AB110 /* Blocked */ = {
 			isa = PBXGroup;
 			children = (
@@ -2648,7 +2667,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Fantasy App";
 				TargetAttributes = {
 					7312B03F22D73AD100DB0F36 = {
@@ -2933,6 +2952,7 @@
 			files = (
 				73432ACA238A8E7C008CF2F1 /* TextMessageCell.swift in Sources */,
 				84B8AD0522DCCC650026862E /* APIEnpdoint.swift in Sources */,
+				A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */,
 				B7D68496238E68D100E99993 /* GatewayProfileButton.swift in Sources */,
 				7322311323040DB6009DD37F /* FantasyDeckViewModel.swift in Sources */,
 				733F41BB236452A0004EC466 /* InviteDeeplink.swift in Sources */,
@@ -3357,6 +3377,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3419,6 +3440,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3458,7 +3480,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3472,7 +3494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3494,7 +3516,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3507,7 +3529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient";
@@ -3545,6 +3567,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3584,7 +3607,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3598,7 +3621,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
@@ -3624,7 +3647,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3647,7 +3670,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3670,7 +3693,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3685,7 +3708,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3694,7 +3717,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3710,7 +3733,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3719,7 +3742,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";
@@ -3735,7 +3758,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3744,7 +3767,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.1.10;
+				MARKETING_VERSION = 2.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";

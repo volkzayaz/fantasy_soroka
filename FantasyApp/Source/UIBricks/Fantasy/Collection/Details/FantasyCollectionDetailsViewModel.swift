@@ -88,7 +88,7 @@ extension FantasyCollectionDetailsViewModel {
     
 }
 
-struct FantasyCollectionDetailsViewModel : MVVM_ViewModel {
+class FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     let collection: Fantasy.Collection
     
@@ -179,16 +179,16 @@ extension FantasyCollectionDetailsViewModel {
             .disposed(by: bag)
     }
     
-    mutating func share() {
+    func share() {
         buo = collection.share(presenter: router.owner)
     }
     
-    mutating func viewAppeared() {
+    func viewAppeared() {
         timeSpentCounter.start()
         openOfferIfNeeded(for: .special)
     }
     
-    mutating func viewWillDisappear() {
+    func viewWillDisappear() {
         Analytics.report(
             Analytics.Event.CollectionViewed(
                 collection: collection,

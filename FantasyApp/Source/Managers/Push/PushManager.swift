@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppsFlyerLib
 
 class PushManager: NSObject {}
 extension PushManager {
@@ -64,6 +65,7 @@ extension PushManager: UNUserNotificationCenterDelegate {
         //Branch.getInstance()?.handlePushNotification(  userInfo)
         
         ApphudManager.handlePush(with: response.notification)
+        AppsFlyerManager.handlePush(with: response.notification)
         
         guard let data = try? JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo, options: []) else {
             return
@@ -81,6 +83,7 @@ extension PushManager: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         ApphudManager.handlePush(with: notification)
+        AppsFlyerManager.handlePush(with: notification)
         completionHandler([])
     }
 }

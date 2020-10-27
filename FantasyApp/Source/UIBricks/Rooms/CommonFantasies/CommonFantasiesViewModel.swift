@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct CommonFantasiesViewModel: MVVM_ViewModel {
+class CommonFantasiesViewModel: MVVM_ViewModel {
     let router: CommonFantasiesRouter
     let room: Room
 

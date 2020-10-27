@@ -28,7 +28,7 @@ extension UserGatewayViewModel {
     
 }
 
-struct UserGatewayViewModel : MVVM_ViewModel {
+class UserGatewayViewModel : MVVM_ViewModel {
     
     /** Reference dependent viewModels, managers, stores, tracking variables...
      

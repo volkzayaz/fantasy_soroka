@@ -21,7 +21,7 @@ extension LoginViewModel {
     }
 }
 
-struct LoginViewModel : MVVM_ViewModel {
+class LoginViewModel : MVVM_ViewModel {
 
     fileprivate let emailVar = BehaviorRelay(value: "")
     fileprivate let passwordVar = BehaviorRelay(value: "")

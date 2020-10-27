@@ -9,7 +9,12 @@
 import Foundation
 
 ////only mutated by FetchConfig() from MainTabViewModel
-var immutableNonPersistentState: ImmutableNonPersistentState!
+var immutableNonPersistentState: ImmutableNonPersistentState! {
+    didSet {
+        AppsFlyerManager.configure()
+        Configuration.setUpSegment()
+    }
+}
 
 struct ImmutableNonPersistentState {
     
@@ -19,7 +24,9 @@ struct ImmutableNonPersistentState {
 
     let shareCardImageURL: String
     let shareCollectionImageURL: String
- 
+    let isAppsFlyerEnabled: Bool
+    let isSegmentEnabled: Bool
+    
     let legal: Legal
     
     struct Legal {

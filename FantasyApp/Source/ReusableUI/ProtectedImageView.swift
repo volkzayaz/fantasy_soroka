@@ -22,7 +22,7 @@ class ProtectedImageView: UIView {
     
     func set(imageURL: String, isProtected: Bool, errorPlaceholder: UIImage? = nil) {
         
-        let regular = !isProtected || !immutableNonPersistentState.screenProtectEnabled
+        let regular = !isProtected || immutableNonPersistentState?.screenProtectEnabled != true
         
         regularImageView.isHidden = !regular
         protectedImageView.isHidden = regular

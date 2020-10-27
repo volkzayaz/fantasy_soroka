@@ -98,7 +98,7 @@ struct RemoteConfigManager {
         RemoteConfig.remoteConfig().fetch(withExpirationDuration: duration) { status, _ in
             switch status {
             case .success:
-                RemoteConfig.remoteConfig().activate()
+                RemoteConfig.remoteConfig().activate(completion: nil)
                 
             default: return
             }

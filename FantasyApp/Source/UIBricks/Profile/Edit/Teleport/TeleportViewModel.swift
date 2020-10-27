@@ -132,7 +132,7 @@ extension TeleportViewModel {
     
 }
 
-struct TeleportViewModel : MVVM_ViewModel {
+class TeleportViewModel : MVVM_ViewModel {
     
     fileprivate let mode = BehaviorRelay(value: Mode.countries)
     

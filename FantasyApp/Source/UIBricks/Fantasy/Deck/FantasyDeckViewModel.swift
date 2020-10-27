@@ -102,7 +102,7 @@ extension FantasyDeckViewModel {
     
 }
 
-struct FantasyDeckViewModel : MVVM_ViewModel {
+class FantasyDeckViewModel : MVVM_ViewModel {
 
     typealias PresentationStyle = FantasyDeckViewController.PresentationStyle
 
@@ -190,7 +190,7 @@ extension FantasyDeckViewModel {
         router.showSubscription()
     }
     
-    mutating func cardTapped(card: Fantasy.Card) {
+    func cardTapped(card: Fantasy.Card) {
         
         router.cardTapped(provider: provider.detailsProvider(card: card))
         
@@ -208,7 +208,7 @@ extension FantasyDeckViewModel {
         router.show(collection: collection)
     }
     
-    mutating func cardShown(card: Fantasy.Card) {
+    func cardShown(card: Fantasy.Card) {
         viewTillOpenCardTimer.start()
     }
     

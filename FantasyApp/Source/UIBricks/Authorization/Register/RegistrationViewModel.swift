@@ -164,7 +164,7 @@ extension RegistrationViewModel {
     var communityRulesUrl: String { return "https://fantasyapp.com/en/community-rules/" }
 }
 
-struct RegistrationViewModel : MVVM_ViewModel {
+class RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate let form = BehaviorRelay(value: RegisterForm())
     fileprivate let currentStepRelay = BehaviorRelay(value: Step.onboarding1)
@@ -172,8 +172,12 @@ struct RegistrationViewModel : MVVM_ViewModel {
     
     fileprivate var onboardingTimer: Driver<Int> {
         currentStepRelay.filter { $0 == .onboarding1 || $0 == .onboarding2 || $0 == .onboarding3 }
-            .flatMapLatest { _ in
-                Observable.concat(Observable<Int>.timer(.seconds(0), period: .seconds(1), scheduler: MainScheduler.instance)
+            .flatMapLatest { [weak self] _ -> Observable<Int> in
+                guard let `self` = self else {
+                    return .just(0)
+                }
+                
+                return Observable.concat(Observable<Int>.timer(.seconds(0), period: .seconds(1), scheduler: MainScheduler.instance)
                     .map { 5 - $0 }
                     .takeWhile { $0 >= 0 }
                     .takeUntil(BehaviorRelay.combineLatest(self.currentStepRelay, self.reachedStepRelay).filter { $0 != $1 } )

@@ -19,7 +19,7 @@ extension NotificationSettingsViewModel {
     
 }
 
-struct NotificationSettingsViewModel : MVVM_ViewModel {
+class NotificationSettingsViewModel : MVVM_ViewModel {
     
     init(router: NotificationSettingsRouter) {
         self.router = router

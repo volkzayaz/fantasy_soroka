@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct RoomNotificationSettingsViewModel: MVVM_ViewModel {
+class RoomNotificationSettingsViewModel: MVVM_ViewModel {
     
     let router: RoomNotificationSettingsRouter
     let room: Room

@@ -74,7 +74,7 @@ extension RoomSettingsViewModel {
     
 }
 
-struct RoomSettingsViewModel: MVVM_ViewModel {
+class RoomSettingsViewModel: MVVM_ViewModel {
 
     private let room: SharedRoomResource
     
@@ -214,7 +214,7 @@ extension RoomSettingsViewModel {
         UserManager.getUser(id: participant.userSlice.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { (user) in
+            .subscribe(onNext: { [unowned self] (user) in
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
@@ -227,7 +227,7 @@ extension RoomSettingsViewModel {
         RoomManager.deleteRoom(r.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { [unowned self] (_) in
                 Dispatcher.dispatch(action: DeleteRoom(room: r))
                 self.router.owner.dismiss(animated: true, completion: nil)
             })

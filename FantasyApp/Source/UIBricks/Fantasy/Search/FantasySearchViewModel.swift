@@ -56,7 +56,7 @@ extension FantasySearchViewModel {
     
 }
 
-struct FantasySearchViewModel : MVVM_ViewModel {
+class FantasySearchViewModel : MVVM_ViewModel {
     
     /** Reference dependent viewModels, managers, stores, tracking variables...
      

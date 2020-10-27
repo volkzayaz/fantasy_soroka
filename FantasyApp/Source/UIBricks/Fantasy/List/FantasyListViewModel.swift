@@ -90,7 +90,7 @@ extension FantasyListViewModel {
 
 typealias FantasyListTitleProvider = (Int) -> NSAttributedString
 
-struct FantasyListViewModel : MVVM_ViewModel {
+class FantasyListViewModel : MVVM_ViewModel {
     
     fileprivate let provider: Driver<[Fantasy.Card]>
     fileprivate let protectPolicy: Driver<Bool>

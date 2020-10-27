@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>34</string>
+	<string>36</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -152,5 +152,7 @@
 		<key>test</key>
 		<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
 	</dict>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>This will only be used to serve more relevant ads</string>
 </dict>
 </plist>

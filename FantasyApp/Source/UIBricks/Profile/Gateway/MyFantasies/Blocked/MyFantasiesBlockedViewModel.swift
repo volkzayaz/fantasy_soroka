@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct MyFantasiesBlockedViewModel : MVVM_ViewModel {
+class MyFantasiesBlockedViewModel : MVVM_ViewModel {
 
     init(router: MyFantasiesBlockedRouter) {
         self.router = router

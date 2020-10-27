@@ -53,7 +53,7 @@ extension RootViewModel {
     
 }
 
-struct RootViewModel : MVVM_ViewModel {
+class RootViewModel : MVVM_ViewModel {
     
     enum State {
         case authentication
@@ -83,6 +83,8 @@ struct RootViewModel : MVVM_ViewModel {
                     screenProtectEnabled: config.screenProtectEnabled,
                     shareCardImageURL: config.fantasyCardsShare.card,
                     shareCollectionImageURL: config.fantasyCardsShare.collection,
+                    isAppsFlyerEnabled: config.isAppsFlyerEnabled,
+                    isSegmentEnabled: config.isSegmentEnabled,
                     legal: .init(title: config.termsAndConditions.title,
                                  description: config.termsAndConditions.body)
                 )

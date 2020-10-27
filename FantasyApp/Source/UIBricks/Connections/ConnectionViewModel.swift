@@ -41,7 +41,7 @@ extension ConnectionViewModel {
     
 }
 
-struct ConnectionViewModel : MVVM_ViewModel {
+class ConnectionViewModel : MVVM_ViewModel {
     
     fileprivate let reloadTrigger = BehaviorRelay<Void>(value: () )
     fileprivate let source = BehaviorRelay<GetConnectionRequests.Source>(value: .incomming )

@@ -43,7 +43,6 @@ platform :ios do
     )
 
     ##building ipa
-    xcode_select("/Applications/Xcode 11.app")
     gym(scheme: "FantasyApp",
         configuration: configuration,
         include_bitcode: false,
@@ -90,7 +89,6 @@ platform :ios do
 
       ensure_git_branch( branch: 'master' )
       ##building ipa
-      xcode_select("/Applications/Xcode 11.app")
       gym(scheme: "FantasyApp",
           configuration: "Release",
           export_method: "app-store",
@@ -114,8 +112,14 @@ platform :ios do
 
   lane :refresh_dsym do |options|
 
-    download_dsyms(version: "latest")
-    upload_symbols_to_crashlytics
+    if options[:version]
+        version = options[:version]
+    else
+        version = "latest"
+    end
+
+    download_dsyms(version: version)
+    upload_symbols_to_crashlytics(binary_path: "./Pods/Pods/FirebaseCrashlytics/upload-symbols")
     clean_build_artifacts
 
   end
