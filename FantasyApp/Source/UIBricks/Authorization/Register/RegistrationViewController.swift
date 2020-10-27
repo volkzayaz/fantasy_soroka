@@ -648,6 +648,10 @@ private extension RegistrationViewController {
         picker.datePickerMode = .date
         picker.maximumDate = Date()
         picker.date = Date(timeIntervalSince1970: 0)
+        if #available(iOS 13.4, *) {
+            picker.preferredDatePickerStyle = .wheels
+        }
+        
         birthdayTextField.inputView = picker
         birthdayTextField.allowsEditingTextAttributes = false
     }
