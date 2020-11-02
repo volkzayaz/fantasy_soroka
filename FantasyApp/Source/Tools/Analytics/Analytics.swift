@@ -9,12 +9,15 @@
 import Amplitude_iOS
 import RxSwift
 import AppsFlyerLib
+import Firebase
 
 enum Analytics {}
 extension Analytics {
     
     static func report(_ event: AnalyticsEvent) {
         Amplitude.instance()?.logEvent( event.name , withEventProperties: event.props )
+        AppsFlyerManager.logEvent(event.name, withValues: event.props)
+        Firebase.Analytics.logEvent(event.name, parameters: event.props)
 
 //        print("Analytics:  Event = \(event.name)")
 //        if let x = event.props {
