@@ -40,8 +40,6 @@ struct ImmutableNonPersistentState {
 
 var premiumIds: Set<String> = [
     "com.fantasyapp.iosclient.iap.premium",
-    "com.fantasyapp.iosclient.iap.premium.1month",
     "com.fantasyapp.iosclient.iap.premium.months3",
-    "com.fantasyapp.iosclient.iap.premium.months6",
     "com.fantasyapp.iosclient.iap.premium.year"
 ]

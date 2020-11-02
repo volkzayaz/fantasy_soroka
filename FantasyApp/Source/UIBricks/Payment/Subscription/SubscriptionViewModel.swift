@@ -108,7 +108,8 @@ extension SubscriptionViewModel {
 
     var offers: Driver<[SubscriptionOffer]> {
         
-        let ids = immutableNonPersistentState.subscriptionProductIDs ?? premiumIds
+        // Sometimes immutableNonPersistentState is nil at this moment
+        let ids = immutableNonPersistentState?.subscriptionProductIDs ?? premiumIds
         
         return SwiftyStoreKit.rx_productDetails(products: ids)
             .retry(1)
