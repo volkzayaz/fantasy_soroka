@@ -73,6 +73,26 @@ extension Environment {
             
         }
     }
+    
+    var appsFlyerDevKey: String {
+        switch self {
+            
+        case .dev       : return "2fKz2jDtEUvhuUW65J4Ewn"
+        case .staging   : return "2fKz2jDtEUvhuUW65J4Ewn"
+        case .production: return "2fKz2jDtEUvhuUW65J4Ewn"
+            
+        }
+    }
+    
+    var appsFlyerAppleAppID: String {
+        switch self {
+            
+        case .dev       : return "111119516"
+        case .staging   : return "111119516"
+        case .production: return "1230109516"
+            
+        }
+    }
 }
 
 enum RunScheme {

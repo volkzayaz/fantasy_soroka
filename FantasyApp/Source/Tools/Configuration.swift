@@ -28,7 +28,7 @@ extension Configuration {
     }
     
     static func setUpSegment() {
-        guard immutableNonPersistentState?.isAppsFlyerEnabled == true else {
+        guard immutableNonPersistentState?.isSegmentEnabled == true else {
             return
         }
         

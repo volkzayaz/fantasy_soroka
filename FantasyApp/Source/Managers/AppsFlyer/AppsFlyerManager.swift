@@ -7,8 +7,11 @@
 //
 
 import AppsFlyerLib
+import ApphudSDK
 
-final class AppsFlyerManager {
+final class AppsFlyerManager: NSObject {
+    
+    static let shared: AppsFlyerManager = AppsFlyerManager()
     
     static var isAvailable: Bool {
         immutableNonPersistentState?.isAppsFlyerEnabled == true
@@ -19,9 +22,10 @@ final class AppsFlyerManager {
             return
         }
         
-        AppsFlyerLib.shared().appsFlyerDevKey = "2fKz2jDtEUvhuUW65J4Ewn"
-        AppsFlyerLib.shared().appleAppID = "1230109516"
+        AppsFlyerLib.shared().appsFlyerDevKey = SettingsStore.environment.value.appsFlyerDevKey
+        AppsFlyerLib.shared().appleAppID = SettingsStore.environment.value.appsFlyerAppleAppID
         AppsFlyerLib.shared().isDebug = !RunScheme.appstore
+        AppsFlyerLib.shared().delegate = shared
         
         AppsFlyerLib.shared().start()
     }
@@ -42,5 +46,16 @@ final class AppsFlyerManager {
         if isAvailable {
             AppsFlyerLib.shared().logEvent(name, withValues: values)
         }
+    }
+}
+
+extension AppsFlyerManager: AppsFlyerLibDelegate {
+    
+    func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
+        Apphud.addAttribution(data: conversionInfo, from: .appsFlyer, identifer: AppsFlyerLib.shared().getAppsFlyerUID()) { _ in }
+    }
+
+    func onConversionDataFail(_ error: Error) {
+        Apphud.addAttribution(data: ["error" : error.localizedDescription], from: .appsFlyer, identifer: AppsFlyerLib.shared().getAppsFlyerUID()) { _ in }
     }
 }
