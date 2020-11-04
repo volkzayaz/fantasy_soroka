@@ -640,6 +640,12 @@ to search for.</string>
                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.agreeText"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-p5-wyW">
+                                    <rect key="frame" x="61.5" y="381" width="333" height="36"/>
+                                    <connections>
+                                        <action selector="activateTextClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="k9Q-nc-q36"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDE-oa-WkS" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                     <rect key="frame" x="60" y="459" width="296" height="52"/>
                                     <constraints>
@@ -670,11 +676,15 @@ to search for.</string>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="jkd-p5-wyW" firstAttribute="bottom" secondItem="LlD-p0-sRX" secondAttribute="bottom" id="3fx-4v-3YF"/>
                                 <constraint firstItem="MDE-oa-WkS" firstAttribute="leading" secondItem="Uxj-pE-3uQ" secondAttribute="leading" constant="60" id="3gc-2j-OEb"/>
                                 <constraint firstItem="LlD-p0-sRX" firstAttribute="top" secondItem="Y3U-6C-Ru1" secondAttribute="bottom" constant="8" id="5Tr-Mc-7u4"/>
+                                <constraint firstItem="jkd-p5-wyW" firstAttribute="top" secondItem="LlD-p0-sRX" secondAttribute="top" id="6Oa-zY-wNc"/>
                                 <constraint firstItem="2FJ-1h-GUS" firstAttribute="top" secondItem="Uxj-pE-3uQ" secondAttribute="top" constant="40" id="A3S-Qm-hBI"/>
                                 <constraint firstAttribute="trailing" secondItem="MDE-oa-WkS" secondAttribute="trailing" constant="60" id="FzV-o9-R5v"/>
                                 <constraint firstItem="2FJ-1h-GUS" firstAttribute="centerX" secondItem="Uxj-pE-3uQ" secondAttribute="centerX" id="IcJ-6Y-WAG"/>
+                                <constraint firstItem="jkd-p5-wyW" firstAttribute="leading" secondItem="LlD-p0-sRX" secondAttribute="leading" id="Jak-vq-CCz"/>
+                                <constraint firstItem="jkd-p5-wyW" firstAttribute="trailing" secondItem="LlD-p0-sRX" secondAttribute="trailing" id="Lmb-Qd-KWo"/>
                                 <constraint firstItem="LlD-p0-sRX" firstAttribute="centerX" secondItem="Y3U-6C-Ru1" secondAttribute="centerX" constant="20" id="WXC-Gn-Eqq"/>
                                 <constraint firstItem="Y3U-6C-Ru1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2FJ-1h-GUS" secondAttribute="bottom" priority="999" constant="70" id="X2U-yc-Mr1"/>
                                 <constraint firstItem="LlD-p0-sRX" firstAttribute="leading" secondItem="j9L-uL-6K5" secondAttribute="trailing" id="brb-52-nCN"/>

@@ -256,6 +256,10 @@ extension DiscoverProfileViewController {
     @IBAction func activateTickClick(_ sender: UIButton) {
         activateButton.isEnabled = sender.isSelected
     }
+    
+    @IBAction func activateTextClick(_ sender: Any) {
+        checkActivateButton.sendActions(for: .touchUpInside)
+    }
 
     @objc func presentFilter() {
         viewModel.presentFilter()
