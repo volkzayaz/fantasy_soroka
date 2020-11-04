@@ -17,6 +17,16 @@ protocol AnalyticsNetworkRequest: AuthorizedAPIResource { }
 
 extension AnalyticsEvent {
     var props: [String: String]? { return nil }
+    
+    var firebaseName: String {
+        let allowedCharacterSet = CharacterSet.lowercaseLetters
+            .union(.uppercaseLetters)
+            .union(.decimalDigits)
+            .union(CharacterSet(charactersIn: "_"))
+        return name.replacingOccurrences(of: " ", with: "_")
+            .components(separatedBy: allowedCharacterSet.inverted)
+            .joined()
+    }
 }
 
 extension Analytics {
