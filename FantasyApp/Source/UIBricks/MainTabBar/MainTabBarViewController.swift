@@ -54,7 +54,7 @@ class MainTabBarViewController: UITabBarController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
-        let vc = (viewControllers![2] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
+        let vc = (viewControllers![0] as! UINavigationController).viewControllers.first! as! DiscoverProfileViewController
         vc.viewModel = DiscoverProfileViewModel(router: .init(owner: vc))
 
         //selectedIndex = 3

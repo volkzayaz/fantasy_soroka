@@ -25,7 +25,7 @@ struct MainTabBarRouter : MVVM_Router {
     
     func presentCardDetails(card: Fantasy.Card, preferencesEnabled: Bool) {
         
-        owner.selectedIndex = 0
+        owner.selectedIndex = 2
         
         let vc = R.storyboard.fantasyCard.fantasyDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
@@ -63,7 +63,7 @@ struct MainTabBarRouter : MVVM_Router {
     
     func present(collection: Fantasy.Collection) {
         
-        owner.selectedIndex = 0
+        owner.selectedIndex = 2
         
         let vc = R.storyboard.fantasyCard.fantasyCollectionDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
