@@ -35,8 +35,8 @@ typealias SharedRoomResource = BehaviorRelay<Room>
 class RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
         case fantasies
-        case chat
         case play
+        case chat
     }
 
     let router: RoomDetailsRouter
