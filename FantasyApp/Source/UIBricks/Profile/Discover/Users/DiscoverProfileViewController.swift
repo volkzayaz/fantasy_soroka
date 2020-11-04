@@ -165,6 +165,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 case .noSearchPreferences:
                     self.showView(self.noFilterView)
+                    self.presentFilter()
                     
                 case .activateFlirtAccess:
                     self.showView(self.activateView)

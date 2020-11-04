@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -594,6 +594,12 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="flirtAccess.agreeText"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4N-BC-hA6">
+                                    <rect key="frame" x="57.5" y="381" width="300" height="36"/>
+                                    <connections>
+                                        <action selector="activateTextClick:" destination="3Y8-ef-JHy" eventType="touchUpInside" id="Io1-GP-pxn"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-6T-mhC" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                                     <rect key="frame" x="60" y="459" width="255" height="52"/>
                                     <constraints>
@@ -624,15 +630,19 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="G4N-BC-hA6" firstAttribute="top" secondItem="uiq-FQ-RaF" secondAttribute="top" id="0ZL-Qt-ZGQ"/>
                                 <constraint firstItem="uiq-FQ-RaF" firstAttribute="leading" secondItem="nTt-Ue-BOQ" secondAttribute="trailing" id="1Wk-Ea-B44"/>
                                 <constraint firstAttribute="trailing" secondItem="dbc-6T-mhC" secondAttribute="trailing" constant="60" id="G3A-eQ-7Bf"/>
+                                <constraint firstItem="G4N-BC-hA6" firstAttribute="bottom" secondItem="uiq-FQ-RaF" secondAttribute="bottom" id="INY-1n-Sph"/>
                                 <constraint firstItem="uiq-FQ-RaF" firstAttribute="centerX" secondItem="8T0-5t-brs" secondAttribute="centerX" constant="20" id="MPe-Ym-DNe"/>
                                 <constraint firstItem="uiq-FQ-RaF" firstAttribute="top" secondItem="8T0-5t-brs" secondAttribute="bottom" constant="8" id="MfQ-uy-1Rq"/>
                                 <constraint firstItem="dbc-6T-mhC" firstAttribute="top" secondItem="uiq-FQ-RaF" secondAttribute="bottom" constant="42" id="OBb-Bb-G60"/>
+                                <constraint firstItem="G4N-BC-hA6" firstAttribute="trailing" secondItem="uiq-FQ-RaF" secondAttribute="trailing" id="TFY-vn-5au"/>
                                 <constraint firstItem="nTt-Ue-BOQ" firstAttribute="top" secondItem="uiq-FQ-RaF" secondAttribute="top" constant="-13" id="Zpw-mg-M8n"/>
                                 <constraint firstItem="8T0-5t-brs" firstAttribute="centerX" secondItem="kaF-Sa-EuU" secondAttribute="centerX" id="aZ1-e4-69Q"/>
                                 <constraint firstItem="8T0-5t-brs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zxL-ta-1xc" secondAttribute="bottom" priority="999" constant="70" id="lv6-dT-szw"/>
                                 <constraint firstAttribute="bottom" secondItem="dbc-6T-mhC" secondAttribute="bottom" constant="20" id="qQb-A3-i3M"/>
+                                <constraint firstItem="G4N-BC-hA6" firstAttribute="leading" secondItem="uiq-FQ-RaF" secondAttribute="leading" id="smv-d5-1gj"/>
                                 <constraint firstItem="uiq-FQ-RaF" firstAttribute="width" secondItem="kaF-Sa-EuU" secondAttribute="width" multiplier="0.8" id="t7M-PD-BKc"/>
                                 <constraint firstItem="dbc-6T-mhC" firstAttribute="leading" secondItem="kaF-Sa-EuU" secondAttribute="leading" constant="60" id="ttg-K9-rA0"/>
                                 <constraint firstItem="zxL-ta-1xc" firstAttribute="top" secondItem="kaF-Sa-EuU" secondAttribute="top" constant="40" id="wG9-c8-vTN"/>

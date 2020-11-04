@@ -41,4 +41,8 @@ final class FlirtAccessViewController: UIViewController, MVVM_View {
     @IBAction func activateTickClick(_ sender: UIButton) {
         activateButton.isEnabled = sender.isSelected
     }
+    
+    @IBAction func activateTextClick(_ sender: Any) {
+        checkActivateButton.sendActions(for: .touchUpInside)
+    }
 }
