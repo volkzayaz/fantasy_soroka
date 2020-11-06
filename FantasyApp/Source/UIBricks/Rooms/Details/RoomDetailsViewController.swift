@@ -107,7 +107,10 @@ extension RoomDetailsViewController {
                           y: 0,
                           width: scrollView.bounds.width,
                           height: scrollView.bounds.height)
-        scrollView.scrollRectToVisible(rect, animated: animated)
+        // Without async it does not work properly when an invite link is opened
+        DispatchQueue.main.async {
+            self.scrollView.scrollRectToVisible(rect, animated: animated)
+        }
 
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
@@ -134,7 +137,6 @@ extension RoomDetailsViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == R.segue.roomDetailsViewController.showCommonFantasies.identifier {
             
             let vc = segue.destination as! FantasyListViewController
