@@ -1640,9 +1640,6 @@ activated when it reaches</string>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yxx-aQ-Txl">
                                                         <rect key="frame" x="317" y="6.5" width="51" height="31"/>
-                                                        <connections>
-                                                            <action selector="coupleSwitch:" destination="iyx-6x-4MS" eventType="valueChanged" id="tgx-aw-AeB"/>
-                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1789,9 +1786,6 @@ activated when it reaches</string>
                         <outlet property="partnerBodyPicker" destination="A9S-yE-K6c" id="s2R-8P-acA"/>
                         <outlet property="partnerSexualityPicker" destination="1GV-YI-iYw" id="3fi-ni-sNP"/>
                         <outlet property="scrollView" destination="ehO-2K-TEg" id="ATe-Eo-rvT"/>
-                        <outlet property="secondPartnerBodyPicker" destination="egU-Il-qSz" id="Bup-4Y-IeV"/>
-                        <outlet property="secondPartnerStackView" destination="AQt-Jj-sjy" id="wXC-w3-xIY"/>
-                        <outlet property="secondPartnerSwitch" destination="Yxx-aQ-Txl" id="sFO-MZ-fhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6o-Fy-0Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>

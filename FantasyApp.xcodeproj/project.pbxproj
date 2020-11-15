@@ -345,10 +345,14 @@
 		88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDB924C61EAE00900A6E /* DeckLimitedOfferController.swift */; };
 		88F8DDBC24C61EF400900A6E /* DeckLimitedOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBB24C61EF400900A6E /* DeckLimitedOfferViewModel.swift */; };
 		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
+		A200411B256067E500C4C7AA /* EditRelationshipRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200411A256067E500C4C7AA /* EditRelationshipRouter.swift */; };
 		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
 		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
+		A2962FFD2561805F00E59934 /* DescribePartnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */; };
 		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
+		A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */; };
+		A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
@@ -812,10 +816,14 @@
 		88F8DDBD24C781D200900A6E /* CollectionOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionOffer.swift; sourceTree = "<group>"; };
 		9839B38B427667A5D7F2784E /* Pods-FantasyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
+		A200411A256067E500C4C7AA /* EditRelationshipRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipRouter.swift; sourceTree = "<group>"; };
 		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribePartnerTableViewCell.swift; sourceTree = "<group>"; };
 		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
+		A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionTableViewCell.swift; sourceTree = "<group>"; };
+		A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewModel.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
@@ -1349,6 +1357,7 @@
 				7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */,
 				7337B84423CA389000EFC948 /* SubscribeButton.swift */,
 				A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */,
+				A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -2059,6 +2068,9 @@
 			isa = PBXGroup;
 			children = (
 				73EEFC38235C953D00480E79 /* EditRelationshipViewController.swift */,
+				A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */,
+				A200411A256067E500C4C7AA /* EditRelationshipRouter.swift */,
+				A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */,
 			);
 			path = Relationship;
 			sourceTree = "<group>";
@@ -2866,7 +2878,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift",
+				$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2998,6 +3010,7 @@
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
 				B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
+				A200411B256067E500C4C7AA /* EditRelationshipRouter.swift in Sources */,
 				B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */,
 				7337B84123C8CBD500EFC948 /* SubscriptionRouter.swift in Sources */,
 				7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */,
@@ -3045,6 +3058,7 @@
 				73EBBA63234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift in Sources */,
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
 				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
+				A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */,
 				73C96F1D2340A653002C3F8E /* MyFantasiesRouter.swift in Sources */,
 				7361F33923351F64007B84B0 /* ConnectionViewController.swift in Sources */,
 				7312B07C22D741F000DB0F36 /* OnboardingViewModel.swift in Sources */,
@@ -3177,6 +3191,7 @@
 				7361F32023328A16007B84B0 /* TeleportRouter.swift in Sources */,
 				844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */,
 				843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */,
+				A2962FFD2561805F00E59934 /* DescribePartnerTableViewCell.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				B7B152102398303100C4E749 /* UIImage+TabbarUtils.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
@@ -3235,6 +3250,7 @@
 				7334CC8922EDE76700495843 /* ImageValidator.swift in Sources */,
 				73E6011922EC3A3400F767BF /* RegistrationViewController.swift in Sources */,
 				8887A81324BCFA3A00B6CF45 /* PerformManager.swift in Sources */,
+				A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */,
 				B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */,
 				7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */,
 				B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */,

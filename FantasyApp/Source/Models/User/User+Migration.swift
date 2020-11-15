@@ -24,7 +24,7 @@ enum GenderLegacy: String, CaseIterable, Equatable, Codable {
             return Gender.male
         case .female:
             return Gender.female
-        case .nonBinary, .transgenderMale, . transgenderFemale:
+        case .nonBinary, .transgenderMale, .transgenderFemale:
             return Gender.nonBinary
         }
     }

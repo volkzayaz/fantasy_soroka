@@ -60,16 +60,7 @@ extension User {
         }
         let mainPhoto = Photo(id: "fake", url: photoURL, thumbnailURL: thumbnailURL)
         
-        let relationStatus: RelationshipStatus
-        if let x = pfUser["couple"] as? String {
-            
-            if let gender = Gender(fromFantasyRawValue: x) { relationStatus = .couple(partnerGender: gender) }
-            else                                { relationStatus = .single }
-            
-        } else {
-            ///applying default value policy
-            relationStatus = .single
-        }
+        let relationStatus = RelationshipStatus(pfUser: pfUser)
         
         let changePolicy: User.CommunityChangePolicy
         if let index = (pfUser["communityChangePolicy"] as? Int) {
@@ -174,7 +165,7 @@ extension User {
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
             "flirtAccess"               : bio.flirtAccess as? Any,
-            "couple"                    : bio.relationshipStatus.parseField,
+            "MyRelationshipStatus"      : bio.relationshipStatus.relationshipType.rawValue,
             
             "searchPrefs"               : searchPrefs as Any,
             
@@ -184,6 +175,9 @@ extension User {
             
             "notificationSettings"      : notificationSettings.pfObject,
         ] as [String : Any]
+        if let partnerGender = bio.relationshipStatus.partnerGender {
+            dict["MyPartnerGender"] = partnerGender.rawValue
+        }
         
         user.setValuesForKeys(dict)
         
@@ -221,10 +215,9 @@ extension PFUser {
         setter("realname", editForm.name)
         setter("birthday", editForm.brithdate)
         
-        switch editForm.relationshipStatus {
-        case .single?:                    setter("couple", "single")
-        case .couple(let partnerGender)?: setter("couple", partnerGender.rawValue)
-        case .none: break
+        if let relatioshipStatus = editForm.relationshipStatus {
+            setter("MyRelationshipStatus", relatioshipStatus.relationshipType)
+            setter("MyPartnerGender", relatioshipStatus.partnerGender)
         }
         
         setter("gender", editForm.gender?.rawValue)

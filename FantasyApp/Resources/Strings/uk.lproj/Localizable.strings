@@ -622,7 +622,14 @@
 "gender.nonBinary" = "Non-binary";
 
 "relationshipStatus.single" = "Single";
-"relationshipStatus.with" = "with %@";
+"relationshipStatus.partnered" = "Partnered";
+"relationshipStatus.inRelationship" = "In a Relationship";
+"relationshipStatus.engaged" = "Engaged";
+"relationshipStatus.married" = "Married";
+"relationshipStatus.dating" = "Dating";
+"relationshipStatus.inPolyFamily" = "In a Poly Family";
+"relationshipStatus.seeing" = "Seeing";
+"relationshipStatus.with" = "%@ with %@";
 
 "userProfile.decks" = "Decks";
 
@@ -873,9 +880,9 @@
 "editProfile.about" = "About";
 "editProfile.aboutPlaceholder" = "Tell the community about yourself…";
 
-"editRelationship.title" = "What's Your Relationship Status?";
-"editProfile.changeRelationshipTitle" = "What’s Your Relationship Status?";
-"editRelationship.description" = "How Would You Describe Your Partner?";
+"editRelationship.title" = "Relationship";
+"editRelationship.relationshipType.title" = "What’s Your Relationship Status?";
+"editRelationship.partnerGender.title" = "Describe Your Main Partner";
 
 "editProfile.changeGenderTitle" = "How Would You Describe Yourself?";
 "editProfile.changeSexualityTitle" = "What’s Your Sexuality?";

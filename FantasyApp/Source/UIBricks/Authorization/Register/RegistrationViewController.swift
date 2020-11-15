@@ -198,20 +198,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
         didSet { configure(birthdayTextField) }
     }
 
-    // Partner section
-    @IBOutlet private weak var partnerBodyLabel: UILabel!
-    @IBOutlet private weak var partnerBodyPickerView: UIPickerView!
-    @IBOutlet private weak var soloPartnerButton: PrimaryButton! {
-        didSet {
-            soloPartnerButton.mode = .selector
-        }
-    }
-    @IBOutlet private weak var couplePartnerButton: PrimaryButton! {
-        didSet {
-            couplePartnerButton.mode = .selector
-        }
-    }
-
     // Sexuality section
     @IBOutlet private weak var sexualityPicker: UIPickerView!
     @IBOutlet weak var sexualityGradientView: SexualityGradientView!
@@ -335,14 +321,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
         
         viewModel.forwardSwipeEnabled
             .drive(forwardSwipeGestureRecognizer.rx.isEnabled)
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.partnersGenderHidden
-            .drive(partnerBodyLabel.rx.isHidden)
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.partnersGenderHidden
-            .drive(partnerBodyPickerView.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
         viewModel.selecetedDate
@@ -489,27 +467,6 @@ class RegistrationViewController: UIViewController, MVVM_View {
                 self.viewModel.genderChanged(gender: x.first!)
             })
             .disposed(by: rx.disposeBag)
-
-        ///Relationship
-        
-        Observable.just(genders)
-            .bind(to: partnerBodyPickerView.rx.itemAttributedTitles) { _, item in
-                return NSAttributedString(string: item.pretty,
-                                          attributes: [
-                                            NSAttributedString.Key.foregroundColor: UIColor.white,
-                                            NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
-                ])
-        }
-        .disposed(by: rx.disposeBag)
-        
-        partnerBodyPickerView.selectRow(genders.firstIndex(of: viewModel.defaultGender)!,
-                                        inComponent: 0, animated: false)
-        
-        partnerBodyPickerView.rx.modelSelected(Gender.self)
-            .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.relationshipChanged(status: .couple(partnerGender: x.first!))
-            })
-            .disposed(by: rx.disposeBag)
         
         ////email
         
@@ -578,20 +535,6 @@ extension RegistrationViewController: UIScrollViewDelegate {
     @IBAction func agreeToEmailsClick(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         viewModel.agreeToReceiveEmailChanged(agrred: sender.isSelected)
-    }
-    
-    @IBAction func relationshipChanged(_ sender: UIButton) {
-
-        soloPartnerButton.isSelected = sender.tag == 1
-        couplePartnerButton.isSelected = sender.tag != 1
-
-        if sender.tag == 1 {
-            viewModel.relationshipChanged(status: .single)
-        }
-        else {
-            viewModel.relationshipChanged(status: .couple(partnerGender: .female))
-        }
-        
     }
 
     @IBAction func changePhoto(_ sender: Any) {

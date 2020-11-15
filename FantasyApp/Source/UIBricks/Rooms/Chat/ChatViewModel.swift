@@ -59,7 +59,7 @@ extension ChatViewModel {
                         
                     case .frozen:
                         let event = x.typeDescription(peer: peer.name)
-                        return .event(R.image.roomFrozen()!, event, x)
+                        return .event(R.image.exclamation()!, event, x)
                         
                     case .unfrozen:
                         let event = x.typeDescription(peer: peer.name)

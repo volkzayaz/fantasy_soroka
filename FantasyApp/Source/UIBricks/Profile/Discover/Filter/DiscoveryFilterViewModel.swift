@@ -22,10 +22,6 @@ extension DiscoveryFilterViewModel {
         return appState.changesOf { $0.currentUser?.community.value }
     }
 
-    var isCouple: Bool {
-        return form.value.couple != .single
-    }
-
     var age: Range<Int> {
         return form.value.age
     }
@@ -40,14 +36,6 @@ extension DiscoveryFilterViewModel {
 
     var selectedPartnerSexuality: Int {
         return Sexuality.index(by: form.value.sexualityV2)
-    }
-
-    var selectedSecondPartnerGender: Gender {
-        return form.value.couple.partnerGender ?? .male
-    }
-
-    var selectedSecondPartnerGenderIndex: Int {
-        return Gender.index(by: selectedSecondPartnerGender)
     }
 
     var sexualityCount: Int {
@@ -90,10 +78,6 @@ extension DiscoveryFilterViewModel {
 
     func changeAge(x: Range<Int>) {
         updateForm { $0.age = x }
-    }
-
-    func changeCouple(x: RelationshipStatus) {
-        updateForm { $0.couple = x }
     }
 
     func changePartnerGender(gender: Gender) {

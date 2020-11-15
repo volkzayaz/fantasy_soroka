@@ -8,6 +8,7 @@
 
 import Foundation
 import RxCocoa
+import RxDataSources
 
 struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     
@@ -322,32 +323,123 @@ extension Gender: SwipebleModel {
     }
 }
 
+enum RelationshipType: String, Equatable, CaseIterable, IdentifiableType {
+    
+    case single = "Single"
+    case partnered = "Partnered"
+    case inRelationship = "InRelationship"
+    case engaged = "Engaged"
+    case married = "Married"
+    case dating = "Dating"
+    case inPolyFamily = "InPolyFamily"
+    case seeing = "Seeing"
+    
+    var identity: String { rawValue }
+    
+    var pretty: String {
+        switch self {
+        case .single:
+            return R.string.localizable.relationshipStatusSingle()
+        case .partnered:
+            return R.string.localizable.relationshipStatusPartnered()
+        case .inRelationship:
+            return R.string.localizable.relationshipStatusInRelationship()
+        case .engaged:
+            return R.string.localizable.relationshipStatusEngaged()
+        case .married:
+            return R.string.localizable.relationshipStatusMarried()
+        case .dating:
+            return R.string.localizable.relationshipStatusDating()
+        case .inPolyFamily:
+            return R.string.localizable.relationshipStatusInPolyFamily()
+        case .seeing:
+            return R.string.localizable.relationshipStatusSeeing()
+        }
+    }
+}
+
 enum RelationshipStatus: Equatable, Codable {
     
     case single
-    case couple(partnerGender: Gender)
+    case partnered(partner: Gender)
+    case inRelationship(partner: Gender)
+    case engaged(partner: Gender)
+    case married(partner: Gender)
+    case dating(partner: Gender)
+    case inPolyFamily(partner: Gender)
+    case seeing(partner: Gender)
+    
+    var relationshipType: RelationshipType {
+        switch self {
+        case .single:
+            return RelationshipType.single
+        case .partnered:
+            return RelationshipType.partnered
+        case .inRelationship:
+            return RelationshipType.inRelationship
+        case .engaged:
+            return RelationshipType.engaged
+        case .married:
+            return RelationshipType.married
+        case .dating:
+            return RelationshipType.dating
+        case .inPolyFamily:
+            return RelationshipType.inPolyFamily
+        case .seeing:
+            return RelationshipType.seeing
+        }
+    }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        
         try container.encode(description)
     }
     
+    init(relationshipType: RelationshipType, partnerGender: Gender?) {
+        if let partnerGender = partnerGender {
+            switch relationshipType {
+            case .partnered:
+                self = .partnered(partner: partnerGender)
+            case .inRelationship:
+                self = .inRelationship(partner: partnerGender)
+            case .engaged:
+                self = .engaged(partner: partnerGender)
+            case .married:
+                self = .married(partner: partnerGender)
+            case .dating:
+                self = .dating(partner: partnerGender)
+            case .inPolyFamily:
+                self = .inPolyFamily(partner: partnerGender)
+            case .seeing:
+                self = .seeing(partner: partnerGender)
+            default:
+                self = .single
+            }
+        } else {
+            self = .single
+        }
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        
         let str = try container.decode(String.self)
-        
-        if str == "single" {
+
+        if str == "single" || str == RelationshipStatus.single.relationshipType.rawValue {
             self = .single
             return
         }
-        
+
         if str.starts(with: "with") {
-            self = .couple(partnerGender: Gender(fromFantasyRawValue: String(str.split(separator: " ").last!))!)
+            self = .partnered(partner: Gender(fromFantasyRawValue: String(str.split(separator: " ").last!))!)
             return
         }
-        
+
+        let components = str.split(separator: " ")
+        if components.count == 3, components[1] == "with", let relationshipType = RelationshipType(rawValue: String(components[0])), let gender = Gender(fromFantasyRawValue: String(components[2])) {
+            self.init(relationshipType: relationshipType, partnerGender: gender)
+            return
+        }
+
         fatalError("Can't decode RelationshipStatus from \(str)")
     }
 
@@ -355,18 +447,17 @@ enum RelationshipStatus: Equatable, Codable {
         switch self {
         case .single:
             return nil
-        case .couple(let partnerGender):
-            return partnerGender
+        case .partnered(let partner), .inRelationship(let partner), .engaged(let partner), .married(let partner), .dating(let partner), .inPolyFamily(let partner), .seeing(let partner):
+            return partner
         }
     }
-    
+
     var description: String {
         switch self {
         case .single:
-            return "single"
-        case .couple(let partnerGender):
-            return "with \(partnerGender.rawValue)"
-
+            return "Single"
+        case .partnered(let partner), .inRelationship(let partner), .engaged(let partner), .married(let partner), .dating(let partner), .inPolyFamily(let partner), .seeing(let partner):
+            return "\(relationshipType.rawValue) with \(partner.rawValue)"
         }
     }
     
@@ -374,23 +465,41 @@ enum RelationshipStatus: Equatable, Codable {
         switch self {
         case .single:
             return R.string.localizable.relationshipStatusSingle()
-        case .couple(let partnerGender):
-            return R.string.localizable.relationshipStatusWith(partnerGender.pretty)
-
+        case .partnered(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusPartnered(), partner.pretty)
+        case .inRelationship(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusInRelationship(), partner.pretty)
+        case .engaged(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusEngaged(), partner.pretty)
+        case .married(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusMarried(), partner.pretty)
+        case .dating(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusDating(), partner.pretty)
+        case .inPolyFamily(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusInPolyFamily(), partner.pretty)
+        case .seeing(let partner):
+            return R.string.localizable.relationshipStatusWith(R.string.localizable.relationshipStatusSeeing(), partner.pretty)
         }
     }
     
     var analyticsTuple: (String, String?) {
         switch self {
-        case .single                   : return ("Solo", nil)
-        case .couple(let partnerGender): return ("Couple", partnerGender.rawValue)
+        case .single:
+            return ("Solo", nil)
+        case .partnered(let partner), .inRelationship(let partner), .engaged(let partner), .married(let partner), .dating(let partner), .inPolyFamily(let partner), .seeing(let partner):
+            return (relationshipType.rawValue, partner.rawValue)
         }
     }
-    
-    var parseField: String {
-        switch self {
-        case .single                   : return "single"
-        case .couple(let partnerGender): return partnerGender.rawValue
+}
+
+// Parse
+extension RelationshipStatus {
+
+    init(pfUser: PFUser) {
+        if let parseRelationshipStatus = pfUser["MyRelationshipStatus"] as? String, let relationshipType = RelationshipType(rawValue: parseRelationshipStatus), let parsePartnerGender = pfUser["MyPartnerGender"] as? String, let partner = Gender(fromFantasyRawValue: parsePartnerGender) {
+            self.init(relationshipType: relationshipType, partnerGender: partner)
+        } else {
+            self = .single
         }
     }
 }

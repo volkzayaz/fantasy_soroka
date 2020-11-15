@@ -44,7 +44,6 @@ struct RegisterForm {
     var brithdate: Date?
     var sexuality: Sexuality = .heteroflexible
     var gender: Gender = .female
-    var relationshipStatus: RelationshipStatus?
     
     var email: String?
     var password: String?
@@ -63,7 +62,7 @@ struct RegisterForm {
                                brithdate: brithdate,
                                sexuality: sexuality,
                                gender: gender,
-                               relationshipStatus: relationshipStatus,
+                               relationshipStatus: nil,
                                lookingFor: nil,
                                expirience: nil,
                                about: nil,

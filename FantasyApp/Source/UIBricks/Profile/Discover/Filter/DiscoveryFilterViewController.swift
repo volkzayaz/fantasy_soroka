@@ -45,19 +45,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     }
 
     @IBOutlet weak var ageLabel: UILabel!
-    
-    // Couple section
-    @IBOutlet weak var secondPartnerSwitch: UISwitch! {
-        didSet {
-            secondPartnerSwitch.onTintColor = R.color.textPinkColor()
-        }
-    }
-
-    // Second partner section
-    @IBOutlet weak var secondPartnerBodyPicker: SmoothPickerView!
-
-    // Common
-    @IBOutlet weak var secondPartnerStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.addFantasyRoundedCorners()
@@ -74,22 +61,10 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         item.applyFantasyAttributes()
         navigationItem.rightBarButtonItem = item
 
-        secondPartnerSwitch.isOn = viewModel.isCouple
         partnerBodyPicker.firstselectedItem = viewModel.selectedPartnerGender
         partnerSexualityPicker.firstselectedItem =  viewModel.selectedPartnerSexuality
-        secondPartnerBodyPicker.firstselectedItem = viewModel.selectedSecondPartnerGenderIndex
 
         ageSlider.value = [viewModel.age.lowerBound, viewModel.age.upperBound].map { CGFloat ($0) }
-
-        // Input Data bindings
-
-        let switchSignal =
-            secondPartnerSwitch.rx.isOn.asDriver()
-
-        switchSignal
-            .map { !$0 }
-            .drive(secondPartnerStackView.rx.isHidden)
-            .disposed(by: rx.disposeBag)
 
         // Output Data bindings
         viewModel.community
@@ -146,11 +121,6 @@ extension DiscoveryFilterViewController {
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
     }
-    
-    @IBAction func coupleSwitch(_ x: UISwitch) {
-        let c: RelationshipStatus = x.isOn ? .couple(partnerGender: self.viewModel.selectedSecondPartnerGender) : .single
-        self.viewModel.changeCouple(x: c)
-    }
 }
 
 //MARK:- SmoothPickerViewDelegate, SmoothPickerViewDataSource
@@ -170,15 +140,12 @@ extension DiscoveryFilterViewController: SmoothPickerViewDelegate, SmoothPickerV
             viewModel.changePartnerGender(gender: d as! Gender)
         } else if pickerView == partnerSexualityPicker  {
             viewModel.changePartnerSexuality(sexuality: d as! Sexuality)
-        } else if pickerView == secondPartnerBodyPicker {
-            viewModel.changeCouple(x: .couple(partnerGender: d as! Gender))
         }
     }
 
     func numberOfItems(pickerView: SmoothPickerView) -> Int {
 
-        if pickerView == partnerBodyPicker
-            || pickerView == secondPartnerBodyPicker {
+        if pickerView == partnerBodyPicker {
             return viewModel.bodiesCount
         }
 
@@ -189,8 +156,7 @@ extension DiscoveryFilterViewController: SmoothPickerViewDelegate, SmoothPickerV
 
         let itemView = SwipeView(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
 
-        if pickerView == partnerBodyPicker
-            || pickerView == secondPartnerBodyPicker {
+        if pickerView == partnerBodyPicker {
 
             itemView.data = Gender.gender(by: index)
 

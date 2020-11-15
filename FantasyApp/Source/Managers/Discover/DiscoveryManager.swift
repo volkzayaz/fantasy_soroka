@@ -24,9 +24,7 @@ extension DiscoveryManager {
                     .whereKey("belongsTo", equalTo: filter.community.pfObject)
                     .whereKey("gender", equalTo: filter.filter.gender.rawValue)
                     .whereKey("isBlocked", notEqualTo: NSNumber(booleanLiteral: true))
-                    .whereKey("couple", equalTo: filter.filter.couple.parseField)
                     .whereKey("flirtAccess", notEqualTo: false)
-                    
                 
                 if filter.filter.sexualityV2 != .all {
                     query = query.whereKey("sexuality", equalTo: filter.filter.sexualityV2.rawValue)

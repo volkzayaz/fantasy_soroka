@@ -8,99 +8,92 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
+import RxDataSources
 
 class EditRelationshipViewController: UIViewController {
     
-    @IBOutlet weak var soloButton: PrimaryButton! {
-        didSet {
-            soloButton.normalBackgroundColor = UIColor.fantasyPink
-            soloButton.disabledBackgroundColor = UIColor.fantasyGrey
-            soloButton.mode = .selector
-        }
+    func setUp(viewModel: EditRelationshipViewModel) {
+        self.viewModel = viewModel
     }
-    @IBOutlet weak var coupleButton: PrimaryButton! {
-        didSet {
-            coupleButton.normalBackgroundColor = UIColor.fantasyPink
-            coupleButton.disabledBackgroundColor = UIColor.fantasyGrey
-            coupleButton.mode = .selector
-        }
-    }
-    
-    @IBOutlet weak var partnerLabel: UILabel!
-    @IBOutlet weak var partnerPicker: UIPickerView!
-    
-    private let model = BehaviorSubject<RelationshipStatus>(value: .single)
-    
-    
-    var defaultStatus: RelationshipStatus!
-    var callback: ((RelationshipStatus) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addFantasyGradient()
+        title = R.string.localizable.editRelationshipTitle()
         
-        model.onNext(defaultStatus)
-        
-        let data = Gender.allCases
-        
-        Observable.just(data)
-            .bind(to: partnerPicker.rx.itemAttributedTitles) { _, item in
-                return NSAttributedString(string: item.textRepresentation,
-                  attributes: [
-                    NSAttributedString.Key.foregroundColor: UIColor.fantasyPink,
-                    NSAttributedString.Key.font: UIFont.regularFont(ofSize: 25)
-                ])
-            }
-            .disposed(by: rx.disposeBag)
-        
-        model
-            .subscribe(onNext: { [unowned self] (status) in
-                
-                switch status {
-                    
-                case .single:
-                    self.soloButton.isSelected = true
-                    self.coupleButton.isSelected = false
-                    
-                    self.partnerLabel.isHidden = true
-                    self.partnerPicker.isHidden = true
-                    
-                case .couple(let gender):
-                    
-                    self.soloButton.isSelected = false
-                    self.coupleButton.isSelected = true
-                    
-                    self.partnerLabel.isHidden = false
-                    self.partnerPicker.isHidden = false
-                    
-                    self.partnerPicker.selectRow(data.firstIndex(of: gender)!,
-                                                 inComponent: 0, animated: false)
-                    
-                }
-                
-            })
-            .disposed(by: rx.disposeBag)
-        
-        partnerPicker.rx.modelSelected(Gender.self)
-            .map { RelationshipStatus.couple(partnerGender: $0.first!) }
-            .bind(to: model)
-            .disposed(by: rx.disposeBag)
+        navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain, target: self, action: #selector(back))
 
+        if let describePartnerTableViewCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.describePartnerTableViewCell, for: IndexPath(row: 0, section: 1)) {
+            self.describePartnerTableViewCell = describePartnerTableViewCell
+        }
+        
+        viewModel.tableData
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.partnerGenderError
+            .map { !$0 }
+            .drive(describePartnerTableViewCell.partnerGenderErrorView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
     }
     
+    // MARK: - Private
     
-    @IBAction func soloButton(_ sender: Any) {
-        model.onNext(.single)
+    private var viewModel: EditRelationshipViewModel!
+    
+    @IBOutlet private weak var tableView: UITableView!
+    private var describePartnerTableViewCell: DescribePartnerTableViewCell!
+    
+    private lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, EditRelationshipViewModel.Row>>(
+        configureCell: { [unowned self] (_, tableView, indexPath, model) in
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.radioOptionTableViewCell, for: indexPath)!
+            
+            switch model {
+            case .relationshipType(let relationshipType, let isSelected):
+                cell.titleLabel.text = relationshipType.pretty
+                cell.tickButton.isSelected = isSelected
+                cell.tickButton.tag = indexPath.row
+                
+                cell.tickButton.removeTarget(nil, action: nil, for: .touchUpInside)
+                cell.tickButton.addTarget(self, action: #selector(self.selectRelationshipType(_:)), for: .touchUpInside)
+            case .partnerGender(let gender, let isSelected):
+                cell.titleLabel.text = gender.pretty
+                cell.tickButton.isSelected = isSelected
+                cell.tickButton.tag = indexPath.row
+                
+                cell.tickButton.removeTarget(nil, action: nil, for: .touchUpInside)
+                cell.tickButton.addTarget(self, action: #selector(self.selectPartnerGender(_:)), for: .touchUpInside)
+            }
+                
+            return cell
+        }
+    )
+}
+
+private extension EditRelationshipViewController {
+    
+    @IBAction private func selectRelationshipType(_ sender: TickButton) {
+        viewModel.selectRelationshipType(index: sender.tag)
     }
     
-    @IBAction func partnerAction(_ sender: Any) {
-        model.onNext(.couple(partnerGender: .female))
+    @IBAction private func selectPartnerGender(_ sender: TickButton) {
+        viewModel.selectPartnerGender(index: sender.tag)
     }
     
-    @IBAction func saveChanges(_ sender: Any) {
-        callback?(model.unsafeValue)
-        navigationController?.popViewController(animated: true)
+    @objc private func back() {
+        viewModel.back()
+    }
+}
+
+extension EditRelationshipViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        section == 0 ? UIView() : describePartnerTableViewCell.contentView
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 0 : 50
+    }
 }

@@ -92,7 +92,6 @@ extension RegistrationViewModel {
                 case .birthday:     return form.brithdate != nil
                 case .sexuality:    return true
                 case .gender:       return true
-                case .relationship: return form.relationshipStatus != nil
                 
                 case .photo:        return form.selectedPhoto != nil
                 case .addingPhoto:        return form.photo != nil
@@ -110,14 +109,6 @@ extension RegistrationViewModel {
             .map { step, timer in
                 (step == .onboarding1 || step == .onboarding2) && timer <= 0
             }
-    }
-    
-    var partnersGenderHidden: Driver<Bool> {
-        return form.asDriver().map { x in
-            if case .couple(_)? = x.relationshipStatus { return false }
-            
-            return true
-        }
     }
     
     var selecetedDate: Driver<String> {
@@ -249,7 +240,6 @@ class RegistrationViewModel : MVVM_ViewModel {
         case name
         case gender
         case birthday
-        case relationship
         case sexuality
         case photo
         case addingPhoto
@@ -383,10 +373,6 @@ extension RegistrationViewModel {
         updateForm { $0.gender = gender }
     }
     
-    func relationshipChanged(status: RelationshipStatus) {
-        updateForm { $0.relationshipStatus = status }
-    }
-    
     func emailChanged(email: String) {
         showEmailExistVar.accept(false)
         emailRelay.accept(email)
@@ -465,8 +451,6 @@ extension RegistrationViewModel {
             event = .gender
         case .birthday:
             event = .birthdayFilled
-        case .relationship:
-            event = .relation
         case .sexuality:
             event = .sexuality
             
