@@ -96,4 +96,13 @@ extension EditRelationshipViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         section == 0 ? 0 : 50
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 {
+            viewModel.selectRelationshipType(index: indexPath.row)
+        } else if indexPath.section == 1 {
+            viewModel.selectPartnerGender(index: indexPath.row)
+        }
+    }
 }
