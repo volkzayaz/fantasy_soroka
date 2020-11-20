@@ -198,6 +198,11 @@ class RegistrationViewController: UIViewController, MVVM_View {
         didSet { configure(birthdayTextField) }
     }
 
+    // Looking For section
+    @IBOutlet private weak var lookingForCollectionView: UICollectionView! {
+        didSet { configure(lookingForCollectionView) }
+    }
+    
     // Sexuality section
     @IBOutlet private weak var sexualityPicker: UIPickerView!
     @IBOutlet weak var sexualityGradientView: SexualityGradientView!
@@ -598,7 +603,15 @@ private extension RegistrationViewController {
         birthdayTextField.inputView = picker
         birthdayTextField.allowsEditingTextAttributes = false
     }
-
+    
+    func configure(_ lookingForCollectionView: UICollectionView) {
+        lookingForCollectionView.allowsMultipleSelection = true
+        if let layout = lookingForCollectionView.collectionViewLayout as? LeftAlignedCollectionViewFlowLayout {
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
 }
 
 //MARK:- UITextFieldDelegate
@@ -674,3 +687,31 @@ extension RegistrationViewController: UITextViewDelegate {
 
 }
 
+//MARK:- UICollectionViewDataSource
+
+extension RegistrationViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.availableLookingFor.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.lookingForCollectionViewCell, for: indexPath)!
+        cell.configure(lookingFor: viewModel.availableLookingFor[indexPath.row])
+        
+        return cell
+    }
+}
+
+//MARK:- UICollectionViewDelegate
+
+extension RegistrationViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.lookingForChanged(index: indexPath.item, isSelected: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        viewModel.lookingForChanged(index: indexPath.item, isSelected: false)
+    }
+}

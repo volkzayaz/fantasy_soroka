@@ -44,6 +44,7 @@ struct RegisterForm {
     var brithdate: Date?
     var sexuality: Sexuality = .heteroflexible
     var gender: Gender = .female
+    var lookingFor: [LookingFor] = []
     
     var email: String?
     var password: String?
@@ -63,7 +64,7 @@ struct RegisterForm {
                                sexuality: sexuality,
                                gender: gender,
                                relationshipStatus: nil,
-                               lookingFor: nil,
+                               lookingFor: lookingFor,
                                expirience: nil,
                                about: nil,
                                publicPhotosAdded: [],

@@ -350,10 +350,12 @@
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
 		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
 		A2962FFD2561805F00E59934 /* DescribePartnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */; };
+		A29630012562A08600E59934 /* LookingForCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */; };
 		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
 		A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */; };
 		A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
+		A2E66735256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -821,10 +823,12 @@
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribePartnerTableViewCell.swift; sourceTree = "<group>"; };
+		A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingForCollectionViewCell.swift; sourceTree = "<group>"; };
 		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
 		A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionTableViewCell.swift; sourceTree = "<group>"; };
 		A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewModel.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
+		A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
@@ -1358,6 +1362,7 @@
 				7337B84423CA389000EFC948 /* SubscribeButton.swift */,
 				A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */,
 				A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */,
+				A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -1993,6 +1998,7 @@
 				73E6011522EC3A3400F767BF /* RegistrationRouter.swift */,
 				73E6011622EC3A3400F767BF /* RegistrationViewController.swift */,
 				73E6011722EC3A3400F767BF /* RegistrationViewModel.swift */,
+				A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -3165,6 +3171,7 @@
 				734C529023266ADA00B54510 /* DiscoverProfileViewModel.swift in Sources */,
 				849E85E92328C89E0025462F /* RoomTableViewCell.swift in Sources */,
 				733CA055239162AD00EF7922 /* ImmutableNonPersistentState.swift in Sources */,
+				A29630012562A08600E59934 /* LookingForCollectionViewCell.swift in Sources */,
 				73EBBA65234A1C4D00B79121 /* MyFantasiesReactionHistoryViewModel.swift in Sources */,
 				88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */,
 				7312B07A22D741F000DB0F36 /* OnboardingRouter.swift in Sources */,
@@ -3205,6 +3212,7 @@
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				733CA05A23951D7000EF7922 /* FantasyCollectionRouter.swift in Sources */,
+				A2E66735256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				7393119623D585330054FC52 /* SKProduct+LocalPrice.swift in Sources */,
 				734C529C2326A6FD00B54510 /* DiscoveryFilterRouter.swift in Sources */,
 				B772E3552378221B0093B63B /* FantasyLoadingView.swift in Sources */,

@@ -68,6 +68,7 @@ extension Analytics.Event {
         case gender
         case birthdayFilled
         case birthdayFailed
+        case lookingFor
         case sexuality
         case photo(from: PhotoSource)
         case photoUploadGood
@@ -87,6 +88,7 @@ extension Analytics.Event {
             case .gender         : return "Sign-Up: Gender Filled"
             case .birthdayFilled : return "Sign-Up: Birthday Filled"
             case .birthdayFailed : return "Sign-Up: Birthday Failed"
+            case .lookingFor     : return "Sign-Up: Looking For Filled"
             case .sexuality      : return "Sign-Up: Sexuality Filled"
             case .photo(_)       : return "Sign-Up: Photo Filled"
             case .photoUploadGood: return "Sign-Up: Photo Uploaded Well"
@@ -110,7 +112,7 @@ extension Analytics.Event {
                     "Time Spent": "\(timeSpent)"
                 ]
 
-            case .onboarding1, .onboarding2, .onboarding3, .notice, .name, .gender, .birthdayFilled, .birthdayFailed, .sexuality, .email, .password, .photoUploadGood, .photoUploadBad:
+            case .onboarding1, .onboarding2, .onboarding3, .notice, .name, .gender, .birthdayFilled, .birthdayFailed, .lookingFor, .sexuality, .email, .password, .photoUploadGood, .photoUploadBad:
                 return nil
                 
             }

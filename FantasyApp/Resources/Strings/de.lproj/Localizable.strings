@@ -149,10 +149,12 @@
 "ageLimit.info" = "To join Fantasy Match you need to be at least 21 years old";
 "ageLimit.comeBackLater" = "Come back later";
 
-"registration.relationship.title" = "What’s Your Relationships Status?";
-"registration.relationship.question" = "How Would You Describe Your Partner?";
-"registration.relationship.soloButton" = "Solo";
-"registration.relationship.coupleButton" = "Couple";
+"registration.lookingFor.title" = "What Connections Are You Looking For?";
+"registration.lookingFor.subtitle" = "You can choose several options";
+"registration.lookingFor.hookup" = "Hookup";
+"registration.lookingFor.newFriends" = "New Friends";
+"registration.lookingFor.longTermDating" = "Long Term Dating";
+"registration.lookingFor.shortTermDating" = "Short Term Dating";
 
 "registration.sexuality.title" = "What’s Your Sexuality?";
 "registration.sexuality.subtitle" = "Your sexuality will show in your profile";
@@ -941,6 +943,15 @@
 "lookingFor.unicorn" = "Find a unicorn";
 "lookingFor.beAUnicorn" = "To be a unicorn";
 "lookingFor.joinAnEstablishedCouple" = "To join an established couple";
+"lookingFor.hookup" = "Flirt for hookup";
+"lookingFor.newFriends" = "Flirt for new friends";
+"lookingFor.shortTermDating" = "Flirt for short-term dating";
+"lookingFor.longTermDating" = "Flirt for long-term dating";
+
+"lookingFor.hookup.title" = "Hookup";
+"lookingFor.newFriends.title" = "New Friends";
+"lookingFor.shortTermDating.title" = "Short Term Dating";
+"lookingFor.longTermDating.title" = "Long Term Dating";
 
 
 

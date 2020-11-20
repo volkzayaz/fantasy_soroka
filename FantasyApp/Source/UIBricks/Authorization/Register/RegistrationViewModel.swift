@@ -92,7 +92,7 @@ extension RegistrationViewModel {
                 case .birthday:     return form.brithdate != nil
                 case .sexuality:    return true
                 case .gender:       return true
-                
+                case .lookingFor:   return form.lookingFor.count > 0
                 case .photo:        return form.selectedPhoto != nil
                 case .addingPhoto:        return form.photo != nil
                 }
@@ -119,6 +119,10 @@ extension RegistrationViewModel {
         return form.asDriver().map { $0.brithdate }
             .notNil()
             .map { dateFormatter.string(from: $0) }
+    }
+    
+    var availableLookingFor: [LookingFor] {
+        [.hookup, .longTermDating, .newFriends, .shortTermDating]
     }
     
     var selectedPhoto: Driver<UIImage?> {
@@ -240,6 +244,7 @@ class RegistrationViewModel : MVVM_ViewModel {
         case name
         case gender
         case birthday
+        case lookingFor
         case sexuality
         case photo
         case addingPhoto
@@ -365,6 +370,16 @@ extension RegistrationViewModel {
         updateForm { $0.brithdate = date }
     }
     
+    func lookingForChanged(index: Int, isSelected: Bool) {
+        let lookingFor = availableLookingFor[index]
+        updateForm {
+            $0.lookingFor.removeAll(where: { $0 == lookingFor })
+            if isSelected {
+                $0.lookingFor.append(lookingFor)
+            }
+        }
+    }
+    
     func sexualityChanged(sexuality: Sexuality) {
         updateForm { $0.sexuality = sexuality }
     }
@@ -451,6 +466,8 @@ extension RegistrationViewModel {
             event = .gender
         case .birthday:
             event = .birthdayFilled
+        case .lookingFor:
+            event = .lookingFor
         case .sexuality:
             event = .sexuality
             

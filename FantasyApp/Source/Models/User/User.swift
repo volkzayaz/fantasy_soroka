@@ -524,6 +524,20 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     case partner
     case friends
     case new
+    case hookup
+    case newFriends
+    case shortTermDating
+    case longTermDating
+    
+    var title: String {
+        switch self {
+        case .hookup: return R.string.localizable.lookingForHookupTitle()
+        case .newFriends: return R.string.localizable.lookingForNewFriendsTitle()
+        case .shortTermDating: return R.string.localizable.lookingForShortTermDatingTitle()
+        case .longTermDating: return R.string.localizable.lookingForLongTermDatingTitle()
+        default: return ""
+        }
+    }
     
     var description: String {
         
@@ -547,6 +561,10 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         case .partner: return R.string.localizable.lookingForPartner()
         case .friends: return R.string.localizable.lookingForFriends()
         case .new: return R.string.localizable.lookingForNew()
+        case .hookup: return R.string.localizable.lookingForHookup()
+        case .newFriends: return R.string.localizable.lookingForNewFriends()
+        case .shortTermDating: return R.string.localizable.lookingForShortTermDating()
+        case .longTermDating: return R.string.localizable.lookingForLongTermDating()
             
         }
     }
@@ -555,6 +573,12 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     
     static var sortedCases: [(String, [LookingFor])] {
         [
+            (R.string.localizable.lookingForSectionFlirt(), [
+                .hookup,
+                .newFriends,
+                .shortTermDating,
+                .longTermDating
+            ]),
             (R.string.localizable.lookingForSectionLearn(), [
                 .ideas,
                 .techniques,
@@ -564,18 +588,6 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
                 .partner,
                 .friends,
                 .new
-            ]),
-            (R.string.localizable.lookingForSectionFlirt(), [
-                .relationship,
-                .someoneToPlayWith,
-                .princesDaySlutNight,
-                .princeDaySlutNight,
-                .friendship,
-                .ethicalNonMono,
-                .bdsm,
-                .unicorn,
-                .beAUnicorn,
-                .joinAnEstablishedCouple
             ])
         ]
     }
