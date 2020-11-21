@@ -325,14 +325,14 @@ extension Gender: SwipebleModel {
 
 enum RelationshipType: String, Equatable, CaseIterable, IdentifiableType {
     
-    case single = "Single"
-    case partnered = "Partnered"
-    case inRelationship = "InRelationship"
-    case engaged = "Engaged"
-    case married = "Married"
-    case dating = "Dating"
-    case inPolyFamily = "InPolyFamily"
-    case seeing = "Seeing"
+    case single
+    case partnered
+    case inRelationship
+    case engaged
+    case married
+    case dating
+    case inPolyFamily
+    case seeing
     
     var identity: String { rawValue }
     
@@ -424,7 +424,7 @@ enum RelationshipStatus: Equatable, Codable {
         let container = try decoder.singleValueContainer()
         let str = try container.decode(String.self)
 
-        if str == "single" || str == RelationshipStatus.single.relationshipType.rawValue {
+        if str == RelationshipType.single.rawValue {
             self = .single
             return
         }
@@ -455,7 +455,7 @@ enum RelationshipStatus: Equatable, Codable {
     var description: String {
         switch self {
         case .single:
-            return "Single"
+            return relationshipType.rawValue
         case .partnered(let partner), .inRelationship(let partner), .engaged(let partner), .married(let partner), .dating(let partner), .inPolyFamily(let partner), .seeing(let partner):
             return "\(relationshipType.rawValue) with \(partner.rawValue)"
         }
@@ -496,7 +496,7 @@ enum RelationshipStatus: Equatable, Codable {
 extension RelationshipStatus {
 
     init(pfUser: PFUser) {
-        if let parseRelationshipStatus = pfUser["MyRelationshipStatus"] as? String, let relationshipType = RelationshipType(rawValue: parseRelationshipStatus), let parsePartnerGender = pfUser["MyPartnerGender"] as? String, let partner = Gender(fromFantasyRawValue: parsePartnerGender) {
+        if let parseRelationshipStatus = pfUser["myRelationshipStatus"] as? String, let relationshipType = RelationshipType(rawValue: parseRelationshipStatus), let parsePartnerGender = pfUser["myPartnerGender"] as? String, let partner = Gender(fromFantasyRawValue: parsePartnerGender) {
             self.init(relationshipType: relationshipType, partnerGender: partner)
         } else {
             self = .single
@@ -579,15 +579,15 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
                 .shortTermDating,
                 .longTermDating
             ]),
-            (R.string.localizable.lookingForSectionLearn(), [
-                .ideas,
-                .techniques,
-                .sexIQ
-            ]),
             (R.string.localizable.lookingForSectionPlay(), [
                 .partner,
                 .friends,
                 .new
+            ]),
+            (R.string.localizable.lookingForSectionLearn(), [
+                .ideas,
+                .techniques,
+                .sexIQ
             ])
         ]
     }

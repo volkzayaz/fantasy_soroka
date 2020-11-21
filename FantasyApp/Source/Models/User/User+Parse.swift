@@ -155,7 +155,7 @@ extension User {
             searchPrefs = try! JSONEncoder().encode(x)
         }
         
-        var dict = [
+        let dict = [
             "realname"                  : bio.name,
             "aboutMe"                   : bio.about as Any,
             "birthady"                  : bio.birthday,
@@ -164,9 +164,10 @@ extension User {
             "lookingForV2"              : lookingForV2 as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
-            "flirtAccess"               : bio.flirtAccess as? Any,
-            "MyRelationshipStatus"      : bio.relationshipStatus.relationshipType.rawValue,
-            
+            "flirtAccess"               : bio.flirtAccess as Any,
+            "myRelationshipStatus"      : bio.relationshipStatus.relationshipType.rawValue,
+            "myPartnerGender"           : bio.relationshipStatus.partnerGender?.rawValue as Any,
+                
             "searchPrefs"               : searchPrefs as Any,
             
             "belongsTo"                 : community.value?.pfObject as Any,
@@ -175,9 +176,6 @@ extension User {
             
             "notificationSettings"      : notificationSettings.pfObject,
         ] as [String : Any]
-        if let partnerGender = bio.relationshipStatus.partnerGender {
-            dict["MyPartnerGender"] = partnerGender.rawValue
-        }
         
         user.setValuesForKeys(dict)
         
@@ -211,15 +209,15 @@ extension PFUser {
             }
             
         }
-
+        
         setter("realname", editForm.name)
         setter("birthday", editForm.brithdate)
         
-        if let relatioshipStatus = editForm.relationshipStatus {
-            setter("MyRelationshipStatus", relatioshipStatus.relationshipType)
-            setter("MyPartnerGender", relatioshipStatus.partnerGender)
-        }
+        let lookingForV2: String? = editForm.lookingFor?.map { "\($0.rawValue)" }.joined(separator: ", ")
+        setter("lookingForV2", lookingForV2)
         
+        setter("myRelationshipStatus", editForm.relationshipStatus?.relationshipType.rawValue)
+        setter("myPartnerGender", editForm.relationshipStatus?.partnerGender?.rawValue)
         setter("gender", editForm.gender?.rawValue)
         setter("sexuality", editForm.sexuality?.rawValue)
         setter("flirtAccess", false)
