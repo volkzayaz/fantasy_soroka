@@ -15,7 +15,7 @@ typealias Profile = User
 
 extension DiscoverProfileViewModel {
     
-    enum Mode {
+    enum Mode: Equatable {
         case profiles
         case noLocationPermission
         case absentCommunity(nearestCity: String?)

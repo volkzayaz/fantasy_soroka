@@ -136,6 +136,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         viewModel.mode
+            .distinctUntilChanged()
             .drive(onNext: { [unowned self] (mode) in
 
                 self.hideView(self.cityNotActiveView)
@@ -165,7 +166,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 case .noSearchPreferences:
                     self.showView(self.noFilterView)
-                    self.presentFilter()
+                    self.viewModel.presentFilter()
                     
                 case .activateFlirtAccess:
                     self.showView(self.activateView)
