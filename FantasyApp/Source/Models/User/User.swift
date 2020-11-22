@@ -536,13 +536,13 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     case shortTermDating
     case longTermDating
     
-    var title: String {
+    var title: String? {
         switch self {
         case .hookup: return R.string.localizable.lookingForHookupTitle()
         case .newFriends: return R.string.localizable.lookingForNewFriendsTitle()
         case .shortTermDating: return R.string.localizable.lookingForShortTermDatingTitle()
         case .longTermDating: return R.string.localizable.lookingForLongTermDatingTitle()
-        default: return ""
+        default: return nil
         }
     }
     
