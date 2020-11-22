@@ -17,13 +17,13 @@ class EditRelationshipViewModel: MVVM_ViewModel {
     
     enum Row: IdentifiableType, Equatable {
         case relationshipType(RelationshipType, isSelected: Bool)
-        case partnerGender(Gender, isSelected: Bool)
+        case partnerGender(Gender, isSelected: Bool, isEnabled: Bool)
         
         var identity: String {
             switch self {
             case .relationshipType(let relationshipType, _):
                 return "relationshipType \(relationshipType)"
-            case .partnerGender(let gender, _):
+            case .partnerGender(let gender, _, _):
                 return "partnerGender \(gender)"
             }
         }
@@ -38,13 +38,15 @@ class EditRelationshipViewModel: MVVM_ViewModel {
     
     var tableData: Driver<[AnimatableSectionModel<String, Row>]> {
         Observable.combineLatest(relationshipType, partnerGender).map { (relationshipType, partnerGender) in
-            var result = [AnimatableSectionModel(model: "relationshipType", items: RelationshipType.allCases.map { Row.relationshipType($0, isSelected: $0 == relationshipType) })]
-            if relationshipType != .single {
-                result.append(AnimatableSectionModel(model: "partnerGender", items: Gender.allCases.map { Row.partnerGender($0, isSelected: $0 == partnerGender) }))
-            }
-            
-            return result
+            [
+                AnimatableSectionModel(model: "relationshipType", items: RelationshipType.allCases.map { Row.relationshipType($0, isSelected: $0 == relationshipType) }),
+                AnimatableSectionModel(model: "partnerGender", items: Gender.allCases.map { Row.partnerGender($0, isSelected: $0 == partnerGender, isEnabled: relationshipType != .single) })
+            ]
         }.asDriver(onErrorJustReturn: [])
+    }
+    
+    var isPartnerGenderEnabled: Driver<Bool> {
+        relationshipType.map { $0 != .single }.asDriver(onErrorJustReturn: false)
     }
     
     var partnerGenderError: Driver<Bool> {
@@ -52,7 +54,7 @@ class EditRelationshipViewModel: MVVM_ViewModel {
     }
     
     func selectRelationshipType(index: Int) {
-        self.relationshipType.accept(RelationshipType.allCases[index])
+        relationshipType.accept(RelationshipType.allCases[index])
         partnerGenderErrorRelay.accept(false)
     }
     
@@ -73,7 +75,7 @@ class EditRelationshipViewModel: MVVM_ViewModel {
     private let relationshipType: BehaviorRelay<RelationshipType>
     private let partnerGender: BehaviorRelay<Gender?>
     private let callback: ((RelationshipStatus) -> Void)?
-    private var partnerGenderErrorRelay = BehaviorRelay<Bool>(value: false)
+    private let partnerGenderErrorRelay = BehaviorRelay<Bool>(value: false)
 }
 
 private extension EditRelationshipViewModel {

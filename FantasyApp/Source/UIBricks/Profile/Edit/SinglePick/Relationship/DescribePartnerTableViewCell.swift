@@ -11,4 +11,5 @@ import UIKit
 class DescribePartnerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var partnerGenderErrorView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
 }

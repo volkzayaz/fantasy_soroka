@@ -33,6 +33,12 @@ class EditRelationshipViewController: UIViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
+        viewModel.isPartnerGenderEnabled
+            .drive { [unowned self] isEnabled in
+                self.describePartnerTableViewCell.titleLabel.textColor = isEnabled ? R.color.textBlackColor() : R.color.textLightGrayColor()
+            }.disposed(by: rx.disposeBag)
+
+        
         viewModel.partnerGenderError
             .map { !$0 }
             .drive(describePartnerTableViewCell.partnerGenderErrorView.rx.isHidden)
@@ -53,18 +59,26 @@ class EditRelationshipViewController: UIViewController {
             switch model {
             case .relationshipType(let relationshipType, let isSelected):
                 cell.titleLabel.text = relationshipType.pretty
+                cell.titleLabel.textColor = R.color.textBlackColor()
+                    
                 cell.tickButton.isSelected = isSelected
+                cell.tickButton.isEnabled = true
                 cell.tickButton.tag = indexPath.row
-                
                 cell.tickButton.removeTarget(nil, action: nil, for: .touchUpInside)
                 cell.tickButton.addTarget(self, action: #selector(self.selectRelationshipType(_:)), for: .touchUpInside)
-            case .partnerGender(let gender, let isSelected):
-                cell.titleLabel.text = gender.pretty
-                cell.tickButton.isSelected = isSelected
-                cell.tickButton.tag = indexPath.row
                 
+                cell.isUserInteractionEnabled = true
+            case .partnerGender(let gender, let isSelected, let isEnabled):
+                cell.titleLabel.text = gender.pretty
+                cell.titleLabel.textColor = isEnabled ? R.color.textBlackColor() : R.color.textLightGrayColor()
+                
+                cell.tickButton.isSelected = isSelected
+                cell.tickButton.isEnabled = isEnabled
+                cell.tickButton.tag = indexPath.row
                 cell.tickButton.removeTarget(nil, action: nil, for: .touchUpInside)
                 cell.tickButton.addTarget(self, action: #selector(self.selectPartnerGender(_:)), for: .touchUpInside)
+                
+                cell.isUserInteractionEnabled = isEnabled
             }
                 
             return cell

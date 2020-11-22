@@ -1408,6 +1408,7 @@ ID: #userid#</string>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="partnerGenderErrorView" destination="9YK-Ee-mDZ" id="cpd-4A-n3S"/>
+                                            <outlet property="titleLabel" destination="lT3-1B-fYE" id="t8D-Si-XiO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
