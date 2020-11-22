@@ -89,7 +89,7 @@ extension UserGatewayViewController {
         
     }
 
-    @IBAction func tapZendesk(_ sender: Any) {
+    @IBAction func tapSupport(_ sender: Any) {
         viewModel.help()
     }
     

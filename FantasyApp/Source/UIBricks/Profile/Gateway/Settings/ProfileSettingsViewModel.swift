@@ -69,6 +69,17 @@ extension ProfileSettingsViewModel {
         self.router.dismiss()
     }
     
+    private func showMail(subject: String) {
+        guard let u = User.current  else { return }
+
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        let env = SettingsStore.environment.value.serverAlias
+        let appVersionFullText =  "Application version - \(appVersion)-\(appBuild) \(env)"
+
+        router.showMail(for: u.id, appVersion: appVersionFullText, osVersion: UIDevice.current.systemVersion, subject: subject)
+    }
+    
     func logout() {
 
         let actions: [UIAlertAction] = [
@@ -113,8 +124,7 @@ extension ProfileSettingsViewModel {
     }
 
     func helpSupport() {
-        guard let u = User.current  else { return }
-        router.showSupport(for: u.bio.name, email: PFUser.current()?.email)
+        showMail(subject: R.string.localizable.fantasySettingsFeedbackSubject())
     }
 
     func termsAndConditions() {
@@ -137,14 +147,7 @@ extension ProfileSettingsViewModel {
     }
 
     func helpImproveClick() {
-        guard let u = User.current  else { return }
-
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-        let env = SettingsStore.environment.value.serverAlias
-        let appVersionFullText =  "Application version - \(appVersion)-\(appBuild) \(env)"
-
-        router.showMail(for: u.id, appVersion: appVersionFullText, osVersion: UIDevice.current.systemVersion)
+        showMail(subject: R.string.localizable.fantasySettingsReportBugSubject())
     }
 
     func helpImproveHold() {

@@ -10,8 +10,6 @@ import UIKit
 import Amplitude_iOS
 import Parse
 import Branch
-import ZendeskSDK
-import ZendeskCoreSDK
 import ScreenShieldKit
 import Firebase
 import FBSDKCoreKit
@@ -127,18 +125,6 @@ extension Configuration {
         
         ///Push registration
         PushManager.kickOff()
-
-
-        /// Zendesk
-        Zendesk.initialize(appId: "9d8b51fca51b5f85a64615805f9db77a547e239d9f7aa0b4",
-            clientId: "mobile_sdk_client_38524f5c375d9e45cf0f",
-            zendeskUrl: "https://fantasyapp.zendesk.com")
-        Theme.currentTheme.primaryColor = UIColor.fantasyPink
-
-        Support.initialize(withZendesk: Zendesk.instance)
-
-        let ident = Identity.createAnonymous()
-        Zendesk.instance?.setIdentity(ident)
         
         ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
         

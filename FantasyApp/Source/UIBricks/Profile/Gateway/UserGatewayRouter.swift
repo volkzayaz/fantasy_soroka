@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-import ZendeskSDK
-import ZendeskCoreSDK
-import ZendeskProviderSDK
+import SafariServices
 
 struct UserGatewayRouter : MVVM_Router {
     
@@ -28,22 +25,10 @@ struct UserGatewayRouter : MVVM_Router {
     }
 
     func presentHelp() {
-
-        let helpCenterUiConfig = HelpCenterUiConfiguration()
-        helpCenterUiConfig.showContactOptionsOnEmptySearch = false
-        helpCenterUiConfig.showContactOptions = false
-
-        let vc = HelpCenterUi.buildHelpCenterOverviewUi(withConfigs: [helpCenterUiConfig])
-
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        nav.navigationBar.tintColor = .fantasyPink
-        nav.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.boldFont(ofSize: 18.0),
-            NSAttributedString.Key.foregroundColor: UIColor.fantasyPink
-        ]
-
-        owner.present(nav, animated: true, completion: nil)
+        guard let url = URL(string: "https://fantasyapp.com/faq/?utm_source=App&utm_medium=SupportIcon") else { return }
+        
+        let safariViewController = SFSafariViewController(url: url)
+        owner.present(safariViewController, animated: true, completion: nil)
     }
     
 }

@@ -11,10 +11,6 @@ import SafariServices
 import StoreKit
 import MessageUI
 
-import ZendeskSDK
-import ZendeskCoreSDK
-import ZendeskProviderSDK
-
 struct ProfileSettingsRouter : MVVM_Router {
     
     unowned private(set) var owner: ProfileSettingsViewController
@@ -31,30 +27,6 @@ struct ProfileSettingsRouter : MVVM_Router {
         owner.present(vc, animated: true, completion: nil)
     }
     
-    func showSupport(for username: String, email: String?) {
-        
-        let ident = Identity.createAnonymous(name: username, email: email)
-        Zendesk.instance?.setIdentity(ident)
-        SupportUI.instance?.helpCenterLocaleOverride = Locale.autoupdatingCurrent.languageCode
-        
-        var requestConfig: RequestUiConfiguration {
-            let config = RequestUiConfiguration()
-            config.subject = "Help iOS App"
-            config.tags = ["ios"]
-            return config
-        }
-        
-        let nav = UINavigationController(rootViewController: RequestUi.buildRequestList(with: [requestConfig]))
-        nav.modalPresentationStyle = .fullScreen
-        nav.navigationBar.tintColor = .fantasyPink
-        nav.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.boldFont(ofSize: 18.0),
-            NSAttributedString.Key.foregroundColor: UIColor.fantasyPink
-        ]
-        
-        owner.present(nav, animated: true, completion: nil)
-    }
-    
     func showCopyUserIdMessage() {
         
         let alert = UIAlertController(title: R.string.localizable.fantasySettingsCopyUseridAlertSuccess(), message: R.string.localizable.fantasySettingsCopyUseridAlertText(), preferredStyle: .alert)
@@ -63,10 +35,9 @@ struct ProfileSettingsRouter : MVVM_Router {
         owner.present(alert, animated: true, completion: nil)
     }
     
-    func showMail(for userID: String, appVersion: String, osVersion:String) {
+    func showMail(for userID: String, appVersion: String, osVersion: String, subject: String) {
         
         let email = R.string.localizable.fantasySettingsReportBugDestinationEmail()
-        let subject = R.string.localizable.fantasySettingsReportBugSubject()
         let message = R.string.localizable.fantasySettingsReportBugText(userID, appVersion, osVersion)
         
         if MFMailComposeViewController.canSendMail() {

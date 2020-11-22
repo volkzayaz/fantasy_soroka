@@ -397,7 +397,7 @@
                                                         <connections>
                                                             <outlet property="image" destination="DlQ-gT-zx0" id="jpj-Oa-x4x"/>
                                                             <outlet property="label" destination="Kaq-CE-tau" id="eok-DM-f4c"/>
-                                                            <outletCollection property="gestureRecognizers" destination="Imq-jA-3v8" appends="YES" id="3Xz-YC-4Un"/>
+                                                            <outletCollection property="gestureRecognizers" destination="Imq-jA-3v8" appends="YES" id="GbA-70-jWn"/>
                                                         </connections>
                                                     </view>
                                                 </subviews>
@@ -508,9 +508,9 @@
                         <action selector="tapFeedback:" destination="PbI-uz-Pww" id="ySF-JY-e3Y"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="Imq-jA-3v8" userLabel="Tap zendesk">
+                <tapGestureRecognizer id="Imq-jA-3v8" userLabel="Tap Support">
                     <connections>
-                        <action selector="tapZendesk:" destination="PbI-uz-Pww" id="gaJ-6i-b9m"/>
+                        <action selector="tapSupport:" destination="PbI-uz-Pww" id="JNp-7e-HdF"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="ihf-bM-ved">

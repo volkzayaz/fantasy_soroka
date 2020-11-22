@@ -149,15 +149,6 @@ PODS:
   - YPImagePicker (4.4.0):
     - PryntTrimmerView (~> 4.0.2)
     - SteviaLayout (~> 4.7.3)
-  - ZendeskSDK (4.0.1):
-    - ZendeskSDK/Providers (= 4.0.1)
-    - ZendeskSDK/UI (= 4.0.1)
-  - ZendeskSDK/Core (4.0.1)
-  - ZendeskSDK/Providers (4.0.1):
-    - ZendeskSDK/Core
-  - ZendeskSDK/UI (4.0.1):
-    - ZendeskSDK/Core
-    - ZendeskSDK/Providers
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 4.8)
@@ -186,7 +177,6 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift (~> 15.2.0)
   - SwiftyStoreKit
   - YPImagePicker
-  - ZendeskSDK
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -237,7 +227,6 @@ SPEC REPOS:
     - SteviaLayout
     - SwiftyStoreKit
     - YPImagePicker
-    - ZendeskSDK
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -287,8 +276,7 @@ SPEC CHECKSUMS:
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
-  ZendeskSDK: a5d4a6b1f117ed3177d72bbcc09b51d7600dd299
 
-PODFILE CHECKSUM: b770bf2705e0a38f7977af0d008b718d264f0005
+PODFILE CHECKSUM: ef81fa5386d4d58ce5a98935a0b07316123502e1
 
 COCOAPODS: 1.10.0

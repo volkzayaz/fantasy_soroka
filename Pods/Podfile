@@ -44,9 +44,6 @@ target 'FantasyApp' do
 
     pod 'SlackTextViewController'
 
-    #feedback
-    pod 'ZendeskSDK'
-
     #firebase
     pod 'Firebase/Crashlytics'
     pod 'Firebase/RemoteConfig'
