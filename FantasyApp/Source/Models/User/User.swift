@@ -49,6 +49,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var birthday: Date
         var gender: Gender
         var sexuality: Sexuality
+        var pronoun: Pronoun?
         var relationshipStatus: RelationshipStatus
         var photos: Photos
         var lookingFor: [LookingFor]
@@ -492,14 +493,20 @@ enum RelationshipStatus: Equatable, Codable {
     }
 }
 
-// Parse
-extension RelationshipStatus {
-
-    init(pfUser: PFUser) {
-        if let parseRelationshipStatus = pfUser["myRelationshipStatus"] as? String, let relationshipType = RelationshipType(rawValue: parseRelationshipStatus), let parsePartnerGender = pfUser["myPartnerGender"] as? String, let partner = Gender(fromFantasyRawValue: parsePartnerGender) {
-            self.init(relationshipType: relationshipType, partnerGender: partner)
-        } else {
-            self = .single
+enum Pronoun: String, Codable, CaseIterable {
+    
+    case he
+    case she
+    case they
+    
+    var pretty: String {
+        switch self {
+        case .he:
+            return R.string.localizable.pronounHe()
+        case .she:
+            return R.string.localizable.pronounShe()
+        case .they:
+            return R.string.localizable.pronounThey()
         }
     }
 }

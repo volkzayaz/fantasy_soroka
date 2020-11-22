@@ -34,7 +34,8 @@ struct EditProfileRouter : MVVM_Router {
         
     }
     
-    func presentSinglePick<T: SinglePickModel>(title: String,
+    func presentSinglePick<T: SinglePickModel>(navigationTitle: String,
+                                               title: String,
                                                models: [(String, [T])],
                                                defaultModels: [T],
                                                mode: SinglePickViewController.Mode,
@@ -43,6 +44,7 @@ struct EditProfileRouter : MVVM_Router {
         
         let x = R.storyboard.userGateway.singlePickViewController()!
         x.viewModel = SinglePickViewModel(router: .init(owner: x),
+                                          navigationTitle: navigationTitle,
                                           title: title,
                                           models: models,
                                           pickedModels: defaultModels,

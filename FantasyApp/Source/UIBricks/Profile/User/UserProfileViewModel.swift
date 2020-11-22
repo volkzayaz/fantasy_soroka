@@ -78,7 +78,12 @@ extension UserProfileViewModel {
                      bioSection.1.append( .bio(R.image.profileLocation()!, x) )
                  }
                  
-                 bioSection.1.append( .bio(R.image.profileSexuality()!, "\(u.bio.sexuality.pretty) \(u.bio.gender.pretty)") )
+                var sexuality = "\(u.bio.sexuality.pretty) \(u.bio.gender.pretty)"
+                if let pronoun = u.bio.pronoun {
+                    sexuality.append(" (\(pronoun.pretty))")
+                }
+                
+                 bioSection.1.append( .bio(R.image.profileSexuality()!, sexuality) )
                  bioSection.1.append( .bio(R.image.profileRelationships()!, u.bio.relationshipStatus.pretty) )
                  
                  if let x = u.bio.expirience {

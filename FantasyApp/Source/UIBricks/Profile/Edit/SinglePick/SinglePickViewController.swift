@@ -24,6 +24,7 @@ protocol SinglePickViewModelType {
     
     mutating func picked(model: SinglePickModel)
     
+    var navigationTitle: String { get }
     var title: String { get }
     
     func save() 
@@ -68,6 +69,7 @@ class SinglePickViewController: UIViewController {
             backgroundView.backgroundColor = .white
         }
         
+        title = viewModel.navigationTitle
         titleLabel.text = viewModel.title
         view.addFantasyGradient()
         

@@ -51,7 +51,11 @@ extension EditProfileViewModel {
                                                    .attribute(R.string.localizable.editProfileRelationship(),
                                                               value: user.bio.relationshipStatus.pretty,
                                                               image: R.image.profileRelationships()!,
-                                                              editAction: self.changeRelationship)
+                                                              editAction: self.changeRelationship),
+                                                   .attribute(R.string.localizable.editProfilePronoun(),
+                                                              value: user.bio.pronoun?.pretty ?? "",
+                                                              image: R.image.profilePronoun()!,
+                                                              editAction: self.changePronoun)
                     ])
                 
                 
@@ -166,7 +170,8 @@ extension EditProfileViewModel {
     }
     
     func changeLookingFor() {
-        router.presentSinglePick(title: R.string.localizable.editProfileChangeLookingForTitle(),
+        router.presentSinglePick(navigationTitle: R.string.localizable.editProfileLookingFor(),
+                                 title: R.string.localizable.editProfileChangeLookingForTitle(),
                                  models: LookingFor.sortedCases,
                                  defaultModels: User.current!.applied(editForm: form.value).bio.lookingFor,
                                  mode: .table,
@@ -180,7 +185,8 @@ extension EditProfileViewModel {
             defaultModel = [x]
         }
         
-        router.presentSinglePick(title: R.string.localizable.editProfileChangeExpirienceTitle(),
+        router.presentSinglePick(navigationTitle: R.string.localizable.editProfileExperience(),
+                                 title: R.string.localizable.editProfileChangeExpirienceTitle(),
                                  models: [("", Expirience.allCases)],
                                  defaultModels: defaultModel,
                                  mode: .table,
@@ -188,7 +194,8 @@ extension EditProfileViewModel {
     }
     
     func changeGender() {
-        router.presentSinglePick(title: R.string.localizable.editProfileChangeGenderTitle(),
+        router.presentSinglePick(navigationTitle: R.string.localizable.editProfileBody(),
+                                 title: R.string.localizable.editProfileChangeGenderTitle(),
                                  models: [("", Gender.allCases)],
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.gender],
                                  mode: .picker,
@@ -196,7 +203,8 @@ extension EditProfileViewModel {
     }
     
     func changeSexuality() {
-        router.presentSinglePick(title: R.string.localizable.editProfileChangeSexualityTitle(),
+        router.presentSinglePick(navigationTitle: R.string.localizable.editProfileSexuaity(),
+                                 title: R.string.localizable.editProfileChangeSexualityTitle(),
                                  models: [("", Sexuality.allCasesV2)],
                                  defaultModels: [User.current!.applied(editForm: form.value).bio.sexuality],
                                  mode: .picker,
@@ -205,6 +213,16 @@ extension EditProfileViewModel {
     
     func changeRelationship() {
         router.presentRelationship(status: User.current!.applied(editForm: form.value).bio.relationshipStatus) { x in self.updateForm { $0.relationshipStatus = x } }
+    }
+    
+    func changePronoun() {
+        let defaultModels = User.current!.applied(editForm: form.value).bio.pronoun.map { [$0] } ?? []
+        router.presentSinglePick(navigationTitle: R.string.localizable.editProfilePronoun(),
+                                 title: R.string.localizable.editProfileChangePronounTitle(),
+                                 models: [("", Pronoun.allCases)],
+                                 defaultModels: defaultModels,
+                                 mode: .table,
+                                 singlePickMode: true) { x in self.updateForm { $0.pronoun = x.first } }
     }
     
     func changeActiveCity() {

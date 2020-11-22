@@ -21,7 +21,7 @@ class EditRelationshipViewController: UIViewController {
         super.viewDidLoad()
         
         view.addFantasyGradient()
-        title = R.string.localizable.editRelationshipTitle()
+        title = R.string.localizable.editProfileRelationship()
         
         navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain, target: self, action: #selector(back))
 

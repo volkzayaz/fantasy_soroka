@@ -54,6 +54,11 @@ extension User {
             throw ParseMigrationError.dataCorrupted
         }
         
+        guard let pronounString = pfUser["pronoun"] as? String,
+              let pronoun = Pronoun(rawValue: pronounString) else {
+            throw ParseMigrationError.dataCorrupted
+        }
+        
         guard let photoURL = pfUser["avatar"] as? String,
               let thumbnailURL = pfUser["avatarThumbnail"] as? String else {
             throw ParseMigrationError.dataCorrupted
@@ -126,6 +131,7 @@ extension User {
                        birthday: birthday,
                        gender: gender,
                        sexuality: sexuality,
+                       pronoun: pronoun,
                        relationshipStatus: relationStatus,
                        photos: photos,
                        lookingFor: maybeLookingFor,
@@ -161,6 +167,7 @@ extension User {
             "birthady"                  : bio.birthday,
             "gender"                    : bio.gender.rawValue,
             "sexuality"                 : bio.sexuality.rawValue,
+            "pronoun"                   : bio.pronoun?.rawValue as Any,
             "lookingForV2"              : lookingForV2 as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
@@ -220,6 +227,7 @@ extension PFUser {
         setter("myPartnerGender", editForm.relationshipStatus?.partnerGender?.rawValue)
         setter("gender", editForm.gender?.rawValue)
         setter("sexuality", editForm.sexuality?.rawValue)
+        setter("pronoun", editForm.pronoun??.rawValue)
         setter("flirtAccess", false)
         
     }
@@ -266,4 +274,15 @@ extension PFUser {
             
     }
     
+}
+
+extension RelationshipStatus {
+
+    init(pfUser: PFUser) {
+        if let parseRelationshipStatus = pfUser["myRelationshipStatus"] as? String, let relationshipType = RelationshipType(rawValue: parseRelationshipStatus), let parsePartnerGender = pfUser["myPartnerGender"] as? String, let partner = Gender(fromFantasyRawValue: parsePartnerGender) {
+            self.init(relationshipType: relationshipType, partnerGender: partner)
+        } else {
+            self = .single
+        }
+    }
 }

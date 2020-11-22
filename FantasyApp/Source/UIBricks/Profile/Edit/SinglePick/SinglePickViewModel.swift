@@ -27,12 +27,14 @@ class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_Vi
 
     private let _models: [(String, [T])]
     private var _pickedModels: [T]
+    let navigationTitle: String
     let title: String
     let mode: SinglePickViewController.Mode
     private let callback: ([T]) -> Void
     private let singlePickMode: Bool
     
     init(router: SinglePickRouter,
+         navigationTitle: String,
          title: String,
          models: [(String, [T])],
          pickedModels: [T],
@@ -42,6 +44,7 @@ class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_Vi
         self.router = router
         self._models = models
         self._pickedModels = pickedModels
+        self.navigationTitle = navigationTitle
         self.title = title
         self.mode = mode
         self.singlePickMode = singlePickMode
@@ -98,6 +101,14 @@ extension Sexuality: SinglePickModel {
     
     var textRepresentation: String {
         return rawValue
+    }
+    
+}
+
+extension Pronoun: SinglePickModel {
+    
+    var textRepresentation: String {
+        return pretty
     }
     
 }

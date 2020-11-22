@@ -633,6 +633,10 @@
 "relationshipStatus.seeing" = "Seeing";
 "relationshipStatus.with" = "%@ with %@";
 
+"pronoun.he" = "He / Him";
+"pronoun.she" = "She / Her";
+"pronoun.they" = "They / Them";
+
 "userProfile.decks" = "Decks";
 
 "profile.discover.user.openRoom" = "Open Room";
@@ -878,16 +882,18 @@
 "editProfile.body" = "Sex";
 "editProfile.sexuaity" = "Sexuality";
 "editProfile.relationship" = "Relationship";
+"editProfile.pronoun" = "Pronoun";
+
 
 "editProfile.about" = "About";
 "editProfile.aboutPlaceholder" = "Tell the community about yourself…";
 
-"editRelationship.title" = "Relationship";
-"editRelationship.relationshipType.title" = "What’s Your Relationship Status?";
-"editRelationship.partnerGender.title" = "Describe Your Main Partner";
+"editProfile.changeRelationship.title" = "What’s Your Relationship Status?";
+"editProfile.changePartnerGender.title" = "Describe Your Main Partner";
 
 "editProfile.changeGenderTitle" = "How Would You Describe Yourself?";
 "editProfile.changeSexualityTitle" = "What’s Your Sexuality?";
+"editProfile.changePronounTitle" = "What’s Your Pronoun?";
 
 "editProfile.choose" = "Choose";
 "editProfile.activeCity" = "Active city";

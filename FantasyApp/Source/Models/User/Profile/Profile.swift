@@ -15,6 +15,7 @@ struct EditProfileForm {
     var sexuality: Sexuality?
     var gender: Gender?
     var relationshipStatus: RelationshipStatus?
+    var pronoun: Pronoun??
     
     var lookingFor: [LookingFor]?
     
@@ -101,6 +102,7 @@ extension User {
         applicator(lhs: &bio.relationshipStatus, rhs: editForm.relationshipStatus)
         applicator(lhs: &bio.gender, rhs: editForm.gender)
         applicator(lhs: &bio.sexuality, rhs: editForm.sexuality)
+        applicator(lhs: &bio.pronoun, rhs: editForm.pronoun)
         applicator(lhs: &bio.lookingFor, rhs: editForm.lookingFor)
         applicator(lhs: &bio.expirience, rhs: editForm.expirience)
         applicator(lhs: &bio.about, rhs: editForm.about)
