@@ -54,17 +54,17 @@ extension User {
             throw ParseMigrationError.dataCorrupted
         }
         
-        guard let pronounString = pfUser["pronoun"] as? String,
-              let pronoun = Pronoun(rawValue: pronounString) else {
-            throw ParseMigrationError.dataCorrupted
-        }
-        
         guard let photoURL = pfUser["avatar"] as? String,
               let thumbnailURL = pfUser["avatarThumbnail"] as? String else {
             throw ParseMigrationError.dataCorrupted
         }
         let mainPhoto = Photo(id: "fake", url: photoURL, thumbnailURL: thumbnailURL)
         
+        var pronoun: Pronoun?
+        if let pronounString = pfUser["pronoun"] as? String {
+            pronoun = Pronoun(rawValue: pronounString)
+        }
+
         let relationStatus = RelationshipStatus(pfUser: pfUser)
         
         let changePolicy: User.CommunityChangePolicy
