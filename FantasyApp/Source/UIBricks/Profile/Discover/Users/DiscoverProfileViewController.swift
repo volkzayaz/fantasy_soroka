@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import iCarousel
+import RxViewController
 
 class DiscoverProfileViewController: UIViewController, MVVM_View {
 
@@ -166,7 +167,6 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
                 case .noSearchPreferences:
                     self.showView(self.noFilterView)
-                    self.viewModel.presentFilter()
                     
                 case .activateFlirtAccess:
                     self.showView(self.activateView)
@@ -176,6 +176,16 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 
             })
             .disposed(by: rx.disposeBag)
+        
+        rx.viewDidAppear.flatMap { [unowned self] _ in
+            viewModel.mode
+                .filter { $0 == .noSearchPreferences }.asObservable()
+                .takeUntil(self.rx.viewWillDisappear)
+        }.take(1)
+        .subscribe(onCompleted: { [unowned self] in
+            self.viewModel.presentFilter()
+        }).disposed(by: rx.disposeBag)
+            
 
         // filter button
 

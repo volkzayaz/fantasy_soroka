@@ -223,13 +223,10 @@ extension PFUser {
         let lookingForV2: String? = editForm.lookingFor?.map { "\($0.rawValue)" }.joined(separator: ", ")
         setter("lookingForV2", lookingForV2)
         
-        setter("myRelationshipStatus", editForm.relationshipStatus?.relationshipType.rawValue)
-        setter("myPartnerGender", editForm.relationshipStatus?.partnerGender?.rawValue)
         setter("gender", editForm.gender?.rawValue)
         setter("sexuality", editForm.sexuality?.rawValue)
         setter("pronoun", editForm.pronoun??.rawValue)
         setter("flirtAccess", false)
-        
     }
  
     func convertWithAlbumsAndSubscriptionAndNotificationSettings() -> Single<User> {
