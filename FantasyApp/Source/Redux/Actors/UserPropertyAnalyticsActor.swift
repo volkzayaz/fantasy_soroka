@@ -61,8 +61,8 @@ class UserPropertyActor {
                         "Profile Trait: Sex" : user.bio.gender.rawValue as NSString?,
                         "Profile Trait: Age" : NSNumber(integerLiteral: user.bio.birthday.distance(from: Date(), in: .year)),
                         "Profile Trait: Sexuality" : user.bio.sexuality.rawValue as NSString?,
-                        "Profile Trait: Realtionship" : user.bio.relationshipStatus.analyticsTuple.0 as NSString?,
-                        "Profile Trait: Partner's Sex" : user.bio.relationshipStatus.analyticsTuple.1 as NSString?,
+                        "Profile Trait: Realtionship" : user.bio.relationshipStatus?.analyticsTuple.0 as NSString?,
+                        "Profile Trait: Partner's Sex" : user.bio.relationshipStatus?.analyticsTuple.1 as NSString?,
                         "Profile Trait: Looking For" : user.bio.lookingFor.compactMap { $0.title }.joined(separator: ", ") as NSString?,
                         
                         "Profile Status: Type" : "Active" as NSString?,

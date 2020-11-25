@@ -29,10 +29,10 @@ class EditRelationshipViewModel: MVVM_ViewModel {
         }
     }
     
-    init(router: EditRelationshipRouter, currentStatus: RelationshipStatus, callback: ((RelationshipStatus) -> Void)?) {
+    init(router: EditRelationshipRouter, currentStatus: RelationshipStatus?, callback: ((RelationshipStatus) -> Void)?) {
         self.router = router
-        relationshipType = BehaviorRelay(value: currentStatus.relationshipType)
-        partnerGender = BehaviorRelay(value: currentStatus.partnerGender)
+        relationshipType = BehaviorRelay(value: currentStatus?.relationshipType)
+        partnerGender = BehaviorRelay(value: currentStatus?.partnerGender)
         self.callback = callback
     }
     
@@ -64,24 +64,20 @@ class EditRelationshipViewModel: MVVM_ViewModel {
     }
     
     func back() {
-        if validate() {
-            callback?(RelationshipStatus(relationshipType: relationshipType.value, partnerGender: partnerGender.value))
+        if let relationshipType = relationshipType.value, (relationshipType == .single || partnerGender.value != nil) {
+            callback?(RelationshipStatus(relationshipType: relationshipType, partnerGender: partnerGender.value))
             router.popBack()
+        } else if relationshipType.value == nil {
+            router.popBack()
+        } else {
+            partnerGenderErrorRelay.accept(true)
         }
     }
     
     // MARK: - Private
     
-    private let relationshipType: BehaviorRelay<RelationshipType>
+    private let relationshipType: BehaviorRelay<RelationshipType?>
     private let partnerGender: BehaviorRelay<Gender?>
     private let callback: ((RelationshipStatus) -> Void)?
     private let partnerGenderErrorRelay = BehaviorRelay<Bool>(value: false)
-}
-
-private extension EditRelationshipViewModel {
-    
-    func validate() -> Bool {
-        partnerGenderErrorRelay.accept(relationshipType.value != .single && partnerGender.value == nil)
-        return !partnerGenderErrorRelay.value
-    }
 }

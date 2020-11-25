@@ -55,7 +55,7 @@ struct EditProfileRouter : MVVM_Router {
         
     }
     
-    func presentRelationship(status: RelationshipStatus,
+    func presentRelationship(status: RelationshipStatus?,
                              callback: @escaping (RelationshipStatus) -> Void) {
         let viewController = R.storyboard.userGateway.editRelationshipViewController()!
         let router = EditRelationshipRouter(owner: viewController)

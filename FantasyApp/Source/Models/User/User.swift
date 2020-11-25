@@ -50,7 +50,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         var gender: Gender
         var sexuality: Sexuality
         var pronoun: Pronoun?
-        var relationshipStatus: RelationshipStatus
+        var relationshipStatus: RelationshipStatus?
         var photos: Photos
         var lookingFor: [LookingFor]
         var expirience: Expirience?

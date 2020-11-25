@@ -172,8 +172,8 @@ extension User {
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
             "flirtAccess"               : bio.flirtAccess as Any,
-            "myRelationshipStatus"      : bio.relationshipStatus.relationshipType.rawValue,
-            "myPartnerGender"           : bio.relationshipStatus.partnerGender?.rawValue as Any,
+            "myRelationshipStatus"      : bio.relationshipStatus?.relationshipType.rawValue as Any,
+            "myPartnerGender"           : bio.relationshipStatus?.partnerGender?.rawValue as Any,
                 
             "searchPrefs"               : searchPrefs as Any,
             
@@ -278,11 +278,11 @@ extension PFUser {
 
 extension RelationshipStatus {
 
-    init(pfUser: PFUser) {
+    init?(pfUser: PFUser) {
         if let parseRelationshipStatus = pfUser["myRelationshipStatus"] as? String, let relationshipType = RelationshipType(rawValue: parseRelationshipStatus), let parsePartnerGender = pfUser["myPartnerGender"] as? String, let partner = Gender(fromFantasyRawValue: parsePartnerGender) {
             self.init(relationshipType: relationshipType, partnerGender: partner)
         } else {
-            self = .single
+            return nil
         }
     }
 }

@@ -84,7 +84,10 @@ extension UserProfileViewModel {
                 }
                 
                  bioSection.1.append( .bio(R.image.profileSexuality()!, sexuality) )
-                 bioSection.1.append( .bio(R.image.profileRelationships()!, u.bio.relationshipStatus.pretty) )
+                
+                if let relationshipStatus = u.bio.relationshipStatus {
+                    bioSection.1.append( .bio(R.image.profileRelationships()!, relationshipStatus.pretty) )
+                }
                  
                  if let x = u.bio.expirience {
                      bioSection.1.append( .bio(R.image.profileExpirience()!, x.description) )

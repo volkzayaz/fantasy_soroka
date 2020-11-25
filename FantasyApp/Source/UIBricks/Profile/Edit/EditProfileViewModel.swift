@@ -49,7 +49,7 @@ extension EditProfileViewModel {
                                                               image: R.image.profileSexuality()!,
                                                               editAction: nil),
                                                    .attribute(R.string.localizable.editProfileRelationship(),
-                                                              value: user.bio.relationshipStatus.pretty,
+                                                              value: user.bio.relationshipStatus?.pretty ?? "",
                                                               image: R.image.profileRelationships()!,
                                                               editAction: self.changeRelationship),
                                                    .attribute(R.string.localizable.editProfilePronoun(),
