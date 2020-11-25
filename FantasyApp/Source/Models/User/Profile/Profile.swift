@@ -14,7 +14,7 @@ struct EditProfileForm {
     var brithdate: Date?
     var sexuality: Sexuality?
     var gender: Gender?
-    var relationshipStatus: RelationshipStatus?
+    var relationshipStatus: RelationshipStatus??
     var pronoun: Pronoun??
     
     var lookingFor: [LookingFor]?
@@ -32,7 +32,7 @@ struct EditProfileForm {
     var communityChange: User.Community?
     
     var answers: User.Bio.PersonalQuestion
-    var flirtAccess: Bool?
+    var flirtAccess: Bool??
 }
 
 struct RegisterForm {
