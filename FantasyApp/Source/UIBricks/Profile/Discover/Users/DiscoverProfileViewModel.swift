@@ -53,6 +53,18 @@ extension DiscoverProfileViewModel {
         }
     }
     
+    var autoOpenFlirtOptions: Driver<Void> {
+        if let user = appStateSlice.currentUser, PerformManager.willPerform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
+            return mode.filter { $0 == .noSearchPreferences }
+                .map { _ in }
+                .asObservable()
+                .take(1)
+                .asDriver(onErrorJustReturn: ())
+        } else {
+            return Driver.empty()
+        }
+    }
+    
     var filterButtonEnabled: Driver<Bool> {
         
         return Driver.combineLatest(
@@ -135,6 +147,14 @@ extension DiscoverProfileViewModel {
         self.router.presentFilter()
     }
     
+    func autopresentFilter() {
+        if self.router.canPresent, let user = appStateSlice.currentUser {
+            PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
+                self.router.presentFilter()
+            }
+        }
+    }
+    
     func inviteFriends() {
         router.invite(
             [R.string.localizable.roomBranchObjectDescription(),
@@ -161,14 +181,17 @@ extension DiscoverProfileViewModel {
     }
     
     func viewDidAppear() {
-        guard appStateSlice.currentUser?.subscription.isSubscribed == false else { return }
-        
-        PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferPromoShownInFlirtAfterNumber), event: .subscriptionPromoOfferShownInFlirt) {
-            router.presentSubscriptionLimitedOffer(offerType: .promo)
-        }
-        
-        PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferSpecialShownInFlirtAfterNumber), event: .subscriptionSpecialOfferShownInFlirt) {
-            router.presentSubscriptionLimitedOffer(offerType: .special)
+        // Dispatch async to avoid presenting at the same time as Filter Options are presented
+        DispatchQueue.main.async {
+            guard appStateSlice.currentUser?.subscription.isSubscribed == false, self.router.canPresent else { return }
+            
+            PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferPromoShownInFlirtAfterNumber), event: .subscriptionPromoOfferShownInFlirt) {
+                self.router.presentSubscriptionLimitedOffer(offerType: .promo)
+            }
+            
+            PerformManager.perform(rule: .on(RemoteConfigManager.subscriptionOfferSpecialShownInFlirtAfterNumber), event: .subscriptionSpecialOfferShownInFlirt) {
+                self.router.presentSubscriptionLimitedOffer(offerType: .special)
+            }
         }
     }
     

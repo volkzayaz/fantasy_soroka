@@ -17,6 +17,7 @@ enum PerformRule {
 enum PerformEvent {
     case subscriptionPromoOfferShownInFlirt
     case subscriptionSpecialOfferShownInFlirt
+    case flirtOptionsShownInFlirt
     case customName(String)
 }
 
@@ -25,9 +26,26 @@ enum PerformAccessLevel {
 }
 
 final class PerformManager {
-            
+    
+    static func willPerform(rule: PerformRule, event: PerformEvent, accessLevel: PerformAccessLevel = .global) -> Bool {
+        let key = PerformManager.key(rule: rule, event: event, accessLevel: accessLevel)
+        
+        switch rule {
+        case .once:
+            return !(StorageManager.getValue(for: key) ?? false)
+        case .on(let count):
+            return StorageManager.getValue(for: key) ?? 0 < count
+        case .every(let count):
+            if let value: Int = StorageManager.getValue(for: key), value % count == 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
     static func perform(rule: PerformRule, event: PerformEvent, accessLevel: PerformAccessLevel = .global, callback: PerformCallback) {
-        let key = "perform_event.\(event.name).\(rule.name).\(accessLevel.name)"
+        let key = PerformManager.key(rule: rule, event: event, accessLevel: accessLevel)
 
         switch rule {
         case .once:
@@ -71,6 +89,13 @@ final class PerformManager {
     }
 }
 
+private extension PerformManager {
+    
+    static func key(rule: PerformRule, event: PerformEvent, accessLevel: PerformAccessLevel) -> String {
+        "perform_event.\(event.name).\(rule.name).\(accessLevel.name)"
+    }
+}
+
 extension PerformRule {
     
     var name: String {
@@ -88,6 +113,7 @@ extension PerformEvent {
         switch self {
         case .subscriptionPromoOfferShownInFlirt: return "subscriptionPromoOfferShownInFlirt"
         case .subscriptionSpecialOfferShownInFlirt: return "subscriptionSpecialOfferShownInFlirt"
+        case .flirtOptionsShownInFlirt: return "flirtOptionsShownInFlirt"
         case .customName(let name): return "customName.\(name)"
         }
     }

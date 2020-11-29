@@ -12,8 +12,13 @@ import RxCocoa
 struct DiscoverProfileRouter : MVVM_Router {
     
     unowned private(set) var owner: DiscoverProfileViewController
+    
     init(owner: DiscoverProfileViewController) {
         self.owner = owner
+    }
+    
+    var canPresent: Bool {
+        owner.presentedViewController == nil
     }
     
     func presentProfile(_ profile: Profile) {

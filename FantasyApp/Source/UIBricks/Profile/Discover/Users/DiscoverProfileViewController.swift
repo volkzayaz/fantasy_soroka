@@ -178,12 +178,11 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
         
         rx.viewDidAppear.flatMap { [unowned self] _ in
-            viewModel.mode
-                .filter { $0 == .noSearchPreferences }.asObservable()
+            viewModel.autoOpenFlirtOptions
+                .asObservable()
                 .takeUntil(self.rx.viewWillDisappear)
-        }.take(1)
-        .subscribe(onCompleted: { [unowned self] in
-            self.viewModel.presentFilter()
+        }.subscribe(onNext: { [unowned self] _ in
+            self.viewModel.autopresentFilter()
         }).disposed(by: rx.disposeBag)
             
 
