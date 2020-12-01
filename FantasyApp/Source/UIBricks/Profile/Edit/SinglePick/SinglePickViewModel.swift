@@ -32,6 +32,7 @@ class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_Vi
     let mode: SinglePickViewController.Mode
     private let callback: ([T]) -> Void
     private let singlePickMode: Bool
+    private let nonEmptySelectionMode: Bool
     
     init(router: SinglePickRouter,
          navigationTitle: String,
@@ -40,6 +41,7 @@ class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_Vi
          pickedModels: [T],
          mode: SinglePickViewController.Mode,
          singlePickMode: Bool,
+         nonEmptySelectionMode: Bool = false,
          result: @escaping ([T]) -> Void) {
         self.router = router
         self._models = models
@@ -48,6 +50,7 @@ class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_Vi
         self.title = title
         self.mode = mode
         self.singlePickMode = singlePickMode
+        self.nonEmptySelectionMode = nonEmptySelectionMode
         self.callback = result
         
         indicator.asDriver()
@@ -65,7 +68,11 @@ class SinglePickViewModel<T: SinglePickModel> : SinglePickViewModelType, MVVM_Vi
 
 extension SinglePickViewModel {
     
-    func picked(model: SinglePickModel) {
+    func isPicked(model: SinglePickModel) -> Bool {
+        _pickedModels.contains(where: { $0.textRepresentation == model.textRepresentation })
+    }
+    
+    func pick(model: SinglePickModel) {
         
         if singlePickMode {
             _pickedModels = [model as! T]
@@ -74,9 +81,16 @@ extension SinglePickViewModel {
         }
         
         if let i = _pickedModels.firstIndex(where: { $0.textRepresentation == model.textRepresentation }) {
-            _pickedModels.remove(at: i)
-        }
-        else {
+            let pickedModelsInCurrentGroupCount = _models.first { _, models -> Bool in
+                models.contains { $0.textRepresentation == model.textRepresentation }
+            }?.1.map { groupModel in
+                _pickedModels.contains { $0.textRepresentation == groupModel.textRepresentation }
+            }.filter { $0 }.count ?? 0
+            
+            if !nonEmptySelectionMode || pickedModelsInCurrentGroupCount > 1 {
+                _pickedModels.remove(at: i)
+            }
+        } else {
             _pickedModels.append(model as! T)
         }
         

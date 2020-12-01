@@ -175,7 +175,8 @@ extension EditProfileViewModel {
                                  models: LookingFor.sortedCases,
                                  defaultModels: User.current!.applied(editForm: form.value).bio.lookingFor,
                                  mode: .table,
-                                 singlePickMode: false) { x in self.updateForm { $0.lookingFor = x } }
+                                 singlePickMode: false,
+                                 nonEmptySelectionMode: true) { x in self.updateForm { $0.lookingFor = x } }
     }
     
     func changeExpirience() {

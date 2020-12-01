@@ -40,6 +40,7 @@ struct EditProfileRouter : MVVM_Router {
                                                defaultModels: [T],
                                                mode: SinglePickViewController.Mode,
                                                singlePickMode: Bool,
+                                               nonEmptySelectionMode: Bool = false,
                                                result: @escaping ([T]) -> Void) {
         
         let x = R.storyboard.userGateway.singlePickViewController()!
@@ -50,6 +51,7 @@ struct EditProfileRouter : MVVM_Router {
                                           pickedModels: defaultModels,
                                           mode: mode,
                                           singlePickMode: singlePickMode,
+                                          nonEmptySelectionMode: nonEmptySelectionMode,
                                           result: result)
         owner.navigationController?.pushViewController(x, animated: true)
         

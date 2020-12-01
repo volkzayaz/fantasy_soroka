@@ -22,7 +22,8 @@ protocol SinglePickViewModelType {
     
     var mode: SinglePickViewController.Mode { get }
     
-    mutating func picked(model: SinglePickModel)
+    func isPicked(model: SinglePickModel) -> Bool
+    mutating func pick(model: SinglePickModel)
     
     var navigationTitle: String { get }
     var title: String { get }
@@ -105,7 +106,7 @@ class SinglePickViewController: UIViewController {
             return
         }
 
-        viewModel.picked(model: value)
+        viewModel.pick(model: value)
     }
     
     @objc func save() {
@@ -140,10 +141,10 @@ extension SinglePickViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = viewModel.models[indexPath.section].1[indexPath.row]
-        viewModel.picked(model: model)
+        viewModel.pick(model: model)
         
         let cell = tableView.cellForRow(at: indexPath)! as! SinglePickTableCell
-        cell.selectionButton.isSelected = !cell.selectionButton.isSelected
+        cell.selectionButton.isSelected = viewModel.isPicked(model: model)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
