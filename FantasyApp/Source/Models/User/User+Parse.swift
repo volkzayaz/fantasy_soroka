@@ -86,12 +86,12 @@ extension User {
                                      private : albums?.private ?? .init(images: []))
         
         var maybeLookingFor: [LookingFor] = []
-        if let string = pfUser["lookingForV2"] as? String {
-            
+        if let array = pfUser["lookingFor"] as? [String] {
+            maybeLookingFor = array.compactMap { LookingFor(rawValue: $0) }
+        } else if let string = pfUser["lookingForV2"] as? String {
             maybeLookingFor = string.components(separatedBy: ", ")
-                                    .compactMap({ Int($0) })
-                                    .compactMap ({ LookingFor(rawValue: $0) })
-            
+                .compactMap { Int($0) }
+                .compactMap { LookingFor(index: $0) }
         }
         
         var maybeExpirience: Expirience? = nil
@@ -155,7 +155,8 @@ extension User {
         
         guard let user = PFUser.current() else { fatalError("No current user exist, can't convert native user") }
         
-        let lookingForV2: String = bio.lookingFor.map { "\($0.rawValue)" }.joined(separator: ", ")
+        let lookingFor = bio.lookingFor.map { $0.rawValue }
+        let lookingForV2: String = bio.lookingFor.map { "\($0.index)" }.joined(separator: ", ")
         var searchPrefs: Data? = nil
         if let x = searchPreferences {
             searchPrefs = try! JSONEncoder().encode(x)
@@ -168,6 +169,7 @@ extension User {
             "gender"                    : bio.gender.rawValue,
             "sexuality"                 : bio.sexuality.rawValue,
             "pronoun"                   : bio.pronoun?.rawValue as Any,
+            "lookingFor"                : lookingFor,
             "lookingForV2"              : lookingForV2 as Any,
             "expirience"                : bio.expirience?.rawValue as Any,
             "answers"                   : bio.answers,
@@ -219,6 +221,9 @@ extension PFUser {
         
         setter("realname", editForm.name)
         setter("birthday", editForm.brithdate)
+        
+        let lookingFor = editForm.lookingFor?.map { $0.rawValue }
+        setter("lookingFor", lookingFor)
         
         let lookingForV2: String? = editForm.lookingFor?.map { "\($0.rawValue)" }.joined(separator: ", ")
         setter("lookingForV2", lookingForV2)

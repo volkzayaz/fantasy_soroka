@@ -122,7 +122,7 @@ extension RegistrationViewModel {
     }
     
     var availableLookingFor: [LookingFor] {
-        [.hookup, .longTermDating, .newFriends, .shortTermDating]
+        [.flirtForHookup, .flirtForLongTermDating, .flirtForNewFriends, .flirtForShortTermDating]
     }
     
     var selectedPhoto: Driver<UIImage?> {

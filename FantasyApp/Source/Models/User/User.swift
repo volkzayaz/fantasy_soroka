@@ -511,37 +511,60 @@ enum Pronoun: String, Codable, CaseIterable {
     }
 }
 
-enum LookingFor: Int, Codable, Equatable, CaseIterable {
+enum LookingFor: String, Codable, Equatable, CaseIterable {
     
-    case relationship = 0
-    case someoneToPlayWith
-    case princesDaySlutNight
-    case princeDaySlutNight
-    case friendship
-    case ethicalNonMono
-    case sleepPartners
-    case bdsm
-    case polyNetwork
-    case unicorn
-    case beAUnicorn
-    case joinAnEstablishedCouple
-    case ideas
-    case techniques
-    case sexIQ
-    case partner
-    case friends
-    case new
-    case hookup
-    case newFriends
-    case shortTermDating
-    case longTermDating
+    case flirtForRelationship
+    case flirtForSomeoneToPlayWith
+    case flirtForPrincesDaySlutNight
+    case flirtForPrinceDaySlutNight
+    case flirtForFriendship
+    case flirtForEthicalNonMono
+    case flirtForSleepPartners
+    case flirtForBdsm
+    case flirtForPolyNetwork
+    case flirtForUnicorn
+    case flirtForToBeAUnicorn
+    case flirtForJoinAnEstablishedCouple
+    case learnNewIdeas
+    case learnSeducingTechniques
+    case learnToBoostSexIQ
+    case playWithMyPartner
+    case playWithMyFriends
+    case playWithNew
+    case flirtForHookup
+    case flirtForNewFriends
+    case flirtForShortTermDating
+    case flirtForLongTermDating
+    
+    init?(index: Int) {
+        if 0 <= index && index < LookingFor.allCases.count {
+            self = LookingFor.allCases[index]
+        } else {
+            return nil
+        }
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+         if let key = try? container.decode(String.self), let lookingFor = LookingFor(rawValue: key) {
+            self = lookingFor
+        } else {
+            // old Int format
+            let index = try container.decode(Int.self)
+            self = LookingFor.allCases[index]
+        }
+    }
+    
+    var index: Int {
+        LookingFor.allCases.firstIndex(of: self)!
+    }
     
     var title: String? {
         switch self {
-        case .hookup: return R.string.localizable.lookingForHookupTitle()
-        case .newFriends: return R.string.localizable.lookingForNewFriendsTitle()
-        case .shortTermDating: return R.string.localizable.lookingForShortTermDatingTitle()
-        case .longTermDating: return R.string.localizable.lookingForLongTermDatingTitle()
+        case .flirtForHookup: return R.string.localizable.lookingForHookupTitle()
+        case .flirtForNewFriends: return R.string.localizable.lookingForNewFriendsTitle()
+        case .flirtForShortTermDating: return R.string.localizable.lookingForShortTermDatingTitle()
+        case .flirtForLongTermDating: return R.string.localizable.lookingForLongTermDatingTitle()
         default: return nil
         }
     }
@@ -550,28 +573,28 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
         
         switch self {
             
-        case .relationship: return R.string.localizable.lookingForRelationship()
-        case .someoneToPlayWith: return R.string.localizable.lookingForSomeoneToPlayWith()
-        case .princesDaySlutNight: return R.string.localizable.lookingForPrincesDaySlutNight()
-        case .princeDaySlutNight: return R.string.localizable.lookingForPrinceDaySlutNight()
-        case .friendship: return R.string.localizable.lookingForFriendship()
-        case .ethicalNonMono: return R.string.localizable.lookingForEthicalNonMono()
-        case .sleepPartners: return R.string.localizable.lookingForSleepPartners()
-        case .bdsm: return R.string.localizable.lookingForBdsm()
-        case .polyNetwork: return R.string.localizable.lookingForPolyNetwork()
-        case .unicorn: return R.string.localizable.lookingForUnicorn()
-        case .beAUnicorn: return R.string.localizable.lookingForBeAUnicorn()
-        case .joinAnEstablishedCouple: return R.string.localizable.lookingForJoinAnEstablishedCouple()
-        case .ideas: return R.string.localizable.lookingForIdeas()
-        case .techniques: return R.string.localizable.lookingForTechniques()
-        case .sexIQ: return R.string.localizable.lookingForSexIQ()
-        case .partner: return R.string.localizable.lookingForPartner()
-        case .friends: return R.string.localizable.lookingForFriends()
-        case .new: return R.string.localizable.lookingForNew()
-        case .hookup: return R.string.localizable.lookingForHookup()
-        case .newFriends: return R.string.localizable.lookingForNewFriends()
-        case .shortTermDating: return R.string.localizable.lookingForShortTermDating()
-        case .longTermDating: return R.string.localizable.lookingForLongTermDating()
+        case .flirtForRelationship: return R.string.localizable.lookingForRelationship()
+        case .flirtForSomeoneToPlayWith: return R.string.localizable.lookingForSomeoneToPlayWith()
+        case .flirtForPrincesDaySlutNight: return R.string.localizable.lookingForPrincesDaySlutNight()
+        case .flirtForPrinceDaySlutNight: return R.string.localizable.lookingForPrinceDaySlutNight()
+        case .flirtForFriendship: return R.string.localizable.lookingForFriendship()
+        case .flirtForEthicalNonMono: return R.string.localizable.lookingForEthicalNonMono()
+        case .flirtForSleepPartners: return R.string.localizable.lookingForSleepPartners()
+        case .flirtForBdsm: return R.string.localizable.lookingForBdsm()
+        case .flirtForPolyNetwork: return R.string.localizable.lookingForPolyNetwork()
+        case .flirtForUnicorn: return R.string.localizable.lookingForUnicorn()
+        case .flirtForToBeAUnicorn: return R.string.localizable.lookingForBeAUnicorn()
+        case .flirtForJoinAnEstablishedCouple: return R.string.localizable.lookingForJoinAnEstablishedCouple()
+        case .learnNewIdeas: return R.string.localizable.lookingForIdeas()
+        case .learnSeducingTechniques: return R.string.localizable.lookingForTechniques()
+        case .learnToBoostSexIQ: return R.string.localizable.lookingForSexIQ()
+        case .playWithMyPartner: return R.string.localizable.lookingForPartner()
+        case .playWithMyFriends: return R.string.localizable.lookingForFriends()
+        case .playWithNew: return R.string.localizable.lookingForNew()
+        case .flirtForHookup: return R.string.localizable.lookingForHookup()
+        case .flirtForNewFriends: return R.string.localizable.lookingForNewFriends()
+        case .flirtForShortTermDating: return R.string.localizable.lookingForShortTermDating()
+        case .flirtForLongTermDating: return R.string.localizable.lookingForLongTermDating()
             
         }
     }
@@ -581,20 +604,20 @@ enum LookingFor: Int, Codable, Equatable, CaseIterable {
     static var sortedCases: [(String, [LookingFor])] {
         [
             (R.string.localizable.lookingForSectionFlirt(), [
-                .hookup,
-                .newFriends,
-                .shortTermDating,
-                .longTermDating
+                .flirtForHookup,
+                .flirtForNewFriends,
+                .flirtForShortTermDating,
+                .flirtForLongTermDating
             ]),
             (R.string.localizable.lookingForSectionPlay(), [
-                .partner,
-                .friends,
-                .new
+                .playWithMyPartner,
+                .playWithMyFriends,
+                .playWithNew
             ]),
             (R.string.localizable.lookingForSectionLearn(), [
-                .ideas,
-                .techniques,
-                .sexIQ
+                .learnNewIdeas,
+                .learnSeducingTechniques,
+                .learnToBoostSexIQ
             ])
         ]
     }
