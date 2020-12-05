@@ -24,7 +24,8 @@ extension DiscoverProfileViewModel {
     }
     
     var mode: Driver<Mode> {
-        return Driver.combineLatest(
+        let defaultMode: Driver<Mode> = .just(.activateFlirtAccess)
+        let mode: Driver<Mode> = Driver.combineLatest(
             appState.changesOf { $0.currentUser?.bio.flirtAccess },
             locationActor.needsLocationPermission,
             locationActor.near,
@@ -51,6 +52,8 @@ extension DiscoverProfileViewModel {
 
             return .profiles
         }
+        
+        return Driver.concat([defaultMode, mode])
     }
     
     var autoOpenFlirtOptions: Driver<Void> {

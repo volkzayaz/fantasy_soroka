@@ -225,7 +225,6 @@ extension PFUser {
         
         setter("gender", editForm.gender?.rawValue)
         setter("sexuality", editForm.sexuality?.rawValue)
-        setter("pronoun", editForm.pronoun??.rawValue)
         setter("flirtAccess", false)
     }
  
