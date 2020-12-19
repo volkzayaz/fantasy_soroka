@@ -83,21 +83,21 @@ class UserCarouselView: UIView {
 
 extension UserCarouselView {
 
-    func setUser(_ data: User) {
+    func setUser(_ data: UserProfile) {
 
-        let photoCount = data.bio.photos.public.images.count + data.bio.photos.private.images.count
+        let photoCount = (data.publicAlbum?.images.count ?? 0) + (data.privateAlbum?.images.count ?? 0)
         
         ///Liked fantasies
         let cardCount = 0 // data.fantasies.liked.count + data.fantasies.disliked.count
 
-        labelName.text = data.bio.name
+        labelName.text = data.name
         labelPhotoNumber.text = "\(photoCount)"
         labelCardNumber.text = "\(cardCount)"
-        starImageView.isHidden = !data.subscription.isSubscribed
+        starImageView.isHidden = !data.isSubscribed
 
         profileImageView.reset()
-        profileImageView.set(imageURL: data.bio.photos.avatar.url,
-                             isProtected: data.subscription.isSubscribed,
+        profileImageView.set(imageURL: data.avatarURL,
+                             isProtected: data.isSubscribed,
                              errorPlaceholder: R.image.noPhoto())
         
     }

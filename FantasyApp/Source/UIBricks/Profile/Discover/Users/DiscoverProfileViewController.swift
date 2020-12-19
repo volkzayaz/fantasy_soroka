@@ -131,8 +131,17 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         view.addFantasyTripleGradient()
 
         viewModel.profiles
-            .subscribe(onNext: { [weak self] (_) in
+            .subscribe(onNext: { [weak self] profiles in
                 self?.profilesCarousel.reloadData()
+                if let firstNewProfileIndex = profiles.firstIndex(where: { $0.isViewed == false }) {
+                    guard let `self` = self else { return }
+                    
+                    if firstNewProfileIndex == self.profilesCarousel.currentItemIndex {
+                        self.profileViewed(index: firstNewProfileIndex)
+                    } else {
+                        self.profilesCarousel.scrollToItem(at: firstNewProfileIndex, animated: false)
+                    }
+                }
             })
             .disposed(by: rx.disposeBag)
         
@@ -211,9 +220,9 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
 
 // MARK:- Views Management
 
-extension DiscoverProfileViewController {
+private extension DiscoverProfileViewController {
 
-    private func showView(_ viewToShow: UIView) {
+    func showView(_ viewToShow: UIView) {
 
         view.addSubview(viewToShow)
 
@@ -226,8 +235,13 @@ extension DiscoverProfileViewController {
 
     }
 
-    private func hideView(_ view: UIView) {
+    func hideView(_ view: UIView) {
         view.removeFromSuperview()
+    }
+    
+    func profileViewed(index: Int) {
+        guard let profile = viewModel.profiles.value[safe: index] else { return }
+        viewModel.profileViewed(profile)
     }
 }
 
@@ -332,14 +346,13 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
 
     }
     
+    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
+        profileViewed(index: carousel.currentItemIndex)
+    }
+    
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-
-        guard let profile = viewModel.profiles.value[safe: index] else {
-            return
-        }
-        
+        guard let profile = viewModel.profiles.value[safe: index] else { return }
         viewModel.profileSelected(profile)
-        
     }
     
 }

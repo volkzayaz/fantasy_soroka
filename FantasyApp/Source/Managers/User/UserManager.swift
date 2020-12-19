@@ -83,26 +83,21 @@ extension UserManager {
             }
     }
     
-    static func images(of user: User) -> Single<([Photo], [Photo])> {
+    static func images(of user: UserProfile) -> Single<([Photo], [Photo])> {
         
         ///Server does not return Main avatar as part of the Album
         
-        if user.bio.photos.public.isReal {
-            
-            let pub  = [user.bio.photos.avatar] + user.bio.photos.public.images
-            let priv = user.bio.photos.private.images
-            
-            return .just( (pub, priv) )
+        if let publicImages = user.publicAlbum?.images, let privateImages = user.privateAlbum?.images {
+            let avatarPhoto = Photo(id: "", url: user.avatarURL, thumbnailURL: user.avatarThumbnailURL)
+            return .just(([avatarPhoto] + publicImages, privateImages))
         }
         
         return GetImages(of: .user(user)).rx.request.map { photos in
+            var `public` = photos.filter { !$0.isPrivate }.map { $0.toRegular }
+            let `private` = photos.filter { $0.isPrivate }.map { $0.toRegular }
             
-            var `public` = photos.filter { !$0.isPrivate }
-                                 .map { $0.toRegular }
-            `public`.insert(user.bio.photos.avatar, at: 0)
-            
-            let `private` = photos.filter { $0.isPrivate }
-                                  .map { $0.toRegular }
+            let avatarPhoto = Photo(id: "", url: user.avatarURL, thumbnailURL: user.avatarThumbnailURL)
+            `public`.insert(avatarPhoto, at: 0)
             
             return (`public`, `private`)
         }
@@ -135,20 +130,9 @@ extension UserManager {
         
     }    ///isSubscribed = 0;
     
-    static func getUser(id: String) -> Single<User?> {
-        return User.query
-            .whereKey("objectId", equalTo: id )
-            .rx.fetchFirstObject()
-            .map { x in
-                
-                guard let x = x as? PFUser else { return nil }
-                
-                if let isBlocked = x["isBlocked"] as? Bool, isBlocked == true {
-                    return nil
-                }
-                
-                return try User(pfUser: x)
-            }
+    static func getUserProfile(id: String) -> Single<UserProfile?> {
+        UserProfileResource(id: id).rx.request
+            .map { !$0.isBlocked ? $0 : nil }
     }
     
 }

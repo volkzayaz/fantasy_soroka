@@ -19,7 +19,7 @@ struct EditProfileRouter : MVVM_Router {
     func preview(user: User) {
         
         let x = R.storyboard.user.userProfileViewController()!
-        x.viewModel = .init(router: .init(owner: x), user: user)
+        x.viewModel = .init(router: .init(owner: x), user: UserProfile(user: user))
         let navigationController = FantasyNavigationController(rootViewController: x)
         navigationController.modalPresentationStyle = .overFullScreen
         owner.navigationController?.present(navigationController, animated: true, completion: nil)

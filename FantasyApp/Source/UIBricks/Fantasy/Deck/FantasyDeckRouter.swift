@@ -37,7 +37,7 @@ struct FantasyDeckRouter : MVVM_Router {
         
     }
 
-    func showUser(user: User?) {
+    func showUser(user: UserProfile?) {
 
         guard let user = unwrap(maybeUser: user, for: owner) else { return }
         

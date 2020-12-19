@@ -64,45 +64,45 @@ extension UserProfileViewModel {
             }
             .map { (fantasiesRow) in
                 
-                var res = [("basic", [Row.basic(u.bio.name, u.subscription.isSubscribed)])]
+                var res = [("basic", [Row.basic(u.name, u.isSubscribed)])]
                  
-                 if let x = u.bio.about {
-                     res.append( ("about", [.about(x, u.bio.sexuality)]) )
+                 if let x = u.about {
+                     res.append( ("about", [.about(x, u.sexuality)]) )
                  }
                  
                  var bioSection: (String, [Row]) = ("bio", [])
                  
-                 bioSection.1.append(.bio(R.image.profileBirthday()!, R.string.localizable.profileDiscoverUserYears(u.bio.yearsOld)))
+                 bioSection.1.append(.bio(R.image.profileBirthday()!, R.string.localizable.profileDiscoverUserYears("\(u.age)")))
                  
-                 if let x = u.community.value?.name {
+                 if let x = u.community?.name {
                      bioSection.1.append( .bio(R.image.profileLocation()!, x) )
                  }
                  
-                var sexuality = "\(u.bio.sexuality.pretty) \(u.bio.gender.pretty)"
-                if let pronoun = u.bio.pronoun {
+                var sexuality = "\(u.sexuality.pretty) \(u.gender.pretty)"
+                if let pronoun = u.pronoun {
                     sexuality.append(" (\(pronoun.pretty))")
                 }
                 
                  bioSection.1.append( .bio(R.image.profileSexuality()!, sexuality) )
                 
-                if let relationshipStatus = u.bio.relationshipStatus {
+                if let relationshipStatus = u.relationshipStatus {
                     bioSection.1.append( .bio(R.image.profileRelationships()!, relationshipStatus.pretty) )
                 }
                  
-                 if let x = u.bio.expirience {
+                 if let x = u.experience {
                      bioSection.1.append( .bio(R.image.profileExpirience()!, x.description) )
                  }
                 
-                 if u.bio.lookingFor.count > 0 {
+                 if u.lookingFor.count > 0 {
                      bioSection.1.append( .bio(R.image.profileLookingFor()!,
-                                               u.bio.lookingFor.map { $0.description }.joined(separator: ", ")) )
+                                               u.lookingFor.map { $0.description }.joined(separator: ", ")) )
                  }
                 
                  res.append( bioSection )
                 
-                 if u.bio.answers.count > 0 {
+                 if u.answers.count > 0 {
                      
-                     for (key, value) in u.bio.answers {
+                     for (key, value) in u.answers {
                          let x = Row.answer(q: key, a: value)
                          res.append( (x.identity, [x] ) )
                      }
@@ -296,7 +296,7 @@ extension UserProfileViewModel {
 
 
     var registeredDateText: Driver<String> {
-        let s = user.bio.registrationDate.toRegisteredDateString()
+        let s = user.registrationDate.toRegisteredDateString()
         return Driver.just(R.string.localizable.profileDiscoverUserRegistered(s))
     }
 
@@ -318,11 +318,11 @@ extension UserProfileViewModel {
 
 class UserProfileViewModel : MVVM_ViewModel {
     
-    fileprivate let user: User
+    fileprivate let user: UserProfile
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
     let bottomActionAvailable: Bool
     
-    init(router: UserProfileRouter, user: User, bottomActionsAvailable: Bool = true) {
+    init(router: UserProfileRouter, user: UserProfile, bottomActionsAvailable: Bool = true) {
         self.router = router
         self.user = user
         self.bottomActionAvailable = bottomActionsAvailable

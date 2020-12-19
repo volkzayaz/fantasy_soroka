@@ -71,7 +71,7 @@ extension RoomDetailsViewModel {
 
         let id = room.value.me.userSlice.id
 
-        UserManager.getUser(id: id)
+        UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] user in
                 self.router.showUser(user: user)
@@ -83,7 +83,7 @@ extension RoomDetailsViewModel {
 
         let id = room.value.peer.userSlice.id
         
-        UserManager.getUser(id: id)
+        UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] user in
                 self.router.showUser(user: user)

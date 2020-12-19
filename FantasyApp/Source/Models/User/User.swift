@@ -324,7 +324,7 @@ extension Gender: SwipebleModel {
     }
 }
 
-enum RelationshipType: String, Equatable, CaseIterable, IdentifiableType {
+enum RelationshipType: String, Equatable, CaseIterable, IdentifiableType, Codable {
     
     case single
     case partnered

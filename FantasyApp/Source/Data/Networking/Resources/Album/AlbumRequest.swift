@@ -86,7 +86,7 @@ struct GetImages: AuthorizedAPIResource {
     }
     
     enum Of {
-        case user(User)
+        case user(UserIdentifier)
         case me
     }
     

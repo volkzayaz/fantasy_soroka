@@ -50,7 +50,7 @@ extension MVVM_Router where T : UIViewController {
 
 extension MVVM_Router {
     
-    func unwrap(maybeUser: User?, for owner: UIViewController) -> User? {
+    func unwrap(maybeUser: UserProfile?, for owner: UIViewController) -> UserProfile? {
         
         if let x = maybeUser {
             return x

@@ -15,7 +15,7 @@ struct ChatRouter: MVVM_Router {
         self.owner = owner
     }
     
-    func showUser(user: User?) {
+    func showUser(user: UserProfile?) {
         
         guard let user = unwrap(maybeUser: user, for: owner) else { return }
         

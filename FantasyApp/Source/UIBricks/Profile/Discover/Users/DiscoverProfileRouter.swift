@@ -21,7 +21,7 @@ struct DiscoverProfileRouter : MVVM_Router {
         owner.presentedViewController == nil
     }
     
-    func presentProfile(_ profile: Profile) {
+    func presentProfile(_ profile: UserProfile) {
     
         let vc = R.storyboard.user.userProfileViewController()!
         vc.viewModel = .init(router: .init(owner: vc), user: profile)

@@ -11,8 +11,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-typealias Profile = User
-
 extension DiscoverProfileViewModel {
     
     enum Mode: Equatable {
@@ -85,10 +83,11 @@ extension DiscoverProfileViewModel {
 
 class DiscoverProfileViewModel : MVVM_ViewModel {
     
-    let profiles = BehaviorRelay<[Profile]>(value: [])
+    let profiles = BehaviorRelay<[UserProfile]>(value: [])
     
-    fileprivate var viewedProfiles: Set<Profile> = []
-    fileprivate let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
+    private var viewedProfiles: Set<UserProfile> = []
+    private var searchSwipeState: SearchSwipeState?
+    private let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
 
     let locationActor = PickCommunityViewModel()
     
@@ -97,16 +96,20 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
         
         appState.changesOf { $0.currentUser?.discoveryFilter }
             .notNil()
-            .flatMapLatest { [unowned i = indicator] (filter) -> Driver<[Profile]> in
-                
-                return DiscoveryManager.profilesFor(filter: filter)
-                    .trackView(viewIndicator: i)
-                    .asDriver(onErrorJustReturn: [])
-                
-        }
-        .asDriver(onErrorJustReturn: [])
-        .drive(profiles)
-        .disposed(by: bag)
+            .flatMapLatest { [unowned i = indicator] (filter) in
+                Observable.combineLatest(
+                    DiscoveryManager.profilesFor(filter: filter, isViewed: true).asObservable(),
+                    DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
+                    DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
+                ).trackView(viewIndicator: i)
+                .silentCatch(handler: router.owner)
+                .asDriver(onErrorJustReturn: ([], [], nil))
+            }.asDriver(onErrorJustReturn: ([], [], nil))
+            .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
+                self.profiles.accept(viewedProfiles.reversed() + newProfiles)
+                self.viewedProfiles.removeAll()
+                self.searchSwipeState = searchSwipeState
+            }).disposed(by: bag)
         
         /////progress indicator
         
@@ -136,14 +139,20 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    func profileSwiped(profile: Profile) {
-        guard !viewedProfiles.contains(profile) else { return }
-        
-        viewedProfiles.insert(profile)
+    func canViewMoreProfiles() -> Bool {
+        viewedProfiles.count < searchSwipeState?.amount ?? 0
     }
     
-    func profileSelected(_ profile: Profile) {
+    func profileViewed(_ profile: UserProfile) {
+        guard profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
+        
+        viewedProfiles.insert(profile)
+        _ = DiscoveryManager.markUserIsViewedInSearch(profile).subscribe()
+    }
+    
+    func profileSelected(_ profile: UserProfile) {
         router.presentProfile(profile)
+        _ = DiscoveryManager.markUserProfileIsViewed(profile).subscribe()
     }
     
     func presentFilter() {

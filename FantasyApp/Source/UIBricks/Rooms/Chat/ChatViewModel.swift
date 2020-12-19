@@ -273,7 +273,7 @@ extension ChatViewModel {
     }
 
     func presentUserDetails(for userId: String) {
-        UserManager.getUser(id: userId)
+        UserManager.getUserProfile(id: userId)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] user in

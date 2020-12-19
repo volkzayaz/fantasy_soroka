@@ -262,7 +262,7 @@ extension FantasyDeckViewModel {
     }
 
    private func presentUser(id: String) {
-        UserManager.getUser(id: id)
+        UserManager.getUserProfile(id: id)
         .silentCatch(handler: router.owner)
         .subscribe(onNext: { user in
             self.router.showUser(user: user)
