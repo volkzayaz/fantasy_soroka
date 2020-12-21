@@ -19,7 +19,7 @@ struct UserViewSearchResource: AuthorizedAPIResource {
         return .post
     }
     
-    typealias responseType = EmptyResponse
+    typealias responseType = SearchSwipeState
     
     var task: Task {
         .requestPlain

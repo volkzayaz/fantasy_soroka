@@ -23,8 +23,8 @@ extension DiscoveryManager {
         UserSearchSwipeStateResource().rx.request
     }
     
-    static func markUserIsViewedInSearch(_ user: UserIdentifier) -> Single<Void> {
-        UserViewSearchResource(user: user).rx.request.map { _ in }
+    static func markUserIsViewedInSearch(_ user: UserIdentifier) -> Single<SearchSwipeState> {
+        UserViewSearchResource(user: user).rx.request
     }
     
     static func markUserProfileIsViewed(_ user: UserIdentifier) -> Single<Void> {

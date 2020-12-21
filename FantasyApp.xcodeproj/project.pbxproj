@@ -351,6 +351,9 @@
 		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
 		A257FD9C258BDFAF00653C15 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FD9B258BDFAF00653C15 /* UserResource.swift */; };
 		A257FDA2258BE02200653C15 /* UserProfileResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FDA1258BE02200653C15 /* UserProfileResource.swift */; };
+		A27BC792258E1CA800AB3E40 /* UsersLimitCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */; };
+		A27BC796258E1CC100AB3E40 /* UsersLimitCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */; };
+		A27BC79C258E2F5200AB3E40 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */; };
 		A2962FFD2561805F00E59934 /* DescribePartnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */; };
 		A29630012562A08600E59934 /* LookingForCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */; };
 		A2A4F6C7257D4CC300073884 /* UsersResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A4F6C6257D4CC300073884 /* UsersResource.swift */; };
@@ -832,6 +835,9 @@
 		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A257FD9B258BDFAF00653C15 /* UserResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		A257FDA1258BE02200653C15 /* UserProfileResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileResource.swift; sourceTree = "<group>"; };
+		A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersLimitCarouselView.xib; sourceTree = "<group>"; };
+		A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLimitCarouselView.swift; sourceTree = "<group>"; };
+		A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribePartnerTableViewCell.swift; sourceTree = "<group>"; };
 		A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingForCollectionViewCell.swift; sourceTree = "<group>"; };
 		A2A4F6C6257D4CC300073884 /* UsersResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResource.swift; sourceTree = "<group>"; };
@@ -1164,6 +1170,7 @@
 				2518808C24464150002CCF2E /* URL+Email.swift */,
 				882DD27D2469E5DD008D9626 /* Localizable.swift */,
 				8887A80E24BCE6BC00B6CF45 /* String.swift */,
+				A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2546,6 +2553,8 @@
 				B73774B023644F2D00A353CC /* UserCarouselView.xib */,
 				B73774B723647FE400A353CC /* NoUsersCarouselView.swift */,
 				B73774B923647FF600A353CC /* NoUsersCarouselView.xib */,
+				A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */,
+				A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -2786,6 +2795,7 @@
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
 				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
+				A27BC792258E1CA800AB3E40 /* UsersLimitCarouselView.xib in Resources */,
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
 				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
@@ -3078,6 +3088,7 @@
 				7337B84323C8CBD500EFC948 /* SubscriptionViewModel.swift in Sources */,
 				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
+				A27BC79C258E2F5200AB3E40 /* UIView+Nib.swift in Sources */,
 				B71E2992242BC9DB00153ED8 /* User+Migration.swift in Sources */,
 				73FDD093239940F300BA3E1D /* TimeSpentCounter.swift in Sources */,
 				842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */,
@@ -3165,6 +3176,7 @@
 				73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
 				73E6012B22EC5CFE00F767BF /* User.swift in Sources */,
+				A27BC796258E1CC100AB3E40 /* UsersLimitCarouselView.swift in Sources */,
 				B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */,
 				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,

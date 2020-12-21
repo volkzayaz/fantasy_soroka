@@ -130,20 +130,21 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         activateView.addFantasyRoundedCorners()
         view.addFantasyTripleGradient()
 
-        viewModel.profiles
-            .subscribe(onNext: { [weak self] profiles in
-                self?.profilesCarousel.reloadData()
+        Driver.combineLatest(viewModel.profiles.asDriver(), viewModel.isDailyLimitReached.asDriver())
+            .drive(onNext: { [weak self] profiles, _ in
+                guard let `self` = self else { return }
+                self.profilesCarousel.reloadData()
+                
                 if let firstNewProfileIndex = profiles.firstIndex(where: { $0.isViewed == false }) {
-                    guard let `self` = self else { return }
-                    
                     if firstNewProfileIndex == self.profilesCarousel.currentItemIndex {
                         self.profileViewed(index: firstNewProfileIndex)
                     } else {
                         self.profilesCarousel.scrollToItem(at: firstNewProfileIndex, animated: false)
                     }
+                } else {
+                    self.profilesCarousel.scrollToItem(at: profiles.count, animated: false)
                 }
-            })
-            .disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
         
         viewModel.mode
             .distinctUntilChanged()
@@ -295,7 +296,7 @@ extension DiscoverProfileViewController {
 extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource {
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return viewModel.profiles.value.count + 1 /// 1 stands for "No new fantasy seekers today" placeholder
+        return viewModel.profiles.value.count + 1 /// 1 stands for "No new fantasy seekers today" or "The daily limit has been reached" placeholder
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -303,11 +304,15 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
         let frameVar = CGRect.init(x: 0, y: 0, width: carousel.bounds.width - 50.0, height: carousel.bounds.height)
 
         guard let profile = viewModel.profiles.value[safe: index] else {
-            
-            let v = NoUsersCarouselView(frame: frameVar)
-            v.delegate = self
-
-            return v
+            if viewModel.isDailyLimitReached.value {
+                let view = UsersLimitCarouselView(frame: frameVar, limitExpirationDate: viewModel.limitExpirationDate, isGetMembershipHidden: viewModel.isSubscriptionHidden)
+                view.delegate = self
+                return view
+            } else {
+                let v = NoUsersCarouselView(frame: frameVar)
+                v.delegate = self
+                return v
+            }
         }
         
         let view = UserCarouselView(frame: frameVar)
@@ -367,5 +372,12 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
 
     func showFilters() {
         viewModel.presentFilter()
+    }
+}
+
+extension DiscoverProfileViewController: UsersLimitCarouselViewDelegate {
+    
+    func usersLimitCarouselViewGetMembership(_ view: UsersLimitCarouselView) {
+        viewModel.subscribeTapped()
     }
 }

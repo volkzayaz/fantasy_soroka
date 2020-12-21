@@ -79,14 +79,26 @@ extension DiscoverProfileViewModel {
         }){ ($0, $1) }
             .map { $0.0 && $0.1}
     }
+    
+    var limitExpirationDate: Driver<Date?> {
+        searchSwipeState
+            .map { $0?.wouldBeUpdatedAt }
+            .asDriver(onErrorJustReturn: nil)
+    }
+    
+    var isSubscriptionHidden: Driver<Bool> {
+        return appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+            .map { $0 ?? false }
+    }
 }
 
 class DiscoverProfileViewModel : MVVM_ViewModel {
     
     let profiles = BehaviorRelay<[UserProfile]>(value: [])
+    let isDailyLimitReached = BehaviorRelay<Bool>(value: false)
     
     private var viewedProfiles: Set<UserProfile> = []
-    private var searchSwipeState: SearchSwipeState?
+    private var searchSwipeState = BehaviorRelay<SearchSwipeState?>(value: nil)
     private let form = BehaviorRelay(value: EditProfileForm(answers: User.current!.bio.answers))
 
     let locationActor = PickCommunityViewModel()
@@ -94,22 +106,33 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
     init(router: DiscoverProfileRouter) {
         self.router = router
         
-        appState.changesOf { $0.currentUser?.discoveryFilter }
-            .notNil()
-            .flatMapLatest { [unowned i = indicator] (filter) in
-                Observable.combineLatest(
-                    DiscoveryManager.profilesFor(filter: filter, isViewed: true).asObservable(),
-                    DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
-                    DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
-                ).trackView(viewIndicator: i)
-                .silentCatch(handler: router.owner)
-                .asDriver(onErrorJustReturn: ([], [], nil))
-            }.asDriver(onErrorJustReturn: ([], [], nil))
-            .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
-                self.profiles.accept(viewedProfiles.reversed() + newProfiles)
-                self.viewedProfiles.removeAll()
-                self.searchSwipeState = searchSwipeState
-            }).disposed(by: bag)
+        Observable.combineLatest(
+            appState.changesOf { $0.currentUser?.discoveryFilter }
+                .notNil()
+                .asObservable(),
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+                .asObservable(),
+            updateProfiles
+                .startWith(())
+        ).flatMapLatest { [unowned i = indicator] filter, _, _ in
+            Observable.combineLatest(
+                DiscoveryManager.profilesFor(filter: filter, isViewed: true).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
+                DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
+            ).trackView(viewIndicator: i)
+        }.silentCatch(handler: router.owner)
+        .asDriver(onErrorJustReturn: ([], [], nil))
+        .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
+            self.profiles.accept(viewedProfiles.reversed() + newProfiles)
+            self.viewedProfiles.removeAll()
+            
+            self.searchSwipeState.accept(searchSwipeState)
+            if let availableSwipesAmount = searchSwipeState?.amount {
+                self.isDailyLimitReached.accept(availableSwipesAmount <= newProfiles.count)
+            } else {
+                self.isDailyLimitReached.accept(false)
+            }
+        }).disposed(by: bag)
         
         /////progress indicator
         
@@ -139,15 +162,14 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    func canViewMoreProfiles() -> Bool {
-        viewedProfiles.count < searchSwipeState?.amount ?? 0
-    }
-    
     func profileViewed(_ profile: UserProfile) {
         guard profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
         
         viewedProfiles.insert(profile)
-        _ = DiscoveryManager.markUserIsViewedInSearch(profile).subscribe()
+        DiscoveryManager.markUserIsViewedInSearch(profile)
+            .subscribe { [unowned self] state in
+                self.searchSwipeState.accept(state)
+            }.disposed(by: bag)
     }
     
     func profileSelected(_ profile: UserProfile) {
@@ -176,6 +198,10 @@ extension DiscoverProfileViewModel {
     
     func joinActiveCity() {
         router.openTeleport()
+    }
+    
+    func subscribeTapped() {
+        router.showSubscription()
     }
     
     // Location
@@ -212,5 +238,21 @@ extension DiscoverProfileViewModel {
         x.flirtAccess = true
         form.accept(x)
         Analytics.report(Analytics.Event.FlirtAccess(isActivated: true))
+    }
+}
+
+private extension DiscoverProfileViewModel {
+    
+    var updateProfiles: Observable<Void> {
+        searchSwipeState
+            .map { $0?.wouldBeUpdatedAt }
+            .distinctUntilChanged()
+            .notNil()
+            .flatMapLatest { wouldBeUpdatedAt -> Observable<Void> in
+                let updateInterval: TimeInterval = max(ceil(wouldBeUpdatedAt.timeIntervalSince(Date())), 0)
+                return Observable<Int>.interval(.seconds(Int(updateInterval)), scheduler: MainScheduler.instance)
+                    .take(1)
+                    .map { _ in }
+            }
     }
 }

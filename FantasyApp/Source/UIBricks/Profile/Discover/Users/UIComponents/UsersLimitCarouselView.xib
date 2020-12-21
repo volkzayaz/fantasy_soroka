@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Bold.otf">
+            <string>SFProText-Bold</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UsersLimitCarouselView" customModule="FantasyApp" customModuleProvider="target">
+            <connections>
+                <outlet property="dailyLimitReachedLabel" destination="LhC-EE-uGY" id="n4e-OW-GNA"/>
+                <outlet property="discoverNewProfilesLabel" destination="3oy-TO-ciw" id="ZJ1-6f-wNf"/>
+                <outlet property="doNotWaitLabel" destination="tFi-na-ygV" id="GDv-JI-ZGJ"/>
+                <outlet property="getMembershipButton" destination="eMM-1O-XNc" id="a1Q-YO-gxx"/>
+                <outlet property="getMembershipView" destination="xGv-YU-f0S" id="dOA-qJ-eSV"/>
+                <outlet property="timeLeftLabel" destination="POL-zu-6Ke" id="san-c6-XgD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="QoU-MF-s5Q">
+                    <rect key="frame" x="18" y="305.5" width="378" height="295"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The daily limit has been reached" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhC-EE-uGY">
+                            <rect key="frame" x="43.5" y="0.0" width="291.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="18"/>
+                            <color key="textColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tK4-vC-9eV">
+                            <rect key="frame" x="69" y="46.5" width="240" height="135"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="9Sx-yW-XjP">
+                                    <rect key="frame" x="80" y="0.0" width="80" height="80"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="1zy-25-YH7"/>
+                                        <constraint firstAttribute="width" constant="80" id="9dP-Nb-KE0"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover new profiles in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oy-TO-ciw">
+                                    <rect key="frame" x="0.0" y="88" width="240" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
+                                    <color key="textColor" red="0.28235294117647058" green="0.30588235294117649" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POL-zu-6Ke">
+                                    <rect key="frame" x="79.5" y="110.5" width="81.5" height="24.5"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
+                                    <color key="textColor" red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="3oy-TO-ciw" secondAttribute="trailing" id="CFa-C3-Bdq"/>
+                                <constraint firstAttribute="bottom" secondItem="POL-zu-6Ke" secondAttribute="bottom" id="OuH-o1-9h8"/>
+                                <constraint firstItem="POL-zu-6Ke" firstAttribute="top" secondItem="3oy-TO-ciw" secondAttribute="bottom" constant="2" id="P8C-fx-A9S"/>
+                                <constraint firstItem="9Sx-yW-XjP" firstAttribute="centerX" secondItem="tK4-vC-9eV" secondAttribute="centerX" id="m3p-Od-UZ3"/>
+                                <constraint firstItem="POL-zu-6Ke" firstAttribute="centerX" secondItem="tK4-vC-9eV" secondAttribute="centerX" id="sNx-8M-Fx8"/>
+                                <constraint firstItem="3oy-TO-ciw" firstAttribute="leading" secondItem="tK4-vC-9eV" secondAttribute="leading" id="tf7-B5-0JO"/>
+                                <constraint firstItem="3oy-TO-ciw" firstAttribute="top" secondItem="9Sx-yW-XjP" secondAttribute="bottom" constant="8" id="vG4-tm-n5O"/>
+                                <constraint firstItem="9Sx-yW-XjP" firstAttribute="top" secondItem="tK4-vC-9eV" secondAttribute="top" id="xRh-AJ-Her"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGv-YU-f0S">
+                            <rect key="frame" x="62" y="206.5" width="254" height="88.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or don't wait" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFi-na-ygV">
+                                    <rect key="frame" x="75.5" y="0.0" width="103" height="20.5"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                    <color key="textColor" red="0.68627450980392157" green="0.70588235294117641" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMM-1O-XNc" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="36.5" width="254" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="254" id="eEI-73-4tE"/>
+                                        <constraint firstAttribute="height" constant="52" id="oxW-6Q-Ra1"/>
+                                    </constraints>
+                                    <state key="normal" title="Get Membership"/>
+                                    <connections>
+                                        <action selector="getMembership:" destination="-1" eventType="touchUpInside" id="LaB-aO-qUX"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="eMM-1O-XNc" firstAttribute="leading" secondItem="xGv-YU-f0S" secondAttribute="leading" id="8sx-ns-1L0"/>
+                                <constraint firstAttribute="bottom" secondItem="eMM-1O-XNc" secondAttribute="bottom" id="KtV-DM-TIa"/>
+                                <constraint firstAttribute="trailing" secondItem="eMM-1O-XNc" secondAttribute="trailing" id="O4W-h4-ZgX"/>
+                                <constraint firstItem="tFi-na-ygV" firstAttribute="top" secondItem="xGv-YU-f0S" secondAttribute="top" id="Xoi-br-yaO"/>
+                                <constraint firstItem="tFi-na-ygV" firstAttribute="centerX" secondItem="xGv-YU-f0S" secondAttribute="centerX" id="oDc-fS-3Is"/>
+                                <constraint firstItem="eMM-1O-XNc" firstAttribute="top" secondItem="tFi-na-ygV" secondAttribute="bottom" constant="16" id="qVT-rO-yMQ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="QoU-MF-s5Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="D19-qG-T3C"/>
+                <constraint firstItem="QoU-MF-s5Q" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="TXq-Nh-OAd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QoU-MF-s5Q" secondAttribute="trailing" constant="18" id="cat-RB-j4Z"/>
+                <constraint firstItem="QoU-MF-s5Q" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="glX-1K-NNk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="85.714285714285708"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="timer" width="80" height="80"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

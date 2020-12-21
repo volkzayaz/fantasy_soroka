@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,14 +31,14 @@
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIV-6M-Ecc">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="35" y="677" width="344" height="52"/>
                             <state key="normal" title="Search Options"/>
                             <connections>
                                 <action selector="filters:" destination="-1" eventType="touchUpInside" id="a3J-bY-Ags"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="35" y="741" width="344" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="9Zf-fe-XWl"/>
@@ -81,6 +81,7 @@ Fantasy-seekers today</string>
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="kDw-MZ-0uD"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="kDw-MZ-0uD" firstAttribute="bottom" secondItem="SIV-6M-Ecc" secondAttribute="bottom" id="6zg-4e-j8R"/>
@@ -88,7 +89,6 @@ Fantasy-seekers today</string>
                 <constraint firstItem="SIV-6M-Ecc" firstAttribute="leading" secondItem="kDw-MZ-0uD" secondAttribute="leading" id="lPa-qL-5la"/>
                 <constraint firstItem="SIV-6M-Ecc" firstAttribute="trailing" secondItem="kDw-MZ-0uD" secondAttribute="trailing" id="rHe-qG-4uT"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="kDw-MZ-0uD"/>
             <point key="canvasLocation" x="42.028985507246382" y="714.50892857142856"/>
         </view>
     </objects>
