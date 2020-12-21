@@ -11,7 +11,7 @@
 		2518808D24464150002CCF2E /* URL+Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518808C24464150002CCF2E /* URL+Email.swift */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
 		67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */; };
-		73097BF9231D39D800B71053 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* Profile.swift */; };
+		73097BF9231D39D800B71053 /* EditProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* EditProfileForm.swift */; };
 		73097C01231D3CFB00B71053 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */; };
 		73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BFF231D3CFB00B71053 /* EditProfileViewController.swift */; };
 		73097C03231D3CFB00B71053 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097C00231D3CFB00B71053 /* EditProfileViewModel.swift */; };
@@ -349,13 +349,24 @@
 		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
 		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
+		A257FD9C258BDFAF00653C15 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FD9B258BDFAF00653C15 /* UserResource.swift */; };
+		A257FDA2258BE02200653C15 /* UserProfileResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FDA1258BE02200653C15 /* UserProfileResource.swift */; };
+		A27BC792258E1CA800AB3E40 /* UsersLimitCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */; };
+		A27BC796258E1CC100AB3E40 /* UsersLimitCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */; };
+		A27BC79C258E2F5200AB3E40 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */; };
 		A2962FFD2561805F00E59934 /* DescribePartnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */; };
 		A29630012562A08600E59934 /* LookingForCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */; };
+		A2A4F6C7257D4CC300073884 /* UsersResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A4F6C6257D4CC300073884 /* UsersResource.swift */; };
+		A2A4F6CF257D5D7000073884 /* UserSearchSwipeStateResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A4F6CE257D5D7000073884 /* UserSearchSwipeStateResource.swift */; };
 		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
 		A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */; };
 		A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
 		A2E66735256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		A2F7D464257F834100649899 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7D463257F834000649899 /* UserProfile.swift */; };
+		A2F7D468257FC7EA00649899 /* UserViewProfileResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7D467257FC7EA00649899 /* UserViewProfileResource.swift */; };
+		A2F7D46C257FC7F800649899 /* UserViewSearchResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7D46B257FC7F800649899 /* UserViewSearchResource.swift */; };
+		A2F7D470257FC9D800649899 /* SearchSwipeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7D46F257FC9D800649899 /* SearchSwipeState.swift */; };
 		B719B3D3235CC67F00568D97 /* TransparentPhotoLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */; };
 		B719B3D7235CCAC600568D97 /* FantasyTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */; };
 		B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */; };
@@ -457,7 +468,7 @@
 		562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
 		58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsPreferenceSelector.swift; sourceTree = "<group>"; };
-		73097BF8231D39D800B71053 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		73097BF8231D39D800B71053 /* EditProfileForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileForm.swift; sourceTree = "<group>"; };
 		73097BFE231D3CFB00B71053 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		73097BFF231D3CFB00B71053 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		73097C00231D3CFB00B71053 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -822,13 +833,24 @@
 		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		A257FD9B258BDFAF00653C15 /* UserResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
+		A257FDA1258BE02200653C15 /* UserProfileResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileResource.swift; sourceTree = "<group>"; };
+		A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersLimitCarouselView.xib; sourceTree = "<group>"; };
+		A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLimitCarouselView.swift; sourceTree = "<group>"; };
+		A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		A2962FFC2561805F00E59934 /* DescribePartnerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescribePartnerTableViewCell.swift; sourceTree = "<group>"; };
 		A29630002562A08600E59934 /* LookingForCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingForCollectionViewCell.swift; sourceTree = "<group>"; };
+		A2A4F6C6257D4CC300073884 /* UsersResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResource.swift; sourceTree = "<group>"; };
+		A2A4F6CE257D5D7000073884 /* UserSearchSwipeStateResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchSwipeStateResource.swift; sourceTree = "<group>"; };
 		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
 		A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionTableViewCell.swift; sourceTree = "<group>"; };
 		A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewModel.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		A2F7D463257F834000649899 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		A2F7D467257FC7EA00649899 /* UserViewProfileResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewProfileResource.swift; sourceTree = "<group>"; };
+		A2F7D46B257FC7F800649899 /* UserViewSearchResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewSearchResource.swift; sourceTree = "<group>"; };
+		A2F7D46F257FC9D800649899 /* SearchSwipeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSwipeState.swift; sourceTree = "<group>"; };
 		B719B3D2235CC67F00568D97 /* TransparentPhotoLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPhotoLayerView.swift; sourceTree = "<group>"; };
 		B719B3D6235CCAC500568D97 /* FantasyTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyTextItem.swift; sourceTree = "<group>"; };
 		B719B3E7235CF21000568D97 /* FantasyImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyImagePickerController.swift; sourceTree = "<group>"; };
@@ -928,12 +950,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		73097BF7231D39C100B71053 /* Profile */ = {
+		73097BF7231D39C100B71053 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
-				73097BF8231D39D800B71053 /* Profile.swift */,
+				73097BF8231D39D800B71053 /* EditProfileForm.swift */,
 			);
-			path = Profile;
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 		73097BFA231D3CD800B71053 /* Gateway */ = {
@@ -1148,6 +1170,7 @@
 				2518808C24464150002CCF2E /* URL+Email.swift */,
 				882DD27D2469E5DD008D9626 /* Localizable.swift */,
 				8887A80E24BCE6BC00B6CF45 /* String.swift */,
+				A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1253,6 +1276,7 @@
 		7312B0B622D745D200DB0F36 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				7390014D22E1B8B500260198 /* KeyValue */,
 				84B8ACF222DCCC650026862E /* Networking */,
 				84B8AD0B22DCCC680026862E /* Parse */,
@@ -1373,10 +1397,12 @@
 				7361F32A2334EF62007B84B0 /* Connection */,
 				734C52AB232A84B500B54510 /* Photo */,
 				734C529F2326A77F00B54510 /* Discover */,
-				73097BF7231D39C100B71053 /* Profile */,
+				73097BF7231D39C100B71053 /* EditProfile */,
 				73E6012A22EC5CFE00F767BF /* User.swift */,
 				7334CC7222ED9A8C00495843 /* User+Parse.swift */,
 				B71E2991242BC9DB00153ED8 /* User+Migration.swift */,
+				A2F7D463257F834000649899 /* UserProfile.swift */,
+				A2F7D46F257FC9D800649899 /* SearchSwipeState.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1591,6 +1617,12 @@
 				73EBBA6C234CDAB800B79121 /* SubscriptionStatus.swift */,
 				733096812353586F0039D013 /* DeleteUser.swift */,
 				736E2873242B49A300E08D4A /* MarkUserSignUp.swift */,
+				A2A4F6C6257D4CC300073884 /* UsersResource.swift */,
+				A257FD9B258BDFAF00653C15 /* UserResource.swift */,
+				A257FDA1258BE02200653C15 /* UserProfileResource.swift */,
+				A2A4F6CE257D5D7000073884 /* UserSearchSwipeStateResource.swift */,
+				A2F7D46B257FC7F800649899 /* UserViewSearchResource.swift */,
+				A2F7D467257FC7EA00649899 /* UserViewProfileResource.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2282,7 +2314,6 @@
 				7339BEE6239B9DD90073B883 /* BackendAnalytics */,
 				733CA051239161C400EF7922 /* Config */,
 				73C96F202340B046002C3F8E /* Album */,
-				7361F3252333F2FC007B84B0 /* FantasyCards */,
 				843CF71B23436B570098C196 /* Rooms */,
 				734C52A42327AC1300B54510 /* User */,
 			);
@@ -2522,6 +2553,8 @@
 				B73774B023644F2D00A353CC /* UserCarouselView.xib */,
 				B73774B723647FE400A353CC /* NoUsersCarouselView.swift */,
 				B73774B923647FF600A353CC /* NoUsersCarouselView.xib */,
+				A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */,
+				A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -2762,6 +2795,7 @@
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
 				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
+				A27BC792258E1CA800AB3E40 /* UsersLimitCarouselView.xib in Resources */,
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
 				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
@@ -2883,7 +2917,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift",
+				$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3005,7 +3039,7 @@
 				73E6011822EC3A3400F767BF /* RegistrationRouter.swift in Sources */,
 				843CF71F234370480098C196 /* CreateDraftRoomResource.swift in Sources */,
 				B7546CB4235B0F7900CBDDC8 /* String+Validation.swift in Sources */,
-				73097BF9231D39D800B71053 /* Profile.swift in Sources */,
+				73097BF9231D39D800B71053 /* EditProfileForm.swift in Sources */,
 				B7EE6C102362DD1F00510255 /* ListRoundedView.swift in Sources */,
 				7399140F23CA4A8B00A45E74 /* SubscriptionEvent.swift in Sources */,
 				88DF09E4247EF1E20070C487 /* FlirtAccessRouter.swift in Sources */,
@@ -3027,6 +3061,7 @@
 				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
 				73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */,
 				88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */,
+				A2F7D46C257FC7F800649899 /* UserViewSearchResource.swift in Sources */,
 				84AB4911232A841F00F3609A /* CommonFantasiesViewController.swift in Sources */,
 				B77B34AF23CA4F2C00899D9F /* UserProfileTableFooterView.swift in Sources */,
 				841681F222E9B37E00FA9455 /* UIFont+Style.swift in Sources */,
@@ -3053,6 +3088,7 @@
 				7337B84323C8CBD500EFC948 /* SubscriptionViewModel.swift in Sources */,
 				7330FBA92358C63E008C08CF /* TickButton.swift in Sources */,
 				84AB4906232A2D0000F3609A /* ChatViewModel.swift in Sources */,
+				A27BC79C258E2F5200AB3E40 /* UIView+Nib.swift in Sources */,
 				B71E2992242BC9DB00153ED8 /* User+Migration.swift in Sources */,
 				73FDD093239940F300BA3E1D /* TimeSpentCounter.swift in Sources */,
 				842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */,
@@ -3104,6 +3140,7 @@
 				7384B0F82386E15A00869016 /* UIDismissSegue.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
 				8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */,
+				A2F7D468257FC7EA00649899 /* UserViewProfileResource.swift in Sources */,
 				733CA05B23951D7000EF7922 /* FantasyCollectionViewController.swift in Sources */,
 				840AC2FE23028BFE009270C4 /* UserPropertyAnalyticsActor.swift in Sources */,
 				7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */,
@@ -3139,6 +3176,7 @@
 				73EBBA79234E2BEC00B79121 /* NotificationSettingsViewController.swift in Sources */,
 				7379ED002309714100E661A7 /* FantasyListViewModel.swift in Sources */,
 				73E6012B22EC5CFE00F767BF /* User.swift in Sources */,
+				A27BC796258E1CC100AB3E40 /* UsersLimitCarouselView.swift in Sources */,
 				B78074F02360CE930064CC17 /* AgeRestrictionViewConrtoller.swift in Sources */,
 				73EBBA5D234A1AEB00B79121 /* MyFantasiesSettingsViewController.swift in Sources */,
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
@@ -3181,6 +3219,7 @@
 				844CD6FD235A7848004E6BA3 /* RoomNotificationSettingsRouter.swift in Sources */,
 				843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */,
 				A2962FFD2561805F00E59934 /* DescribePartnerTableViewCell.swift in Sources */,
+				A2A4F6CF257D5D7000073884 /* UserSearchSwipeStateResource.swift in Sources */,
 				73097C0C231D417B00B71053 /* AttributeEditProfileCell.swift in Sources */,
 				B7B152102398303100C4E749 /* UIImage+TabbarUtils.swift in Sources */,
 				84C1D0752327DB7600648DE1 /* SetRooms.swift in Sources */,
@@ -3191,6 +3230,7 @@
 				B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */,
 				733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */,
 				7337B84223C8CBD500EFC948 /* SubscriptionViewController.swift in Sources */,
+				A2F7D470257FC9D800649899 /* SearchSwipeState.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				733CA05A23951D7000EF7922 /* FantasyCollectionRouter.swift in Sources */,
@@ -3215,6 +3255,7 @@
 				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,
+				A2A4F6C7257D4CC300073884 /* UsersResource.swift in Sources */,
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
 				73432AC3238A829D008CF2F1 /* MessageCellPosition.swift in Sources */,
 				7312B09C22D7422100DB0F36 /* NWise.swift in Sources */,
@@ -3225,6 +3266,7 @@
 				7390015922E1ED8B00260198 /* BaseActions.swift in Sources */,
 				B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
+				A257FD9C258BDFAF00653C15 /* UserResource.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
 				849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */,
 				B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */,
@@ -3256,6 +3298,7 @@
 				843CF721234372450098C196 /* ActivateRoomResource.swift in Sources */,
 				7368A0A523DF353E00A7E2AE /* EventCell.swift in Sources */,
 				843CF725234373C60098C196 /* UpdateRoomSettingsResource.swift in Sources */,
+				A257FDA2258BE02200653C15 /* UserProfileResource.swift in Sources */,
 				7353BDE922EC98D6001D46A6 /* UserGatewayRouter.swift in Sources */,
 				84B8AD0722DCCC650026862E /* UpdateUserAvatarResource.swift in Sources */,
 				739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */,
@@ -3272,6 +3315,7 @@
 				73EBBA70234E046100B79121 /* PushManager.swift in Sources */,
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,
 				7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */,
+				A2F7D464257F834100649899 /* UserProfile.swift in Sources */,
 				84B8AD0422DCCC650026862E /* AuthorizedAPIResource.swift in Sources */,
 				733CA05C23951D7000EF7922 /* FantasyCollectionViewModel.swift in Sources */,
 				B719F9222389A625009AB110 /* MyFantasiesBlockedRouter.swift in Sources */,

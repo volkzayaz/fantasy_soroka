@@ -211,7 +211,7 @@ extension RoomSettingsViewModel {
     
     func showParticipant(participant: Room.Participant) {
         
-        UserManager.getUser(id: participant.userSlice.id)
+        UserManager.getUserProfile(id: participant.userSlice.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] (user) in

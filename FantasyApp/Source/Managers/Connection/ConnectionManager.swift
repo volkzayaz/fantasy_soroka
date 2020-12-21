@@ -21,7 +21,7 @@ extension String: UserIdentifier {
 enum ConnectionManager {}
 extension ConnectionManager {
     
-    static func relationStatus(with user: User) -> Single<Connection> {
+    static func relationStatus(with user: UserIdentifier) -> Single<Connection> {
         return GetConnection(with: user).rx.request
             .map { $0?.toNative ?? .absent }
     }
@@ -59,7 +59,7 @@ extension ConnectionManager {
             })
     }
     
-    static func deleteConnection(with: User) -> Single<Void> {
+    static func deleteConnection(with: UserIdentifier) -> Single<Void> {
         return DeleteConnection(with: with)
             .rx.request.map { _ in }
             .do(onSuccess: { (_) in

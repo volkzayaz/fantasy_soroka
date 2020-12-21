@@ -91,7 +91,7 @@ extension Fantasy.Manager {
             .map { _ in }
     }
     
-    static func likedCards(of user: User) -> Single<[Fantasy.Request.LikedCards.SneakPeek]> {
+    static func likedCards(of user: UserIdentifier) -> Single<[Fantasy.Request.LikedCards.SneakPeek]> {
         return Fantasy.Request.LikedCards(of: user).rx.request
     }
     

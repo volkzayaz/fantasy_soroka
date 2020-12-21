@@ -167,7 +167,7 @@ extension Fantasy.Request {
 
     struct LikedCards: AuthorizedAPIResource {
         
-        let of: User
+        let of: UserIdentifier
         
         struct SneakPeek: Codable, Equatable {
             //let isPaid: Bool

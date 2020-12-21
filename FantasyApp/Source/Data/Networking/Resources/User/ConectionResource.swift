@@ -197,7 +197,7 @@ struct DeleteConnection: AuthorizedAPIResource {
         return .requestPlain
     }
     
-    let with: User
+    let with: UserIdentifier
     
 }
 

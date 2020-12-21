@@ -1,5 +1,5 @@
 //
-//  Profile.swift
+//  EditProfileForm.swift
 //  FantasyApp
 //
 //  Created by Vlad Soroka on 9/2/19.
