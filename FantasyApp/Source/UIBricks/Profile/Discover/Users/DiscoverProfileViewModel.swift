@@ -123,7 +123,8 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
         }.silentCatch(handler: router.owner)
         .asDriver(onErrorJustReturn: ([], [], nil))
         .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
-            self.profiles.accept(viewedProfiles.reversed() + newProfiles)
+            let availableNewProfiles = Array(newProfiles.prefix(searchSwipeState?.amount ?? 0))
+            self.profiles.accept(viewedProfiles.reversed() + availableNewProfiles)
             self.viewedProfiles.removeAll()
             
             self.searchSwipeState.accept(searchSwipeState)
@@ -162,18 +163,36 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    func profileViewed(_ profile: UserProfile) {
-        guard profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
+    func profileViewed(index: Int) {
+        guard let profile = profiles.value[safe: index], profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
         
         viewedProfiles.insert(profile)
         DiscoveryManager.markUserIsViewedInSearch(profile)
-            .subscribe { [unowned self] state in
+            .subscribe(onSuccess: { [unowned self] state in
                 self.searchSwipeState.accept(state)
-            }.disposed(by: bag)
+                
+                let availableProfilesNumber = self.profiles.value.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
+                if availableProfilesNumber < self.profiles.value.count {
+                    let availableProfiles = Array(self.profiles.value.prefix(availableProfilesNumber))
+                    self.profiles.accept(availableProfiles)
+                }
+            }).disposed(by: bag)
     }
     
-    func profileSelected(_ profile: UserProfile) {
-        router.presentProfile(profile)
+    func profileSelected(index: Int) {
+        guard let profile = profiles.value[safe: index] else { return }
+        
+        router.presentProfile(profile, onInitiateConnection: { [weak self] in
+            guard let `self` = self else { return }
+            
+            if let currentProfileIndex = self.profiles.value.firstIndex(of: profile) {
+                var updatedProfiles = self.profiles.value
+                updatedProfiles.remove(at: currentProfileIndex)
+                self.profiles.accept(updatedProfiles)
+                self.viewedProfiles.remove(profile)
+            }
+        })
+        
         _ = DiscoveryManager.markUserProfileIsViewed(profile).subscribe()
     }
     
@@ -246,10 +265,9 @@ private extension DiscoverProfileViewModel {
     var updateProfiles: Observable<Void> {
         searchSwipeState
             .map { $0?.wouldBeUpdatedAt }
-            .distinctUntilChanged()
             .notNil()
             .flatMapLatest { wouldBeUpdatedAt -> Observable<Void> in
-                let updateInterval: TimeInterval = max(ceil(wouldBeUpdatedAt.timeIntervalSince(Date())), 0)
+                let updateInterval: TimeInterval = max(ceil(wouldBeUpdatedAt.timeIntervalSince(Date())), 10)
                 return Observable<Int>.interval(.seconds(Int(updateInterval)), scheduler: MainScheduler.instance)
                     .take(1)
                     .map { _ in }
