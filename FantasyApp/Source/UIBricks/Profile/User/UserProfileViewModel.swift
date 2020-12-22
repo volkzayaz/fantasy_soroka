@@ -320,13 +320,14 @@ class UserProfileViewModel : MVVM_ViewModel {
     
     fileprivate let user: UserProfile
     fileprivate let relationshipState = BehaviorRelay<Connection?>(value: nil)
+    private let onInitiateConnection: (() -> Void)?
     let bottomActionAvailable: Bool
     
-    init(router: UserProfileRouter, user: UserProfile, bottomActionsAvailable: Bool = true) {
+    init(router: UserProfileRouter, user: UserProfile, bottomActionsAvailable: Bool = true, onInitiateConnection: (() -> Void)? = nil) {
         self.router = router
         self.user = user
         self.bottomActionAvailable = bottomActionsAvailable
-
+        self.onInitiateConnection = onInitiateConnection
         
         if user.id != User.current!.id {
             ConnectionManager.relationStatus(with: user)
@@ -369,6 +370,7 @@ extension UserProfileViewModel {
                 }
                 
                 self.present(roomRef: room)
+                self.onInitiateConnection?()
             })
             .bind(to: relationshipState)
         
@@ -387,6 +389,7 @@ extension UserProfileViewModel {
                 }
                 
                 self.present(roomRef: room)
+                self.onInitiateConnection?()
             })
             .bind(to: relationshipState)
         

@@ -274,7 +274,6 @@ class UserProfileViewController: UIViewController, MVVM_View {
     @IBAction func back() {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension UserProfileViewController: UIScrollViewDelegate {

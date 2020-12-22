@@ -163,8 +163,8 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    func profileViewed(_ profile: UserProfile) {
-        guard profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
+    func profileViewed(index: Int) {
+        guard let profile = profiles.value[safe: index], profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
         
         viewedProfiles.insert(profile)
         DiscoveryManager.markUserIsViewedInSearch(profile)
@@ -179,8 +179,20 @@ extension DiscoverProfileViewModel {
             }).disposed(by: bag)
     }
     
-    func profileSelected(_ profile: UserProfile) {
-        router.presentProfile(profile)
+    func profileSelected(index: Int) {
+        guard let profile = profiles.value[safe: index] else { return }
+        
+        router.presentProfile(profile, onInitiateConnection: { [weak self] in
+            guard let `self` = self else { return }
+            
+            if let currentProfileIndex = self.profiles.value.firstIndex(of: profile) {
+                var updatedProfiles = self.profiles.value
+                updatedProfiles.remove(at: currentProfileIndex)
+                self.profiles.accept(updatedProfiles)
+                self.viewedProfiles.remove(profile)
+            }
+        })
+        
         _ = DiscoveryManager.markUserProfileIsViewed(profile).subscribe()
     }
     

@@ -21,10 +21,11 @@ struct DiscoverProfileRouter : MVVM_Router {
         owner.presentedViewController == nil
     }
     
-    func presentProfile(_ profile: UserProfile) {
+    func presentProfile(_ profile: UserProfile, onInitiateConnection: (() -> Void)?) {
     
         let vc = R.storyboard.user.userProfileViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), user: profile)
+        vc.viewModel = .init(router: .init(owner: vc), user: profile, onInitiateConnection: onInitiateConnection)
+        
         let navigationController = FantasyNavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .overFullScreen
         owner.navigationController?.present(navigationController, animated: true, completion: nil)
