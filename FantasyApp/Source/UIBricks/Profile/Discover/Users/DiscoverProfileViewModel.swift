@@ -123,7 +123,8 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
         }.silentCatch(handler: router.owner)
         .asDriver(onErrorJustReturn: ([], [], nil))
         .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
-            self.profiles.accept(viewedProfiles.reversed() + newProfiles)
+            let availableNewProfiles = Array(newProfiles.prefix(searchSwipeState?.amount ?? 0))
+            self.profiles.accept(viewedProfiles.reversed() + availableNewProfiles)
             self.viewedProfiles.removeAll()
             
             self.searchSwipeState.accept(searchSwipeState)
@@ -167,9 +168,15 @@ extension DiscoverProfileViewModel {
         
         viewedProfiles.insert(profile)
         DiscoveryManager.markUserIsViewedInSearch(profile)
-            .subscribe { [unowned self] state in
+            .subscribe(onSuccess: { [unowned self] state in
                 self.searchSwipeState.accept(state)
-            }.disposed(by: bag)
+                
+                let availableProfilesNumber = self.profiles.value.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
+                if availableProfilesNumber < self.profiles.value.count {
+                    let availableProfiles = Array(self.profiles.value.prefix(availableProfilesNumber))
+                    self.profiles.accept(availableProfiles)
+                }
+            }).disposed(by: bag)
     }
     
     func profileSelected(_ profile: UserProfile) {
@@ -246,10 +253,9 @@ private extension DiscoverProfileViewModel {
     var updateProfiles: Observable<Void> {
         searchSwipeState
             .map { $0?.wouldBeUpdatedAt }
-            .distinctUntilChanged()
             .notNil()
             .flatMapLatest { wouldBeUpdatedAt -> Observable<Void> in
-                let updateInterval: TimeInterval = max(ceil(wouldBeUpdatedAt.timeIntervalSince(Date())), 0)
+                let updateInterval: TimeInterval = max(ceil(wouldBeUpdatedAt.timeIntervalSince(Date())), 10)
                 return Observable<Int>.interval(.seconds(Int(updateInterval)), scheduler: MainScheduler.instance)
                     .take(1)
                     .map { _ in }

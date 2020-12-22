@@ -80,8 +80,8 @@ extension Date {
 
     func toTimeLeftString() -> String {
         let formatter = Date.timeLeftComponentsFormatter
-
-        return formatter.string(from: timeIntervalSinceNow) ?? ""
+        let timeLeft = max(0, timeIntervalSinceNow)
+        return formatter.string(from: timeLeft) ?? ""
     }
     
     func toAnalyticsTime() -> String {
