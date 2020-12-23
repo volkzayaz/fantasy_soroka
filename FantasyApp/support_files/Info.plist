@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>46</string>
+	<string>49</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -152,7 +152,7 @@
 		<key>test</key>
 		<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
 	</dict>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>This will only be used to serve more relevant ads</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>The app shares Device ID only and compares this ID with external sources, so we can match the data to be able to invite more people who love our product</string>
 </dict>
 </plist>

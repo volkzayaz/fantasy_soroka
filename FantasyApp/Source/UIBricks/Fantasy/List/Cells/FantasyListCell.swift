@@ -9,8 +9,6 @@
 import Foundation
 import RxSwift
 
-import ScreenShieldKit
-
 class FantasyListCell: UICollectionViewCell {
     
     @IBOutlet weak var protectedImageView: ProtectedImageView!

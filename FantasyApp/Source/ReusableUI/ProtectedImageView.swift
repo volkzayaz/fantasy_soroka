@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import ScreenShieldKit
+//import ScreenShieldKit
 import RxSwift
 import SnapKit
 
 class ProtectedImageView: UIView {
     
     var regularImageView: UIImageView!
-    var protectedImageView: SSKProtectedImageView!
+//    var protectedImageView: SSKProtectedImageView!
     
     var bag = DisposeBag()
     
@@ -25,14 +25,14 @@ class ProtectedImageView: UIView {
         let regular = !isProtected || immutableNonPersistentState?.screenProtectEnabled != true
         
         regularImageView.isHidden = !regular
-        protectedImageView.isHidden = regular
+//        protectedImageView.isHidden = regular
         
         if regular {
     
             ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
                 .trackView(viewIndicator: indicator)
                 .map { $0 ?? errorPlaceholder }
-                .bind(to: regularImageView.rx.image(transitionType: CATransitionType.fade.rawValue))
+                .bind(to: regularImageView.rx.image(transitionType: CATransitionType.moveIn.rawValue))
                 .disposed(by: bag)
          
             return
@@ -48,9 +48,9 @@ class ProtectedImageView: UIView {
                 transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
                 transition.type = CATransitionType.fade
                 
-                self?.protectedImageView.layer.add(transition, forKey: kCATransition)
-
-                self?.protectedImageView.image = x
+//                self?.protectedImageView.layer.add(transition, forKey: kCATransition)
+//
+//                self?.protectedImageView.image = x
             })
             .disposed(by: bag)
             
@@ -60,7 +60,7 @@ class ProtectedImageView: UIView {
         bag = DisposeBag()
         
         regularImageView.image = nil
-        protectedImageView.image = nil
+//        protectedImageView.image = nil
     }
     
     override init(frame: CGRect) {
@@ -85,21 +85,21 @@ class ProtectedImageView: UIView {
             make.edges.equalToSuperview()
         }
         
-        protectedImageView = .init(image: nil)
-        addSubview(protectedImageView)
-        protectedImageView.resizeMode = .scaleAspectFill
+//        protectedImageView = .init(image: nil)
+//        addSubview(protectedImageView)
+//        protectedImageView.resizeMode = .scaleAspectFill
         
-        let placeholder = UIImageView(image: R.image.screenShield_placeholder()!)
-        placeholder.contentMode = .scaleAspectFill
-        protectedImageView.screenCaptureView.addSubview(placeholder)
+//        let placeholder = UIImageView(image: R.image.screenShield_placeholder()!)
+//        placeholder.contentMode = .scaleAspectFill
+//        protectedImageView.screenCaptureView.addSubview(placeholder)
         
-        placeholder.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
+//        placeholder.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview()
+//        }
         
-        protectedImageView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
+//        protectedImageView.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview()
+//        }
      
         indicator.asDriver()
             .drive(onNext: { [weak self] (loading) in

@@ -10,7 +10,7 @@ import UIKit
 import Amplitude_iOS
 import Parse
 import Branch
-import ScreenShieldKit
+//import ScreenShieldKit
 import Firebase
 import FBSDKCoreKit
 import Segment
@@ -126,7 +126,7 @@ extension Configuration {
         ///Push registration
         PushManager.kickOff()
         
-        ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
+//        ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
         
         if #available(iOS 14.0, *) {
             ATTrackingManager.requestTrackingAuthorization { _ in }
