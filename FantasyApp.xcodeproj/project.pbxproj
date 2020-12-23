@@ -128,8 +128,6 @@
 		7353BDEA22EC98D6001D46A6 /* UserGatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */; };
 		7353BDEB22EC98D6001D46A6 /* UserGatewayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */; };
 		735481D02367705A009132A2 /* UIView+EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735481CF2367705A009132A2 /* UIView+EmptyData.swift */; };
-		7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; };
-		7355B518236F1BAB00A540B1 /* ScreenShieldKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */; };
 		73570A79237169350097430B /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73570A78237169350097430B /* UIView+Rx.swift */; };
 		7361F31423322BC5007B84B0 /* CommunityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7361F31323322BC5007B84B0 /* CommunityManager.swift */; };
@@ -446,17 +444,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		843B6496235051DA00E5639B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7355B518236F1BAB00A540B1 /* ScreenShieldKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -589,7 +576,6 @@
 		7353BDE722EC98D6001D46A6 /* UserGatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewController.swift; sourceTree = "<group>"; };
 		7353BDE822EC98D6001D46A6 /* UserGatewayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayViewModel.swift; sourceTree = "<group>"; };
 		735481CF2367705A009132A2 /* UIView+EmptyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EmptyData.swift"; sourceTree = "<group>"; };
-		7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenShieldKit.framework; sourceTree = "<group>"; };
 		7355B519236F1EBB00A540B1 /* ProtectedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedImageView.swift; sourceTree = "<group>"; };
 		73570A78237169350097430B /* UIView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		7361F31323322BC5007B84B0 /* CommunityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityManager.swift; sourceTree = "<group>"; };
@@ -908,7 +894,6 @@
 			files = (
 				A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */,
 				A25681302546D17800199209 /* AdSupport.framework in Frameworks */,
-				7355B517236F1BAB00A540B1 /* ScreenShieldKit.framework in Frameworks */,
 				23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1052,7 +1037,6 @@
 		7312B05C22D7403300DB0F36 /* support_files */ = {
 			isa = PBXGroup;
 			children = (
-				7355B515236F1B0500A540B1 /* ScreenShieldKit.framework */,
 				7312B0D622D7516900DB0F36 /* FantasyApp-Bridging-Header.h */,
 				7312B05D22D7403300DB0F36 /* Info.plist */,
 				8887A80424BA1DE300B6CF45 /* GoogleService-Info.plist */,
@@ -2660,8 +2644,6 @@
 				7312B03E22D73AD100DB0F36 /* Resources */,
 				73953D3522EED6C300242243 /* Crashlytics */,
 				C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */,
-				843B6496235051DA00E5639B /* Embed Frameworks */,
-				844C84EE23505F9F00BDC60F /* ShellScript */,
 				733CA06E23955FC600EF7922 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -2942,23 +2924,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
-		};
-		844C84EE23505F9F00BDC60F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScreenShieldKit.framework/strip-frameworks.sh\"\n";
 		};
 		C0CEC221AC44B82FAE8E1C65 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
