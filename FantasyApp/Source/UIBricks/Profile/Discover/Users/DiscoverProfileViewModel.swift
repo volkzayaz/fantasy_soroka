@@ -21,6 +21,12 @@ extension DiscoverProfileViewModel {
         case activateFlirtAccess
     }
     
+    struct ProfilesState {
+        let profiles: [UserProfile]
+        let initialIndex: Int?
+        let isDailyLimitReached: Bool
+    }
+    
     var mode: Driver<Mode> {
         let defaultMode: Driver<Mode> = .just(.activateFlirtAccess)
         let mode: Driver<Mode> = Driver.combineLatest(
@@ -94,8 +100,7 @@ extension DiscoverProfileViewModel {
 
 class DiscoverProfileViewModel : MVVM_ViewModel {
     
-    let profiles = BehaviorRelay<[UserProfile]>(value: [])
-    let isDailyLimitReached = BehaviorRelay<Bool>(value: false)
+    let profilesState = BehaviorRelay<ProfilesState>(value: ProfilesState(profiles: [], initialIndex: nil, isDailyLimitReached: false))
     
     private var viewedProfiles: Set<UserProfile> = []
     private var searchSwipeState = BehaviorRelay<SearchSwipeState?>(value: nil)
@@ -124,15 +129,19 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
         .asDriver(onErrorJustReturn: ([], [], nil))
         .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
             let availableNewProfiles = Array(newProfiles.prefix(searchSwipeState?.amount ?? 0))
-            self.profiles.accept(viewedProfiles.reversed() + availableNewProfiles)
-            self.viewedProfiles.removeAll()
+            let profiles = viewedProfiles.reversed() + availableNewProfiles
+            let initialIndex = profiles.firstIndex(where: { $0.isViewed == false })
             
-            self.searchSwipeState.accept(searchSwipeState)
+            var isDailyLimitReached: Bool
             if let availableSwipesAmount = searchSwipeState?.amount {
-                self.isDailyLimitReached.accept(availableSwipesAmount <= newProfiles.count)
+                isDailyLimitReached = availableSwipesAmount <= newProfiles.count
             } else {
-                self.isDailyLimitReached.accept(false)
+                isDailyLimitReached = false
             }
+            
+            self.profilesState.accept(ProfilesState(profiles: profiles, initialIndex: initialIndex, isDailyLimitReached: isDailyLimitReached))
+            self.searchSwipeState.accept(searchSwipeState)
+            self.viewedProfiles.removeAll()
         }).disposed(by: bag)
         
         /////progress indicator
@@ -164,31 +173,31 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 extension DiscoverProfileViewModel {
     
     func profileViewed(index: Int) {
-        guard let profile = profiles.value[safe: index], profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
+        guard let profile = profilesState.value.profiles[safe: index], profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
         
         viewedProfiles.insert(profile)
         DiscoveryManager.markUserIsViewedInSearch(profile)
             .subscribe(onSuccess: { [unowned self] state in
                 self.searchSwipeState.accept(state)
                 
-                let availableProfilesNumber = self.profiles.value.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
-                if availableProfilesNumber < self.profiles.value.count {
-                    let availableProfiles = Array(self.profiles.value.prefix(availableProfilesNumber))
-                    self.profiles.accept(availableProfiles)
+                let availableProfilesNumber = self.profilesState.value.profiles.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
+                if availableProfilesNumber < self.profilesState.value.profiles.count {
+                    let availableProfiles = Array(self.profilesState.value.profiles.prefix(availableProfilesNumber))
+                    self.profilesState.accept(ProfilesState(profiles: availableProfiles, initialIndex: index, isDailyLimitReached: true))
                 }
             }).disposed(by: bag)
     }
     
     func profileSelected(index: Int) {
-        guard let profile = profiles.value[safe: index] else { return }
+        guard let profile = self.profilesState.value.profiles[safe: index] else { return }
         
         router.presentProfile(profile, onInitiateConnection: { [weak self] in
             guard let `self` = self else { return }
             
-            if let currentProfileIndex = self.profiles.value.firstIndex(of: profile) {
-                var updatedProfiles = self.profiles.value
+            if let currentProfileIndex = self.profilesState.value.profiles.firstIndex(of: profile) {
+                var updatedProfiles = self.profilesState.value.profiles
                 updatedProfiles.remove(at: currentProfileIndex)
-                self.profiles.accept(updatedProfiles)
+                self.profilesState.accept(ProfilesState(profiles: updatedProfiles, initialIndex: index, isDailyLimitReached: self.profilesState.value.isDailyLimitReached))
                 self.viewedProfiles.remove(profile)
             }
         })

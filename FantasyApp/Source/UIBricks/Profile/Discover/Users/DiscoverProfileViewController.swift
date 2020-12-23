@@ -130,19 +130,19 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         activateView.addFantasyRoundedCorners()
         view.addFantasyTripleGradient()
 
-        Driver.combineLatest(viewModel.profiles.asDriver(), viewModel.isDailyLimitReached.asDriver())
-            .drive(onNext: { [weak self] profiles, _ in
+        viewModel.profilesState.asDriver()
+            .drive(onNext: { [weak self] state in
                 guard let `self` = self else { return }
                 self.profilesCarousel.reloadData()
                 
-                if let firstNewProfileIndex = profiles.firstIndex(where: { $0.isViewed == false }) {
-                    if firstNewProfileIndex == self.profilesCarousel.currentItemIndex {
-                        self.viewModel.profileViewed(index: firstNewProfileIndex)
+                if let initialIndex = state.initialIndex, initialIndex < state.profiles.count {
+                    if initialIndex == self.profilesCarousel.currentItemIndex {
+                        self.viewModel.profileViewed(index: initialIndex)
                     } else {
-                        self.profilesCarousel.scrollToItem(at: firstNewProfileIndex, animated: false)
+                        self.profilesCarousel.scrollToItem(at: initialIndex, animated: false)
                     }
                 } else {
-                    self.profilesCarousel.scrollToItem(at: profiles.count, animated: false)
+                    self.profilesCarousel.scrollToItem(at: state.profiles.count, animated: false)
                 }
             }).disposed(by: rx.disposeBag)
         
@@ -291,15 +291,15 @@ extension DiscoverProfileViewController {
 extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource {
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return viewModel.profiles.value.count + 1 /// 1 stands for "No new fantasy seekers today" or "The daily limit has been reached" placeholder
+        return viewModel.profilesState.value.profiles.count + 1 /// 1 stands for "No new fantasy seekers today" or "The daily limit has been reached" placeholder
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
 
         let frameVar = CGRect.init(x: 0, y: 0, width: carousel.bounds.width - 50.0, height: carousel.bounds.height)
 
-        guard let profile = viewModel.profiles.value[safe: index] else {
-            if viewModel.isDailyLimitReached.value {
+        guard let profile = viewModel.profilesState.value.profiles[safe: index] else {
+            if viewModel.profilesState.value.isDailyLimitReached {
                 let view = UsersLimitCarouselView(frame: frameVar, limitExpirationDate: viewModel.limitExpirationDate, isGetMembershipHidden: viewModel.isSubscriptionHidden)
                 view.delegate = self
                 return view
