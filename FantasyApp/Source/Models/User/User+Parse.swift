@@ -77,8 +77,8 @@ extension User {
         
         let maybeCommunity: FantasyApp.Community? = (pfUser["belongsTo"] as? PFObject)?.toCodable()
         var maybeLastKnownLocation: User.LastKnownLocation? = nil
-        if let x = pfUser["lastKnownLocation"] as? PFGeoPoint {
-            maybeLastKnownLocation = .init(pfGeoPoint: x)
+        if let x = pfUser["location"] as? [String: Any] {
+            maybeLastKnownLocation = User.LastKnownLocation(pfGeoPoint: x)
         }
         
         let photos = User.Bio.Photos(avatar  : mainPhoto,
@@ -181,7 +181,7 @@ extension User {
             
             "belongsTo"                 : community.value?.pfObject as Any,
             "communityChangePolicy"     : community.changePolicy.rawValue,
-            "lastKnownLocation"         : community.lastKnownLocation?.pfGeoPoint as Any,
+            "location"         : community.lastKnownLocation?.pfGeoPoint as Any,
             
             "notificationSettings"      : notificationSettings.pfObject,
         ] as [String : Any]
