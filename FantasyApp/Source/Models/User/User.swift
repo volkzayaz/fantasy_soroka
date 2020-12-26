@@ -115,18 +115,32 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         let latitude: Double
         let longitude: Double
         
+        enum CoordinatesType: String {
+            case point = "Point"
+        }
+        
+        enum Key: String {
+            case type
+            case coordinates
+        }
+        
         init(location: CLLocation) {
             latitude = location.coordinate.latitude
             longitude = location.coordinate.longitude
         }
         
-        init(pfGeoPoint: PFGeoPoint) {
-            latitude = pfGeoPoint.latitude
-            longitude = pfGeoPoint.longitude
+        init?(pfGeoPoint: [String: Any]) {
+            guard let type = pfGeoPoint[Key.type.rawValue] as? String, type == CoordinatesType.point.rawValue,
+                  let coordinates = pfGeoPoint[Key.coordinates.rawValue] as? [Double], let longitude = coordinates.first, let latitude = coordinates.last else {
+                return nil
+            }
+            
+            self.latitude = latitude
+            self.longitude = longitude
         }
         
-        var pfGeoPoint: PFGeoPoint {
-            return PFGeoPoint(latitude: latitude, longitude: longitude)
+        var pfGeoPoint: [String: Any] {
+            [Key.type.rawValue: CoordinatesType.point.rawValue, Key.coordinates.rawValue: [latitude, longitude]]
         }
         
         var clLocation: CLLocation {

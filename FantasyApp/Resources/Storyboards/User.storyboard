@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1344,10 +1344,10 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="400"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="508"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="86.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="194.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-fj-wTM">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
@@ -1409,10 +1409,78 @@ activated when it reaches</string>
                                                             <outletCollection property="gestureRecognizers" destination="mQ4-UL-CRG" appends="YES" id="nsw-db-hdL"/>
                                                         </connections>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDe-xV-7SN">
+                                                        <rect key="frame" x="0.0" y="99.5" width="382" height="95"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-8I-Xpl" customClass="FantasyGradientView" customModule="FantasyApp" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="95"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="onlyBorder" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upgradeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ieo-q8-Mzq">
+                                                                <rect key="frame" x="16" y="14" width="14" height="16"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Global Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDp-1C-mRo">
+                                                                <rect key="frame" x="36" y="11" width="86.5" height="22"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="22" id="dx8-z0-uft"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                <color key="textColor" name="textBlackColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.globalMode.title"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Look for people in non-activated and activated cities" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS8-aI-b1H">
+                                                                <rect key="frame" x="16" y="45" width="289" height="36"/>
+                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                                <color key="textColor" name="textBlackColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.globalMode.description"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KiJ-Db-DcY">
+                                                                <rect key="frame" x="317" y="47.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="toggleGlobalMode:" destination="iyx-6x-4MS" eventType="valueChanged" id="mVq-B2-VfQ"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstItem="KiJ-Db-DcY" firstAttribute="centerY" secondItem="eS8-aI-b1H" secondAttribute="centerY" id="3xg-1j-1ma"/>
+                                                            <constraint firstAttribute="trailing" secondItem="KiJ-Db-DcY" secondAttribute="trailing" constant="16" id="4dn-CS-oEU"/>
+                                                            <constraint firstItem="UDp-1C-mRo" firstAttribute="leading" secondItem="Ieo-q8-Mzq" secondAttribute="trailing" constant="6" id="6DN-Ou-VEG"/>
+                                                            <constraint firstItem="Ieo-q8-Mzq" firstAttribute="leading" secondItem="bDe-xV-7SN" secondAttribute="leading" constant="16" id="AdQ-G0-ZEX"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Eii-8I-Xpl" secondAttribute="bottom" id="Qxo-Pk-jM6"/>
+                                                            <constraint firstItem="Ieo-q8-Mzq" firstAttribute="top" secondItem="bDe-xV-7SN" secondAttribute="top" constant="14" id="d46-Jt-LQV"/>
+                                                            <constraint firstItem="KiJ-Db-DcY" firstAttribute="leading" secondItem="eS8-aI-b1H" secondAttribute="trailing" constant="12" id="gvz-rv-yzw"/>
+                                                            <constraint firstItem="Eii-8I-Xpl" firstAttribute="top" secondItem="bDe-xV-7SN" secondAttribute="top" id="m4m-Mw-eUk"/>
+                                                            <constraint firstItem="UDp-1C-mRo" firstAttribute="centerY" secondItem="Ieo-q8-Mzq" secondAttribute="centerY" id="n0I-KR-atV"/>
+                                                            <constraint firstItem="eS8-aI-b1H" firstAttribute="top" secondItem="UDp-1C-mRo" secondAttribute="bottom" constant="12" id="qAN-Dw-Hym"/>
+                                                            <constraint firstItem="eS8-aI-b1H" firstAttribute="leading" secondItem="bDe-xV-7SN" secondAttribute="leading" constant="16" id="rbA-Lv-wVU"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Eii-8I-Xpl" secondAttribute="trailing" id="uh9-8t-Qgy"/>
+                                                            <constraint firstAttribute="bottom" secondItem="eS8-aI-b1H" secondAttribute="bottom" constant="14" id="vZa-Xg-R8M"/>
+                                                            <constraint firstItem="Eii-8I-Xpl" firstAttribute="leading" secondItem="bDe-xV-7SN" secondAttribute="leading" id="xho-qI-Sil"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-1k-Qk9">
-                                                <rect key="frame" x="0.0" y="110.5" width="382" height="289.5"/>
+                                                <rect key="frame" x="0.0" y="218.5" width="382" height="289.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-W8-g6m">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="164.5"/>
@@ -1674,6 +1742,10 @@ activated when it reaches</string>
                         <outlet property="ageSlider" destination="Mdk-zv-GGl" id="bH9-aX-BCW"/>
                         <outlet property="cityLabel" destination="9NS-4E-Ebr" id="ykV-vp-kcs"/>
                         <outlet property="citySectionView" destination="BIM-HY-Gw2" id="lkG-i8-c1M"/>
+                        <outlet property="globalModeContainerView" destination="bDe-xV-7SN" id="Zu0-sm-5pj"/>
+                        <outlet property="globalModeDescriptionLabel" destination="eS8-aI-b1H" id="1hH-EB-UKJ"/>
+                        <outlet property="globalModeSwitch" destination="KiJ-Db-DcY" id="U92-if-B2A"/>
+                        <outlet property="globalModeTitleLabel" destination="UDp-1C-mRo" id="Wqp-MF-KH2"/>
                         <outlet property="partnerBodyPicker" destination="A9S-yE-K6c" id="s2R-8P-acA"/>
                         <outlet property="partnerSexualityPicker" destination="1GV-YI-iYw" id="3fi-ni-sNP"/>
                         <outlet property="scrollView" destination="ehO-2K-TEg" id="ATe-Eo-rvT"/>
@@ -1686,7 +1758,7 @@ activated when it reaches</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3675" y="-645"/>
+            <point key="canvasLocation" x="3673.913043478261" y="-645.53571428571422"/>
         </scene>
         <!--Fantasy Navigation Controller-->
         <scene sceneID="Uea-uJ-Doc">
@@ -1808,6 +1880,7 @@ We've implemented a lot of new and exciting features</string>
         <image name="searchFiltersOnboardingImage" width="220" height="300"/>
         <image name="secret" width="80" height="80"/>
         <image name="stub" width="476" height="462"/>
+        <image name="upgradeIcon" width="14" height="16"/>
         <namedColor name="bgGradient1">
             <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -33,6 +33,10 @@ struct UsersResource: AuthorizedAPIResource {
             parameters["community"] = communityID
         }
         
+        if let globalMode = discoveryFilter.filter.globalMode {
+            parameters["globalModeSearch"] = globalMode
+        }
+        
         return .requestParameters(parameters: parameters, encoding: URLEncoding(destination: .queryString, boolEncoding: .literal))
     }
     
