@@ -30,7 +30,7 @@ extension UIColor {
 
     // MARK: - Text
     static let title = UIColor.white
-    static let fantasyBlack = UIColor(red: 72, green: 78, blue: 94)
+    static let fantasyBlack = UIColor(fromHex: 0x484E5E)
     static let basicGrey = UIColor(red: 175, green: 180, blue: 193)
     static let fantasyLightGrey = UIColor(red: 247, green: 247, blue: 250)
     static let fantasyGrey = UIColor(red: 237, green: 237, blue: 241)

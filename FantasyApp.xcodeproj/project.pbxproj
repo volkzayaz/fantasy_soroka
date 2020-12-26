@@ -357,6 +357,9 @@
 		A2A4F6C7257D4CC300073884 /* UsersResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A4F6C6257D4CC300073884 /* UsersResource.swift */; };
 		A2A4F6CF257D5D7000073884 /* UserSearchSwipeStateResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A4F6CE257D5D7000073884 /* UserSearchSwipeStateResource.swift */; };
 		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
+		A2C22A5B25976E40009FB4BB /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */; };
+		A2C22A8425976EC1009FB4BB /* FantasyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A8325976EC1009FB4BB /* FantasyGradientView.swift */; };
+		A2C22A8C259771B8009FB4BB /* FantasyGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A8B259771B8009FB4BB /* FantasyGradientLayer.swift */; };
 		A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */; };
 		A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
@@ -829,6 +832,9 @@
 		A2A4F6C6257D4CC300073884 /* UsersResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResource.swift; sourceTree = "<group>"; };
 		A2A4F6CE257D5D7000073884 /* UserSearchSwipeStateResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchSwipeStateResource.swift; sourceTree = "<group>"; };
 		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
+		A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
+		A2C22A8325976EC1009FB4BB /* FantasyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyGradientView.swift; sourceTree = "<group>"; };
+		A2C22A8B259771B8009FB4BB /* FantasyGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyGradientLayer.swift; sourceTree = "<group>"; };
 		A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionTableViewCell.swift; sourceTree = "<group>"; };
 		A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewModel.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
@@ -1155,6 +1161,7 @@
 				882DD27D2469E5DD008D9626 /* Localizable.swift */,
 				8887A80E24BCE6BC00B6CF45 /* String.swift */,
 				A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */,
+				A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1371,6 +1378,8 @@
 				A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */,
 				A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */,
 				A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */,
+				A2C22A8325976EC1009FB4BB /* FantasyGradientView.swift */,
+				A2C22A8B259771B8009FB4BB /* FantasyGradientLayer.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -2899,7 +2908,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift",
+				$SRCROOT/FantasyApp/Source/Tools/UI/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3074,6 +3083,7 @@
 				88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				88648A8B24CB728A0062C7A5 /* ApphudManager.swift in Sources */,
+				A2C22A8C259771B8009FB4BB /* FantasyGradientLayer.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
@@ -3219,6 +3229,7 @@
 				B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */,
 				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,
+				A2C22A8425976EC1009FB4BB /* FantasyGradientView.swift in Sources */,
 				7361F3242333D88C007B84B0 /* UpdateSearchPreferences.swift in Sources */,
 				A2A4F6C7257D4CC300073884 /* UsersResource.swift in Sources */,
 				84AB48FD232A16C500F3609A /* RoomDetailsViewController.swift in Sources */,
@@ -3232,6 +3243,7 @@
 				B71ED75523685466004C6D28 /* UIImage+FixOrientation.swift in Sources */,
 				734C70B5232122D200ED2E91 /* ProfilePhotoRouter.swift in Sources */,
 				A257FD9C258BDFAF00653C15 /* UserResource.swift in Sources */,
+				A2C22A5B25976E40009FB4BB /* UIView+Layer.swift in Sources */,
 				73097C02231D3CFB00B71053 /* EditProfileViewController.swift in Sources */,
 				849D3FA42366B318001CEBCA /* FantasyCollectionCollectionViewCell.swift in Sources */,
 				B72DDBC523B3739100FB1848 /* RoomDetailsTitlePhotoView.swift in Sources */,

@@ -21,6 +21,10 @@ extension DiscoveryFilterViewModel {
     var community: Driver<Community?> {
         return appState.changesOf { $0.currentUser?.community.value }
     }
+    
+    var globalMode: Driver<Bool> {
+        return form.asDriver().map { $0.globalMode ?? false }
+    }
 
     var age: Range<Int> {
         return form.value.age
@@ -57,8 +61,20 @@ class DiscoveryFilterViewModel : MVVM_ViewModel {
 
     init(router: DiscoveryFilterRouter) {
         self.router = router
-
         form = .init(value: User.current?.searchPreferences ?? .default)
+        
+        if User.current?.subscription.isSubscribed != true {
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+                .asObservable()
+                .filter { $0 == true }
+                .first()
+                .subscribe { [unowned self] _ in
+                    var form = self.form.value
+                    form.globalMode = true
+                    
+                    self.form.accept(form)
+                }.disposed(by: bag)
+        }
         
         /////progress indicator
         
@@ -91,6 +107,15 @@ extension DiscoveryFilterViewModel {
     func openTeleport() {
         router.openTeleport()
     }
+    
+    func changeGlobalMode(isEnabled: Bool) {
+        if isEnabled && User.current?.subscription.isSubscribed != true {
+            router.showSubscription()
+            updateForm { $0.globalMode = false }
+        } else {
+            updateForm { $0.globalMode = isEnabled }
+        }
+    }
 
     func cancel() {
         router.cancel()
@@ -107,5 +132,4 @@ extension DiscoveryFilterViewModel {
         mapper(&x)
         form.accept(x)
     }
-    
 }

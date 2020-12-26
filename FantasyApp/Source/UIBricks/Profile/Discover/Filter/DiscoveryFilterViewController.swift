@@ -23,6 +23,28 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var activeCityImageView: UIImageView!
 
+    @IBOutlet weak var globalModeContainerView: UIView!
+    
+    @IBOutlet weak var globalModeTitleLabel: UILabel! {
+        didSet {
+            globalModeTitleLabel.font = .boldFont(ofSize: 15)
+            globalModeTitleLabel.textColor = .fantasyBlack
+        }
+    }
+    
+    @IBOutlet weak var globalModeDescriptionLabel: UILabel! {
+        didSet {
+            globalModeDescriptionLabel.font = .regularFont(ofSize: 15)
+            globalModeDescriptionLabel.textColor = .fantasyBlack
+        }
+    }
+    
+    @IBOutlet weak var globalModeSwitch: UISwitch! {
+        didSet {
+            globalModeSwitch.onTintColor = .fantasyPink
+        }
+    }
+    
     // Partner section
     @IBOutlet weak var partnerBodyPicker: SmoothPickerView!
     @IBOutlet weak var partnerSexualityPicker: SmoothPickerView!
@@ -79,6 +101,10 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             .map { !$0 }
             .drive(citySectionView.rx.isHidden)
         .disposed(by: rx.disposeBag)
+        
+        viewModel.globalMode
+            .drive(globalModeSwitch.rx.isOn)
+            .disposed(by: rx.disposeBag)
 
         // apply text color and fonts to slider labels
         ageSlider.valueLabels.forEach {
@@ -98,7 +124,6 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         
         smoothPickerHack = true
     }
-    
 }
 
 //MARK:- Actions
@@ -120,6 +145,10 @@ extension DiscoveryFilterViewController {
     
     @IBAction func openTeleport(_ sender: Any) {
         viewModel.openTeleport()
+    }
+    
+    @IBAction func toggleGlobalMode(_ sender: UISwitch) {
+        viewModel.changeGlobalMode(isEnabled: sender.isOn)
     }
 }
 
