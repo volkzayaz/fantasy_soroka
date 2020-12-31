@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol NoUsersCarouselViewDelegate {
     func inviteFriends()
-    func showFilters()
+    func goGlobal()
 }
 
 class NoUsersCarouselView: UIView {
@@ -22,28 +24,33 @@ class NoUsersCarouselView: UIView {
             titleLabel.text = R.string.localizable.profileDiscoverUsersNoUsersTitle()
         }
     }
-    @IBOutlet weak var searchButton: UIButton! {
-        didSet {
-            searchButton.setTitle(R.string.localizable.profileDiscoverUsersNoUsersSearchOptions(), for: .normal)
-        }
-    }
+
     @IBOutlet weak var inviteButton: UIButton! {
         didSet {
             inviteButton.setTitle(R.string.localizable.profileDiscoverUsersNoUsersInvite(), for: .normal)
         }
     }
     
+    @IBOutlet weak var goGlobalButton: UIButton! {
+        didSet {
+            goGlobalButton.setTitle(R.string.localizable.profileDiscoverUsersNoUsersGoGlobal(), for: .normal)
+        }
+    }
+    
     var delegate: NoUsersCarouselViewDelegate?
     private let corner: CGFloat = 20.0
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, isGoGlobalHidden: Driver<Bool>) {
         super.init(frame: frame)
+        
         nibSetup()
+        isGoGlobalHidden
+            .drive(goGlobalButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        nibSetup()
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func nibSetup() {
@@ -85,11 +92,12 @@ class NoUsersCarouselView: UIView {
 //MARK:- Actions
 
 extension NoUsersCarouselView {
+    
     @IBAction func inviteFriendsClick(_ sender: Any) {
         delegate?.inviteFriends()
     }
 
-    @IBAction func filters(_ sender: Any) {
-        delegate?.showFilters()
+    @IBAction func goGlobal(_ sender: Any) {
+        delegate?.goGlobal()
     }
 }

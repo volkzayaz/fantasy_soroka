@@ -25,11 +25,11 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     var searchPreferences: SearchPreferences?
     
     var discoveryFilter: DiscoveryFilter? {
+        guard let x = searchPreferences, (community.value != nil || searchPreferences?.isGlobalMode == true) else {
+            return nil
+        }
         
-        guard let x = searchPreferences,
-            let y = community.value else { return nil }
-        
-        return DiscoveryFilter(filter: x, community: y)
+        return DiscoveryFilter(filter: x, community: community.value)
     }
     
     var subscription: Subscription
@@ -140,7 +140,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         }
         
         var pfGeoPoint: [String: Any] {
-            [Key.type.rawValue: CoordinatesType.point.rawValue, Key.coordinates.rawValue: [latitude, longitude]]
+            [Key.type.rawValue: CoordinatesType.point.rawValue, Key.coordinates.rawValue: [longitude, latitude]]
         }
         
         var clLocation: CLLocation {

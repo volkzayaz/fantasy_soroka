@@ -171,7 +171,6 @@ class SubscriptionViewModel : MVVM_ViewModel {
 extension SubscriptionViewModel {
     
     func subscribe(offer: SubscriptionOffer) {
-        
         let copy = self.completion
         
         PurchaseManager.purhcaseSubscription(with: offer.plan.productId)

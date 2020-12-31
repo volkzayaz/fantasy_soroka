@@ -11,18 +11,18 @@ import Foundation
 struct DiscoveryFilter: Equatable {
     
     let filter: SearchPreferences
-    let community: Community
+    let community: Community?
 }
 
 struct SearchPreferences: Codable, Equatable {
     
-    var globalMode: Bool?
+    var isGlobalMode: Bool?
     var age: Range<Int>
     var gender: Gender
     private var sexuality: Sexuality
 
     static var `default`: SearchPreferences {
-        return SearchPreferences(globalMode: false, age: 21..<69, gender: .male, sexuality: .all)
+        return SearchPreferences(isGlobalMode: false, age: 21..<69, gender: .male, sexuality: .all)
     }
 }
 

@@ -86,9 +86,9 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
         }
     }
     
-    @IBOutlet weak var joinButton: UIButton! {
+    @IBOutlet weak var goGlobalButton: UIButton! {
         didSet {
-            joinButton.setTitle(R.string.localizable.cityNotActiveViewJoin(), for: .normal)
+            goGlobalButton.setTitle(R.string.localizable.cityNotActiveViewGoGlobal(), for: .normal)
         }
     }
     
@@ -257,8 +257,8 @@ extension DiscoverProfileViewController {
         viewModel.inviteFriends()
     }
 
-    @IBAction func joinActiveCityClick(_ sender: Any) {
-        viewModel.joinActiveCity()
+    @IBAction func goGlobalClick(_ sender: Any) {
+        viewModel.subscribeTapped()
     }
 
     @IBAction func goToSettings(_ sender: Any) {
@@ -304,7 +304,7 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
                 view.delegate = self
                 return view
             } else {
-                let v = NoUsersCarouselView(frame: frameVar)
+                let v = NoUsersCarouselView(frame: frameVar, isGoGlobalHidden: viewModel.isSubscriptionHidden)
                 v.delegate = self
                 return v
             }
@@ -364,8 +364,8 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
         viewModel.inviteFriends()
     }
 
-    func showFilters() {
-        viewModel.presentFilter()
+    func goGlobal() {
+        viewModel.subscribeTapped()
     }
 }
 

@@ -18,12 +18,18 @@ extension DiscoveryFilterViewModel {
         return form.value
     }
 
-    var community: Driver<Community?> {
-        return appState.changesOf { $0.currentUser?.community.value }
+    var activeCity: Driver<(name: String?, isCommunity: Bool)> {
+        locationActor.near.map { near in
+            switch near {
+            case .bigCity(let name)?: return (name: name, isCommunity: false)
+            case .none: return (name: nil, isCommunity: false)
+            case .community(let community)?: return (name: community.name, isCommunity: true)
+            }
+        }
     }
     
-    var globalMode: Driver<Bool> {
-        return form.asDriver().map { $0.globalMode ?? false }
+    var isGlobalMode: Driver<Bool> {
+        return form.asDriver().map { $0.isGlobalMode ?? false }
     }
 
     var age: Range<Int> {
@@ -53,24 +59,32 @@ extension DiscoveryFilterViewModel {
     var showLocationSection: Driver<Bool> {
         return .just(true) //appState.map { $0.currentUser?.searchPreferences != nil }
     }
+    
+    var isSearchEnabled: Driver<Bool> {
+        Driver.combineLatest(activeCity, isGlobalMode)
+            .map { activeCity, isGlobalMode in
+                activeCity.isCommunity || isGlobalMode
+            }
+    }
 }
 
 class DiscoveryFilterViewModel : MVVM_ViewModel {
     
     fileprivate let form: BehaviorRelay<SearchPreferences>
+    private let locationActor = PickCommunityViewModel()
 
     init(router: DiscoveryFilterRouter) {
         self.router = router
         form = .init(value: User.current?.searchPreferences ?? .default)
         
-        if User.current?.subscription.isSubscribed != true {
-            appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+        if User.current?.searchPreferences?.isGlobalMode != true {
+            appState.changesOf { $0.currentUser?.searchPreferences?.isGlobalMode }
                 .asObservable()
                 .filter { $0 == true }
                 .first()
                 .subscribe { [unowned self] _ in
                     var form = self.form.value
-                    form.globalMode = true
+                    form.isGlobalMode = true
                     
                     self.form.accept(form)
                 }.disposed(by: bag)
@@ -111,9 +125,9 @@ extension DiscoveryFilterViewModel {
     func changeGlobalMode(isEnabled: Bool) {
         if isEnabled && User.current?.subscription.isSubscribed != true {
             router.showSubscription()
-            updateForm { $0.globalMode = false }
+            updateForm { $0.isGlobalMode = false }
         } else {
-            updateForm { $0.globalMode = isEnabled }
+            updateForm { $0.isGlobalMode = isEnabled }
         }
     }
 
