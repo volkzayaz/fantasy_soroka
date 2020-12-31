@@ -74,6 +74,8 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         }
     }
 
+    @IBOutlet weak var searchButton: SecondaryButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,11 +91,11 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         ageSlider.value = [viewModel.age.lowerBound, viewModel.age.upperBound].map { CGFloat ($0) }
 
         // Output Data bindings
-        viewModel.community
-            .map { $0?.name }
-            .drive(onNext: { [unowned self] (name) in
-                self.cityLabel.text = name
-                self.activeCityImageView.image = name != nil ? R.image.cityCheckImage() : nil
+        viewModel.activeCity
+            .drive(onNext: { [unowned self] city in
+                self.cityLabel.text = city.name ?? R.string.localizable.fantasyUsersSearchYourCity()
+                self.cityLabel.textColor = city.isCommunity ? .fantasyPink : .lightGray
+                self.activeCityImageView.image = city.isCommunity ? R.image.cityCheckImage() : R.image.greyAttention()
             })
             .disposed(by: rx.disposeBag)
 
@@ -102,7 +104,7 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
             .drive(citySectionView.rx.isHidden)
         .disposed(by: rx.disposeBag)
         
-        viewModel.globalMode
+        viewModel.isGlobalMode
             .drive(globalModeSwitch.rx.isOn)
             .disposed(by: rx.disposeBag)
 
@@ -115,6 +117,10 @@ class DiscoveryFilterViewController: UIViewController, MVVM_View {
         viewModel.ageDriver
             .map { R.string.localizable.profileDiscoverFilterAge("\($0.lowerBound)", "\($0.upperBound)") }
             .drive(ageLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.isSearchEnabled
+            .drive(searchButton.rx.isEnabled)
             .disposed(by: rx.disposeBag)
     }
     

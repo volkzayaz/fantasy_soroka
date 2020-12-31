@@ -33,9 +33,9 @@ extension DiscoverProfileViewModel {
             appState.changesOf { $0.currentUser?.bio.flirtAccess },
             locationActor.needsLocationPermission,
             locationActor.near,
-            appState.map { $0.currentUser?.searchPreferences == nil }
-        ).map { flirtAccess, locationPermission, near, isFilterEmpty in
-                    
+            appState.changesOf { $0.currentUser?.searchPreferences == nil },
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed == true }
+        ).map { flirtAccess, locationPermission, near, isFilterEmpty, isSubscribed in
             guard flirtAccess != false else {
                 return .activateFlirtAccess
             }
@@ -44,10 +44,12 @@ extension DiscoverProfileViewModel {
                 return .noLocationPermission
             }
             
-            switch near {
-            case .bigCity(let name)?: return .absentCommunity(nearestCity: name)
-            case .none: return .absentCommunity(nearestCity: nil)
-            case .community(_)?: break
+            if !isSubscribed {
+                switch near {
+                case .bigCity(let name)?: return .absentCommunity(nearestCity: name)
+                case .none: return .absentCommunity(nearestCity: nil)
+                case .community(_)?: break
+                }
             }
 
             if isFilterEmpty {
@@ -77,13 +79,15 @@ extension DiscoverProfileViewModel {
         return Driver.combineLatest(
             appState.changesOf { $0.currentUser?.community.value }
                 .map { $0 != nil },
+            appState.changesOf { $0.currentUser?.discoveryFilter?.filter.isGlobalMode }
+                .map { $0 == true },
             mode.map { (m) -> Bool in
                 switch m {
                 case .noSearchPreferences, .noLocationPermission, .activateFlirtAccess: return false
                 default:  return true
                 }
-        }){ ($0, $1) }
-            .map { $0.0 && $0.1}
+        }){ ($0, $1, $2) }
+            .map { ($0.0 || $0.1) && $0.2 }
     }
     
     var limitExpirationDate: Driver<Date?> {

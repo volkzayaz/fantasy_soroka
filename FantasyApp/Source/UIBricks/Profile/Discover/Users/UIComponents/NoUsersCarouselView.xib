@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,8 +17,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoUsersCarouselView" customModule="FantasyApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iVJ-jX-weT" id="iJy-te-33k"/>
-                <outlet property="inviteButton" destination="n94-DS-DPf" id="uxI-oF-7aL"/>
-                <outlet property="searchButton" destination="73u-Ky-whm" id="Zkc-or-8uC"/>
+                <outlet property="goGlobalButton" destination="n94-DS-DPf" id="ZaM-bl-G8u"/>
+                <outlet property="inviteButton" destination="73u-Ky-whm" id="TGt-rm-Mb0"/>
                 <outlet property="secondaryContentView" destination="SIV-6M-Ecc" id="Td5-cI-VJi"/>
                 <outlet property="titleLabel" destination="0co-9d-b5U" id="In2-ao-G1c"/>
             </connections>
@@ -31,23 +31,6 @@
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIV-6M-Ecc">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
-                            <rect key="frame" x="35" y="677" width="344" height="52"/>
-                            <state key="normal" title="Search Options"/>
-                            <connections>
-                                <action selector="filters:" destination="-1" eventType="touchUpInside" id="a3J-bY-Ags"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
-                            <rect key="frame" x="35" y="741" width="344" height="52"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="52" id="9Zf-fe-XWl"/>
-                            </constraints>
-                            <state key="normal" title="Invite Friends"/>
-                            <connections>
-                                <action selector="inviteFriendsClick:" destination="-1" eventType="touchUpInside" id="vOp-aD-jwz"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0co-9d-b5U">
                             <rect key="frame" x="62" y="388" width="290" height="42"/>
                             <string key="text">No new 
@@ -63,21 +46,42 @@ Fantasy-seekers today</string>
                                 <constraint firstAttribute="width" constant="80" id="umz-gm-xA8"/>
                             </constraints>
                         </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="e8c-t5-LVP">
+                            <rect key="frame" x="35" y="677" width="344" height="116"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73u-Ky-whm" customClass="PinkButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="344" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="52" id="Cx2-Dr-FyM"/>
+                                    </constraints>
+                                    <state key="normal" title="Invite Friends"/>
+                                    <connections>
+                                        <action selector="inviteFriendsClick:" destination="-1" eventType="touchUpInside" id="nNH-Mq-XfF"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n94-DS-DPf" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="64" width="344" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="52" id="9Zf-fe-XWl"/>
+                                    </constraints>
+                                    <state key="normal" title="Go Global"/>
+                                    <connections>
+                                        <action selector="goGlobal:" destination="-1" eventType="touchUpInside" id="R1R-Kq-aMM"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="73u-Ky-whm" firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" id="5iK-nM-iuz"/>
-                        <constraint firstItem="n94-DS-DPf" firstAttribute="leading" secondItem="SIV-6M-Ecc" secondAttribute="leading" constant="35" id="6W4-RW-7io"/>
-                        <constraint firstItem="n94-DS-DPf" firstAttribute="top" secondItem="73u-Ky-whm" secondAttribute="bottom" constant="12" id="Eqw-CW-oDn"/>
+                        <constraint firstItem="e8c-t5-LVP" firstAttribute="leading" secondItem="SIV-6M-Ecc" secondAttribute="leading" constant="35" id="2WO-rF-I5f"/>
                         <constraint firstItem="0co-9d-b5U" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="G4g-WW-BpA"/>
-                        <constraint firstItem="73u-Ky-whm" firstAttribute="height" secondItem="n94-DS-DPf" secondAttribute="height" id="M4y-Kh-835"/>
-                        <constraint firstItem="73u-Ky-whm" firstAttribute="leading" secondItem="n94-DS-DPf" secondAttribute="leading" id="WaM-Z7-Hda"/>
+                        <constraint firstAttribute="trailing" secondItem="e8c-t5-LVP" secondAttribute="trailing" constant="35" id="G94-XR-FBM"/>
                         <constraint firstItem="8Rn-Mn-8am" firstAttribute="centerX" secondItem="SIV-6M-Ecc" secondAttribute="centerX" id="XKd-iz-INN"/>
                         <constraint firstItem="0co-9d-b5U" firstAttribute="centerY" secondItem="SIV-6M-Ecc" secondAttribute="centerY" id="do4-rB-3M2"/>
+                        <constraint firstAttribute="bottom" secondItem="e8c-t5-LVP" secondAttribute="bottom" constant="25" id="gPd-hF-lXe"/>
                         <constraint firstItem="8Rn-Mn-8am" firstAttribute="top" secondItem="SIV-6M-Ecc" secondAttribute="top" constant="50" id="onf-iV-i9g"/>
                         <constraint firstItem="0co-9d-b5U" firstAttribute="width" secondItem="SIV-6M-Ecc" secondAttribute="width" multiplier="0.7" id="skq-bL-eow"/>
-                        <constraint firstAttribute="trailing" secondItem="n94-DS-DPf" secondAttribute="trailing" constant="35" id="v1S-CY-fRM"/>
-                        <constraint firstAttribute="bottom" secondItem="n94-DS-DPf" secondAttribute="bottom" constant="25" id="vVO-YF-VyM"/>
                     </constraints>
                 </view>
             </subviews>

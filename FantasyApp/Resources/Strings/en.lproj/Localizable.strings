@@ -525,11 +525,11 @@
 "fantasy.users.search.yourCityWillBeActive" = "will be activated when it reaches";
 "cityNotActiveView.users" = "users";
 "cityNotActiveView.invite" = "Invite Friends";
-"cityNotActiveView.join" = "Join Active City";
+"cityNotActiveView.goGlobal" = "Go Global";
 
 //case-when-there-is-no-new-profiles
 "profile.discover.users.noUsers.title" = "No new\nFlirt seekers today";
-"profile.discover.users.noUsers.searchOptions" = "Flirt Options";
+"profile.discover.users.noUsers.goGlobal" = "Go Global";
 "profile.discover.users.noUsers.invite" = "Invite Friends";
 
 //case-when-daily-limit-has-been-reached

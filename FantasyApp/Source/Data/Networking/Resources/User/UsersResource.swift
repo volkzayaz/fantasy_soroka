@@ -29,12 +29,12 @@ struct UsersResource: AuthorizedAPIResource {
             "isViewed": isViewed
         ]
         
-        if let communityID = discoveryFilter.community.objectId {
+        if let communityID = discoveryFilter.community?.objectId {
             parameters["community"] = communityID
         }
         
-        if let globalMode = discoveryFilter.filter.globalMode {
-            parameters["globalModeSearch"] = globalMode
+        if let isGlobalMode = discoveryFilter.filter.isGlobalMode {
+            parameters["globalModeSearch"] = isGlobalMode
         }
         
         return .requestParameters(parameters: parameters, encoding: URLEncoding(destination: .queryString, boolEncoding: .literal))

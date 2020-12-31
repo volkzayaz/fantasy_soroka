@@ -532,9 +532,9 @@
                         <outlet property="checkActivateButton" destination="j9L-uL-6K5" id="AhF-PZ-ntR"/>
                         <outlet property="cityNotActiveView" destination="OD3-RV-LXg" id="8KR-Fo-f1e"/>
                         <outlet property="dontAllowGeoButton" destination="yhS-9e-RJJ" id="Pu8-Se-V9E"/>
+                        <outlet property="goGlobalButton" destination="eLn-CN-7r9" id="T61-Uv-Kti"/>
                         <outlet property="goToSettingsView" destination="FH2-xN-97a" id="LSb-jE-aSi"/>
                         <outlet property="inviteButton" destination="tfk-hA-yJP" id="CAP-Nb-Dej"/>
-                        <outlet property="joinButton" destination="eLn-CN-7r9" id="4Dx-Mm-Apw"/>
                         <outlet property="noFilterDescriptionLabel" destination="D4h-iy-14o" id="v7N-UD-a0b"/>
                         <outlet property="noFilterTitleLabel" destination="bgW-SP-S2b" id="JTL-ZR-32l"/>
                         <outlet property="noFilterView" destination="TYG-Zf-Hsb" id="9qf-Ph-JVZ"/>
@@ -826,9 +826,9 @@ to search for.</string>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLn-CN-7r9" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
                             <rect key="frame" x="60" y="448" width="252" height="52"/>
-                            <state key="normal" title="Join Active City"/>
+                            <state key="normal" title="Go Global"/>
                             <connections>
-                                <action selector="joinActiveCityClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="oQn-D0-fUH"/>
+                                <action selector="goGlobalClick:" destination="sJw-Y8-Mmr" eventType="touchUpInside" id="eco-zy-CdD"/>
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="JvS-eG-pQh">
@@ -1374,7 +1374,7 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityCheckImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-J4-MI5">
-                                                                <rect key="frame" x="277.5" y="16" width="12" height="12"/>
+                                                                <rect key="frame" x="279.5" y="16" width="12" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="12" id="eEl-Ey-JRP"/>
                                                                     <constraint firstAttribute="width" secondItem="iLt-J4-MI5" secondAttribute="height" multiplier="1:1" id="zwz-mJ-FHC"/>
@@ -1400,7 +1400,7 @@ activated when it reaches</string>
                                                             <constraint firstItem="bXt-su-CJ0" firstAttribute="top" secondItem="gbd-Cd-I9r" secondAttribute="top" id="Lra-P8-1iI"/>
                                                             <constraint firstItem="rxv-ZW-YUQ" firstAttribute="leading" secondItem="gbd-Cd-I9r" secondAttribute="leading" constant="16" id="W2g-g8-T76"/>
                                                             <constraint firstAttribute="trailing" secondItem="bXt-su-CJ0" secondAttribute="trailing" constant="16" id="aoh-vQ-Bij"/>
-                                                            <constraint firstItem="9NS-4E-Ebr" firstAttribute="leading" secondItem="iLt-J4-MI5" secondAttribute="trailing" constant="14" id="lkw-U6-SLy"/>
+                                                            <constraint firstItem="9NS-4E-Ebr" firstAttribute="leading" secondItem="iLt-J4-MI5" secondAttribute="trailing" constant="12" id="lkw-U6-SLy"/>
                                                             <constraint firstAttribute="height" constant="44" id="y5p-jQ-Dlu"/>
                                                             <constraint firstItem="iLt-J4-MI5" firstAttribute="centerY" secondItem="9NS-4E-Ebr" secondAttribute="centerY" id="zYu-8K-OYw"/>
                                                             <constraint firstItem="9NS-4E-Ebr" firstAttribute="centerY" secondItem="rxv-ZW-YUQ" secondAttribute="centerY" id="zay-N2-1ke"/>
@@ -1749,6 +1749,7 @@ activated when it reaches</string>
                         <outlet property="partnerBodyPicker" destination="A9S-yE-K6c" id="s2R-8P-acA"/>
                         <outlet property="partnerSexualityPicker" destination="1GV-YI-iYw" id="3fi-ni-sNP"/>
                         <outlet property="scrollView" destination="ehO-2K-TEg" id="ATe-Eo-rvT"/>
+                        <outlet property="searchButton" destination="mgN-eb-txH" id="hL7-fy-dGk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6o-Fy-0Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
