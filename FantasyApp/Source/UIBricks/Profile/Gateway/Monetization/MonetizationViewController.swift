@@ -13,16 +13,25 @@ import RxCocoa
 
 class MonetizationViewController: UIViewController {
     
-    let models = [MonetizationModel(image: R.image.memberUnlimRooms()!,
-                                    title: R.string.localizable.monetizationMemberUnlimRoomsTitle(),
-                                    description: R.string.localizable.monetizationMemberUnlimRoomsSubtitle()),
-                  MonetizationModel(image: R.image.memberX3()!,
+    let models = [MonetizationModel(image: R.image.memberProfilesNew()!,
+                                    title: R.string.localizable.monetizationX3NewProfilesTitle(),
+                                    description: R.string.localizable.monetizationX3NewProfilesSubtitle()),
+                  MonetizationModel(image: R.image.memberGlobalNew()!,
+                                    title: R.string.localizable.monetizationGlobalModeTitle(),
+                                    description: R.string.localizable.monetizationGlobalModeSubtitle()),
+                  MonetizationModel(image: R.image.memberActiveCityNew()!,
+                                    title: R.string.localizable.monetizationMemberActiveCityTitle(),
+                                    description: R.string.localizable.monetizationMemberActiveCitySubtitle()),
+                  MonetizationModel(image: R.image.memberAccessToDecksNew()!,
+                                    title: R.string.localizable.monetizationAccessToAllDecksTitle(),
+                                    description: R.string.localizable.monetizationAccessToAllDecksSubtitle()),
+                  MonetizationModel(image: R.image.memberCardsNew()!,
                                     title: R.string.localizable.monetizationMemberX3Title(),
                                     description: R.string.localizable.monetizationMemberX3Subtitle()),
-                  MonetizationModel(image: R.image.memberActiveCity()!,
-                                  title: R.string.localizable.monetizationMemberActiveCityTitle(),
-                                  description: R.string.localizable.monetizationMemberActiveCitySubtitle()),
-                  MonetizationModel(image: R.image.memberParrot()!,
+                  MonetizationModel(image: R.image.memberRoomsNew()!,
+                                    title: R.string.localizable.monetizationMemberUnlimRoomsTitle(),
+                                    description: R.string.localizable.monetizationMemberUnlimRoomsSubtitle()),
+                  MonetizationModel(image: R.image.memberBadgeNew()!,
                                     title: R.string.localizable.monetizationMemberParrotTitle(),
                                     description: R.string.localizable.monetizationMemberParrotSubtitle()),
     ]
@@ -142,7 +151,7 @@ class MonetizationSubscribeButton: SecondaryButton {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .unlimRooms)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc))
         
         x.present(nav, animated: true, completion: nil)
         

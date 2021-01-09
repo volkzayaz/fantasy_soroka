@@ -12,11 +12,22 @@ extension Analytics.Event {
     
     struct PurchaseInterest: AnalyticsEvent {
         
-        let context: SubscriptionViewModel.Page
+        enum Context: String {
+            case x3NewProfilesDaily = "ProfilesLimit"
+            case globalMode = "GlobalMode"
+            case changeActiveCity = "SearchActiveCity"
+            case accessToAllDecks = "AccessToAllDecks"
+            case x3NewCardsDaily = "DeckLimit"
+            case unlimitedRooms = "RoomFrozenLimit"
+            case memberBadge = "ProfileMembership"
+            case subscriptionOffer = "SubscriptionOffer"
+        }
+        
+        let context: Context
         let itemName: String?
         let discount: String?
         
-        init(context: SubscriptionViewModel.Page, itemName: String? = nil, discount: String? = nil) {
+        init(context: Context, itemName: String? = nil, discount: String? = nil) {
             self.context = context
             self.itemName = itemName
             self.discount = discount
@@ -26,18 +37,7 @@ extension Analytics.Event {
         
         var props: [String : String]? {
             var params = [String: String]()
-            
-            var ctx = ""
-            switch context {
-            case .fantasyX3: ctx = "DeckLimit"
-            case .member: ctx = "ProfileMembership"
-            //case .screenProtect: ctx = "RoomScreenProtect"
-            case .teleport: ctx = "SearchActiveCity"
-            case .unlimRooms: ctx = "RoomFrozenLimit"
-            case .subscriptionOffer: ctx = "SubscriptionOffer"
-            }
-            
-            params["Context"] = ctx
+            params["Context"] = context.rawValue
             
             if let itemName = itemName {
                 params["Item Name"] = itemName
