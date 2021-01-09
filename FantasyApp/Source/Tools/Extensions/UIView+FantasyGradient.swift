@@ -58,6 +58,10 @@ extension UIView {
         }
         layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    func removeGradient() {
+        layer.sublayers?.first(where: { $0 is CAGradientLayer })?.removeFromSuperlayer()
+    }
 
     func addFantasyRoundedCorners() {
         clipsToBounds = true

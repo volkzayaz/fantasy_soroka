@@ -255,7 +255,7 @@
 		842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A19F92354FF5800D0FE5A /* RoomByInvitationTokenResource.swift */; };
 		842A19FD23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A19FC23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift */; };
 		842A1A0123553BE400D0FE5A /* FantasyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A1A0023553BE400D0FE5A /* FantasyNavigationController.swift */; };
-		842A1A0323553CC900D0FE5A /* UIViewController+FantasyGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */; };
+		842A1A0323553CC900D0FE5A /* UIView+FantasyGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A1A0223553CC900D0FE5A /* UIView+FantasyGradient.swift */; };
 		843B6484234E5B4D00E5639B /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6483234E5B4D00E5639B /* Date+Formatting.swift */; };
 		843B6486234E61E500E5639B /* InviteParticipantResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6485234E61E500E5639B /* InviteParticipantResource.swift */; };
 		843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B6487234E624E00E5639B /* RoomStatusResource.swift */; };
@@ -345,6 +345,12 @@
 		88F8DDBE24C781D200900A6E /* CollectionOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8DDBD24C781D200900A6E /* CollectionOffer.swift */; };
 		A200411B256067E500C4C7AA /* EditRelationshipRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200411A256067E500C4C7AA /* EditRelationshipRouter.swift */; };
 		A209A34624DDB50400349EB6 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */; };
+		A22AA6EC25A0CAFB00E45221 /* SubscriptionPlanStyle1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22AA6EB25A0CAFB00E45221 /* SubscriptionPlanStyle1View.swift */; };
+		A22AA6F125A0CB2200E45221 /* SubscriptionPlanStyle1View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22AA6F025A0CB2200E45221 /* SubscriptionPlanStyle1View.xib */; };
+		A22AA6FF25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */; };
+		A22E0E9925A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */; };
+		A248637A25A761BD0039489B /* SKProduct+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248637925A761BD0039489B /* SKProduct+Subscription.swift */; };
+		A248638225A862F20039489B /* SubscriptionPlanConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */; };
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
 		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
 		A257FD9C258BDFAF00653C15 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FD9B258BDFAF00653C15 /* UserResource.swift */; };
@@ -709,7 +715,7 @@
 		842A19F92354FF5800D0FE5A /* RoomByInvitationTokenResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomByInvitationTokenResource.swift; sourceTree = "<group>"; };
 		842A19FC23551D9700D0FE5A /* RoomSettingsPremiumFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsPremiumFeatureView.swift; sourceTree = "<group>"; };
 		842A1A0023553BE400D0FE5A /* FantasyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyNavigationController.swift; sourceTree = "<group>"; };
-		842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FantasyGradient.swift"; sourceTree = "<group>"; };
+		842A1A0223553CC900D0FE5A /* UIView+FantasyGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+FantasyGradient.swift"; sourceTree = "<group>"; };
 		843B6483234E5B4D00E5639B /* Date+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
 		843B6485234E61E500E5639B /* InviteParticipantResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParticipantResource.swift; sourceTree = "<group>"; };
 		843B6487234E624E00E5639B /* RoomStatusResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStatusResource.swift; sourceTree = "<group>"; };
@@ -820,6 +826,12 @@
 		9F5D54D4CA46D07ABA86FF3C /* Pods-FantasyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.release.xcconfig"; sourceTree = "<group>"; };
 		A200411A256067E500C4C7AA /* EditRelationshipRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipRouter.swift; sourceTree = "<group>"; };
 		A209A34524DDB50400349EB6 /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
+		A22AA6EB25A0CAFB00E45221 /* SubscriptionPlanStyle1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlanStyle1View.swift; sourceTree = "<group>"; };
+		A22AA6F025A0CB2200E45221 /* SubscriptionPlanStyle1View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscriptionPlanStyle1View.xib; sourceTree = "<group>"; };
+		A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFeatureCollectionViewCell.swift; sourceTree = "<group>"; };
+		A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlansConfiguration.swift; sourceTree = "<group>"; };
+		A248637925A761BD0039489B /* SKProduct+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+Subscription.swift"; sourceTree = "<group>"; };
+		A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlanConfiguration.swift; sourceTree = "<group>"; };
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A257FD9B258BDFAF00653C15 /* UserResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
@@ -1155,13 +1167,14 @@
 				B732972023B52D17004038ED /* UIImageView+AvatarUtils.swift */,
 				846B49D92365FC180087B7DF /* UILabel+Truncation.swift */,
 				84888EEB22FB8BE100FE9A0A /* UITextField+TextVisibility.swift */,
-				842A1A0223553CC900D0FE5A /* UIViewController+FantasyGradient.swift */,
+				842A1A0223553CC900D0FE5A /* UIView+FantasyGradient.swift */,
 				B720EED4244217DB009385CB /* UITextView+Truncated.swift */,
 				2518808C24464150002CCF2E /* URL+Email.swift */,
 				882DD27D2469E5DD008D9626 /* Localizable.swift */,
 				8887A80E24BCE6BC00B6CF45 /* String.swift */,
 				A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */,
 				A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */,
+				A248637925A761BD0039489B /* SKProduct+Subscription.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1427,6 +1440,9 @@
 				7337B83E23C8CBD500EFC948 /* SubscriptionRouter.swift */,
 				7337B83F23C8CBD500EFC948 /* SubscriptionViewController.swift */,
 				7337B84023C8CBD500EFC948 /* SubscriptionViewModel.swift */,
+				A22AA6F025A0CB2200E45221 /* SubscriptionPlanStyle1View.xib */,
+				A22AA6EB25A0CAFB00E45221 /* SubscriptionPlanStyle1View.swift */,
+				A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */,
 			);
 			path = Subscription;
 			sourceTree = "<group>";
@@ -2427,6 +2443,8 @@
 				885EEF0724BA19A400BA187A /* RemoteConfigManager.swift */,
 				8887A81024BCF3F800B6CF45 /* SubscriptionOfferSpecial.swift */,
 				88F8DDBD24C781D200900A6E /* CollectionOffer.swift */,
+				A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */,
+				A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */,
 			);
 			path = RemoteConfig;
 			sourceTree = "<group>";
@@ -2791,6 +2809,7 @@
 				73097C12231D448B00B71053 /* EditProfilePhotoCell.xib in Resources */,
 				84C1D0332327B95300648DE1 /* Gay.png in Resources */,
 				73432AB723881FB6008CF2F1 /* FantasyListCell.xib in Resources */,
+				A22AA6F125A0CB2200E45221 /* SubscriptionPlanStyle1View.xib in Resources */,
 				849D3FA62366BBFA001CEBCA /* FantasyCollectionCollectionViewCell.xib in Resources */,
 				84C1D0322327B95300648DE1 /* Transsexual.png in Resources */,
 				73432AC8238A8B46008CF2F1 /* TextMessageCell.xib in Resources */,
@@ -3027,6 +3046,7 @@
 				88F8DDB824C61E7600900A6E /* DeckLimitedOfferRouter.swift in Sources */,
 				734C529D2326A6FD00B54510 /* DiscoveryFilterViewController.swift in Sources */,
 				733F41CF2365EFB4004EC466 /* MultiSlider+Internal.swift in Sources */,
+				A248638225A862F20039489B /* SubscriptionPlanConfiguration.swift in Sources */,
 				73FDD08B23990DAF00BA3E1D /* AnalyticsEvent.swift in Sources */,
 				73EBBA7A234E2BEC00B79121 /* NotificationSettingsViewModel.swift in Sources */,
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
@@ -3053,6 +3073,7 @@
 				73097C0A231D40B100B71053 /* EditProfileExpandableCell.swift in Sources */,
 				734C528E23266ADA00B54510 /* DiscoverProfileRouter.swift in Sources */,
 				73EBBA63234A1C4D00B79121 /* MyFantasiesReactionHistoryRouter.swift in Sources */,
+				A22AA6FF25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift in Sources */,
 				84C1D0712327D6B500648DE1 /* RoomsViewController.swift in Sources */,
 				84C1D03C2327B95300648DE1 /* Shaders.metal in Sources */,
 				A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */,
@@ -3114,6 +3135,7 @@
 				7312B0A622D7422100DB0F36 /* UIColor+Extension.swift in Sources */,
 				7384B0F82386E15A00869016 /* UIDismissSegue.swift in Sources */,
 				7361F3272333F328007B84B0 /* FantasyCardsResource.swift in Sources */,
+				A22AA6EC25A0CAFB00E45221 /* SubscriptionPlanStyle1View.swift in Sources */,
 				8887A80924BB15BC00B6CF45 /* SubscriptionLimitedOfferRouter.swift in Sources */,
 				A2F7D468257FC7EA00649899 /* UserViewProfileResource.swift in Sources */,
 				733CA05B23951D7000EF7922 /* FantasyCollectionViewController.swift in Sources */,
@@ -3157,6 +3179,7 @@
 				7334CC7322ED9A8C00495843 /* User+Parse.swift in Sources */,
 				7312B09E22D7422100DB0F36 /* SpinnerView.swift in Sources */,
 				73EEFC32235C6E3100480E79 /* SinglePickRouter.swift in Sources */,
+				A22E0E9925A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift in Sources */,
 				8416816722E96CF700FA9455 /* PrimaryButton.swift in Sources */,
 				73432AD2238AC7DD008CF2F1 /* ChatHeaderCell.swift in Sources */,
 				88F8DDBA24C61EAE00900A6E /* DeckLimitedOfferController.swift in Sources */,
@@ -3180,7 +3203,7 @@
 				73EBBA7C234E2DC300B79121 /* UpdateNotificationSettings.swift in Sources */,
 				84AB83CA2303E3BC004CC171 /* ActorsLocator.swift in Sources */,
 				738A181823696FF300C54C8A /* FantasyCollectionDetailsViewModel.swift in Sources */,
-				842A1A0323553CC900D0FE5A /* UIViewController+FantasyGradient.swift in Sources */,
+				842A1A0323553CC900D0FE5A /* UIView+FantasyGradient.swift in Sources */,
 				7334CC7622EDC60000495843 /* SetUser.swift in Sources */,
 				73C96F1E2340A653002C3F8E /* MyFantasiesViewController.swift in Sources */,
 				7312B0AE22D7441C00DB0F36 /* FantasyError.swift in Sources */,
@@ -3226,6 +3249,7 @@
 				739F7992230952A70045FCD7 /* FantasySearchViewController.swift in Sources */,
 				7353BDE322EC9857001D46A6 /* MainTabBarViewController.swift in Sources */,
 				8887A80F24BCE6BC00B6CF45 /* String.swift in Sources */,
+				A248637A25A761BD0039489B /* SKProduct+Subscription.swift in Sources */,
 				B72BB57723D3201B00D2CDE5 /* FantasyAnimatedImage.swift in Sources */,
 				733096822353586F0039D013 /* DeleteUser.swift in Sources */,
 				7312B07B22D741F000DB0F36 /* OnboardingViewController.swift in Sources */,

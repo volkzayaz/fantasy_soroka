@@ -19,10 +19,15 @@ struct RemoteConfigManager {
         static let subscriptionOfferSpecial  = "subscription_offer_special"
         static let decksOfferSpecial = "decks_offer_special"
         static let decksOfferPrice = "decks_offer_price"
+        static let subscriptionPlans = "subscription_plans"
     }
     
     enum LearnScreen: String {
         case feed, decks
+    }
+    
+    enum SubscriptionPlansStyle: String, Decodable {
+        case regular, trial, offer
     }
     
     static var learnDefaultScreen: LearnScreen {
@@ -81,6 +86,16 @@ struct RemoteConfigManager {
             return try decoder.decode([CollectionOffer].self, from: data)
         } catch { 
             return []
+        }
+    }
+    
+    static var subscriptionPlansConfiguration: SubscriptionPlansConfiguration {
+        let data = RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionPlans).dataValue
+
+        do {
+            return try decoder.decode(SubscriptionPlansConfiguration.self, from: data)
+        } catch {
+            return SubscriptionPlansConfiguration.default
         }
     }
     

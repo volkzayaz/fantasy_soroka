@@ -79,7 +79,6 @@ class RootViewModel : MVVM_ViewModel {
             .retry(2)
             .subscribe(onSuccess: { [weak t = unsupportedVersionTriggerVar] (config) in
                 immutableNonPersistentState = .init(
-                    subscriptionProductIDs: config.subscriptionProductIDs,
                     screenProtectEnabled: config.screenProtectEnabled,
                     shareCardImageURL: config.fantasyCardsShare.card,
                     shareCollectionImageURL: config.fantasyCardsShare.collection,
