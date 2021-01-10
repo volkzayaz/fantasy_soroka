@@ -76,9 +76,10 @@ extension FantasyDeckViewModel {
     
     var cards: Driver<[Fantasy.Card]> {
         
-        return provider.cardsChange
-            .map { $0.cards }
-            .notNil()
+        return .just([])
+//            provider.cardsChange
+//            .map { $0.cards }
+//            .notNil()
         
     }
     
