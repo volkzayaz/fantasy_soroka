@@ -236,7 +236,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                 }).disposed(by: rx.disposeBag)
         }
     }
-    
+
 }
 
 extension FantasyDeckViewController {
@@ -261,8 +261,8 @@ extension FantasyDeckViewController {
     }
 
     @IBAction func collectionsTapped() {
-        collectionsButton.isSelected = true
-        cardsButton.isSelected = false
+//        collectionsButton.isSelected = true
+//        cardsButton.isSelected = false
         cardsView.isHidden = true
         collectionsView.isHidden = false
 
@@ -285,12 +285,12 @@ extension FantasyDeckViewController {
         
         view.addFantasyGradient()
 
-        collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
-        collectionsButton.mode = .selector
-        collectionsButton.isSelected = false
-        cardsButton.setTitle(R.string.localizable.fantasyDeckCardsButton(), for: .normal)
-        cardsButton.mode = .selector
-        cardsButton.isSelected = true
+//        collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
+//        collectionsButton.mode = .selector
+//        collectionsButton.isSelected = false
+//        cardsButton.setTitle(R.string.localizable.fantasyDeckCardsButton(), for: .normal)
+//        cardsButton.mode = .selector
+//        cardsButton.isSelected = true
 
         waitingView.addFantasyRoundedCorners()
         waitingView.backgroundColor = .primary
