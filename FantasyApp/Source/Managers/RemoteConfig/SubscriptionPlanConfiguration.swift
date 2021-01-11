@@ -94,7 +94,7 @@ struct SubscriptionPlanConfiguration: Decodable {
             return R.string.localizable.subscriptionTrialSticker()
         case .offer:
             if let baseProduct = baseProduct, let dailyPrice = product.subscriptionDailyPrice, let baseDailyPrice = baseProduct.subscriptionDailyPrice {
-                let discount = Int(round(dailyPrice.dividing(by: baseDailyPrice).multiplying(by: 100).doubleValue))
+                let discount = Int(round(100 - dailyPrice.dividing(by: baseDailyPrice).multiplying(by: 100).doubleValue))
                 return R.string.localizable.subscriptionOfferSticker(discount)
             } else {
                 return nil
