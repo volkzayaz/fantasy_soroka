@@ -36,8 +36,8 @@ class SubscriptionPlanStyle1View: UIView {
         stickerLabel.text = plan.sticker
         
         switch planType {
-        case .trial: stickerView.backgroundColor = UIColor(fromHex: 0xCF3DB4)
-        case .offer: stickerView.backgroundColor = UIColor(fromHex: 0xA096E2)
+        case .trial: stickerView.addBlueFantasyDiagonalGradient()
+        case .offer: stickerView.addFantasyDiagonalGradient()
         default:
             break
         }

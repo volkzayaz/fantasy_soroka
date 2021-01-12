@@ -1412,7 +1412,7 @@ activated when it reaches</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDe-xV-7SN">
                                                         <rect key="frame" x="0.0" y="99.5" width="382" height="113"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-8I-Xpl" customClass="FantasyGradientView" customModule="FantasyApp" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-8I-Xpl" customClass="FantasyHorizontalGradientView" customModule="FantasyApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="113"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <userDefinedRuntimeAttributes>
