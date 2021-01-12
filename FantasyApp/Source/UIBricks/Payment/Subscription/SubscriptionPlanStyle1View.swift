@@ -37,7 +37,7 @@ class SubscriptionPlanStyle1View: UIView {
         
         switch planType {
         case .trial: stickerView.addBlueFantasyDiagonalGradient()
-        case .offer: stickerView.addFantasyDiagonalGradient()
+        case .special: stickerView.addFantasyDiagonalGradient()
         default:
             break
         }

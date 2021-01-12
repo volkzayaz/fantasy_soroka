@@ -11,7 +11,7 @@ import Foundation
 enum SubscriptionPlanType: String, Decodable {
     case regular
     case trial
-    case offer
+    case special
 }
 
 struct SubscriptionPlanConfiguration: Decodable {
@@ -40,8 +40,8 @@ struct SubscriptionPlanConfiguration: Decodable {
             return R.string.localizable.subscriptionRegularPayment(product.localizedPrice, product.subscriptionPeriodDuration)
         case .trial:
             return R.string.localizable.subscriptionTrialPayment(product.localizedPrice, product.subscriptionPeriodDuration)
-        case .offer:
-            return R.string.localizable.subscriptionOfferPayment(product.localizedPrice, product.subscriptionPeriodDuration)
+        case .special:
+            return R.string.localizable.subscriptionSpecialPayment(product.localizedPrice, product.subscriptionPeriodDuration)
         }
     }
     
@@ -68,10 +68,10 @@ struct SubscriptionPlanConfiguration: Decodable {
             }
             
             return result
-        case .offer:
+        case .special:
             let dailyPayment = product.subscriptionDailyPayment
-            let baseProductDetails = R.string.localizable.subscriptionOfferBaseProductDetails(baseProduct?.localizedPrice ?? "", baseProduct?.subscriptionDailyPayment ?? "")
-            let details = R.string.localizable.subscriptionOfferDetails(product.localizedPrice, product.subscriptionPeriodDuration, dailyPayment, baseProductDetails)
+            let baseProductDetails = R.string.localizable.subscriptionSpecialBaseProductDetails(baseProduct?.localizedPrice ?? "", baseProduct?.subscriptionDailyPayment ?? "")
+            let details = R.string.localizable.subscriptionSpecialDetails(product.localizedPrice, product.subscriptionPeriodDuration, dailyPayment, baseProductDetails)
             
             let result = NSMutableAttributedString(string: details)
             if let range = details.range(of: dailyPayment) {
@@ -92,10 +92,10 @@ struct SubscriptionPlanConfiguration: Decodable {
             return nil
         case .trial:
             return R.string.localizable.subscriptionTrialSticker()
-        case .offer:
+        case .special:
             if let baseProduct = baseProduct, let dailyPrice = product.subscriptionDailyPrice, let baseDailyPrice = baseProduct.subscriptionDailyPrice {
                 let discount = Int(round(100 - dailyPrice.dividing(by: baseDailyPrice).multiplying(by: 100).doubleValue))
-                return R.string.localizable.subscriptionOfferSticker(discount)
+                return R.string.localizable.subscriptionSpecialSticker(discount)
             } else {
                 return nil
             }

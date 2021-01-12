@@ -743,14 +743,14 @@
 "subscription.regular.details" = "Billed %@ per %@ (equals %@)";
 "subscription.trial.payment" = "Then %@ / %@";
 "subscription.trial.details" = "For %@, then billed %@ per %@ (equals %@)";
-"subscription.offer.payment" = "%@ / %@";
-"subscription.offer.details" = "Billed %@ per %@ (equals %@), instead of %@";
-"subscription.offer.baseProductDetails" = "%@ (%@)";
+"subscription.special.payment" = "%@ / %@";
+"subscription.special.details" = "Billed %@ per %@ (equals %@), instead of %@";
+"subscription.special.baseProductDetails" = "%@ (%@)";
 "subscription.plan.buttonTitle" = "Continue";
 "subscription.plan.buttonTitle1" = "Continue";
 "subscription.plan.buttonTitle2" = "Continue";
 "subscription.trial.sticker" = "Best Value";
-"subscription.offer.sticker" = "Save %d%%";
+"subscription.special.sticker" = "Save %d%%";
 
 "getMembership.save" = "Save";
 "getMembership.tryToday" = "Try today";
@@ -773,12 +773,13 @@
 "com.fantasyapp.iosclient.iap.premium.special" = "Start Free 3 Days Trial";
 "com.fantasyapp.iosclient.iap.premium.special2" = "1 Week Membership";
 "com.fantasyapp.iosclient.iap.premium.1month" = "1 Month Membership";
-"com.fantasyapp.iosclient.iap.premium.months3" = "3 Month Membership";
+"com.fantasyapp.iosclient.iap.premium.months3" = "3 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.months3.special" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premium.months3.special2" = "3 Month Membership";
+"com.fantasyapp.iosclient.iap.premium.months3.special2" = "3 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.year" = "1 Year Membership";
 "com.fantasyapp.iosclient.iap.premium.year.special" = "Start Free 3 Days Trial";
 "com.fantasyapp.iosclient.iap.premium.year.special2" = "1 Year Membership";
+"com.fantasyapp.iosclient.iap.premiumwithdecks" = "1 Week Membership Full";
 
 
 //Profile//
