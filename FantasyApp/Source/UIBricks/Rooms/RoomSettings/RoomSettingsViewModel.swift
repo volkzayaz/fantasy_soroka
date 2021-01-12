@@ -157,24 +157,6 @@ class RoomSettingsViewModel: MVVM_ViewModel {
             }
         }
     }
-    
-    enum DeckCellModel: IdentifiableType, Equatable {
-        case fantasy([UserProfileViewModel.Row.Fantasies])
-        
-        var identity: String {
-            switch self {
-    
-            case .fantasy(let x):
-                if case .card(_)? = x.first {
-                    return "fantasy cards"
-                }
-                
-                return "fantasy sneakPeek"
-                
-            }
-        }
-    }
-    
 }
 
 extension RoomSettingsViewModel {
