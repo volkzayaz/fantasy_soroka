@@ -78,7 +78,7 @@ class SubscriptionViewController: UIViewController, MVVM_View {
             }).disposed(by: rx.disposeBag)
         
         Driver.combineLatest(viewModel.plans, viewModel.showAllPlans)
-            .map { $0.count == 0 || $1 }
+            .map { $0.count < 2 || $1 }
             .drive(seeOtherPlansButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
