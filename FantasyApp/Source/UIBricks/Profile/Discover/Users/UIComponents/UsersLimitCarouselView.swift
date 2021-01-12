@@ -64,7 +64,6 @@ private extension UsersLimitCarouselView {
         dailyLimitReachedLabel.text = R.string.localizable.profileDiscoverUsersDailyLimitDescription()
         discoverNewProfilesLabel.text = R.string.localizable.profileDiscoverUsersDailyLimitDiscoverNewProfiles()
         doNotWaitLabel.text = R.string.localizable.profileDiscoverUsersDailyLimitSubscriptionLabel()
-        getMembershipButton.setTitle(R.string.localizable.getMembershipGetButton(), for: .normal)
         
         getMembershipView.isHidden = (getMembership == nil)
     }
