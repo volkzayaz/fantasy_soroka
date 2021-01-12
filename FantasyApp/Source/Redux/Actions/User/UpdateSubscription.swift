@@ -19,8 +19,8 @@ struct UpdateSubscription: ActionCreator {
             .map { (deck) in
                 var state = initialState
                 state.currentUser?.subscription = self.with
-                if initialState.currentUser?.subscription.isSubscribed != true, with.isSubscribed {
-                    state.currentUser?.searchPreferences?.isGlobalMode = true
+                if initialState.currentUser?.subscription.isSubscribed != with.isSubscribed {
+                    state.currentUser?.searchPreferences?.isGlobalMode = with.isSubscribed
                 }
                 
                 ///this is trigget to reload data in collections list
