@@ -8,6 +8,7 @@
 
 import Foundation
 import RxDataSources
+import RxSwift
 import Kingfisher
 
 class RoomSettingsViewController: UIViewController, MVVM_View {
@@ -21,6 +22,18 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     @IBOutlet private var notificationsView: UIView!
     @IBOutlet private var notificationsLabel: UILabel!
     @IBOutlet private var participantsCollectionView: UICollectionView!
+    @IBOutlet private var deckCollectionView: UICollectionView! {
+        didSet {
+            let cellSize = CGSize(width: 170, height:250)
+
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            layout.itemSize = cellSize
+            layout.minimumLineSpacing = 8.0
+            layout.minimumInteritemSpacing = 1.0
+            deckCollectionView.setCollectionViewLayout(layout, animated: true)
+        }
+    }
     @IBOutlet private var securitySettingsView: RoomSettingsPremiumFeatureView!
     @IBOutlet private var inviteLinkLabel: UILabel!
     @IBOutlet private var participantsLabel: UILabel!
@@ -68,6 +81,27 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             return cell
             
         }
+    })
+    
+    lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Fantasy.Request.LikedCards.SneakPeek>>(configureCell: { [unowned self] (_, cv, ip, model) in
+        
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
+                                              for: ip)!
+            
+            let i = [R.image.collectionStubBlured()!,
+                R.image.gay()!,
+                R.image.transsexual()!,
+                R.image.pansexual()!
+            ].randomElement()!
+            
+            cell.imageView.regularImageView.image = i
+            cell.isPurchased = false //sneakPeek.isPaid
+            
+            cell.fantasiesCountLabel.text = "\(model.amountlikedCardsByUser) \(model.coverItems)"
+            cell.paidLabel.text = model.coverRubric
+            
+            return cell
+        
     })
 
     override func viewDidLoad() {
@@ -118,11 +152,17 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                 
             })
             .disposed(by: rx.disposeBag)
-
+        
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
         
+        viewModel.deckDataSource
+            .map { [SectionModel(model: "", items: $0)] }
+            .drive(deckCollectionView.rx.items(dataSource: deckDataSource))
+            .disposed(by: rx.disposeBag)
+            
+    
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.generalDone(),
                                                             style: .plain,
                                                             target: self,
@@ -151,6 +191,8 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
 private extension RoomSettingsViewController {
     func configure() {
         view.addFantasyGradient()
+        
+        deckCollectionView.register(R.nib.fantasyCollectionCollectionViewCell)
         
         stackView.setCustomSpacing(16, after: titleLabel)
         stackView.setCustomSpacing(10, after: inviteLabel)

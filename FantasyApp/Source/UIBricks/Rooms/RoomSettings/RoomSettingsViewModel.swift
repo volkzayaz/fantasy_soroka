@@ -38,6 +38,14 @@ extension RoomSettingsViewModel {
         }
     }
     
+    var deckDataSource: Driver<[Fantasy.Request.LikedCards.SneakPeek]> {
+        return Fantasy.Manager.likedCards(of: User.current!)
+            .asDriver(onErrorJustReturn: [])
+        
+    }
+
+
+    
     var intiteLinkHidden: Driver<Bool> {
         return inviteLink.asDriver().map { $0 == nil }
     }
@@ -82,6 +90,8 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     
     private let cells: BehaviorRelay<[CellModel]>
     private let buo: BranchUniversalObject?
+    
+    fileprivate var relationshipState = BehaviorRelay<Connection?>(value: nil)
     
     init(router: RoomSettingsRouter, room: SharedRoomResource) {
         self.router = router
@@ -147,6 +157,24 @@ class RoomSettingsViewModel: MVVM_ViewModel {
             }
         }
     }
+    
+    enum DeckCellModel: IdentifiableType, Equatable {
+        case fantasy([UserProfileViewModel.Row.Fantasies])
+        
+        var identity: String {
+            switch self {
+    
+            case .fantasy(let x):
+                if case .card(_)? = x.first {
+                    return "fantasy cards"
+                }
+                
+                return "fantasy sneakPeek"
+                
+            }
+        }
+    }
+    
 }
 
 extension RoomSettingsViewModel {
