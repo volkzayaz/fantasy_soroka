@@ -32,7 +32,7 @@ class ProtectedImageView: UIView {
             ImageRetreiver.imageForURLWithoutProgress(url: imageURL)
                 .trackView(viewIndicator: indicator)
                 .map { $0 ?? errorPlaceholder }
-                .bind(to: regularImageView.rx.image(transitionType: CATransitionType.moveIn.rawValue))
+                .bind(to: regularImageView.rx.image(transitionType: CATransitionType.fade.rawValue))
                 .disposed(by: bag)
          
             return

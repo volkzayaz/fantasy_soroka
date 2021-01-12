@@ -1,5 +1,5 @@
 //
-//  FantasyGradientView.swift
+//  FantasyHorizontalGradientView.swift
 //  FantasyApp
 //
 //  Created by Ihor Vovk on 26.12.2020.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class FantasyGradientView: UIView {
-
+class FantasyHorizontalGradientView: UIView {
+    
     @IBInspectable var onlyBorder: Bool = false {
         didSet {
             updateMask()
@@ -18,7 +18,7 @@ class FantasyGradientView: UIView {
     
     override open class var layerClass: Swift.AnyClass {
         get {
-            return FantasyGradientLayer.self
+            return FantasyHorizontalGradientLayer.self
         }
     }
     
@@ -33,7 +33,7 @@ class FantasyGradientView: UIView {
     }
 }
 
-private extension FantasyGradientView {
+private extension FantasyHorizontalGradientView {
     
     func setUp() {
         rx.observe(CGRect.self, #keyPath(UIView.bounds))

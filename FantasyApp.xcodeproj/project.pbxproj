@@ -355,6 +355,8 @@
 		A25681302546D17800199209 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812F2546D17800199209 /* AdSupport.framework */; };
 		A257FD9C258BDFAF00653C15 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FD9B258BDFAF00653C15 /* UserResource.swift */; };
 		A257FDA2258BE02200653C15 /* UserProfileResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257FDA1258BE02200653C15 /* UserProfileResource.swift */; };
+		A268DD0A25AE155300A68BE9 /* FantasyDiagonalGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268DD0925AE155300A68BE9 /* FantasyDiagonalGradientLayer.swift */; };
+		A268DD0F25AE157000A68BE9 /* BlueFantasyDiagonalGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268DD0E25AE157000A68BE9 /* BlueFantasyDiagonalGradientLayer.swift */; };
 		A27BC792258E1CA800AB3E40 /* UsersLimitCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */; };
 		A27BC796258E1CC100AB3E40 /* UsersLimitCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */; };
 		A27BC79C258E2F5200AB3E40 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */; };
@@ -365,7 +367,7 @@
 		A2A95CE22544984C006A4F3F /* AppsFlyerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */; };
 		A2C22A5B25976E40009FB4BB /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */; };
 		A2C22A8425976EC1009FB4BB /* FantasyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A8325976EC1009FB4BB /* FantasyGradientView.swift */; };
-		A2C22A8C259771B8009FB4BB /* FantasyGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A8B259771B8009FB4BB /* FantasyGradientLayer.swift */; };
+		A2C22A8C259771B8009FB4BB /* FantasyHorizontalGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C22A8B259771B8009FB4BB /* FantasyHorizontalGradientLayer.swift */; };
 		A2C60B61255DB3FC00B9224F /* RadioOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */; };
 		A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */; };
 		A2CCA59024D9877D00A2C1AD /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */; };
@@ -836,6 +838,8 @@
 		A256812F2546D17800199209 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A257FD9B258BDFAF00653C15 /* UserResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		A257FDA1258BE02200653C15 /* UserProfileResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileResource.swift; sourceTree = "<group>"; };
+		A268DD0925AE155300A68BE9 /* FantasyDiagonalGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDiagonalGradientLayer.swift; sourceTree = "<group>"; };
+		A268DD0E25AE157000A68BE9 /* BlueFantasyDiagonalGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueFantasyDiagonalGradientLayer.swift; sourceTree = "<group>"; };
 		A27BC791258E1CA800AB3E40 /* UsersLimitCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersLimitCarouselView.xib; sourceTree = "<group>"; };
 		A27BC795258E1CC100AB3E40 /* UsersLimitCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLimitCarouselView.swift; sourceTree = "<group>"; };
 		A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
@@ -846,7 +850,7 @@
 		A2A95CE12544984C006A4F3F /* AppsFlyerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManager.swift; sourceTree = "<group>"; };
 		A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 		A2C22A8325976EC1009FB4BB /* FantasyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyGradientView.swift; sourceTree = "<group>"; };
-		A2C22A8B259771B8009FB4BB /* FantasyGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyGradientLayer.swift; sourceTree = "<group>"; };
+		A2C22A8B259771B8009FB4BB /* FantasyHorizontalGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyHorizontalGradientLayer.swift; sourceTree = "<group>"; };
 		A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionTableViewCell.swift; sourceTree = "<group>"; };
 		A2C60B64255EB8E400B9224F /* EditRelationshipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipViewModel.swift; sourceTree = "<group>"; };
 		A2CCA58C24D9723D00A2C1AD /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
@@ -1392,7 +1396,9 @@
 				A2C60B60255DB3FC00B9224F /* RadioOptionTableViewCell.swift */,
 				A2E66734256688D200AFC331 /* LeftAlignedCollectionViewFlowLayout.swift */,
 				A2C22A8325976EC1009FB4BB /* FantasyGradientView.swift */,
-				A2C22A8B259771B8009FB4BB /* FantasyGradientLayer.swift */,
+				A2C22A8B259771B8009FB4BB /* FantasyHorizontalGradientLayer.swift */,
+				A268DD0925AE155300A68BE9 /* FantasyDiagonalGradientLayer.swift */,
+				A268DD0E25AE157000A68BE9 /* BlueFantasyDiagonalGradientLayer.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -3104,7 +3110,7 @@
 				88DF09CC2471B8540070C487 /* RoomTutorialViewController.swift in Sources */,
 				7361F3192332378A007B84B0 /* CLGeocoder+rx.swift in Sources */,
 				88648A8B24CB728A0062C7A5 /* ApphudManager.swift in Sources */,
-				A2C22A8C259771B8009FB4BB /* FantasyGradientLayer.swift in Sources */,
+				A2C22A8C259771B8009FB4BB /* FantasyHorizontalGradientLayer.swift in Sources */,
 				B78BE6F72351D3A3003A36BA /* ForgotPasswordRouter.swift in Sources */,
 				B73774B623647DEF00A353CC /* UIBarButtonItem+FantasyFont.swift in Sources */,
 				B78BE6FB23521A11003A36BA /* TransparentTextField.swift in Sources */,
@@ -3125,6 +3131,7 @@
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
 				B719F9232389A625009AB110 /* MyFantasiesBlockedViewController.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
+				A268DD0A25AE155300A68BE9 /* FantasyDiagonalGradientLayer.swift in Sources */,
 				B78893EF2364B18A00079C89 /* PinkButton.swift in Sources */,
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
@@ -3313,6 +3320,7 @@
 				7312B07222D740AC00DB0F36 /* R.generated.swift in Sources */,
 				B719B3E8235CF21000568D97 /* FantasyImagePickerController.swift in Sources */,
 				733F41D02365EFB4004EC466 /* MultiSliderExtensions.swift in Sources */,
+				A268DD0F25AE157000A68BE9 /* BlueFantasyDiagonalGradientLayer.swift in Sources */,
 				73EBBA70234E046100B79121 /* PushManager.swift in Sources */,
 				7312B0DD22D7536300DB0F36 /* PFObject+Rx.swift in Sources */,
 				7379ECFF2309714100E661A7 /* FantasyListViewController.swift in Sources */,

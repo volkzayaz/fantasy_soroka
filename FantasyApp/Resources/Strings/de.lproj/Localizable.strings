@@ -525,7 +525,7 @@
 "fantasy.users.search.yourCityWillBeActive" = "will be activated when it reaches";
 "cityNotActiveView.users" = "users";
 "cityNotActiveView.invite" = "Invite Friends";
-"cityNotActiveView.goGlobal" = "Go Global";
+"cityNotActiveView.goGlobal" = "Find People Nearby";
 
 //case-when-there-is-no-new-profiles
 "profile.discover.users.noUsers.title" = "No new\nFlirt seekers today";
@@ -536,6 +536,7 @@
 "profile.discover.users.dailyLimit.description" = "The daily limit\nhas been reached";
 "profile.discover.users.dailyLimit.discoverNewProfiles" = "Discover new profiles in";
 "profile.discover.users.dailyLimit.subscription.label" = "Or don't wait";
+"profile.discover.users.dailyLimit.subscription.button" = "Get More Profiles";
 
 //placeholer-picture-is-not-localized
 //placeholer-text-is-not-localized
@@ -742,19 +743,20 @@
 "subscription.regular.details" = "Billed %@ per %@ (equals %@)";
 "subscription.trial.payment" = "Then %@ / %@";
 "subscription.trial.details" = "For %@, then billed %@ per %@ (equals %@)";
-"subscription.offer.payment" = "%@ / %@";
-"subscription.offer.details" = "Billed %@ per %@ (equals %@), instead of %@";
-"subscription.offer.baseProductDetails" = "%@ (%@)";
+"subscription.special.payment" = "%@ / %@";
+"subscription.special.details" = "Billed %@ per %@ (equals %@), instead of %@";
+"subscription.special.baseProductDetails" = "%@ (%@)";
 "subscription.plan.buttonTitle" = "Continue";
 "subscription.plan.buttonTitle1" = "Continue";
 "subscription.plan.buttonTitle2" = "Continue";
 "subscription.trial.sticker" = "Best Value";
-"subscription.offer.sticker" = "Save %d%%";
+"subscription.special.sticker" = "Save %d%%";
 
 "getMembership.save" = "Save";
 "getMembership.tryToday" = "Try today";
 
 "getMembership.continueButton" = "Continue";
+"getMembership.noThanksButton" = "No Thanks";
 "getMembership.seeOtherPlansButton" = " See Other Plans";
 
 "getMembership.recurringBilling" = "Recurring billing, no refunds, cancel any time";
@@ -771,12 +773,13 @@
 "com.fantasyapp.iosclient.iap.premium.special" = "Start Free 3 Days Trial";
 "com.fantasyapp.iosclient.iap.premium.special2" = "1 Week Membership";
 "com.fantasyapp.iosclient.iap.premium.1month" = "1 Month Membership";
-"com.fantasyapp.iosclient.iap.premium.months3" = "3 Month Membership";
+"com.fantasyapp.iosclient.iap.premium.months3" = "3 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.months3.special" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premium.months3.special2" = "3 Month Membership";
+"com.fantasyapp.iosclient.iap.premium.months3.special2" = "3 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.year" = "1 Year Membership";
 "com.fantasyapp.iosclient.iap.premium.year.special" = "Start Free 3 Days Trial";
 "com.fantasyapp.iosclient.iap.premium.year.special2" = "1 Year Membership";
+"com.fantasyapp.iosclient.iap.premiumwithdecks" = "1 Week Membership Full";
 
 
 //Profile//

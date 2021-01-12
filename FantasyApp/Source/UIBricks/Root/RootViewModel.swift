@@ -51,6 +51,9 @@ extension RootViewModel {
         
     }
     
+    var isLastKnownUpdateEnabled: Bool {
+        !SettingsStore.disableLastKnownLocationUpdate.value
+    }
 }
 
 class RootViewModel : MVVM_ViewModel {
@@ -113,4 +116,7 @@ extension RootViewModel {
         unsupportedVersionTriggerVar.accept(true)
     }
     
+    func toggleLastKnownLocationIsEnabled() {
+        SettingsStore.disableLastKnownLocationUpdate.value = !SettingsStore.disableLastKnownLocationUpdate.value
+    }
 }

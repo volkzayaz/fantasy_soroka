@@ -15,7 +15,8 @@ struct UpdateLastKnownLocation: Action {
     func perform(initialState: AppState) -> AppState {
         var state = initialState
         
-        guard let _ = state.currentUser else {
+        guard let _ = state.currentUser,
+              !((RunScheme.debug || RunScheme.adhoc) && SettingsStore.disableLastKnownLocationUpdate.value) else {
             return initialState
         }
         
