@@ -41,6 +41,8 @@ class SubscriptionPlanStyle1View: UIView {
         default:
             break
         }
+        
+        setUpShadow()
     }
     
     override func layoutSubviews() {
@@ -48,6 +50,7 @@ class SubscriptionPlanStyle1View: UIView {
         DispatchQueue.main.async {
             self.subscribeButton.removeGradient()
             self.subscribeButton.addFantasyGradient()
+            self.updateShadowFrame()
         }
     }
     
@@ -58,7 +61,20 @@ class SubscriptionPlanStyle1View: UIView {
 
 private extension SubscriptionPlanStyle1View {
     
-    @IBAction private func subscribe(_ sender: Any) {
+    func setUpShadow() {
+        layer.shadowColor = UIColor(red: 0.78, green: 0.467, blue: 0.773, alpha: 0.38).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 21
+        layer.shadowOffset = CGSize(width: 0, height: 6)
+        
+        updateShadowFrame()
+    }
+    
+    func updateShadowFrame() {
+        layer.shadowPath = UIBezierPath(roundedRect: subscribeButton.frame, cornerRadius: 0).cgPath
+    }
+    
+    @IBAction func subscribe(_ sender: Any) {
         subscription()
     }
 }
