@@ -19,6 +19,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var inviteView: UIView!
     @IBOutlet private var inviteLabel: UILabel!
+    @IBOutlet private var decksLabel: UILabel!
     @IBOutlet private var notificationsView: UIView!
     @IBOutlet private var notificationsLabel: UILabel!
     @IBOutlet private var participantsCollectionView: UICollectionView!
@@ -221,7 +222,12 @@ private extension RoomSettingsViewController {
         participantsLabel.font = .boldFont(ofSize: 15)
         participantsLabel.textColor = .fantasyBlack
         participantsLabel.text = R.string.localizable.roomCreationParticipants()
-
+        
+        decksLabel.font = .boldFont(ofSize: 15)
+        decksLabel.textColor = .fantasyBlack
+        
+        deckCollectionView.backgroundColor = .clear
+        
         inviteLinkLabel.font = .regularFont(ofSize: 15)
         inviteLinkLabel.textColor = .basicGrey
         
