@@ -233,7 +233,11 @@ extension DiscoverProfileViewModel {
     }
     
     func subscribeTapped() {
-        router.showSubscription()
+        router.showSubscription(page: .x3NewProfilesDaily)
+    }
+    
+    func goGlobal() {
+        router.showSubscription(page: .globalMode)
     }
     
     // Location

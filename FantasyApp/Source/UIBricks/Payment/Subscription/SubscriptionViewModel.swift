@@ -38,6 +38,7 @@ struct SubscriptionPlan {
     let buttonTitle: String
     let sticker: String?
     let position: Int
+    let analyticsDescription: String
     
     init(configuration: SubscriptionPlanConfiguration, product: SKProduct, baseProduct: SKProduct?) {
         productID = product.productIdentifier
@@ -48,6 +49,8 @@ struct SubscriptionPlan {
         buttonTitle = configuration.localizedButtonTitle
         sticker = configuration.sticker(product: product, baseProduct: baseProduct)
         position = configuration.position
+        
+        analyticsDescription = "P\(position)_" + product.shortSubscriptionPeriodDuration + type.rawValue.capitalizingFirstLetter() + "\(product.price.stringValue)"
     }
 }
 
@@ -89,6 +92,8 @@ extension SubscriptionViewModel {
 class SubscriptionViewModel : MVVM_ViewModel {
     
     let startPage: Page
+    let style: SubscriptionPlansStyle
+    
     private let plansRelay = BehaviorRelay<[SubscriptionPlan]>(value: [])
     private let showAllPlansRelay = BehaviorRelay<Bool>(value: false)
     private let completion: (() -> Void)?
@@ -97,6 +102,7 @@ class SubscriptionViewModel : MVVM_ViewModel {
         self.router = router
         startPage = page ?? Page.allCases[0]
         self.completion = completion
+        style = RemoteConfigManager.subscriptionPlansConfiguration.style
         
         let configurations = RemoteConfigManager.subscriptionPlansConfiguration.plans
         let ids = configurations.reduce([]) { (result, configuration) -> Set<String> in
@@ -127,8 +133,6 @@ class SubscriptionViewModel : MVVM_ViewModel {
             .drive(plansRelay)
             .disposed(by: bag)
         
-        Analytics.report(Analytics.Event.PurchaseInterest(context: startPage.purchaseInterestContext))
-        
         /////progress indicator
         
         indicator.asDriver()
@@ -136,12 +140,29 @@ class SubscriptionViewModel : MVVM_ViewModel {
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(UIApplication.willTerminateNotification)
+            .subscribe { [unowned self] _ in self.reportPurchaseInterest(paymentStatus: .terminate) }
+            .disposed(by: bag)
+        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
+            .subscribe { [unowned self] _ in
+                guard !isPurchaseInProgress else { return }
+                self.reportPurchaseInterest(paymentStatus: .resignActive)
+            }.disposed(by: bag)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .subscribe { [unowned self] _ in
+                guard !isPurchaseInProgress else { return }
+                self.timeSpentCounter.restart()
+            }.disposed(by: bag)
+        
+        timeSpentCounter.start()
     }
     
     let router: SubscriptionRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
+    private var timeSpentCounter = TimeSpentCounter()
+    private var isPurchaseInProgress = false
 }
 
 extension SubscriptionViewModel {
@@ -154,16 +175,22 @@ extension SubscriptionViewModel {
         guard let plan = plansRelay.value[safe: planIndex] else { return }
         let copy = self.completion
         
+        isPurchaseInProgress = true
         PurchaseManager.purhcaseSubscription(with: plan.productID)
             .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [unowned o = router.owner] _ in
+            .catchError { [unowned self] error in
+                self.reportPurchaseInterest(paymentStatus: .failed)
+                self.timeSpentCounter.restart()
+                throw error
+            }.silentCatch(handler: router.owner)
+            .subscribe(onNext: { [unowned self, o = router.owner] _ in
+                self.reportPurchaseInterest(paymentStatus: .success)
                 o.dismiss(animated: true, completion: {
                     copy?()
                 })
-            })
-            .disposed(by: self.bag)
-        
+            }, onCompleted: { [unowned self] in
+                self.isPurchaseInProgress = false
+            }).disposed(by: self.bag)
     }
     
     /** Reference any actions ViewModel can handle
@@ -176,5 +203,20 @@ extension SubscriptionViewModel {
      
      */
     
+    func willCancel() {
+        reportPurchaseInterest(paymentStatus: .cancel)
+    }
 }
 
+private extension SubscriptionViewModel {
+    
+    func reportPurchaseInterest(paymentStatus: Analytics.Event.PurchaseInterest.PaymentStatus) {
+        guard timeSpentCounter.isStarted else { return }
+        
+        Analytics.report(Analytics.Event.PurchaseInterest(context: startPage.purchaseInterestContext, content: purchaseInterestEventContent, type: .regular, paymentStatus: paymentStatus, spentTime: timeSpentCounter.finish()))
+    }
+    
+    var purchaseInterestEventContent: String {
+        plansRelay.value.map { $0.analyticsDescription }.joined(separator: " ") + " Style\(style.rawValue)" + " PlansVisible_\(showAllPlansRelay.value ? "Yes" : "No")"
+    }
+}

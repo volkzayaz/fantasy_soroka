@@ -8,15 +8,15 @@
 
 import Foundation
 
+enum SubscriptionPlansStyle: Int, Decodable {
+    case style1 = 1
+    case style2
+    case style3
+}
+
 struct SubscriptionPlansConfiguration: Decodable {
     
-    enum Style: Int, Decodable {
-        case style1 = 1
-        case style2
-        case style3
-    }
-    
-    let style: Style
+    let style: SubscriptionPlansStyle
     let plans: [SubscriptionPlanConfiguration]
 
     static let `default` = SubscriptionPlansConfiguration(style: .style1, plans: [

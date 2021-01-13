@@ -13,8 +13,8 @@ extension Analytics.Event {
     struct PurchaseInterest: AnalyticsEvent {
         
         enum Context: String {
-            case x3NewProfilesDaily = "ProfilesLimit"
-            case globalMode = "GlobalMode"
+            case x3NewProfilesDaily = "SearchLimit"
+            case globalMode = "SearchGlobalMode"
             case changeActiveCity = "SearchActiveCity"
             case accessToAllDecks = "AccessToAllDecks"
             case x3NewCardsDaily = "DeckLimit"
@@ -23,12 +23,32 @@ extension Analytics.Event {
             case subscriptionOffer = "SubscriptionOffer"
         }
         
+        enum PurchaseType: String {
+            case regular = "Regular"
+        }
+        
+        enum PaymentStatus: String {
+            case success = "Success"
+            case failed = "Failed"
+            case cancel = "Cancel"
+            case resignActive = "Resign Active"
+            case terminate = "Terminate"
+        }
+        
         let context: Context
+        let content: String?
+        let type: PurchaseType?
+        let paymentStatus: PaymentStatus?
+        let spentTime: Int?
         let itemName: String?
         let discount: String?
         
-        init(context: Context, itemName: String? = nil, discount: String? = nil) {
+        init(context: Context, content: String? = nil, type: PurchaseType? = nil, paymentStatus: PaymentStatus? = nil, spentTime: Int? = nil, itemName: String? = nil, discount: String? = nil) {
             self.context = context
+            self.content = content
+            self.type = type
+            self.paymentStatus = paymentStatus
+            self.spentTime = spentTime
             self.itemName = itemName
             self.discount = discount
         }
@@ -38,6 +58,19 @@ extension Analytics.Event {
         var props: [String : String]? {
             var params = [String: String]()
             params["Context"] = context.rawValue
+            params["Content"] = content
+            
+            if let type = type {
+                params["Type"] = type.rawValue
+            }
+            
+            if let paymentStatus = paymentStatus {
+                params["Payment Status"] = paymentStatus.rawValue
+            }
+            
+            if let spentTime = spentTime {
+                params["Time Spent"] = "\(spentTime)"
+            }
             
             if let itemName = itemName {
                 params["Item Name"] = itemName

@@ -90,7 +90,7 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                     self?.envChange()
             }),
             
-            .init(title: "Geolocation Auto Update - \(viewModel.isLastKnownUpdateEnabled ? "On" : "Off")",
+            .init(title: "Geolocation Auto Update - \(viewModel.isLastKnownUpdateEnabled ? "Turn Off" : "Turn On")",
                 style: .default,
                 handler: { [weak self] _ in
                     self?.viewModel.toggleLastKnownLocationIsEnabled()
