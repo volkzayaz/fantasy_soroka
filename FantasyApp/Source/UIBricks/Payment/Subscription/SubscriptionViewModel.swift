@@ -145,11 +145,15 @@ class SubscriptionViewModel : MVVM_ViewModel {
             .subscribe { [unowned self] _ in self.reportPurchaseInterest(paymentStatus: .terminate) }
             .disposed(by: bag)
         NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
-            .subscribe { [unowned self] _ in self.reportPurchaseInterest(paymentStatus: .resignActive) }
-            .disposed(by: bag)
+            .subscribe { [unowned self] _ in
+                guard !isPurchaseInProgress else { return }
+                self.reportPurchaseInterest(paymentStatus: .resignActive)
+            }.disposed(by: bag)
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
-            .subscribe { [unowned self] _ in self.timeSpentCounter.restart() }
-            .disposed(by: bag)
+            .subscribe { [unowned self] _ in
+                guard !isPurchaseInProgress else { return }
+                self.timeSpentCounter.restart()
+            }.disposed(by: bag)
         
         timeSpentCounter.start()
     }
@@ -158,6 +162,7 @@ class SubscriptionViewModel : MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     private var timeSpentCounter = TimeSpentCounter()
+    private var isPurchaseInProgress = false
 }
 
 extension SubscriptionViewModel {
@@ -170,6 +175,7 @@ extension SubscriptionViewModel {
         guard let plan = plansRelay.value[safe: planIndex] else { return }
         let copy = self.completion
         
+        isPurchaseInProgress = true
         PurchaseManager.purhcaseSubscription(with: plan.productID)
             .trackView(viewIndicator: indicator)
             .catchError { [unowned self] error in
@@ -182,8 +188,9 @@ extension SubscriptionViewModel {
                 o.dismiss(animated: true, completion: {
                     copy?()
                 })
-            })
-            .disposed(by: self.bag)
+            }, onCompleted: { [unowned self] in
+                self.isPurchaseInProgress = false
+            }).disposed(by: self.bag)
     }
     
     /** Reference any actions ViewModel can handle
