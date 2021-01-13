@@ -69,7 +69,7 @@ struct DiscoverProfileRouter : MVVM_Router {
         owner.present(navigationController, animated: true, completion: nil)
     }
     
-    func showSubscription() {
+    func showSubscription(page: SubscriptionViewModel.Page) {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
