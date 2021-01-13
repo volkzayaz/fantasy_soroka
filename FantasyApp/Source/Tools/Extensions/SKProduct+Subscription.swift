@@ -23,6 +23,18 @@ extension SKProduct {
         }
     }
     
+    var shortSubscriptionPeriodDuration: String {
+        guard let subscriptionPeriod = subscriptionPeriod else { return "" }
+            
+        switch subscriptionPeriod.unit {
+        case .day: return "\(subscriptionPeriod.numberOfUnits)d"
+        case .month: return "\(subscriptionPeriod.numberOfUnits)m"
+        case .week: return "\(subscriptionPeriod.numberOfUnits)w"
+        case .year: return "\(subscriptionPeriod.numberOfUnits)y"
+        @unknown default: return ""
+        }
+    }
+    
     var subscriptionDailyPrice: NSDecimalNumber? {
         guard let subscriptionPeriod = subscriptionPeriod else { return nil }
         

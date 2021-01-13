@@ -110,6 +110,7 @@ class SubscriptionViewController: UIViewController, MVVM_View {
     }
     
     @IBAction func cancel(_ sender: Any) {
+        viewModel.willCancel()
         NotificationCenter.default.post(name: NSNotification.Name("screenCancel"), object: nil)
         dismiss(animated: true, completion: nil)
     }
