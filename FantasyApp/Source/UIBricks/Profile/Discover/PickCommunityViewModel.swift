@@ -45,28 +45,7 @@ extension PickCommunityViewModel {
                     return .just( .community(c) )
                 }
                 
-                return self.manager.rx.location
-                    .notNil()
-                    .flatMapLatest { location in
-                        
-                        return CLGeocoder().rx
-                            .city(near: location)
-                            .map { bigCity in
-                                
-                                guard let x = bigCity else {
-                                    return nil
-                                }
-                                
-                                CommunityManager.logBigCity(name: x, location: location)
-                                
-                                _AnalyticsHackyTown = bigCity
-                                
-                                return Near.bigCity(name: x)
-                            }
-                        
-                    }
-                    .asDriver(onErrorJustReturn: nil)
-                
+                return nearCurrentLocation
             }
         
     }
@@ -76,6 +55,37 @@ extension PickCommunityViewModel {
         case bigCity(name: String)
     }
     
+}
+
+private extension PickCommunityViewModel {
+    
+    var nearCurrentLocation: Driver<Near?> {
+        manager.rx.location
+            .notNil()
+            .map { location in
+                if (RunScheme.debug || RunScheme.adhoc) && SettingsStore.disableLastKnownLocationUpdate.value, let lastKnownLocation = User.current?.community.lastKnownLocation {
+                    return lastKnownLocation.clLocation
+                } else {
+                    return location
+                }
+            }.flatMapLatest { location in
+                CLGeocoder().rx
+                    .city(near: location)
+                    .map { bigCity in
+                        
+                        guard let x = bigCity else {
+                            return nil
+                        }
+                        
+                        CommunityManager.logBigCity(name: x, location: location)
+                        
+                        _AnalyticsHackyTown = bigCity
+                        
+                        return Near.bigCity(name: x)
+                    }
+                
+            }.asDriver(onErrorJustReturn: nil)
+    }
 }
 
 struct PickCommunityViewModel {
@@ -128,7 +138,11 @@ struct PickCommunityViewModel {
                         ////TODO: we can manually predict if new location matches |community.value|
                         ////in this case there's no need for extra roundtrip to server
                         
-                        return location
+                        if (RunScheme.debug || RunScheme.adhoc) && SettingsStore.disableLastKnownLocationUpdate.value, let lastKnownLocation = User.current?.community.lastKnownLocation {
+                            return lastKnownLocation.clLocation
+                        } else {
+                            return location
+                        }
                     }
                 
             }
