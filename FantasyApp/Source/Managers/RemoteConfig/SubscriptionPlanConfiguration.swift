@@ -20,7 +20,7 @@ struct SubscriptionPlanConfiguration: Decodable {
     let baseProductId: String?
     let type: SubscriptionPlanType
     let buttonTitle: String?
-    let position: Int
+    let position: Int?
     
     var localizedButtonTitle: String {
         if let buttonTitle = buttonTitle {

@@ -40,7 +40,9 @@ struct SubscriptionPlan {
     let position: Int
     let analyticsDescription: String
     
-    init(configuration: SubscriptionPlanConfiguration, product: SKProduct, baseProduct: SKProduct?) {
+    init?(configuration: SubscriptionPlanConfiguration, product: SKProduct, baseProduct: SKProduct?) {
+        guard let position = configuration.position else { return nil }
+        
         productID = product.productIdentifier
         type = configuration.type
         title = configuration.title(product: product)
@@ -48,7 +50,7 @@ struct SubscriptionPlan {
         details = configuration.details(product: product, baseProduct: baseProduct)
         buttonTitle = configuration.localizedButtonTitle
         sticker = configuration.sticker(product: product, baseProduct: baseProduct)
-        position = configuration.position
+        self.position = position
         
         analyticsDescription = "P\(position)_" + product.shortSubscriptionPeriodDuration + type.rawValue.capitalizingFirstLetter() + "\(product.price.stringValue)"
     }
@@ -92,6 +94,7 @@ extension SubscriptionViewModel {
 class SubscriptionViewModel : MVVM_ViewModel {
     
     let startPage: Page
+    let screenTitle: String
     let style: SubscriptionPlansStyle
     
     private let plansRelay = BehaviorRelay<[SubscriptionPlan]>(value: [])
@@ -102,6 +105,7 @@ class SubscriptionViewModel : MVVM_ViewModel {
         self.router = router
         startPage = page ?? Page.allCases[0]
         self.completion = completion
+        screenTitle = RemoteConfigManager.subscriptionPlansConfiguration.localizedScreenTitle
         style = RemoteConfigManager.subscriptionPlansConfiguration.style
         
         let configurations = RemoteConfigManager.subscriptionPlansConfiguration.plans

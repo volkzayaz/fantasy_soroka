@@ -61,7 +61,7 @@ extension Analytics.Event {
             params["Content"] = content
             
             if let type = type {
-                params["Type"] = type.rawValue
+                params["Screen Type"] = type.rawValue
             }
             
             if let paymentStatus = paymentStatus {
