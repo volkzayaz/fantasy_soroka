@@ -54,7 +54,7 @@ class SubscriptionViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = R.string.localizable.subscriptionNavigationTitle()
+        navigationItem.title = viewModel.screenTitle
         
         view.addFantasyRoundedCorners()
         navigationController?.view.addFantasySubscriptionGradient()

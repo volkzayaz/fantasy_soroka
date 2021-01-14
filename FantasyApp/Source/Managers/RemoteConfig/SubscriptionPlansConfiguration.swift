@@ -16,10 +16,19 @@ enum SubscriptionPlansStyle: Int, Decodable {
 
 struct SubscriptionPlansConfiguration: Decodable {
     
+    let screenTitle: String?
     let style: SubscriptionPlansStyle
     let plans: [SubscriptionPlanConfiguration]
+    
+    var localizedScreenTitle: String {
+        if let screenTitle = screenTitle {
+            return NSLocalizedString(screenTitle, comment: "")
+        } else {
+            return R.string.localizable.subscriptionNavigationTitle()
+        }
+    }
 
-    static let `default` = SubscriptionPlansConfiguration(style: .style1, plans: [
+    static let `default` = SubscriptionPlansConfiguration(screenTitle: nil, style: .style1, plans: [
         SubscriptionPlanConfiguration(productId: "com.fantasyapp.iosclient.iap.premium", baseProductId: nil, type: .regular, buttonTitle: nil, position: 1),
         SubscriptionPlanConfiguration(productId: "com.fantasyapp.iosclient.iap.premium.months3", baseProductId: nil, type: .regular, buttonTitle: nil, position: 1),
         SubscriptionPlanConfiguration(productId: "com.fantasyapp.iosclient.iap.premium.year", baseProductId: nil, type: .regular, buttonTitle: nil, position: 1)])
