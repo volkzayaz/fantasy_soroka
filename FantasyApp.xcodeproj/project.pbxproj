@@ -349,6 +349,7 @@
 		A22AA6F125A0CB2200E45221 /* SubscriptionPlanStyle1View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22AA6F025A0CB2200E45221 /* SubscriptionPlanStyle1View.xib */; };
 		A22AA6FF25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */; };
 		A22E0E9925A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */; };
+		A2404E5125B1BECB004F7790 /* Reactive+CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2404E5025B1BECB004F7790 /* Reactive+CLLocationManager.swift */; };
 		A248637A25A761BD0039489B /* SKProduct+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248637925A761BD0039489B /* SKProduct+Subscription.swift */; };
 		A248638225A862F20039489B /* SubscriptionPlanConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */; };
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
@@ -832,6 +833,7 @@
 		A22AA6F025A0CB2200E45221 /* SubscriptionPlanStyle1View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscriptionPlanStyle1View.xib; sourceTree = "<group>"; };
 		A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlansConfiguration.swift; sourceTree = "<group>"; };
+		A2404E5025B1BECB004F7790 /* Reactive+CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+CLLocationManager.swift"; sourceTree = "<group>"; };
 		A248637925A761BD0039489B /* SKProduct+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+Subscription.swift"; sourceTree = "<group>"; };
 		A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlanConfiguration.swift; sourceTree = "<group>"; };
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
@@ -1179,6 +1181,7 @@
 				A27BC79B258E2F5200AB3E40 /* UIView+Nib.swift */,
 				A2C22A5A25976E3F009FB4BB /* UIView+Layer.swift */,
 				A248637925A761BD0039489B /* SKProduct+Subscription.swift */,
+				A2404E5025B1BECB004F7790 /* Reactive+CLLocationManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3006,6 +3009,7 @@
 				7379ED09230975A800E661A7 /* Analytics.swift in Sources */,
 				7322311123040DB6009DD37F /* FantasyDeckRouter.swift in Sources */,
 				73EBBA78234E2BEC00B79121 /* NotificationSettingsRouter.swift in Sources */,
+				A2404E5125B1BECB004F7790 /* Reactive+CLLocationManager.swift in Sources */,
 				734C70AB2321206800ED2E91 /* UserManager.swift in Sources */,
 				84AB490A232A7D7800F3609A /* String+Emojis.swift in Sources */,
 				844CD6FB235A77A1004E6BA3 /* RoomNotificationSettingsViewModel.swift in Sources */,

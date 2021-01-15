@@ -60,15 +60,9 @@ extension PickCommunityViewModel {
 private extension PickCommunityViewModel {
     
     var nearCurrentLocation: Driver<Near?> {
-        manager.rx.location
+        manager.rx.validatedLocation
             .notNil()
-            .map { location in
-                if (RunScheme.debug || RunScheme.adhoc) && SettingsStore.disableLastKnownLocationUpdate.value, let lastKnownLocation = User.current?.community.lastKnownLocation {
-                    return lastKnownLocation.clLocation
-                } else {
-                    return location
-                }
-            }.flatMapLatest { location in
+            .flatMapLatest { location in
                 CLGeocoder().rx
                     .city(near: location)
                     .map { bigCity in
@@ -130,7 +124,7 @@ struct PickCommunityViewModel {
                     return .never()
                 }
                 
-                return m.rx.location
+                return m.rx.validatedLocation
                     .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
                     .notNil()
                     .map { location in
@@ -138,11 +132,7 @@ struct PickCommunityViewModel {
                         ////TODO: we can manually predict if new location matches |community.value|
                         ////in this case there's no need for extra roundtrip to server
                         
-                        if (RunScheme.debug || RunScheme.adhoc) && SettingsStore.disableLastKnownLocationUpdate.value, let lastKnownLocation = User.current?.community.lastKnownLocation {
-                            return lastKnownLocation.clLocation
-                        } else {
-                            return location
-                        }
+                        return location
                     }
                 
             }
