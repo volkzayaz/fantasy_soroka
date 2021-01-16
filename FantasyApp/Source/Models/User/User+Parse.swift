@@ -248,15 +248,14 @@ extension PFUser {
             notificationSettingsSignal = NotificationSettings().rxCreate()
         }
         
-        return Single.zip(rx.fetch(),
-                          UserManager.fetchOrCreateAlbums(),
+        return Single.zip(UserManager.fetchOrCreateAlbums(),
                           PurchaseManager.fetchSubscriptionStatus(),
                           (self["belongsTo"] as? PFObject)?.rx.fetch() ?? .just( PFUser() ),
                           notificationSettingsSignal
                           )
             .map { (arg) -> User in
                 
-                var (_, albums, subscripiton, _, ns) = arg
+                var (albums, subscripiton, _, ns) = arg
                 
                 let luckyboys = ["lord@colgate.com",
                                  "mr@voldemort.com",
