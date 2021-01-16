@@ -12,7 +12,7 @@ extension Reactive where Base : CLLocationManager {
     
     var validatedLocation: RxSwift.Observable<CLLocation?> {
         location.map {
-            if (RunScheme.debug || RunScheme.adhoc) && SettingsStore.disableLastKnownLocationUpdate.value {
+            if (RunScheme.debug || RunScheme.adhoc) && SettingsStore.enableFakeLocation.value {
                 return RemoteConfigManager.fakeLocation.clLocation
             } else {
                 return $0

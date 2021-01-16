@@ -146,7 +146,7 @@ struct PickCommunityViewModel {
             })
             .disposed(by: bag)
         
-        manager.rx.location
+        manager.rx.validatedLocation
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .notNil()
             .subscribe(onNext: { (l) in

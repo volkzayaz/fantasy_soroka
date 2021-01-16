@@ -37,6 +37,6 @@ extension SettingsStore {
     static var likedCardsCount: Setting<[String:Int]> = Setting(key: "com.fantasyapp.iosclient.likedCardsCount",
                                                                 initialValue: [:])
     
-    static var disableLastKnownLocationUpdate: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.disableLastKnownLocationUpdate",
+    static var enableFakeLocation: Setting<Bool> = Setting(key: "com.fantasyapp.iosclient.enableFakeLocation",
                                                                 initialValue: false)
 }

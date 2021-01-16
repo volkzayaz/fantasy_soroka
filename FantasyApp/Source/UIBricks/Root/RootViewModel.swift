@@ -51,8 +51,8 @@ extension RootViewModel {
         
     }
     
-    var isLastKnownUpdateEnabled: Bool {
-        !SettingsStore.disableLastKnownLocationUpdate.value
+    var isFakeLocationEnabled: Bool {
+        SettingsStore.enableFakeLocation.value
     }
 }
 
@@ -116,7 +116,7 @@ extension RootViewModel {
         unsupportedVersionTriggerVar.accept(true)
     }
     
-    func toggleLastKnownLocationIsEnabled() {
-        SettingsStore.disableLastKnownLocationUpdate.value = !SettingsStore.disableLastKnownLocationUpdate.value
+    func toggleFakeLocationIsEnabled() {
+        SettingsStore.enableFakeLocation.value = !SettingsStore.enableFakeLocation.value
     }
 }
