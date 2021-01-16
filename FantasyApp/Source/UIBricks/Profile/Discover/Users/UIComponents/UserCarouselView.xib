@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -49,22 +49,27 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4n2-xe-Wvp">
                             <rect key="frame" x="15" y="773" width="384" height="30"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="3xi-Pq-RU2">
-                                    <rect key="frame" x="0.0" y="3" width="24" height="24"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Julia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lh-Ic-UDZ">
-                                    <rect key="frame" x="32" y="0.0" width="54.5" height="30"/>
-                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="memberParrot" translatesAutoresizingMaskIntoConstraints="NO" id="0bt-ke-Gfq">
-                                    <rect key="frame" x="92.5" y="5" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="ACW-fk-6Su"/>
-                                        <constraint firstAttribute="width" secondItem="0bt-ke-Gfq" secondAttribute="height" multiplier="1:1" id="DTT-S3-Axv"/>
-                                    </constraints>
-                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RCn-gB-mld">
+                                    <rect key="frame" x="0.0" y="0.0" width="384" height="30"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="3xi-Pq-RU2">
+                                            <rect key="frame" x="0.0" y="3" width="24" height="24"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Julia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lh-Ic-UDZ">
+                                            <rect key="frame" x="32" y="0.0" width="324" height="30"/>
+                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="memberParrot" translatesAutoresizingMaskIntoConstraints="NO" id="0bt-ke-Gfq">
+                                            <rect key="frame" x="364" y="5" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="ACW-fk-6Su"/>
+                                                <constraint firstAttribute="width" constant="20" id="KIj-KF-hee"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoCount" translatesAutoresizingMaskIntoConstraints="NO" id="woU-0Q-bcr">
                                     <rect key="frame" x="370" y="16" width="14" height="14"/>
                                     <constraints>
@@ -89,22 +94,18 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="9Lh-Ic-UDZ" secondAttribute="bottom" id="5BO-FQ-uxu"/>
                                 <constraint firstItem="c6u-1K-DS9" firstAttribute="leading" secondItem="OGC-ZZ-aMx" secondAttribute="trailing" constant="4" id="6ZB-8B-dXC"/>
                                 <constraint firstItem="woU-0Q-bcr" firstAttribute="leading" secondItem="ugK-ar-DMg" secondAttribute="trailing" constant="4" id="Cjo-Jf-Zoe"/>
-                                <constraint firstItem="9Lh-Ic-UDZ" firstAttribute="top" secondItem="4n2-xe-Wvp" secondAttribute="top" id="EB9-bc-GSM"/>
-                                <constraint firstAttribute="height" constant="30" id="Jcm-rm-MfM"/>
+                                <constraint firstAttribute="bottom" secondItem="RCn-gB-mld" secondAttribute="bottom" id="NAc-Ae-11o"/>
                                 <constraint firstAttribute="bottom" secondItem="woU-0Q-bcr" secondAttribute="bottom" id="OVT-ln-sXK"/>
                                 <constraint firstAttribute="trailing" secondItem="woU-0Q-bcr" secondAttribute="trailing" id="Sig-db-maP"/>
-                                <constraint firstItem="0bt-ke-Gfq" firstAttribute="centerY" secondItem="9Lh-Ic-UDZ" secondAttribute="centerY" id="b4z-ia-zIt"/>
+                                <constraint firstItem="RCn-gB-mld" firstAttribute="leading" secondItem="4n2-xe-Wvp" secondAttribute="leading" id="Svu-54-yGI"/>
+                                <constraint firstAttribute="trailing" secondItem="RCn-gB-mld" secondAttribute="trailing" id="ZMg-ng-CTl"/>
                                 <constraint firstItem="OGC-ZZ-aMx" firstAttribute="centerY" secondItem="c6u-1K-DS9" secondAttribute="centerY" id="cPB-DI-jdf"/>
+                                <constraint firstItem="RCn-gB-mld" firstAttribute="top" secondItem="4n2-xe-Wvp" secondAttribute="top" id="cc6-pU-iLQ"/>
                                 <constraint firstItem="c6u-1K-DS9" firstAttribute="centerY" secondItem="ugK-ar-DMg" secondAttribute="centerY" id="fSr-oh-0Iw"/>
-                                <constraint firstItem="9Lh-Ic-UDZ" firstAttribute="leading" secondItem="3xi-Pq-RU2" secondAttribute="trailing" constant="8" id="qrd-M1-ert"/>
                                 <constraint firstItem="ugK-ar-DMg" firstAttribute="centerY" secondItem="woU-0Q-bcr" secondAttribute="centerY" id="rHM-Bj-caQ"/>
-                                <constraint firstItem="0bt-ke-Gfq" firstAttribute="leading" secondItem="9Lh-Ic-UDZ" secondAttribute="trailing" constant="6" id="rHo-Sj-WFG"/>
-                                <constraint firstItem="3xi-Pq-RU2" firstAttribute="leading" secondItem="4n2-xe-Wvp" secondAttribute="leading" id="tMj-Fb-qwh"/>
                                 <constraint firstItem="ugK-ar-DMg" firstAttribute="leading" secondItem="c6u-1K-DS9" secondAttribute="trailing" constant="10" id="tsb-Nr-CAQ"/>
-                                <constraint firstItem="3xi-Pq-RU2" firstAttribute="centerY" secondItem="9Lh-Ic-UDZ" secondAttribute="centerY" id="xCs-sf-UMy"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -132,7 +133,7 @@
                 <constraint firstItem="cap-tl-y2f" firstAttribute="bottom" secondItem="pIG-z3-LB1" secondAttribute="bottom" id="xCE-Pn-cfz"/>
                 <constraint firstItem="pIG-z3-LB1" firstAttribute="leading" secondItem="OMK-m8-SUw" secondAttribute="leading" id="zC9-uV-6yQ"/>
             </constraints>
-            <point key="canvasLocation" x="46" y="68"/>
+            <point key="canvasLocation" x="44.927536231884062" y="67.633928571428569"/>
         </view>
     </objects>
     <resources>
