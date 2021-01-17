@@ -118,13 +118,13 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
         Driver.combineLatest(
             appState.changesOf { $0.currentUser?.discoveryFilter }
                 .notNil(),
-            appState.changesOf { $0.currentUser?.subscription.isSubscribed },
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed == true },
             updateProfiles
                 .startWith(())
-        ).flatMapLatest { [unowned i = indicator] filter, _, _ in
+        ).flatMapLatest { [unowned i = indicator] filter, isSubscribed, _ in
             Observable.combineLatest(
-                DiscoveryManager.profilesFor(filter: filter, isViewed: true).asObservable(),
-                DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isSubscribed: isSubscribed, isViewed: true).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isSubscribed: isSubscribed, isViewed: false).asObservable(),
                 DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
             ).trackView(viewIndicator: i)
             .silentCatch(handler: router.owner)
