@@ -50,19 +50,19 @@
                             <rect key="frame" x="15" y="773" width="384" height="30"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RCn-gB-mld">
-                                    <rect key="frame" x="0.0" y="0.0" width="384" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="3xi-Pq-RU2">
                                             <rect key="frame" x="0.0" y="3" width="24" height="24"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Julia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lh-Ic-UDZ">
-                                            <rect key="frame" x="32" y="0.0" width="324" height="30"/>
+                                            <rect key="frame" x="32" y="0.0" width="54.5" height="30"/>
                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="25"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="memberParrot" translatesAutoresizingMaskIntoConstraints="NO" id="0bt-ke-Gfq">
-                                            <rect key="frame" x="364" y="5" width="20" height="20"/>
+                                            <rect key="frame" x="94.5" y="5" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="ACW-fk-6Su"/>
                                                 <constraint firstAttribute="width" constant="20" id="KIj-KF-hee"/>
@@ -100,7 +100,7 @@
                                 <constraint firstAttribute="bottom" secondItem="woU-0Q-bcr" secondAttribute="bottom" id="OVT-ln-sXK"/>
                                 <constraint firstAttribute="trailing" secondItem="woU-0Q-bcr" secondAttribute="trailing" id="Sig-db-maP"/>
                                 <constraint firstItem="RCn-gB-mld" firstAttribute="leading" secondItem="4n2-xe-Wvp" secondAttribute="leading" id="Svu-54-yGI"/>
-                                <constraint firstAttribute="trailing" secondItem="RCn-gB-mld" secondAttribute="trailing" id="ZMg-ng-CTl"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RCn-gB-mld" secondAttribute="trailing" id="ZMg-ng-CTl"/>
                                 <constraint firstItem="OGC-ZZ-aMx" firstAttribute="centerY" secondItem="c6u-1K-DS9" secondAttribute="centerY" id="cPB-DI-jdf"/>
                                 <constraint firstItem="RCn-gB-mld" firstAttribute="top" secondItem="4n2-xe-Wvp" secondAttribute="top" id="cc6-pU-iLQ"/>
                                 <constraint firstItem="c6u-1K-DS9" firstAttribute="centerY" secondItem="ugK-ar-DMg" secondAttribute="centerY" id="fSr-oh-0Iw"/>
