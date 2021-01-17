@@ -115,12 +115,10 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
     init(router: DiscoverProfileRouter) {
         self.router = router
         
-        Observable.combineLatest(
+        Driver.combineLatest(
             appState.changesOf { $0.currentUser?.discoveryFilter }
-                .notNil()
-                .asObservable(),
-            appState.changesOf { $0.currentUser?.subscription.isSubscribed }
-                .asObservable(),
+                .notNil(),
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed },
             updateProfiles
                 .startWith(())
         ).flatMapLatest { [unowned i = indicator] filter, _, _ in
@@ -129,9 +127,9 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
                 DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
                 DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
             ).trackView(viewIndicator: i)
-        }.silentCatch(handler: router.owner)
-        .asDriver(onErrorJustReturn: ([], [], nil))
-        .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
+            .silentCatch(handler: router.owner)
+            .asDriver(onErrorJustReturn: ([], [], nil))
+        }.drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
             let availableNewProfiles = Array(newProfiles.prefix(searchSwipeState?.amount ?? 0))
             let profiles = viewedProfiles.reversed() + availableNewProfiles
             let initialIndex = profiles.firstIndex(where: { $0.isViewed == false })
@@ -279,7 +277,7 @@ extension DiscoverProfileViewModel {
 
 private extension DiscoverProfileViewModel {
     
-    var updateProfiles: Observable<Void> {
+    var updateProfiles: Driver<Void> {
         searchSwipeState
             .map { $0?.wouldBeUpdatedAt }
             .notNil()
@@ -288,6 +286,6 @@ private extension DiscoverProfileViewModel {
                 return Observable<Int>.interval(.seconds(Int(updateInterval)), scheduler: MainScheduler.instance)
                     .take(1)
                     .map { _ in }
-            }
+            }.asDriver(onErrorJustReturn: ())
     }
 }
