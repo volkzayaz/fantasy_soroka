@@ -212,9 +212,11 @@ extension DiscoverProfileViewModel {
     }
     
     func autopresentFilter() {
-        if self.router.canPresent, let user = appStateSlice.currentUser {
-            PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
-                self.router.presentFilter()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if self.router.canPresent, let user = appStateSlice.currentUser {
+                PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
+                    self.router.presentFilter()
+                }
             }
         }
     }
