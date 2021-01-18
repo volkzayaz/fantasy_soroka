@@ -77,7 +77,7 @@ class DiscoveryFilterViewModel : MVVM_ViewModel {
         self.router = router
         form = .init(value: User.current?.searchPreferences ?? .default)
         
-        appState.changesOf { $0.currentUser?.subscription.isSubscribed }
+        appState.changesOf { $0.currentUser?.searchPreferences?.isGlobalMode ?? $0.currentUser?.subscription.isSubscribed }
             .drive { [unowned self] isSubscribed in
                 var form = self.form.value
                 form.isGlobalMode = isSubscribed
