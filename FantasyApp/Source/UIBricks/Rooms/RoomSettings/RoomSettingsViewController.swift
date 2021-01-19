@@ -30,7 +30,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
             layout.itemSize = cellSize
-            layout.minimumLineSpacing = 8.0
+            layout.minimumLineSpacing = 16.0
             layout.minimumInteritemSpacing = 1.0
             deckCollectionView.setCollectionViewLayout(layout, animated: true)
         }
@@ -84,8 +84,11 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         }
     })
     
-    lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Fantasy.Request.LikedCards.SneakPeek>>(configureCell: { [unowned self] (_, cv, ip, model) in
+    lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, RoomSettingsViewModel.DeckCellModel>>(configureCell: { [unowned self] (_, cv, ip, model) in
         
+        switch model {
+        
+        case .deck(let sneekPeek):
             let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
                                               for: ip)!
             
@@ -98,10 +101,15 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             cell.imageView.regularImageView.image = i
             cell.isPurchased = false //sneakPeek.isPaid
             
-            cell.fantasiesCountLabel.text = "\(model.amountlikedCardsByUser) \(model.coverItems)"
-            cell.paidLabel.text = model.coverRubric
+            cell.fantasiesCountLabel.text = "\(sneekPeek.amountlikedCardsByUser) \(sneekPeek.coverItems)"
+            cell.paidLabel.text = sneekPeek.coverRubric
             
             return cell
+        case .add:
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: AddDeckCollectionViewCell.reuseIdentifire, for: ip)
+        
+            return cell
+        }
         
     })
 
@@ -132,6 +140,8 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             .drive(leaveRoomButton.rx.hidden(in: stackView))
             .disposed(by: rx.disposeBag)
         
+        deckCollectionView.register(AddDeckCollectionViewCell.self, forCellWithReuseIdentifier: AddDeckCollectionViewCell.reuseIdentifire)
+        
         participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
             .subscribe(onNext: { [unowned self] (x) in
                 
@@ -149,6 +159,21 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                 
             })
             .disposed(by: rx.disposeBag)
+        
+        deckCollectionView.rx.modelSelected(RoomSettingsViewModel.DeckCellModel.self)
+            .subscribe(onNext: { [unowned self] (x) in
+                
+                switch x {
+                
+                case .deck(_):
+                    break;
+                case .add:
+                    self.viewModel.addDeck()
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
+
         
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))

@@ -38,10 +38,18 @@ extension RoomSettingsViewModel {
         }
     }
     
-    var deckDataSource: Driver<[Fantasy.Request.LikedCards.SneakPeek]> {
+    var deckDataSource: Driver<[DeckCellModel]> {
         return Fantasy.Manager.likedCards(of: User.current!)
             .asDriver(onErrorJustReturn: [])
-        
+            .map { (sneakPeeks: [Fantasy.Request.LikedCards.SneakPeek]) -> [DeckCellModel] in
+                var x = sneakPeeks.map {
+                    DeckCellModel.deck($0)
+                }
+                
+                x.append(DeckCellModel.add)
+                
+                return x
+            }
     }
 
 
@@ -157,6 +165,12 @@ class RoomSettingsViewModel: MVVM_ViewModel {
             }
         }
     }
+    
+    enum DeckCellModel: Equatable {
+        
+        case deck(Fantasy.Request.LikedCards.SneakPeek)
+        case add
+    }
 }
 
 extension RoomSettingsViewModel {
@@ -243,5 +257,9 @@ extension RoomSettingsViewModel {
             })
             .disposed(by: bag)
         
+    }
+    
+    func addDeck() {
+        print("Add deck")
     }
 }
