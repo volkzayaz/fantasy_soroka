@@ -361,9 +361,9 @@
 
 "room.list.title" = "Play";
 "room.list.add" = "Invite";
-"rooms.add.new.room" = "Invite a Partner";
+"rooms.add.new.room" = "Invite Someone";
 
-"createRoom.firstStep" = "Invite a Partner";
+"createRoom.firstStep" = "Invite Someone";
 "createRoom.secondStep" = "Share Invite Link";
 "createRoom.thirdStep" = "See Mutual Cards";
 "createRoom.title" = "Create a Room To Play";
@@ -551,7 +551,7 @@
 "search.location" = "Location";
 "search.activeCity" = "Active City";
 "search.globalMode.title" = "Global Mode";
-"search.globalMode.description" = "Look for people in non-activated cities closest to you";
+"search.globalMode.description" = "Search for people around you, in non-activated and activated cities"; // Look for people in non-activated cities closest to you
 
 "search.partner" = "Partner";
 "search.sex" = "Sex";
@@ -702,13 +702,10 @@
 "getMembership.x3NewProfiles.subtitle" = "Discover more new profiles every day";
 
 "getMembership.globalMode.title" = "Global Mode";
-"getMembership.globalMode.subtitle" = "Look for people in non-activated cities closest to you";
-
-"getMembership.globalMode.title" = "Global Mode";
-"getMembership.globalMode.subtitle" = "Look for people in non-activated cities closest to you";
+"getMembership.globalMode.subtitle" = "Search for people around your current location, in non-activated and activated cities"; //Look for people in non-activated cities closest to you
 
 "getMembership.accessToAllDecks.title" = "Access To All Decks";
-"getMembership.accessToAllDecks.subtitle" = "Get access to all decks from Learn section";
+"getMembership.accessToAllDecks.subtitle" = "Play with all Decks from Learn section";
 
 
 // Subscription - Limited offer
@@ -750,9 +747,9 @@
 "subscription.regular.Title2" = "Become A Member";
 "subscription.offer.Title1" = "Limited Offer";
 "subscription.offer.Title2" = "One Time Offer";
-"subscription.plan.buttonTitle" = "Continue";
+"subscription.plan.buttonTitle" = "Subscribe";
 "subscription.plan.buttonTitle1" = "Continue";
-"subscription.plan.buttonTitle2" = "Continue";
+"subscription.plan.buttonTitle2" = "Start";
 "subscription.trial.sticker" = "Best Value";
 "subscription.special.sticker" = "Save %d%%";
 
@@ -770,20 +767,29 @@
 "error.paymentProcessing" = "There's been an error processing your payment. Please try again and if problems persist contact support.";
 
 
-// Subscription plans. Keys must be equal to product identifiers in App Store.
+// Subscription Plans. Keys must be equal to product identifiers in App Store.
 
 
+// Regular Plans
 "com.fantasyapp.iosclient.iap.premium" = "1 Week Membership";
-"com.fantasyapp.iosclient.iap.premium.special" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premium.special2" = "1 Week Membership";
+"com.fantasyapp.iosclient.iap.premiumwithdecks" = "1 Week Membership Full";
 "com.fantasyapp.iosclient.iap.premium.1month" = "1 Month Membership";
 "com.fantasyapp.iosclient.iap.premium.months3" = "3 Months Membership";
-"com.fantasyapp.iosclient.iap.premium.months3.special" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premium.months3.special2" = "3 Months Membership";
+"com.fantasyapp.iosclient.iap.premium.months6" = "6 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.year" = "1 Year Membership";
+
+// Trial Plans
+"com.fantasyapp.iosclient.iap.premium.special" = "Start Free 3 Days Trial";
+"com.fantasyapp.iosclient.iap.premiumwithdecks.basic" = "Start Free 3 Days Trial";
+"com.fantasyapp.iosclient.iap.premium.months3.special" = "Start Free 3 Days Trial";
 "com.fantasyapp.iosclient.iap.premium.year.special" = "Start Free 3 Days Trial";
+
+// Special Plans
+"com.fantasyapp.iosclient.iap.premium.special2" = "1 Week Membership";
+"com.fantasyapp.iosclient.iap.premium.months3.special2" = "3 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.year.special2" = "1 Year Membership";
-"com.fantasyapp.iosclient.iap.premiumwithdecks" = "1 Week Membership Full";
+
+
 
 
 //Profile//
@@ -798,9 +804,9 @@
 "profile.editProfileButton" = "Edit Profile >";
 
 "userGateway.getMembership" = "Get Membership";
-"userGateway.unlimitedRooms" = "Unlimited Rooms To Play, x3 New Cards Daily and more";
+"userGateway.unlimitedRooms" = "x3 New Profiles Daily, Global Mode, Access To All Decks and more";
 "userGateway.membership" = "Membership";
-"userGateway.manageClubMembership" = "Manage Club Membership";
+"userGateway.manageClubMembership" = "Manage Membership";
 
 "profile.memberBadgeTitle" = "Member Badge"; //usused
 "profile.memberBadgeDescription" = "Get a badge stating that you support Fantasy Match values"; //usused
@@ -817,8 +823,8 @@
 
 
 //title-for-non-subscribed-user
-"monetization.title" = "Club Membership";
-"monetization.getClubMembership" = "Get Club Membership";
+"monetization.title" = "Membership";
+"monetization.getClubMembership" = "Get Membership";
 "monetization.upgradeButton" = "Upgrade";
 
 //title-for-subscribed-user
@@ -840,10 +846,10 @@
 "monetization.x3NewProfiles.subtitle" = "Discover more new profiles every day";
 
 "monetization.globalMode.title" = "Global Mode";
-"monetization.globalMode.subtitle" = "Look for people in non-activated cities closest to you";
+"monetization.globalMode.subtitle" = "Search for people around your current location, in non-activated and activated cities"; // Look for people in non-activated cities closest to you
 
 "monetization.accessToAllDecks.title" = "Access To All Decks";
-"monetization.accessToAllDecks.subtitle" = "Get access to all decks from Learn section";
+"monetization.accessToAllDecks.subtitle" = "Plat with all decks from Learn section";
 
 
 // Profile - My Library
@@ -851,6 +857,7 @@
 
 "profile.myLibrary" = "My Library"; //same as in Profile - Main (up)
 "settings.title" = "Settings"; //same as in Profile - My Library - Settings (below)
+
 
 // Profile - My Library - Settings
 
@@ -914,7 +921,7 @@
 "fantasy.settings.madeWithMature.title.secondPart" = "for lovers";
 "fantasy.settings.made.with.mature" = "https://fantasyapp.com/en/blog/mature-love-basis-of-alternative-relationships/";
 
-"fantasy.settings.helpImprove" = "Help us to improve. Report a bug\nID:";
+"fantasy.settings.helpImprove" = "Help us to improve. Tap to report a bug\nID:";
 "fantasy.settings.copy.userid.alert.success" =  "Success";
 "fantasy.settings.copy.userid.alert.text" =  "User ID copied";
 "fantasy.settings.report.bug.destination.email" = "feedback@fantasyapp.com";
