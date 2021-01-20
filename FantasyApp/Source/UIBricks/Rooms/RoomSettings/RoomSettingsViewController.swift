@@ -23,18 +23,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     @IBOutlet private var notificationsView: UIView!
     @IBOutlet private var notificationsLabel: UILabel!
     @IBOutlet private var participantsCollectionView: UICollectionView!
-    @IBOutlet private var deckCollectionView: UICollectionView! {
-        didSet {
-            let cellSize = CGSize(width: 170, height:250)
-
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .horizontal
-            layout.itemSize = cellSize
-            layout.minimumLineSpacing = 16.0
-            layout.minimumInteritemSpacing = 1.0
-            deckCollectionView.setCollectionViewLayout(layout, animated: true)
-        }
-    }
+    @IBOutlet private var deckCollectionView: UICollectionView!
     @IBOutlet private var securitySettingsView: RoomSettingsPremiumFeatureView!
     @IBOutlet private var inviteLinkLabel: UILabel!
     @IBOutlet private var participantsLabel: UILabel!
@@ -106,7 +95,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             
             return cell
         case .add:
-            let cell = cv.dequeueReusableCell(withReuseIdentifier: AddDeckCollectionViewCell.reuseIdentifire, for: ip)
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.addDeckCell, for: ip)!
         
             return cell
         }
@@ -139,8 +128,6 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             .map { $0 == nil }
             .drive(leaveRoomButton.rx.hidden(in: stackView))
             .disposed(by: rx.disposeBag)
-        
-        deckCollectionView.register(AddDeckCollectionViewCell.self, forCellWithReuseIdentifier: AddDeckCollectionViewCell.reuseIdentifire)
         
         participantsCollectionView.rx.modelSelected(RoomSettingsViewModel.CellModel.self)
             .subscribe(onNext: { [unowned self] (x) in

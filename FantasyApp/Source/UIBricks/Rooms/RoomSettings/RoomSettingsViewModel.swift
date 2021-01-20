@@ -41,13 +41,12 @@ extension RoomSettingsViewModel {
     var deckDataSource: Driver<[DeckCellModel]> {
         return Fantasy.Manager.likedCards(of: User.current!)
             .asDriver(onErrorJustReturn: [])
-            .map { (sneakPeeks: [Fantasy.Request.LikedCards.SneakPeek]) -> [DeckCellModel] in
+            .map { (sneakPeeks) -> [DeckCellModel] in
                 var x = sneakPeeks.map {
                     DeckCellModel.deck($0)
                 }
-                
-                x.append(DeckCellModel.add)
-                
+                x.append(.add)
+
                 return x
             }
     }
@@ -98,8 +97,6 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     
     private let cells: BehaviorRelay<[CellModel]>
     private let buo: BranchUniversalObject?
-    
-    fileprivate var relationshipState = BehaviorRelay<Connection?>(value: nil)
     
     init(router: RoomSettingsRouter, room: SharedRoomResource) {
         self.router = router
