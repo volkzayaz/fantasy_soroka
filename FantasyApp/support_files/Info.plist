@@ -154,5 +154,7 @@
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>The app shares Device ID only and compares this ID with external sources, so we can match the data to be able to invite more people who love our product</string>
+    <key>NSLocationDefaultAccuracyReduced</key>
+    <true/>
 </dict>
 </plist>

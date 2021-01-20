@@ -89,7 +89,7 @@ struct PickCommunityViewModel {
     init() {
         
         manager.requestWhenInUseAuthorization()
-        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         
         needsLocationPermission.filter { !$0 }
             .drive(onNext: { [weak m = manager] _ in
