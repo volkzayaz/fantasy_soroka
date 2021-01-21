@@ -77,23 +77,16 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         
         switch model {
         
-        case .deck(let sneekPeek):
-            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
-                                              for: ip)!
-            
-            let i = [R.image.collectionStubBlured()!,
-                R.image.gay()!,
-                R.image.transsexual()!,
-                R.image.pansexual()!
-            ].randomElement()!
-            
-            cell.imageView.regularImageView.image = i
-            cell.isPurchased = false //sneakPeek.isPaid
-            
-            cell.fantasiesCountLabel.text = "\(sneekPeek.amountlikedCardsByUser) \(sneekPeek.coverItems)"
-            cell.paidLabel.text = sneekPeek.coverRubric
+        case .deck(let collection):
+          let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
+                                            for: ip)!
+            cell.model = collection
+            cell.set(imageURL: collection.imageURL)
+            cell.title = collection.title
+            cell.isPurchased = collection.isPurchased
             
             return cell
+            
         case .add:
             let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.addDeckCell, for: ip)!
         

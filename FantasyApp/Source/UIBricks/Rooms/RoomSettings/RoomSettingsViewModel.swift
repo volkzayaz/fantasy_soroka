@@ -39,14 +39,13 @@ extension RoomSettingsViewModel {
     }
     
     var deckDataSource: Driver<[DeckCellModel]> {
-        return Fantasy.Manager.likedCards(of: User.current!)
+        
+        return Fantasy.Manager.fetchCollections()
             .asDriver(onErrorJustReturn: [])
-            .map { (sneakPeeks) -> [DeckCellModel] in
-                var x = sneakPeeks.map {
-                    DeckCellModel.deck($0)
-                }
+            .map { (collections) -> [DeckCellModel] in
+                var  x = collections.map { DeckCellModel.deck($0) }
                 x.append(.add)
-
+                
                 return x
             }
     }
@@ -165,7 +164,7 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     
     enum DeckCellModel: Equatable {
         
-        case deck(Fantasy.Request.LikedCards.SneakPeek)
+        case deck(Fantasy.Collection)
         case add
     }
 }

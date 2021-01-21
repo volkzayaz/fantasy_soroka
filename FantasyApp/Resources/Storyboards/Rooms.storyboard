@@ -635,23 +635,24 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ORf-3h-4kg">
-                                                                    <rect key="frame" x="63" y="90.666666666666671" width="50" height="74.000000000000014"/>
+                                                                    <rect key="frame" x="70.333333333333329" y="90.666666666666671" width="35.666666666666671" height="74.000000000000014"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dA3-B4-Xq9">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite" translatesAutoresizingMaskIntoConstraints="NO" id="dA3-B4-Xq9">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="35.666666666666664" height="50"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="cFi-hv-MOM"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ1-eK-uCa">
-                                                                            <rect key="frame" x="0.0" y="49.999999999999986" width="50" height="24"/>
+                                                                            <rect key="frame" x="0.0" y="49.999999999999986" width="35.666666666666664" height="24"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                            <nil key="textColor"/>
+                                                                            <color key="textColor" name="textPinkColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
+                                                            <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="ORf-3h-4kg" firstAttribute="centerY" secondItem="ued-e3-sdd" secondAttribute="centerY" id="oBr-X7-SqI"/>
                                                                 <constraint firstItem="ORf-3h-4kg" firstAttribute="centerX" secondItem="ued-e3-sdd" secondAttribute="centerX" constant="3" id="sG0-a4-myZ"/>
@@ -662,6 +663,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </collectionViewCellContentView>
+                                                        <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                                         <connections>
                                                             <outlet property="addLabel" destination="zQ1-eK-uCa" id="ZaT-ZW-ASV"/>
                                                             <outlet property="plusImageView" destination="dA3-B4-Xq9" id="0tR-yX-2yf"/>
@@ -919,6 +921,7 @@
     <resources>
         <image name="Onboarding_Background" width="375" height="667"/>
         <image name="indicator" width="10" height="14"/>
+        <image name="invite" width="20" height="20"/>
         <namedColor name="listBackgroundColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
