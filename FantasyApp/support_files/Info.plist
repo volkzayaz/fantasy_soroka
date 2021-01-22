@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>50</string>
+	<string>62</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -154,5 +154,7 @@
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>The app shares Device ID only and compares this ID with external sources, so we can match the data to be able to invite more people who love our product</string>
+    <key>NSLocationDefaultAccuracyReduced</key>
+    <true/>
 </dict>
 </plist>

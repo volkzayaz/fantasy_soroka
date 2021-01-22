@@ -13,6 +13,10 @@ struct TimeSpentCounter {
     
     private var startDate: Date?
     
+    var isStarted: Bool {
+        startDate != nil
+    }
+    
     mutating func start() {
         startDate = Date()
     }

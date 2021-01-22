@@ -1,5 +1,5 @@
 //
-//  FantasyGradientLayer.swift
+//  FantasyHorizontalGradientLayer.swift
 //  FantasyApp
 //
 //  Created by Ihor Vovk on 26.12.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FantasyGradientLayer: CAGradientLayer {
+class FantasyHorizontalGradientLayer: CAGradientLayer {
 
     override init() {
         super.init()
@@ -21,7 +21,7 @@ class FantasyGradientLayer: CAGradientLayer {
     }
 }
 
-private extension FantasyGradientLayer {
+private extension FantasyHorizontalGradientLayer {
     
     func setUp() {
         let color1 = UIColor(fromHex: 0xF0398B)

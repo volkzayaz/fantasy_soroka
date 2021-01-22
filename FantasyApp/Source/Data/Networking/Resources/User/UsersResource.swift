@@ -34,13 +34,14 @@ struct UsersResource: AuthorizedAPIResource {
         }
         
         if let isGlobalMode = discoveryFilter.filter.isGlobalMode {
-            parameters["globalModeSearch"] = isGlobalMode
+            parameters["globalModeSearch"] = isGlobalMode && isSubscribed
         }
         
         return .requestParameters(parameters: parameters, encoding: URLEncoding(destination: .queryString, boolEncoding: .literal))
     }
     
     let discoveryFilter: DiscoveryFilter
+    let isSubscribed: Bool
     let isViewed: Bool
     
     struct Response: Decodable {

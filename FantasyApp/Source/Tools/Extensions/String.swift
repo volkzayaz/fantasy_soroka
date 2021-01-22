@@ -41,4 +41,11 @@ extension String {
         return NSAttributedString(string: self, attributes: attrs)
     }
     
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }

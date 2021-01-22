@@ -1344,10 +1344,10 @@ activated when it reaches</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="906"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="otx-vA-oVe">
-                                        <rect key="frame" x="16" y="20" width="382" height="508"/>
+                                        <rect key="frame" x="16" y="20" width="382" height="526"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-HY-Gw2">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="194.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="212.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-fj-wTM">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="29.5"/>
@@ -1410,10 +1410,10 @@ activated when it reaches</string>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDe-xV-7SN">
-                                                        <rect key="frame" x="0.0" y="99.5" width="382" height="95"/>
+                                                        <rect key="frame" x="0.0" y="99.5" width="382" height="113"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-8I-Xpl" customClass="FantasyGradientView" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="95"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-8I-Xpl" customClass="FantasyHorizontalGradientView" customModule="FantasyApp" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="113"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1437,8 +1437,8 @@ activated when it reaches</string>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="search.globalMode.title"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Look for people in non-activated and activated cities" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS8-aI-b1H">
-                                                                <rect key="frame" x="16" y="45" width="289" height="36"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Look for people in non-activated cities closest to you" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS8-aI-b1H">
+                                                                <rect key="frame" x="16" y="45" width="289" height="54"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                                                 <color key="textColor" name="textBlackColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1447,7 +1447,7 @@ activated when it reaches</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KiJ-Db-DcY">
-                                                                <rect key="frame" x="317" y="47.5" width="51" height="31"/>
+                                                                <rect key="frame" x="317" y="56.5" width="51" height="31"/>
                                                                 <connections>
                                                                     <action selector="toggleGlobalMode:" destination="iyx-6x-4MS" eventType="valueChanged" id="mVq-B2-VfQ"/>
                                                                 </connections>
@@ -1480,7 +1480,7 @@ activated when it reaches</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-1k-Qk9">
-                                                <rect key="frame" x="0.0" y="218.5" width="382" height="289.5"/>
+                                                <rect key="frame" x="0.0" y="236.5" width="382" height="289.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-W8-g6m">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="164.5"/>

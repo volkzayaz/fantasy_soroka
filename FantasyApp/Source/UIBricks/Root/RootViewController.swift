@@ -90,6 +90,12 @@ class RootViewController: FantasyBaseNavigationController, MVVM_View {
                     self?.envChange()
             }),
             
+            .init(title: "Fake Location - \(viewModel.isFakeLocationEnabled ? "Disable" : "Enable")",
+                style: .default,
+                handler: { [weak self] _ in
+                    self?.viewModel.toggleFakeLocationIsEnabled()
+            }),
+            
             .init(title: "Cancel", style: .cancel, handler: nil)]
         
         showDialog(title: "Debug Actions", text: "Pick one", style: .alert,

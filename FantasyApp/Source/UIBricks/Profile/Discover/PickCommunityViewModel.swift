@@ -45,28 +45,7 @@ extension PickCommunityViewModel {
                     return .just( .community(c) )
                 }
                 
-                return self.manager.rx.location
-                    .notNil()
-                    .flatMapLatest { location in
-                        
-                        return CLGeocoder().rx
-                            .city(near: location)
-                            .map { bigCity in
-                                
-                                guard let x = bigCity else {
-                                    return nil
-                                }
-                                
-                                CommunityManager.logBigCity(name: x, location: location)
-                                
-                                _AnalyticsHackyTown = bigCity
-                                
-                                return Near.bigCity(name: x)
-                            }
-                        
-                    }
-                    .asDriver(onErrorJustReturn: nil)
-                
+                return nearCurrentLocation
             }
         
     }
@@ -76,6 +55,31 @@ extension PickCommunityViewModel {
         case bigCity(name: String)
     }
     
+}
+
+private extension PickCommunityViewModel {
+    
+    var nearCurrentLocation: Driver<Near?> {
+        manager.rx.validatedLocation
+            .notNil()
+            .flatMapLatest { location in
+                CLGeocoder().rx
+                    .city(near: location)
+                    .map { bigCity in
+                        
+                        guard let x = bigCity else {
+                            return nil
+                        }
+                        
+                        CommunityManager.logBigCity(name: x, location: location)
+                        
+                        _AnalyticsHackyTown = bigCity
+                        
+                        return Near.bigCity(name: x)
+                    }
+                
+            }.asDriver(onErrorJustReturn: nil)
+    }
 }
 
 struct PickCommunityViewModel {
@@ -120,7 +124,7 @@ struct PickCommunityViewModel {
                     return .never()
                 }
                 
-                return m.rx.location
+                return m.rx.validatedLocation
                     .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
                     .notNil()
                     .map { location in
@@ -142,7 +146,7 @@ struct PickCommunityViewModel {
             })
             .disposed(by: bag)
         
-        manager.rx.location
+        manager.rx.validatedLocation
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .notNil()
             .subscribe(onNext: { (l) in

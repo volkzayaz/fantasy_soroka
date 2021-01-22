@@ -28,7 +28,7 @@ class RoomSettingsPremiumFeatureView: UIView {
             layer.borderColor = vm.isEnabled ? UIColor.clear.cgColor : R.color.textPinkColor()!.cgColor
             
             upgradeImageView.presenter = viewModel.router.owner
-            upgradeImageView.defaultPage = .member
+            upgradeImageView.defaultPage = .unlimitedRooms
             
             setupOptions()
         }

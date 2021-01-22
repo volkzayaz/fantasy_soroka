@@ -12,7 +12,7 @@ import UIKit
 class SubscribeButton: UIButton {
     
     @IBOutlet unowned var presenter: UIViewController!
-    var defaultPage = SubscriptionViewModel.Page.member
+    var defaultPage = SubscriptionViewModel.Page.allCases.first
     
     override init(frame: CGRect) {
         super.init(frame: frame)

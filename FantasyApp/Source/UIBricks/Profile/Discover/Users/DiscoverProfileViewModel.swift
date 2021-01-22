@@ -115,23 +115,21 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
     init(router: DiscoverProfileRouter) {
         self.router = router
         
-        Observable.combineLatest(
+        Driver.combineLatest(
             appState.changesOf { $0.currentUser?.discoveryFilter }
-                .notNil()
-                .asObservable(),
-            appState.changesOf { $0.currentUser?.subscription.isSubscribed }
-                .asObservable(),
+                .notNil(),
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed == true },
             updateProfiles
                 .startWith(())
-        ).flatMapLatest { [unowned i = indicator] filter, _, _ in
+        ).flatMapLatest { [unowned i = indicator] filter, isSubscribed, _ in
             Observable.combineLatest(
-                DiscoveryManager.profilesFor(filter: filter, isViewed: true).asObservable(),
-                DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isSubscribed: isSubscribed, isViewed: true).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isSubscribed: isSubscribed, isViewed: false).asObservable(),
                 DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
             ).trackView(viewIndicator: i)
-        }.silentCatch(handler: router.owner)
-        .asDriver(onErrorJustReturn: ([], [], nil))
-        .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
+            .silentCatch(handler: router.owner)
+            .asDriver(onErrorJustReturn: ([], [], nil))
+        }.drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
             let availableNewProfiles = Array(newProfiles.prefix(searchSwipeState?.amount ?? 0))
             let profiles = viewedProfiles.reversed() + availableNewProfiles
             let initialIndex = profiles.firstIndex(where: { $0.isViewed == false })
@@ -214,9 +212,11 @@ extension DiscoverProfileViewModel {
     }
     
     func autopresentFilter() {
-        if self.router.canPresent, let user = appStateSlice.currentUser {
-            PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
-                self.router.presentFilter()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if self.router.canPresent, let user = appStateSlice.currentUser {
+                PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
+                    self.router.presentFilter()
+                }
             }
         }
     }
@@ -233,7 +233,11 @@ extension DiscoverProfileViewModel {
     }
     
     func subscribeTapped() {
-        router.showSubscription()
+        router.showSubscription(page: .x3NewProfilesDaily)
+    }
+    
+    func goGlobal() {
+        router.showSubscription(page: .globalMode)
     }
     
     // Location
@@ -275,7 +279,7 @@ extension DiscoverProfileViewModel {
 
 private extension DiscoverProfileViewModel {
     
-    var updateProfiles: Observable<Void> {
+    var updateProfiles: Driver<Void> {
         searchSwipeState
             .map { $0?.wouldBeUpdatedAt }
             .notNil()
@@ -284,6 +288,6 @@ private extension DiscoverProfileViewModel {
                 return Observable<Int>.interval(.seconds(Int(updateInterval)), scheduler: MainScheduler.instance)
                     .take(1)
                     .map { _ in }
-            }
+            }.asDriver(onErrorJustReturn: ())
     }
 }

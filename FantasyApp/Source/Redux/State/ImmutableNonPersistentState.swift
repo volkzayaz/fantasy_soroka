@@ -18,8 +18,6 @@ var immutableNonPersistentState: ImmutableNonPersistentState! {
 
 struct ImmutableNonPersistentState {
     
-    let subscriptionProductIDs: Set<String>?
-    
     let screenProtectEnabled: Bool
 
     let shareCardImageURL: String
@@ -37,9 +35,3 @@ struct ImmutableNonPersistentState {
     }
     
 }
-
-var premiumIds: Set<String> = [
-    "com.fantasyapp.iosclient.iap.premium",
-    "com.fantasyapp.iosclient.iap.premium.months3",
-    "com.fantasyapp.iosclient.iap.premium.year"
-]
