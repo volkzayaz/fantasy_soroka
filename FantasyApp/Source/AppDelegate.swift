@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let appLaunchedKey = "app_launched_at_least_once"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
+                
         SwiftyStoreKit.shouldAddStorePaymentHandler = { _, _ in
             return true
         }

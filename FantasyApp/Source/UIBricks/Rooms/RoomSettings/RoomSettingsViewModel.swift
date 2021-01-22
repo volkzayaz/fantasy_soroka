@@ -38,6 +38,20 @@ extension RoomSettingsViewModel {
         }
     }
     
+    var deckDataSource: Driver<[DeckCellModel]> {
+        
+        return Fantasy.Manager.fetchCollections()
+            .asDriver(onErrorJustReturn: [])
+            .map { (collections) -> [DeckCellModel] in
+                var  x = collections.map { DeckCellModel.deck($0) }
+                x.append(.add)
+                
+                return x
+            }
+    }
+
+
+    
     var intiteLinkHidden: Driver<Bool> {
         return inviteLink.asDriver().map { $0 == nil }
     }
@@ -147,6 +161,12 @@ class RoomSettingsViewModel: MVVM_ViewModel {
             }
         }
     }
+    
+    enum DeckCellModel: Equatable {
+        
+        case deck(Fantasy.Collection)
+        case add
+    }
 }
 
 extension RoomSettingsViewModel {
@@ -233,5 +253,9 @@ extension RoomSettingsViewModel {
             })
             .disposed(by: bag)
         
+    }
+    
+    func addDeck() {
+        print("Add deck")
     }
 }

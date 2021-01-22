@@ -8,6 +8,7 @@
 
 import Foundation
 import RxDataSources
+import RxSwift
 import Kingfisher
 
 class RoomSettingsViewController: UIViewController, MVVM_View {
@@ -18,9 +19,11 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var inviteView: UIView!
     @IBOutlet private var inviteLabel: UILabel!
+    @IBOutlet private var decksLabel: UILabel!
     @IBOutlet private var notificationsView: UIView!
     @IBOutlet private var notificationsLabel: UILabel!
     @IBOutlet private var participantsCollectionView: UICollectionView!
+    @IBOutlet private var deckCollectionView: UICollectionView!
     @IBOutlet private var securitySettingsView: RoomSettingsPremiumFeatureView!
     @IBOutlet private var inviteLinkLabel: UILabel!
     @IBOutlet private var participantsLabel: UILabel!
@@ -69,19 +72,37 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             
         }
     })
+    
+    lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, RoomSettingsViewModel.DeckCellModel>>(configureCell: { [unowned self] (_, cv, ip, model) in
+        
+        switch model {
+        
+        case .deck(let collection):
+          let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
+                                            for: ip)!
+            cell.model = collection
+            cell.set(imageURL: collection.imageURL)
+            cell.title = collection.title
+            cell.isPurchased = collection.isPurchased
+            
+            return cell
+            
+        case .add:
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.addDeckCell, for: ip)!
+        
+            return cell
+        }
+        
+    })
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         
         securitySettingsView.viewModel = viewModel
-        
+
         viewModel.intiteLinkHidden
             .drive(inviteView.rx.hidden(in: stackView))
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.intiteLinkHidden
-            .drive(inviteLabel.rx.hidden(in: stackView))
             .disposed(by: rx.disposeBag)
         
         viewModel.inviteLink.asDriver()
@@ -118,11 +139,32 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                 
             })
             .disposed(by: rx.disposeBag)
+        
+        deckCollectionView.rx.modelSelected(RoomSettingsViewModel.DeckCellModel.self)
+            .subscribe(onNext: { [unowned self] (x) in
+                
+                switch x {
+                
+                case .deck(_):
+                    break;
+                case .add:
+                    self.viewModel.addDeck()
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
 
+        
         viewModel.participantsDataSource
             .drive(participantsCollectionView.rx.items(dataSource: participantsDataSource))
             .disposed(by: rx.disposeBag)
         
+        viewModel.deckDataSource
+            .map { [SectionModel(model: "", items: $0)] }
+            .drive(deckCollectionView.rx.items(dataSource: deckDataSource))
+            .disposed(by: rx.disposeBag)
+            
+    
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.generalDone(),
                                                             style: .plain,
                                                             target: self,
@@ -152,6 +194,8 @@ private extension RoomSettingsViewController {
     func configure() {
         view.addFantasyGradient()
         
+        deckCollectionView.register(R.nib.fantasyCollectionCollectionViewCell)
+        
         stackView.setCustomSpacing(16, after: titleLabel)
         stackView.setCustomSpacing(10, after: inviteLabel)
         stackView.setCustomSpacing(22, after: inviteView)
@@ -179,7 +223,12 @@ private extension RoomSettingsViewController {
         participantsLabel.font = .boldFont(ofSize: 15)
         participantsLabel.textColor = .fantasyBlack
         participantsLabel.text = R.string.localizable.roomCreationParticipants()
-
+        
+        decksLabel.font = .boldFont(ofSize: 15)
+        decksLabel.textColor = .fantasyBlack
+        
+        deckCollectionView.backgroundColor = .clear
+        
         inviteLinkLabel.font = .regularFont(ofSize: 15)
         inviteLinkLabel.textColor = .basicGrey
         

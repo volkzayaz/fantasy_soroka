@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */; };
 		2518808D24464150002CCF2E /* URL+Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518808C24464150002CCF2E /* URL+Email.swift */; };
+		3E9E307625B5DACF00A7706A /* AddDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
 		67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */; };
 		73097BF9231D39D800B71053 /* EditProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* EditProfileForm.swift */; };
@@ -453,6 +454,7 @@
 		01A0637DC285DFE7725E2C7F /* Pods-FantasyAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1A400FB58FDC75C2F147C565 /* Pods-FantasyAppTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		2518808C24464150002CCF2E /* URL+Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Email.swift"; sourceTree = "<group>"; };
+		3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		4559FC91EADCC95F3A7F9A00 /* Pods-FantasyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -2213,6 +2215,7 @@
 			children = (
 				844C84F023508FA800BDC60F /* ParticipantCollectionViewCell.swift */,
 				844C84F223509C4C00BDC60F /* InviteParticipantCollectionViewCell.swift */,
+				3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -3204,6 +3207,7 @@
 				842A19FA2354FF5900D0FE5A /* RoomByInvitationTokenResource.swift in Sources */,
 				B731F1D2235D94F800A05FAA /* FantasyPhotoEditorViewController.swift in Sources */,
 				733F41D12365EFB4004EC466 /* MultiSlider.swift in Sources */,
+				3E9E307625B5DACF00A7706A /* AddDeckCollectionViewCell.swift in Sources */,
 				7337B84223C8CBD500EFC948 /* SubscriptionViewController.swift in Sources */,
 				A2F7D470257FC9D800649899 /* SearchSwipeState.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,

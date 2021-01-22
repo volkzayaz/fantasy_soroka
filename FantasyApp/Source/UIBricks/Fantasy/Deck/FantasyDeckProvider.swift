@@ -105,6 +105,7 @@ private let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
 
 struct RoomsDeckProvider: FantasyDeckProvier {
     
+    
     let room: Room
     
     init(room: Room) {

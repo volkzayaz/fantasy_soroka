@@ -215,6 +215,7 @@ extension Room {
         var sharedCollections: [String]
         
         var notifications: Notifications
+
         
         struct Notifications: Codable, Equatable {
             var newMessage: Bool
