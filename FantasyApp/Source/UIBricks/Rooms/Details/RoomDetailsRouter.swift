@@ -42,8 +42,8 @@ struct RoomDetailsRouter: MVVM_Router {
         owner.present(nav, animated: true, completion: nil)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            vc.collectionsButton.isHidden = true
-            vc.cardsButton.isHidden = true
+//            vc.collectionsButton.isHidden = true
+//            vc.cardsButton.isHidden = true
         }
     }
 
