@@ -140,6 +140,9 @@ PODS:
   - RxViewController (1.0.0):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
+  - Sentry (6.1.4):
+    - Sentry/Core (= 6.1.4)
+  - Sentry/Core (6.1.4)
   - SlackTextViewController (1.9.6)
   - SmoothPicker (1.1.3):
     - SnapKit (~> 4.2.0)
@@ -175,6 +178,7 @@ DEPENDENCIES:
   - RxCoreLocation (~> 1.4)
   - RxDataSources (~> 4.0.1)
   - RxViewController
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `6.1.4`)
   - SlackTextViewController
   - SmoothPicker (~> 1.1.3)
   - SnapKit (~> 4.2)
@@ -233,6 +237,16 @@ SPEC REPOS:
     - SwiftyStoreKit
     - YPImagePicker
 
+EXTERNAL SOURCES:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 6.1.4
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 6.1.4
+
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
@@ -274,6 +288,7 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
+  Sentry: 9d055e2de30a77685e86b219acf02e59b82091fc
   SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
   SmoothPicker: a3f4b3c3a95fff73f20d526856aeff2c32696375
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
@@ -283,6 +298,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
 
-PODFILE CHECKSUM: adc420878c9dc88dfe2f1658dae1e590a75e6254
+PODFILE CHECKSUM: 814258dfb9a68b4dfe17d61fe25767ce0bbdf4b6
 
 COCOAPODS: 1.10.0
