@@ -29,6 +29,7 @@ class RoomSettingsPremiumFeatureView: UIView {
             
             upgradeImageView.presenter = viewModel.router.owner
             upgradeImageView.defaultPage = .unlimitedRooms
+            upgradeImageView.defaultPurchaseInterestContext = .unlimitedRooms
             
             setupOptions()
         }

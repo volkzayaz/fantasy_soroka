@@ -258,7 +258,7 @@ extension DiscoverProfileViewController {
     }
 
     @IBAction func goGlobalClick(_ sender: Any) {
-        viewModel.goGlobal()
+        viewModel.goGlobal(purchaseInterestContext: .globalModeNonActivatedCity)
     }
 
     @IBAction func goToSettings(_ sender: Any) {
@@ -365,7 +365,7 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
     }
 
     func goGlobal() {
-        viewModel.goGlobal()
+        viewModel.goGlobal(purchaseInterestContext: .globalModeNoNewUsers)
     }
 }
 

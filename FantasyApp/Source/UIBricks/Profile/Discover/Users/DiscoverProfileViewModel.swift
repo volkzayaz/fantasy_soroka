@@ -233,11 +233,11 @@ extension DiscoverProfileViewModel {
     }
     
     func subscribeTapped() {
-        router.showSubscription(page: .x3NewProfilesDaily)
+        router.showSubscription(page: .x3NewProfilesDaily, purchaseInterestContext: .x3NewProfilesDaily)
     }
     
-    func goGlobal() {
-        router.showSubscription(page: .globalMode)
+    func goGlobal(purchaseInterestContext: Analytics.Event.PurchaseInterest.Context) {
+        router.showSubscription(page: .globalMode, purchaseInterestContext: purchaseInterestContext)
     }
     
     // Location

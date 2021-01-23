@@ -14,12 +14,14 @@ extension Analytics.Event {
         
         enum Context: String {
             case x3NewProfilesDaily = "SearchLimit"
-            case globalMode = "SearchGlobalMode"
+            case globalModeNonActivatedCity = "SearchGlobalModeNonActivatedCity"
+            case globalModeNoNewUsers = "SearchGlobalModeNoNewUsers"
+            case globalModeFlirtOptions = "SearchGlobalModeFlirtOptions"
             case changeActiveCity = "SearchActiveCity"
             case accessToAllDecks = "AccessToAllDecks"
             case x3NewCardsDaily = "DeckLimit"
             case unlimitedRooms = "RoomFrozenLimit"
-            case memberBadge = "ProfileMembership"
+            case profileMembership = "ProfileMembership"
             case subscriptionOffer = "SubscriptionOffer"
         }
         
