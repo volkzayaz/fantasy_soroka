@@ -512,7 +512,7 @@
 //"fantasy.users.filter" = "Options";
 
 "flirtAccess.title" = "Flirt Access";
-"flirtAccess.agreeText" = "I agree to make my profile visible and shown to other community members";
+"flirtAccess.agreeText" = "Make my profile visible to other members. Flirt Access can be turned on/off from Profile/Settings";
 "flirtAccess.activate" = "Activate";
 
 //case-first-screen-when-user-registered
@@ -738,10 +738,13 @@
 "subscription.dailyCharge" = "%@ / day";
 "subscription.regular.payment" = "%@ / %@";
 "subscription.regular.details" = "Billed %@ per %@ (equals %@)";
+"subscription.regular.description" = "For %@, billed %@ per %@ (equals %@)";
 "subscription.trial.payment" = "Then %@ / %@";
 "subscription.trial.details" = "For %@, then billed %@ per %@ (equals %@)";
+"subscription.trial.description" = "%@ for %@, then billed %@ per %@ (equals %@)";
 "subscription.special.payment" = "%@ / %@";
 "subscription.special.details" = "Billed %@ per %@ (equals %@), instead of %@";
+"subscription.special.description" = "For %@, billed %@ per %@ (equals %@), instead of %@";
 "subscription.special.baseProductDetails" = "%@ (%@)";
 "subscription.regular.Title1" = "Get Membership";
 "subscription.regular.Title2" = "Become A Member";
@@ -750,6 +753,7 @@
 "subscription.plan.buttonTitle" = "Subscribe";
 "subscription.plan.buttonTitle1" = "Continue";
 "subscription.plan.buttonTitle2" = "Start";
+"subscription.plan.buttonTitle3" = "Get";
 "subscription.trial.sticker" = "Best Value";
 "subscription.special.sticker" = "Save %d%%";
 
@@ -849,7 +853,7 @@
 "monetization.globalMode.subtitle" = "Search for people around you, in non-activated and activated cities"; // Look for people in non-activated cities closest to you
 
 "monetization.accessToAllDecks.title" = "Access To All Decks";
-"monetization.accessToAllDecks.subtitle" = "Plat with all decks from Learn section";
+"monetization.accessToAllDecks.subtitle" = "Play with all decks from Learn section";
 
 
 // Profile - My Library

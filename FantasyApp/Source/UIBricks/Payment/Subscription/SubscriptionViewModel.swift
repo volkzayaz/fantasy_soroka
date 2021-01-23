@@ -34,7 +34,10 @@ struct SubscriptionPlan {
     let type: SubscriptionPlanType
     let title: String
     let payment: String
-    let details: NSAttributedString
+    let dailyPayment: String
+    let details: String
+    let baseProductDetails: String?
+    let description: String
     let buttonTitle: String
     let sticker: String?
     let position: Int
@@ -47,7 +50,10 @@ struct SubscriptionPlan {
         type = configuration.type
         title = configuration.title(product: product)
         payment = configuration.payment(product: product)
+        dailyPayment = product.subscriptionDailyPayment
         details = configuration.details(product: product, baseProduct: baseProduct)
+        baseProductDetails = baseProduct.map { configuration.productDetails(product: $0) }
+        description = configuration.description(product: product, baseProduct: baseProduct)
         buttonTitle = configuration.localizedButtonTitle
         sticker = configuration.sticker(product: product, baseProduct: baseProduct)
         self.position = position

@@ -24,7 +24,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubscriptionPlanStyle1View" customModule="FantasyApp" customModuleProvider="target">
             <connections>
-                <outlet property="descriptionLabel" destination="gAz-Xb-Jtc" id="eRP-ge-1Z4"/>
+                <outlet property="detailsLabel" destination="gAz-Xb-Jtc" id="9hJ-QA-89G"/>
                 <outlet property="stickerLabel" destination="PXI-1R-44h" id="f2v-9H-gGW"/>
                 <outlet property="stickerView" destination="7Vj-i6-rj0" id="7Kt-0s-gTz"/>
                 <outlet property="subscribeButton" destination="HgG-n3-Yys" id="fcv-U8-rYI"/>
