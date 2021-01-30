@@ -21,9 +21,14 @@ extension RoomDetailsViewModel {
         return R.string.localizable.roomDetailsRoomWith(peer.userSlice.name)
     }
     
-    var navigationEnabled: Driver<Bool> {
+    var isDraftRoom: Driver<Bool> {
         return room.asDriver()
-            .map { $0.isDraftRoom == false }
+            .map { $0.isDraftRoom == true }
+    }
+    
+    var isEmptyRoom: Driver<Bool> {
+        return room.asDriver()
+            .map { $0.isEmptyRoom == true }
     }
     
 }
@@ -38,12 +43,12 @@ class RoomDetailsViewModel: MVVM_ViewModel {
         case chat
         case play
     }
-
+    
     let router: RoomDetailsRouter
     let room: SharedRoomResource
     let page: BehaviorRelay<DetailsPage>
     fileprivate let bag = DisposeBag()
-
+    
     init(router: RoomDetailsRouter,
          room: Room,
          page: DetailsPage) {
@@ -62,15 +67,19 @@ extension RoomDetailsViewModel {
     func showPlay() {
         router.showPlay(room: room.value)
     }
-
+    
+    func showNoChatView() {
+        router.showNoChatView()
+    }
+    
     func presentMe() {
-
-//        let id = (room.value.ownerId == User.current?.id)
-//            ? room.value.me.userSlice.id
-//            : room.value.peer.userSlice.id
-
+        
+        //        let id = (room.value.ownerId == User.current?.id)
+        //            ? room.value.me.userSlice.id
+        //            : room.value.peer.userSlice.id
+        
         let id = room.value.me.userSlice.id
-
+        
         UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] user in
@@ -81,6 +90,9 @@ extension RoomDetailsViewModel {
 
     func presentPeer() {
 
+        
+//        guard let peer = room.value.peer else { return }
+        
         let id = room.value.peer.userSlice.id
         
         UserManager.getUserProfile(id: id)
@@ -89,5 +101,6 @@ extension RoomDetailsViewModel {
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
+        
     }
 }

@@ -129,10 +129,13 @@ class RoomSettingsViewModel: MVVM_ViewModel {
                                                 return .invite
                                             }
                                             
+                                            if x.userId == "empty" {
+                                                return .invite
+                                            }
+                                            
                                             return .user(isAdmin: x.userId == room.value.ownerId,
                                                          participant: x)
         })
-        
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -235,6 +238,7 @@ extension RoomSettingsViewModel {
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] (user) in
+                
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)

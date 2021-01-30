@@ -80,12 +80,14 @@ extension RoomManager {
                                      notifications: .init(newMessage: true,
                                                           newFantasyMatch: true)
                                      )
-        
         return CreateDraftRoomResource(settings: settings).rx.request
             .flatMap { room in
                 return inviteUser(nil, to: room.id)
             }
-            
+    }
+    
+    static func createEmptyRoom() {
+        
     }
 
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {

@@ -376,6 +376,21 @@
             </objects>
             <point key="canvasLocation" x="3915.9420289855075" y="1484.5982142857142"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="POr-P9-x75">
+            <objects>
+                <viewController id="CWc-Pn-rPc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gg8-GJ-lyF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="RoK-9T-SEi"/>
+                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rws-OL-LoV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4606" y="930"/>
+        </scene>
         <!--FantasyListViewController-->
         <scene sceneID="8id-f6-1UV">
             <objects>
@@ -394,7 +409,40 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEb-Rj-WM7">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="8z9-E5-Jc2">
+                                        <rect key="frame" x="8" y="27" width="269" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Chat Started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6T-VW-1cT">
+                                                <rect key="frame" x="0.0" y="0.0" width="269" height="33.666666666666664"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite someone to start a chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPj-2x-8Il">
+                                                <rect key="frame" x="0.0" y="44.666666666666671" width="269" height="25.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noChatStarted" translatesAutoresizingMaskIntoConstraints="NO" id="LB5-ja-39a">
+                                        <rect key="frame" x="8" y="105" width="398" height="655"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="655" id="a8t-LZ-h9w"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="LB5-ja-39a" firstAttribute="leading" secondItem="cEb-Rj-WM7" secondAttribute="leading" constant="8" id="C60-hj-lWs"/>
+                                    <constraint firstItem="LB5-ja-39a" firstAttribute="top" secondItem="8z9-E5-Jc2" secondAttribute="bottom" constant="8" symbolic="YES" id="RIG-8a-bzH"/>
+                                    <constraint firstAttribute="bottom" secondItem="LB5-ja-39a" secondAttribute="bottom" constant="8" id="YyT-AO-Vz0"/>
+                                    <constraint firstItem="8z9-E5-Jc2" firstAttribute="top" secondItem="cEb-Rj-WM7" secondAttribute="top" constant="27" id="fkA-vX-7gN"/>
+                                    <constraint firstItem="8z9-E5-Jc2" firstAttribute="leading" secondItem="cEb-Rj-WM7" secondAttribute="leading" constant="8" id="pEp-jn-Vq6"/>
+                                    <constraint firstAttribute="trailing" secondItem="LB5-ja-39a" secondAttribute="trailing" constant="8" id="xhi-v6-OCI"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Avl-O8-pTW"/>
@@ -409,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CGC-kD-kkD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5434" y="1507"/>
+            <point key="canvasLocation" x="5433.3333333333339" y="1506.6964285714284"/>
         </scene>
         <!--Room Settings View Controller-->
         <scene sceneID="STb-gT-Slg">
@@ -922,6 +970,7 @@
         <image name="Onboarding_Background" width="375" height="667"/>
         <image name="indicator" width="10" height="14"/>
         <image name="invite" width="20" height="20"/>
+        <image name="noChatStarted" width="283" height="241"/>
         <namedColor name="listBackgroundColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -933,6 +982,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

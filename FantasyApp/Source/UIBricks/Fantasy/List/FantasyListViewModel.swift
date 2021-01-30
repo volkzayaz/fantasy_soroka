@@ -60,19 +60,38 @@ extension FantasyListViewModel {
     }
 
     var cardTitle: Driver<NSAttributedString> {
-        return dataSource.map { x -> NSAttributedString? in
-            guard var count = x.first?.items.count else {
-                return nil
-            }
-            
-            if case .empty(_)? = x.first?.items.first {
-                count = 0
-            }
-                
-            return self.titleProvider(count)
-        }
-        .notNil()
+        
+        var isDraftRoom = false
+
+           roomDetailsVM?.isDraftRoom
+           .drive(onNext: { (x) in
+               if x {
+                   isDraftRoom = true
+               } else {
+                   isDraftRoom = false
+               }
+           })
+
+       return dataSource.map { x -> NSAttributedString? in
+
+           guard var count = x.first?.items.count else {
+               return nil
+           }
+
+           if case .empty(_)? = x.first?.items.first {
+               count = 0
+           }
+           if isDraftRoom {
+               return NSMutableAttributedString(string: "No mutal Cards", attributes: [.font: UIFont.boldFont(ofSize: 25)])
+           } else {
+               return self.titleProvider(count)
+           }
+
+       }
+       .notNil()
     }
+    
+
     
     enum CardType: IdentifiableType, Equatable {
         case fantasy(ProtectedEntity<Fantasy.Card>, Bool)
@@ -113,7 +132,30 @@ class FantasyListViewModel : MVVM_ViewModel {
         self.protectPolicy = protectPolicy
         self.titleProvider = titleProvider
         self.hideUnread = hideUnread
+        self.roomDetailsVM = nil
+        /////progress indicator
         
+        indicator.asDriver()
+            .drive(onNext: { [weak h = router.owner] (loading) in
+                h?.setLoadingStatus(loading)
+            })
+            .disposed(by: bag)
+    }
+    
+    init(router: FantasyListRouter,
+         cardsProvider: Driver<[Fantasy.Card]>,
+         detailsProvider: @escaping (Fantasy.Card) -> FantasyDetailProvider,
+         titleProvider: @escaping FantasyListTitleProvider = FantasyListViewModel.countTitleProvider,
+         roomDetailsVM: RoomDetailsViewModel,
+         protectPolicy: Driver<Bool> = .just(false),
+         hideUnread: Bool = false) {
+        self.router = router
+        self.provider = cardsProvider
+        self.detailsProvider = detailsProvider
+        self.protectPolicy = protectPolicy
+        self.titleProvider = titleProvider
+        self.hideUnread = hideUnread
+        self.roomDetailsVM = roomDetailsVM
         /////progress indicator
         
         indicator.asDriver()
@@ -124,6 +166,7 @@ class FantasyListViewModel : MVVM_ViewModel {
     }
     
     let router: FantasyListRouter
+    let roomDetailsVM: RoomDetailsViewModel?
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     

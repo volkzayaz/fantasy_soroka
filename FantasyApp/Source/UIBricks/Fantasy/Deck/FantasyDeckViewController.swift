@@ -88,6 +88,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             return cell
         }
     )
+    
+    
 
     ///TODO: refactor to RxColodaDatasource
     private var cardsProxy: [Fantasy.Card] = []

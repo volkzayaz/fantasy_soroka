@@ -114,12 +114,12 @@ struct RoomsDeckProvider: FantasyDeckProvier {
 
         roomsDeck.accept(nil)
         
-        roomsDeck.notNil()
-            .startWith(.init(cards: nil, wouldUpdateAt: nil))
-            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck(in: room))
-            .bind(to: roomsDeck)
-            .disposed(by: bag)
-        
+//        roomsDeck.notNil()
+//            .startWith(.init(cards: nil, wouldUpdateAt: nil))
+//            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck(in: room))
+//            .bind(to: roomsDeck)
+//            .disposed(by: bag)
+//        
     }
     
     private let bag = DisposeBag()

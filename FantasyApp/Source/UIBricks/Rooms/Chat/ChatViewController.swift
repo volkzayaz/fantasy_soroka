@@ -15,10 +15,14 @@ import RxDataSources
 class ChatViewController: SLKTextViewController, MVVM_View {
 
     var viewModel: ChatViewModel!
+    var roomDetailsVM: RoomDetailsViewModel!
 
     var tv: UITableView! {
         return tableView!
     }
+   // @IBOutlet weak var myView: UIView!
+    
+    let myView: NoChatView = NoChatView(frame: .zero)
     
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ChatViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, x) in
         
@@ -90,6 +94,22 @@ class ChatViewController: SLKTextViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(myView)
+
+        NSLayoutConstraint.activate([
+            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            myView.topAnchor.constraint(equalTo: view.topAnchor),
+            myView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        viewModel.isEmptyRoom
+            .drive(onNext: { [unowned self] x in
+                if !x {
+                    self.myView.isHidden = true
+                }
+            })
+    
         tv.register(R.nib.ownMessageCell)
         tv.register(R.nib.otherMessageCell)
         tv.register(R.nib.chatHeaderCell)

@@ -57,7 +57,7 @@ struct AppState: Equatable {
     var fantasiesDeck: FantasiesDeck
     
     var incommingConnections: Int
-    
+
     var inviteDeeplink: InviteDeeplink?
     var openRoom: OpenRoom?
     var openCard: OpenCard?

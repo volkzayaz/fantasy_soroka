@@ -173,7 +173,11 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     var unreadCount: Int! = 0
     
     var peer: Participant {
-        return participants.first(where: { $0.userId != User.current?.id })!
+        if let peer = participants.first(where: { $0.userId != User.current?.id }) {
+            return peer
+        }
+        
+        return Participant(userName: "", userId: "", avatar: "")
     }
     
     var me: Participant {
@@ -186,6 +190,10 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    var isEmptyRoom: Bool {
+        return participants.count == 1
     }
     
     var isDraftRoom: Bool {
@@ -230,12 +238,18 @@ extension Room {
         }
         
         var status = Status.accepted
-        
-        private let _id: String
+    
         let userId: String?
         private let userName: String?
         private let avatarThumbnail: String?
         let invitationLink: String?
+        
+        init(userName: String, userId: String, avatar: String) {
+            self.userName = userName
+            self.userId = userId
+            self.avatarThumbnail = avatar
+            self.invitationLink = ""
+        }
         
         var userSlice: UserSlice {
             

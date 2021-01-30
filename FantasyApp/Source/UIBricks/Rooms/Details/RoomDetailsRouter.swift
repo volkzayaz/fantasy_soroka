@@ -46,6 +46,10 @@ struct RoomDetailsRouter: MVVM_Router {
 //            vc.cardsButton.isHidden = true
         }
     }
+    
+    func showNoChatView() {
+        print("123")
+    }
 
     func showUser(user: UserProfile?) {
 

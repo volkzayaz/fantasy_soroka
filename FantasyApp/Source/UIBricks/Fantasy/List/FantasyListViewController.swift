@@ -43,6 +43,7 @@ class FantasyListViewController: UIViewController, MVVM_View, UICollectionViewDe
             return x
         }
         
+        
         self.strongRef = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: R.reuseIdentifier.daHeader, for: ip)!
         self.viewModel.cardTitle
             .do(afterNext: { (_) in

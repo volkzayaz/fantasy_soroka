@@ -164,6 +164,12 @@ class ChatViewModel: MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     
+    
+    var isEmptyRoom: Driver<Bool> {
+        room.asDriver().map { (room) -> Bool in
+            room.isEmptyRoom == true
+        }
+    }
 }
 
 extension ChatViewModel {

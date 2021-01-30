@@ -26,6 +26,11 @@ extension FantasyDeckViewModel {
     enum Mode {
         case swipeCards, waiting
     }
+//
+//    enum EmptyDeckModel: IdentifiableType, Equatable {
+//
+//
+//    }
 
     var mode: Driver<Mode> {
         return provider.cardsChange
@@ -76,10 +81,9 @@ extension FantasyDeckViewModel {
     
     var cards: Driver<[Fantasy.Card]> {
         
-        return .just([])
-//            provider.cardsChange
-//            .map { $0.cards }
-//            .notNil()
+        return provider.cardsChange
+            .map { $0.cards }
+            .notNil()
         
     }
     
