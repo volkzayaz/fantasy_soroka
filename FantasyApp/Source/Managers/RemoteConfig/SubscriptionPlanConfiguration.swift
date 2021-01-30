@@ -54,8 +54,7 @@ struct SubscriptionPlanConfiguration: Decodable {
         case .regular:
             return R.string.localizable.subscriptionRegularDetails(product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
         case .trial:
-            let baseProductTitle = baseProduct.map { NSLocalizedString($0.productIdentifier, comment: "") } ?? baseProduct?.localizedTitle ?? ""
-            return R.string.localizable.subscriptionTrialDetails(baseProductTitle, product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
+            return R.string.localizable.subscriptionTrialDetails(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
         case .special:
             let baseProductDetails = baseProduct.map { productDetails(product: $0) } ?? ""
             return R.string.localizable.subscriptionSpecialDetails(product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment, baseProductDetails)
@@ -67,8 +66,7 @@ struct SubscriptionPlanConfiguration: Decodable {
         case .regular:
             return R.string.localizable.subscriptionRegularDescription(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
         case .trial:
-            let baseProductTitle = baseProduct.map { NSLocalizedString($0.productIdentifier, comment: "") } ?? baseProduct?.localizedTitle ?? ""
-            return R.string.localizable.subscriptionTrialDescription(title(product: product), baseProductTitle, product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
+            return R.string.localizable.subscriptionTrialDescription(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
         case .special:
             let baseProductDetails = baseProduct.map { productDetails(product: $0) } ?? ""
             return R.string.localizable.subscriptionSpecialDescription(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment, baseProductDetails)

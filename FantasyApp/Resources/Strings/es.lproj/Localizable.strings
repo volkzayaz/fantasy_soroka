@@ -704,8 +704,8 @@
 "getMembership.globalMode.title" = "Global Mode";
 "getMembership.globalMode.subtitle" = "Search for people around you, in non-activated and activated cities"; //Look for people in non-activated cities closest to you
 
-"getMembership.accessToAllDecks.title" = "Access To All Decks";
-"getMembership.accessToAllDecks.subtitle" = "Play with all Decks from Learn section";
+"getMembership.accessToAllDecks.title" = "Unlock All Decks";
+"getMembership.accessToAllDecks.subtitle" = "Get access to all decks from Learn section";
 
 
 // Subscription - Limited offer
@@ -736,32 +736,41 @@
 
 // !!action!! "getMembership.3months" = "3 months"; - берется с кода, необходимо вынести и перевести day/week/month/year
 "subscription.dailyCharge" = "%@ / day";
+
 "subscription.regular.payment" = "%@ / %@";
 "subscription.regular.details" = "Billed %@ per %@ (equals %@)";
 "subscription.regular.description" = "For %@, billed %@ per %@ (equals %@)";
-"subscription.trial.payment" = "Then %@ / %@";
-"subscription.trial.details" = "For %@, then billed %@ per %@ (equals %@)";
-"subscription.trial.description" = "%@ for %@, then billed %@ per %@ (equals %@)";
+
+"subscription.trial.payment" = "%@ / %@";
+"subscription.trial.details" = "After free trial %@ billed %@ per %@ (equals %@)";
+"subscription.trial.description" = "After free trial %@ billed %@ per %@ (equals %@)";
+
 "subscription.special.payment" = "%@ / %@";
 "subscription.special.details" = "Billed %@ per %@ (equals %@), instead of %@";
 "subscription.special.description" = "For %@, billed %@ per %@ (equals %@), instead of %@";
 "subscription.special.baseProductDetails" = "%@ (%@)";
+
+"subscription.trial.sticker" = "Best Value";
+"subscription.special.sticker" = "Save %d%%";
+
 "subscription.regular.Title1" = "Get Membership";
 "subscription.regular.Title2" = "Become A Member";
 "subscription.offer.Title1" = "Limited Offer";
 "subscription.offer.Title2" = "One Time Offer";
+
 "subscription.plan.buttonTitle" = "Subscribe";
 "subscription.plan.buttonTitle1" = "Continue";
 "subscription.plan.buttonTitle2" = "Start";
 "subscription.plan.buttonTitle3" = "Get";
-"subscription.trial.sticker" = "Best Value";
-"subscription.special.sticker" = "Save %d%%";
+"subscription.plan.buttonTrialTitle1" = "Start Free 3 Days Trial"; // copy starting from build 2.2.4
+"subscription.plan.buttonTrialTitle2" = "Get"; // copy starting from build 2.2.4
+"subscription.plan.buttonTrialTitle3" = "Start Free 7 Days Trial"; // copy starting from build 2.2.4
 
 "getMembership.save" = "Save";
 "getMembership.tryToday" = "Try today";
 
-"getMembership.continueButton" = "Continue";
-"getMembership.noThanksButton" = "No Thanks";
+"getMembership.continueButton" = "Continue"; // copy for builds before 2.2.0
+"getMembership.noThanksButton" = "No Thanks"; // copy for builds before 2.2.0
 "getMembership.seeOtherPlansButton" = " See Other Plans";
 
 "getMembership.recurringBilling" = "Recurring billing, no refunds, cancel any time";
@@ -776,17 +785,17 @@
 
 // Regular Plans
 "com.fantasyapp.iosclient.iap.premium" = "1 Week Membership";
-"com.fantasyapp.iosclient.iap.premiumwithdecks" = "1 Week Membership Full";
+"com.fantasyapp.iosclient.iap.premiumwithdecks" = "1 Week Membership";
 "com.fantasyapp.iosclient.iap.premium.1month" = "1 Month Membership";
 "com.fantasyapp.iosclient.iap.premium.months3" = "3 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.months6" = "6 Months Membership";
 "com.fantasyapp.iosclient.iap.premium.year" = "1 Year Membership";
 
 // Trial Plans
-"com.fantasyapp.iosclient.iap.premium.special" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premiumwithdecks.basic" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premium.months3.special" = "Start Free 3 Days Trial";
-"com.fantasyapp.iosclient.iap.premium.year.special" = "Start Free 3 Days Trial";
+"com.fantasyapp.iosclient.iap.premium.special" = "1 Week Membership";
+"com.fantasyapp.iosclient.iap.premiumwithdecks.basic" = "1 Week Membership";
+"com.fantasyapp.iosclient.iap.premium.months3.special" = "3 Months Membership";
+"com.fantasyapp.iosclient.iap.premium.year.special" = "1 Year Membership";
 
 // Special Plans
 "com.fantasyapp.iosclient.iap.premium.special2" = "1 Week Membership";
@@ -808,7 +817,7 @@
 "profile.editProfileButton" = "Edit Profile >";
 
 "userGateway.getMembership" = "Get Membership";
-"userGateway.unlimitedRooms" = "x3 New Profiles Daily, Global Mode, Access To All Decks and more";
+"userGateway.unlimitedRooms" = "x3 New Profiles Daily, Global Mode, Unlock All Decks and more";
 "userGateway.membership" = "Membership";
 "userGateway.manageClubMembership" = "Manage Membership";
 
@@ -852,8 +861,8 @@
 "monetization.globalMode.title" = "Global Mode";
 "monetization.globalMode.subtitle" = "Search for people around you, in non-activated and activated cities"; // Look for people in non-activated cities closest to you
 
-"monetization.accessToAllDecks.title" = "Access To All Decks";
-"monetization.accessToAllDecks.subtitle" = "Play with all decks from Learn section";
+"monetization.accessToAllDecks.title" = "Unlock All Decks";
+"monetization.accessToAllDecks.subtitle" = "Get access to all decks from Learn section";
 
 
 // Profile - My Library
