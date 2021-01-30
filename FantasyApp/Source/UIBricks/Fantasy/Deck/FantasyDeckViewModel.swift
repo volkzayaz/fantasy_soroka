@@ -263,7 +263,12 @@ extension FantasyDeckViewModel {
     func presentPeer() {
         guard let r = room else { return }
 
-        presentUser(id: r.peer.userSlice.id)
+        if let p = r.peer {
+            presentUser(id: p.userSlice.id)
+            return;
+        }
+        
+        ///MAX: invite user
     }
 
    private func presentUser(id: String) {

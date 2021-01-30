@@ -61,7 +61,7 @@ extension RoomSettingsViewModel {
         return room.asDriver()
             .map { room in
                 
-                if room.isDraftRoom {
+                if room.status != .ready {
                     return nil
                 }
 
@@ -77,7 +77,7 @@ extension RoomSettingsViewModel {
         return room.asDriver()
             .map { room in
                 
-                let isNewRoom = room.isDraftRoom
+                let isNewRoom = room.status != .ready
                 
                 return isNewRoom ?
                     R.string.localizable.roomsAddNewRoom() :

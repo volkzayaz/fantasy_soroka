@@ -63,11 +63,11 @@ extension RoomManager {
     static func room(with: UserIdentifier) -> Single<Room?> {
         
         if let rooms = appStateSlice.rooms {
-            return .just( rooms.first(where: { $0.peer.userSlice.id == with.id }) )
+            return .just( rooms.first(where: { $0.peer?.userSlice.id == with.id }) )
         }
         
         return getAllRooms()
-            .map { $0.first(where: { $0.peer.userSlice.id == with.id }) }
+            .map { $0.first(where: { $0.peer?.userSlice.id == with.id }) }
     }
 
     // MARK: - Room creation

@@ -71,6 +71,9 @@ extension RoomsViewModel {
     }
     
     func createRoom() {
+
+        Analytics.report(Analytics.Event.DraftRoomCreated())
+
         let settings = Room.Settings(isClosedRoom: true,
                                      isHideCommonFantasies: false,
                                      isScreenShieldEnabled: User.current?.subscription.isSubscribed ?? false,

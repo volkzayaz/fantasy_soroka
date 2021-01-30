@@ -63,14 +63,14 @@ extension FantasyListViewModel {
         
         var isDraftRoom = false
 
-           roomDetailsVM?.isDraftRoom
-           .drive(onNext: { (x) in
-               if x {
-                   isDraftRoom = true
-               } else {
-                   isDraftRoom = false
-               }
-           })
+//        roomDetailsVM?.isDraftRoom
+//            .drive(onNext: { (x) in
+//                if x {
+//                    isDraftRoom = true
+//                } else {
+//                    isDraftRoom = false
+//                }
+//            })
 
        return dataSource.map { x -> NSAttributedString? in
 

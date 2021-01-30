@@ -21,16 +21,15 @@ extension RoomDetailsViewModel {
         return R.string.localizable.roomDetailsRoomWith(peer.userSlice.name)
     }
     
-    var isDraftRoom: Driver<Bool> {
-        return room.asDriver()
-            .map { $0.isDraftRoom == true }
+    var navigationEnabled: Driver<Bool> {
+        return .just(true)
     }
     
-    var isEmptyRoom: Driver<Bool> {
-        return room.asDriver()
-            .map { $0.isEmptyRoom == true }
-    }
-    
+var isEmptyRoom: Driver<Bool> {
+return room.asDriver()
+.map { $0.status == .empty }
+}
+
 }
 
 ///RoomResource is shared between different RoomDetails screens (Settings, Chat, Container as of 10.11.2019)
@@ -90,10 +89,12 @@ extension RoomDetailsViewModel {
 
     func presentPeer() {
 
-        
-//        guard let peer = room.value.peer else { return }
-        
-        let id = room.value.peer.userSlice.id
+        guard let id = room.value.peer?.userSlice.id else {
+            
+            ///MAX: invite person
+            
+            return;
+        }
         
         UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
