@@ -75,7 +75,7 @@ extension Analytics.Event {
     
     struct FlirtOptions: AnalyticsEvent {
         
-        let name = "Search NoNewUsers"
+        let name = "Flirt Options"
 //        let currentCity: Community
 //        let location: String
         let searchPreferences: SearchPreferences?
