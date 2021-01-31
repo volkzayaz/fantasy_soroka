@@ -131,9 +131,10 @@ extension DiscoveryFilterViewModel {
     }
 
     func submit() {
-        
         Dispatcher.dispatch(action: UpdateSearchPreferences(with: form.value))
         router.owner.navigationController?.dismiss(animated: true, completion: nil)
+        
+        Analytics.report(Analytics.Event.FlirtOptions(searchPreferences: form.value, membership: User.current?.subscription.isSubscribed == true))
     }
 
     private func updateForm(_ mapper: (inout SearchPreferences) -> Void ) {
