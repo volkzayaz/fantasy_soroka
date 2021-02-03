@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Branch
 
 extension RoomDetailsViewModel {
     
@@ -25,10 +26,10 @@ extension RoomDetailsViewModel {
         return .just(true)
     }
     
-var isEmptyRoom: Driver<Bool> {
-return room.asDriver()
-.map { $0.status == .empty }
-}
+    var isEmptyRoom: Driver<Bool> {
+        return room.asDriver()
+        .map { $0.status == .empty }
+    }
 
 }
 
@@ -46,6 +47,7 @@ class RoomDetailsViewModel: MVVM_ViewModel {
     let router: RoomDetailsRouter
     let room: SharedRoomResource
     let page: BehaviorRelay<DetailsPage>
+    private let buo: BranchUniversalObject?
     fileprivate let bag = DisposeBag()
     
     init(router: RoomDetailsRouter,
@@ -54,6 +56,31 @@ class RoomDetailsViewModel: MVVM_ViewModel {
         self.router = router
         self.room = BehaviorRelay(value: room)
         self.page = BehaviorRelay(value: page)
+        
+        
+        let maybeLink = room.participants.first(where: { participant in
+            participant.status == .invited && participant.invitationLink != nil
+        })?.invitationLink
+        
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
+        buo?.title = R.string.localizable.roomBranchObjectTitle()
+        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo?.publiclyIndex = true
+        buo?.locallyIndex = true
+        
+//        if let invitationLink = maybeLink {
+//
+//
+//            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
+////            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
+////                i.accept(url)
+////            }
+//
+//
+//        }
+//        else {
+//            buo = nil
+//        }
     }
 }
 
@@ -92,6 +119,14 @@ extension RoomDetailsViewModel {
         guard let id = room.value.peer?.userSlice.id else {
             
             ///MAX: invite person
+                
+                Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
+                
+                buo?.showShareSheet(with: BranchLinkProperties(),
+                                    andShareText: R.string.localizable.roomBranchObjectDescription(),
+                                    from: router.owner) { (activityType, completed) in
+
+                }
             
             return;
         }

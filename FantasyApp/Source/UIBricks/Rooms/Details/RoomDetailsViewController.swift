@@ -96,7 +96,7 @@ extension RoomDetailsViewController {
         
         chatButton.setTitle(R.string.localizable.roomDetailsChat(), for: .normal)
         chatButton.mode = .selector
-        playButton.setTitle(R.string.localizable.roomDetailsPlay(), for: .normal)
+        playButton.setTitle("Play", for: .normal)
         playButton.mode = .selector
         fantasiesButton.setTitle(R.string.localizable.roomDetailsFantasies(), for: .normal)
         fantasiesButton.mode = .selector

@@ -140,6 +140,18 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)
+        
+        if let room = room?.id {
+            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
+            buo?.title = R.string.localizable.roomBranchObjectTitle()
+            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+            buo?.publiclyIndex = true
+            buo?.locallyIndex = true
+        } else {
+            buo = nil
+        }
+        
+      
 
 
         // Check likes cars count to display Review popup
@@ -213,6 +225,8 @@ extension FantasyDeckViewModel {
         router.show(collection: collection)
     }
     
+
+    
     func cardShown(card: Fantasy.Card) {
         viewTillOpenCardTimer.start()
     }
@@ -268,7 +282,12 @@ extension FantasyDeckViewModel {
             return;
         }
         
-        ///MAX: invite user
+        Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
+        
+        buo?.showShareSheet(with: BranchLinkProperties(),
+                            andShareText: R.string.localizable.roomBranchObjectDescription(),
+                            from: router.owner) { (activityType, completed) in
+        }
     }
 
    private func presentUser(id: String) {

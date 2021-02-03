@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23ACAB0C50D1126DA2F45C13 /* Pods_FantasyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */; };
 		2518808D24464150002CCF2E /* URL+Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518808C24464150002CCF2E /* URL+Email.swift */; };
+		3E384D6A25C80328005ACA48 /* NoChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E384D6925C80328005ACA48 /* NoChatView.xib */; };
 		3E849B9725C445B2001EA538 /* NoChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E849B9625C445B2001EA538 /* NoChatView.swift */; };
 		3E9E307625B5DACF00A7706A /* AddDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
@@ -464,6 +465,7 @@
 		01A0637DC285DFE7725E2C7F /* Pods-FantasyAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1A400FB58FDC75C2F147C565 /* Pods-FantasyAppTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		2518808C24464150002CCF2E /* URL+Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Email.swift"; sourceTree = "<group>"; };
+		3E384D6925C80328005ACA48 /* NoChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoChatView.xib; sourceTree = "<group>"; };
 		3E849B9625C445B2001EA538 /* NoChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoChatView.swift; sourceTree = "<group>"; };
 		3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		4559FC91EADCC95F3A7F9A00 /* Pods-FantasyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -948,6 +950,7 @@
 			isa = PBXGroup;
 			children = (
 				3E849B9625C445B2001EA538 /* NoChatView.swift */,
+				3E384D6925C80328005ACA48 /* NoChatView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2841,6 +2844,7 @@
 				84C1D0382327B95300648DE1 /* Straight.png in Resources */,
 				841681E322E9AE6E00FA9455 /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				7322310C23040D79009DD37F /* FantasyCard.storyboard in Resources */,
+				3E384D6A25C80328005ACA48 /* NoChatView.xib in Resources */,
 				841681E622E9AE6E00FA9455 /* SF-Pro-Text-Bold.otf in Resources */,
 				73432AD0238AC67A008CF2F1 /* ChatHeaderCell.xib in Resources */,
 				B73774B223644F2D00A353CC /* UserCarouselView.xib in Resources */,

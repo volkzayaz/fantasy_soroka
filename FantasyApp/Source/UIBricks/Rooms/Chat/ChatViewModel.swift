@@ -151,7 +151,7 @@ extension ChatViewModel {
 
 class ChatViewModel: MVVM_ViewModel {
     
-    private let room: SharedRoomResource
+    let room: SharedRoomResource
     private var heightCache: [String: MessageCellPosition] = [:]
     
     private let mes = BehaviorRelay<[Room.Message]>(value: [])
@@ -182,12 +182,6 @@ class ChatViewModel: MVVM_ViewModel {
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
     
-    
-    var isEmptyRoom: Driver<Bool> {
-        room.asDriver().map { (room) -> Bool in
-            room.status == .empty
-        }
-    }
 }
 
 extension ChatViewModel {

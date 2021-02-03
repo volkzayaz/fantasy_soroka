@@ -53,7 +53,7 @@ extension RoomSettingsViewModel {
 
     
     var intiteLinkHidden: Driver<Bool> {
-        return inviteLink.asDriver().map { $0 == nil }
+        return .just(false)
     }
     
     var destructiveButtonTitle: Driver<String?> {
@@ -94,34 +94,41 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     
     let inviteLink = BehaviorRelay<String?>(value: nil)
     
-    private let cells: BehaviorRelay<[CellModel]>
+    private var cells: BehaviorRelay<[CellModel]>
     private let buo: BranchUniversalObject?
     
     init(router: RoomSettingsRouter, room: SharedRoomResource) {
         self.router = router
         self.room = room
         
-        let maybeLink = room.value.participants.first(where: { participant in
-            participant.status == .invited && participant.invitationLink != nil
-        })?.invitationLink
-        
-        if let invitationLink = maybeLink {
-        
-            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-            buo?.title = R.string.localizable.roomBranchObjectTitle()
-            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-            buo?.publiclyIndex = true
-            buo?.locallyIndex = true
-            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
-            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
-                i.accept(url)
-            }
-            
-        }
-        else {
-            buo = nil
-        }
-        
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
+        buo?.title = R.string.localizable.roomBranchObjectTitle()
+        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo?.publiclyIndex = true
+        buo?.locallyIndex = true
+      
+           
+//        let maybeLink = room.value.participants.first(where: { participant in
+//            participant.status == .invited && participant.invitationLink != nil
+//        })?.invitationLink
+//
+//        if let invitationLink = maybeLink {
+//
+//            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
+//            buo?.title = R.string.localizable.roomBranchObjectTitle()
+//            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+//            buo?.publiclyIndex = true
+//            buo?.locallyIndex = true
+//            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
+//            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
+//                i.accept(url)
+//            }
+//
+//        }
+//        else {
+//            buo = nil
+//        }
+//
         cells = BehaviorRelay(value: room.value.participants.enumerated()
                                         .map { (i, x) -> CellModel in
                                             
@@ -129,13 +136,17 @@ class RoomSettingsViewModel: MVVM_ViewModel {
                                                 return .invite
                                             }
                                             
-                                            if x.userId == "empty" {
-                                                return .invite
-                                            }
                                             
                                             return .user(isAdmin: x.userId == room.value.ownerId,
                                                          participant: x)
-        })
+
+                                        })
+        
+        if  room.value.status == .empty {
+            cells.add(element: .invite)
+            
+        }
+        
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -261,5 +272,14 @@ extension RoomSettingsViewModel {
     
     func addDeck() {
         print("Add deck")
+    }
+}
+
+extension BehaviorRelay where Element: RangeReplaceableCollection {
+
+    func add(element: Element.Element) {
+        var array = self.value
+        array.append(element)
+        self.accept(array)
     }
 }

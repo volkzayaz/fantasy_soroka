@@ -33,7 +33,7 @@ struct RoomsRouter: MVVM_Router {
         let vc = R.storyboard.rooms.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
-                             page: .fantasies)
+                             page: .chat)
         owner.navigationController?.pushViewController(vc, animated: true)
 
     }
