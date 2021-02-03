@@ -40,6 +40,10 @@ extension RoomSettingsViewModel {
     
     var deckDataSource: Driver<[DeckCellModel]> {
         
+//        return room.map(\.settings.sharedCollections)
+//            .distinctUntilChanged()
+//            .flatMapLatest
+        
         return Fantasy.Manager.fetchCollections()
             .asDriver(onErrorJustReturn: [])
             .map { (collections) -> [DeckCellModel] in
@@ -251,8 +255,24 @@ extension RoomSettingsViewModel {
         
     }
     
-    func addDeck() {
-        print("Add deck")
+    func addCollection() {
+        
+        ///TODO: present collections screen and await for selection
+        
+        var x = room.value
+        //x.settings.sharedCollections.append("helloid")
+        room.accept(x)
+     
+        Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
+        
+    }
+    
+    func remove(collection: Fantasy.Collection) {
+        var x = room.value
+        //x.settings.sharedCollections.remove(collection.id)
+        room.accept(x)
+     
+        Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
     }
 }
 

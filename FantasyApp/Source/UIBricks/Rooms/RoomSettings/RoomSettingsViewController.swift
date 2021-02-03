@@ -148,7 +148,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                 case .deck(_):
                     break;
                 case .add:
-                    self.viewModel.addDeck()
+                    self.viewModel.addCollection()
                 }
                 
             })

@@ -106,6 +106,10 @@ extension RoomManager {
     static func updateRoomSettings(roomId: String, settings: Room.Settings) -> Single<Room> {
         return UpdateRoomSettingsResource(roomId: roomId, settings: settings).rx.request
     }
+    
+    static func updateRoomSharedCollections(room: Room) -> Single<Room> {
+        return UpdateRoomSharedCollectionsResource(room: room).rx.request
+    }
 
     static func latestMessageIn(rooms: [Room]) -> Observable<Room.MessageInRoom> {
         

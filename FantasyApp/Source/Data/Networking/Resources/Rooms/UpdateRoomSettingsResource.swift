@@ -32,3 +32,22 @@ struct UpdateRoomSettingsResource: AuthorizedAPIResource {
         return .requestJSONEncodable(settings)
     }
 }
+
+struct UpdateRoomSharedCollectionsResource: AuthorizedAPIResource {
+    
+    let room: Room
+    
+    typealias responseType = Room
+
+    var method: Moya.Method {
+        return .put
+    }
+
+    var path: String {
+        return "users/me/rooms/\(room.id)/settings/shared-collections"
+    }
+
+    var task: Task {
+        return .requestJSONEncodable(room.settings.sharedCollections)
+    }
+}
