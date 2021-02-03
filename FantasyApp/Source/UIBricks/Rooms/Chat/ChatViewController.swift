@@ -12,6 +12,7 @@ import SlackTextViewController
 import RxSwift
 import RxDataSources
 
+
 class ChatViewController: SLKTextViewController, MVVM_View {
 
     var viewModel: ChatViewModel!
@@ -19,10 +20,8 @@ class ChatViewController: SLKTextViewController, MVVM_View {
     var tv: UITableView! {
         return tableView!
     }
-
     
-    let noChatView = UINib(nibName: "NoChatView", bundle: .main).instantiate(withOwner: nil, options: nil).first as! UIView
-    
+    let noChatView = UINib(nibName: "NoChatView", bundle: .main).instantiate(withOwner: nil, options: nil).first as! NoChatView
     
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ChatViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, x) in
         
@@ -95,14 +94,13 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         super.viewDidLoad()
     
         view.addSubview(noChatView)
+        
+        noChatView.vm = viewModel
        
-//        NSLayoutConstraint.activate([
-//            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            myView.topAnchor.constraint(equalTo: view.topAnchor),
-//            myView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
-
+        noChatView.snp.makeConstraints { (make) in
+                    make.edges.equalToSuperview()
+        }
+        
         if viewModel.room.value.status != .empty {
             noChatView.isHidden = true
         }
@@ -159,6 +157,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
     }
     
+
     override func didPressRightButton(_ sender: (Any)?) {
 
         let message = textView.text!

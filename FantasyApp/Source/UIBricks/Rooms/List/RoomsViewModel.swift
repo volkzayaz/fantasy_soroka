@@ -81,9 +81,6 @@ extension RoomsViewModel {
                                      notifications: .init(newMessage: false,
                                                           newFantasyMatch: false))
 
-//        var emptyPeer = Room.Participant(userName: "", userId: "empty", avatar: "https://www.vhv.rs/dpng/d/453-4535933_plus-icon-white-png-transparent-png.png")
-//        emptyPeer.status = .invited
-
         UserManager.getUserProfile(id: User.current!.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)

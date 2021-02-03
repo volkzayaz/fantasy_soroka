@@ -58,9 +58,9 @@ class RoomDetailsViewModel: MVVM_ViewModel {
         self.page = BehaviorRelay(value: page)
         
         
-        let maybeLink = room.participants.first(where: { participant in
-            participant.status == .invited && participant.invitationLink != nil
-        })?.invitationLink
+//        let maybeLink = room.participants.first(where: { participant in
+//            participant.status == .invited && participant.invitationLink != nil
+//        })?.invitationLink
         
         self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
         buo?.title = R.string.localizable.roomBranchObjectTitle()
@@ -72,9 +72,9 @@ class RoomDetailsViewModel: MVVM_ViewModel {
 //
 //
 //            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
-////            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
-////                i.accept(url)
-////            }
+//            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
+//                i.accept(url)
+//            }
 //
 //
 //        }
@@ -118,8 +118,6 @@ extension RoomDetailsViewModel {
 
         guard let id = room.value.peer?.userSlice.id else {
             
-            ///MAX: invite person
-                
                 Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
                 
                 buo?.showShareSheet(with: BranchLinkProperties(),

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoChatView" customModule="FantasyApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="ghQ-C8-Esw">
-            <rect key="frame" x="0.0" y="0.0" width="336" height="506"/>
+        <view contentMode="scaleToFill" id="ghQ-C8-Esw" customClass="NoChatView" customModule="FantasyApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sYg-Xl-tYi">
@@ -36,32 +36,36 @@
                     </constraints>
                 </stackView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noChatStarted" translatesAutoresizingMaskIntoConstraints="NO" id="sTP-Ze-eUX">
-                    <rect key="frame" x="20" y="76" width="296" height="337"/>
+                    <rect key="frame" x="20" y="76" width="374" height="745"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehW-XV-3Dk">
-                    <rect key="frame" x="55" y="421" width="226" height="55"/>
-                    <color key="backgroundColor" name="textLightGrayColor"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehW-XV-3Dk" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                    <rect key="frame" x="80" y="829" width="254" height="52"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="2PI-SC-5cg"/>
+                        <constraint firstAttribute="height" constant="52" id="2PI-SC-5cg"/>
+                        <constraint firstAttribute="width" constant="254" id="Anb-ED-s1C"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="inviteButtonPressed:" destination="ghQ-C8-Esw" eventType="touchUpInside" id="Ivl-CC-OyI"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="HIO-XQ-BOY"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="ehW-XV-3Dk" firstAttribute="centerX" secondItem="HIO-XQ-BOY" secondAttribute="centerX" id="Bqo-s9-ScV"/>
                 <constraint firstItem="HIO-XQ-BOY" firstAttribute="trailing" secondItem="sTP-Ze-eUX" secondAttribute="trailing" constant="20" id="Hvb-bm-w1t"/>
-                <constraint firstItem="HIO-XQ-BOY" firstAttribute="trailing" secondItem="ehW-XV-3Dk" secondAttribute="trailing" constant="55" id="M8h-g6-i5N"/>
                 <constraint firstItem="sTP-Ze-eUX" firstAttribute="top" secondItem="sYg-Xl-tYi" secondAttribute="bottom" constant="10" id="SI3-nw-DS7"/>
                 <constraint firstItem="sYg-Xl-tYi" firstAttribute="top" secondItem="ghQ-C8-Esw" secondAttribute="top" constant="16" id="T30-Ik-5ag"/>
                 <constraint firstItem="sYg-Xl-tYi" firstAttribute="leading" secondItem="HIO-XQ-BOY" secondAttribute="leading" constant="16" id="gLK-J6-WjP"/>
-                <constraint firstItem="ehW-XV-3Dk" firstAttribute="leading" secondItem="HIO-XQ-BOY" secondAttribute="leading" constant="55" id="hSl-Hc-FqZ"/>
-                <constraint firstAttribute="bottom" secondItem="ehW-XV-3Dk" secondAttribute="bottom" constant="30" id="pAt-dx-zpY"/>
+                <constraint firstAttribute="bottom" secondItem="ehW-XV-3Dk" secondAttribute="bottom" constant="15" id="pAt-dx-zpY"/>
                 <constraint firstItem="sTP-Ze-eUX" firstAttribute="leading" secondItem="HIO-XQ-BOY" secondAttribute="leading" constant="20" id="sFs-uT-FVR"/>
                 <constraint firstItem="ehW-XV-3Dk" firstAttribute="top" secondItem="sTP-Ze-eUX" secondAttribute="bottom" constant="8" symbolic="YES" id="vpa-ka-PVf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-520.28985507246375" y="-397.09821428571428"/>
+            <connections>
+                <outlet property="inviteButton" destination="ehW-XV-3Dk" id="7og-0Q-iOB"/>
+            </connections>
+            <point key="canvasLocation" x="-578.98550724637687" y="-413.16964285714283"/>
         </view>
     </objects>
     <resources>

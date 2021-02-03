@@ -26,11 +26,6 @@ extension FantasyDeckViewModel {
     enum Mode {
         case swipeCards, waiting
     }
-//
-//    enum EmptyDeckModel: IdentifiableType, Equatable {
-//
-//
-//    }
 
     var mode: Driver<Mode> {
         return provider.cardsChange

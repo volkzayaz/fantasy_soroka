@@ -143,8 +143,9 @@ class RoomSettingsViewModel: MVVM_ViewModel {
                                         })
         
         if  room.value.status == .empty {
-            cells.add(element: .invite)
-            
+            var array = cells.value
+            array.append(.invite)
+            cells.accept(array)
         }
         
         
@@ -275,11 +276,3 @@ extension RoomSettingsViewModel {
     }
 }
 
-extension BehaviorRelay where Element: RangeReplaceableCollection {
-
-    func add(element: Element.Element) {
-        var array = self.value
-        array.append(element)
-        self.accept(array)
-    }
-}

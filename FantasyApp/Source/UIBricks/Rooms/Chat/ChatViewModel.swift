@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Branch
 
 extension ChatViewModel {
     
@@ -153,7 +154,7 @@ class ChatViewModel: MVVM_ViewModel {
     
     let room: SharedRoomResource
     private var heightCache: [String: MessageCellPosition] = [:]
-    
+    private let buo: BranchUniversalObject?
     private let mes = BehaviorRelay<[Room.Message]>(value: [])
     
     init(router: ChatRouter, room: SharedRoomResource) {
@@ -176,6 +177,14 @@ class ChatViewModel: MVVM_ViewModel {
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
+        
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
+        buo?.title = R.string.localizable.roomBranchObjectTitle()
+        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo?.publiclyIndex = true
+        buo?.locallyIndex = true
+        
+        
     }
 
     let router: ChatRouter
@@ -303,6 +312,18 @@ extension ChatViewModel {
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
+    }
+    
+    
+    func inviteButtonPressed() {
+        
+        Analytics.report(Analytics.Event.DraftRoomShared(type: .share))
+        
+        buo?.showShareSheet(with: BranchLinkProperties(),
+                            andShareText: R.string.localizable.roomBranchObjectDescription(),
+                            from: router.owner) { (activityType, completed) in
+
+        }
     }
     
 }
