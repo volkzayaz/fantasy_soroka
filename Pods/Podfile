@@ -53,6 +53,8 @@ target 'FantasyApp' do
     # IAP
     pod 'ApphudSDK'
 
+    pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '6.1.4'
+    
 end
 
 target 'FantasyAppTests' do

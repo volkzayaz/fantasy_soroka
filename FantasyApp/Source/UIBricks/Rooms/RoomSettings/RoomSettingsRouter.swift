@@ -39,7 +39,7 @@ struct RoomSettingsRouter: MVVM_Router {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .unlimitedRooms)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .unlimitedRooms, purchaseInterestContext: .unlimitedRooms)
         
         owner.present(nav, animated: true, completion: nil)
         

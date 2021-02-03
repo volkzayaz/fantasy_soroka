@@ -1,15 +1,16 @@
 //
-//  SubscriptionPlanStyle1View.swift
+//  SubscriptionPlanStyle2View.swift
 //  FantasyApp
 //
-//  Created by Ihor Vovk on 02.01.2021.
+//  Created by Ihor Vovk on 23.01.2021.
 //  Copyright © 2021 Fantasy App. All rights reserved.
 //
 
 import UIKit
 
-class SubscriptionPlanStyle1View: UIView {
+class SubscriptionPlanStyle2View: UIView {
 
+    @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var detailsLabel: UILabel!
@@ -58,8 +59,6 @@ class SubscriptionPlanStyle1View: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         DispatchQueue.main.async {
-            self.subscribeButton.removeGradient()
-            self.subscribeButton.addFantasyGradient()
             self.updateShadowFrame()
         }
     }
@@ -69,19 +68,19 @@ class SubscriptionPlanStyle1View: UIView {
     }
 }
 
-private extension SubscriptionPlanStyle1View {
+private extension SubscriptionPlanStyle2View {
     
     func setUpShadow() {
-        layer.shadowColor = UIColor(red: 0.78, green: 0.467, blue: 0.773, alpha: 0.38).cgColor
+        layer.shadowColor = UIColor(red: 0.623, green: 0.65, blue: 0.692, alpha: 0.2).cgColor
         layer.shadowOpacity = 1
-        layer.shadowRadius = 21
-        layer.shadowOffset = CGSize(width: 0, height: 6)
+        layer.shadowRadius = 40
+        layer.shadowOffset = CGSize(width: 0, height: 8)
         
         updateShadowFrame()
     }
     
     func updateShadowFrame() {
-        layer.shadowPath = UIBezierPath(roundedRect: subscribeButton.frame, cornerRadius: 0).cgPath
+        layer.shadowPath = UIBezierPath(roundedRect: backgroundView.frame, cornerRadius: 16).cgPath
     }
     
     @IBAction func subscribe(_ sender: Any) {

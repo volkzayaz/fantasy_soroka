@@ -41,11 +41,11 @@ struct RemoteConfigManager {
     }
     
     static var subscriptionOfferPromoShownInFlirtAfterNumber: Int {
-        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferPromoShownInFlirtAfterNumber).numberValue?.intValue ?? 2
+        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferPromoShownInFlirtAfterNumber).numberValue.intValue
     }
     
     static var subscriptionOfferSpecialShownInFlirtAfterNumber: Int {
-        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferSpecialShownInFlirtAfterNumber).numberValue?.intValue ?? 6
+        RemoteConfig.remoteConfig().configValue(forKey: Key.subscriptionOfferSpecialShownInFlirtAfterNumber).numberValue.intValue
     }
     
     static var subscriptionOfferPromo: SubscriptionOfferSpecial.Offer {
