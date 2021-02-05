@@ -41,10 +41,12 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         }
     }
     
-    @IBOutlet weak var addImageView: UIImageView!
-    @IBOutlet weak var addDeckView: UIView! {
-        didSet { addDeckView.isHidden = true }
+    @IBOutlet weak var addImageView: UIImageView! {
+        didSet {
+            addImageView.image = addImageView.image?.withRenderingMode(.alwaysTemplate)
+        }
     }
+    @IBOutlet weak var addDeckView: UIView!
 
     @IBOutlet weak var waitingView: UIView! {
         didSet { waitingView.isHidden = true }
@@ -101,19 +103,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addDeck))
-
-        addImageView.isUserInteractionEnabled = true
-        addImageView.addGestureRecognizer(tapGestureRecognizer)
-       
-        addImageView.image = addImageView.image?.withRenderingMode(.alwaysTemplate)
-        addImageView.tintColor = .white
-    
-        
-        if viewModel.room != nil && (viewModel.room?.status == .empty || viewModel.room?.status == .draft) {
-            addDeckView.isHidden = false
-        }
         
         viewModel.mode.drive(onNext: { [unowned self] mode in
             self.waitingView.isHidden = mode == .swipeCards
@@ -275,7 +264,7 @@ extension FantasyDeckViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    @objc func addDeck() {
+    @IBAction func didTapAddDeckImage(_ sender: Any) {
         print("Add Deck")
     }
 

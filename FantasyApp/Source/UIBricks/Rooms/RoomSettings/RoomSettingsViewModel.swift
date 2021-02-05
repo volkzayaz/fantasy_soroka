@@ -53,7 +53,12 @@ extension RoomSettingsViewModel {
 
     
     var intiteLinkHidden: Driver<Bool> {
-        return .just(false)
+        return inviteLink.asDriver().map { $0 == nil }
+    }
+    
+    var isEmptyRoom: Driver<Bool> {
+        return room.asDriver()
+        .map { $0.status == .empty }
     }
     
     var destructiveButtonTitle: Driver<String?> {
@@ -94,7 +99,7 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     
     let inviteLink = BehaviorRelay<String?>(value: nil)
     
-    private var cells: BehaviorRelay<[CellModel]>
+    private let cells: BehaviorRelay<[CellModel]>
     private let buo: BranchUniversalObject?
     
     init(router: RoomSettingsRouter, room: SharedRoomResource) {
@@ -107,52 +112,27 @@ class RoomSettingsViewModel: MVVM_ViewModel {
         buo?.publiclyIndex = true
         buo?.locallyIndex = true
       
-           
-//        let maybeLink = room.value.participants.first(where: { participant in
-//            participant.status == .invited && participant.invitationLink != nil
-//        })?.invitationLink
-//
-//        if let invitationLink = maybeLink {
-//
-//            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-//            buo?.title = R.string.localizable.roomBranchObjectTitle()
-//            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-//            buo?.publiclyIndex = true
-//            buo?.locallyIndex = true
-//            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
-//            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
-//                i.accept(url)
-//            }
-//
-//        }
-//        else {
-//            buo = nil
-//        }
-//
         cells = BehaviorRelay(value: room.value.participants.enumerated()
                                         .map { (i, x) -> CellModel in
                                             
                                             guard let _ = x.userId else {
                                                 return .invite
                                             }
-                                            
-                                            
+                                    
                                             return .user(isAdmin: x.userId == room.value.ownerId,
                                                          participant: x)
 
                                         })
         
-        if  room.value.status == .empty {
-            var array = cells.value
-            array.append(.invite)
-            cells.accept(array)
-        }
-        
+        isEmptyRoom.drive(onNext: { [unowned self] isEmpty in
+            if isEmpty {
+                cells.accept(cells.value + [.invite])
+            }
+        })
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
-        
     }
     
     let router: RoomSettingsRouter

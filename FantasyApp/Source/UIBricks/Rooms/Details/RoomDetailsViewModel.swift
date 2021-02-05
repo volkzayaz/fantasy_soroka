@@ -56,31 +56,13 @@ class RoomDetailsViewModel: MVVM_ViewModel {
         self.router = router
         self.room = BehaviorRelay(value: room)
         self.page = BehaviorRelay(value: page)
-        
-        
-//        let maybeLink = room.participants.first(where: { participant in
-//            participant.status == .invited && participant.invitationLink != nil
-//        })?.invitationLink
-        
+
         self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
         buo?.title = R.string.localizable.roomBranchObjectTitle()
         buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
         buo?.publiclyIndex = true
         buo?.locallyIndex = true
         
-//        if let invitationLink = maybeLink {
-//
-//
-//            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
-//            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
-//                i.accept(url)
-//            }
-//
-//
-//        }
-//        else {
-//            buo = nil
-//        }
     }
 }
 
@@ -92,10 +74,6 @@ extension RoomDetailsViewModel {
     
     func showPlay() {
         router.showPlay(room: room.value)
-    }
-    
-    func showNoChatView() {
-        router.showNoChatView()
     }
     
     func presentMe() {

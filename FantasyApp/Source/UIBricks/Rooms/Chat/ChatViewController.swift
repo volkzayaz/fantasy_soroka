@@ -21,7 +21,7 @@ class ChatViewController: SLKTextViewController, MVVM_View {
         return tableView!
     }
     
-    let noChatView = UINib(nibName: "NoChatView", bundle: .main).instantiate(withOwner: nil, options: nil).first as! NoChatView
+    let noChatView = R.nib.noChatView.instantiate(withOwner: nil).first as! NoChatView
     
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ChatViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, x) in
         
@@ -101,9 +101,11 @@ class ChatViewController: SLKTextViewController, MVVM_View {
                     make.edges.equalToSuperview()
         }
         
-        if viewModel.room.value.status != .empty {
-            noChatView.isHidden = true
-        }
+        viewModel.noChatViewIsHidden
+            .drive(onNext: { [unowned self] isHidden in
+                noChatView.isHidden = isHidden
+            })
+            .disposed(by: rx.disposeBag)
 
         tv.register(R.nib.ownMessageCell)
         tv.register(R.nib.otherMessageCell)

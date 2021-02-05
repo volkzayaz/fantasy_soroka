@@ -146,9 +146,6 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             buo = nil
         }
         
-      
-
-
         // Check likes cars count to display Review popup
 
         ///TODO: liked fantasies cards is no longer stored value and can't be accessed locally

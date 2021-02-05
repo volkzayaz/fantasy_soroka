@@ -19,6 +19,12 @@ extension ChatViewModel {
             .map { !$0.isWaitingForMyResponse }
     }
     
+    var noChatViewIsHidden: Driver<Bool> {
+        return room
+                .asDriver()
+            .map { $0.status != .empty }
+    }
+    
     var dataSource: Driver<[AnimatableSectionModel<String, Row>]> {
 
         let connectionAndRoom = room.asDriver()
@@ -301,7 +307,7 @@ extension ChatViewModel {
             return presentUserDetails(for: peer.userSlice.id)
         }
         
-        ///MAX: invite user
+        inviteButtonPressed()
     }
 
     func presentUserDetails(for userId: String) {
