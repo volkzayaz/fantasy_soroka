@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Bold.otf">
+            <string>SFProText-Bold</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubscriptionPlanStyle2View" customModule="FantasyApp" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="rZX-Ow-cVR" id="osB-Lm-TNq"/>
+                <outlet property="detailsLabel" destination="6yH-Pu-KMo" id="sl3-1o-btJ"/>
+                <outlet property="stickerLabel" destination="nbL-30-m1z" id="0OD-pM-Pbu"/>
+                <outlet property="stickerView" destination="Uli-Op-tBB" id="Cis-qy-pg6"/>
+                <outlet property="subscribeButton" destination="aeF-U1-4VL" id="Dj3-IT-fqC"/>
+                <outlet property="subtitleLabel" destination="chH-8W-6Sn" id="0b3-Ns-7iz"/>
+                <outlet property="titleLabel" destination="pM7-C7-w6v" id="RBY-6l-S1n"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="LK7-j8-WJI">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="205"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZX-Ow-cVR">
+                    <rect key="frame" x="0.0" y="11" width="331" height="194"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yH-Pu-KMo">
+                            <rect key="frame" x="16" y="76.5" width="299" height="101.5"/>
+                            <string key="text">Equals $0.78 / day
+</string>
+                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                            <color key="textColor" red="0.63137254899999995" green="0.65490196079999996" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$5.49 / week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chH-8W-6Sn">
+                            <rect key="frame" x="16" y="44.5" width="193" height="20"/>
+                            <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
+                            <color key="textColor" red="0.28235294119999998" green="0.30588235289999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeF-U1-4VL">
+                            <rect key="frame" x="217" y="25" width="98" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="L8t-NM-SRb"/>
+                                <constraint firstAttribute="width" constant="98" id="WfK-WB-Myn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="16"/>
+                            <state key="normal" title="Continue">
+                                <color key="titleColor" red="0.82745098039999998" green="0.3921568627" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="getMembership.continueButton"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" red="0.82745098039999998" green="0.3921568627" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="17"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="subscribe:" destination="-1" eventType="touchUpInside" id="JfK-Do-YhM"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="1 Week Membership" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pM7-C7-w6v">
+                            <rect key="frame" x="16" y="21" width="193" height="21.5"/>
+                            <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="18"/>
+                            <color key="textColor" red="0.82745098039999998" green="0.3921568627" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="6yH-Pu-KMo" firstAttribute="top" secondItem="chH-8W-6Sn" secondAttribute="bottom" constant="12" id="7J2-W4-JOx"/>
+                        <constraint firstItem="aeF-U1-4VL" firstAttribute="top" secondItem="rZX-Ow-cVR" secondAttribute="top" constant="25" id="AMQ-1d-xLn"/>
+                        <constraint firstItem="6yH-Pu-KMo" firstAttribute="leading" secondItem="rZX-Ow-cVR" secondAttribute="leading" constant="16" id="AX3-F9-gwn"/>
+                        <constraint firstItem="aeF-U1-4VL" firstAttribute="leading" secondItem="chH-8W-6Sn" secondAttribute="trailing" constant="8" id="Fsw-16-eZN"/>
+                        <constraint firstAttribute="bottom" secondItem="6yH-Pu-KMo" secondAttribute="bottom" constant="16" id="HX4-xF-ybU"/>
+                        <constraint firstItem="aeF-U1-4VL" firstAttribute="leading" secondItem="pM7-C7-w6v" secondAttribute="trailing" constant="8" id="Lbc-U3-lcy"/>
+                        <constraint firstAttribute="trailing" secondItem="6yH-Pu-KMo" secondAttribute="trailing" constant="16" id="M3m-Fu-tU1"/>
+                        <constraint firstItem="pM7-C7-w6v" firstAttribute="leading" secondItem="rZX-Ow-cVR" secondAttribute="leading" constant="16" id="PIP-bQ-Hs2"/>
+                        <constraint firstItem="chH-8W-6Sn" firstAttribute="leading" secondItem="rZX-Ow-cVR" secondAttribute="leading" constant="16" id="RUc-76-lpu"/>
+                        <constraint firstAttribute="trailing" secondItem="aeF-U1-4VL" secondAttribute="trailing" constant="16" id="cR9-CR-geu"/>
+                        <constraint firstItem="chH-8W-6Sn" firstAttribute="top" secondItem="pM7-C7-w6v" secondAttribute="bottom" constant="2" id="nkH-2w-4th"/>
+                        <constraint firstItem="pM7-C7-w6v" firstAttribute="top" secondItem="rZX-Ow-cVR" secondAttribute="top" constant="21" id="w4L-S3-Vis"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uli-Op-tBB">
+                    <rect key="frame" x="12" y="0.0" width="80" height="24"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-30-m1z">
+                            <rect key="frame" x="8" y="5" width="64" height="14.5"/>
+                            <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="nbL-30-m1z" firstAttribute="leading" secondItem="Uli-Op-tBB" secondAttribute="leading" constant="8" id="LNU-ZI-Xfw"/>
+                        <constraint firstAttribute="trailing" secondItem="nbL-30-m1z" secondAttribute="trailing" constant="8" id="WBt-6x-8GJ"/>
+                        <constraint firstAttribute="height" constant="24" id="iWW-t7-q2J"/>
+                        <constraint firstItem="nbL-30-m1z" firstAttribute="centerY" secondItem="Uli-Op-tBB" secondAttribute="centerY" id="lhl-XF-vJ2"/>
+                        <constraint firstAttribute="width" constant="80" id="w7Z-ZG-dy5"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Uli-Op-tBB" firstAttribute="leading" secondItem="LK7-j8-WJI" secondAttribute="leading" constant="12" id="7gn-Sx-JeW"/>
+                <constraint firstItem="rZX-Ow-cVR" firstAttribute="leading" secondItem="LK7-j8-WJI" secondAttribute="leading" id="VsW-sc-aKS"/>
+                <constraint firstAttribute="trailing" secondItem="rZX-Ow-cVR" secondAttribute="trailing" id="eGi-d0-vaK"/>
+                <constraint firstAttribute="bottom" secondItem="rZX-Ow-cVR" secondAttribute="bottom" id="feO-jB-vjx"/>
+                <constraint firstItem="rZX-Ow-cVR" firstAttribute="top" secondItem="LK7-j8-WJI" secondAttribute="top" constant="11" id="keD-n9-5lR"/>
+                <constraint firstItem="Uli-Op-tBB" firstAttribute="top" secondItem="LK7-j8-WJI" secondAttribute="top" id="p6F-Qc-gyy"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-732.60869565217399" y="-69.977678571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

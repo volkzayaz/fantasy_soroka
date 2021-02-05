@@ -163,6 +163,13 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
                 Dispatcher.dispatch(action: SetUser(user: user))
             })
             .disposed(by: bag)
+        
+        mode.distinctUntilChanged()
+            .drive(onNext: { mode in
+                if case .absentCommunity(let city) = mode {
+                    Analytics.report(Analytics.Event.SearchNonActiveCity(location: city))
+                }
+            }).disposed(by: bag)
     }
     
     let router: DiscoverProfileRouter
@@ -174,23 +181,30 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    func profileViewed(index: Int) {
-        guard let profile = profilesState.value.profiles[safe: index], profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
-        
-        viewedProfiles.insert(profile)
-        DiscoveryManager.markUserIsViewedInSearch(profile)
-            .subscribe(onSuccess: { [unowned self] state in
-                self.searchSwipeState.accept(state)
-                
-                let availableProfilesNumber = self.profilesState.value.profiles.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
-                if availableProfilesNumber < self.profilesState.value.profiles.count {
-                    let availableProfiles = Array(self.profilesState.value.profiles.prefix(availableProfilesNumber))
-                    self.profilesState.accept(ProfilesState(profiles: availableProfiles, initialIndex: index, isDailyLimitReached: true))
-                }
-            }).disposed(by: bag)
+    func currentCarouselItemDidChange(index: Int) {
+        if let profile = profilesState.value.profiles[safe: index] {
+            let isViewedBefore = profile.isViewed == true || viewedProfiles.contains(profile)
+            Analytics.report(Analytics.Event.ProfilePreview(isViewedBefore: isViewedBefore))
+            
+            if !isViewedBefore {
+                viewedProfiles.insert(profile)
+                DiscoveryManager.markUserIsViewedInSearch(profile)
+                    .subscribe(onSuccess: { [unowned self] state in
+                        self.searchSwipeState.accept(state)
+                        
+                        let availableProfilesNumber = self.profilesState.value.profiles.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
+                        if availableProfilesNumber < self.profilesState.value.profiles.count {
+                            let availableProfiles = Array(self.profilesState.value.profiles.prefix(availableProfilesNumber))
+                            self.profilesState.accept(ProfilesState(profiles: availableProfiles, initialIndex: index, isDailyLimitReached: true))
+                        }
+                    }).disposed(by: bag)
+            }
+        } else if !profilesState.value.isDailyLimitReached {
+            Analytics.report(Analytics.Event.SearchNoNewUsers(searchPreferences: User.current?.searchPreferences, membership: User.current?.subscription.isSubscribed == true))
+        }
     }
     
-    func profileSelected(index: Int) {
+    func selectCarouselItemAt(index: Int) {
         guard let profile = self.profilesState.value.profiles[safe: index] else { return }
         
         router.presentProfile(profile, onInitiateConnection: { [weak self] in
@@ -233,11 +247,11 @@ extension DiscoverProfileViewModel {
     }
     
     func subscribeTapped() {
-        router.showSubscription(page: .x3NewProfilesDaily)
+        router.showSubscription(page: .x3NewProfilesDaily, purchaseInterestContext: .x3NewProfilesDaily)
     }
     
-    func goGlobal() {
-        router.showSubscription(page: .globalMode)
+    func goGlobal(purchaseInterestContext: Analytics.Event.PurchaseInterest.Context) {
+        router.showSubscription(page: .globalMode, purchaseInterestContext: purchaseInterestContext)
     }
     
     // Location

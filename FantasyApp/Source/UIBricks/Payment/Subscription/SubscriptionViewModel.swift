@@ -34,7 +34,10 @@ struct SubscriptionPlan {
     let type: SubscriptionPlanType
     let title: String
     let payment: String
-    let details: NSAttributedString
+    let dailyPayment: String
+    let details: String
+    let baseProductDetails: String?
+    let description: String
     let buttonTitle: String
     let sticker: String?
     let position: Int
@@ -47,12 +50,15 @@ struct SubscriptionPlan {
         type = configuration.type
         title = configuration.title(product: product)
         payment = configuration.payment(product: product)
+        dailyPayment = product.subscriptionDailyPayment
         details = configuration.details(product: product, baseProduct: baseProduct)
+        baseProductDetails = baseProduct.map { configuration.productDetails(product: $0) }
+        description = configuration.description(product: product, baseProduct: baseProduct)
         buttonTitle = configuration.localizedButtonTitle
         sticker = configuration.sticker(product: product, baseProduct: baseProduct)
         self.position = position
         
-        analyticsDescription = "P\(position)_" + product.shortSubscriptionPeriodDuration + type.rawValue.capitalizingFirstLetter() + "\(product.price.stringValue)"
+        analyticsDescription = "P\(position)_" + product.shortSubscriptionPeriodDuration + type.rawValue.capitalizingFirstLetter()
     }
 }
 
@@ -66,25 +72,6 @@ extension SubscriptionViewModel {
         case x3NewCardsDaily
         case unlimitedRooms
         case memberBadge
-        
-        var purchaseInterestContext: Analytics.Event.PurchaseInterest.Context {
-            switch self {
-            case .x3NewProfilesDaily:
-                return .x3NewProfilesDaily
-            case .globalMode:
-                return .globalMode
-            case .changeActiveCity:
-                return .changeActiveCity
-            case .accessToAllDecks:
-                return .accessToAllDecks
-            case .x3NewCardsDaily:
-                return .x3NewCardsDaily
-            case .unlimitedRooms:
-                return .unlimitedRooms
-            case .memberBadge:
-                return .memberBadge
-            }
-        }
     }
 
     var plans: Driver<[SubscriptionPlan]> { plansRelay.asDriver() }
@@ -99,11 +86,13 @@ class SubscriptionViewModel : MVVM_ViewModel {
     
     private let plansRelay = BehaviorRelay<[SubscriptionPlan]>(value: [])
     private let showAllPlansRelay = BehaviorRelay<Bool>(value: false)
+    private let purchaseInterestContext: Analytics.Event.PurchaseInterest.Context
     private let completion: (() -> Void)?
     
-    init(router: SubscriptionRouter, page: Page? = nil, completion: ( () -> Void)? = nil ) {
+    init(router: SubscriptionRouter, page: Page, purchaseInterestContext: Analytics.Event.PurchaseInterest.Context, completion: ( () -> Void)? = nil ) {
         self.router = router
-        startPage = page ?? Page.allCases[0]
+        startPage = page
+        self.purchaseInterestContext = purchaseInterestContext
         self.completion = completion
         screenTitle = RemoteConfigManager.subscriptionPlansConfiguration.localizedScreenTitle
         style = RemoteConfigManager.subscriptionPlansConfiguration.style
@@ -217,7 +206,7 @@ private extension SubscriptionViewModel {
     func reportPurchaseInterest(paymentStatus: Analytics.Event.PurchaseInterest.PaymentStatus) {
         guard timeSpentCounter.isStarted else { return }
         
-        Analytics.report(Analytics.Event.PurchaseInterest(context: startPage.purchaseInterestContext, content: purchaseInterestEventContent, type: .regular, paymentStatus: paymentStatus, spentTime: timeSpentCounter.finish()))
+        Analytics.report(Analytics.Event.PurchaseInterest(context: purchaseInterestContext, content: purchaseInterestEventContent, type: .regular, paymentStatus: paymentStatus, spentTime: timeSpentCounter.finish()))
     }
     
     var purchaseInterestEventContent: String {

@@ -353,6 +353,11 @@
 		A22AA6FF25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */; };
 		A22E0E9925A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */; };
 		A2404E5125B1BECB004F7790 /* Reactive+CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2404E5025B1BECB004F7790 /* Reactive+CLLocationManager.swift */; };
+		A2435EC525BC57120079AC5E /* PrimarySubscriptionPlanStyle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2435EC425BC57120079AC5E /* PrimarySubscriptionPlanStyle2View.swift */; };
+		A2435ECA25BC57310079AC5E /* PrimarySubscriptionPlanStyle2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2435EC925BC57310079AC5E /* PrimarySubscriptionPlanStyle2View.xib */; };
+		A2435ED225BC5DF20079AC5E /* SubscriptionPlanStyle2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2435ED125BC5DF20079AC5E /* SubscriptionPlanStyle2View.xib */; };
+		A2435ED725BC5E060079AC5E /* SubscriptionPlanStyle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2435ED625BC5E060079AC5E /* SubscriptionPlanStyle2View.swift */; };
+		A247D17125C5C74A000292CB /* SearchEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247D17025C5C74A000292CB /* SearchEvents.swift */; };
 		A248637A25A761BD0039489B /* SKProduct+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248637925A761BD0039489B /* SKProduct+Subscription.swift */; };
 		A248638225A862F20039489B /* SubscriptionPlanConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */; };
 		A256812C254585DC00199209 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A256812B254585DB00199209 /* AppTrackingTransparency.framework */; };
@@ -840,6 +845,11 @@
 		A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		A22E0E9825A8FE1400B79D1E /* SubscriptionPlansConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlansConfiguration.swift; sourceTree = "<group>"; };
 		A2404E5025B1BECB004F7790 /* Reactive+CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+CLLocationManager.swift"; sourceTree = "<group>"; };
+		A2435EC425BC57120079AC5E /* PrimarySubscriptionPlanStyle2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySubscriptionPlanStyle2View.swift; sourceTree = "<group>"; };
+		A2435EC925BC57310079AC5E /* PrimarySubscriptionPlanStyle2View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrimarySubscriptionPlanStyle2View.xib; sourceTree = "<group>"; };
+		A2435ED125BC5DF20079AC5E /* SubscriptionPlanStyle2View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscriptionPlanStyle2View.xib; sourceTree = "<group>"; };
+		A2435ED625BC5E060079AC5E /* SubscriptionPlanStyle2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlanStyle2View.swift; sourceTree = "<group>"; };
+		A247D17025C5C74A000292CB /* SearchEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEvents.swift; sourceTree = "<group>"; };
 		A248637925A761BD0039489B /* SKProduct+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+Subscription.swift"; sourceTree = "<group>"; };
 		A248638125A862F20039489B /* SubscriptionPlanConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlanConfiguration.swift; sourceTree = "<group>"; };
 		A256812B254585DB00199209 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
@@ -1466,6 +1476,10 @@
 				7337B84023C8CBD500EFC948 /* SubscriptionViewModel.swift */,
 				A22AA6F025A0CB2200E45221 /* SubscriptionPlanStyle1View.xib */,
 				A22AA6EB25A0CAFB00E45221 /* SubscriptionPlanStyle1View.swift */,
+				A2435EC925BC57310079AC5E /* PrimarySubscriptionPlanStyle2View.xib */,
+				A2435EC425BC57120079AC5E /* PrimarySubscriptionPlanStyle2View.swift */,
+				A2435ED125BC5DF20079AC5E /* SubscriptionPlanStyle2View.xib */,
+				A2435ED625BC5E060079AC5E /* SubscriptionPlanStyle2View.swift */,
 				A22AA6FE25A0FDBF00E45221 /* SubscriptionFeatureCollectionViewCell.swift */,
 			);
 			path = Subscription;
@@ -1488,6 +1502,7 @@
 				73FDD09023993E7F00BA3E1D /* AnalyticsEventRoom.swift */,
 				73FDD092239940F300BA3E1D /* TimeSpentCounter.swift */,
 				7399140E23CA4A8B00A45E74 /* SubscriptionEvent.swift */,
+				A247D17025C5C74A000292CB /* SearchEvents.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -2829,6 +2844,7 @@
 				8887A80524BA1DE300B6CF45 /* GoogleService-Info.plist in Resources */,
 				7312B07322D7413C00DB0F36 /* LaunchScreen.storyboard in Resources */,
 				7312B0B322D7450B00DB0F36 /* Localizable.strings in Resources */,
+				A2435ECA25BC57310079AC5E /* PrimarySubscriptionPlanStyle2View.xib in Resources */,
 				841681ED22E9AE6E00FA9455 /* SF-Pro-Text-Heavy.otf in Resources */,
 				A27BC792258E1CA800AB3E40 /* UsersLimitCarouselView.xib in Resources */,
 				841681DD22E9AE6E00FA9455 /* SF-Pro-Text-Thin.otf in Resources */,
@@ -2866,6 +2882,7 @@
 				84C1D0362327B95300648DE1 /* Asexual.png in Resources */,
 				84C1D0342327B95300648DE1 /* Questioning.png in Resources */,
 				7312B0D122D74FB200DB0F36 /* deploy_patch_FantasyApp.command in Resources */,
+				A2435ED225BC5DF20079AC5E /* SubscriptionPlanStyle2View.xib in Resources */,
 				73432ACE238A9859008CF2F1 /* OtherMessageCell.xib in Resources */,
 				7337B83C23C8B9B500EFC948 /* Subscription.storyboard in Resources */,
 				7312B06A22D7403300DB0F36 /* Assets.xcassets in Resources */,
@@ -3054,6 +3071,7 @@
 				B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
 				A200411B256067E500C4C7AA /* EditRelationshipRouter.swift in Sources */,
+				A247D17125C5C74A000292CB /* SearchEvents.swift in Sources */,
 				B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */,
 				7337B84123C8CBD500EFC948 /* SubscriptionRouter.swift in Sources */,
 				7355B51A236F1EBB00A540B1 /* ProtectedImageView.swift in Sources */,
@@ -3080,6 +3098,7 @@
 				84B8AD0E22DCCD200026862E /* Avatar.swift in Sources */,
 				841504B7236390380003054A /* FantasyDetailsViewController+Animations.swift in Sources */,
 				7361F31B23326CEF007B84B0 /* PickCommunityViewModel.swift in Sources */,
+				A2435EC525BC57120079AC5E /* PrimarySubscriptionPlanStyle2View.swift in Sources */,
 				733F41D323660397004EC466 /* FantasyDeckProvider.swift in Sources */,
 				73FDD08F2399184200BA3E1D /* CardAnalyticsEvents.swift in Sources */,
 				88DF09E0247EF0E90070C487 /* FlirtAccessViewController.swift in Sources */,
@@ -3156,6 +3175,7 @@
 				A268DD0A25AE155300A68BE9 /* FantasyDiagonalGradientLayer.swift in Sources */,
 				B78893EF2364B18A00079C89 /* PinkButton.swift in Sources */,
 				843B6488234E624E00E5639B /* RoomStatusResource.swift in Sources */,
+				A2435ED725BC5E060079AC5E /* SubscriptionPlanStyle2View.swift in Sources */,
 				7361F33123350265007B84B0 /* ConectionResource.swift in Sources */,
 				73EEFC36235C70CE00480E79 /* SinglePickTableCell.swift in Sources */,
 				843B648F234F197B00E5639B /* RoomSettingsViewModel.swift in Sources */,
@@ -3563,7 +3583,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 67;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3577,7 +3597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3599,7 +3619,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3612,7 +3632,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient";
@@ -3690,7 +3710,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyApp/FantasyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3704,7 +3724,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.fantasyapp.iosclient";
@@ -3730,7 +3750,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3753,7 +3773,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3776,7 +3796,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3791,7 +3811,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3800,7 +3820,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3816,7 +3836,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3825,7 +3845,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";
@@ -3841,7 +3861,7 @@
 				CODE_SIGN_ENTITLEMENTS = FantasyAppRichPush/FantasyAppRichPush.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = JDQD36FDTW;
 				INFOPLIST_FILE = FantasyAppRichPush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -3850,7 +3870,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fantasyapp.iosclient.FantasyAppRichPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.fantasyapp.iosclient.FantasyAppRichPush";

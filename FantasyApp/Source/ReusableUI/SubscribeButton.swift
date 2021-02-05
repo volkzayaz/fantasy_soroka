@@ -12,7 +12,8 @@ import UIKit
 class SubscribeButton: UIButton {
     
     @IBOutlet unowned var presenter: UIViewController!
-    var defaultPage = SubscriptionViewModel.Page.allCases.first
+    var defaultPage = SubscriptionViewModel.Page.x3NewProfilesDaily
+    var defaultPurchaseInterestContext = Analytics.Event.PurchaseInterest.Context.profileMembership
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +51,7 @@ class SubscribeButton: UIButton {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: defaultPage)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: defaultPage, purchaseInterestContext: defaultPurchaseInterestContext)
         
         x.present(nav, animated: true, completion: nil)
         

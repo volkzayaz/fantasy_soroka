@@ -67,11 +67,8 @@ class SubscriptionViewController: UIViewController, MVVM_View {
         viewModel.plans.withLatestFrom(viewModel.showAllPlans) { ($0, $1) }
             .drive(onNext: { [unowned self] plans, showAllPlans in
                 self.plansStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-                plans.enumerated().map { index, plan -> SubscriptionPlanStyle1View in
-                    let result = SubscriptionPlanStyle1View(plan: plan) { [weak self] in
-                        self?.viewModel.subscribe(planIndex: index)
-                    }
-                    
+                plans.enumerated().map { index, plan -> UIView in
+                    let result = subscriptionPlanView(index: index, plan: plan)
                     result.isHidden = index != 0 && !showAllPlans
                     return result
                 }.forEach { self.plansStackView.addArrangedSubview($0) }
@@ -113,6 +110,26 @@ class SubscriptionViewController: UIViewController, MVVM_View {
         viewModel.willCancel()
         NotificationCenter.default.post(name: NSNotification.Name("screenCancel"), object: nil)
         dismiss(animated: true, completion: nil)
+    }
+}
+
+private extension SubscriptionViewController {
+    
+    func subscriptionPlanView(index: Int, plan: SubscriptionPlan) -> UIView {
+        switch (viewModel.style, index) {
+        case (.style1, _):
+            return SubscriptionPlanStyle1View(plan: plan) { [weak self] in
+                self?.viewModel.subscribe(planIndex: index)
+            }
+        case (.style2, 0):
+            return PrimarySubscriptionPlanStyle2View(plan: plan) { [weak self] in
+                self?.viewModel.subscribe(planIndex: index)
+            }
+        case (.style2, _):
+            return SubscriptionPlanStyle2View(plan: plan) { [weak self] in
+                self?.viewModel.subscribe(planIndex: index)
+            }
+        }
     }
 }
 

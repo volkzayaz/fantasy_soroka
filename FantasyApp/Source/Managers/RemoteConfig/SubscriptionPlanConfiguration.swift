@@ -45,44 +45,31 @@ struct SubscriptionPlanConfiguration: Decodable {
         }
     }
     
-    func details(product: SKProduct, baseProduct: SKProduct?) -> NSAttributedString {
+    func productDetails(product: SKProduct) -> String {
+        R.string.localizable.subscriptionSpecialBaseProductDetails(product.localizedPrice, product.subscriptionDailyPayment)
+    }
+    
+    func details(product: SKProduct, baseProduct: SKProduct?) -> String {
         switch type {
         case .regular:
-            let dailyPayment = product.subscriptionDailyPayment
-            let details = R.string.localizable.subscriptionRegularDetails(product.localizedPrice, product.subscriptionPeriodDuration, dailyPayment)
-            
-            let result = NSMutableAttributedString(string: details)
-            if let range = details.range(of: dailyPayment) {
-                result.addAttributes([.font : UIFont.boldFont(ofSize: 12)], range: details.nsRange(from: range))
-            }
-            
-            return result
+            return R.string.localizable.subscriptionRegularDetails(product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
         case .trial:
-            let dailyPayment = product.subscriptionDailyPayment
-            let baseProductTitle = baseProduct.map { NSLocalizedString($0.productIdentifier, comment: "") } ?? baseProduct?.localizedTitle ?? ""
-            let details = R.string.localizable.subscriptionTrialDetails(baseProductTitle, product.localizedPrice, product.subscriptionPeriodDuration, dailyPayment)
-            
-            let result = NSMutableAttributedString(string: details)
-            if let range = details.range(of: dailyPayment) {
-                result.addAttributes([.font : UIFont.boldFont(ofSize: 12)], range: details.nsRange(from: range))
-            }
-            
-            return result
+            return R.string.localizable.subscriptionTrialDetails(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
         case .special:
-            let dailyPayment = product.subscriptionDailyPayment
-            let baseProductDetails = R.string.localizable.subscriptionSpecialBaseProductDetails(baseProduct?.localizedPrice ?? "", baseProduct?.subscriptionDailyPayment ?? "")
-            let details = R.string.localizable.subscriptionSpecialDetails(product.localizedPrice, product.subscriptionPeriodDuration, dailyPayment, baseProductDetails)
-            
-            let result = NSMutableAttributedString(string: details)
-            if let range = details.range(of: dailyPayment) {
-                result.addAttributes([.font : UIFont.boldFont(ofSize: 12)], range: details.nsRange(from: range))
-            }
-            
-            if let range = details.range(of: baseProductDetails) {
-                result.addAttributes([NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue], range: details.nsRange(from: range))
-            }
-            
-            return result
+            let baseProductDetails = baseProduct.map { productDetails(product: $0) } ?? ""
+            return R.string.localizable.subscriptionSpecialDetails(product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment, baseProductDetails)
+        }
+    }
+    
+    func description(product: SKProduct, baseProduct: SKProduct?) -> String {
+        switch type {
+        case .regular:
+            return R.string.localizable.subscriptionRegularDescription(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
+        case .trial:
+            return R.string.localizable.subscriptionTrialDescription(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment)
+        case .special:
+            let baseProductDetails = baseProduct.map { productDetails(product: $0) } ?? ""
+            return R.string.localizable.subscriptionSpecialDescription(title(product: product), product.localizedPrice, product.subscriptionPeriodDuration, product.subscriptionDailyPayment, baseProductDetails)
         }
     }
     

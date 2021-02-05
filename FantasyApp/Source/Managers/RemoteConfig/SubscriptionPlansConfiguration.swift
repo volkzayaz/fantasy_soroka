@@ -11,7 +11,6 @@ import Foundation
 enum SubscriptionPlansStyle: Int, Decodable {
     case style1 = 1
     case style2
-    case style3
 }
 
 struct SubscriptionPlansConfiguration: Decodable {
