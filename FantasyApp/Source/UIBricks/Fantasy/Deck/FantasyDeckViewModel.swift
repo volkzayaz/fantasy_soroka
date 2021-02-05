@@ -102,23 +102,32 @@ extension FantasyDeckViewModel {
     
 }
 
+typealias CollectionPicked = (Fantasy.Collection) -> Void
 class FantasyDeckViewModel : MVVM_ViewModel {
 
     typealias PresentationStyle = FantasyDeckViewController.PresentationStyle
-
+    
     let presentationStyle: PresentationStyle
     let provider: FantasyDeckProvier
     let room: Room?
 
+    let collectionPickedAction: CollectionPicked?
+    
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
 
-    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider(), presentationStyle: PresentationStyle  = .stack, room: Room? = nil) {
+    init(router: FantasyDeckRouter,
+         provider: FantasyDeckProvier = MainDeckProvider(),
+         presentationStyle: PresentationStyle  = .stack,
+         room: Room? = nil,
+         collectionFilter: Set<String> = [],
+         collectionPickedAction: CollectionPicked? = nil) {
         self.router = router
         self.provider = provider
         self.presentationStyle = presentationStyle
         self.room = room
+        self.collectionPickedAction = collectionPickedAction
         
         indicator.asDriver()
             .drive(onNext: { [weak h = router.owner] (loading) in
@@ -132,6 +141,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
                 return Fantasy.Manager.fetchCollections()
             }
+            .map { $0.filter { collectionFilter.contains($0.id) == false } }
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)
@@ -147,23 +157,6 @@ class FantasyDeckViewModel : MVVM_ViewModel {
         }
         
         // Check likes cars count to display Review popup
-
-        ///TODO: liked fantasies cards is no longer stored value and can't be accessed locally
-//        appState.changesOf { $0.currentUser?.fantasies.liked }
-//            .notNil()
-//            .map { (SettingsStore.currentUser.value?.id, $0) }
-//            .filter { $0.1.isEmpty == false && $0.0 != nil }
-//            .asObservable()
-//            .subscribe(onNext: { (tuple) in
-//                let userID = tuple.0!
-//                var map = SettingsStore.likedCardsCount.value
-//
-//                map[userID] = (map[userID] ?? 0) + 1
-//
-//                SettingsStore.likedCardsCount.value = map
-//            })
-//            .disposed(by: bag)
-
         SettingsStore.likedCardsCount.observable
             .filter { $0.isEmpty == false }
             .map { (SettingsStore.currentUser.value?.id, $0) }
@@ -191,8 +184,6 @@ extension FantasyDeckViewModel {
         provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
             x.accept(card)
         }
-        
-        
     }
     
     func subscribeTapped() {
@@ -214,7 +205,12 @@ extension FantasyDeckViewModel {
     }
     
     func show(collection: Fantasy.Collection) {
-        router.show(collection: collection)
+        
+        if let x = collectionPickedAction, collection.isAvailable {
+            return x(collection)
+        }
+        
+        router.show(collection: collection, collectionPickedAction: collectionPickedAction)
     }
     
 

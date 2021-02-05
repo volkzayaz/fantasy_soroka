@@ -213,14 +213,9 @@ class TopCollectionPurchaseCell: UITableViewCell {
     
     var viewModel: FantasyCollectionDetailsViewModel! {
         didSet {
-            if viewModel.collectionPurchased {
-                buyButton.setTitle(R.string.localizable.fantasyDeckDetailsBuyButton(), for: .normal)
-            }
-            else {
-                viewModel.price
-                    .drive(buyButton.rx.title(for: .normal))
-                    .disposed(by: rx.disposeBag)
-            }
+            viewModel.actionButtonTitle
+                .drive(buyButton.rx.title(for: .normal))
+                .disposed(by: rx.disposeBag)
             
             collectionCategoryLabel.text = viewModel.collection.category
             hintLabel.text = viewModel.collection.hint
@@ -356,16 +351,9 @@ class BottomCollectionPurchaseCell: UITableViewCell {
             
             collectionCategoryLabel.text = viewModel.collection.category
             
-            if viewModel.collectionPurchased {
-                buyButton.setTitle(R.string.localizable.fantasyDeckDetailsBuyButton(), for: .normal)
-            }
-            else {
-                viewModel.price
-                    .map { $0 == R.string.localizable.fantasyDeckDetailsPriceGet() ? R.string.localizable.fantasyDeckDetailsPriceGet() :
-                        R.string.localizable.fantasyDeckDetailsBuyFor($0) }
-                    .drive(buyButton.rx.title(for: .normal))
-                    .disposed(by: rx.disposeBag)
-            }
+            viewModel.actionButtonTitle
+                .drive(buyButton.rx.title(for: .normal))
+                .disposed(by: rx.disposeBag)
             
         }
     }

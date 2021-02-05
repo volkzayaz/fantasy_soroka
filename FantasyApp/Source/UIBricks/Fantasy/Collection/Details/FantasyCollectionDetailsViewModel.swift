@@ -17,16 +17,31 @@ import RxDataSources
 
 extension FantasyCollectionDetailsViewModel {
     
-    var price: Driver<String> {
-        if RemoteConfigManager.showPriceInDeck {
-            return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
-                .map { $0.first! }
-                .map { "\($0.localizedPrice)" }
-                .asDriver(onErrorJustReturn: "error")
-        } else {
-            return Observable.just(R.string.localizable.paymentGet())
-                .asDriver(onErrorJustReturn: "")
-        }
+    var actionButtonTitle: Driver<String> {
+        
+        return reloadTrigger.asDriver(onErrorJustReturn: ())
+            .flatMapLatest { _ -> Driver<String> in
+                let collection = self.collection
+                
+                if collection.isAvailable { return .just("Open") }
+                
+                switch collection.monetizationType {
+                case .free: return .just("Open")
+                case .subscription: return .just(R.string.localizable.paymentGet())
+                case .nonConsumable(_):
+    
+                    if RemoteConfigManager.showPriceInDeck {
+                        return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
+                            .map { $0.first! }
+                            .map { "\($0.localizedPrice)" }
+                            .asDriver(onErrorJustReturn: "error")
+                    }
+                    
+                    return Driver.just(R.string.localizable.paymentGet())
+                    
+                }
+            }
+        
     }
     
     ///if collection is not purchased, there only will be a single card inside
@@ -94,15 +109,19 @@ class FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     let reloadTrigger = BehaviorSubject<Void>( value: () )
     
+    let collectionPickedAction: CollectionPicked?
+    
     private var timeSpentCounter = TimeSpentCounter()
     private let context: Analytics.Event.CollectionViewed.NavigationContext
     
     init(router: FantasyCollectionDetailsRouter,
          collection: Fantasy.Collection,
+         collectionPickedAction: CollectionPicked?,
          context: Analytics.Event.CollectionViewed.NavigationContext) {
         self.router = router
         self.collection = collection
         self.context = context
+        self.collectionPickedAction = collectionPickedAction
         
         /**
          
@@ -161,22 +180,51 @@ class FantasyCollectionDetailsViewModel : MVVM_ViewModel {
 extension FantasyCollectionDetailsViewModel {
     
     func buy() {
-        if collectionPurchased {
-            router.showCollection(collection: collection)
-            return;
+        
+        if collection.isAvailable, let x = collectionPickedAction {
+            return x(collection)
         }
         
-        PurchaseManager.purhcaseCollection(with: collection.productId)
-            .trackView(viewIndicator: indicator)
-            .subscribe(onNext: { [weak o = router.owner] _ in
-                Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
-                
-                self.reloadTrigger.onNext( () )
+        switch collection.monetizationType {
+        case .free:
+
+            Analytics.report(Analytics.Event.DraftRoomCreated())
+            
+            RoomManager.createDraftRoom(collections: [collection.id])
+                .trackView(viewIndicator: indicator)
+                .silentCatch(handler: router.owner)
+                .subscribe(onNext: { [unowned self] room in
+                    self.router.showRoom(room)
+                })
+                .disposed(by: bag)
+
+            
+        case .nonConsumable(let productId):
+        
+            PurchaseManager.purhcaseCollection(with: productId)
+                .trackView(viewIndicator: indicator)
+                .subscribe(onNext: { [weak o = router.owner] _ in
+                    Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
+                    self.reloadTrigger.onNext( () )
+                    
+                    self.collectionPickedAction?(self.collection)
+                    
                 }, onError: { [weak o = router.owner] error in
                     self.openOfferIfNeeded(for: .promo)
                     o?.present(error: error)
-            })
-            .disposed(by: bag)
+                })
+                .disposed(by: bag)
+            
+        case .subscription:
+
+            router.showSubscription { [weak t = reloadTrigger] in
+                t?.onNext( () )
+                
+                self.collectionPickedAction?(self.collection)
+            }
+            
+        }
+        
     }
     
     func share() {

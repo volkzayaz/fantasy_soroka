@@ -257,19 +257,21 @@ extension RoomSettingsViewModel {
     
     func addCollection() {
         
-        ///TODO: present collections screen and await for selection
-        
-        var x = room.value
-        //x.settings.sharedCollections.append("helloid")
-        room.accept(x)
-     
-        Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
+        router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned r = room] (collection) in
+            
+            var x = r.value
+            x.settings.sharedCollections.append(collection.id)
+            r.accept(x)
+         
+            Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
+            
+        }
         
     }
     
     func remove(collection: Fantasy.Collection) {
         var x = room.value
-        //x.settings.sharedCollections.remove(collection.id)
+        x.settings.sharedCollections.removeAll { $0 == collection.id }
         room.accept(x)
      
         Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))

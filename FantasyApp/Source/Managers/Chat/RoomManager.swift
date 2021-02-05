@@ -71,12 +71,12 @@ extension RoomManager {
     }
 
     // MARK: - Room creation
-    static func createDraftRoom() -> Single<Room> {
+    static func createDraftRoom(collections: [String] = []) -> Single<Room> {
         
         let settings = Room.Settings(isClosedRoom: true,
                                      isHideCommonFantasies: false,
                                      isScreenShieldEnabled: User.current?.subscription.isSubscribed ?? false,
-                                     sharedCollections: [],
+                                     sharedCollections: collections,
                                      notifications: .init(newMessage: true,
                                                           newFantasyMatch: true)
                                      )

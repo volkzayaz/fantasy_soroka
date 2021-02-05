@@ -44,4 +44,27 @@ struct RoomSettingsRouter: MVVM_Router {
         owner.present(nav, animated: true, completion: nil)
         
     }
+    
+    func showAddCollection(skip: Set<String>, completion: @escaping CollectionPicked) {
+        
+        let vc = R.storyboard.fantasyCard.fantasiesViewController()!
+        vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
+                                            provider: MainDeckProvider(),
+                                            presentationStyle: .modal,
+                                            room: nil,
+                                            collectionFilter: skip,
+                                            collectionPickedAction: { [weak o = owner] (collection) in
+                                                
+                                                o?.dismiss(animated: true, completion: {
+                                                    completion(collection)
+                                                })
+                                                
+                                            })
+        let nav = FantasyNavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+
+        owner.present(nav, animated: true, completion: nil)
+        
+    }
+    
 }

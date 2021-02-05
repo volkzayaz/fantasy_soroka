@@ -58,6 +58,8 @@ extension Room {
             case like
             case created
             case deleted, sp_enabled, sp_disabled, settings_changed, frozen, unfrozen, unfrozenPaid
+//            case shared_collections
+//            case mutual_liked_card
         }
         
         func typeDescription(peer: String) -> String {
