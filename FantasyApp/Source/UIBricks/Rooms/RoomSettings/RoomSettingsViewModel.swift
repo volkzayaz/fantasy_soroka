@@ -56,12 +56,17 @@ extension RoomSettingsViewModel {
         return inviteLink.asDriver().map { $0 == nil }
     }
     
+    var isEmptyRoom: Driver<Bool> {
+        return room.asDriver()
+        .map { $0.status == .empty }
+    }
+    
     var destructiveButtonTitle: Driver<String?> {
         
         return room.asDriver()
             .map { room in
                 
-                if room.isDraftRoom {
+                if room.status != .ready {
                     return nil
                 }
 
@@ -77,7 +82,7 @@ extension RoomSettingsViewModel {
         return room.asDriver()
             .map { room in
                 
-                let isNewRoom = room.isDraftRoom
+                let isNewRoom = room.status != .ready
                 
                 return isNewRoom ?
                     R.string.localizable.roomsAddNewRoom() :
@@ -101,43 +106,33 @@ class RoomSettingsViewModel: MVVM_ViewModel {
         self.router = router
         self.room = room
         
-        let maybeLink = room.value.participants.first(where: { participant in
-            participant.status == .invited && participant.invitationLink != nil
-        })?.invitationLink
-        
-        if let invitationLink = maybeLink {
-        
-            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-            buo?.title = R.string.localizable.roomBranchObjectTitle()
-            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-            buo?.publiclyIndex = true
-            buo?.locallyIndex = true
-            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
-            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
-                i.accept(url)
-            }
-            
-        }
-        else {
-            buo = nil
-        }
-        
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
+        buo?.title = R.string.localizable.roomBranchObjectTitle()
+        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo?.publiclyIndex = true
+        buo?.locallyIndex = true
+      
         cells = BehaviorRelay(value: room.value.participants.enumerated()
                                         .map { (i, x) -> CellModel in
                                             
                                             guard let _ = x.userId else {
                                                 return .invite
                                             }
-                                            
+                                    
                                             return .user(isAdmin: x.userId == room.value.ownerId,
                                                          participant: x)
-        })
+
+                                        })
         
+        isEmptyRoom.drive(onNext: { [unowned self] isEmpty in
+            if isEmpty {
+                cells.accept(cells.value + [.invite])
+            }
+        })
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
-        
     }
     
     let router: RoomSettingsRouter
@@ -235,6 +230,7 @@ extension RoomSettingsViewModel {
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] (user) in
+                
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
@@ -259,3 +255,4 @@ extension RoomSettingsViewModel {
         print("Add deck")
     }
 }
+

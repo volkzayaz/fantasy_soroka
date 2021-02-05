@@ -76,10 +76,9 @@ extension FantasyDeckViewModel {
     
     var cards: Driver<[Fantasy.Card]> {
         
-        return .just([])
-//            provider.cardsChange
-//            .map { $0.cards }
-//            .notNil()
+        return provider.cardsChange
+            .map { $0.cards }
+            .notNil()
         
     }
     
@@ -136,8 +135,17 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)
-
-
+        
+        if let room = room?.id {
+            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
+            buo?.title = R.string.localizable.roomBranchObjectTitle()
+            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+            buo?.publiclyIndex = true
+            buo?.locallyIndex = true
+        } else {
+            buo = nil
+        }
+        
         // Check likes cars count to display Review popup
 
         ///TODO: liked fantasies cards is no longer stored value and can't be accessed locally
@@ -209,6 +217,8 @@ extension FantasyDeckViewModel {
         router.show(collection: collection)
     }
     
+
+    
     func cardShown(card: Fantasy.Card) {
         viewTillOpenCardTimer.start()
     }
@@ -259,7 +269,17 @@ extension FantasyDeckViewModel {
     func presentPeer() {
         guard let r = room else { return }
 
-        presentUser(id: r.peer.userSlice.id)
+        if let p = r.peer {
+            presentUser(id: p.userSlice.id)
+            return;
+        }
+        
+        Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
+        
+        buo?.showShareSheet(with: BranchLinkProperties(),
+                            andShareText: R.string.localizable.roomBranchObjectDescription(),
+                            from: router.owner) { (activityType, completed) in
+        }
     }
 
    private func presentUser(id: String) {

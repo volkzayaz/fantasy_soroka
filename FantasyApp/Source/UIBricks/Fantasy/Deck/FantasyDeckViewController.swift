@@ -40,6 +40,13 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             fantasiesView.isHidden = true
         }
     }
+    
+    @IBOutlet weak var addImageView: UIImageView! {
+        didSet {
+            addImageView.image = addImageView.image?.withRenderingMode(.alwaysTemplate)
+        }
+    }
+    @IBOutlet weak var addDeckView: UIView!
 
     @IBOutlet weak var waitingView: UIView! {
         didSet { waitingView.isHidden = true }
@@ -88,13 +95,15 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             return cell
         }
     )
+    
+    
 
     ///TODO: refactor to RxColodaDatasource
     private var cardsProxy: [Fantasy.Card] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         viewModel.mode.drive(onNext: { [unowned self] mode in
             self.waitingView.isHidden = mode == .swipeCards
             self.fantasiesView.isHidden = mode == .waiting
@@ -220,11 +229,19 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
         if let room = viewModel.room {
 
+            let rightDriver: Driver<UIImage?>
+            if let x = room.peer?.userSlice.avatarURL {
+                rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
+                    .map { $0 ?? R.image.noPhoto() }
+            }
+            else {
+                rightDriver = .just(R.image.add())
+            }
+            
             Driver.combineLatest(
                 ImageRetreiver.imageForURLWithoutProgress(url: room.me.userSlice.avatarURL)
                     .map { $0 ?? R.image.noPhoto() },
-                ImageRetreiver.imageForURLWithoutProgress(url: room.peer.userSlice.avatarURL)
-                    .map { $0 ?? R.image.noPhoto() })
+                rightDriver)
                 .drive(onNext: { [unowned self] (images) in
 
                     let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
@@ -245,6 +262,10 @@ extension FantasyDeckViewController {
 
     @objc func dismissModal() {
         navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapAddDeckImage(_ sender: Any) {
+        print("Add Deck")
     }
 
     @IBAction func subscribeTapped(_ sender: Any) {

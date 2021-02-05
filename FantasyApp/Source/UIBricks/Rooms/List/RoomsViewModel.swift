@@ -69,20 +69,46 @@ extension RoomsViewModel {
             
         router.roomTapped(room)
     }
-
+    
     func createRoom() {
-        
+
         Analytics.report(Analytics.Event.DraftRoomCreated())
-        
-        RoomManager.createDraftRoom()
+
+        let settings = Room.Settings(isClosedRoom: true,
+                                     isHideCommonFantasies: false,
+                                     isScreenShieldEnabled: User.current?.subscription.isSubscribed ?? false,
+                                     sharedCollections: [],
+                                     notifications: .init(newMessage: false,
+                                                          newFantasyMatch: false))
+
+        UserManager.getUserProfile(id: User.current!.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [unowned self] room in
-                self.router.showRoomSettings(room)                
+            .subscribe(onNext: { [unowned self] (user) in
+                let room = Room(id: "12345", ownerId: User.current!.id, settings: settings, freezeStatus: .none,
+                                participants:
+                                    [
+                                        .init(userName: user!.name, userId: user!.id, avatar: user!.avatarThumbnailURL),
+                                        
+                                    ])
+                router.createRoom(room)
             })
             .disposed(by: bag)
-
     }
+
+//    func createRoom() {
+//
+//        Analytics.report(Analytics.Event.DraftRoomCreated())
+//
+//        RoomManager.createDraftRoom()
+//            .trackView(viewIndicator: indicator)
+//            .silentCatch(handler: router.owner)
+//            .subscribe(onNext: { [unowned self] room in
+//                self.router.showRoomSettings(room)
+//            })
+//            .disposed(by: bag)
+//
+//    }
     
     func refreshRooms() {
         Dispatcher.dispatch(action: TriggerRoomsRefresh())

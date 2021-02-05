@@ -19,7 +19,9 @@ class RoomTableViewCell: UITableViewCell {
     
     func set(model: Room) {
         
-        let participant: Room.Participant = model.peer
+        guard let participant: Room.Participant = model.peer else {
+            return;
+        }
         
         nameLabel.text = "\(participant.userSlice.name)"
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""

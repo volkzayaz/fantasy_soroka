@@ -12,6 +12,7 @@ import SlackTextViewController
 import RxSwift
 import RxDataSources
 
+
 class ChatViewController: SLKTextViewController, MVVM_View {
 
     var viewModel: ChatViewModel!
@@ -19,6 +20,8 @@ class ChatViewController: SLKTextViewController, MVVM_View {
     var tv: UITableView! {
         return tableView!
     }
+    
+    let noChatView = R.nib.noChatView(owner: nil)!
     
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, ChatViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, x) in
         
@@ -89,7 +92,16 @@ class ChatViewController: SLKTextViewController, MVVM_View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        view.addSubview(noChatView)
         
+        noChatView.vm = viewModel
+       
+        noChatView.snp.makeConstraints { (make) in
+                    make.edges.equalToSuperview()
+        }
+        
+
         tv.register(R.nib.ownMessageCell)
         tv.register(R.nib.otherMessageCell)
         tv.register(R.nib.chatHeaderCell)
@@ -140,8 +152,13 @@ class ChatViewController: SLKTextViewController, MVVM_View {
                 self?.viewModel.rowSeen(row: x)
             })
             .disposed(by: rx.disposeBag)
+        
+        viewModel.noChatViewIsHidden
+            .drive(noChatView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
     }
     
+
     override func didPressRightButton(_ sender: (Any)?) {
 
         let message = textView.text!

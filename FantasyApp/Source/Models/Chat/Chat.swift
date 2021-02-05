@@ -172,8 +172,8 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     var unreadCount: Int! = 0
     
-    var peer: Participant {
-        return participants.first(where: { $0.userId != User.current?.id })!
+    var peer: Participant? {
+        return participants.first(where: { $0.userId != User.current?.id })
     }
     
     var me: Participant {
@@ -188,10 +188,15 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
         hasher.combine(id)
     }
     
-    var isDraftRoom: Bool {
-        return participants.reduce(into: false) { result, participant in
+    var status: Status {
+        
+        if participants.count == 1 { return .empty }
+            
+        let isDraft = participants.reduce(into: false) { result, participant in
             result = result || participant.status == .invited
         }
+        
+        return isDraft ? .draft : .ready
     }
     
     var isWaitingForMyResponse: Bool {
@@ -206,6 +211,12 @@ extension Room {
         case frozen
         case unfrozen
         case unfrozenPaid
+    }
+    
+    enum Status {
+        case empty ///no participants
+        case draft ///some participants haven't accepted invite
+        case ready ///all participants accepted invite
     }
 
     struct Settings: Codable, Equatable {
@@ -230,12 +241,18 @@ extension Room {
         }
         
         var status = Status.accepted
-        
-        private let _id: String
+    
         let userId: String?
         private let userName: String?
         private let avatarThumbnail: String?
         let invitationLink: String?
+        
+        init(userName: String, userId: String, avatar: String) {
+            self.userName = userName
+            self.userId = userId
+            self.avatarThumbnail = avatar
+            self.invitationLink = ""
+        }
         
         var userSlice: UserSlice {
             

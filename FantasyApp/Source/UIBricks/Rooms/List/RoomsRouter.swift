@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 struct RoomsRouter: MVVM_Router {
 
@@ -25,6 +26,16 @@ struct RoomsRouter: MVVM_Router {
 //        vc.viewModel = ChatViewModel(router: .init(owner: vc), room: SharedRoomResource(value: room))
         
         owner.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func createRoom(_ room: Room) {
+
+        let vc = R.storyboard.rooms.roomDetailsViewController()!
+        vc.viewModel = .init(router: .init(owner: vc),
+                             room: room,
+                             page: .chat)
+        owner.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     func showRoomSettings(_ room: Room) {

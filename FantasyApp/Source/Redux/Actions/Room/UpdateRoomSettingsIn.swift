@@ -18,7 +18,7 @@ struct UpdateRoomSettingsIn: ActionCreator {
         return RoomManager.updateRoomSettings(roomId: room.id, settings: room.settings)
             .map { _ in
 
-                if self.room.isDraftRoom {
+                if self.room.status != .ready {
                     return initialState
                 }
                 

@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Branch
 
 extension ChatViewModel {
     
@@ -18,66 +19,85 @@ extension ChatViewModel {
             .map { !$0.isWaitingForMyResponse }
     }
     
+    var noChatViewIsHidden: Driver<Bool> {
+        return room
+                .asDriver()
+            .map { $0.status != .empty }
+    }
+    
     var dataSource: Driver<[AnimatableSectionModel<String, Row>]> {
+
+        let connectionAndRoom = room.asDriver()
+            .distinctUntilChanged { $0.participants }
+            .flatMapLatest { room -> Driver<(Set<ConnectionRequestType>, Room)> in
+                
+                guard let peer = room.peer else {
+                    return .just(([], room))
+                }
+                
+                return ConnectionManager.requestTypes(with: peer.userSlice.id)
+                    .asDriver(onErrorJustReturn: [])
+                    .map { ($0, room) }
+            }
         
-        let requestTypes = ConnectionManager.requestTypes(with: room.value.peer.userSlice.id)
-            .asDriver(onErrorJustReturn: [])
-        let peer = room.value.peer.userSlice
-        let isAdmin = room.value.ownerId == room.value.me.userId!
-        
-        return Driver.combineLatest(requestTypes, mes.asDriver(), room.asDriver())
-            .map { requestTypes, messages, room in
+        return Driver.combineLatest(connectionAndRoom, mes.asDriver())
+            .map { t, messages in
+
+                let requestTypes = t.0
+                let room = t.1
+
+                guard let peer = room.peer?.userSlice else { return [] }
                 
                 var items = [Row]()
-                
+
                 if room.isWaitingForMyResponse {
                     items.append(.acceptReject)
                 }
-                
+
                 items += messages.map { x -> Row in
-                    
+
                     switch x.type {
-                        
+
                     case .created:
                         return .roomCreated(x)
-                        
+
                     case .like:
                         let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.outgoingRequestLike()!, event, x)
-                        
+
                     case .invited:
                         let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.outgoingRequestLink()!, event, x)
-                        
+
                     case .message:
                         return .message(x)
-                        
+
                     case .sp_enabled, .sp_disabled: fallthrough
                     case .settings_changed:
                         let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomSettingsChanged()!, event, x)
-                        
+
                     case .frozen:
                         let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.exclamation()!, event, x)
-                        
+
                     case .unfrozen:
                         let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomUnfrozen()!, event, x)
-                        
+
                     case .unfrozenPaid:
                         let event = x.typeDescription(peer: peer.name)
                         return .event(R.image.roomUnfrozen()!, event, x)
-                    
+
                     case .message_deleted, .deleted:
                         return .message(x)
-                    
+
                     }
-                    
+
                 }
-                
+
                 items.append(.connection(requestTypes))
-                
+
                 return [AnimatableSectionModel(model: "",
                                                items: items)]
         }
@@ -85,21 +105,26 @@ extension ChatViewModel {
     }
     
     var peerAvatar: Driver<UIImage> {
-        return ImageRetreiver.imageForURLWithoutProgress(url: room.value.peer.userSlice.avatarURL)
+        
+        guard let peer = room.value.peer else {
+            return .just(R.image.add()!)
+        }
+            
+        return ImageRetreiver.imageForURLWithoutProgress(url: peer.userSlice.avatarURL)
             .map { $0 ?? R.image.noPhoto()! }
     }
-    
+
     var initiator: Room.Participant.UserSlice {
-        
+
         if room.value.ownerId == User.current?.id {
             return room.value.me.userSlice
         }
-        
-        return room.value.peer.userSlice
+
+        return room.value.peer!.userSlice
     }
-    
-    var slicePair: (left: Room.Participant.UserSlice, right: Room.Participant.UserSlice) {
-        return (room.value.me.userSlice, room.value.peer.userSlice)
+
+    var slicePair: (left: Room.Participant.UserSlice, right: Room.Participant.UserSlice?) {
+        return (room.value.me.userSlice, room.value.peer?.userSlice)
     }
     
     func position(for message: Room.Message) -> MessageCellPosition {
@@ -133,9 +158,9 @@ extension ChatViewModel {
 
 class ChatViewModel: MVVM_ViewModel {
     
-    private let room: SharedRoomResource
+    let room: SharedRoomResource
     private var heightCache: [String: MessageCellPosition] = [:]
-    
+    private let buo: BranchUniversalObject?
     private let mes = BehaviorRelay<[Room.Message]>(value: [])
     
     init(router: ChatRouter, room: SharedRoomResource) {
@@ -158,6 +183,14 @@ class ChatViewModel: MVVM_ViewModel {
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
+        
+        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
+        buo?.title = R.string.localizable.roomBranchObjectTitle()
+        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo?.publiclyIndex = true
+        buo?.locallyIndex = true
+        
+        
     }
 
     let router: ChatRouter
@@ -169,7 +202,7 @@ class ChatViewModel: MVVM_ViewModel {
 extension ChatViewModel {
     
     func sendMessage(text: String) {
-        
+
         RoomManager.sendMessage(.init(text: text,
                                       from: User.current!,
                                       in: room.value))
@@ -178,13 +211,13 @@ extension ChatViewModel {
                 Dispatcher.dispatch(action: $0)
             })
             .disposed(by: bag)
-        
-        if room.value.peer.status == .invited {
-            
-            let _ = ConnectionManager.initiate(with: room.value.peer.userId!, type: .message)
+
+        if let peer = room.value.peer, peer.status == .invited {
+
+            let _ = ConnectionManager.initiate(with: peer.userId!, type: .message)
                 .retry(2)
                 .subscribe()
-            
+
         }
         
     }
@@ -269,7 +302,12 @@ extension ChatViewModel {
     }
     
     func presentPeer() {
-        presentUserDetails(for: room.value.peer.userSlice.id)
+        
+        if let peer = room.value.peer {
+            return presentUserDetails(for: peer.userSlice.id)
+        }
+        
+        inviteButtonPressed()
     }
 
     func presentUserDetails(for userId: String) {
@@ -280,6 +318,18 @@ extension ChatViewModel {
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
+    }
+    
+    
+    func inviteButtonPressed() {
+        
+        Analytics.report(Analytics.Event.DraftRoomShared(type: .share))
+        
+        buo?.showShareSheet(with: BranchLinkProperties(),
+                            andShareText: R.string.localizable.roomBranchObjectDescription(),
+                            from: router.owner) { (activityType, completed) in
+
+        }
     }
     
 }
