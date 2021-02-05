@@ -9,6 +9,7 @@
 import Foundation
 import RxDataSources
 import SocketIO
+import Branch
 
 extension Room {
     
@@ -174,11 +175,15 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     var unreadCount: Int! = 0
     
-    var peer: Participant? {
-        return participants.first(where: { $0.userId != User.current?.id })
+    var peer: Participant {
+        return participants.first(where: { $0.userId != User.current?.id })!
     }
     
-    var me: Participant {
+    var me: Participant.UserSlice {
+        return selfParticipant.userSlice!
+    }
+    
+    var selfParticipant: Participant {
         return participants.first(where: { $0.userId == User.current?.id })!
     }
     
@@ -192,17 +197,42 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     
     var status: Status {
         
-        if participants.count == 1 { return .empty }
-            
-        let isDraft = participants.reduce(into: false) { result, participant in
-            result = result || participant.status == .invited
+        guard let _ = peer.userSlice else { return .empty }
+        
+        if peer.status == .invited {
+            return .draft
         }
         
-        return isDraft ? .draft : .ready
+        return .ready
     }
     
     var isWaitingForMyResponse: Bool {
         return participants.contains(where: { $0.status == .invited && $0.userId == User.current?.id })
+    }
+    
+    mutating func editSelf( mutator: (inout Participant) -> Void ) {
+        var x = selfParticipant
+        mutator(&x)
+        let i = participants.firstIndex { $0.userId == x.userId }!
+        participants[i] = x
+    }
+    
+    func shareLine() -> BranchUniversalObject? {
+        
+        guard let link = peer.invitationLink else {
+            fatalErrorInDebug("Can't share link for participant \(self). No token available")
+            return nil
+        }
+        
+        let buo = BranchUniversalObject(canonicalIdentifier: "room/\(id)")
+        buo.title = R.string.localizable.roomBranchObjectTitle()
+        buo.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo.publiclyIndex = true
+        buo.locallyIndex = true
+        buo.contentMetadata.customMetadata["inviteToken"] = link
+        
+        return buo
+        
     }
     
 }
@@ -244,33 +274,30 @@ extension Room {
         
         var status = Status.accepted
     
-        let userId: String?
+        fileprivate let userId: String?
         private let userName: String?
         private let avatarThumbnail: String?
         let invitationLink: String?
         
-        init(userName: String, userId: String, avatar: String) {
-            self.userName = userName
-            self.userId = userId
-            self.avatarThumbnail = avatar
-            self.invitationLink = ""
-        }
-        
-        var userSlice: UserSlice {
+        var userSlice: UserSlice? {
             
             guard let userId = userId, let userName = userName, let avatarThumbnail = avatarThumbnail else {
-                fatalErrorInDebug("This Participant is not a valid user. Details \(self)")
-                return .init(id: "-1", name: "", avatarURL: "")
+                return nil
             }
 
             return .init(id: userId, name: userName, avatarURL: avatarThumbnail)
             
         }
         
-        struct UserSlice {
+        struct UserSlice: Equatable, IdentifiableType {
             let id: String
             let name: String
             let avatarURL: String
+            
+            var identity: String {
+                return id
+            }
+            
         }
         
         

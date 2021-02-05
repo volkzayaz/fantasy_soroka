@@ -146,15 +146,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             .bind(to: collections)
             .disposed(by: bag)
         
-        if let room = room?.id {
-            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
-            buo?.title = R.string.localizable.roomBranchObjectTitle()
-            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-            buo?.publiclyIndex = true
-            buo?.locallyIndex = true
-        } else {
-            buo = nil
-        }
+        self.buo = room?.shareLine()
         
         // Check likes cars count to display Review popup
         SettingsStore.likedCardsCount.observable
@@ -259,14 +251,14 @@ extension FantasyDeckViewModel {
     func presentMe() {
         guard let r = room else { return }
 
-        presentUser(id: r.me.userSlice.id)
+        presentUser(id: r.me.id)
     }
 
     func presentPeer() {
         guard let r = room else { return }
 
-        if let p = r.peer {
-            presentUser(id: p.userSlice.id)
+        if let x = r.peer.userSlice?.id {
+            presentUser(id: x)
             return;
         }
         

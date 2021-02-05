@@ -110,29 +110,23 @@ class RoomSettingsViewModel: MVVM_ViewModel {
         self.router = router
         self.room = room
         
-        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-        buo?.title = R.string.localizable.roomBranchObjectTitle()
-        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-        buo?.publiclyIndex = true
-        buo?.locallyIndex = true
-      
+        self.buo = room.value.shareLine()
+        buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
+            i.accept(url)
+        }
+        
         cells = BehaviorRelay(value: room.value.participants.enumerated()
                                         .map { (i, x) -> CellModel in
                                             
-                                            guard let _ = x.userId else {
+                                            guard let userSlice = x.userSlice else {
                                                 return .invite
                                             }
                                     
-                                            return .user(isAdmin: x.userId == room.value.ownerId,
-                                                         participant: x)
+                                            return .user(isAdmin: userSlice.id == room.value.ownerId,
+                                                         participant: userSlice,
+                                                         status: x.status)
 
                                         })
-        
-        isEmptyRoom.drive(onNext: { [unowned self] isEmpty in
-            if isEmpty {
-                cells.accept(cells.value + [.invite])
-            }
-        })
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -144,14 +138,14 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     fileprivate let bag = DisposeBag()
     
     enum CellModel: IdentifiableType, Equatable {
-        case user(isAdmin: Bool, participant: Room.Participant)
+        case user(isAdmin: Bool, participant: Room.Participant.UserSlice, status: Room.Participant.Status)
         case invite
         case waiting
 
         var identity: String {
             switch self {
                 
-            case .user(_, let participant):
+            case .user(_, let participant, _):
                 return participant.identity
                 
             case .invite: return "invite"
@@ -228,9 +222,9 @@ extension RoomSettingsViewModel {
         router.showNotificationSettings(for: room.value)
     }
     
-    func showParticipant(participant: Room.Participant) {
+    func showParticipant(participant: Room.Participant.UserSlice) {
         
-        UserManager.getUserProfile(id: participant.userSlice.id)
+        UserManager.getUserProfile(id: participant.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] (user) in

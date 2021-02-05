@@ -19,15 +19,15 @@ class RoomTableViewCell: UITableViewCell {
     
     func set(model: Room) {
         
-        guard let participant: Room.Participant = model.peer else {
+        guard let peer = model.peer.userSlice else {
             return;
         }
         
-        nameLabel.text = "\(participant.userSlice.name)"
+        nameLabel.text = "\(peer.name)"
         timeLabel.text = model.lastMessage?.createdAt.toTimeAgoString() ?? ""
         
         if let x = model.lastMessage {
-            lastMessageLabel.text = x.typeDescription(peer: participant.userSlice.name)
+            lastMessageLabel.text = x.typeDescription(peer: peer.name)
         }
         else {
             lastMessageLabel.text = R.string.localizable.roomListNewRoom()
@@ -36,7 +36,7 @@ class RoomTableViewCell: UITableViewCell {
         unreadCounterLabel.text = "\(model.unreadCount ?? 0)"
         unreadCounterLabel.isHidden = model.unreadCount == 0
         
-        ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
+        ImageRetreiver.imageForURLWithoutProgress(url: peer.avatarURL)
             .map { $0 ?? R.image.noPhoto() }
             .drive(roomImageView.rx.image)
             .disposed(by: disposeBag)

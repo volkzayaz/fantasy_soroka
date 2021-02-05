@@ -230,7 +230,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         if let room = viewModel.room {
 
             let rightDriver: Driver<UIImage?>
-            if let x = room.peer?.userSlice.avatarURL {
+            if let x = room.peer.userSlice?.avatarURL {
                 rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
                     .map { $0 ?? R.image.noPhoto() }
             }
@@ -239,7 +239,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             }
             
             Driver.combineLatest(
-                ImageRetreiver.imageForURLWithoutProgress(url: room.me.userSlice.avatarURL)
+                ImageRetreiver.imageForURLWithoutProgress(url: room.me.avatarURL)
                     .map { $0 ?? R.image.noPhoto() },
                 rightDriver)
                 .drive(onNext: { [unowned self] (images) in

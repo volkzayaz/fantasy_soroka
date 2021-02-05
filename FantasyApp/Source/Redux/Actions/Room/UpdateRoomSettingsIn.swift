@@ -45,10 +45,6 @@ struct UpdateRoomSharedCollections: ActionCreator {
 
         return RoomManager.updateRoomSharedCollections(room: room)
             .map { _ in
-
-                if self.room.isDraftRoom {
-                    return initialState
-                }
                 
                 guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.room.id }) else {
                     fatalErrorInDebug("Can't update settings of room that is not in the rooms list")

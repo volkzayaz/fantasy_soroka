@@ -36,16 +36,16 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
 
         switch model {
             
-        case .user(let isAdmin, let participant):
+        case .user(let isAdmin, let participant, let status):
             let cell = self.participantsCollectionView
                 .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.participantCollectionViewCell,
                                      for: indexPath)!
             
-            cell.nameLabel.text = participant.userSlice.name
+            cell.nameLabel.text = participant.name
             cell.adminLabel.isHidden = !isAdmin
-            cell.status = isAdmin ? nil : participant.status
+            cell.status = isAdmin ? nil : status
             
-            ImageRetreiver.imageForURLWithoutProgress(url: participant.userSlice.avatarURL)
+            ImageRetreiver.imageForURLWithoutProgress(url: participant.avatarURL)
                 .map { $0 ?? R.image.errorPhoto() }
                 .drive(cell.imageView.rx.image)
                 .disposed(by: self.rx.disposeBag)
@@ -126,7 +126,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             .subscribe(onNext: { [unowned self] (x) in
                 
                 switch x {
-                case .user(_, let participant):
+                case .user(_, let participant, _):
                     self.viewModel.showParticipant(participant: participant)
                     
                 case .invite:

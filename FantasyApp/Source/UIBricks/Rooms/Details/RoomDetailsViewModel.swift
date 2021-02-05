@@ -15,11 +15,11 @@ extension RoomDetailsViewModel {
     
     var title: String {
         
-        guard let peer = room.value.participants.first(where: { $0.userId != User.current?.id }), peer.userId != nil else {
+        guard let peer = room.value.peer.userSlice else {
             return R.string.localizable.roomDetailsDraft()
         }
         
-        return R.string.localizable.roomDetailsRoomWith(peer.userSlice.name)
+        return R.string.localizable.roomDetailsRoomWith(peer.name)
     }
     
     var navigationEnabled: Driver<Bool> {
@@ -57,11 +57,7 @@ class RoomDetailsViewModel: MVVM_ViewModel {
         self.room = BehaviorRelay(value: room)
         self.page = BehaviorRelay(value: page)
 
-        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.id)")
-        buo?.title = R.string.localizable.roomBranchObjectTitle()
-        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-        buo?.publiclyIndex = true
-        buo?.locallyIndex = true
+        self.buo = room.shareLine()
         
     }
 }
@@ -79,10 +75,10 @@ extension RoomDetailsViewModel {
     func presentMe() {
         
         //        let id = (room.value.ownerId == User.current?.id)
-        //            ? room.value.me.userSlice.id
+        //            ? room.value.me.id
         //            : room.value.peer.userSlice.id
         
-        let id = room.value.me.userSlice.id
+        let id = room.value.me.id
         
         UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
@@ -94,7 +90,7 @@ extension RoomDetailsViewModel {
 
     func presentPeer() {
 
-        guard let id = room.value.peer?.userSlice.id else {
+        guard let id = room.value.peer.userSlice?.id else {
             
                 Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
                 

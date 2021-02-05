@@ -53,7 +53,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
             .disposed(by: rx.disposeBag)
 
         let rightDriver: Driver<UIImage?>
-        if let x = viewModel.room.value.peer?.userSlice.avatarURL {
+        if let x = viewModel.room.value.peer.userSlice?.avatarURL {
             rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
                 .map { $0 ?? R.image.noPhoto() }
         }
@@ -62,7 +62,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         }
 
         Driver.combineLatest(
-        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.me.userSlice.avatarURL)
+        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.me.avatarURL)
             .map { $0 ?? R.image.noPhoto() },
             rightDriver)
             .drive(onNext: { [unowned self] (images) in

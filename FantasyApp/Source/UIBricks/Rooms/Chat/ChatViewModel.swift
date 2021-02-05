@@ -31,11 +31,11 @@ extension ChatViewModel {
             .distinctUntilChanged { $0.participants }
             .flatMapLatest { room -> Driver<(Set<ConnectionRequestType>, Room)> in
                 
-                guard let peer = room.peer else {
+                guard let x = room.peer.userSlice?.id else {
                     return .just(([], room))
                 }
                 
-                return ConnectionManager.requestTypes(with: peer.userSlice.id)
+                return ConnectionManager.requestTypes(with: x)
                     .asDriver(onErrorJustReturn: [])
                     .map { ($0, room) }
             }
@@ -46,7 +46,7 @@ extension ChatViewModel {
                 let requestTypes = t.0
                 let room = t.1
 
-                guard let peer = room.peer?.userSlice else { return [] }
+                guard let peer = room.peer.userSlice else { return [] }
                 
                 var items = [Row]()
 
@@ -106,25 +106,25 @@ extension ChatViewModel {
     
     var peerAvatar: Driver<UIImage> {
         
-        guard let peer = room.value.peer else {
+        guard let x = room.value.peer.userSlice?.avatarURL else {
             return .just(R.image.add()!)
         }
             
-        return ImageRetreiver.imageForURLWithoutProgress(url: peer.userSlice.avatarURL)
+        return ImageRetreiver.imageForURLWithoutProgress(url: x)
             .map { $0 ?? R.image.noPhoto()! }
     }
 
     var initiator: Room.Participant.UserSlice {
 
         if room.value.ownerId == User.current?.id {
-            return room.value.me.userSlice
+            return room.value.me
         }
 
-        return room.value.peer!.userSlice
+        return room.value.peer.userSlice!
     }
 
     var slicePair: (left: Room.Participant.UserSlice, right: Room.Participant.UserSlice?) {
-        return (room.value.me.userSlice, room.value.peer?.userSlice)
+        return (room.value.me, room.value.peer.userSlice)
     }
     
     func position(for message: Room.Message) -> MessageCellPosition {
@@ -184,12 +184,7 @@ class ChatViewModel: MVVM_ViewModel {
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
         
-        self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-        buo?.title = R.string.localizable.roomBranchObjectTitle()
-        buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-        buo?.publiclyIndex = true
-        buo?.locallyIndex = true
-        
+        self.buo = room.value.shareLine()
         
     }
 
@@ -207,14 +202,13 @@ extension ChatViewModel {
                                       from: User.current!,
                                       in: room.value))
             .map(NewMessageSent.init)
-            .subscribe(onSuccess: {
-                Dispatcher.dispatch(action: $0)
-            })
+            .subscribe(onSuccess: Dispatcher.dispatch)
             .disposed(by: bag)
 
-        if let peer = room.value.peer, peer.status == .invited {
+        if let x = room.value.peer.userSlice?.id,
+           room.value.peer.status == .invited {
 
-            let _ = ConnectionManager.initiate(with: peer.userId!, type: .message)
+            let _ = ConnectionManager.initiate(with: x, type: .message)
                 .retry(2)
                 .subscribe()
 
@@ -262,10 +256,7 @@ extension ChatViewModel {
         
         ///mutation
         var updatedRoom = room.value
-        var x = updatedRoom.me
-        x.status = .accepted
-        let i = updatedRoom.participants.firstIndex { $0.userId == x.userId }!
-        updatedRoom.participants[i] = x
+        updatedRoom.editSelf { $0.status = Room.Participant.Status.accepted }
         room.accept(updatedRoom)
         
         var copy = mes.value
@@ -298,13 +289,13 @@ extension ChatViewModel {
     }
 
     func presentMe() {
-        presentUserDetails(for: room.value.me.userSlice.id)
+        presentUserDetails(for: room.value.me.id)
     }
     
     func presentPeer() {
         
-        if let peer = room.value.peer {
-            return presentUserDetails(for: peer.userSlice.id)
+        if let x = room.value.peer.userSlice?.id {
+            return presentUserDetails(for: x)
         }
         
         inviteButtonPressed()

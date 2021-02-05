@@ -16,36 +16,13 @@ struct RoomsRouter: MVVM_Router {
         self.owner = owner
     }
 
-    func roomTapped(_ room: Room) {
+    func open(_ room: Room) {
         let vc = R.storyboard.rooms.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
                              page: .chat)
         
-//        let vc = ChatViewController(tableViewStyle: .plain)!
-//        vc.viewModel = ChatViewModel(router: .init(owner: vc), room: SharedRoomResource(value: room))
-        
         owner.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func createRoom(_ room: Room) {
-
-        let vc = R.storyboard.rooms.roomDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc),
-                             room: room,
-                             page: .chat)
-        owner.navigationController?.pushViewController(vc, animated: true)
-
-    }
-
-    func showRoomSettings(_ room: Room) {
-        
-        let vc = R.storyboard.rooms.roomSettingsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), room: SharedRoomResource(value: room))
-        
-        let container = FantasyNavigationController(rootViewController: vc)
-        owner.present(container, animated: true, completion: nil)
-        
     }
 
     func close() {
