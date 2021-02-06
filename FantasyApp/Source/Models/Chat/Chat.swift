@@ -320,3 +320,9 @@ extension Room {
 
 }
 
+struct RoomSlice: Codable {
+    
+    let roomId: String
+    let participants: [Room.Participant]
+    
+}

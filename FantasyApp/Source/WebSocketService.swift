@@ -28,6 +28,10 @@ class WebSocketService {
         return didReceiveMessage
             .filter { $0.roomId == room.id }
     }
+    
+    var didReceiveRoomChange: Observable<RoomSlice> {
+        return manager.defaultSocket.rx.subscribe(onEvent: "room_created")
+    }
 
     func send(message: Room.MessageInRoom) -> Single<Room.MessageInRoom> {
         

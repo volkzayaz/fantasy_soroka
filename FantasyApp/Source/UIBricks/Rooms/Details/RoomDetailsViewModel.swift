@@ -65,6 +65,17 @@ class RoomDetailsViewModel: MVVM_ViewModel {
             }
         }
         
+        ///
+        webSocket.didReceiveRoomChange
+            .filter { $0.roomId == room.id }
+            .map { [unowned r = self.room] x in
+                var copy = r.value
+                copy.participants = x.participants
+                return copy
+            }
+            .bind(to: self.room)
+            .disposed(by: bag)
+        
     }
 }
 

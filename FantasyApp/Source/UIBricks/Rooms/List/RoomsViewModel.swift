@@ -44,7 +44,10 @@ class RoomsViewModel: MVVM_ViewModel {
         self.router = router
 
         ///indicator
-        
+        webSocket.didReceiveRoomChange
+            .map {_ in TriggerRoomsRefresh() }
+            .subscribe(onNext: Dispatcher.dispatch)
+            .disposed(by: bag)
     }
 
     let router: RoomsRouter
