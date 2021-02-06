@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 import RxDataSources
+import RxCocoa
+
 
 struct FantasyCollectionCellModel: IdentifiableType, Equatable {
     var identity: String {
@@ -31,7 +33,11 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var fantasiesCountLabel: UILabel!
     @IBOutlet weak var myDeckIndicator: UIView!
+    @IBOutlet weak var deleteDeckButton: UIButton!
+    @IBOutlet weak var dotsImageView: UIImageView!
     private var gradientLayer = CAGradientLayer()
+    
+    var roomSettingsViewModel: RoomSettingsViewModel? = nil
 
     var model: Fantasy.Collection! {
         didSet {
@@ -108,5 +114,11 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
         gradientLayer.colors = [UIColor.clear.cgColor,
                                 UIColor.black.withAlphaComponent(0.5).cgColor]
         gradientLayer.locations = [0.7]
+    }
+}
+
+extension FantasyCollectionCollectionViewCell {
+    @IBAction func deleteDeckButtonPressed(_ sender: Any) {
+        roomSettingsViewModel?.deckOptionsPressed(collection: model)
     }
 }

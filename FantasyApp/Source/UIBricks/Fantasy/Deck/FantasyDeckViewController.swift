@@ -91,6 +91,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             cell.set(imageURL: model.imageURL)
             cell.title = model.title
             cell.isPurchased = model.isPurchased
+            cell.dotsImageView.isHidden = true
+            cell.deleteDeckButton.isHidden = true
             
             return cell
         }

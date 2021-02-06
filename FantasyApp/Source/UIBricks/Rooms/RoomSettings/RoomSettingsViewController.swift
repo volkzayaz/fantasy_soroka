@@ -77,6 +77,11 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         
         switch model {
         
+        case .add:
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.addDeckCell, for: ip)!
+        
+            return cell
+        
         case .deck(let collection):
           let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
                                             for: ip)!
@@ -84,13 +89,11 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             cell.set(imageURL: collection.imageURL)
             cell.title = collection.title
             cell.isPurchased = collection.isPurchased
+            cell.roomSettingsViewModel = self.viewModel
             
             return cell
             
-        case .add:
-            let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.addDeckCell, for: ip)!
-        
-            return cell
+     
         }
         
     })
@@ -145,10 +148,12 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
                 
                 switch x {
                 
-                case .deck(_):
-                    break;
                 case .add:
                     self.viewModel.addCollection()
+                
+                case .deck(_):
+                    break;
+                
                 }
                 
             })
