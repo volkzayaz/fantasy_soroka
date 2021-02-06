@@ -271,17 +271,14 @@ extension RoomSettingsViewModel {
     }
     
     func deckOptionsPressed(collection: Fantasy.Collection) {
-        let deleteAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action: UIAlertAction) in
-                self.remove(collection: collection)
-            }
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-            deleteAlert.addAction(deleteAction)
-            deleteAlert.addAction(cancelAction)
-            router.owner.present(deleteAlert, animated: true, completion: nil)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action: UIAlertAction) in
+            self.remove(collection: collection)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        router.owner.showDialog(title: nil, text: nil, style: .actionSheet, actions: [deleteAction, cancelAction])
     }
 }
 
