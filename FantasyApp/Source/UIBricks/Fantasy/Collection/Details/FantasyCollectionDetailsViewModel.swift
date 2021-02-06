@@ -185,9 +185,7 @@ extension FantasyCollectionDetailsViewModel {
             return x(collection)
         }
         
-        switch collection.monetizationType {
-        case .free:
-
+        if collection.isAvailable {
             Analytics.report(Analytics.Event.DraftRoomCreated())
             
             RoomManager.createDraftRoom(collections: [collection.id])
@@ -197,8 +195,13 @@ extension FantasyCollectionDetailsViewModel {
                     self.router.showRoom(room)
                 })
                 .disposed(by: bag)
+            return
+        }
+        
+        switch collection.monetizationType {
+        case .free:
+            break;
 
-            
         case .nonConsumable(let productId):
         
             PurchaseManager.purhcaseCollection(with: productId)

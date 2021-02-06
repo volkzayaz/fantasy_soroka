@@ -59,6 +59,12 @@ class RoomDetailsViewModel: MVVM_ViewModel {
 
         self.buo = room.shareLine()
         
+        if page == .play {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showPlay()
+            }
+        }
+        
     }
 }
 

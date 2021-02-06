@@ -207,8 +207,6 @@ extension FantasyDeckViewModel {
         router.show(collection: collection, collectionPickedAction: collectionPickedAction)
     }
     
-
-    
     func cardShown(card: Fantasy.Card) {
         viewTillOpenCardTimer.start()
     }
