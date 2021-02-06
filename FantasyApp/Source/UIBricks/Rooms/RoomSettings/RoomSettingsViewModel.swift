@@ -47,14 +47,12 @@ extension RoomSettingsViewModel {
         return Fantasy.Manager.fetchCollections()
             .asDriver(onErrorJustReturn: [])
             .map { (collections) -> [DeckCellModel] in
-                var  x = collections.map { DeckCellModel.deck($0) }
-                x.append(.add)
-                
+                var  x: [DeckCellModel] = [.add]
+                let _ = collections.map { x.append(DeckCellModel.deck($0)) }
+    
                 return x
             }
     }
-
-
     
     var intiteLinkHidden: Driver<Bool> {
         return inviteLink.asDriver().map { $0 == nil }
@@ -157,8 +155,9 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     
     enum DeckCellModel: Equatable {
         
-        case deck(Fantasy.Collection)
         case add
+        case deck(Fantasy.Collection)
+       
     }
 }
 
@@ -269,6 +268,20 @@ extension RoomSettingsViewModel {
         room.accept(x)
      
         Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
+    }
+    
+    func deckOptionsPressed(collection: Fantasy.Collection) {
+        let deleteAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action: UIAlertAction) in
+                self.remove(collection: collection)
+            }
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+            deleteAlert.addAction(deleteAction)
+            deleteAlert.addAction(cancelAction)
+            router.owner.present(deleteAlert, animated: true, completion: nil)
     }
 }
 

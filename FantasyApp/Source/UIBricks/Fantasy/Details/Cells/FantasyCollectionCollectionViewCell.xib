@@ -97,20 +97,41 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sm-a6-a38">
+                        <rect key="frame" x="129" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="OBQ-yM-Yfu"/>
+                            <constraint firstAttribute="width" constant="50" id="q5h-f6-V06"/>
+                        </constraints>
+                        <connections>
+                            <action selector="deleteDeckButtonPressed:" destination="Dlb-Mc-pkH" eventType="touchUpInside" id="Kwq-wt-wNJ"/>
+                        </connections>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="three" translatesAutoresizingMaskIntoConstraints="NO" id="B2g-49-oSM">
+                        <rect key="frame" x="129" y="0.0" width="50" height="50"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.92233003530000002" colorSpace="custom" customColorSpace="sRGB"/>
+                    </imageView>
                 </subviews>
+                <gestureRecognizers/>
                 <constraints>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Noc-Rv-VqL" secondAttribute="trailing" constant="16" id="47T-by-MXP"/>
                     <constraint firstAttribute="trailing" secondItem="RcO-65-YXF" secondAttribute="trailing" id="5g8-Sp-iz7"/>
+                    <constraint firstItem="B2g-49-oSM" firstAttribute="width" secondItem="4Sm-a6-a38" secondAttribute="width" id="6id-jk-k0f"/>
+                    <constraint firstItem="B2g-49-oSM" firstAttribute="height" secondItem="4Sm-a6-a38" secondAttribute="height" id="9Rr-A5-Ars"/>
+                    <constraint firstAttribute="trailing" secondItem="4Sm-a6-a38" secondAttribute="trailing" constant="5" id="9Zc-4r-Cq3"/>
                     <constraint firstAttribute="bottom" secondItem="RcO-65-YXF" secondAttribute="bottom" id="9cU-Kk-47W"/>
                     <constraint firstItem="RcO-65-YXF" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="9td-I5-kO6"/>
                     <constraint firstItem="aA1-g7-JLK" firstAttribute="top" secondItem="Tcm-x2-gnr" secondAttribute="bottom" constant="4" id="Dh5-JX-eVa"/>
+                    <constraint firstItem="B2g-49-oSM" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="EFb-ee-sZy"/>
                     <constraint firstItem="Tcm-x2-gnr" firstAttribute="top" secondItem="s5c-0W-svO" secondAttribute="bottom" constant="4" id="GW6-Ix-5wa"/>
                     <constraint firstItem="RcO-65-YXF" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" id="HKP-BM-qVU"/>
                     <constraint firstAttribute="trailing" secondItem="Tcm-x2-gnr" secondAttribute="trailing" constant="12" id="IXC-4Q-cIB"/>
                     <constraint firstItem="aA1-g7-JLK" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="QGx-2L-GYn"/>
                     <constraint firstItem="Tcm-x2-gnr" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="UTy-pE-9yz"/>
+                    <constraint firstAttribute="trailing" secondItem="B2g-49-oSM" secondAttribute="trailing" constant="5" id="e3j-0M-Bbw"/>
                     <constraint firstAttribute="bottom" secondItem="aA1-g7-JLK" secondAttribute="bottom" constant="12" id="g93-5G-LCe"/>
                     <constraint firstItem="Noc-Rv-VqL" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" constant="12" id="gaD-6y-cfO"/>
+                    <constraint firstItem="4Sm-a6-a38" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="hTa-ju-8EK"/>
                     <constraint firstItem="s5c-0W-svO" firstAttribute="leading" secondItem="Tcm-x2-gnr" secondAttribute="leading" id="hZy-7P-HcN"/>
                     <constraint firstItem="Noc-Rv-VqL" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="wXd-r3-2KE"/>
                     <constraint firstAttribute="trailing" secondItem="aA1-g7-JLK" secondAttribute="trailing" constant="12" id="ydK-X7-FgB"/>
@@ -118,6 +139,8 @@
             </collectionViewCellContentView>
             <size key="customSize" width="184" height="243"/>
             <connections>
+                <outlet property="deleteDeckButton" destination="4Sm-a6-a38" id="gBB-mL-OpC"/>
+                <outlet property="dotsImageView" destination="B2g-49-oSM" id="R82-fD-v2a"/>
                 <outlet property="fantasiesCountLabel" destination="aA1-g7-JLK" id="UJ4-6b-XdE"/>
                 <outlet property="imageView" destination="RcO-65-YXF" id="e0b-sC-blV"/>
                 <outlet property="myDeckIndicator" destination="s5c-0W-svO" id="JDx-mb-LiO"/>
@@ -132,6 +155,7 @@
     <resources>
         <image name="myDeckIcon" width="12" height="9"/>
         <image name="paidCollection" width="10" height="12"/>
+        <image name="three" width="200" height="200"/>
         <namedColor name="textPinkColor">
             <color red="0.82745098039215681" green="0.39215686274509803" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
