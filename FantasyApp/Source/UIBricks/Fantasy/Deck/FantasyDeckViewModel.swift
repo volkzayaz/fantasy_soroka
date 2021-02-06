@@ -28,14 +28,7 @@ extension FantasyDeckViewModel {
     }
 
     var mode: Driver<Mode> {
-        return provider.cardsChange
-            .map { state in
-                
-                if state.cards == nil || (state.cards?.count ?? 0) > 0 {
-                    return .swipeCards
-                }
-                return .waiting
-        }
+        return .just(.swipeCards)
     }
     
     var timeLeftText: Driver<NSAttributedString> {
@@ -76,13 +69,22 @@ extension FantasyDeckViewModel {
     
     var cards: Driver<[Fantasy.Card]> {
         
-        return provider.cardsChange
-            .map { $0.cards }
-            .notNil()
+        guard let x = room else {
+            return .just([])
+        }
+        
+        return x.distinctUntilChanged { $0.settings.sharedCollections }
+            .flatMapLatest { room -> Single< [Fantasy.Card] > in
+                
+                guard room.settings.sharedCollections.count > 0 else { return .just([]) }
+                    
+                return Fantasy.Manager.fetchSwipesDeck(in: room)
+                    .map { $0.cards ?? [] }
+                
+            }
+            .asDriver(onErrorJustReturn: [])
         
     }
-    
-    
     
     var mutualCardTrigger: Driver<Fantasy.Card> {
         return cardTrigger.asDriver().notNil()
@@ -109,7 +111,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
     
     let presentationStyle: PresentationStyle
     let provider: FantasyDeckProvier
-    let room: Room?
+    let room: SharedRoomResource?
 
     let collectionPickedAction: CollectionPicked?
     
@@ -120,7 +122,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
     init(router: FantasyDeckRouter,
          provider: FantasyDeckProvier = MainDeckProvider(),
          presentationStyle: PresentationStyle  = .stack,
-         room: Room? = nil,
+         room: SharedRoomResource? = nil,
          collectionFilter: Set<String> = [],
          collectionPickedAction: CollectionPicked? = nil) {
         self.router = router
@@ -146,7 +148,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             .bind(to: collections)
             .disposed(by: bag)
         
-        self.buo = room?.shareLine()
+        self.buo = room?.value.shareLine()
         
         // Check likes cars count to display Review popup
         SettingsStore.likedCardsCount.observable
@@ -219,6 +221,28 @@ extension FantasyDeckViewModel {
             .disposed(by: bag)
     }
     
+    func addCollection() {
+        
+        let room = self.room!
+        
+        router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned r = room, weak o = router.owner, unowned i = indicator] (collection) in
+            
+            var x = r.value
+            x.settings.sharedCollections.insert(collection.id, at: 0)
+            
+            let _ =
+            UpdateRoomSharedCollectionsResource(room: x).rx.request
+                .trackView(viewIndicator: i)
+                .silentCatch(handler: o)
+                .subscribe { (_) in
+                    r.accept(x)
+                    Dispatcher.dispatch(action: UpdateRoom(room: x))
+                }
+            
+        }
+        
+    }
+    
     private func shareURL(_ url: String, card: Fantasy.Card) {
         guard let urlToShare = URL(string: url) else { return }
         
@@ -251,13 +275,13 @@ extension FantasyDeckViewModel {
     func presentMe() {
         guard let r = room else { return }
 
-        presentUser(id: r.me.id)
+        presentUser(id: r.value.me.id)
     }
 
     func presentPeer() {
         guard let r = room else { return }
 
-        if let x = r.peer.userSlice?.id {
+        if let x = r.value.peer.userSlice?.id {
             presentUser(id: x)
             return;
         }

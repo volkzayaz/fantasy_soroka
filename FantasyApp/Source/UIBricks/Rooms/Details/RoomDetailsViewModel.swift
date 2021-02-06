@@ -69,7 +69,7 @@ extension RoomDetailsViewModel {
     }
     
     func showPlay() {
-        router.showPlay(room: room.value)
+        router.showPlay(room: room)
     }
     
     func presentMe() {

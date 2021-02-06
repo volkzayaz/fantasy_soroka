@@ -51,13 +51,13 @@ struct MainDeckProvider: FantasyDeckProvier {
     
     init() {
         
-        appState.map { $0.fantasiesDeck }
-            .asObservable()
-            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
-            .subscribe(onNext: { deck in
-                Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
-            })
-            .disposed(by: bag)
+//        appState.map { $0.fantasiesDeck }
+//            .asObservable()
+//            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
+//            .subscribe(onNext: { deck in
+//                Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
+//            })
+//            .disposed(by: bag)
         
     }
     
@@ -101,7 +101,7 @@ struct MainDeckProvider: FantasyDeckProvier {
     
 };
 
-private let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
+let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
 
 struct RoomsDeckProvider: FantasyDeckProvier {
     
@@ -114,12 +114,12 @@ struct RoomsDeckProvider: FantasyDeckProvier {
 
         roomsDeck.accept(nil)
         
-//        roomsDeck.notNil()
-//            .startWith(.init(cards: nil, wouldUpdateAt: nil))
-//            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck(in: room))
-//            .bind(to: roomsDeck)
-//            .disposed(by: bag)
-//        
+        roomsDeck.notNil()
+            .startWith(.init(cards: nil, wouldUpdateAt: nil))
+            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck(in: room))
+            .bind(to: roomsDeck)
+            .disposed(by: bag)
+        
     }
     
     private let bag = DisposeBag()

@@ -91,6 +91,10 @@ extension ChatViewModel {
 
                     case .message_deleted, .deleted:
                         return .message(x)
+                        
+                    case .shared_collections_added, .shared_collections_removed:
+                        let event = x.typeDescription(peer: peer.name)
+                        return .event(R.image.sharedCollection()!, event, x)
 
                     }
 

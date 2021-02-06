@@ -47,7 +47,6 @@ struct UpdateRoomSharedCollections: ActionCreator {
             .map { _ in
                 
                 guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.room.id }) else {
-                    fatalErrorInDebug("Can't update settings of room that is not in the rooms list")
                     return initialState
                 }
                 
@@ -57,6 +56,25 @@ struct UpdateRoomSharedCollections: ActionCreator {
             }
             .catchErrorJustReturn(initialState)
             .asObservable()
+    }
+
+}
+
+
+struct UpdateRoom: Action {
+
+    let room: Room
+
+    func perform(initialState: AppState) -> AppState {
+
+        guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.room.id }) else {
+            return initialState
+        }
+        
+        var state = initialState
+        state.rooms?[i] = self.room
+        return state
+        
     }
 
 }

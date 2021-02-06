@@ -59,6 +59,8 @@ extension Room {
             case like
             case created
             case deleted, sp_enabled, sp_disabled, settings_changed, frozen, unfrozen, unfrozenPaid
+            case shared_collections_added
+            case shared_collections_removed
 //            case shared_collections
 //            case mutual_liked_card
         }
@@ -98,6 +100,14 @@ extension Room {
                 
             case .deleted:
                 return R.string.localizable.chatMessageTypeDeleted()
+                
+            case .shared_collections_added:
+                let name = isOwn ? R.string.localizable.chatMessageTypeYou() : "\(peer)"
+                return name + " added \(text ?? "") to the Room"
+                
+            case .shared_collections_removed:
+                let name = isOwn ? R.string.localizable.chatMessageTypeYou() : "\(peer)"
+                return name + " removed \(text ?? "") from the Room"
                 
             }
             
@@ -220,7 +230,7 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
     func shareLine() -> BranchUniversalObject? {
         
         guard let link = peer.invitationLink else {
-            fatalErrorInDebug("Can't share link for participant \(self). No token available")
+            //fatalErrorInDebug("Can't share link for participant \(self). No token available")
             return nil
         }
         

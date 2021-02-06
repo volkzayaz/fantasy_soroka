@@ -29,11 +29,11 @@ struct RoomDetailsRouter: MVVM_Router {
         
     }
     
-    func showPlay(room: Room) {
+    func showPlay(room: SharedRoomResource) {
         
         let vc = R.storyboard.fantasyCard.fantasiesViewController()!
         vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
-                                            provider: RoomsDeckProvider(room: room),
+                                            provider: RoomsDeckProvider(room: room.value),
                                             presentationStyle: .modal,
                                             room: room)
         let nav = FantasyNavigationController(rootViewController: vc)

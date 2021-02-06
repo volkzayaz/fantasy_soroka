@@ -229,7 +229,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.cardDetailsBack()!, style: .plain, target: self, action: #selector(dismissModal))
         }
 
-        if let room = viewModel.room {
+        if let room = viewModel.room?.value {
 
             let rightDriver: Driver<UIImage?>
             if let x = room.peer.userSlice?.avatarURL {
@@ -267,7 +267,10 @@ extension FantasyDeckViewController {
     }
     
     @IBAction func didTapAddDeckImage(_ sender: Any) {
-        print("Add Deck")
+        if fantasiesView.isRunOutOfCards {
+            viewModel.addCollection()
+        }
+        
     }
 
     @IBAction func subscribeTapped(_ sender: Any) {

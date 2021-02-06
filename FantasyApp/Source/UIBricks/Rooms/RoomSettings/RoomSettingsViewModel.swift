@@ -40,18 +40,18 @@ extension RoomSettingsViewModel {
     
     var deckDataSource: Driver<[DeckCellModel]> {
         
-//        return room.map(\.settings.sharedCollections)
-//            .distinctUntilChanged()
-//            .flatMapLatest
-        
-        return Fantasy.Manager.fetchCollections()
-            .asDriver(onErrorJustReturn: [])
-            .map { (collections) -> [DeckCellModel] in
-                var  x: [DeckCellModel] = [.add]
-                let _ = collections.map { x.append(DeckCellModel.deck($0)) }
-    
-                return x
+        return room.distinctUntilChanged { $0.settings.sharedCollections }
+            .flatMapLatest { room -> Single<[DeckCellModel]> in
+                
+                guard room.settings.sharedCollections.count > 0 else { return .just([]) }
+                    
+                return RoomsSharedCollectionsResource(room: room).rx.request
+                    .map { $0.settings.sharedCollectionsData.map(DeckCellModel.deck) }
+                
             }
+            .map { [.add] + $0 }
+            .asDriver(onErrorJustReturn: [])
+        
     }
     
     var intiteLinkHidden: Driver<Bool> {
@@ -253,7 +253,7 @@ extension RoomSettingsViewModel {
         router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned r = room] (collection) in
             
             var x = r.value
-            x.settings.sharedCollections.append(collection.id)
+            x.settings.sharedCollections.insert(collection.id, at: 0)
             r.accept(x)
          
             Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
