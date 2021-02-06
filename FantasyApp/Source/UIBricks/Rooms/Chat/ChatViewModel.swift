@@ -20,8 +20,7 @@ extension ChatViewModel {
     }
     
     var noChatViewIsHidden: Driver<Bool> {
-        return room
-                .asDriver()
+        return room.asDriver()
             .map { $0.status != .empty }
     }
     
@@ -46,7 +45,7 @@ extension ChatViewModel {
                 let requestTypes = t.0
                 let room = t.1
 
-                guard let peer = room.peer.userSlice else { return [] }
+                let peerName = room.peer.userSlice?.name ?? ""
                 
                 var items = [Row]()
 
@@ -62,11 +61,11 @@ extension ChatViewModel {
                         return .roomCreated(x)
 
                     case .like:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.outgoingRequestLike()!, event, x)
 
                     case .invited:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.outgoingRequestLink()!, event, x)
 
                     case .message:
@@ -74,26 +73,26 @@ extension ChatViewModel {
 
                     case .sp_enabled, .sp_disabled: fallthrough
                     case .settings_changed:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.roomSettingsChanged()!, event, x)
 
                     case .frozen:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.exclamation()!, event, x)
 
                     case .unfrozen:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.roomUnfrozen()!, event, x)
 
                     case .unfrozenPaid:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.roomUnfrozen()!, event, x)
 
                     case .message_deleted, .deleted:
                         return .message(x)
                         
                     case .shared_collections_added, .shared_collections_removed:
-                        let event = x.typeDescription(peer: peer.name)
+                        let event = x.typeDescription(peer: peerName)
                         return .event(R.image.sharedCollection()!, event, x)
 
                     }
@@ -105,6 +104,7 @@ extension ChatViewModel {
                 return [AnimatableSectionModel(model: "",
                                                items: items)]
         }
+
         
     }
     
