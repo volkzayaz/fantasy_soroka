@@ -102,11 +102,11 @@ extension Room {
                 return R.string.localizable.chatMessageTypeDeleted()
                 
             case .shared_collections_added:
-                let name = isOwn ? R.string.localizable.chatMessageTypeYou() : "\(peer)"
+                let name = isOwn ? "You" : "\(peer)"
                 return name + " added \(text ?? "") to the Room"
                 
             case .shared_collections_removed:
-                let name = isOwn ? R.string.localizable.chatMessageTypeYou() : "\(peer)"
+                let name = isOwn ? "You" : "\(peer)"
                 return name + " removed \(text ?? "") from the Room"
                 
             }
