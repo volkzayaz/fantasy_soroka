@@ -250,13 +250,19 @@ extension RoomSettingsViewModel {
     
     func addCollection() {
         
-        router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned r = room] (collection) in
+        router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned self, unowned r = room] (collection) in
             
             var x = r.value
             x.settings.sharedCollections.insert(collection.id, at: 0)
-            r.accept(x)
-         
-            Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
+            
+            RoomManager.updateRoomSharedCollections(room: x)
+                .silentCatch(handler: self.router.owner)
+                .trackView(viewIndicator: self.indicator)
+                .subscribe(onNext: { room in
+                    r.accept(room)
+                    Dispatcher.dispatch(action: UpdateRoom(room: room))
+                })
+                .disposed(by: bag)
             
         }
         
@@ -265,9 +271,16 @@ extension RoomSettingsViewModel {
     func remove(collection: Fantasy.Collection) {
         var x = room.value
         x.settings.sharedCollections.removeAll { $0 == collection.id }
-        room.accept(x)
-     
-        Dispatcher.dispatch(action: UpdateRoomSharedCollections(room: x))
+        
+        RoomManager.updateRoomSharedCollections(room: x)
+            .silentCatch(handler: self.router.owner)
+            .trackView(viewIndicator: self.indicator)
+            .subscribe(onNext: { [unowned r = room] room in
+                r.accept(room)
+                Dispatcher.dispatch(action: UpdateRoom(room: room))
+            })
+            .disposed(by: bag)
+        
     }
     
     func deckOptionsPressed(collection: Fantasy.Collection) {

@@ -68,14 +68,14 @@ struct RoomsSharedCollectionsResource: AuthorizedAPIResource {
     typealias responseType = Response
 
     var method: Moya.Method {
-        return .put
+        return .get
     }
 
     var path: String {
-        return "users/me/rooms/\(room.id)/settings/shared-collections"
+        return "users/me/rooms/\(room.id)"
     }
 
     var task: Task {
-        return .requestJSONEncodable(room.settings.sharedCollections)
+        return .requestPlain
     }
 }
