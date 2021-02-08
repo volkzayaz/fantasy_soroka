@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RoomDetailsTitlePhotoViewDelegate {
+protocol RoomDetailsTitlePhotoViewDelegate: class {
     func didSelectedInitiator()
     func didSelectedPeer()
 }
@@ -17,7 +17,7 @@ class RoomDetailsTitlePhotoView: UIView {
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
 
-    var delegate: RoomDetailsTitlePhotoViewDelegate?
+    weak var delegate: RoomDetailsTitlePhotoViewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
