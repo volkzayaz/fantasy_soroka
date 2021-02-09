@@ -16,12 +16,10 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var numberDecks: UILabel!
+    @IBOutlet weak var decksCountLabel: UILabel!
     
-    lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { [unowned self] (_, cv, ip, model) in
+    lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Fantasy.Collection>>(configureCell: { [unowned self] (_, cv, ip, collection) in
         
-        switch model {
-    
-        case .deck(let collection):
           let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
                                             for: ip)!
             cell.model = collection
@@ -32,15 +30,24 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
             
             return cell
         
-        }
+        
     })
     
-    private let bottleneck: BehaviorSubject<[CellModel]> = .init(value: [])
+    private let bottleneck: BehaviorSubject<[Fantasy.Collection]> = .init(value: [])
+    var fantasyDeckViewModel: FantasyDeckViewModel? = nil
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
       
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
+        
+        collectionView.rx.modelSelected(Fantasy.Collection.self)
+            .subscribe(onNext: { [unowned self] (x) in
+                fantasyDeckViewModel?.fantasyCollectionSelected(collection: x)
+            })
+            .disposed(by: rx.disposeBag)
+
         
         bottleneck
             .map { [SectionModel(model: "", items: $0)] }
@@ -48,19 +55,7 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
             .disposed(by: rx.disposeBag)
     }
     
-    func bindModel(x: [CellModel]) {
+    func bindModel(x: [Fantasy.Collection]) {
         bottleneck.onNext(x)
     }
-   
-    var bag = DisposeBag()
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    
-    enum CellModel {
-        case deck(Fantasy.Collection)
-    }
-    
 }

@@ -23,8 +23,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
 
-    @IBOutlet var tableView: UITableView!
-    
+    @IBOutlet weak var tableView: UITableView!
+
     private var tutorialView: FantasyDeckTutorialView?
     @IBOutlet weak var mutualCardContainer: UIView! {
         didSet {
@@ -55,7 +55,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     }
 
     @IBOutlet weak var cardsView: UIView!
-    @IBOutlet weak var collectionsView: UIView!
     
     @IBOutlet weak var timeLimitDecsriptionLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
@@ -75,53 +74,24 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             collectionsButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
-    @IBOutlet weak var collectionsCountLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
-        }
-    }
-    lazy var emptyView: EmptyView! = collectionView.addEmptyView()
-
-    lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Collection>>(
-        configureCell: { [unowned self] (_, tableView, indexPath, model) in
-            let cell = self.collectionView
-                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
-                                     for: indexPath)!
-
-            cell.model = model
-            cell.set(imageURL: model.imageURL)
-            cell.title = model.title
-            cell.isPurchased = model.isPurchased
-            cell.dotsImageView.isHidden = true
-            cell.deleteDeckButton.isHidden = true
-            
-            return cell
-        }
-    )
     
     
-    lazy var sectionsTableDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, FantasyDeckViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, section) in
-        
-        switch section {
-            
-        case .category(let category):
-            
+    lazy var sectionsTableDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, [Fantasy.Collection]>>(configureCell: { [unowned self] (_, tv, ip, category) in
+
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.categoryFantasies, for: ip)!
-            
+        
+            cell.decksCountLabel.text = category.count == 1 ? "deck" : "decks"
             cell.categoryName.text = category.first?.category
             cell.numberDecks.text = "\(category.count)"
+            cell.fantasyDeckViewModel = self.viewModel
         
-            var x: [CategoryFantasiesTableViewCell.CellModel] = []
+            var x: [Fantasy.Collection] = []
             
-            let _ = category.map {  x.append(CategoryFantasiesTableViewCell.CellModel.deck($0)) }
+            let _ = category.map {  x.append($0) }
 
-            
             cell.bindModel(x: x)
            
             return cell
-        }
-        
     })
     
 
@@ -140,9 +110,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(timeLeftLabel.rx.attributedText)
             .disposed(by: rx.disposeBag)
         
-        viewModel.collectionsCountText
-            .drive(collectionsCountLabel.rx.attributedText)
-            .disposed(by: rx.disposeBag)
         
         viewModel.cards.drive(onNext: { [unowned self] (newState) in
             let from = self.fantasiesView.currentCardIndex
@@ -180,23 +147,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             }
         }).disposed(by: rx.disposeBag)
 
-        viewModel.collectionsDataSource
-            .drive(collectionView.rx.items(dataSource: collectionsDataSource))
-            .disposed(by: rx.disposeBag)
-
-        collectionView.rx.modelSelected(Fantasy.Collection.self)
-            .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.show(collection: x)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let margin: CGFloat = 10.0
-        let width = (collectionView.frame.size.width - margin) / 2.0
-        layout.itemSize = CGSize(width: width,
-                                 height: width / Fantasy.LayoutConstants.cardAspectRatio)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10.0
 
         // tutorial
         viewModel.showTutorial
@@ -225,7 +175,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
-        viewModel.sections
+        viewModel.sortedFantasies
             .map { $0.map { SectionModel(model: "", items: [$0]) } }
             .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
             .disposed(by: rx.disposeBag)
@@ -238,20 +188,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(subsbcriptionLabel.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
-        viewModel.collectionsDataSource
-            .map { $0.first!.items.count == 0 }
-            .do(onNext: { [unowned self] (x) in
-                self.collectionsCountLabel.isHidden = x
-            })
-            .drive(emptyView.rx.isEmpty)
-            .disposed(by: rx.disposeBag)
-        
-        Driver.just(R.image.collectionPlaceholder()!)
-            .map { image in
-                return UIImageView(image: image)
-            }
-            .drive(emptyView.rx.emptyView)
-            .disposed(by: rx.disposeBag)
         
         configureStyling()
 
@@ -311,7 +247,7 @@ extension FantasyDeckViewController {
         collectionsButton.isSelected = false
         cardsButton.isSelected = true
         cardsView.isHidden = false
-        collectionsView.isHidden = true
+        
 
         tutorialView?.isHidden = false
     }
@@ -320,22 +256,12 @@ extension FantasyDeckViewController {
 //        collectionsButton.isSelected = true
 //        cardsButton.isSelected = false
         cardsView.isHidden = true
-        collectionsView.isHidden = true
+       
 
         tutorialView?.isHidden = true
     }
 
     // MARK: - Configuration
-    func configureCollectionViewLayout() {
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let margin: CGFloat = 10.0
-        let width = (collectionView.frame.size.width - margin) / 2.0
-        layout.itemSize = CGSize(width: width,
-                                 height: width / Fantasy.LayoutConstants.cardAspectRatio)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10.0
-    }
-
     func configureStyling() {
         navigationItem.title = R.string.localizable.fantasyDeckTitle()
         
@@ -355,8 +281,7 @@ extension FantasyDeckViewController {
         timeLeftLabel.numberOfLines = 0
         timeLeftLabel.textColor = .fantasyBlack
 
-        collectionsCountLabel.font = .boldFont(ofSize: 15)
-        collectionsCountLabel.textColor = .fantasyBlack
+      
 
         timeLimitDecsriptionLabel.text = R.string.localizable.fantasyDeckTimeLimitDescription()
         timeLimitDecsriptionLabel.font = .boldFont(ofSize: 18)

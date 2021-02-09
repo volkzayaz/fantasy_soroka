@@ -53,15 +53,13 @@ extension FantasyDeckViewModel {
         
     }
     
-    var sections:  Driver<[Row]> {
+    var sortedFantasies:  Driver<[[Fantasy.Collection]]> {
         return Fantasy.Manager.fetchCollections()
             .asDriver(onErrorJustReturn: [])
-            .map { (collections) -> [Row] in
-                let fantasiesGpoups = Array(Dictionary(grouping: collections){$0.category}.values)
+            .map { (collections) -> [[Fantasy.Collection]] in
+                let fantasiesGpoups = Dictionary(grouping: collections){$0.category}.values
                 
-                return fantasiesGpoups.map { collections -> FantasyDeckViewModel.Row in
-                    Row.category(collections)
-                }
+                return fantasiesGpoups.map { $0 }
             }
     }
 
@@ -184,10 +182,6 @@ class FantasyDeckViewModel : MVVM_ViewModel {
 
 extension FantasyDeckViewModel {
     
-    enum Row: Equatable {
-        case category([Fantasy.Collection])
-    }
-    
     enum SwipeDirection { case left, right, down }
     
     func swiped(card: Fantasy.Card, direction: SwipeDirection) {
@@ -255,6 +249,10 @@ extension FantasyDeckViewModel {
             
         }
         
+    }
+    
+    func fantasyCollectionSelected(collection: Fantasy.Collection) {
+        print("Selected collection - ", collection)
     }
     
     private func shareURL(_ url: String, card: Fantasy.Card) {
