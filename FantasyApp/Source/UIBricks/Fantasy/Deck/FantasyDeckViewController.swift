@@ -23,6 +23,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
 
+    @IBOutlet var tableView: UITableView!
+    
     private var tutorialView: FantasyDeckTutorialView?
     @IBOutlet weak var mutualCardContainer: UIView! {
         didSet {
@@ -98,6 +100,29 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         }
     )
     
+    
+    lazy var sectionsTableDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, FantasyDeckViewModel.Row>>(configureCell: { [unowned self] (_, tv, ip, section) in
+        
+        switch section {
+            
+        case .category(let category):
+            
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.categoryFantasies, for: ip)!
+            
+            cell.categoryName.text = category.first?.category
+            cell.numberDecks.text = "\(category.count)"
+        
+            var x: [CategoryFantasiesTableViewCell.CellModel] = []
+            
+            let _ = category.map {  x.append(CategoryFantasiesTableViewCell.CellModel.deck($0)) }
+
+            
+            cell.bindModel(x: x)
+           
+            return cell
+        }
+        
+    })
     
 
     ///TODO: refactor to RxColodaDatasource
@@ -200,6 +225,11 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        viewModel.sections
+            .map { $0.map { SectionModel(model: "", items: [$0]) } }
+            .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
+            .disposed(by: rx.disposeBag)
+        
         viewModel.subscribeButtonHidden
             .drive(subscribeButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
@@ -290,7 +320,7 @@ extension FantasyDeckViewController {
 //        collectionsButton.isSelected = true
 //        cardsButton.isSelected = false
         cardsView.isHidden = true
-        collectionsView.isHidden = false
+        collectionsView.isHidden = true
 
         tutorialView?.isHidden = true
     }
