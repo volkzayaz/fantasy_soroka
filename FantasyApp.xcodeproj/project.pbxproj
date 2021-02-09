@@ -12,6 +12,7 @@
 		3E384D6A25C80328005ACA48 /* NoChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E384D6925C80328005ACA48 /* NoChatView.xib */; };
 		3E849B9725C445B2001EA538 /* NoChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E849B9625C445B2001EA538 /* NoChatView.swift */; };
 		3E9E307625B5DACF00A7706A /* AddDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */; };
+		3EB736BC25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB736BB25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
 		67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */; };
 		73097BF9231D39D800B71053 /* EditProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* EditProfileForm.swift */; };
@@ -473,6 +474,7 @@
 		3E384D6925C80328005ACA48 /* NoChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoChatView.xib; sourceTree = "<group>"; };
 		3E849B9625C445B2001EA538 /* NoChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoChatView.swift; sourceTree = "<group>"; };
 		3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckCollectionViewCell.swift; sourceTree = "<group>"; };
+		3EB736BB25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFantasiesTableViewCell.swift; sourceTree = "<group>"; };
 		4559FC91EADCC95F3A7F9A00 /* Pods-FantasyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -963,6 +965,14 @@
 				3E384D6925C80328005ACA48 /* NoChatView.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		3EB736C025D2160900FBBA9C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3EB736BB25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		67E88EFF237C350C0020382F /* View */ = {
@@ -1934,6 +1944,7 @@
 		739F798C230952800045FCD7 /* Deck */ = {
 			isa = PBXGroup;
 			children = (
+				3EB736C025D2160900FBBA9C /* Cells */,
 				B7E4E3F7237E9E6F00D8D9CA /* Tutorial */,
 				7322310E23040DB6009DD37F /* FantasyDeckRouter.swift */,
 				7322310F23040DB6009DD37F /* FantasyDeckViewController.swift */,
@@ -3085,6 +3096,7 @@
 				2518808D24464150002CCF2E /* URL+Email.swift in Sources */,
 				84AB48FF232A16D500F3609A /* RoomDetailsViewModel.swift in Sources */,
 				84C1D0412327B95F00648DE1 /* SexualityGradientRenderer.swift in Sources */,
+				3EB736BC25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift in Sources */,
 				7374F6A8235B8435000D6D20 /* ConnectionCells.swift in Sources */,
 				84AB4908232A2D0000F3609A /* ChatRouter.swift in Sources */,
 				73E6012022EC3A4000F767BF /* LoginViewModel.swift in Sources */,

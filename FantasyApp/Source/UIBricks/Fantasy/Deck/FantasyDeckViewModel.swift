@@ -52,6 +52,18 @@ extension FantasyDeckViewModel {
         }
         
     }
+    
+    var sections:  Driver<[Row]> {
+        return Fantasy.Manager.fetchCollections()
+            .asDriver(onErrorJustReturn: [])
+            .map { (collections) -> [Row] in
+                let fantasiesGpoups = Array(Dictionary(grouping: collections){$0.category}.values)
+                
+                return fantasiesGpoups.map { collections -> FantasyDeckViewModel.Row in
+                    Row.category(collections)
+                }
+            }
+    }
 
     var collectionsCountText: Driver<NSAttributedString> {
         return collections.asDriver().map { collections in
@@ -171,6 +183,10 @@ class FantasyDeckViewModel : MVVM_ViewModel {
 }
 
 extension FantasyDeckViewModel {
+    
+    enum Row: Equatable {
+        case category([Fantasy.Collection])
+    }
     
     enum SwipeDirection { case left, right, down }
     
