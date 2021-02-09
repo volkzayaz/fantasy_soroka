@@ -45,7 +45,7 @@ class RoomsViewModel: MVVM_ViewModel {
 
         ///indicator
         webSocket.didReceiveRoomChange
-            .map {_ in TriggerRoomsRefresh() }
+            .map { _ in TriggerRoomsRefresh() }
             .subscribe(onNext: Dispatcher.dispatch)
             .disposed(by: bag)
     }
