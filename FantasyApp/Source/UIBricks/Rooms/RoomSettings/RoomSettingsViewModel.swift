@@ -114,17 +114,17 @@ class RoomSettingsViewModel: MVVM_ViewModel {
         }
         
         cells = BehaviorRelay(value: room.value.participants.enumerated()
-                                        .map { (i, x) -> CellModel in
-                                            
-                                            guard let userSlice = x.userSlice else {
-                                                return .invite
-                                            }
+                                .map { (i, x) -> CellModel in
                                     
-                                            return .user(isAdmin: userSlice.id == room.value.ownerId,
-                                                         participant: userSlice,
-                                                         status: x.status)
-
-                                        })
+                                    guard let userSlice = x.userSlice else {
+                                        return .invite
+                                    }
+                                    
+                                    return .user(isAdmin: userSlice.id == room.value.ownerId,
+                                                 participant: userSlice,
+                                                 status: x.status)
+                                    
+                                })
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
@@ -139,10 +139,10 @@ class RoomSettingsViewModel: MVVM_ViewModel {
         case user(isAdmin: Bool, participant: Room.Participant.UserSlice, status: Room.Participant.Status)
         case invite
         case waiting
-
+        
         var identity: String {
             switch self {
-                
+            
             case .user(_, let participant, _):
                 return participant.identity
                 
