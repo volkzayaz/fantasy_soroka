@@ -32,6 +32,10 @@ class WebSocketService {
     var didReceiveRoomChange: Observable<RoomSlice> {
         return manager.defaultSocket.rx.subscribe(onEvent: "room_created")
     }
+    
+    var didReceiveRoomCollectionsChange: Observable<RoomCollectionSlice> {
+        return manager.defaultSocket.rx.subscribe(onEvent: "room_collections_updated")
+    }
 
     func send(message: Room.MessageInRoom) -> Single<Room.MessageInRoom> {
         

@@ -326,3 +326,8 @@ struct RoomSlice: Codable {
     let participants: [Room.Participant]
     
 }
+
+struct RoomCollectionSlice: Codable {
+    let roomId: String
+    let collectionIds: [String]
+}

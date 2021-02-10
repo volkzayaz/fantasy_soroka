@@ -76,6 +76,18 @@ class RoomDetailsViewModel: MVVM_ViewModel {
             .bind(to: self.room)
             .disposed(by: bag)
         
+        ///
+        webSocket.didReceiveRoomCollectionsChange
+            .filter { $0.roomId == room.id }
+            .map { [unowned r = self.room] x in
+                var copy = r.value
+                copy.settings.sharedCollections = x.collectionIds
+                Dispatcher.dispatch(action: UpdateRoom(room: copy))
+                return copy
+            }
+            .bind(to: self.room)
+            .disposed(by: bag)
+        
     }
 }
 

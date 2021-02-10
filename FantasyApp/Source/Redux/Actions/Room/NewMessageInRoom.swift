@@ -50,7 +50,7 @@ struct MessageMakredRead: Action {
         var state = initialState
         
         if room.unreadCount < 1 {
-            fatalErrorInDebug("Internal inconsistency. \(room) has unread counter less then 1, it can't be decreased further")
+            //fatalErrorInDebug("Internal inconsistency. \(room) has unread counter less then 1, it can't be decreased further")
             return initialState
         }
         
