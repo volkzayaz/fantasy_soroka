@@ -31,6 +31,12 @@ extension FantasyDeckViewModel {
         return .just(.swipeCards)
     }
     
+    var isPlayRoomPage: Driver<Bool> {
+        guard let _ = room?.value else { return .just(false) }
+        
+        return .just(true)
+    }
+    
     var timeLeftText: Driver<NSAttributedString> {
         
         return provider.cardsChange

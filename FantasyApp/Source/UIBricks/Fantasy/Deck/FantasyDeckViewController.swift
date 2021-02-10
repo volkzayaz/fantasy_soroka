@@ -97,6 +97,10 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.isPlayRoomPage.drive(onNext: { [unowned self]  x in
+            tableView.isHidden = x
+        }).disposed(by: rx.disposeBag)
+        
         viewModel.mode.drive(onNext: { [unowned self] mode in
             self.waitingView.isHidden = mode == .swipeCards
             self.fantasiesView.isHidden = mode == .waiting
