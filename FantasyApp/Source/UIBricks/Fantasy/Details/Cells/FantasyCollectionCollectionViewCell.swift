@@ -31,17 +31,15 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet var paidLabel: UILabel!
     @IBOutlet var paidImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var fantasiesCountLabel: UILabel!
-    @IBOutlet weak var myDeckIndicator: UIView!
     @IBOutlet weak var deleteDeckButton: UIButton!
     @IBOutlet weak var dotsImageView: UIImageView!
+    @IBOutlet weak var deckStateImageView: UIImageView!
     private var gradientLayer = CAGradientLayer()
     
     var roomSettingsViewModel: RoomSettingsViewModel? = nil
-
+    
     var model: Fantasy.Collection! {
         didSet {
-            fantasiesCountLabel.text = "\(model.cardsCount) \(model.itemsNamePlural)"
             paidLabel.text = model.category
         }
     }
@@ -51,16 +49,19 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
             titleLabel.text = title
         }
     }
-    
-    var fantasiesCount: Int = 0 {
-        didSet {
-            fantasiesCountLabel.text = R.string.localizable.fantasyCollectionCardsCount(fantasiesCount)
-        }
-    }
 
     var isPurchased: Bool = false {
         didSet {
-            myDeckIndicator.isHidden = !isPurchased
+            appState.map { $0.currentUser?.subscription.isSubscribed ?? false }
+                .drive(onNext: {  [unowned self] value in
+    
+                    if isPurchased  {
+                        deckStateImageView.image = R.image.isPurchased()
+                    } else if value {
+                        deckStateImageView.image = R.image.parrot()
+                    }
+                })
+                .disposed(by: rx.disposeBag)
         }
     }
 
@@ -71,7 +72,7 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureStyling()
-        
+
         title = ""
     }
 
@@ -107,9 +108,6 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
 
         titleLabel.textColor = .title
         titleLabel.font = .boldFont(ofSize: 15)
-
-        fantasiesCountLabel.textColor = .title
-        fantasiesCountLabel.font = .regularFont(ofSize: 15)
 
         gradientLayer.colors = [UIColor.clear.cgColor,
                                 UIColor.black.withAlphaComponent(0.5).cgColor]

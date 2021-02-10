@@ -39,7 +39,7 @@ class UserProfileFantasiesCell: UITableViewCell {
             cell.imageView.regularImageView.image = i
             cell.isPurchased = false //sneakPeek.isPaid
             
-            cell.fantasiesCountLabel.text = "\(sneakPeek.amountlikedCardsByUser) \(sneakPeek.coverItems)"
+            //cell.fantasiesCountLabel.text = "\(sneakPeek.amountlikedCardsByUser) \(sneakPeek.coverItems)"
             cell.paidLabel.text = sneakPeek.coverRubric
             
             return cell
