@@ -43,8 +43,8 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
         
         collectionView.rx.modelSelected(Fantasy.Collection.self)
-            .subscribe(onNext: { [unowned self] (x) in
-                fantasyDeckViewModel?.fantasyCollectionSelected(collection: x)
+            .subscribe(onNext: { [unowned self] collection in
+                fantasyDeckViewModel?.show(collection: collection)
             })
             .disposed(by: rx.disposeBag)
 

@@ -84,12 +84,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             cell.categoryName.text = category.first?.category
             cell.numberDecks.text = "\(category.count)"
             cell.fantasyDeckViewModel = self.viewModel
-        
-            var x: [Fantasy.Collection] = []
-            
-            let _ = category.map {  x.append($0) }
 
-            cell.bindModel(x: x)
+            cell.bindModel(x: category)
            
             return cell
     })

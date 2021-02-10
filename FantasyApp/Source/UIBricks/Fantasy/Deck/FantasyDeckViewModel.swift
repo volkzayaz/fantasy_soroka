@@ -58,8 +58,8 @@ extension FantasyDeckViewModel {
             .asDriver(onErrorJustReturn: [])
             .map { (collections) -> [[Fantasy.Collection]] in
                 let fantasiesGpoups = Dictionary(grouping: collections){$0.category}.values
-                
-                return fantasiesGpoups.map { $0 }
+        
+                return fantasiesGpoups.sorted { $0.first!.category < $1.first!.category}
             }
     }
 
@@ -249,10 +249,6 @@ extension FantasyDeckViewModel {
             
         }
         
-    }
-    
-    func fantasyCollectionSelected(collection: Fantasy.Collection) {
-        print("Selected collection - ", collection)
     }
     
     private func shareURL(_ url: String, card: Fantasy.Card) {
