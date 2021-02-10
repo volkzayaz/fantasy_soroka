@@ -71,8 +71,13 @@ struct UpdateRoom: Action {
             return initialState
         }
         
+        var copy = room
+        if room.unreadCount == nil {
+            copy.unreadCount = 0
+        }
+        
         var state = initialState
-        state.rooms?[i] = self.room
+        state.rooms?[i] = copy
         return state
         
     }
