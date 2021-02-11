@@ -168,7 +168,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         }
         
         var isSubscribed: Bool {
-            return (status?.endDate.timeIntervalSinceNow ?? -1) > 0
+            return true
         }
         let status: Status?
         

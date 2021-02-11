@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Analytics.setUserProps(props: ["Profile Status: Type": "Incomplete Sign-Up"])
             true.store(for: self.appLaunchedKey)
         }
-        
+    
         return true
     }
     

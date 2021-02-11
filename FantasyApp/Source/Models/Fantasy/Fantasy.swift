@@ -88,7 +88,7 @@ extension Fantasy {
         let imageURL: String
         let cardsCount: Int
         
-        enum MonetizationType {
+        enum MonetizationType: Equatable {
             case free
             case nonConsumable(String)
             case subscription

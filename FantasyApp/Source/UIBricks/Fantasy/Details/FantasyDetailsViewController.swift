@@ -77,7 +77,7 @@ class FantasyDetailsViewController: UIViewController, MVVM_View {
             cell.model = model
             cell.set(imageURL: model.imageURL)
             cell.title = model.title
-            cell.isPurchased = model.isPurchased
+           // cell.isPurchased = model.isPurchased
             
             return cell
         }

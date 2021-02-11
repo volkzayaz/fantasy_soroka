@@ -50,21 +50,6 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    var isPurchased: Bool = false {
-        didSet {
-            appState.map { $0.currentUser?.subscription.isSubscribed ?? false }
-                .drive(onNext: {  [unowned self] value in
-    
-                    if isPurchased  {
-                        deckStateImageView.image = R.image.isPurchased()
-                    } else if value {
-                        deckStateImageView.image = R.image.parrot()
-                    }
-                })
-                .disposed(by: rx.disposeBag)
-        }
-    }
-
     func set(imageURL: String) {
         imageView.set(imageURL: imageURL, isProtected: true)
     }
@@ -78,8 +63,7 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
-        paidView.isHidden = true
+        
         imageView.reset()
     }
 
