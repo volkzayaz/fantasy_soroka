@@ -29,7 +29,9 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
         case .nonConsumable(_):
             cell.deckStateImageView.image = UIImage()
         case .subscription:
-            cell.deckStateImageView.image = R.image.parrot()
+            if let u = User.current, u.subscription.isSubscribed {
+                cell.deckStateImageView.image = R.image.parrot()
+            }
         }
         
         if collection.isPurchased {
