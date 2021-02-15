@@ -30,6 +30,11 @@ extension RoomDetailsViewModel {
         return room.asDriver()
         .map { $0.status == .empty }
     }
+    
+    var isReadyRoom: Driver<Bool> {
+        return room.asDriver()
+            .map { $0.status == .ready }
+    }
 
 }
 
@@ -99,6 +104,17 @@ extension RoomDetailsViewModel {
     
     func showPlay() {
         router.showPlay(room: room)
+    }
+    
+    func inviteButtonTapped() {
+        
+        Analytics.report(Analytics.Event.DraftRoomShared(type: .share))
+        
+        buo?.showShareSheet(with: BranchLinkProperties(),
+                            andShareText: R.string.localizable.roomBranchObjectDescription(),
+                            from: router.owner) { (activityType, completed) in
+
+        }
     }
     
     func presentMe() {

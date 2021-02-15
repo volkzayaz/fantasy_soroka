@@ -98,10 +98,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.isPlayRoomPage.drive(onNext: { [unowned self]  x in
-            tableView.isHidden = x
-        }).disposed(by: rx.disposeBag)
-        
         viewModel.mode.drive(onNext: { [unowned self] mode in
             self.waitingView.isHidden = mode == .swipeCards
             self.fantasiesView.isHidden = mode == .waiting
@@ -190,6 +186,12 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+        viewModel.isPlayRoomPage.drive(onNext: { [unowned self] x in
+            tableView.isHidden = x
+            unlockAllDecksButton.isHidden = x
+        }).disposed(by: rx.disposeBag)
+        
+        
         configureStyling()
 
         if viewModel.presentationStyle == .modal {
@@ -204,7 +206,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                     .map { $0 ?? R.image.noPhoto() }
             }
             else {
-                rightDriver = .just(R.image.add())
+                rightDriver = .just(R.image.plus())
             }
             
             Driver.combineLatest(
@@ -214,6 +216,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
                 .drive(onNext: { [unowned self] (images) in
 
                     let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
+                    
                     v.leftImageView.image = images.0
                     v.rightImageView.image = images.1
                     v.delegate = self
