@@ -60,6 +60,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     @IBOutlet weak var timeLeftLabel: UILabel!
     @IBOutlet weak var subsbcriptionLabel: UILabel!
     @IBOutlet weak var subscribeButton: SecondaryButton!
+    @IBOutlet weak var unlockAllDecksButton: SecondaryButton!
     @IBOutlet weak var cardsButton: PrimaryButton! {
         didSet {
             cardsButton.useTransparency = false
@@ -180,14 +181,14 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
             .disposed(by: rx.disposeBag)
         
-        viewModel.subscribeButtonHidden
-            .drive(subscribeButton.rx.isHidden)
-            .disposed(by: rx.disposeBag)
         
         viewModel.subscribeButtonHidden
-            .drive(subsbcriptionLabel.rx.isHidden)
+            .drive(onNext: { [unowned self] x in
+                subscribeButton.isHidden = x
+                subsbcriptionLabel.isHidden = x
+                unlockAllDecksButton.isHidden = x
+            })
             .disposed(by: rx.disposeBag)
-        
         
         configureStyling()
 
@@ -237,6 +238,10 @@ extension FantasyDeckViewController {
             viewModel.addCollection()
         }
         
+    }
+    
+    @IBAction func unlockAllDecksTapped(_ sender: Any) {
+        viewModel.subscribeTapped()
     }
 
     @IBAction func subscribeTapped(_ sender: Any) {

@@ -1242,9 +1242,6 @@
                                                                     <constraint firstAttribute="width" constant="254" id="cI2-ur-JpV"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
-                                                                <connections>
-                                                                    <action selector="subscribeTapped:" destination="lVj-KC-ORv" eventType="touchUpInside" id="0Is-gc-JYb"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -1352,13 +1349,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyA-Qc-EXd" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <rect key="frame" x="60.5" y="599" width="254" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="s7Z-ga-wIN"/>
+                                    <constraint firstAttribute="width" constant="254" id="u6U-DA-VMn"/>
+                                </constraints>
+                                <state key="normal" title="Unlock All Decks"/>
+                                <connections>
+                                    <action selector="unlockAllDecksTapped:" destination="lVj-KC-ORv" eventType="touchUpInside" id="cck-4a-5wA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MWl-cV-xbo"/>
                         <constraints>
                             <constraint firstItem="8ln-R6-YLe" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" constant="26" id="Crv-83-fp4"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="zgu-i5-52v" secondAttribute="bottom" id="EnG-rI-1bT"/>
                             <constraint firstItem="zgu-i5-52v" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" id="NM9-P8-b7h"/>
+                            <constraint firstItem="vyA-Qc-EXd" firstAttribute="centerX" secondItem="MWl-cV-xbo" secondAttribute="centerX" id="PFp-nw-6MC"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="HPK-WY-9qU" secondAttribute="trailing" id="Qwt-LK-gxp"/>
+                            <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="vyA-Qc-EXd" secondAttribute="bottom" constant="16" id="STI-S4-xlE"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="8ln-R6-YLe" secondAttribute="bottom" constant="16" id="aIX-mo-ypN"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="HPK-WY-9qU" secondAttribute="bottom" id="bHH-Ly-LUx"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="8ln-R6-YLe" secondAttribute="trailing" constant="26" id="jjb-Mo-XeV"/>
@@ -1381,6 +1391,7 @@
                         <outlet property="timeLeftLabel" destination="Ylu-7G-c32" id="Miv-pG-NMQ"/>
                         <outlet property="timeLimitDecsriptionLabel" destination="zDI-4a-eZ1" id="fK9-sG-TaE"/>
                         <outlet property="tinyCardImageView" destination="FMt-VP-eXa" id="RW2-y9-seQ"/>
+                        <outlet property="unlockAllDecksButton" destination="vyA-Qc-EXd" id="RCI-Wh-Blv"/>
                         <outlet property="waitingView" destination="Cy3-0H-x0L" id="Z3d-u0-J3V"/>
                     </connections>
                 </viewController>
