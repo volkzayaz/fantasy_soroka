@@ -31,36 +31,36 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet var paidLabel: UILabel!
     @IBOutlet var paidImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var fantasiesCountLabel: UILabel!
-    @IBOutlet weak var myDeckIndicator: UIView!
     @IBOutlet weak var deleteDeckButton: UIButton!
     @IBOutlet weak var dotsImageView: UIImageView!
+    @IBOutlet weak var deckStateImageView: UIImageView!
     private var gradientLayer = CAGradientLayer()
     
     var roomSettingsViewModel: RoomSettingsViewModel? = nil
-
+    
     var model: Fantasy.Collection! {
         didSet {
-            fantasiesCountLabel.text = "\(model.cardsCount) \(model.itemsNamePlural)"
+            
+            set(imageURL: model.imageURL)
+            titleLabel.text = model.title
             paidLabel.text = model.category
+            
+            if model.isIAPPurchased {
+                deckStateImageView.image = R.image.isPurchased()
+            }
+            else if let u = User.current, u.subscription.isSubscribed {
+                deckStateImageView.image = R.image.parrot()
+            }
+            else {
+                deckStateImageView.image = nil
+            }
+            
         }
     }
     
     var title: String = "" {
         didSet {
             titleLabel.text = title
-        }
-    }
-    
-    var fantasiesCount: Int = 0 {
-        didSet {
-            fantasiesCountLabel.text = R.string.localizable.fantasyCollectionCardsCount(fantasiesCount)
-        }
-    }
-
-    var isPurchased: Bool = false {
-        didSet {
-            myDeckIndicator.isHidden = !isPurchased
         }
     }
 
@@ -71,14 +71,13 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureStyling()
-        
+
         title = ""
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
-        paidView.isHidden = true
+        
         imageView.reset()
     }
 
@@ -107,9 +106,6 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
 
         titleLabel.textColor = .title
         titleLabel.font = .boldFont(ofSize: 15)
-
-        fantasiesCountLabel.textColor = .title
-        fantasiesCountLabel.font = .regularFont(ofSize: 15)
 
         gradientLayer.colors = [UIColor.clear.cgColor,
                                 UIColor.black.withAlphaComponent(0.5).cgColor]

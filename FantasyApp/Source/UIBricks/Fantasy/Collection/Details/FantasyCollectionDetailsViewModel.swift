@@ -25,21 +25,15 @@ extension FantasyCollectionDetailsViewModel {
                 
                 if collection.isAvailable { return .just("Open") }
                 
-                switch collection.monetizationType {
-                case .free: return .just("Open")
-                case .subscription: return .just(R.string.localizable.paymentGet())
-                case .nonConsumable(_):
-    
-                    if RemoteConfigManager.showPriceInDeck {
-                        return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
-                            .map { $0.first! }
-                            .map { "\($0.localizedPrice)" }
-                            .asDriver(onErrorJustReturn: "error")
-                    }
-                    
-                    return Driver.just(R.string.localizable.paymentGet())
-                    
+                if let x = collection.productId, RemoteConfigManager.showPriceInDeck {
+                    return SwiftyStoreKit.rx_productDetails(products: [x])
+                        .map { $0.first! }
+                        .map { "\($0.localizedPrice)" }
+                        .asDriver(onErrorJustReturn: "error")
                 }
+                
+                return .just(R.string.localizable.paymentGet())
+                
             }
         
     }
@@ -51,11 +45,11 @@ extension FantasyCollectionDetailsViewModel {
     }
     
     var purchaseAvailable: Bool {
-        return !collection.isPurchased
+        return !collection.isAvailable
     }
     
     var collectionPurchased: Bool {
-        return collection.isPurchased || appStateSlice.currentUser?.fantasies.purchasedCollections.contains(where: { $0.id == collection.id }) ?? false
+        return collection.isIAPPurchased || appStateSlice.currentUser?.fantasies.purchasedCollections.contains(where: { $0.id == collection.id }) ?? false
     }
     
     var dataSource: Driver<[SectionModel<String, Model>]> {
@@ -198,15 +192,10 @@ extension FantasyCollectionDetailsViewModel {
             return
         }
         
-        switch collection.monetizationType {
-        case .free:
-            break;
-
-        case .nonConsumable(let productId):
-        
+        if let productId = collection.productId {
             PurchaseManager.purhcaseCollection(with: productId)
                 .trackView(viewIndicator: indicator)
-                .subscribe(onNext: { [weak o = router.owner] _ in
+                .subscribe(onNext: { _ in
                     Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
                     self.reloadTrigger.onNext( () )
                     
@@ -217,15 +206,13 @@ extension FantasyCollectionDetailsViewModel {
                     o?.present(error: error)
                 })
                 .disposed(by: bag)
+            return;
+        }
+        
+        router.showSubscription { [weak t = reloadTrigger] in
+            t?.onNext( () )
             
-        case .subscription:
-
-            router.showSubscription { [weak t = reloadTrigger] in
-                t?.onNext( () )
-                
-                self.collectionPickedAction?(self.collection)
-            }
-            
+            self.collectionPickedAction?(self.collection)
         }
         
     }

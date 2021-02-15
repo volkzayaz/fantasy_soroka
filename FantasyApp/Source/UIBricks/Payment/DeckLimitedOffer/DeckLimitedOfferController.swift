@@ -38,7 +38,7 @@ final class DeckLimitedOfferController: UITableViewController, MVVM_View {
         cardView.model = viewModel.collection
         cardView.set(imageURL: viewModel.collection.imageURL)
         cardView.title = viewModel.collection.title
-        cardView.isPurchased = viewModel.collection.isPurchased
+        cardView.isPurchased = viewModel.collection.isIAPPurchased
         
         saveView.backgroundColor = .clear;
         saveView.addFantasySubscriptionGradient(radius: true)

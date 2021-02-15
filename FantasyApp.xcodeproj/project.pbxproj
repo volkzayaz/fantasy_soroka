@@ -180,6 +180,7 @@
 		739F799823095C7E0045FCD7 /* FantasyDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */; };
 		739F799923095C7E0045FCD7 /* FantasyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */; };
 		739F799A23095C7E0045FCD7 /* FantasyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */; };
+		73A7640E25DA75D200D98DE8 /* Array+Grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7640D25DA75D200D98DE8 /* Array+Grouping.swift */; };
 		73C287E823D9954E004B15E6 /* NewMessageInRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */; };
 		73C287EB23D9CC0F004B15E6 /* ChangeIncommingConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C287EA23D9CC0F004B15E6 /* ChangeIncommingConnections.swift */; };
 		73C96F1323409DFC002C3F8E /* ProfileSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */; };
@@ -652,6 +653,7 @@
 		739F799523095C7E0045FCD7 /* FantasyDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsRouter.swift; sourceTree = "<group>"; };
 		739F799623095C7E0045FCD7 /* FantasyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewController.swift; sourceTree = "<group>"; };
 		739F799723095C7E0045FCD7 /* FantasyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyDetailsViewModel.swift; sourceTree = "<group>"; };
+		73A7640D25DA75D200D98DE8 /* Array+Grouping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Grouping.swift"; sourceTree = "<group>"; };
 		73C287E723D9954E004B15E6 /* NewMessageInRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageInRoom.swift; sourceTree = "<group>"; };
 		73C287EA23D9CC0F004B15E6 /* ChangeIncommingConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIncommingConnections.swift; sourceTree = "<group>"; };
 		73C96F1023409DFC002C3F8E /* ProfileSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsRouter.swift; sourceTree = "<group>"; };
@@ -1192,6 +1194,7 @@
 		7312B07D22D7422100DB0F36 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				73A7640D25DA75D200D98DE8 /* Array+Grouping.swift */,
 				734C70BA23213D9200ED2E91 /* Collection+Safe.swift */,
 				843B6483234E5B4D00E5639B /* Date+Formatting.swift */,
 				7312B07F22D7422100DB0F36 /* RxExtensions */,
@@ -3348,6 +3351,7 @@
 				8887A81324BCFA3A00B6CF45 /* PerformManager.swift in Sources */,
 				A2C60B65255EB8E400B9224F /* EditRelationshipViewModel.swift in Sources */,
 				B7F84599235C941800CC2A62 /* FantasyCameraViewController.swift in Sources */,
+				73A7640E25DA75D200D98DE8 /* Array+Grouping.swift in Sources */,
 				7361F33A23351F64007B84B0 /* ConnectionViewModel.swift in Sources */,
 				B783C6392350D6C00017CE1A /* WelcomeViewModel.swift in Sources */,
 				8887A80B24BB16B500B6CF45 /* SubscriptionLimitedOfferController.swift in Sources */,

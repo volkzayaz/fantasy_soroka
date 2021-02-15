@@ -20,15 +20,13 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
     
     lazy var deckDataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Fantasy.Collection>>(configureCell: { [unowned self] (_, cv, ip, collection) in
         
-          let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
-                                            for: ip)!
-            cell.model = collection
-            cell.set(imageURL: collection.imageURL)
-            cell.title = collection.title
-            cell.isPurchased = collection.isPurchased
-            cell.dotsImageView.isHidden = true
-            
-            return cell
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
+                                          for: ip)!
+        
+        cell.model = collection
+        cell.dotsImageView.isHidden = true
+        
+        return cell
         
         
     })
@@ -39,7 +37,8 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
+        
+        
         collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
         
         collectionView.rx.modelSelected(Fantasy.Collection.self)
@@ -47,7 +46,7 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
                 fantasyDeckViewModel?.show(collection: collection)
             })
             .disposed(by: rx.disposeBag)
-
+        
         
         bottleneck
             .map { [SectionModel(model: "", items: $0)] }

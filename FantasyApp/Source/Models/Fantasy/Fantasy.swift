@@ -67,9 +67,8 @@ extension Fantasy {
             case imageURL = "src"
             case cardsCount = "size"
             case isPaid
-            case isPurchased
+            case isIAPPurchased = "isPurchased"
             case productId
-            case isAvailableDuringSubscription
             
             case loveThis
             case highlights
@@ -88,44 +87,22 @@ extension Fantasy {
         let imageURL: String
         let cardsCount: Int
         
-        enum MonetizationType {
-            case free
-            case nonConsumable(String)
-            case subscription
-        }
-
-        var monetizationType: MonetizationType {
-            
-            if isPaid == false { return .free }
-            if isAvailableDuringSubscription { return .subscription }
-            
-            guard let x = productId else {
-                fatalErrorInDebug("Collection \(title) is not free and not available during subscription. But has no productId")
-                return .nonConsumable("empty")
-            }
-            
-            return .nonConsumable(x)
-            
-        }
-        
         let isPaid: Bool /// free if false.
         let productId: String? ///
-        let isAvailableDuringSubscription: Bool
         
-        var isPurchased: Bool
+        var isIAPPurchased: Bool
         
         var isAvailable: Bool {
             
-            if case .free = monetizationType {
+            if isPaid == false {
                 return true
             }
             
-            if isPurchased || appStateSlice.currentUser!.fantasies.purchasedCollections.contains(where: { $0.id == id }) {
+            if isIAPPurchased || appStateSlice.currentUser!.fantasies.purchasedCollections.contains(where: { $0.id == id }) {
                 return true
             }
             
-            if case .subscription = monetizationType,
-               let u = User.current, u.subscription.isSubscribed {
+            if let u = User.current, u.subscription.isSubscribed {
                 return true
             }
             
@@ -273,7 +250,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPaid: true, productId: "", isAvailableDuringSubscription: false, isPurchased: false, details: "", loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
+        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPaid: true, productId: "", isIAPPurchased: false, details: "", loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
         
     }
     

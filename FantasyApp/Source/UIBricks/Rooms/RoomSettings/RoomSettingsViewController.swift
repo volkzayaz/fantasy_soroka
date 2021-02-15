@@ -88,12 +88,10 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             cell.model = collection
             cell.set(imageURL: collection.imageURL)
             cell.title = collection.title
-            cell.isPurchased = collection.isPurchased
+//            cell.isPurchased = collection.isPurchased
             cell.roomSettingsViewModel = self.viewModel
             
             return cell
-            
-     
         }
         
     })

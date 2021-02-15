@@ -130,7 +130,7 @@ class MainTabBarViewModel : MVVM_ViewModel {
                 }
                 else {
                     
-                    let prefsEnabled = card.isFree || collections.contains { $0.isPurchased && $0.title == card.collectionName }
+                    let prefsEnabled = card.isFree || collections.contains { $0.isAvailable && $0.title == card.collectionName }
                     
                     router.presentCardDetails(card: card, preferencesEnabled: prefsEnabled)
                 }
