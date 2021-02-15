@@ -23,24 +23,7 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
         let cell = cv.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
                                           for: ip)!
         
-        switch collection.monetizationType {
-        case .free:
-            cell.deckStateImageView.image = UIImage()
-        case .nonConsumable(_):
-            cell.deckStateImageView.image = UIImage()
-        case .subscription:
-            if let u = User.current, u.subscription.isSubscribed {
-                cell.deckStateImageView.image = R.image.parrot()
-            }
-        }
-        
-        if collection.isPurchased {
-            cell.deckStateImageView.image = R.image.isPurchased()
-        }
-        
         cell.model = collection
-        cell.set(imageURL: collection.imageURL)
-        cell.title = collection.title
         cell.dotsImageView.isHidden = true
         
         return cell

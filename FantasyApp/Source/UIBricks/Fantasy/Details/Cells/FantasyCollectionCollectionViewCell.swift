@@ -40,7 +40,21 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
     
     var model: Fantasy.Collection! {
         didSet {
+            
+            set(imageURL: model.imageURL)
+            titleLabel.text = model.title
             paidLabel.text = model.category
+            
+            if model.isIAPPurchased {
+                deckStateImageView.image = R.image.isPurchased()
+            }
+            else if let u = User.current, u.subscription.isSubscribed {
+                deckStateImageView.image = R.image.parrot()
+            }
+            else {
+                deckStateImageView.image = nil
+            }
+            
         }
     }
     

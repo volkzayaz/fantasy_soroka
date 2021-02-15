@@ -60,12 +60,12 @@ extension FantasyDeckViewModel {
     }
     
     var sortedFantasies:  Driver<[[Fantasy.Collection]]> {
-        return Fantasy.Manager.fetchCollections()
-            .asDriver(onErrorJustReturn: [])
-            .map { (collections) -> [[Fantasy.Collection]] in
-                let fantasiesGpoups = Dictionary(grouping: collections){$0.category}.values
         
-                return fantasiesGpoups.sorted { $0.first!.category < $1.first!.category}
+        return Driver.combineLatest(User.changesOfSubscriptionStatus,
+                             appState.changesOf { $0.currentUser?.fantasies.purchasedCollections },
+                             Fantasy.Manager.fetchCollections().asDriver(onErrorJustReturn: []))
+            .map { (_, _, collections) -> [[Fantasy.Collection]] in
+                return collections.group(by: \.category)
             }
     }
 
