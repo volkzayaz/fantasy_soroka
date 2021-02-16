@@ -31,7 +31,7 @@ extension RoomDetailsViewModel {
         .map { $0.status == .empty }
     }
     
-    var isReadyRoom: Driver<Bool> {
+    var inviteButtonHidden: Driver<Bool> {
         return room.asDriver()
             .map { $0.status == .ready || $0.status == .draft}
     }

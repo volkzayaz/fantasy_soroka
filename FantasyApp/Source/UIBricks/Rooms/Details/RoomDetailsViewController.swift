@@ -41,7 +41,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         super.viewDidLoad()
         configure()
         
-        viewModel.isReadyRoom
+        viewModel.inviteButtonHidden
             .drive(inviteButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
