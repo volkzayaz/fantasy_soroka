@@ -177,19 +177,23 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
             .disposed(by: rx.disposeBag)
         
+        viewModel.unlockAllDecksButtonHidden
+            .drive(unlockAllDecksButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
         
         viewModel.subscribeButtonHidden
             .drive(onNext: { [unowned self] x in
                 subscribeButton.isHidden = x
                 subsbcriptionLabel.isHidden = x
-                unlockAllDecksButton.isHidden = x
             })
             .disposed(by: rx.disposeBag)
         
         viewModel.isPlayRoomPage.drive(onNext: { [unowned self] x in
             tableView.isHidden = x
-            unlockAllDecksButton.isHidden = x
         }).disposed(by: rx.disposeBag)
+        
+        
+        
         
         
         configureStyling()

@@ -33,7 +33,7 @@ extension RoomDetailsViewModel {
     
     var isReadyRoom: Driver<Bool> {
         return room.asDriver()
-            .map { $0.status == .ready }
+            .map { $0.status == .ready || $0.status == .draft}
     }
 
 }
