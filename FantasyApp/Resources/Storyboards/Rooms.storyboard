@@ -347,11 +347,23 @@
                                     <constraint firstItem="pfW-yr-Y6j" firstAttribute="height" secondItem="5tj-zr-HlS" secondAttribute="height" id="x2u-NC-SFI"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYJ-zV-hgh" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
+                                <rect key="frame" x="80" y="794" width="254" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="K2I-LK-TUZ"/>
+                                    <constraint firstAttribute="width" constant="254" id="b0U-vc-BWQ"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="inviteButtonTapped:" destination="4s0-Ma-EZL" eventType="touchUpInside" id="nHb-GG-PQA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g4r-FQ-Xkh"/>
                         <constraints>
                             <constraint firstItem="g4r-FQ-Xkh" firstAttribute="bottom" secondItem="5tj-zr-HlS" secondAttribute="bottom" id="5C1-nJ-5MD"/>
+                            <constraint firstItem="pYJ-zV-hgh" firstAttribute="centerX" secondItem="g4r-FQ-Xkh" secondAttribute="centerX" id="7c5-hg-Cs4"/>
                             <constraint firstItem="Get-aC-cnw" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="J0M-fW-6a9"/>
+                            <constraint firstItem="g4r-FQ-Xkh" firstAttribute="bottom" secondItem="pYJ-zV-hgh" secondAttribute="bottom" constant="16" id="LwP-ta-TE3"/>
                             <constraint firstItem="g4r-FQ-Xkh" firstAttribute="trailing" secondItem="Get-aC-cnw" secondAttribute="trailing" id="Ood-hj-hIt"/>
                             <constraint firstItem="5tj-zr-HlS" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="k9U-iO-ABT"/>
                             <constraint firstItem="c49-ZI-kpd" firstAttribute="leading" secondItem="g4r-FQ-Xkh" secondAttribute="leading" id="llA-gf-odc"/>
@@ -368,6 +380,7 @@
                         <outlet property="chatContainerView" destination="pfW-yr-Y6j" id="Asu-dh-ruJ"/>
                         <outlet property="commonFantasiesContainerView" destination="3pl-Bc-6DD" id="OHk-Nt-AQQ"/>
                         <outlet property="fantasiesButton" destination="wJX-Ru-CPj" id="hLa-YL-PRE"/>
+                        <outlet property="inviteButton" destination="pYJ-zV-hgh" id="nAn-Ph-LF3"/>
                         <outlet property="playButton" destination="qoL-7K-BCs" id="fX4-dX-51p"/>
                         <outlet property="scrollView" destination="5tj-zr-HlS" id="epG-Oh-X0I"/>
                     </connections>
@@ -634,18 +647,18 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="170" height="255"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ORf-3h-4kg">
-                                                                    <rect key="frame" x="70.333333333333329" y="90.666666666666671" width="35.666666666666671" height="74.000000000000014"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ORf-3h-4kg">
+                                                                    <rect key="frame" x="43.666666666666664" y="83.666666666666671" width="88.666666666666686" height="88.000000000000014"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite" translatesAutoresizingMaskIntoConstraints="NO" id="dA3-B4-Xq9">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="35.666666666666664" height="50"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="48"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="50" id="cFi-hv-MOM"/>
+                                                                                <constraint firstAttribute="height" constant="48" id="cFi-hv-MOM"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ1-eK-uCa">
-                                                                            <rect key="frame" x="0.0" y="49.999999999999986" width="35.666666666666664" height="24"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Deck" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ1-eK-uCa">
+                                                                            <rect key="frame" x="0.0" y="63.999999999999986" width="88.666666666666671" height="24"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                             <color key="textColor" name="textPinkColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>

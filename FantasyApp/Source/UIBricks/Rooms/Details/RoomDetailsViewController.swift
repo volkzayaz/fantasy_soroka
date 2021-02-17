@@ -31,12 +31,19 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     }
     @IBOutlet private var chatContainerView: UIView!
     @IBOutlet private var commonFantasiesContainerView: UIView!
+    @IBOutlet weak var inviteButton: SecondaryButton! {
+        didSet { inviteButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal) }
+    }
     
     private var gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        
+        viewModel.inviteButtonHidden
+            .drive(inviteButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
         
         viewModel.page.asDriver().drive(onNext: { [weak self] page in
             self?.selectPage(page)
@@ -58,7 +65,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
                 .map { $0 ?? R.image.noPhoto() }
         }
         else {
-            rightDriver = .just(R.image.add())
+            rightDriver = .just(R.image.plus())
         }
 
         Driver.combineLatest(
@@ -122,6 +129,10 @@ extension RoomDetailsViewController {
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
         
+    }
+    
+    @IBAction func inviteButtonTapped(_ sender: Any) {
+        viewModel.inviteButtonTapped()
     }
     
     @objc func showActions() {

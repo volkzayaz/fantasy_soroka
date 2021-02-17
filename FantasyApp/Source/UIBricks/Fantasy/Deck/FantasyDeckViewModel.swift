@@ -31,6 +31,17 @@ extension FantasyDeckViewModel {
         return .just(.swipeCards)
     }
     
+    var unlockAllDecksButtonHidden: Driver<Bool> {
+        
+        return subscribeButtonHidden.map { [unowned self] isSubsribed in
+            if !isSubsribed && room?.value == nil  {
+                return false
+            }
+            
+            return true
+        }
+    }
+    
     var isPlayRoomPage: Driver<Bool> {
         guard let _ = room?.value else { return .just(false) }
         

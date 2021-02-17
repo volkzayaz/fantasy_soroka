@@ -1066,19 +1066,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="340" estimatedRowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgu-i5-52v">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="360" estimatedRowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgu-i5-52v">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryFantasies" id="LPQ-xX-MrX" customClass="CategoryFantasiesTableViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="340"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="360"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LPQ-xX-MrX" id="yHv-q5-5Zc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="360"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utM-5f-0B1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze2-eu-x66">
                                                             <rect key="frame" x="16" y="30" width="113" height="31.5"/>
@@ -1110,11 +1110,11 @@
                                                         <constraint firstItem="Ze2-eu-x66" firstAttribute="leading" secondItem="utM-5f-0B1" secondAttribute="leading" constant="16" id="beb-1K-YbP"/>
                                                         <constraint firstItem="PVz-vh-xf8" firstAttribute="top" secondItem="utM-5f-0B1" secondAttribute="top" constant="30" id="kh1-Re-Akg"/>
                                                         <constraint firstAttribute="trailing" secondItem="PVz-vh-xf8" secondAttribute="trailing" constant="20" id="qt9-6y-2eF"/>
-                                                        <constraint firstAttribute="height" constant="80" id="ygB-xz-wJO"/>
+                                                        <constraint firstAttribute="height" constant="70" id="ygB-xz-wJO"/>
                                                     </constraints>
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="leu-Ms-Gst">
-                                                    <rect key="frame" x="0.0" y="80" width="375" height="270"/>
+                                                    <rect key="frame" x="0.0" y="70" width="375" height="300"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="10" id="KV9-De-de7">
                                                         <size key="itemSize" width="170" height="260"/>
