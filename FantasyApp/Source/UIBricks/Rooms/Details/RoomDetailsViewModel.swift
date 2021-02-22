@@ -23,7 +23,8 @@ extension RoomDetailsViewModel {
     }
     
     var navigationEnabled: Driver<Bool> {
-        return .just(true)
+        return room.asDriver()
+            .map { $0.selfParticipant.status == .accepted }
     }
     
     var isEmptyRoom: Driver<Bool> {

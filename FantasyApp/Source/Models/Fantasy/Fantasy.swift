@@ -67,7 +67,7 @@ extension Fantasy {
             case imageURL = "src"
             case cardsCount = "size"
             case isPaid
-            case isIAPPurchased = "isPurchased"
+            case isIAPPurchased = "isIAPPurhcased"
             case productId
             
             case loveThis

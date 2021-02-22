@@ -103,6 +103,10 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
         securitySettingsView.viewModel = viewModel
 
         viewModel.intiteLinkHidden
+            .drive(inviteLabel.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.intiteLinkHidden
             .drive(inviteView.rx.hidden(in: stackView))
             .disposed(by: rx.disposeBag)
         

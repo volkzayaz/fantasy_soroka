@@ -101,16 +101,19 @@ extension FantasyDeckViewModel {
         }
         
         return x.distinctUntilChanged { $0.settings.sharedCollections }
-            .flatMapLatest { room -> Single< [Fantasy.Card] > in
+            .flatMapLatest { [unowned i = indicator] room -> Single< [Fantasy.Card] > in
                 
                 guard room.settings.sharedCollections.count > 0 else { return .just([]) }
                     
                 return Fantasy.Manager.fetchSwipesDeck(in: room)
+                    .trackView(viewIndicator: i)
                     .map { $0.cards ?? [] }
+                    .asSingle()
+                    
                 
             }
             .asDriver(onErrorJustReturn: [])
-        
+            
     }
     
     var mutualCardTrigger: Driver<Fantasy.Card> {

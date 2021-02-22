@@ -194,8 +194,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         
         
         
-        
-        
         configureStyling()
 
         if viewModel.presentationStyle == .modal {
