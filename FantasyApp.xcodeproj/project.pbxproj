@@ -13,6 +13,9 @@
 		3E849B9725C445B2001EA538 /* NoChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E849B9625C445B2001EA538 /* NoChatView.swift */; };
 		3E9E307625B5DACF00A7706A /* AddDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */; };
 		3EB736BC25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB736BB25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift */; };
+		3EB890B025E3E940006048C5 /* InviteSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB890AF25E3E940006048C5 /* InviteSheetViewController.swift */; };
+		3EB890B825E3E982006048C5 /* InviteSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB890B725E3E982006048C5 /* InviteSheetViewModel.swift */; };
+		3EB890C625E3FDD0006048C5 /* InviteSheetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB890C525E3FDD0006048C5 /* InviteSheetRouter.swift */; };
 		4F274678924408C32EC93627 /* Pods_FantasyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A182B5E43F87BC7D3507B0 /* Pods_FantasyAppTests.framework */; };
 		67E88F01237C351B0020382F /* FantasyDetailsPreferenceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E88F00237C351B0020382F /* FantasyDetailsPreferenceSelector.swift */; };
 		73097BF9231D39D800B71053 /* EditProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73097BF8231D39D800B71053 /* EditProfileForm.swift */; };
@@ -476,6 +479,9 @@
 		3E849B9625C445B2001EA538 /* NoChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoChatView.swift; sourceTree = "<group>"; };
 		3E9E307525B5DACF00A7706A /* AddDeckCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EB736BB25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFantasiesTableViewCell.swift; sourceTree = "<group>"; };
+		3EB890AF25E3E940006048C5 /* InviteSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteSheetViewController.swift; sourceTree = "<group>"; };
+		3EB890B725E3E982006048C5 /* InviteSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteSheetViewModel.swift; sourceTree = "<group>"; };
+		3EB890C525E3FDD0006048C5 /* InviteSheetRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteSheetRouter.swift; sourceTree = "<group>"; };
 		4559FC91EADCC95F3A7F9A00 /* Pods-FantasyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyAppTests/Pods-FantasyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		45E3E4FE7ED5479C518E3412 /* Pods_FantasyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		562A99FCFEA6544F5498554D /* Pods-FantasyApp.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyApp.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-FantasyApp/Pods-FantasyApp.adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -975,6 +981,16 @@
 				3EB736BB25D1665200FBBA9C /* CategoryFantasiesTableViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		3EB890AE25E3E902006048C5 /* InviteSheet */ = {
+			isa = PBXGroup;
+			children = (
+				3EB890AF25E3E940006048C5 /* InviteSheetViewController.swift */,
+				3EB890B725E3E982006048C5 /* InviteSheetViewModel.swift */,
+				3EB890C525E3FDD0006048C5 /* InviteSheetRouter.swift */,
+			);
+			path = InviteSheet;
 			sourceTree = "<group>";
 		};
 		67E88EFF237C350C0020382F /* View */ = {
@@ -2448,6 +2464,7 @@
 		84C1D0422327BA8200648DE1 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
+				3EB890AE25E3E902006048C5 /* InviteSheet */,
 				844CD6F7235A776A004E6BA3 /* RoomNotificationSettings */,
 				843B6489234EA78100E5639B /* RoomSettings */,
 				84AB490B232A83DE00F3609A /* CommonFantasies */,
@@ -3084,6 +3101,7 @@
 				841504B82363A67B0003054A /* RoomSettingsRouter.swift in Sources */,
 				B732972123B52D17004038ED /* UIImageView+AvatarUtils.swift in Sources */,
 				843CF71D23436B630098C196 /* RoomsResource.swift in Sources */,
+				3EB890C625E3FDD0006048C5 /* InviteSheetRouter.swift in Sources */,
 				A200411B256067E500C4C7AA /* EditRelationshipRouter.swift in Sources */,
 				A247D17125C5C74A000292CB /* SearchEvents.swift in Sources */,
 				B7DBF026239A4545005D27D8 /* TransparentGradientView.swift in Sources */,
@@ -3184,6 +3202,7 @@
 				7390014C22E1B84D00260198 /* ImageRetreiver.swift in Sources */,
 				73EEFC34235C6E3100480E79 /* SinglePickViewModel.swift in Sources */,
 				7312B0D522D7506B00DB0F36 /* Configuration.swift in Sources */,
+				3EB890B025E3E940006048C5 /* InviteSheetViewController.swift in Sources */,
 				73223125230568A6009DD37F /* LikeFantasyCard.swift in Sources */,
 				B719F9232389A625009AB110 /* MyFantasiesBlockedViewController.swift in Sources */,
 				7361F32C2334EF6B007B84B0 /* Connection.swift in Sources */,
@@ -3295,6 +3314,7 @@
 				3E9E307625B5DACF00A7706A /* AddDeckCollectionViewCell.swift in Sources */,
 				7337B84223C8CBD500EFC948 /* SubscriptionViewController.swift in Sources */,
 				A2F7D470257FC9D800649899 /* SearchSwipeState.swift in Sources */,
+				3EB890B825E3E982006048C5 /* InviteSheetViewModel.swift in Sources */,
 				73E6012922EC513700F767BF /* RootViewModel.swift in Sources */,
 				734C52A12326A78A00B54510 /* DiscoveryFilter.swift in Sources */,
 				733CA05A23951D7000EF7922 /* FantasyCollectionRouter.swift in Sources */,

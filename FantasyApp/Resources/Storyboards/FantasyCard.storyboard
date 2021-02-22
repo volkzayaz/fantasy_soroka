@@ -1066,28 +1066,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="360" estimatedRowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgu-i5-52v">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="330" estimatedRowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgu-i5-52v">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryFantasies" id="LPQ-xX-MrX" customClass="CategoryFantasiesTableViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="360"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LPQ-xX-MrX" id="yHv-q5-5Zc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="360"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utM-5f-0B1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze2-eu-x66">
-                                                            <rect key="frame" x="16" y="30" width="113" height="31.5"/>
+                                                            <rect key="frame" x="16" y="16" width="113" height="31.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                                             <color key="textColor" name="textBlackColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="PVz-vh-xf8">
-                                                            <rect key="frame" x="289" y="30" width="66" height="20.5"/>
+                                                            <rect key="frame" x="289" y="22" width="66" height="20.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqh-im-lM1">
                                                                     <rect key="frame" x="0.0" y="0.0" width="11" height="20.5"/>
@@ -1106,15 +1106,15 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="Ze2-eu-x66" firstAttribute="top" secondItem="utM-5f-0B1" secondAttribute="top" constant="30" id="C7j-B5-QKf"/>
+                                                        <constraint firstItem="Ze2-eu-x66" firstAttribute="top" secondItem="utM-5f-0B1" secondAttribute="top" constant="16" id="C7j-B5-QKf"/>
                                                         <constraint firstItem="Ze2-eu-x66" firstAttribute="leading" secondItem="utM-5f-0B1" secondAttribute="leading" constant="16" id="beb-1K-YbP"/>
-                                                        <constraint firstItem="PVz-vh-xf8" firstAttribute="top" secondItem="utM-5f-0B1" secondAttribute="top" constant="30" id="kh1-Re-Akg"/>
+                                                        <constraint firstItem="PVz-vh-xf8" firstAttribute="top" secondItem="utM-5f-0B1" secondAttribute="top" constant="22" id="kh1-Re-Akg"/>
                                                         <constraint firstAttribute="trailing" secondItem="PVz-vh-xf8" secondAttribute="trailing" constant="20" id="qt9-6y-2eF"/>
-                                                        <constraint firstAttribute="height" constant="70" id="ygB-xz-wJO"/>
+                                                        <constraint firstAttribute="height" constant="60" id="ygB-xz-wJO"/>
                                                     </constraints>
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="leu-Ms-Gst">
-                                                    <rect key="frame" x="0.0" y="70" width="375" height="300"/>
+                                                    <rect key="frame" x="0.0" y="60" width="375" height="270"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="10" id="KV9-De-de7">
                                                         <size key="itemSize" width="170" height="260"/>
@@ -1132,7 +1132,7 @@
                                                 <constraint firstItem="utM-5f-0B1" firstAttribute="leading" secondItem="yHv-q5-5Zc" secondAttribute="leading" id="Fwe-gt-c6r"/>
                                                 <constraint firstItem="utM-5f-0B1" firstAttribute="top" secondItem="yHv-q5-5Zc" secondAttribute="top" id="FzP-gb-HpR"/>
                                                 <constraint firstItem="leu-Ms-Gst" firstAttribute="leading" secondItem="yHv-q5-5Zc" secondAttribute="leading" id="aKK-Ax-cWE"/>
-                                                <constraint firstAttribute="bottom" secondItem="leu-Ms-Gst" secondAttribute="bottom" constant="-10" id="ooC-B0-nPs"/>
+                                                <constraint firstAttribute="bottom" secondItem="leu-Ms-Gst" secondAttribute="bottom" id="ooC-B0-nPs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -311,12 +311,13 @@ extension FantasyDeckViewModel {
             return;
         }
         
-        Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
+//        Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
+//
+//        buo?.showShareSheet(with: BranchLinkProperties(),
+//                            andShareText: R.string.localizable.roomBranchObjectDescription(),
+//                            from: router.owner) { (activityType, completed) in  }
+        router.showInviteSheet(room: r)
         
-        buo?.showShareSheet(with: BranchLinkProperties(),
-                            andShareText: R.string.localizable.roomBranchObjectDescription(),
-                            from: router.owner) { (activityType, completed) in
-        }
     }
 
    private func presentUser(id: String) {

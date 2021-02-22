@@ -137,13 +137,12 @@ extension RoomDetailsViewModel {
 
         guard let id = room.value.peer.userSlice?.id else {
             
-                Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
-                
-                buo?.showShareSheet(with: BranchLinkProperties(),
-                                    andShareText: R.string.localizable.roomBranchObjectDescription(),
-                                    from: router.owner) { (activityType, completed) in
-
-                }
+//                Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
+//
+//                buo?.showShareSheet(with: BranchLinkProperties(),
+//                                    andShareText: R.string.localizable.roomBranchObjectDescription(),
+//                                    from: router.owner) { (activityType, completed) in }
+            router.showInviteSheet(room: room)
             
             return;
         }
