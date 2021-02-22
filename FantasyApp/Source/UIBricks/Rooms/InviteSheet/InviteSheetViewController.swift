@@ -35,8 +35,17 @@ class InviteSheetViewController: UIViewController, MVVM_View {
 extension InviteSheetViewController {
     @IBAction func cancelPressed(_ sender: UIButton) {
         viewModel.cancelPressed.accept(true)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.dismiss(animated: true)
+            self.dismiss(animated: true) {
+                self.viewModel
+                    .fantasyDeckViewModel?.emptyPeerPressed
+                    .accept(false)
+                
+                self.viewModel
+                    .roomDetailsViewModel?.emptyPeerPressed
+                    .accept(false)
+            }
         }
     }
     

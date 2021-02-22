@@ -81,11 +81,13 @@ struct FantasyDeckRouter : MVVM_Router {
         
     }
     
-    func showInviteSheet(room: SharedRoomResource) {
+    func showInviteSheet(room: SharedRoomResource, fantasyDeckViewModel: FantasyDeckViewModel) {
         let viewController = R.storyboard.rooms.inviteSheetViewController()!
         let router = InviteSheetRouter(owner: viewController)
+        let viewModel = InviteSheetViewModel(router: router, room: room)
         
-        viewController.viewModel = InviteSheetViewModel(router: router, room: room)
+        viewModel.fantasyDeckViewModel = fantasyDeckViewModel
+        viewController.viewModel = viewModel
         
         let container = FantasyNavigationController(rootViewController: viewController)
         container.modalPresentationStyle = .overFullScreen

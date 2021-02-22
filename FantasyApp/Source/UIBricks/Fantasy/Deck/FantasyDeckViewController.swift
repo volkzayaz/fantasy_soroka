@@ -43,11 +43,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         }
     }
     
-    @IBOutlet weak var addImageView: UIImageView! {
-        didSet {
-            addImageView.image = addImageView.image?.withRenderingMode(.alwaysTemplate)
-        }
-    }
+    @IBOutlet weak var addImageView: UIImageView!
     @IBOutlet weak var addDeckView: UIView!
 
     @IBOutlet weak var waitingView: UIView! {
