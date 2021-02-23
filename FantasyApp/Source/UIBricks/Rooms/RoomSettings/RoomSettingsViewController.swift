@@ -88,6 +88,7 @@ class RoomSettingsViewController: UIViewController, MVVM_View {
             cell.model = collection
             cell.set(imageURL: collection.imageURL)
             cell.title = collection.title
+            cell.paidView.isHidden = true
 //            cell.isPurchased = collection.isPurchased
             cell.roomSettingsViewModel = self.viewModel
             

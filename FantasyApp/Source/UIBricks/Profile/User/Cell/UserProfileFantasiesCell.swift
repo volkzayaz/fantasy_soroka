@@ -41,6 +41,8 @@ class UserProfileFantasiesCell: UITableViewCell {
             
             //cell.fantasiesCountLabel.text = "\(sneakPeek.amountlikedCardsByUser) \(sneakPeek.coverItems)"
             cell.paidLabel.text = sneakPeek.coverRubric
+            cell.dotsImageView.isHidden = true
+            cell.deleteDeckButton.isHidden = true
             
             return cell
             
