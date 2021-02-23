@@ -9,8 +9,9 @@
 import UIKit
 import RxCocoa
 import Branch
+import MessageUI
 
-class InviteSheetViewModel: MVVM_ViewModel {
+class InviteSheetViewModel: NSObject, MVVM_ViewModel, UINavigationControllerDelegate {
     private let room: SharedRoomResource
     private let buo: BranchUniversalObject?
     let router: InviteSheetRouter
@@ -24,7 +25,7 @@ class InviteSheetViewModel: MVVM_ViewModel {
     }
 }
 
-extension InviteSheetViewModel {
+extension InviteSheetViewModel: MFMessageComposeViewControllerDelegate {
     func copyLinkViewAction() {
         
         buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
@@ -36,12 +37,15 @@ extension InviteSheetViewModel {
     
     func SMSViewAction() {
         buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
-            
+        
             let text = R.string.localizable.roomBranchObjectDescription() + url!
             
-            let sms: String = "sms:+1234567890&body=\(text)"
-            let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
+            let controller = MFMessageComposeViewController()
+            controller.body = text
+            controller.messageComposeDelegate = self
+            
+            self.router.owner.present(controller, animated: true, completion: nil)
+            
         }
         
     }
@@ -52,11 +56,8 @@ extension InviteSheetViewModel {
             
             let text = R.string.localizable.roomBranchObjectDescription() + url!
             
-            if let whatappURL = URL(string: "https://api.whatsapp.com/send?phone=1&text=\(text)"),
-              UIApplication.shared.canOpenURL(whatappURL)
-            {
-                UIApplication.shared.open(whatappURL, options: [:], completionHandler: nil)
-            }
+            let url = URL(string: "whatsapp://send?text=\(text)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
             
         }
         
@@ -71,4 +72,9 @@ extension InviteSheetViewModel {
                             andShareText: R.string.localizable.roomBranchObjectDescription(),
                             from: router.owner) { (activityType, completed) in }
     }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
 }
