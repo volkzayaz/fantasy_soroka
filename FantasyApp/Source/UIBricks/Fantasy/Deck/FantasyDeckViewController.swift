@@ -193,7 +193,10 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
         configureStyling()
 
         if viewModel.presentationStyle == .modal {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.cardDetailsBack()!, style: .plain, target: self, action: #selector(dismissModal))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissModal))
+            title = "Select Deck"
+            tableView.cornerRadius = 22
+            tableView.layer.maskedCorners =  [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         }
 
         if let room = viewModel.room?.value {

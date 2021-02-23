@@ -1364,7 +1364,7 @@
                         <viewLayoutGuide key="safeArea" id="MWl-cV-xbo"/>
                         <constraints>
                             <constraint firstItem="8ln-R6-YLe" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" constant="26" id="Crv-83-fp4"/>
-                            <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="zgu-i5-52v" secondAttribute="bottom" id="EnG-rI-1bT"/>
+                            <constraint firstAttribute="bottom" secondItem="zgu-i5-52v" secondAttribute="bottom" id="EnG-rI-1bT"/>
                             <constraint firstItem="zgu-i5-52v" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" id="NM9-P8-b7h"/>
                             <constraint firstItem="vyA-Qc-EXd" firstAttribute="centerX" secondItem="MWl-cV-xbo" secondAttribute="centerX" id="PFp-nw-6MC"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="HPK-WY-9qU" secondAttribute="trailing" id="Qwt-LK-gxp"/>
