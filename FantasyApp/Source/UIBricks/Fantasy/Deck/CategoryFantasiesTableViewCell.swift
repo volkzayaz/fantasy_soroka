@@ -25,6 +25,7 @@ class CategoryFantasiesTableViewCell: UITableViewCell {
         
         cell.model = collection
         cell.dotsImageView.isHidden = true
+        cell.deleteDeckButton.isHidden = true
         
         return cell
         
