@@ -14,6 +14,11 @@ class InviteSheetViewController: UIViewController, MVVM_View {
     var viewModel: InviteSheetViewModel!
     
     @IBOutlet weak var inviteSheetView: UIView!
+    @IBOutlet weak var copiedImage: UIImageView! {
+        didSet {
+            copiedImage.alpha = 0
+        }
+    }
     
     override func viewDidLoad() {
         inviteSheetView.layer.maskedCorners =  [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -30,6 +35,26 @@ class InviteSheetViewController: UIViewController, MVVM_View {
                     if x { self.dismiss(animated: true) }
                 }
             }).disposed(by: rx.disposeBag)
+        
+        
+        viewModel.flashCopied
+            .subscribe(onNext: { [weak self] (_) in
+                
+                UIView.animate(withDuration: 0.4) {
+                    self?.copiedImage.alpha = 1
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        UIView.animate(withDuration: 0.4) {
+                            self?.copiedImage.alpha = 0
+                        }
+                        
+                    }
+                    
+                }
+                
+            })
+            .disposed(by: rx.disposeBag)
+        
     }
 }
 

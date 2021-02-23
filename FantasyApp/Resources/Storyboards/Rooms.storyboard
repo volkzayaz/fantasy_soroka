@@ -357,17 +357,23 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copied" translatesAutoresizingMaskIntoConstraints="NO" id="hWz-tt-vcS">
+                                <rect key="frame" x="147" y="393" width="120" height="120"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vK2-D4-8cj"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jMx-XI-343" firstAttribute="height" secondItem="VZY-yk-Xgv" secondAttribute="height" multiplier="0.6" id="HqS-sN-Nub"/>
                             <constraint firstItem="jMx-XI-343" firstAttribute="leading" secondItem="VZY-yk-Xgv" secondAttribute="leading" id="Mrs-Ef-GXh"/>
+                            <constraint firstItem="hWz-tt-vcS" firstAttribute="centerX" secondItem="vK2-D4-8cj" secondAttribute="centerX" id="Q5k-YQ-tNF"/>
+                            <constraint firstItem="hWz-tt-vcS" firstAttribute="centerY" secondItem="vK2-D4-8cj" secondAttribute="centerY" id="QDU-hf-KyF"/>
                             <constraint firstAttribute="trailing" secondItem="jMx-XI-343" secondAttribute="trailing" id="m8G-bN-Gjr"/>
                             <constraint firstAttribute="bottom" secondItem="jMx-XI-343" secondAttribute="bottom" id="pOb-1p-URo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="copiedImage" destination="hWz-tt-vcS" id="6FV-ha-1Bf"/>
                         <outlet property="inviteSheetView" destination="jMx-XI-343" id="jgD-ab-uHG"/>
                     </connections>
                 </viewController>
@@ -613,7 +619,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1242" height="802"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Num-iL-Qki">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="802"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <segue destination="JhV-8d-hUj" kind="embed" identifier="embedPlay" id="tvS-yj-wGh"/>
@@ -644,9 +650,9 @@
                                             <constraint firstItem="qZh-j5-W4z" firstAttribute="top" secondItem="pfW-yr-Y6j" secondAttribute="bottom" id="BUg-xO-IUY"/>
                                             <constraint firstItem="pfW-yr-Y6j" firstAttribute="leading" secondItem="3pl-Bc-6DD" secondAttribute="trailing" id="M5i-K7-O3v"/>
                                             <constraint firstAttribute="bottom" secondItem="qZh-j5-W4z" secondAttribute="bottom" id="P8G-nX-9EV"/>
-                                            <constraint firstItem="Num-iL-Qki" firstAttribute="height" secondItem="3pl-Bc-6DD" secondAttribute="height" id="QdF-hJ-zpL"/>
                                             <constraint firstItem="Num-iL-Qki" firstAttribute="leading" secondItem="zxQ-66-hhp" secondAttribute="leading" id="Qzu-6c-q9a"/>
                                             <constraint firstItem="3pl-Bc-6DD" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="RfW-2m-dsg"/>
+                                            <constraint firstItem="Num-iL-Qki" firstAttribute="height" secondItem="pfW-yr-Y6j" secondAttribute="height" id="Rl4-ec-qfK"/>
                                             <constraint firstAttribute="trailing" secondItem="pfW-yr-Y6j" secondAttribute="trailing" id="Ser-2d-7Pg"/>
                                             <constraint firstItem="Num-iL-Qki" firstAttribute="trailing" secondItem="3pl-Bc-6DD" secondAttribute="leading" id="W2p-AT-mlz"/>
                                             <constraint firstItem="Num-iL-Qki" firstAttribute="top" secondItem="3pl-Bc-6DD" secondAttribute="top" id="ebr-nT-R5I"/>
@@ -1262,6 +1268,7 @@
         <image name="Onboarding_Background" width="375" height="667"/>
         <image name="SMS" width="18" height="16.333333969116211"/>
         <image name="arrowRight" width="6.3333334922790527" height="10"/>
+        <image name="copied" width="120" height="120"/>
         <image name="copy" width="13.666666984558105" height="17.333333969116211"/>
         <image name="indicator" width="10" height="14"/>
         <image name="messenger" width="17.666666030883789" height="17"/>

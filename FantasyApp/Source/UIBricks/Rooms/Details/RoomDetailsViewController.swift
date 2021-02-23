@@ -102,6 +102,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
         super.viewDidAppear(animated)
         selectPage(viewModel.page.value, animated: false)
         scrollView.isHidden = false
+        (navigationItem.titleView as? RoomDetailsTitlePhotoView)?.startAnimating()
     }
     
 }

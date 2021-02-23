@@ -1148,7 +1148,7 @@
                                 <rect key="frame" x="0.0" y="43" width="375" height="624"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PB5-tQ-va8">
-                                        <rect key="frame" x="36" y="86" width="303" height="452"/>
+                                        <rect key="frame" x="36" y="54.5" width="303" height="452.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Req-GJ-0fi">
                                                 <rect key="frame" x="101.5" y="176.5" width="100" height="99.5"/>
@@ -1190,7 +1190,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83H-HO-uhm" customClass="KolodaView" customModule="Koloda">
-                                        <rect key="frame" x="36" y="86" width="303" height="452"/>
+                                        <rect key="frame" x="36" y="54.5" width="303" height="452.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="83H-HO-uhm" secondAttribute="height" multiplier="375:560" id="xvF-MU-ro6"/>
                                         </constraints>
@@ -1275,7 +1275,7 @@
                                     <constraint firstItem="PB5-tQ-va8" firstAttribute="top" secondItem="83H-HO-uhm" secondAttribute="top" id="gRW-od-YQL"/>
                                     <constraint firstItem="83H-HO-uhm" firstAttribute="leading" secondItem="HPK-WY-9qU" secondAttribute="leading" constant="36" id="heV-wN-FjQ"/>
                                     <constraint firstAttribute="bottom" secondItem="Cy3-0H-x0L" secondAttribute="bottom" id="j0p-p2-2Hg"/>
-                                    <constraint firstItem="83H-HO-uhm" firstAttribute="centerY" secondItem="HPK-WY-9qU" secondAttribute="centerY" id="v2u-sq-c59"/>
+                                    <constraint firstItem="83H-HO-uhm" firstAttribute="centerY" secondItem="HPK-WY-9qU" secondAttribute="centerY" multiplier="0.9" id="v2u-sq-c59"/>
                                     <constraint firstItem="Cy3-0H-x0L" firstAttribute="leading" secondItem="HPK-WY-9qU" secondAttribute="leading" id="y8k-Kg-amb"/>
                                 </constraints>
                             </view>

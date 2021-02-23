@@ -17,6 +17,8 @@ class InviteSheetViewModel: NSObject, MVVM_ViewModel, UINavigationControllerDele
     let router: InviteSheetRouter
     var cancelPressed: BehaviorRelay<Bool> = .init(value: false)
     
+    let flashCopied: PublishRelay<Void> = .init()
+    
     init(router: InviteSheetRouter, room: SharedRoomResource) {
         self.router = router
         self.room = room
@@ -27,6 +29,8 @@ class InviteSheetViewModel: NSObject, MVVM_ViewModel, UINavigationControllerDele
 
 extension InviteSheetViewModel: MFMessageComposeViewControllerDelegate {
     func copyLinkViewAction() {
+        
+        flashCopied.accept(())
         
         buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
             let text = R.string.localizable.roomBranchObjectDescription() + url!

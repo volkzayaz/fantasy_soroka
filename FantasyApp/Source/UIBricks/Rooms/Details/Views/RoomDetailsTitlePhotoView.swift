@@ -24,6 +24,12 @@ class RoomDetailsTitlePhotoView: UIView {
 
         leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(initiatorTapped)))
         rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(peerTapped)))
+        
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .subscribe(onNext: { [weak self] _ in
+                self?.startAnimating()
+            })
+            .disposed(by: rx.disposeBag)
     }
 
     override func draw(_ rect: CGRect) {
@@ -32,6 +38,9 @@ class RoomDetailsTitlePhotoView: UIView {
     }
     
     func startAnimating() {
+        
+        guard rightImageView.image == R.image.roomLoader() else { return }
+        
         let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotation.toValue = NSNumber(value: Double.pi * 2)
         rotation.duration = 1
