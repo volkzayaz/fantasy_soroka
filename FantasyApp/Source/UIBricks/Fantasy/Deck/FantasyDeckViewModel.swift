@@ -76,7 +76,7 @@ extension FantasyDeckViewModel {
                              appState.changesOf { $0.currentUser?.fantasies.purchasedCollections },
                              Fantasy.Manager.fetchCollections().asDriver(onErrorJustReturn: []))
             .map { (_, _, collections) -> [[Fantasy.Collection]] in
-                return collections.group(by: \.category)
+                return collections.group(by: \.groupCategory)
             }
     }
 
@@ -316,7 +316,7 @@ extension FantasyDeckViewModel {
         }
         
         emptyPeerPressed.accept(true)
-        router.showInviteSheet(room: r, fantasyDeckViewModel: self)
+        router.showInviteSheet(room: r)
         
     }
 

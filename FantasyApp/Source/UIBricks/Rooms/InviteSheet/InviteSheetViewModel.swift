@@ -16,9 +16,6 @@ class InviteSheetViewModel: MVVM_ViewModel {
     let router: InviteSheetRouter
     var cancelPressed: BehaviorRelay<Bool> = .init(value: false)
     
-    var fantasyDeckViewModel: FantasyDeckViewModel? = nil
-    var roomDetailsViewModel: RoomDetailsViewModel? = nil
-    
     init(router: InviteSheetRouter, room: SharedRoomResource) {
         self.router = router
         self.room = room
@@ -29,15 +26,40 @@ class InviteSheetViewModel: MVVM_ViewModel {
 
 extension InviteSheetViewModel {
     func copyLinkViewAction() {
-        print("Copy link tapped")
+        
+        buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
+            let text = R.string.localizable.roomBranchObjectDescription() + url!
+            UIPasteboard.general.string = text
+        }
+        
     }
     
     func SMSViewAction() {
-        print("SMS tapped")
+        buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
+            
+            let text = R.string.localizable.roomBranchObjectDescription() + url!
+            
+            let sms: String = "sms:+1234567890&body=\(text)"
+            let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
+        }
+        
     }
     
     func whatsAppViewAction() {
-        print("WhatsApp tapped")
+        
+        buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
+            
+            let text = R.string.localizable.roomBranchObjectDescription() + url!
+            
+            if let whatappURL = URL(string: "https://api.whatsapp.com/send?phone=1&text=\(text)"),
+              UIApplication.shared.canOpenURL(whatappURL)
+            {
+                UIApplication.shared.open(whatappURL, options: [:], completionHandler: nil)
+            }
+            
+        }
+        
     }
     
     func messengerViewAction() {
@@ -45,8 +67,6 @@ extension InviteSheetViewModel {
     }
     
     func moreViewAction() {
-        Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
-        
         buo?.showShareSheet(with: BranchLinkProperties(),
                             andShareText: R.string.localizable.roomBranchObjectDescription(),
                             from: router.owner) { (activityType, completed) in }

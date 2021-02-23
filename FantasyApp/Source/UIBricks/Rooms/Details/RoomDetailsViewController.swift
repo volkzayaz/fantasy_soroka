@@ -59,38 +59,32 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
 
-        let rightDriver: Driver<UIImage?>
-        if let x = viewModel.room.value.peer.userSlice?.avatarURL {
-            rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
-                .map { $0 ?? R.image.noPhoto() }
-        }
-        else {
-            rightDriver = .just(R.image.plus())
-        }
-
-        Driver.combineLatest(
-        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.me.avatarURL)
-            .map { $0 ?? R.image.noPhoto() },
-            rightDriver)
+        viewModel.room
+            .asDriver()
+            .distinctUntilChanged(\.participants)
+            .flatMapLatest { room -> Driver<(UIImage?, UIImage?)> in
+        
+                let rightDriver: Driver<UIImage?>
+                if let x = room.peer.userSlice?.avatarURL {
+                    rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
+                        .map { $0 ?? R.image.noPhoto() }
+                }
+                else {
+                    rightDriver = .just(R.image.plus())
+                }
+                
+                return Driver.combineLatest(
+                ImageRetreiver.imageForURLWithoutProgress(url: room.me.avatarURL)
+                    .map { $0 ?? R.image.noPhoto() },
+                    rightDriver)
+                
+            }
             .drive(onNext: { [unowned self] (images) in
                 
                 let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
                 
-                if images.1 == R.image.plus() {
-                    viewModel.emptyPeerPressed
-                        .asDriver()
-                        .drive(onNext: { x in 
-                            v.rightImageView.image = x ? R.image.roomLoader() : images.1
-                            if x { v.startAnimating() }
-                            else { v.stopAnimating() }
-                            
-                        }).disposed(by: rx.disposeBag)
-                    
-                } else {
-                    v.rightImageView.image = images.1
-                }
-                
                 v.leftImageView.image = images.0
+                v.rightImageView.image = images.1
                 v.delegate = self
                 self.navigationItem.titleView = v
                 

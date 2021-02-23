@@ -21,11 +21,13 @@ class InviteSheetViewController: UIViewController, MVVM_View {
         viewModel.cancelPressed
             .asDriver()
             .drive(onNext: { [unowned self] x in
-                UIView.animate(withDuration: x ? 0.3 : 1, delay: x ? 0 : 0.3, options: [.curveEaseOut]) {
+                UIView.animate(withDuration: x ? 0.1 : 0.3, delay: x ? 0 : 0.35, options: [.curveEaseOut]) {
                     self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
                     if x {
                         self.view.backgroundColor = .clear
                     }
+                } completion: { (_) in
+                    if x { self.dismiss(animated: true) }
                 }
             }).disposed(by: rx.disposeBag)
     }
@@ -35,18 +37,7 @@ class InviteSheetViewController: UIViewController, MVVM_View {
 extension InviteSheetViewController {
     @IBAction func cancelPressed(_ sender: UIButton) {
         viewModel.cancelPressed.accept(true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.dismiss(animated: true) {
-                self.viewModel
-                    .fantasyDeckViewModel?.emptyPeerPressed
-                    .accept(false)
-                
-                self.viewModel
-                    .roomDetailsViewModel?.emptyPeerPressed
-                    .accept(false)
-            }
-        }
+
     }
     
     @IBAction func copyLinkViewTapped(_ sender: UITapGestureRecognizer) {

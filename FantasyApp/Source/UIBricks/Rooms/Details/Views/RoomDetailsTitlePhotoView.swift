@@ -62,6 +62,11 @@ extension RoomDetailsTitlePhotoView {
             return
         }
 
+        if rightImageView.image == R.image.plus() {
+            rightImageView.image = R.image.roomLoader()
+            startAnimating()
+        }
+        
         d.didSelectedPeer()
     }
 }

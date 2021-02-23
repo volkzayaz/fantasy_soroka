@@ -78,6 +78,8 @@ extension Fantasy {
             case hint = "hintText"
             case author
             case customBlock
+            
+            case groupCategory = "category"
         }
         
         let id: String
@@ -114,6 +116,7 @@ extension Fantasy {
         let loveThis: String
         let highlights: String
         
+        let groupCategory: String
         let category: String
         let itemsNamePlural: String
         let hint: String
@@ -250,7 +253,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPaid: true, productId: "", isIAPPurchased: false, details: "", loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
+        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPaid: true, productId: "", isIAPPurchased: false, details: "", loveThis: "", highlights: "", groupCategory: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
         
     }
     

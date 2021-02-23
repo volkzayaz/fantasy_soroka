@@ -53,7 +53,6 @@ class RoomDetailsViewModel: MVVM_ViewModel {
     let router: RoomDetailsRouter
     let room: SharedRoomResource
     let page: BehaviorRelay<DetailsPage>
-    let emptyPeerPressed: BehaviorRelay<Bool> = .init(value: false)
     private let buo: BranchUniversalObject?
     fileprivate let bag = DisposeBag()
     
@@ -109,14 +108,7 @@ extension RoomDetailsViewModel {
     }
     
     func inviteButtonTapped() {
-        
-        Analytics.report(Analytics.Event.DraftRoomShared(type: .share))
-        
-        buo?.showShareSheet(with: BranchLinkProperties(),
-                            andShareText: R.string.localizable.roomBranchObjectDescription(),
-                            from: router.owner) { (activityType, completed) in
-
-        }
+        router.showInviteSheet(room: room)
     }
     
     func presentMe() {
@@ -138,8 +130,8 @@ extension RoomDetailsViewModel {
     func presentPeer() {
 
         guard let id = room.value.peer.userSlice?.id else {
-            emptyPeerPressed.accept(true)
-            router.showInviteSheet(room: room, roomDetailsViewModel: self)
+            
+            router.showInviteSheet(room: room)
             
             return;
         }

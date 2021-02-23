@@ -78,7 +78,7 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.categoryFantasies, for: ip)!
         
             cell.decksCountLabel.text = category.count == 1 ? "deck" : "decks"
-            cell.categoryName.text = category.first?.category
+            cell.categoryName.text = category.first?.groupCategory
             cell.numberDecks.text = "\(category.count)"
             cell.fantasyDeckViewModel = self.viewModel
 
