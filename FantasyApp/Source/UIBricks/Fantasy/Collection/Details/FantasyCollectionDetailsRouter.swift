@@ -48,7 +48,10 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
                              room: room,
                              page: .play)
         
-        owner.navigationController?.pushViewController(vc, animated: true)
+        let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
     }
     
     func showSubscription(completion: @escaping () -> Void) {

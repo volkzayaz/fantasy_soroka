@@ -21,8 +21,12 @@ struct RoomsRouter: MVVM_Router {
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
                              page: .play)
+     
+        let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
         
-        owner.navigationController?.pushViewController(vc, animated: true)
+        owner.present(container, animated: true, completion: nil)
+        
     }
 
     func close() {

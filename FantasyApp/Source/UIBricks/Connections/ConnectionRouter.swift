@@ -19,7 +19,11 @@ struct ConnectionRouter : MVVM_Router {
         let vc = R.storyboard.rooms.roomDetailsViewController()!
         vc.viewModel = RoomDetailsViewModel(router: .init(owner: vc), room: room,
                                             page: page)
-        owner.navigationController?.pushViewController(vc, animated: true)
+        
+        let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
         
     }
     

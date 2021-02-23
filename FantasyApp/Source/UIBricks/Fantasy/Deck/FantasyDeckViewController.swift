@@ -283,8 +283,10 @@ extension FantasyDeckViewController {
     func configureStyling() {
         navigationItem.title = R.string.localizable.fantasyDeckTitle()
         
-        view.addFantasyGradient()
-
+        if viewModel.room == nil {
+            view.addFantasyGradient()
+        }
+        
 //        collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
 //        collectionsButton.mode = .selector
 //        collectionsButton.isSelected = false

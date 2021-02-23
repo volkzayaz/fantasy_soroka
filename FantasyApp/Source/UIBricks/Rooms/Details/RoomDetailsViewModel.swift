@@ -33,8 +33,10 @@ extension RoomDetailsViewModel {
     }
     
     var inviteButtonHidden: Driver<Bool> {
-        return room.asDriver()
-            .map { $0.status == .ready || $0.status == .draft}
+        return Driver.combineLatest(room.asDriver(), page.asDriver())
+            .map { (room, page) -> Bool in
+                return page == .play || room.status == .ready || room.status == .draft
+            }
     }
 
 }
@@ -45,9 +47,9 @@ typealias SharedRoomResource = BehaviorRelay<Room>
 
 class RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
+        case play
         case fantasies
         case chat
-        case play
     }
     
     let router: RoomDetailsRouter
@@ -64,12 +66,6 @@ class RoomDetailsViewModel: MVVM_ViewModel {
         self.page = BehaviorRelay(value: page)
 
         self.buo = room.shareLine()
-        
-        if page == .play {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.showPlay()
-            }
-        }
         
         ///
         webSocket.didReceiveRoomChange

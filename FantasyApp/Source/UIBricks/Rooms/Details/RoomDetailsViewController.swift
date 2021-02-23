@@ -31,6 +31,7 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     }
     @IBOutlet private var chatContainerView: UIView!
     @IBOutlet private var commonFantasiesContainerView: UIView!
+    @IBOutlet private var playContainerView: UIView!
     @IBOutlet weak var inviteButton: SecondaryButton! {
         didSet { inviteButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal) }
     }
@@ -89,6 +90,12 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
                 self.navigationItem.titleView = v
                 
             }).disposed(by: rx.disposeBag)
+        
+        navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain, target: self, action: #selector(_dismiss))
+    }
+    
+    @objc func _dismiss() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,7 +124,8 @@ extension RoomDetailsViewController {
         gradientLayer.colors = [UIColor.gradient3.cgColor,
                                 UIColor.gradient2.cgColor,
                                 UIColor.gradient1.cgColor]
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        view.addFantasyGradient()
     }
     
     func selectPage(_ page: RoomDetailsViewModel.DetailsPage, animated: Bool = true) {
@@ -133,6 +141,7 @@ extension RoomDetailsViewController {
 
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
+        playButton.isSelected = page == .play
         
     }
     
@@ -153,9 +162,7 @@ extension RoomDetailsViewController {
         } else if sender == chatButton {
             viewModel.page.accept(.chat)
         } else {
-            
-            viewModel.showPlay()
-            
+            viewModel.page.accept(.play)
         }
     }
     
@@ -238,6 +245,16 @@ extension RoomDetailsViewController {
                                          room: viewModel.room)
             
         }
+        else if segue.identifier == "embedPlay" {
+            
+            let vc = segue.destination as! FantasyDeckViewController
+            vc.viewModel = .init(router: .init(owner: vc),
+                                 provider: RoomsDeckProvider(room: viewModel.room.value),
+                                 presentationStyle: .modal,
+                                 room: viewModel.room)
+            
+        }
+
         
     }
     

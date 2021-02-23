@@ -75,7 +75,7 @@ struct FantasyDeckRouter : MVVM_Router {
                                                 
                                             })
         let nav = FantasyNavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
+        nav.modalPresentationStyle = .overFullScreen
 
         owner.present(nav, animated: true, completion: nil)
         

@@ -614,17 +614,24 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-66-hhp">
-                                        <rect key="frame" x="0.0" y="0.0" width="828" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1242" height="768"/>
                                         <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-Bc-6DD">
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Num-iL-Qki">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <segue destination="JhV-8d-hUj" kind="embed" identifier="embedPlay" id="tvS-yj-wGh"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-Bc-6DD">
+                                                <rect key="frame" x="414" y="0.0" width="414" height="768"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <segue destination="RuG-rX-KSV" kind="embed" identifier="show common fantasies" id="cjt-uW-jKu"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfW-yr-Y6j">
-                                                <rect key="frame" x="414" y="0.0" width="414" height="768"/>
+                                                <rect key="frame" x="828" y="0.0" width="414" height="768"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <segue destination="U5E-JI-E2l" kind="embed" identifier="show chat" id="ZRH-mf-Ssu"/>
@@ -634,10 +641,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="pfW-yr-Y6j" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="79c-Kw-uW6"/>
-                                            <constraint firstItem="3pl-Bc-6DD" firstAttribute="leading" secondItem="zxQ-66-hhp" secondAttribute="leading" id="GTS-sx-Dki"/>
                                             <constraint firstItem="pfW-yr-Y6j" firstAttribute="leading" secondItem="3pl-Bc-6DD" secondAttribute="trailing" id="M5i-K7-O3v"/>
+                                            <constraint firstItem="Num-iL-Qki" firstAttribute="height" secondItem="3pl-Bc-6DD" secondAttribute="height" id="QdF-hJ-zpL"/>
+                                            <constraint firstItem="Num-iL-Qki" firstAttribute="leading" secondItem="zxQ-66-hhp" secondAttribute="leading" id="Qzu-6c-q9a"/>
                                             <constraint firstItem="3pl-Bc-6DD" firstAttribute="top" secondItem="zxQ-66-hhp" secondAttribute="top" id="RfW-2m-dsg"/>
                                             <constraint firstAttribute="trailing" secondItem="pfW-yr-Y6j" secondAttribute="trailing" id="Ser-2d-7Pg"/>
+                                            <constraint firstItem="Num-iL-Qki" firstAttribute="trailing" secondItem="3pl-Bc-6DD" secondAttribute="leading" id="W2p-AT-mlz"/>
+                                            <constraint firstItem="Num-iL-Qki" firstAttribute="top" secondItem="3pl-Bc-6DD" secondAttribute="top" id="ebr-nT-R5I"/>
+                                            <constraint firstItem="Num-iL-Qki" firstAttribute="width" secondItem="3pl-Bc-6DD" secondAttribute="width" id="jNY-d4-bQe"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -689,6 +700,7 @@
                         <outlet property="fantasiesButton" destination="wJX-Ru-CPj" id="hLa-YL-PRE"/>
                         <outlet property="inviteButton" destination="pYJ-zV-hgh" id="nAn-Ph-LF3"/>
                         <outlet property="playButton" destination="qoL-7K-BCs" id="fX4-dX-51p"/>
+                        <outlet property="playContainerView" destination="Num-iL-Qki" id="AFo-gg-HU7"/>
                         <outlet property="scrollView" destination="5tj-zr-HlS" id="epG-Oh-X0I"/>
                     </connections>
                 </viewController>
@@ -703,6 +715,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9N-Lw-aO7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4704" y="1420"/>
+        </scene>
+        <!--FantasyCard-->
+        <scene sceneID="cLj-Tb-nMw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FantasyCard" id="JhV-8d-hUj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3xg-4C-itk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4657" y="1357"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="oB6-zg-Vwu">
