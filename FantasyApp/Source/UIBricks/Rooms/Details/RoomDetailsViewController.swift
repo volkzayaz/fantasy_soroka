@@ -75,15 +75,26 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
             .drive(onNext: { [unowned self] (images) in
                 
                 let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
-                v.leftImageView.image = images.0                
-                v.rightImageView.image = images.1
+                
+                if images.1 == R.image.plus() {
+                    viewModel.emptyPeerPressed
+                        .asDriver()
+                        .drive(onNext: { x in 
+                            v.rightImageView.image = x ? R.image.roomLoader() : images.1
+                            if x { v.startAnimating() }
+                            else { v.stopAnimating() }
+                            
+                        }).disposed(by: rx.disposeBag)
+                    
+                } else {
+                    v.rightImageView.image = images.1
+                }
+                
+                v.leftImageView.image = images.0
                 v.delegate = self
                 self.navigationItem.titleView = v
                 
             }).disposed(by: rx.disposeBag)
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

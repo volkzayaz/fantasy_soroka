@@ -30,6 +30,19 @@ class RoomDetailsTitlePhotoView: UIView {
         super.draw(rect)
         leftImageView.addEllipsMask()
     }
+    
+    func startAnimating() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.rightImageView.layer.add(rotation, forKey: "rotationAnimation")
+    }
+
+    func stopAnimating() {
+         self.rightImageView.layer.removeAnimation(forKey: "rotationAnimation")
+    }
 }
 
 //MARK:- Actions

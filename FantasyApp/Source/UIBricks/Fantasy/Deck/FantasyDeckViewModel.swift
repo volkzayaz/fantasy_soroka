@@ -143,6 +143,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
     let provider: FantasyDeckProvier
     let room: SharedRoomResource?
 
+    let emptyPeerPressed = BehaviorRelay<Bool>(value: false)
     let collectionPickedAction: CollectionPicked?
     
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
@@ -314,12 +315,8 @@ extension FantasyDeckViewModel {
             return;
         }
         
-//        Analytics.report(Analytics.Event.DraftRoomShared(type: .add))
-//
-//        buo?.showShareSheet(with: BranchLinkProperties(),
-//                            andShareText: R.string.localizable.roomBranchObjectDescription(),
-//                            from: router.owner) { (activityType, completed) in  }
-        router.showInviteSheet(room: r)
+        emptyPeerPressed.accept(true)
+        router.showInviteSheet(room: r, fantasyDeckViewModel: self)
         
     }
 

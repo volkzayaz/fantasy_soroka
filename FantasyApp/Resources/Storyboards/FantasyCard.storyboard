@@ -1066,15 +1066,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="330" estimatedRowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgu-i5-52v">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="310" estimatedRowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgu-i5-52v">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryFantasies" id="LPQ-xX-MrX" customClass="CategoryFantasiesTableViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="330"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="310"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LPQ-xX-MrX" id="yHv-q5-5Zc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utM-5f-0B1">
@@ -1114,10 +1114,10 @@
                                                     </constraints>
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="leu-Ms-Gst">
-                                                    <rect key="frame" x="0.0" y="60" width="375" height="270"/>
+                                                    <rect key="frame" x="0.0" y="60" width="375" height="250"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="10" id="KV9-De-de7">
-                                                        <size key="itemSize" width="170" height="260"/>
+                                                        <size key="itemSize" width="170" height="240"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1151,14 +1151,14 @@
                                         <rect key="frame" x="36" y="86" width="303" height="452"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Req-GJ-0fi">
-                                                <rect key="frame" x="101.5" y="173.5" width="100" height="105.5"/>
+                                                <rect key="frame" x="101.5" y="176.5" width="100" height="99.5"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite" translatesAutoresizingMaskIntoConstraints="NO" id="MqG-FU-3q6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="60"/>
+                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteAddDeck" translatesAutoresizingMaskIntoConstraints="NO" id="MqG-FU-3q6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="54"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="cjW-e3-IBS"/>
+                                                            <constraint firstAttribute="height" constant="54" id="cjW-e3-IBS"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="imageRenderingMode">
@@ -1167,7 +1167,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Deck" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGL-YC-eGl">
-                                                        <rect key="frame" x="0.0" y="80" width="100" height="25.5"/>
+                                                        <rect key="frame" x="0.0" y="74" width="100" height="25.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="KMH-bv-Zmo"/>
                                                         </constraints>
@@ -1411,10 +1411,10 @@
         <image name="authorWebsite" width="52" height="52"/>
         <image name="cardDetailsBack" width="40" height="40"/>
         <image name="cardDetailsOption" width="40" height="40"/>
-        <image name="invite" width="20" height="20"/>
         <image name="profileBack" width="40" height="40"/>
         <image name="scrollIndicator" width="20" height="20"/>
         <image name="timer" width="80" height="80"/>
+        <image name="whiteAddDeck" width="54" height="54.5"/>
         <namedColor name="bgGradient1">
             <color red="0.83137254901960789" green="0.34509803921568627" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
