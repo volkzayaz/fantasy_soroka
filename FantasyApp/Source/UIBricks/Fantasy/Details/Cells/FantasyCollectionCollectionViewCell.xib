@@ -50,7 +50,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcm-x2-gnr">
-                        <rect key="frame" x="12" y="213" width="112" height="18"/>
+                        <rect key="frame" x="12" y="213" width="122" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="qrw-Bv-RTP"/>
                         </constraints>
@@ -90,7 +90,7 @@
                     <constraint firstItem="RcO-65-YXF" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="9td-I5-kO6"/>
                     <constraint firstItem="B2g-49-oSM" firstAttribute="top" secondItem="GrN-Ev-XXI" secondAttribute="top" id="EFb-ee-sZy"/>
                     <constraint firstItem="RcO-65-YXF" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" id="HKP-BM-qVU"/>
-                    <constraint firstAttribute="trailing" secondItem="Tcm-x2-gnr" secondAttribute="trailing" constant="60" id="IXC-4Q-cIB"/>
+                    <constraint firstAttribute="trailing" secondItem="Tcm-x2-gnr" secondAttribute="trailing" constant="50" id="IXC-4Q-cIB"/>
                     <constraint firstAttribute="bottom" secondItem="W9X-S8-6E0" secondAttribute="bottom" constant="15" id="Q1l-TM-a9X"/>
                     <constraint firstItem="Tcm-x2-gnr" firstAttribute="leading" secondItem="GrN-Ev-XXI" secondAttribute="leading" constant="12" id="UTy-pE-9yz"/>
                     <constraint firstAttribute="bottom" secondItem="Tcm-x2-gnr" secondAttribute="bottom" constant="12" id="XEE-1l-kjQ"/>
