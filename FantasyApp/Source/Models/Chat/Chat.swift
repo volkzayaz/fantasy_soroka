@@ -27,7 +27,7 @@ extension Room {
             case text
             case senderId
             case createdAt = "timestamp"
-            case type
+            case _type = "type"
             case readUserIds
         }
 
@@ -35,7 +35,10 @@ extension Room {
         let text: String?
         let senderId: String
         let createdAt: Date
-        let type: MessageType
+        let _type: MessageType?
+        var type: MessageType {
+            return _type ?? .message
+        }
         var readUserIds: Set<String>?
         
         var isRead: Bool { readUserIds?.contains { $0 == User.current?.id } ?? false }
@@ -136,7 +139,7 @@ extension Room {
                           text: text,
                           senderId: user.id,
                           createdAt: Date(),
-                          type: .message,
+                          _type: .message,
                           readUserIds: [user.id])
             
             roomId = room.id

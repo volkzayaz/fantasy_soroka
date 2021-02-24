@@ -66,5 +66,18 @@ struct RoomSettingsRouter: MVVM_Router {
         owner.present(nav, animated: true, completion: nil)
         
     }
+
+    func showInviteSheet(room: SharedRoomResource) {
+        let viewController = R.storyboard.rooms.inviteSheetViewController()!
+        let router = InviteSheetRouter(owner: viewController)
+        let viewModel = InviteSheetViewModel(router: router, room: room)
+        
+        viewController.viewModel = viewModel
+        
+        let container = FantasyNavigationController(rootViewController: viewController)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
+    }
     
 }

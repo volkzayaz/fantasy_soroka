@@ -167,12 +167,8 @@ extension RoomSettingsViewModel {
         
         Analytics.report(Analytics.Event.DraftRoomShared(type: type))
         
-        buo?.showShareSheet(with: BranchLinkProperties(),
-                            andShareText: R.string.localizable.roomBranchObjectDescription(),
-                            from: router.owner) { (activityType, completed) in
-
-        }
-     
+        router.showInviteSheet(room: room)
+        
         swapToWaiting()
     }
     

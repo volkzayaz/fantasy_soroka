@@ -268,7 +268,8 @@ extension ChatViewModel {
                                  text: nil,
                                  senderId: User.current!.id,
                                  createdAt: Date(),
-                                 type: .created, readUserIds: [User.current!.id]),
+                                 _type: .created,
+                                 readUserIds: [User.current!.id]),
                     at: 0)
         mes.accept(copy)
         
