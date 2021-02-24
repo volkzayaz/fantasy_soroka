@@ -66,6 +66,13 @@ extension Room {
             case shared_collections_removed
 //            case shared_collections
 //            case mutual_liked_card
+
+            case unknown
+            
+            public init(from decoder: Decoder) throws {
+                self = try MessageType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+            }
+
         }
         
         func typeDescription(peer: String) -> String {
@@ -111,6 +118,9 @@ extension Room {
             case .shared_collections_removed:
                 let name = isOwn ? "You" : "\(peer)"
                 return name + " removed \(text ?? "") from the Room"
+                
+            case .unknown:
+                return ""
                 
             }
             

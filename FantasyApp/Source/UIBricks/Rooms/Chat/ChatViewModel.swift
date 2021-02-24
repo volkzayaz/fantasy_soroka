@@ -95,6 +95,9 @@ extension ChatViewModel {
                         let event = x.typeDescription(peer: peerName)
                         return .event(R.image.sharedCollection()!, event, x)
 
+                    case .unknown:
+                        return .message(x)
+                        
                     }
 
                 }
