@@ -56,29 +56,30 @@ extension InviteSheetViewModel: MFMessageComposeViewControllerDelegate {
     
     func whatsAppViewAction() {
         
-        buo?.getShortUrl(with: BranchLinkProperties()) { (url, error) in
+        buo?.getShortUrl(with: BranchLinkProperties()) { [weak r = cancelPressed] (url, error) in
             
             let text = R.string.localizable.roomBranchObjectDescription() + url!
             
             let url = URL(string: "whatsapp://send?text=\(text)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                r?.accept(true)
+            })
             
         }
         
     }
     
-    func messengerViewAction() {
-        print("Messenger tapped")
-    }
-    
     func moreViewAction() {
         buo?.showShareSheet(with: BranchLinkProperties(),
                             andShareText: R.string.localizable.roomBranchObjectDescription(),
-                            from: router.owner) { (activityType, completed) in }
+                            from: router.owner) { [weak r = cancelPressed] (activityType, completed) in
+            r?.accept(true)
+        }
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
+        
+        controller.dismiss(animated: true, completion: { [weak r = cancelPressed] in r?.accept(true) })
     }
     
 }

@@ -70,7 +70,7 @@ extension RoomsViewModel {
                 positiveText: R.string.localizable.roomUpgradeSuggestionPositiveText())
         }
             
-        router.open(room)
+        router.open(room, page: .chat)
     }
     
     func createRoom() {
@@ -81,7 +81,7 @@ extension RoomsViewModel {
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] room in
-                self.router.open(room)
+                self.router.open(room, page: .play)
             })
             .disposed(by: bag)
         

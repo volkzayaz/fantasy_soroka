@@ -1145,10 +1145,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPK-WY-9qU">
-                                <rect key="frame" x="0.0" y="43" width="375" height="624"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PB5-tQ-va8">
-                                        <rect key="frame" x="36" y="54.5" width="303" height="452.5"/>
+                                        <rect key="frame" x="36" y="107.5" width="303" height="452"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Req-GJ-0fi">
                                                 <rect key="frame" x="101.5" y="176.5" width="100" height="99.5"/>
@@ -1190,7 +1190,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83H-HO-uhm" customClass="KolodaView" customModule="Koloda">
-                                        <rect key="frame" x="36" y="54.5" width="303" height="452.5"/>
+                                        <rect key="frame" x="36" y="107.5" width="303" height="452"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="83H-HO-uhm" secondAttribute="height" multiplier="375:560" id="xvF-MU-ro6"/>
                                         </constraints>
@@ -1199,7 +1199,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy3-0H-x0L">
-                                        <rect key="frame" x="0.0" y="-44" width="375" height="668"/>
+                                        <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The daily limit has been reached" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDI-4a-eZ1">
                                                 <rect key="frame" x="87.5" y="36" width="200" height="43"/>
@@ -1211,10 +1211,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tt-tc-sIf">
-                                                <rect key="frame" x="20" y="194.5" width="335" height="219.5"/>
+                                                <rect key="frame" x="20" y="194.5" width="335" height="262.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8af-bQ-cKA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="219.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="262.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="SeO-dI-ZaS">
                                                                 <rect key="frame" x="127.5" y="0.0" width="80" height="80"/>
@@ -1224,19 +1224,19 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylu-7G-c32">
-                                                                <rect key="frame" x="145.5" y="96" width="44" height="21.5"/>
+                                                                <rect key="frame" x="145.5" y="110.5" width="44" height="21.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FN9-cu-FdG">
-                                                                <rect key="frame" x="149" y="133.5" width="37.5" height="18"/>
+                                                                <rect key="frame" x="149" y="162" width="37.5" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFa-3z-mfp" customClass="SecondaryButton" customModule="FantasyApp" customModuleProvider="target">
-                                                                <rect key="frame" x="40.5" y="167.5" width="254" height="52"/>
+                                                                <rect key="frame" x="40.5" y="210.5" width="254" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="IQm-lt-Wel"/>
                                                                     <constraint firstAttribute="width" constant="254" id="cI2-ur-JpV"/>
@@ -1275,7 +1275,7 @@
                                     <constraint firstItem="PB5-tQ-va8" firstAttribute="top" secondItem="83H-HO-uhm" secondAttribute="top" id="gRW-od-YQL"/>
                                     <constraint firstItem="83H-HO-uhm" firstAttribute="leading" secondItem="HPK-WY-9qU" secondAttribute="leading" constant="36" id="heV-wN-FjQ"/>
                                     <constraint firstAttribute="bottom" secondItem="Cy3-0H-x0L" secondAttribute="bottom" id="j0p-p2-2Hg"/>
-                                    <constraint firstItem="83H-HO-uhm" firstAttribute="centerY" secondItem="HPK-WY-9qU" secondAttribute="centerY" multiplier="0.9" id="v2u-sq-c59"/>
+                                    <constraint firstItem="83H-HO-uhm" firstAttribute="centerY" secondItem="HPK-WY-9qU" secondAttribute="centerY" id="v2u-sq-c59"/>
                                     <constraint firstItem="Cy3-0H-x0L" firstAttribute="leading" secondItem="HPK-WY-9qU" secondAttribute="leading" id="y8k-Kg-amb"/>
                                 </constraints>
                             </view>
@@ -1366,6 +1366,7 @@
                             <constraint firstItem="8ln-R6-YLe" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" constant="26" id="Crv-83-fp4"/>
                             <constraint firstAttribute="bottom" secondItem="zgu-i5-52v" secondAttribute="bottom" id="EnG-rI-1bT"/>
                             <constraint firstItem="zgu-i5-52v" firstAttribute="leading" secondItem="MWl-cV-xbo" secondAttribute="leading" id="NM9-P8-b7h"/>
+                            <constraint firstItem="HPK-WY-9qU" firstAttribute="top" secondItem="MWl-cV-xbo" secondAttribute="top" id="OOh-sX-PwW"/>
                             <constraint firstItem="vyA-Qc-EXd" firstAttribute="centerX" secondItem="MWl-cV-xbo" secondAttribute="centerX" id="PFp-nw-6MC"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="trailing" secondItem="HPK-WY-9qU" secondAttribute="trailing" id="Qwt-LK-gxp"/>
                             <constraint firstItem="MWl-cV-xbo" firstAttribute="bottom" secondItem="vyA-Qc-EXd" secondAttribute="bottom" constant="16" id="STI-S4-xlE"/>

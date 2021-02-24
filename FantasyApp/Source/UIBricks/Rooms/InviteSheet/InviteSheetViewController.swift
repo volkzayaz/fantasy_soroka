@@ -43,9 +43,10 @@ class InviteSheetViewController: UIViewController, MVVM_View {
                 UIView.animate(withDuration: 0.4) {
                     self?.copiedImage.alpha = 1
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         UIView.animate(withDuration: 0.4) {
                             self?.copiedImage.alpha = 0
+                            self?.viewModel.cancelPressed.accept(true)
                         }
                         
                     }
@@ -55,6 +56,10 @@ class InviteSheetViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
+    }
+    
+    @IBAction func dismisssTap(_ sender: Any) {
+        viewModel.cancelPressed.accept(true)
     }
 }
 
@@ -75,10 +80,6 @@ extension InviteSheetViewController {
     
     @IBAction func whatsAppViewTapped(_ sender: UITapGestureRecognizer) {
         viewModel.whatsAppViewAction()
-    }
-    
-    @IBAction func messengerViewTapped(_ sender: UITapGestureRecognizer) {
-        viewModel.messengerViewAction()
     }
     
     @IBAction func moreViewTapped(_ sender: UITapGestureRecognizer) {

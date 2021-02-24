@@ -74,7 +74,7 @@ extension FantasyDeckViewModel {
         
         return Driver.combineLatest(User.changesOfSubscriptionStatus,
                              appState.changesOf { $0.currentUser?.fantasies.purchasedCollections },
-                             Fantasy.Manager.fetchCollections().asDriver(onErrorJustReturn: []))
+                             collections.asDriver())
             .map { (_, _, collections) -> [[Fantasy.Collection]] in
                 return collections.group(by: \.groupCategory)
             }
@@ -149,12 +149,13 @@ class FantasyDeckViewModel : MVVM_ViewModel {
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
-
+    
     init(router: FantasyDeckRouter,
          provider: FantasyDeckProvier = MainDeckProvider(),
          presentationStyle: PresentationStyle  = .stack,
          room: SharedRoomResource? = nil,
          collectionFilter: Set<String> = [],
+         container: UIViewController? = nil,
          collectionPickedAction: CollectionPicked? = nil) {
         self.router = router
         self.provider = provider
@@ -163,7 +164,7 @@ class FantasyDeckViewModel : MVVM_ViewModel {
         self.collectionPickedAction = collectionPickedAction
         
         indicator.asDriver()
-            .drive(onNext: { [weak h = router.owner] (loading) in
+            .drive(onNext: { [weak h = container] (loading) in
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)

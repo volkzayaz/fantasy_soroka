@@ -89,8 +89,17 @@ class RoomDetailsViewModel: MVVM_ViewModel {
             }
             .bind(to: self.room)
             .disposed(by: bag)
-        
+    
+        ////
+        indicator.asDriver()
+            .drive(onNext: { [weak h = router.owner] (loading) in
+                h?.setLoadingStatus(loading)
+            })
+            .disposed(by: bag)
     }
+    
+    let indicator: ViewIndicator = ViewIndicator()
+    
 }
 
 extension RoomDetailsViewModel {

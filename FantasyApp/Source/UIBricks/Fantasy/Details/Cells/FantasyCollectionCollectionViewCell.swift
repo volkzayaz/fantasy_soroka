@@ -45,7 +45,7 @@ class FantasyCollectionCollectionViewCell: UICollectionViewCell {
             titleLabel.text = model.title
             paidLabel.text = model.category
             
-            if model.isIAPPurchased {
+            if model.wasPurchased {
                 deckStateImageView.image = R.image.isPurchased()
             }
             else if let u = User.current, u.subscription.isSubscribed {

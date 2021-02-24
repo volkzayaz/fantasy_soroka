@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>67</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -89,10 +89,14 @@
 	<string>To set photo as your Fantasy profile picture</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Suggesting people in closest communities</string>
+	<key>NSLocationDefaultAccuracyReduced</key>
+	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Suggesting people in closest communities</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Let you pick your profile photo</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>The app shares Device ID only and compares this ID with external sources, so we can match the data to be able to invite more people who love our product</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Text-Black.otf</string>
@@ -152,9 +156,5 @@
 		<key>test</key>
 		<string>key_test_emSopLdcboZBlV0jG1T7VljeqEefrw0q</string>
 	</dict>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>The app shares Device ID only and compares this ID with external sources, so we can match the data to be able to invite more people who love our product</string>
-    <key>NSLocationDefaultAccuracyReduced</key>
-    <true/>
 </dict>
 </plist>

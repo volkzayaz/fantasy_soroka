@@ -101,11 +101,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsQ-mh-fPl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="426.66666666666669"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Ixn-l7-1lI" appends="YES" id="jLz-yM-9zS"/>
+                                </connections>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMx-XI-343" userLabel="Invite Sheet View">
-                                <rect key="frame" x="0.0" y="358.33333333333331" width="414" height="537.66666666666674"/>
+                                <rect key="frame" x="0.0" y="426.66666666666674" width="414" height="469.33333333333326"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f7v-N5-snc">
-                                        <rect key="frame" x="26" y="139.00000000000003" width="362" height="329.66666666666674"/>
+                                        <rect key="frame" x="26" y="138.99999999999997" width="362" height="261.33333333333326"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51I-2S-E1r" userLabel="CopyLink View">
                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="56.333333333333336"/>
@@ -143,7 +151,7 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-qs-3sH" userLabel="SMS View">
-                                                <rect key="frame" x="0.0" y="68.333333333333314" width="362" height="56.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="68.333333333333371" width="362" height="56.333333333333343"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SMS" translatesAutoresizingMaskIntoConstraints="NO" id="X1c-OX-yhJ">
                                                         <rect key="frame" x="17" y="13.999999999999998" width="18" height="28.333333333333329"/>
@@ -183,7 +191,7 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMc-mx-iGk" userLabel="WhatsApp View">
-                                                <rect key="frame" x="0.0" y="136.66666666666669" width="362" height="56.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="136.66666666666674" width="362" height="56.333333333333343"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whatsapp" translatesAutoresizingMaskIntoConstraints="NO" id="jrC-Ho-f5B">
                                                         <rect key="frame" x="17" y="13.999999999999998" width="20" height="28.333333333333329"/>
@@ -222,48 +230,8 @@
                                                     <outletCollection property="gestureRecognizers" destination="5VH-jv-wd9" appends="YES" id="2P8-Cw-Ohd"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6q-49-Otn" userLabel="Messenger View">
-                                                <rect key="frame" x="0.0" y="205.00000000000006" width="362" height="56.333333333333314"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messenger" translatesAutoresizingMaskIntoConstraints="NO" id="Ms3-zq-ChJ">
-                                                        <rect key="frame" x="17" y="13.999999999999998" width="17.666666666666671" height="28.333333333333329"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messenger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alr-Rh-xbG">
-                                                        <rect key="frame" x="47.666666666666671" y="12" width="78" height="32.333333333333336"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                        <color key="textColor" red="0.28235294119999998" green="0.30588235289999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowRight" translatesAutoresizingMaskIntoConstraints="NO" id="3Yi-c0-hlb">
-                                                        <rect key="frame" x="338" y="18" width="6" height="20.333333333333329"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="6" id="hrV-t9-k20"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="3Yi-c0-hlb" firstAttribute="top" secondItem="C6q-49-Otn" secondAttribute="top" constant="18" id="BKL-hg-0Rm"/>
-                                                    <constraint firstAttribute="bottom" secondItem="3Yi-c0-hlb" secondAttribute="bottom" constant="18" id="BPn-LI-D4l"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Ms3-zq-ChJ" secondAttribute="bottom" constant="14" id="Mxz-bg-8iP"/>
-                                                    <constraint firstItem="alr-Rh-xbG" firstAttribute="leading" secondItem="Ms3-zq-ChJ" secondAttribute="trailing" constant="13" id="PT7-ga-fpi"/>
-                                                    <constraint firstItem="Ms3-zq-ChJ" firstAttribute="top" secondItem="C6q-49-Otn" secondAttribute="top" constant="14" id="TWi-Si-fV5"/>
-                                                    <constraint firstItem="Ms3-zq-ChJ" firstAttribute="leading" secondItem="C6q-49-Otn" secondAttribute="leading" constant="17" id="UkJ-Rw-c4O"/>
-                                                    <constraint firstAttribute="bottom" secondItem="alr-Rh-xbG" secondAttribute="bottom" constant="12" id="cRN-rC-Gxk"/>
-                                                    <constraint firstItem="alr-Rh-xbG" firstAttribute="top" secondItem="C6q-49-Otn" secondAttribute="top" constant="12" id="ciY-fB-m00"/>
-                                                    <constraint firstAttribute="trailing" secondItem="3Yi-c0-hlb" secondAttribute="trailing" constant="18" id="zqq-WL-2Tl"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="12"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="ggZ-BU-Bzg" appends="YES" id="Meb-ca-NTv"/>
-                                                </connections>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoT-8C-VcZ" userLabel="More View">
-                                                <rect key="frame" x="0.0" y="273.33333333333331" width="362" height="56.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="205" width="362" height="56.333333333333314"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more" translatesAutoresizingMaskIntoConstraints="NO" id="vW2-kJ-hSa">
                                                         <rect key="frame" x="17" y="13.999999999999998" width="18" height="28.333333333333329"/>
@@ -330,7 +298,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="The room will be created when other person accepts your invite" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoH-Od-xsa">
-                                        <rect key="frame" x="52" y="87" width="310" height="36"/>
+                                        <rect key="frame" x="52" y="86.999999999999943" width="310" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.30588235289999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -364,12 +332,15 @@
                         <viewLayoutGuide key="safeArea" id="vK2-D4-8cj"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jMx-XI-343" firstAttribute="height" secondItem="VZY-yk-Xgv" secondAttribute="height" multiplier="0.6" id="HqS-sN-Nub"/>
                             <constraint firstItem="jMx-XI-343" firstAttribute="leading" secondItem="VZY-yk-Xgv" secondAttribute="leading" id="Mrs-Ef-GXh"/>
                             <constraint firstItem="hWz-tt-vcS" firstAttribute="centerX" secondItem="vK2-D4-8cj" secondAttribute="centerX" id="Q5k-YQ-tNF"/>
                             <constraint firstItem="hWz-tt-vcS" firstAttribute="centerY" secondItem="vK2-D4-8cj" secondAttribute="centerY" id="QDU-hf-KyF"/>
+                            <constraint firstItem="bsQ-mh-fPl" firstAttribute="top" secondItem="VZY-yk-Xgv" secondAttribute="top" id="XOM-pK-Uov"/>
+                            <constraint firstItem="jMx-XI-343" firstAttribute="top" secondItem="bsQ-mh-fPl" secondAttribute="bottom" id="bfg-LC-op9"/>
                             <constraint firstAttribute="trailing" secondItem="jMx-XI-343" secondAttribute="trailing" id="m8G-bN-Gjr"/>
                             <constraint firstAttribute="bottom" secondItem="jMx-XI-343" secondAttribute="bottom" id="pOb-1p-URo"/>
+                            <constraint firstItem="bsQ-mh-fPl" firstAttribute="trailing" secondItem="vK2-D4-8cj" secondAttribute="trailing" id="tun-Tz-U7m"/>
+                            <constraint firstItem="bsQ-mh-fPl" firstAttribute="leading" secondItem="vK2-D4-8cj" secondAttribute="leading" id="zXg-BD-Jzz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -393,18 +364,18 @@
                         <action selector="whatsAppViewTapped:" destination="nNd-w3-DYn" id="c3Q-z0-L7R"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="ggZ-BU-Bzg">
-                    <connections>
-                        <action selector="messengerViewTapped:" destination="nNd-w3-DYn" id="vJc-zI-lKG"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <tapGestureRecognizer id="0N8-4E-4nv">
                     <connections>
                         <action selector="moreViewTapped:" destination="nNd-w3-DYn" id="tJf-JA-yya"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="Ixn-l7-1lI">
+                    <connections>
+                        <action selector="dismisssTap:" destination="nNd-w3-DYn" id="Hot-M9-Qm7"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1928" y="1485"/>
+            <point key="canvasLocation" x="1927.5362318840582" y="1484.5982142857142"/>
         </scene>
         <!--Rooms-->
         <scene sceneID="e7Z-XL-QiB">
@@ -966,6 +937,9 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ddU-nA-3gL">
                                                 <rect key="frame" x="16" y="376.33333333333331" width="382" height="251.66666666666669"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="251.66666666666669" id="Me2-eg-ukm"/>
+                                                </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="10" id="Das-gS-lRI">
                                                     <size key="itemSize" width="170" height="255"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1057,9 +1031,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="765" id="zsi-GU-Fta"/>
-                                        </constraints>
                                         <edgeInsets key="layoutMargins" top="26" left="16" bottom="9" right="16"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ME8-Oe-asF" customClass="RoomSettingsPremiumFeatureView" customModule="FantasyApp" customModuleProvider="target">
@@ -1271,7 +1242,6 @@
         <image name="copied" width="120" height="120"/>
         <image name="copy" width="13.666666984558105" height="17.333333969116211"/>
         <image name="indicator" width="10" height="14"/>
-        <image name="messenger" width="17.666666030883789" height="17"/>
         <image name="more" width="18" height="18"/>
         <image name="pinkAddDeck" width="38" height="38"/>
         <image name="whatsapp" width="20" height="20"/>

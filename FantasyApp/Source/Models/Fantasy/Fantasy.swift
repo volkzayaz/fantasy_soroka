@@ -94,6 +94,10 @@ extension Fantasy {
         
         var isIAPPurchased: Bool
         
+        var wasPurchased: Bool {
+            return isIAPPurchased || appStateSlice.currentUser!.fantasies.purchasedCollections.contains(where: { $0.id == id })
+        }
+        
         var isAvailable: Bool {
             
             if isPaid == false {

@@ -252,7 +252,8 @@ extension RoomDetailsViewController {
             vc.viewModel = .init(router: .init(owner: vc),
                                  provider: RoomsDeckProvider(room: viewModel.room.value),
                                  presentationStyle: .modal,
-                                 room: viewModel.room)
+                                 room: viewModel.room,
+                                 container: self)
             
         }
 

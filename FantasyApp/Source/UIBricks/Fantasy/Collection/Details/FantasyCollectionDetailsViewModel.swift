@@ -199,7 +199,13 @@ extension FantasyCollectionDetailsViewModel {
                     Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
                     self.reloadTrigger.onNext( () )
                     
-                    self.collectionPickedAction?(self.collection)
+                    if let x = self.collectionPickedAction {
+                        x(self.collection)
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            self.buy() ///automatically open collection
+                        }
+                    }
                     
                 }, onError: { [weak o = router.owner] error in
                     self.openOfferIfNeeded(for: .promo)
