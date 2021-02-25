@@ -73,14 +73,14 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
     }
     
     
-    lazy var sectionsTableDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, [Fantasy.Collection]>>(configureCell: { [unowned self] (_, tv, ip, category) in
+    lazy var sectionsTableDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, [Fantasy.Collection]>>(configureCell: { [weak self] (_, tv, ip, category) in
 
             let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.categoryFantasies, for: ip)!
         
             cell.decksCountLabel.text = category.count == 1 ? "deck" : "decks"
             cell.categoryName.text = category.first?.groupCategory
             cell.numberDecks.text = "\(category.count)"
-            cell.fantasyDeckViewModel = self.viewModel
+            cell.fantasyDeckViewModel = self?.viewModel
 
             cell.bindModel(x: category)
            

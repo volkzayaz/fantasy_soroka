@@ -21,7 +21,7 @@ struct ConnectionRouter : MVVM_Router {
                                             page: page)
         
         let container = FantasyNavigationController(rootViewController: vc)
-        container.modalPresentationStyle = .overFullScreen
+        container.modalPresentationStyle = .fullScreen
         
         owner.present(container, animated: true, completion: nil)
         

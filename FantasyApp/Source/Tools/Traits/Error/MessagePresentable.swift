@@ -34,6 +34,10 @@ extension MessagePresentable {
             return
         }
         
+        if ((error as NSError).domain == SKErrorDomain && (error as NSError).code == 2) {
+            return;
+        }
+        
         if case .generic(let message)? = error as? FantasyError {
             presentMessage(message)
             return
