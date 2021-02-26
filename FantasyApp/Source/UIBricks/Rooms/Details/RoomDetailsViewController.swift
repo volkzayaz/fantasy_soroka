@@ -46,8 +46,8 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
             .drive(inviteButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
-        viewModel.page.asDriver().drive(onNext: { [weak self] page in
-            self?.selectPage(page)
+        viewModel.page.asDriver().drive(onNext: { [weak self] (page, bool) in
+            self?.selectPage(page, animated: bool)
         }).disposed(by: rx.disposeBag)
                 
         viewModel.navigationEnabled
@@ -100,8 +100,8 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        selectPage(viewModel.page.value, animated: false)
         scrollView.isHidden = false
+        selectPage(viewModel.page._value.0, animated: false)
         (navigationItem.titleView as? RoomDetailsTitlePhotoView)?.startAnimating()
     }
     
@@ -133,12 +133,12 @@ extension RoomDetailsViewController {
         
         let rect = CGRect(x: scrollView.bounds.width * CGFloat(page.rawValue),
                           y: 0,
-                          width: scrollView.bounds.width,
-                          height: scrollView.bounds.height)
+                          width: max(scrollView.bounds.width, 1),
+                          height: max(scrollView.bounds.height, 1))
         // Without async it does not work properly when an invite link is opened
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             self.scrollView.scrollRectToVisible(rect, animated: animated)
-        }
+        //}
 
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
@@ -159,11 +159,11 @@ extension RoomDetailsViewController {
         view.endEditing(true)
         
         if sender == fantasiesButton {
-            viewModel.page.accept(.fantasies)
+            viewModel.page.accept((.fantasies, true))
         } else if sender == chatButton {
-            viewModel.page.accept(.chat)
+            viewModel.page.accept((.chat, true))
         } else {
-            viewModel.page.accept(.play)
+            viewModel.page.accept((.play, true))
         }
     }
     
@@ -175,7 +175,7 @@ extension RoomDetailsViewController {
             let room = viewModel.room.value
             
             let left = viewModel.page
-                .filter { $0 == .fantasies }
+                .filter { $0.0 == .fantasies }
                 .map { _ in }
             
             let right = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }

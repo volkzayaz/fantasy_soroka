@@ -35,7 +35,7 @@ extension RoomDetailsViewModel {
     var inviteButtonHidden: Driver<Bool> {
         return Driver.combineLatest(room.asDriver(), page.asDriver())
             .map { (room, page) -> Bool in
-                return page == .play || room.status == .ready || room.status == .draft
+                return page.0 == .play || room.status == .ready || room.status == .draft
             }
     }
 
@@ -54,7 +54,7 @@ class RoomDetailsViewModel: MVVM_ViewModel {
     
     let router: RoomDetailsRouter
     let room: SharedRoomResource
-    let page: BehaviorRelay<DetailsPage>
+    let page: BehaviorRelay<(DetailsPage, Bool)>
     private let buo: BranchUniversalObject?
     fileprivate let bag = DisposeBag()
     
@@ -63,7 +63,7 @@ class RoomDetailsViewModel: MVVM_ViewModel {
          page: DetailsPage) {
         self.router = router
         self.room = BehaviorRelay(value: room)
-        self.page = BehaviorRelay(value: page)
+        self.page = BehaviorRelay(value: (page, false))
 
         self.buo = room.shareLine()
         
