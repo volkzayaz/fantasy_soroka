@@ -739,7 +739,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zpg-jP-98V">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="765"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="770.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="New Room Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU7-oG-eKO">
                                                 <rect key="frame" x="16" y="26" width="382" height="32"/>
@@ -935,10 +935,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ddU-nA-3gL">
-                                                <rect key="frame" x="16" y="376.33333333333331" width="382" height="251.66666666666669"/>
+                                                <rect key="frame" x="16" y="376.33333333333331" width="382" height="256.99999999999994"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="251.66666666666669" id="Me2-eg-ukm"/>
+                                                    <constraint firstAttribute="height" constant="257" id="Me2-eg-ukm"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="10" id="Das-gS-lRI">
                                                     <size key="itemSize" width="170" height="255"/>
@@ -948,7 +948,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddDeckCell" id="FpA-ba-UvE" customClass="AddDeckCollectionViewCell" customModule="FantasyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="-1.6666666666666667" width="170" height="255"/>
+                                                        <rect key="frame" x="0.0" y="1" width="170" height="255"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ued-e3-sdd">
                                                             <rect key="frame" x="0.0" y="0.0" width="170" height="255"/>
@@ -993,7 +993,7 @@
                                                 </cells>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fd5-TG-kd4">
-                                                <rect key="frame" x="16" y="638" width="382" height="54"/>
+                                                <rect key="frame" x="16" y="643.33333333333337" width="382" height="54"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indicator" translatesAutoresizingMaskIntoConstraints="NO" id="olp-Na-e4j">
                                                         <rect key="frame" x="356" y="20" width="10" height="14"/>
@@ -1020,7 +1020,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4h-zc-gOb">
-                                                <rect key="frame" x="16" y="702" width="382" height="54"/>
+                                                <rect key="frame" x="16" y="707.33333333333337" width="382" height="54"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="VNe-5t-gaQ"/>
