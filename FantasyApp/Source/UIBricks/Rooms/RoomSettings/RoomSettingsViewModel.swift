@@ -38,8 +38,29 @@ extension RoomSettingsViewModel {
         }
     }
     
+    var deckDataSource: Driver<[DeckCellModel]> {
+        
+        return room.distinctUntilChanged { $0.settings.sharedCollections }
+            .flatMapLatest { room -> Single<[DeckCellModel]> in
+                
+                guard room.settings.sharedCollections.count > 0 else { return .just([]) }
+                    
+                return RoomsSharedCollectionsResource(room: room).rx.request
+                    .map { $0.settings.sharedCollectionsData.map(DeckCellModel.deck) }
+                
+            }
+            .map { [.add] + $0 }
+            .asDriver(onErrorJustReturn: [])
+        
+    }
+    
     var intiteLinkHidden: Driver<Bool> {
         return inviteLink.asDriver().map { $0 == nil }
+    }
+    
+    var isEmptyRoom: Driver<Bool> {
+        return room.asDriver()
+        .map { $0.status == .empty }
     }
     
     var destructiveButtonTitle: Driver<String?> {
@@ -47,7 +68,7 @@ extension RoomSettingsViewModel {
         return room.asDriver()
             .map { room in
                 
-                if room.isDraftRoom {
+                if room.status != .ready {
                     return nil
                 }
 
@@ -63,7 +84,7 @@ extension RoomSettingsViewModel {
         return room.asDriver()
             .map { room in
                 
-                let isNewRoom = room.isDraftRoom
+                let isNewRoom = room.status != .ready
                 
                 return isNewRoom ?
                     R.string.localizable.roomsAddNewRoom() :
@@ -87,43 +108,27 @@ class RoomSettingsViewModel: MVVM_ViewModel {
         self.router = router
         self.room = room
         
-        let maybeLink = room.value.participants.first(where: { participant in
-            participant.status == .invited && participant.invitationLink != nil
-        })?.invitationLink
-        
-        if let invitationLink = maybeLink {
-        
-            self.buo = BranchUniversalObject(canonicalIdentifier: "room/\(room.value.id)")
-            buo?.title = R.string.localizable.roomBranchObjectTitle()
-            buo?.contentDescription = R.string.localizable.roomBranchObjectDescription()
-            buo?.publiclyIndex = true
-            buo?.locallyIndex = true
-            buo?.contentMetadata.customMetadata["inviteToken"] = invitationLink
-            buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
-                i.accept(url)
-            }
-            
-        }
-        else {
-            buo = nil
+        self.buo = room.value.shareLine()
+        buo?.getShortUrl(with: BranchLinkProperties()) { [unowned i = inviteLink] (url, error) in
+            i.accept(url)
         }
         
         cells = BehaviorRelay(value: room.value.participants.enumerated()
-                                        .map { (i, x) -> CellModel in
-                                            
-                                            guard let _ = x.userId else {
-                                                return .invite
-                                            }
-                                            
-                                            return .user(isAdmin: x.userId == room.value.ownerId,
-                                                         participant: x)
-        })
-        
+                                .map { (i, x) -> CellModel in
+                                    
+                                    guard let userSlice = x.userSlice else {
+                                        return .invite
+                                    }
+                                    
+                                    return .user(isAdmin: userSlice.id == room.value.ownerId,
+                                                 participant: userSlice,
+                                                 status: x.status)
+                                    
+                                })
         
         indicator.asDriver().drive(onNext: { [weak h = router.owner] (loading) in
             h?.setLoadingStatus(loading)
         }).disposed(by: bag)
-        
     }
     
     let router: RoomSettingsRouter
@@ -131,14 +136,14 @@ class RoomSettingsViewModel: MVVM_ViewModel {
     fileprivate let bag = DisposeBag()
     
     enum CellModel: IdentifiableType, Equatable {
-        case user(isAdmin: Bool, participant: Room.Participant)
+        case user(isAdmin: Bool, participant: Room.Participant.UserSlice, status: Room.Participant.Status)
         case invite
         case waiting
-
+        
         var identity: String {
             switch self {
-                
-            case .user(_, let participant):
+            
+            case .user(_, let participant, _):
                 return participant.identity
                 
             case .invite: return "invite"
@@ -146,6 +151,13 @@ class RoomSettingsViewModel: MVVM_ViewModel {
                 
             }
         }
+    }
+    
+    enum DeckCellModel: Equatable {
+        
+        case add
+        case deck(Fantasy.Collection)
+       
     }
 }
 
@@ -155,12 +167,8 @@ extension RoomSettingsViewModel {
         
         Analytics.report(Analytics.Event.DraftRoomShared(type: type))
         
-        buo?.showShareSheet(with: BranchLinkProperties(),
-                            andShareText: R.string.localizable.roomBranchObjectDescription(),
-                            from: router.owner) { (activityType, completed) in
-
-        }
-     
+        router.showInviteSheet(room: room)
+        
         swapToWaiting()
     }
     
@@ -209,12 +217,13 @@ extension RoomSettingsViewModel {
         router.showNotificationSettings(for: room.value)
     }
     
-    func showParticipant(participant: Room.Participant) {
+    func showParticipant(participant: Room.Participant.UserSlice) {
         
-        UserManager.getUserProfile(id: participant.userSlice.id)
+        UserManager.getUserProfile(id: participant.id)
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] (user) in
+                
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
@@ -234,4 +243,51 @@ extension RoomSettingsViewModel {
             .disposed(by: bag)
         
     }
+    
+    func addCollection() {
+        
+        router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned self, unowned r = room] (collection) in
+            
+            var x = r.value
+            x.settings.sharedCollections.insert(collection.id, at: 0)
+            
+            RoomManager.updateRoomSharedCollections(room: x)
+                .silentCatch(handler: self.router.owner)
+                .trackView(viewIndicator: self.indicator)
+                .subscribe(onNext: { room in
+                    r.accept(room)
+                    Dispatcher.dispatch(action: UpdateRoom(room: room))
+                })
+                .disposed(by: bag)
+            
+        }
+        
+    }
+    
+    func remove(collection: Fantasy.Collection) {
+        var x = room.value
+        x.settings.sharedCollections.removeAll { $0 == collection.id }
+        
+        RoomManager.updateRoomSharedCollections(room: x)
+            .silentCatch(handler: self.router.owner)
+            .trackView(viewIndicator: self.indicator)
+            .subscribe(onNext: { [unowned r = room] room in
+                r.accept(room)
+                Dispatcher.dispatch(action: UpdateRoom(room: room))
+            })
+            .disposed(by: bag)
+        
+    }
+    
+    func deckOptionsPressed(collection: Fantasy.Collection) {
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action: UIAlertAction) in
+            self.remove(collection: collection)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        router.owner.showDialog(title: nil, text: nil, style: .actionSheet, actions: [deleteAction, cancelAction])
+    }
 }
+

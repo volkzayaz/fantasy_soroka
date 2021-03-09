@@ -24,7 +24,7 @@ class FantasyCollectionViewController: UIViewController, MVVM_View {
                                                  for: ip)!
         
         cell.textLabel?.text = x.title
-        cell.detailTextLabel?.text = R.string.localizable.fantasyListCardsInfo(x.cardsCount, "\(x.isPurchased)")
+        cell.detailTextLabel?.text = R.string.localizable.fantasyListCardsInfo(x.cardsCount, "\(x.isAvailable)")
         
         return cell
         

@@ -23,6 +23,8 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
 
     lazy var viewModel: FantasyDeckViewModel! = .init(router: .init(owner: self))
 
+    @IBOutlet weak var tableView: UITableView!
+
     private var tutorialView: FantasyDeckTutorialView?
     @IBOutlet weak var mutualCardContainer: UIView! {
         didSet {
@@ -40,18 +42,21 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             fantasiesView.isHidden = true
         }
     }
+    
+    @IBOutlet weak var addImageView: UIImageView!
+    @IBOutlet weak var addDeckView: UIView!
 
     @IBOutlet weak var waitingView: UIView! {
         didSet { waitingView.isHidden = true }
     }
 
     @IBOutlet weak var cardsView: UIView!
-    @IBOutlet weak var collectionsView: UIView!
     
     @IBOutlet weak var timeLimitDecsriptionLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
     @IBOutlet weak var subsbcriptionLabel: UILabel!
     @IBOutlet weak var subscribeButton: SecondaryButton!
+    @IBOutlet weak var unlockAllDecksButton: SecondaryButton!
     @IBOutlet weak var cardsButton: PrimaryButton! {
         didSet {
             cardsButton.useTransparency = false
@@ -66,35 +71,29 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             collectionsButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
-    @IBOutlet weak var collectionsCountLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.register(R.nib.fantasyCollectionCollectionViewCell)
-        }
-    }
-    lazy var emptyView: EmptyView! = collectionView.addEmptyView()
+    
+    
+    lazy var sectionsTableDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, [Fantasy.Collection]>>(configureCell: { [weak self] (_, tv, ip, category) in
 
-    lazy var collectionsDataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, Fantasy.Collection>>(
-        configureCell: { [unowned self] (_, tableView, indexPath, model) in
-            let cell = self.collectionView
-                .dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.fantasyCollectionCollectionViewCell,
-                                     for: indexPath)!
+            let cell = tv.dequeueReusableCell(withIdentifier: R.reuseIdentifier.categoryFantasies, for: ip)!
+        
+            cell.decksCountLabel.text = category.count == 1 ? "deck" : "decks"
+            cell.categoryName.text = category.first?.groupCategory
+            cell.numberDecks.text = "\(category.count)"
+            cell.fantasyDeckViewModel = self?.viewModel
 
-            cell.model = model
-            cell.set(imageURL: model.imageURL)
-            cell.title = model.title
-            cell.isPurchased = model.isPurchased
-            
+            cell.bindModel(x: category)
+           
             return cell
-        }
-    )
+    })
+    
 
     ///TODO: refactor to RxColodaDatasource
     private var cardsProxy: [Fantasy.Card] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         viewModel.mode.drive(onNext: { [unowned self] mode in
             self.waitingView.isHidden = mode == .swipeCards
             self.fantasiesView.isHidden = mode == .waiting
@@ -104,9 +103,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             .drive(timeLeftLabel.rx.attributedText)
             .disposed(by: rx.disposeBag)
         
-        viewModel.collectionsCountText
-            .drive(collectionsCountLabel.rx.attributedText)
-            .disposed(by: rx.disposeBag)
         
         viewModel.cards.drive(onNext: { [unowned self] (newState) in
             let from = self.fantasiesView.currentCardIndex
@@ -144,23 +140,6 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             }
         }).disposed(by: rx.disposeBag)
 
-        viewModel.collectionsDataSource
-            .drive(collectionView.rx.items(dataSource: collectionsDataSource))
-            .disposed(by: rx.disposeBag)
-
-        collectionView.rx.modelSelected(Fantasy.Collection.self)
-            .subscribe(onNext: { [unowned self] (x) in
-                self.viewModel.show(collection: x)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let margin: CGFloat = 10.0
-        let width = (collectionView.frame.size.width - margin) / 2.0
-        layout.itemSize = CGSize(width: width,
-                                 height: width / Fantasy.LayoutConstants.cardAspectRatio)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10.0
 
         // tutorial
         viewModel.showTutorial
@@ -189,54 +168,77 @@ class FantasyDeckViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
         
-        viewModel.subscribeButtonHidden
-            .drive(subscribeButton.rx.isHidden)
+        viewModel.sortedFantasies
+            .map { $0.map { SectionModel(model: "", items: [$0]) } }
+            .drive(tableView.rx.items(dataSource: sectionsTableDataSource))
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.unlockAllDecksButtonHidden
+            .drive(unlockAllDecksButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
         viewModel.subscribeButtonHidden
-            .drive(subsbcriptionLabel.rx.isHidden)
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.collectionsDataSource
-            .map { $0.first!.items.count == 0 }
-            .do(onNext: { [unowned self] (x) in
-                self.collectionsCountLabel.isHidden = x
+            .drive(onNext: { [unowned self] x in
+                subscribeButton.isHidden = x
+                subsbcriptionLabel.isHidden = x
             })
-            .drive(emptyView.rx.isEmpty)
             .disposed(by: rx.disposeBag)
         
-        Driver.just(R.image.collectionPlaceholder()!)
-            .map { image in
-                return UIImageView(image: image)
-            }
-            .drive(emptyView.rx.emptyView)
-            .disposed(by: rx.disposeBag)
+        viewModel.isPlayRoomPage.drive(onNext: { [unowned self] x in
+            tableView.isHidden = x
+        }).disposed(by: rx.disposeBag)
+        
+        
         
         configureStyling()
 
         if viewModel.presentationStyle == .modal {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.cardDetailsBack()!, style: .plain, target: self, action: #selector(dismissModal))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissModal))
+            title = "Select Deck"
+            tableView.cornerRadius = 22
+            tableView.layer.maskedCorners =  [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         }
 
-        if let room = viewModel.room {
+        if let room = viewModel.room?.value {
 
+            let rightDriver: Driver<UIImage?>
+            if let x = room.peer.userSlice?.avatarURL {
+                rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
+                    .map { $0 ?? R.image.noPhoto() }
+            }
+            else {
+                rightDriver = .just(R.image.plus())
+            }
+            
             Driver.combineLatest(
-                ImageRetreiver.imageForURLWithoutProgress(url: room.me.userSlice.avatarURL)
+                ImageRetreiver.imageForURLWithoutProgress(url: room.me.avatarURL)
                     .map { $0 ?? R.image.noPhoto() },
-                ImageRetreiver.imageForURLWithoutProgress(url: room.peer.userSlice.avatarURL)
-                    .map { $0 ?? R.image.noPhoto() })
+                rightDriver)
                 .drive(onNext: { [unowned self] (images) in
-
                     let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
+                    
+                    if images.1 == R.image.plus() {
+                        viewModel.emptyPeerPressed
+                            .asDriver()
+                            .drive(onNext: { x in
+                                v.rightImageView.image = x ? R.image.roomLoader() : images.1
+                                if x { v.startAnimating() }
+                                else { v.stopAnimating() }
+                                
+                            }).disposed(by: rx.disposeBag)
+                        
+                    } else {
+                        v.rightImageView.image = images.1
+                    }
+                    
                     v.leftImageView.image = images.0
-                    v.rightImageView.image = images.1
                     v.delegate = self
                     self.navigationItem.titleView = v
 
                 }).disposed(by: rx.disposeBag)
         }
     }
-    
+
 }
 
 extension FantasyDeckViewController {
@@ -245,6 +247,17 @@ extension FantasyDeckViewController {
 
     @objc func dismissModal() {
         navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapAddDeckImage(_ sender: Any) {
+        if fantasiesView.isRunOutOfCards {
+            viewModel.addCollection()
+        }
+        
+    }
+    
+    @IBAction func unlockAllDecksTapped(_ sender: Any) {
+        viewModel.subscribeTapped()
     }
 
     @IBAction func subscribeTapped(_ sender: Any) {
@@ -255,42 +268,34 @@ extension FantasyDeckViewController {
         collectionsButton.isSelected = false
         cardsButton.isSelected = true
         cardsView.isHidden = false
-        collectionsView.isHidden = true
+        
 
         tutorialView?.isHidden = false
     }
 
     @IBAction func collectionsTapped() {
-        collectionsButton.isSelected = true
-        cardsButton.isSelected = false
+//        collectionsButton.isSelected = true
+//        cardsButton.isSelected = false
         cardsView.isHidden = true
-        collectionsView.isHidden = false
+       
 
         tutorialView?.isHidden = true
     }
 
     // MARK: - Configuration
-    func configureCollectionViewLayout() {
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let margin: CGFloat = 10.0
-        let width = (collectionView.frame.size.width - margin) / 2.0
-        layout.itemSize = CGSize(width: width,
-                                 height: width / Fantasy.LayoutConstants.cardAspectRatio)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 10.0
-    }
-
     func configureStyling() {
         navigationItem.title = R.string.localizable.fantasyDeckTitle()
         
-        view.addFantasyGradient()
-
-        collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
-        collectionsButton.mode = .selector
-        collectionsButton.isSelected = false
-        cardsButton.setTitle(R.string.localizable.fantasyDeckCardsButton(), for: .normal)
-        cardsButton.mode = .selector
-        cardsButton.isSelected = true
+        if viewModel.room == nil {
+            view.addFantasyGradient()
+        }
+        
+//        collectionsButton.setTitle(R.string.localizable.fantasyDeckCollectionsButton(), for: .normal)
+//        collectionsButton.mode = .selector
+//        collectionsButton.isSelected = false
+//        cardsButton.setTitle(R.string.localizable.fantasyDeckCardsButton(), for: .normal)
+//        cardsButton.mode = .selector
+//        cardsButton.isSelected = true
 
         waitingView.addFantasyRoundedCorners()
         waitingView.backgroundColor = .primary
@@ -299,8 +304,7 @@ extension FantasyDeckViewController {
         timeLeftLabel.numberOfLines = 0
         timeLeftLabel.textColor = .fantasyBlack
 
-        collectionsCountLabel.font = .boldFont(ofSize: 15)
-        collectionsCountLabel.textColor = .fantasyBlack
+      
 
         timeLimitDecsriptionLabel.text = R.string.localizable.fantasyDeckTimeLimitDescription()
         timeLimitDecsriptionLabel.font = .boldFont(ofSize: 18)

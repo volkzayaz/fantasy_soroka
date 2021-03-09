@@ -10,163 +10,149 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SubscriptionViewController: UITableViewController, MVVM_View {
+class SubscriptionViewController: UIViewController, MVVM_View {
     
     var viewModel: SubscriptionViewModel!
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet private weak var featuresCollectionView: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl! {
+        didSet {
+            pageControl.numberOfPages = SubscriptionViewModel.Page.allCases.count
+        }
+    }
+    
+    @IBOutlet weak var plansStackView: UIStackView!
+    @IBOutlet weak var seeOtherPlansButton: UIButton!
     @IBOutlet weak var subscribeButton: SecondaryButton!
     @IBOutlet weak var roundedView: UIView!
     
-    @IBOutlet weak var pricaeLabel: UILabel!
-    
-    var offers: [SubscriptionOffer] = []
-    
     var selectedIndex: Int = 1
-    
-    @IBOutlet weak var mostPopularView: UIView!
-    
-    @IBOutlet weak var offferView1: UIView!
-    @IBOutlet weak var priceLabel1: UILabel!
-    @IBOutlet weak var durationLabel1: UILabel!
-    @IBOutlet weak var dailyCharge1: UILabel!
-    @IBOutlet weak var savePercent1: UILabel!
-    
+
     @IBAction func tryOffer1(_ sender: Any) {
         selectedIndex = 0
-        selectView(view: offferView1, label: priceLabel1)
+        selectView(view: plansStackView.arrangedSubviews[0])
     }
-    
-    @IBOutlet weak var offerView2: UIView!
-    @IBOutlet weak var priceLabel2: UILabel!
-    @IBOutlet weak var durationLabel2: UILabel!
-    @IBOutlet weak var dailyCharge2: UILabel!
-    @IBOutlet weak var savePercent2: UILabel!
     
     @IBAction func tapOffer2(_ sender: Any) {
         selectedIndex = 1
-        selectView(view: offerView2, label: priceLabel2)
+        selectView(view: plansStackView.arrangedSubviews[1])
     }
-    
-    @IBOutlet weak var offerView3: UIView!
-    @IBOutlet weak var priceLabel3: UILabel!
-    @IBOutlet weak var durationLabel3: UILabel!
-    @IBOutlet weak var dailyCharge3: UILabel!
-    @IBOutlet weak var savePercent3: UILabel!
-    
-    @IBAction func tapOffer3(_ sender: Any) {
-        //viewModel.subscribe(offer: offers[2])
-        selectedIndex = 2
-        selectView(view: offerView3, label: priceLabel3)
-    }
-    
-    func selectView(view: UIView, label: UILabel) {
-        
-        [offferView1, offerView2, offerView3].forEach { (x: UIView?) in x?.layer.borderColor = UIColor.clear.cgColor
-        }
 
-        [priceLabel1, priceLabel2, priceLabel3].forEach { (x: UILabel?) in x?.textColor = R.color.textBlackColor()
+    @IBAction func tapOffer3(_ sender: Any) {
+        selectedIndex = 2
+        selectView(view: plansStackView.arrangedSubviews[2])
+    }
+    
+    func selectView(view: UIView) {
+        plansStackView.arrangedSubviews.forEach { (x: UIView?) in x?.layer.borderColor = UIColor.clear.cgColor
         }
         
         view.layer.borderColor = R.color.textPinkColor()!.cgColor
         view.layer.borderWidth = 1
-        label.textColor = R.color.textPinkColor()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = R.string.localizable.subscriptionNavigationTitle()
+        navigationItem.title = viewModel.screenTitle
         
-        roundedView.addFantasyRoundedCorners()
+        view.addFantasyRoundedCorners()
         navigationController?.view.addFantasySubscriptionGradient()
     
         edgesForExtendedLayout = []
-     
-        [priceLabel1,
-         durationLabel1,
-         dailyCharge1,
-         savePercent1,
-         priceLabel2,
-         durationLabel2,
-         dailyCharge2,
-         savePercent2,
-         priceLabel3,
-         durationLabel3,
-         dailyCharge3,
-         savePercent3]
-            .forEach { $0?.text = "" }
         
-        viewModel.offers.drive(onNext: { [unowned self] x in
-            
-            guard x.count > 0 else {
-                return
-            }
-            
-            self.offers = x
-            
-            self.priceLabel1.text = x[0].plan.price
-            self.durationLabel1.text = x[0].plan.duration
-            self.dailyCharge1.text = x[0].plan.dailyCharge
-            self.savePercent1.text = x[0].discount
-            
-            self.priceLabel2.text = x[1].plan.price
-            self.durationLabel2.text = x[1].plan.duration
-            self.dailyCharge2.text = x[1].plan.dailyCharge
-            self.savePercent2.text = x[1].discount
-            
-            self.priceLabel3.text = x[2].plan.price
-            self.durationLabel3.text = x[2].plan.duration
-            self.dailyCharge3.text = x[2].plan.dailyCharge
-            self.savePercent3.text = x[2].discount
-            
-        })
+        let layout = featuresCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: featuresCollectionView.bounds.height)
+        
+        viewModel.plans.withLatestFrom(viewModel.showAllPlans) { ($0, $1) }
+            .drive(onNext: { [unowned self] plans, showAllPlans in
+                self.plansStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+                plans.enumerated().map { index, plan -> UIView in
+                    let result = subscriptionPlanView(index: index, plan: plan)
+                    result.isHidden = index != 0 && !showAllPlans
+                    return result
+                }.forEach { self.plansStackView.addArrangedSubview($0) }
+            }).disposed(by: rx.disposeBag)
+        
+        Driver.combineLatest(viewModel.plans, viewModel.showAllPlans)
+            .map { $0.count < 2 || $1 }
+            .drive(seeOtherPlansButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
+
+        viewModel.showAllPlans
+            .drive(onNext: { [unowned self] showAllPlans in
+                guard self.plansStackView.arrangedSubviews.count > 1 else { return }
+                self.plansStackView.arrangedSubviews.suffix(from: 1)
+                    .forEach { $0.isHidden = !showAllPlans }
+            }).disposed(by: rx.disposeBag)
         
-        selectView(view: offerView2, label: priceLabel2)
-        
-        mostPopularView.backgroundColor = .clear;
-        mostPopularView.addFantasySubscriptionGradient(radius: true)
-        
+        subscribeButton.isHidden = true
     }
     
-    var once = false
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if once { return }
-        once = true
-        
-        scrollView.setContentOffset(.init(x: scrollView.bounds.size.width * CGFloat(viewModel.startPage.rawValue),
-                                          y: 0),
-                                    animated: false)
         pageControl.currentPage = viewModel.startPage.rawValue
+        DispatchQueue.main.async {
+            self.featuresCollectionView.scrollToItem(at: IndexPath(item: self.viewModel.startPage.rawValue, section: 0), at: .centeredHorizontally, animated: false)
+        }
+    }
+    
+    @IBAction func seeOtherPlans(_ sender: Any) {
+        viewModel.seeOtherPlans()
     }
     
     @IBAction func subscribe(_ sender: Any) {
-        viewModel.subscribe(offer: offers[selectedIndex])
+        viewModel.subscribe(planIndex: selectedIndex)
     }
     
     @IBAction func cancel(_ sender: Any) {
-        
+        viewModel.willCancel()
         NotificationCenter.default.post(name: NSNotification.Name("screenCancel"), object: nil)
-        
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
-extension SubscriptionViewController {
+private extension SubscriptionViewController {
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        guard scrollView == self.scrollView else { return }
-        
-        let x = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        
-        pageControl.currentPage = min(3, x)
-        
+    func subscriptionPlanView(index: Int, plan: SubscriptionPlan) -> UIView {
+        switch (viewModel.style, index) {
+        case (.style1, _):
+            return SubscriptionPlanStyle1View(plan: plan) { [weak self] in
+                self?.viewModel.subscribe(planIndex: index)
+            }
+        case (.style2, 0):
+            return PrimarySubscriptionPlanStyle2View(plan: plan) { [weak self] in
+                self?.viewModel.subscribe(planIndex: index)
+            }
+        case (.style2, _):
+            return SubscriptionPlanStyle2View(plan: plan) { [weak self] in
+                self?.viewModel.subscribe(planIndex: index)
+            }
+        }
+    }
+}
+
+extension SubscriptionViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentPoint = CGPoint(x: featuresCollectionView.contentOffset.x + featuresCollectionView.frame.width / 2, y:  featuresCollectionView.frame.height / 2)
+        if let item = featuresCollectionView.indexPathForItem(at: contentPoint)?.item {
+            pageControl.currentPage = item
+        }
+    }
+}
+
+extension SubscriptionViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        SubscriptionViewModel.Page.allCases.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let featureCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.featureCell, for: indexPath)
+        featureCell?.setUp(page: SubscriptionViewModel.Page.allCases[indexPath.item])
+        
+        return featureCell ?? SubscriptionFeatureCollectionViewCell()
+    }
 }

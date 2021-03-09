@@ -46,8 +46,8 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showDialog(title: String,
-                    text: String,
+    func showDialog(title: String?,
+                    text: String?,
                     style: UIAlertController.Style = .alert,
                     actions: [UIAlertAction]) {
         let alertController = UIAlertController(title: title,

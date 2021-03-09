@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 struct RoomsRouter: MVVM_Router {
 
@@ -15,24 +16,15 @@ struct RoomsRouter: MVVM_Router {
         self.owner = owner
     }
 
-    func roomTapped(_ room: Room) {
+    func open(_ room: Room, page: RoomDetailsViewModel.DetailsPage) {
         let vc = R.storyboard.rooms.roomDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
                              room: room,
-                             page: .chat)
-        
-//        let vc = ChatViewController(tableViewStyle: .plain)!
-//        vc.viewModel = ChatViewModel(router: .init(owner: vc), room: SharedRoomResource(value: room))
-        
-        owner.navigationController?.pushViewController(vc, animated: true)
-    }
-
-    func showRoomSettings(_ room: Room) {
-        
-        let vc = R.storyboard.rooms.roomSettingsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), room: SharedRoomResource(value: room))
-        
+                             page: page)
+     
         let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
+        
         owner.present(container, animated: true, completion: nil)
         
     }
@@ -46,7 +38,7 @@ struct RoomsRouter: MVVM_Router {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .unlimRooms)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .unlimitedRooms, purchaseInterestContext: .unlimitedRooms)
         
         owner.present(nav, animated: true, completion: nil)
         

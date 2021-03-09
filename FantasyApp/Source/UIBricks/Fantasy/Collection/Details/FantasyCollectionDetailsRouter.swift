@@ -42,6 +42,29 @@ struct FantasyCollectionDetailsRouter : MVVM_Router {
         owner.present(nav, animated: true, completion: nil)
     }
     
+    func showRoom(_ room: Room) {
+        let vc = R.storyboard.rooms.roomDetailsViewController()!
+        vc.viewModel = .init(router: .init(owner: vc),
+                             room: room,
+                             page: .play)
+        
+        let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
+    }
+    
+    func showSubscription(completion: @escaping () -> Void) {
+        
+        let nav = R.storyboard.subscription.instantiateInitialViewController()!
+        nav.modalPresentationStyle = .overFullScreen
+        let vc = nav.viewControllers.first! as! SubscriptionViewController
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .accessToAllDecks, purchaseInterestContext: .accessToAllDecks, completion: completion)
+        
+        owner.present(nav, animated: true, completion: nil)
+        
+    }
+    
     func presentDeckLimitedOffer(
         offerType: DeckLimitedOfferViewModel.OfferType,
         collection: Fantasy.Collection,

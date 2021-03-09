@@ -22,7 +22,7 @@ struct FantasyDetailsRouter : MVVM_Router {
     func show(collection: Fantasy.Collection, context: Analytics.Event.CollectionViewed.NavigationContext) {
         
         let vc = R.storyboard.fantasyCard.fantasyCollectionDetailsViewController()!
-        vc.viewModel = .init(router: .init(owner: vc), collection: collection, context: context)
+        vc.viewModel = .init(router: .init(owner: vc), collection: collection, collectionPickedAction: nil, context: context)
         let container = FantasyNavigationController(rootViewController: vc)
         container.modalPresentationStyle = .overFullScreen
         

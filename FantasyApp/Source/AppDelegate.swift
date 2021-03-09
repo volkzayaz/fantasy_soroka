@@ -11,7 +11,7 @@ import Branch
 
 import FBSDKLoginKit
 import FBSDKCoreKit
-
+///hello
 import SwiftyStoreKit
 
 @UIApplicationMain
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let appLaunchedKey = "app_launched_at_least_once"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
+                
         SwiftyStoreKit.shouldAddStorePaymentHandler = { _, _ in
             return true
         }
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Analytics.setUserProps(props: ["Profile Status: Type": "Incomplete Sign-Up"])
             true.store(for: self.appLaunchedKey)
         }
-        
+    
         return true
     }
     

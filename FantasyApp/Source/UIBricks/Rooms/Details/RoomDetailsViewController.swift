@@ -12,7 +12,7 @@ import RxCocoa
 
 class RoomDetailsViewController: UIViewController, MVVM_View {
     var viewModel: RoomDetailsViewModel!
-
+    
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var fantasiesButton: PrimaryButton! {
         didSet {
@@ -31,15 +31,23 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
     }
     @IBOutlet private var chatContainerView: UIView!
     @IBOutlet private var commonFantasiesContainerView: UIView!
+    @IBOutlet private var playContainerView: UIView!
+    @IBOutlet weak var inviteButton: SecondaryButton! {
+        didSet { inviteButton.setTitle(R.string.localizable.roomsAddNewRoom(), for: .normal) }
+    }
     
     private var gradientLayer = CAGradientLayer()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-
-        viewModel.page.asDriver().drive(onNext: { [weak self] page in
-            self?.selectPage(page)
+        
+        viewModel.inviteButtonHidden
+            .drive(inviteButton.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.page.asDriver().drive(onNext: { [weak self] (page, bool) in
+            self?.selectPage(page, animated: bool)
         }).disposed(by: rx.disposeBag)
                 
         viewModel.navigationEnabled
@@ -52,32 +60,51 @@ class RoomDetailsViewController: UIViewController, MVVM_View {
             })
             .disposed(by: rx.disposeBag)
 
-
-        Driver.combineLatest(
-        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.me.userSlice.avatarURL)
-            .map { $0 ?? R.image.noPhoto() },
-        ImageRetreiver.imageForURLWithoutProgress(url: viewModel.room.value.peer.userSlice.avatarURL)
-            .map { $0 ?? R.image.noPhoto() })
+        viewModel.room
+            .asDriver()
+            .distinctUntilChanged(\.participants)
+            .flatMapLatest { room -> Driver<(UIImage?, UIImage?)> in
+        
+                let rightDriver: Driver<UIImage?>
+                if let x = room.peer.userSlice?.avatarURL {
+                    rightDriver = ImageRetreiver.imageForURLWithoutProgress(url: x)
+                        .map { $0 ?? R.image.noPhoto() }
+                }
+                else {
+                    rightDriver = .just(R.image.plus())
+                }
+                
+                return Driver.combineLatest(
+                ImageRetreiver.imageForURLWithoutProgress(url: room.me.avatarURL)
+                    .map { $0 ?? R.image.noPhoto() },
+                    rightDriver)
+                
+            }
             .drive(onNext: { [unowned self] (images) in
-
+                
                 let v = R.nib.roomDetailsTitlePhotoView(owner: self)!
-                v.leftImageView.image = images.0                
+                
+                v.leftImageView.image = images.0
                 v.rightImageView.image = images.1
                 v.delegate = self
                 self.navigationItem.titleView = v
-
+                
             }).disposed(by: rx.disposeBag)
-
-
-
+        
+        navigationItem.leftBarButtonItem = .init(image: R.image.back()!, style: .plain, target: self, action: #selector(_dismiss))
     }
-
+    
+    @objc func _dismiss() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        selectPage(viewModel.page.value, animated: false)
         scrollView.isHidden = false
+        selectPage(viewModel.page._value.0, animated: false)
+        (navigationItem.titleView as? RoomDetailsTitlePhotoView)?.startAnimating()
     }
-
+    
 }
 
 extension RoomDetailsViewController {
@@ -89,34 +116,40 @@ extension RoomDetailsViewController {
         
         chatButton.setTitle(R.string.localizable.roomDetailsChat(), for: .normal)
         chatButton.mode = .selector
-        playButton.setTitle(R.string.localizable.roomDetailsPlay(), for: .normal)
+        playButton.setTitle("Play", for: .normal)
         playButton.mode = .selector
         fantasiesButton.setTitle(R.string.localizable.roomDetailsFantasies(), for: .normal)
         fantasiesButton.mode = .selector
-
+        
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.gradient3.cgColor,
                                 UIColor.gradient2.cgColor,
                                 UIColor.gradient1.cgColor]
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        view.addFantasyGradient()
     }
-
+    
     func selectPage(_ page: RoomDetailsViewModel.DetailsPage, animated: Bool = true) {
         
         let rect = CGRect(x: scrollView.bounds.width * CGFloat(page.rawValue),
                           y: 0,
-                          width: scrollView.bounds.width,
-                          height: scrollView.bounds.height)
+                          width: max(scrollView.bounds.width, 1),
+                          height: max(scrollView.bounds.height, 1))
         // Without async it does not work properly when an invite link is opened
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             self.scrollView.scrollRectToVisible(rect, animated: animated)
-        }
+        //}
 
         chatButton.isSelected = page == .chat
         fantasiesButton.isSelected = page == .fantasies
+        playButton.isSelected = page == .play
         
     }
-
+    
+    @IBAction func inviteButtonTapped(_ sender: Any) {
+        viewModel.inviteButtonTapped()
+    }
+    
     @objc func showActions() {
         viewModel.showSettins()
     }
@@ -126,13 +159,11 @@ extension RoomDetailsViewController {
         view.endEditing(true)
         
         if sender == fantasiesButton {
-            viewModel.page.accept(.fantasies)
+            viewModel.page.accept((.fantasies, true))
         } else if sender == chatButton {
-            viewModel.page.accept(.chat)
+            viewModel.page.accept((.chat, true))
         } else {
-            
-            viewModel.showPlay()
-            
+            viewModel.page.accept((.play, true))
         }
     }
     
@@ -144,8 +175,8 @@ extension RoomDetailsViewController {
             let room = viewModel.room.value
             
             let left = viewModel.page
-            .filter { $0 == .fantasies }
-            .map { _ in }
+                .filter { $0.0 == .fantasies }
+                .map { _ in }
             
             let right = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
             
@@ -165,9 +196,12 @@ extension RoomDetailsViewController {
                                                 },
                                                 titleProvider: { count in
                                                     
-                                                    let text: String
+                                                    
+                                                    var text: String
                                                     if count == 0 {
+                                                        
                                                         text = R.string.localizable.roomDetailsSwipeTitle()
+                                                        
                                                     }
                                                     else if count == 1 {
                                                         text = R.string.localizable.roomDetailsOneMutualCard()
@@ -199,10 +233,12 @@ extension RoomDetailsViewController {
                                                     return att
                                                     
                                                 },
+                                                roomDetailsVM: viewModel,
                                                 protectPolicy: User.changesOfSubscriptionStatus,
                                                 hideUnread: true)
             
         }
+        
         else if segue.identifier == R.segue.roomDetailsViewController.showChat.identifier {
             
             let vc = segue.destination as! ChatViewController
@@ -210,6 +246,17 @@ extension RoomDetailsViewController {
                                          room: viewModel.room)
             
         }
+        else if segue.identifier == "embedPlay" {
+            
+            let vc = segue.destination as! FantasyDeckViewController
+            vc.viewModel = .init(router: .init(owner: vc),
+                                 provider: RoomsDeckProvider(room: viewModel.room.value),
+                                 presentationStyle: .modal,
+                                 room: viewModel.room,
+                                 container: self)
+            
+        }
+
         
     }
     
@@ -219,13 +266,13 @@ extension RoomDetailsViewController {
 //MARK:- RoomDetailsTitlePhotoViewDelegate
 
 extension RoomDetailsViewController: RoomDetailsTitlePhotoViewDelegate {
-
+    
     func didSelectedInitiator() {
         viewModel.presentMe()
     }
-
+    
     func didSelectedPeer() {
         viewModel.presentPeer()
     }
-
+    
 }

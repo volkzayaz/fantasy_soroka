@@ -9,6 +9,7 @@
 import Foundation
 import RxDataSources
 import SocketIO
+import Branch
 
 extension Room {
     
@@ -26,7 +27,7 @@ extension Room {
             case text
             case senderId
             case createdAt = "timestamp"
-            case type
+            case _type = "type"
             case readUserIds
         }
 
@@ -34,7 +35,10 @@ extension Room {
         let text: String?
         let senderId: String
         let createdAt: Date
-        let type: MessageType
+        let _type: MessageType?
+        var type: MessageType {
+            return _type ?? .message
+        }
         var readUserIds: Set<String>?
         
         var isRead: Bool { readUserIds?.contains { $0 == User.current?.id } ?? false }
@@ -58,6 +62,17 @@ extension Room {
             case like
             case created
             case deleted, sp_enabled, sp_disabled, settings_changed, frozen, unfrozen, unfrozenPaid
+            case shared_collections_added
+            case shared_collections_removed
+//            case shared_collections
+//            case mutual_liked_card
+
+            case unknown
+            
+            public init(from decoder: Decoder) throws {
+                self = try MessageType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+            }
+
         }
         
         func typeDescription(peer: String) -> String {
@@ -96,6 +111,17 @@ extension Room {
             case .deleted:
                 return R.string.localizable.chatMessageTypeDeleted()
                 
+            case .shared_collections_added:
+                let name = isOwn ? "You" : "\(peer)"
+                return name + " added \(text ?? "") to the Room"
+                
+            case .shared_collections_removed:
+                let name = isOwn ? "You" : "\(peer)"
+                return name + " removed \(text ?? "") from the Room"
+                
+            case .unknown:
+                return ""
+                
             }
             
         }
@@ -123,7 +149,7 @@ extension Room {
                           text: text,
                           senderId: user.id,
                           createdAt: Date(),
-                          type: .message,
+                          _type: .message,
                           readUserIds: [user.id])
             
             roomId = room.id
@@ -176,7 +202,11 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
         return participants.first(where: { $0.userId != User.current?.id })!
     }
     
-    var me: Participant {
+    var me: Participant.UserSlice {
+        return selfParticipant.userSlice!
+    }
+    
+    var selfParticipant: Participant {
         return participants.first(where: { $0.userId == User.current?.id })!
     }
     
@@ -188,14 +218,44 @@ struct Room: Codable, Equatable, IdentifiableType, Hashable {
         hasher.combine(id)
     }
     
-    var isDraftRoom: Bool {
-        return participants.reduce(into: false) { result, participant in
-            result = result || participant.status == .invited
+    var status: Status {
+        
+        guard let _ = peer.userSlice else { return .empty }
+        
+        if peer.status == .invited {
+            return .draft
         }
+        
+        return .ready
     }
     
     var isWaitingForMyResponse: Bool {
         return participants.contains(where: { $0.status == .invited && $0.userId == User.current?.id })
+    }
+    
+    mutating func editSelf( mutator: (inout Participant) -> Void ) {
+        var x = selfParticipant
+        mutator(&x)
+        let i = participants.firstIndex { $0.userId == x.userId }!
+        participants[i] = x
+    }
+    
+    func shareLine() -> BranchUniversalObject? {
+        
+        guard let link = peer.invitationLink else {
+            //fatalErrorInDebug("Can't share link for participant \(self). No token available")
+            return nil
+        }
+        
+        let buo = BranchUniversalObject(canonicalIdentifier: "room/\(id)")
+        buo.title = R.string.localizable.roomBranchObjectTitle()
+        buo.contentDescription = R.string.localizable.roomBranchObjectDescription()
+        buo.publiclyIndex = true
+        buo.locallyIndex = true
+        buo.contentMetadata.customMetadata["inviteToken"] = link
+        
+        return buo
+        
     }
     
 }
@@ -207,6 +267,12 @@ extension Room {
         case unfrozen
         case unfrozenPaid
     }
+    
+    enum Status {
+        case empty ///no participants
+        case draft ///some participants haven't accepted invite
+        case ready ///all participants accepted invite
+    }
 
     struct Settings: Codable, Equatable {
         var isClosedRoom: Bool
@@ -215,6 +281,7 @@ extension Room {
         var sharedCollections: [String]
         
         var notifications: Notifications
+
         
         struct Notifications: Codable, Equatable {
             var newMessage: Bool
@@ -229,28 +296,31 @@ extension Room {
         }
         
         var status = Status.accepted
-        
-        private let _id: String
-        let userId: String?
+    
+        fileprivate let userId: String?
         private let userName: String?
         private let avatarThumbnail: String?
         let invitationLink: String?
         
-        var userSlice: UserSlice {
+        var userSlice: UserSlice? {
             
             guard let userId = userId, let userName = userName, let avatarThumbnail = avatarThumbnail else {
-                fatalErrorInDebug("This Participant is not a valid user. Details \(self)")
-                return .init(id: "-1", name: "", avatarURL: "")
+                return nil
             }
 
             return .init(id: userId, name: userName, avatarURL: avatarThumbnail)
             
         }
         
-        struct UserSlice {
+        struct UserSlice: Equatable, IdentifiableType {
             let id: String
             let name: String
             let avatarURL: String
+            
+            var identity: String {
+                return id
+            }
+            
         }
         
         
@@ -263,3 +333,14 @@ extension Room {
 
 }
 
+struct RoomSlice: Codable {
+    
+    let roomId: String
+    let participants: [Room.Participant]
+    
+}
+
+struct RoomCollectionSlice: Codable {
+    let roomId: String
+    let collectionIds: [String]
+}

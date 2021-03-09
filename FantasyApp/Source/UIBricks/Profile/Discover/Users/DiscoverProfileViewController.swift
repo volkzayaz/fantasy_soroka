@@ -137,7 +137,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                 
                 if let initialIndex = state.initialIndex, initialIndex < state.profiles.count {
                     if initialIndex == self.profilesCarousel.currentItemIndex {
-                        self.viewModel.profileViewed(index: initialIndex)
+                        self.viewModel.currentCarouselItemDidChange(index: initialIndex)
                     } else {
                         self.profilesCarousel.scrollToItem(at: initialIndex, animated: false)
                     }
@@ -174,7 +174,7 @@ class DiscoverProfileViewController: UIViewController, MVVM_View {
                     attr.addAttribute(NSAttributedString.Key.foregroundColor, value: R.color.textPinkColor()!,
                                       range: NSMakeRange(0, cityName.count))
                     self.notActiveCityNameLabel.attributedText = attr
-
+                    
                 case .noSearchPreferences:
                     self.showView(self.noFilterView)
                     
@@ -258,7 +258,7 @@ extension DiscoverProfileViewController {
     }
 
     @IBAction func goGlobalClick(_ sender: Any) {
-        viewModel.subscribeTapped()
+        viewModel.goGlobal(purchaseInterestContext: .globalModeNonActivatedCity)
     }
 
     @IBAction func goToSettings(_ sender: Any) {
@@ -347,11 +347,11 @@ extension DiscoverProfileViewController: iCarouselDelegate, iCarouselDataSource 
     }
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        viewModel.profileViewed(index: carousel.currentItemIndex)
+        viewModel.currentCarouselItemDidChange(index: carousel.currentItemIndex)
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        viewModel.profileSelected(index: index)
+        viewModel.selectCarouselItemAt(index: index)
     }
     
 }
@@ -365,7 +365,7 @@ extension DiscoverProfileViewController: NoUsersCarouselViewDelegate {
     }
 
     func goGlobal() {
-        viewModel.subscribeTapped()
+        viewModel.goGlobal(purchaseInterestContext: .globalModeNoNewUsers)
     }
 }
 

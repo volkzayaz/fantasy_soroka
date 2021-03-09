@@ -27,6 +27,6 @@ struct CreateDraftRoomResource: AuthorizedAPIResource {
     }
 
     var task: Task {
-        return .requestJSONEncodable(settings)
+        return .requestJSONEncodable(["settings": settings])
     }
 }

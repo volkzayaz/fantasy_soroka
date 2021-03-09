@@ -9,23 +9,36 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Branch
 
 extension RoomDetailsViewModel {
     
     var title: String {
         
-        guard let peer = room.value.participants.first(where: { $0.userId != User.current?.id }), peer.userId != nil else {
+        guard let peer = room.value.peer.userSlice else {
             return R.string.localizable.roomDetailsDraft()
         }
         
-        return R.string.localizable.roomDetailsRoomWith(peer.userSlice.name)
+        return R.string.localizable.roomDetailsRoomWith(peer.name)
     }
     
     var navigationEnabled: Driver<Bool> {
         return room.asDriver()
-            .map { $0.isDraftRoom == false }
+            .map { $0.selfParticipant.status == .accepted }
     }
     
+    var isEmptyRoom: Driver<Bool> {
+        return room.asDriver()
+        .map { $0.status == .empty }
+    }
+    
+    var inviteButtonHidden: Driver<Bool> {
+        return Driver.combineLatest(room.asDriver(), page.asDriver())
+            .map { (room, page) -> Bool in
+                return page.0 == .play || room.status == .ready || room.status == .draft
+            }
+    }
+
 }
 
 ///RoomResource is shared between different RoomDetails screens (Settings, Chat, Container as of 10.11.2019)
@@ -34,23 +47,59 @@ typealias SharedRoomResource = BehaviorRelay<Room>
 
 class RoomDetailsViewModel: MVVM_ViewModel {
     enum DetailsPage: Int {
+        case play
         case fantasies
         case chat
-        case play
     }
-
+    
     let router: RoomDetailsRouter
     let room: SharedRoomResource
-    let page: BehaviorRelay<DetailsPage>
+    let page: BehaviorRelay<(DetailsPage, Bool)>
+    private let buo: BranchUniversalObject?
     fileprivate let bag = DisposeBag()
-
+    
     init(router: RoomDetailsRouter,
          room: Room,
          page: DetailsPage) {
         self.router = router
         self.room = BehaviorRelay(value: room)
-        self.page = BehaviorRelay(value: page)
+        self.page = BehaviorRelay(value: (page, false))
+
+        self.buo = room.shareLine()
+        
+        ///
+        webSocket.didReceiveRoomChange
+            .filter { $0.roomId == room.id }
+            .map { [unowned r = self.room] x in
+                var copy = r.value
+                copy.participants = x.participants
+                return copy
+            }
+            .bind(to: self.room)
+            .disposed(by: bag)
+        
+        ///
+        webSocket.didReceiveRoomCollectionsChange
+            .filter { $0.roomId == room.id }
+            .map { [unowned r = self.room] x in
+                var copy = r.value
+                copy.settings.sharedCollections = x.collectionIds
+                Dispatcher.dispatch(action: UpdateRoom(room: copy))
+                return copy
+            }
+            .bind(to: self.room)
+            .disposed(by: bag)
+    
+        ////
+        indicator.asDriver()
+            .drive(onNext: { [weak h = router.owner] (loading) in
+                h?.setLoadingStatus(loading)
+            })
+            .disposed(by: bag)
     }
+    
+    let indicator: ViewIndicator = ViewIndicator()
+    
 }
 
 extension RoomDetailsViewModel {
@@ -60,17 +109,21 @@ extension RoomDetailsViewModel {
     }
     
     func showPlay() {
-        router.showPlay(room: room.value)
+        router.showPlay(room: room)
     }
-
+    
+    func inviteButtonTapped() {
+        router.showInviteSheet(room: room)
+    }
+    
     func presentMe() {
-
-//        let id = (room.value.ownerId == User.current?.id)
-//            ? room.value.me.userSlice.id
-//            : room.value.peer.userSlice.id
-
-        let id = room.value.me.userSlice.id
-
+        
+        //        let id = (room.value.ownerId == User.current?.id)
+        //            ? room.value.me.id
+        //            : room.value.peer.userSlice.id
+        
+        let id = room.value.me.id
+        
         UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] user in
@@ -81,7 +134,12 @@ extension RoomDetailsViewModel {
 
     func presentPeer() {
 
-        let id = room.value.peer.userSlice.id
+        guard let id = room.value.peer.userSlice?.id else {
+            
+            router.showInviteSheet(room: room)
+            
+            return;
+        }
         
         UserManager.getUserProfile(id: id)
             .silentCatch(handler: router.owner)
@@ -89,5 +147,6 @@ extension RoomDetailsViewModel {
                 self.router.showUser(user: user)
             })
             .disposed(by: bag)
+        
     }
 }

@@ -29,11 +29,11 @@ struct RoomDetailsRouter: MVVM_Router {
         
     }
     
-    func showPlay(room: Room) {
+    func showPlay(room: SharedRoomResource) {
         
         let vc = R.storyboard.fantasyCard.fantasiesViewController()!
         vc.viewModel = FantasyDeckViewModel(router: .init(owner: vc),
-                                            provider: RoomsDeckProvider(room: room),
+                                            provider: RoomsDeckProvider(room: room.value),
                                             presentationStyle: .modal,
                                             room: room)
         let nav = FantasyNavigationController(rootViewController: vc)
@@ -42,8 +42,8 @@ struct RoomDetailsRouter: MVVM_Router {
         owner.present(nav, animated: true, completion: nil)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            vc.collectionsButton.isHidden = true
-            vc.cardsButton.isHidden = true
+//            vc.collectionsButton.isHidden = true
+//            vc.cardsButton.isHidden = true
         }
     }
 
@@ -56,6 +56,19 @@ struct RoomDetailsRouter: MVVM_Router {
         let navigationController = FantasyNavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .overFullScreen
         owner.navigationController?.present(navigationController, animated: true, completion: nil)
+    }
+    
+    func showInviteSheet(room: SharedRoomResource) {
+        let viewController = R.storyboard.rooms.inviteSheetViewController()!
+        let router = InviteSheetRouter(owner: viewController)
+        let viewModel = InviteSheetViewModel(router: router, room: room)
+        
+        viewController.viewModel = viewModel
+        
+        let container = FantasyNavigationController(rootViewController: viewController)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
     }
 
 }

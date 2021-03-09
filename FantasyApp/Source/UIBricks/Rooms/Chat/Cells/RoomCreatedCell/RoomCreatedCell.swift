@@ -25,10 +25,16 @@ class RoomCreatedCell: UITableViewCell {
                 .drive(leftImageView.rx.image)
                 .disposed(by: rx.disposeBag)
 
-            ImageRetreiver.imageForURLWithoutProgress(url: viewModel.slicePair.right.avatarURL)
-                .map { $0 ?? R.image.noPhoto() }
-                .drive(rightImageView.rx.image)
-                .disposed(by: rx.disposeBag)
+            if let right = viewModel.slicePair.right?.avatarURL {
+                ImageRetreiver.imageForURLWithoutProgress(url: right)
+                    .map { $0 ?? R.image.noPhoto() }
+                    .drive(rightImageView.rx.image)
+                    .disposed(by: rx.disposeBag)
+            }
+            else {
+                rightImageView.image = R.image.add()!
+            }
+            
         }
     }
 

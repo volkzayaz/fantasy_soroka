@@ -13,9 +13,8 @@ enum DiscoveryManager {}
 
 extension DiscoveryManager {
     
-    static func profilesFor(filter: DiscoveryFilter, isViewed: Bool) -> Single<[UserProfile]> {
-
-        UsersResource(discoveryFilter: filter, isViewed: isViewed).rx.request
+    static func profilesFor(filter: DiscoveryFilter, isSubscribed: Bool, isViewed: Bool) -> Single<[UserProfile]> {
+        UsersResource(discoveryFilter: filter, isSubscribed: isSubscribed, isViewed: isViewed).rx.request
             .map { $0.users }
     }
     

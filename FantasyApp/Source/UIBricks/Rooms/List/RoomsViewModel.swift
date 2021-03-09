@@ -44,7 +44,10 @@ class RoomsViewModel: MVVM_ViewModel {
         self.router = router
 
         ///indicator
-        
+        webSocket.didReceiveRoomChange
+            .map { _ in TriggerRoomsRefresh() }
+            .subscribe(onNext: Dispatcher.dispatch)
+            .disposed(by: bag)
     }
 
     let router: RoomsRouter
@@ -67,9 +70,9 @@ extension RoomsViewModel {
                 positiveText: R.string.localizable.roomUpgradeSuggestionPositiveText())
         }
             
-        router.roomTapped(room)
+        router.open(room, page: .chat)
     }
-
+    
     func createRoom() {
         
         Analytics.report(Analytics.Event.DraftRoomCreated())
@@ -78,10 +81,10 @@ extension RoomsViewModel {
             .trackView(viewIndicator: indicator)
             .silentCatch(handler: router.owner)
             .subscribe(onNext: { [unowned self] room in
-                self.router.showRoomSettings(room)                
+                self.router.open(room, page: .play)
             })
             .disposed(by: bag)
-
+        
     }
     
     func refreshRooms() {

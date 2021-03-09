@@ -17,16 +17,25 @@ import RxDataSources
 
 extension FantasyCollectionDetailsViewModel {
     
-    var price: Driver<String> {
-        if RemoteConfigManager.showPriceInDeck {
-            return SwiftyStoreKit.rx_productDetails(products: [collection.productId!])
-                .map { $0.first! }
-                .map { "\($0.localizedPrice)" }
-                .asDriver(onErrorJustReturn: "error")
-        } else {
-            return Observable.just(R.string.localizable.paymentGet())
-                .asDriver(onErrorJustReturn: "")
-        }
+    var actionButtonTitle: Driver<String> {
+        
+        return reloadTrigger.asDriver(onErrorJustReturn: ())
+            .flatMapLatest { _ -> Driver<String> in
+                let collection = self.collection
+                
+                if collection.isAvailable { return .just("Open") }
+                
+                if let x = collection.productId, RemoteConfigManager.showPriceInDeck {
+                    return SwiftyStoreKit.rx_productDetails(products: [x])
+                        .map { $0.first! }
+                        .map { "\($0.localizedPrice)" }
+                        .asDriver(onErrorJustReturn: "error")
+                }
+                
+                return .just(R.string.localizable.paymentGet())
+                
+            }
+        
     }
     
     ///if collection is not purchased, there only will be a single card inside
@@ -36,11 +45,11 @@ extension FantasyCollectionDetailsViewModel {
     }
     
     var purchaseAvailable: Bool {
-        return !collection.isPurchased
+        return !collection.isAvailable
     }
     
     var collectionPurchased: Bool {
-        return collection.isPurchased || appStateSlice.currentUser?.fantasies.purchasedCollections.contains(where: { $0.id == collection.id }) ?? false
+        return collection.isIAPPurchased || appStateSlice.currentUser?.fantasies.purchasedCollections.contains(where: { $0.id == collection.id }) ?? false
     }
     
     var dataSource: Driver<[SectionModel<String, Model>]> {
@@ -94,15 +103,19 @@ class FantasyCollectionDetailsViewModel : MVVM_ViewModel {
     
     let reloadTrigger = BehaviorSubject<Void>( value: () )
     
+    let collectionPickedAction: CollectionPicked?
+    
     private var timeSpentCounter = TimeSpentCounter()
     private let context: Analytics.Event.CollectionViewed.NavigationContext
     
     init(router: FantasyCollectionDetailsRouter,
          collection: Fantasy.Collection,
+         collectionPickedAction: CollectionPicked?,
          context: Analytics.Event.CollectionViewed.NavigationContext) {
         self.router = router
         self.collection = collection
         self.context = context
+        self.collectionPickedAction = collectionPickedAction
         
         /**
          
@@ -161,22 +174,53 @@ class FantasyCollectionDetailsViewModel : MVVM_ViewModel {
 extension FantasyCollectionDetailsViewModel {
     
     func buy() {
-        if collectionPurchased {
-            router.showCollection(collection: collection)
-            return;
+        
+        if collection.isAvailable, let x = collectionPickedAction {
+            return x(collection)
         }
         
-        PurchaseManager.purhcaseCollection(with: collection.productId)
-            .trackView(viewIndicator: indicator)
-            .subscribe(onNext: { [weak o = router.owner] _ in
-                Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
-                
-                self.reloadTrigger.onNext( () )
+        if collection.isAvailable {
+            Analytics.report(Analytics.Event.DraftRoomCreated())
+            
+            RoomManager.createDraftRoom(collections: [collection.id])
+                .trackView(viewIndicator: indicator)
+                .silentCatch(handler: router.owner)
+                .subscribe(onNext: { [unowned self] room in
+                    self.router.showRoom(room)
+                })
+                .disposed(by: bag)
+            return
+        }
+        
+        if let productId = collection.productId {
+            PurchaseManager.purhcaseCollection(with: productId)
+                .trackView(viewIndicator: indicator)
+                .subscribe(onNext: { _ in
+                    Dispatcher.dispatch(action: BuyCollection(collection: self.collection))
+                    self.reloadTrigger.onNext( () )
+                    
+                    if let x = self.collectionPickedAction {
+                        x(self.collection)
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            self.buy() ///automatically open collection
+                        }
+                    }
+                    
                 }, onError: { [weak o = router.owner] error in
                     self.openOfferIfNeeded(for: .promo)
                     o?.present(error: error)
-            })
-            .disposed(by: bag)
+                })
+                .disposed(by: bag)
+            return;
+        }
+        
+        router.showSubscription { [weak t = reloadTrigger] in
+            t?.onNext( () )
+            
+            self.collectionPickedAction?(self.collection)
+        }
+        
     }
     
     func share() {

@@ -58,6 +58,41 @@ extension UIView {
         }
         layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    func addFantasyDiagonalGradient() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        
+        let color1 = UIColor(fromHex: 0xD855B3)
+        let color2 = UIColor(fromHex: 0xB281E7)
+        let color3 = UIColor(fromHex: 0x7CBFD7)
+
+        gradientLayer.colors = [color1.cgColor, color2.cgColor, color3.cgColor]
+        gradientLayer.locations = [0, 0.5, 1]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    func addBlueFantasyDiagonalGradient() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        
+        let color1 = UIColor(fromHex: 0xA392E3)
+        let color2 = UIColor(fromHex: 0x60E0CF)
+
+        gradientLayer.colors = [color1.cgColor, color2.cgColor]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    func removeGradient() {
+        layer.sublayers?.first(where: { $0 is CAGradientLayer })?.removeFromSuperlayer()
+    }
 
     func addFantasyRoundedCorners() {
         clipsToBounds = true

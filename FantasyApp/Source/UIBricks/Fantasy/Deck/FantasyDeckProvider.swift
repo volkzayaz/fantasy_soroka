@@ -51,13 +51,13 @@ struct MainDeckProvider: FantasyDeckProvier {
     
     init() {
         
-        appState.map { $0.fantasiesDeck }
-            .asObservable()
-            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
-            .subscribe(onNext: { deck in
-                Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
-            })
-            .disposed(by: bag)
+//        appState.map { $0.fantasiesDeck }
+//            .asObservable()
+//            .continousDeck(refreshSignal: Fantasy.Manager.fetchSwipesDeck())
+//            .subscribe(onNext: { deck in
+//                Dispatcher.dispatch(action: ResetSwipeDeck(deck: deck))
+//            })
+//            .disposed(by: bag)
         
     }
     
@@ -101,9 +101,10 @@ struct MainDeckProvider: FantasyDeckProvier {
     
 };
 
-private let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
+let roomsDeck = BehaviorRelay<AppState.FantasiesDeck?>(value: nil)
 
 struct RoomsDeckProvider: FantasyDeckProvier {
+    
     
     let room: Room
     

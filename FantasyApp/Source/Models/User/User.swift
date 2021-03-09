@@ -97,7 +97,7 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
     //    }
     
     struct Fantasies: Equatable, Codable {
-        var purchasedCollections: [Fantasy.Collection]
+        var `purchasedCollections`: [Fantasy.Collection]
     }
     
     struct Community: Equatable, Codable {
@@ -177,7 +177,6 @@ struct User: Equatable, Hashable, Codable, UserDefaultsStorable {
         }
         
     }
-    
     
     static var changesOfSubscriptionStatus: Driver<Bool> {
         return appState.changesOf { $0.currentUser?.subscription.isSubscribed }

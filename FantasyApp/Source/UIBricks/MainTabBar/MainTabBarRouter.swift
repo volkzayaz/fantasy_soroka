@@ -67,7 +67,7 @@ struct MainTabBarRouter : MVVM_Router {
         
         let vc = R.storyboard.fantasyCard.fantasyCollectionDetailsViewController()!
         vc.viewModel = .init(router: .init(owner: vc),
-                             collection: collection,
+                             collection: collection, collectionPickedAction: nil,
                              context: .Card(.ShareLink))
         vc.modalPresentationStyle = .overFullScreen
         

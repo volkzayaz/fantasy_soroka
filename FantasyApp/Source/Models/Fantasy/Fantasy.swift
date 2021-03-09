@@ -66,7 +66,8 @@ extension Fantasy {
             case whatsInside
             case imageURL = "src"
             case cardsCount = "size"
-            case isPurchased
+            case isPaid
+            case isIAPPurchased = "isIAPPurhcased"
             case productId
             
             case loveThis
@@ -77,6 +78,8 @@ extension Fantasy {
             case hint = "hintText"
             case author
             case customBlock
+            
+            case groupCategory = "category"
         }
         
         let id: String
@@ -85,13 +88,39 @@ extension Fantasy {
         let whatsInside: String
         let imageURL: String
         let cardsCount: Int
-        let isPurchased: Bool
-        let productId: String? ///absence of ProductID means product is free
+        
+        let isPaid: Bool /// free if false.
+        let productId: String? ///
+        
+        var isIAPPurchased: Bool
+        
+        var wasPurchased: Bool {
+            return isIAPPurchased || appStateSlice.currentUser!.fantasies.purchasedCollections.contains(where: { $0.id == id })
+        }
+        
+        var isAvailable: Bool {
+            
+            if isPaid == false {
+                return true
+            }
+            
+            if isIAPPurchased || appStateSlice.currentUser!.fantasies.purchasedCollections.contains(where: { $0.id == id }) {
+                return true
+            }
+            
+            if let u = User.current, u.subscription.isSubscribed {
+                return true
+            }
+            
+            return false
+            
+        }
         
         let details: String
         let loveThis: String
         let highlights: String
         
+        let groupCategory: String
         let category: String
         let itemsNamePlural: String
         let hint: String
@@ -228,7 +257,7 @@ extension Fantasy.Collection {
     
     static var fake: Fantasy.Collection {
         
-        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPurchased: true, productId: "", details: "", loveThis: "", highlights: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
+        return Fantasy.Collection(id: "", title: "", whatsInside: "", imageURL: "", cardsCount: 0, isPaid: true, productId: "", isIAPPurchased: false, details: "", loveThis: "", highlights: "", groupCategory: "", category: "", itemsNamePlural: "", hint: "", author: nil, customBlock: nil)
         
     }
     

@@ -115,23 +115,21 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
     init(router: DiscoverProfileRouter) {
         self.router = router
         
-        Observable.combineLatest(
+        Driver.combineLatest(
             appState.changesOf { $0.currentUser?.discoveryFilter }
-                .notNil()
-                .asObservable(),
-            appState.changesOf { $0.currentUser?.subscription.isSubscribed }
-                .asObservable(),
+                .notNil(),
+            appState.changesOf { $0.currentUser?.subscription.isSubscribed == true },
             updateProfiles
                 .startWith(())
-        ).flatMapLatest { [unowned i = indicator] filter, _, _ in
+        ).flatMapLatest { [unowned i = indicator] filter, isSubscribed, _ in
             Observable.combineLatest(
-                DiscoveryManager.profilesFor(filter: filter, isViewed: true).asObservable(),
-                DiscoveryManager.profilesFor(filter: filter, isViewed: false).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isSubscribed: isSubscribed, isViewed: true).asObservable(),
+                DiscoveryManager.profilesFor(filter: filter, isSubscribed: isSubscribed, isViewed: false).asObservable(),
                 DiscoveryManager.searchSwipeState().map { $0 as SearchSwipeState? }.asObservable()
             ).trackView(viewIndicator: i)
-        }.silentCatch(handler: router.owner)
-        .asDriver(onErrorJustReturn: ([], [], nil))
-        .drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
+            .silentCatch(handler: router.owner)
+            .asDriver(onErrorJustReturn: ([], [], nil))
+        }.drive(onNext: { [unowned self] (viewedProfiles, newProfiles, searchSwipeState) in
             let availableNewProfiles = Array(newProfiles.prefix(searchSwipeState?.amount ?? 0))
             let profiles = viewedProfiles.reversed() + availableNewProfiles
             let initialIndex = profiles.firstIndex(where: { $0.isViewed == false })
@@ -165,6 +163,13 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
                 Dispatcher.dispatch(action: SetUser(user: user))
             })
             .disposed(by: bag)
+        
+        mode.distinctUntilChanged()
+            .drive(onNext: { mode in
+                if case .absentCommunity(let city) = mode {
+                    Analytics.report(Analytics.Event.SearchNonActiveCity(location: city))
+                }
+            }).disposed(by: bag)
     }
     
     let router: DiscoverProfileRouter
@@ -176,23 +181,30 @@ class DiscoverProfileViewModel : MVVM_ViewModel {
 
 extension DiscoverProfileViewModel {
     
-    func profileViewed(index: Int) {
-        guard let profile = profilesState.value.profiles[safe: index], profile.isViewed != true && !viewedProfiles.contains(profile) else { return }
-        
-        viewedProfiles.insert(profile)
-        DiscoveryManager.markUserIsViewedInSearch(profile)
-            .subscribe(onSuccess: { [unowned self] state in
-                self.searchSwipeState.accept(state)
-                
-                let availableProfilesNumber = self.profilesState.value.profiles.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
-                if availableProfilesNumber < self.profilesState.value.profiles.count {
-                    let availableProfiles = Array(self.profilesState.value.profiles.prefix(availableProfilesNumber))
-                    self.profilesState.accept(ProfilesState(profiles: availableProfiles, initialIndex: index, isDailyLimitReached: true))
-                }
-            }).disposed(by: bag)
+    func currentCarouselItemDidChange(index: Int) {
+        if let profile = profilesState.value.profiles[safe: index] {
+            let isViewedBefore = profile.isViewed == true || viewedProfiles.contains(profile)
+            Analytics.report(Analytics.Event.ProfilePreview(isViewedBefore: isViewedBefore))
+            
+            if !isViewedBefore {
+                viewedProfiles.insert(profile)
+                DiscoveryManager.markUserIsViewedInSearch(profile)
+                    .subscribe(onSuccess: { [unowned self] state in
+                        self.searchSwipeState.accept(state)
+                        
+                        let availableProfilesNumber = self.profilesState.value.profiles.filter { $0.isViewed == true }.count + self.viewedProfiles.count + state.amount
+                        if availableProfilesNumber < self.profilesState.value.profiles.count {
+                            let availableProfiles = Array(self.profilesState.value.profiles.prefix(availableProfilesNumber))
+                            self.profilesState.accept(ProfilesState(profiles: availableProfiles, initialIndex: index, isDailyLimitReached: true))
+                        }
+                    }).disposed(by: bag)
+            }
+        } else if !profilesState.value.isDailyLimitReached {
+            Analytics.report(Analytics.Event.SearchNoNewUsers(searchPreferences: User.current?.searchPreferences, membership: User.current?.subscription.isSubscribed == true))
+        }
     }
     
-    func profileSelected(index: Int) {
+    func selectCarouselItemAt(index: Int) {
         guard let profile = self.profilesState.value.profiles[safe: index] else { return }
         
         router.presentProfile(profile, onInitiateConnection: { [weak self] in
@@ -214,9 +226,11 @@ extension DiscoverProfileViewModel {
     }
     
     func autopresentFilter() {
-        if self.router.canPresent, let user = appStateSlice.currentUser {
-            PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
-                self.router.presentFilter()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if self.router.canPresent, let user = appStateSlice.currentUser {
+                PerformManager.perform(rule: .once, event: .flirtOptionsShownInFlirt, accessLevel: .local(id: user.id)) {
+                    self.router.presentFilter()
+                }
             }
         }
     }
@@ -233,7 +247,11 @@ extension DiscoverProfileViewModel {
     }
     
     func subscribeTapped() {
-        router.showSubscription()
+        router.showSubscription(page: .x3NewProfilesDaily, purchaseInterestContext: .x3NewProfilesDaily)
+    }
+    
+    func goGlobal(purchaseInterestContext: Analytics.Event.PurchaseInterest.Context) {
+        router.showSubscription(page: .globalMode, purchaseInterestContext: purchaseInterestContext)
     }
     
     // Location
@@ -275,7 +293,7 @@ extension DiscoverProfileViewModel {
 
 private extension DiscoverProfileViewModel {
     
-    var updateProfiles: Observable<Void> {
+    var updateProfiles: Driver<Void> {
         searchSwipeState
             .map { $0?.wouldBeUpdatedAt }
             .notNil()
@@ -284,6 +302,6 @@ private extension DiscoverProfileViewModel {
                 return Observable<Int>.interval(.seconds(Int(updateInterval)), scheduler: MainScheduler.instance)
                     .take(1)
                     .map { _ in }
-            }
+            }.asDriver(onErrorJustReturn: ())
     }
 }

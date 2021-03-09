@@ -16,6 +16,7 @@ import FBSDKCoreKit
 import Segment
 import AppTrackingTransparency
 import AdSupport
+import Sentry
 
 enum Configuration {}
 extension Configuration {
@@ -125,6 +126,11 @@ extension Configuration {
         
         ///Push registration
         PushManager.kickOff()
+        
+        SentrySDK.start { options in
+            options.dsn = "https://5131770ed33b4386948f1bcd77f30c2d@o509005.ingest.sentry.io/5602579"
+//            options.debug = true
+        }
         
 //        ScreenShieldKit.setLicenseKey("MEYCIQCmVNd4n8TuyWQOio/fbUzxcve7s0r1CPL1lqL6lVhrygIhAJ0QNGAx55BQ/LZYfCLa5aSnVQykAaFKigYiteMlMvsb")
         

@@ -69,11 +69,11 @@ struct DiscoverProfileRouter : MVVM_Router {
         owner.present(navigationController, animated: true, completion: nil)
     }
     
-    func showSubscription() {
+    func showSubscription(page: SubscriptionViewModel.Page, purchaseInterestContext: Analytics.Event.PurchaseInterest.Context) {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .fantasyX3)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: page, purchaseInterestContext: purchaseInterestContext)
         
         owner.present(nav, animated: true, completion: nil)
     }

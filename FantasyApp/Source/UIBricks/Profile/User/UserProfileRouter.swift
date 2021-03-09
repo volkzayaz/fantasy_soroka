@@ -20,7 +20,11 @@ struct UserProfileRouter : MVVM_Router {
         vc.viewModel = RoomDetailsViewModel(router: .init(owner: vc),
                                             room: room,
                                             page: .chat)
-        owner.navigationController?.pushViewController(vc, animated: true)
+        
+        let container = FantasyNavigationController(rootViewController: vc)
+        container.modalPresentationStyle = .overFullScreen
+        
+        owner.present(container, animated: true, completion: nil)
         
     }
     

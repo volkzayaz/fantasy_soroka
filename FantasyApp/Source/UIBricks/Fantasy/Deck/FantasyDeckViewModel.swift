@@ -28,14 +28,24 @@ extension FantasyDeckViewModel {
     }
 
     var mode: Driver<Mode> {
-        return provider.cardsChange
-            .map { state in
-                
-                if state.cards == nil || (state.cards?.count ?? 0) > 0 {
-                    return .swipeCards
-                }
-                return .waiting
+        return .just(.swipeCards)
+    }
+    
+    var unlockAllDecksButtonHidden: Driver<Bool> {
+        
+        return subscribeButtonHidden.map { [unowned self] isSubsribed in
+            if !isSubsribed && room?.value == nil  {
+                return false
+            }
+            
+            return true
         }
+    }
+    
+    var isPlayRoomPage: Driver<Bool> {
+        guard let _ = room?.value else { return .just(false) }
+        
+        return .just(true)
     }
     
     var timeLeftText: Driver<NSAttributedString> {
@@ -59,6 +69,16 @@ extension FantasyDeckViewModel {
         }
         
     }
+    
+    var sortedFantasies:  Driver<[[Fantasy.Collection]]> {
+        
+        return Driver.combineLatest(User.changesOfSubscriptionStatus,
+                             appState.changesOf { $0.currentUser?.fantasies.purchasedCollections },
+                             collections.asDriver())
+            .map { (_, _, collections) -> [[Fantasy.Collection]] in
+                return collections.group(by: \.groupCategory)
+            }
+    }
 
     var collectionsCountText: Driver<NSAttributedString> {
         return collections.asDriver().map { collections in
@@ -76,13 +96,25 @@ extension FantasyDeckViewModel {
     
     var cards: Driver<[Fantasy.Card]> {
         
-        return provider.cardsChange
-            .map { $0.cards }
-            .notNil()
+        guard let x = room else {
+            return .just([])
+        }
         
+        return x.distinctUntilChanged { $0.settings.sharedCollections }
+            .flatMapLatest { [unowned i = indicator] room -> Single< [Fantasy.Card] > in
+                
+                guard room.settings.sharedCollections.count > 0 else { return .just([]) }
+                    
+                return Fantasy.Manager.fetchSwipesDeck(in: room)
+                    .trackView(viewIndicator: i)
+                    .map { $0.cards ?? [] }
+                    .asSingle()
+                    
+                
+            }
+            .asDriver(onErrorJustReturn: [])
+            
     }
-    
-    
     
     var mutualCardTrigger: Driver<Fantasy.Card> {
         return cardTrigger.asDriver().notNil()
@@ -102,26 +134,37 @@ extension FantasyDeckViewModel {
     
 }
 
+typealias CollectionPicked = (Fantasy.Collection) -> Void
 class FantasyDeckViewModel : MVVM_ViewModel {
 
     typealias PresentationStyle = FantasyDeckViewController.PresentationStyle
-
+    
     let presentationStyle: PresentationStyle
     let provider: FantasyDeckProvier
-    let room: Room?
+    let room: SharedRoomResource?
 
+    let emptyPeerPressed = BehaviorRelay<Bool>(value: false)
+    let collectionPickedAction: CollectionPicked?
+    
     fileprivate let cardTrigger = BehaviorRelay<Fantasy.Card?>(value: nil)
     fileprivate let collections = BehaviorRelay<[Fantasy.Collection]>(value: [])
     fileprivate var viewTillOpenCardTimer = TimeSpentCounter()
-
-    init(router: FantasyDeckRouter, provider: FantasyDeckProvier = MainDeckProvider(), presentationStyle: PresentationStyle  = .stack, room: Room? = nil) {
+    
+    init(router: FantasyDeckRouter,
+         provider: FantasyDeckProvier = MainDeckProvider(),
+         presentationStyle: PresentationStyle  = .stack,
+         room: SharedRoomResource? = nil,
+         collectionFilter: Set<String> = [],
+         container: UIViewController? = nil,
+         collectionPickedAction: CollectionPicked? = nil) {
         self.router = router
         self.provider = provider
         self.presentationStyle = presentationStyle
         self.room = room
+        self.collectionPickedAction = collectionPickedAction
         
         indicator.asDriver()
-            .drive(onNext: { [weak h = router.owner] (loading) in
+            .drive(onNext: { [weak h = container] (loading) in
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
@@ -132,29 +175,14 @@ class FantasyDeckViewModel : MVVM_ViewModel {
             .flatMapLatest { _ -> Single<[Fantasy.Collection]> in
                 return Fantasy.Manager.fetchCollections()
             }
+            .map { $0.filter { collectionFilter.contains($0.id) == false } }
             .silentCatch(handler: router.owner)
             .bind(to: collections)
             .disposed(by: bag)
-
-
+        
+        self.buo = room?.value.shareLine()
+        
         // Check likes cars count to display Review popup
-
-        ///TODO: liked fantasies cards is no longer stored value and can't be accessed locally
-//        appState.changesOf { $0.currentUser?.fantasies.liked }
-//            .notNil()
-//            .map { (SettingsStore.currentUser.value?.id, $0) }
-//            .filter { $0.1.isEmpty == false && $0.0 != nil }
-//            .asObservable()
-//            .subscribe(onNext: { (tuple) in
-//                let userID = tuple.0!
-//                var map = SettingsStore.likedCardsCount.value
-//
-//                map[userID] = (map[userID] ?? 0) + 1
-//
-//                SettingsStore.likedCardsCount.value = map
-//            })
-//            .disposed(by: bag)
-
         SettingsStore.likedCardsCount.observable
             .filter { $0.isEmpty == false }
             .map { (SettingsStore.currentUser.value?.id, $0) }
@@ -182,8 +210,6 @@ extension FantasyDeckViewModel {
         provider.swiped(card: card, in: direction) { [unowned x = cardTrigger] in
             x.accept(card)
         }
-        
-        
     }
     
     func subscribeTapped() {
@@ -205,7 +231,12 @@ extension FantasyDeckViewModel {
     }
     
     func show(collection: Fantasy.Collection) {
-        router.show(collection: collection)
+        
+        if let x = collectionPickedAction, collection.isAvailable {
+            return x(collection)
+        }
+        
+        router.show(collection: collection, collectionPickedAction: collectionPickedAction)
     }
     
     func cardShown(card: Fantasy.Card) {
@@ -218,6 +249,28 @@ extension FantasyDeckViewModel {
                 self.shareURL(response.url, card: card)
             })
             .disposed(by: bag)
+    }
+    
+    func addCollection() {
+        
+        let room = self.room!
+        
+        router.showAddCollection(skip: Set(room.value.settings.sharedCollections)) { [unowned r = room, weak o = router.owner, unowned i = indicator] (collection) in
+            
+            var x = r.value
+            x.settings.sharedCollections.insert(collection.id, at: 0)
+            
+            let _ =
+            UpdateRoomSharedCollectionsResource(room: x).rx.request
+                .trackView(viewIndicator: i)
+                .silentCatch(handler: o)
+                .subscribe { (_) in
+                    r.accept(x)
+                    Dispatcher.dispatch(action: UpdateRoom(room: x))
+                }
+            
+        }
+        
     }
     
     private func shareURL(_ url: String, card: Fantasy.Card) {
@@ -252,13 +305,20 @@ extension FantasyDeckViewModel {
     func presentMe() {
         guard let r = room else { return }
 
-        presentUser(id: r.me.userSlice.id)
+        presentUser(id: r.value.me.id)
     }
 
     func presentPeer() {
         guard let r = room else { return }
 
-        presentUser(id: r.peer.userSlice.id)
+        if let x = r.value.peer.userSlice?.id {
+            presentUser(id: x)
+            return;
+        }
+        
+        emptyPeerPressed.accept(true)
+        router.showInviteSheet(room: r)
+        
     }
 
    private func presentUser(id: String) {

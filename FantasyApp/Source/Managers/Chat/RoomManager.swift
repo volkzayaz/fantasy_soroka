@@ -63,29 +63,31 @@ extension RoomManager {
     static func room(with: UserIdentifier) -> Single<Room?> {
         
         if let rooms = appStateSlice.rooms {
-            return .just( rooms.first(where: { $0.peer.userSlice.id == with.id }) )
+            return .just( rooms.first(where: { $0.peer.userSlice?.id == with.id }) )
         }
         
         return getAllRooms()
-            .map { $0.first(where: { $0.peer.userSlice.id == with.id }) }
+            .map { $0.first(where: { $0.peer.userSlice?.id == with.id }) }
     }
 
     // MARK: - Room creation
-    static func createDraftRoom() -> Single<Room> {
+    static func createDraftRoom(collections: [String] = []) -> Single<Room> {
         
         let settings = Room.Settings(isClosedRoom: true,
                                      isHideCommonFantasies: false,
                                      isScreenShieldEnabled: User.current?.subscription.isSubscribed ?? false,
-                                     sharedCollections: [],
+                                     sharedCollections: collections,
                                      notifications: .init(newMessage: true,
                                                           newFantasyMatch: true)
                                      )
-        
         return CreateDraftRoomResource(settings: settings).rx.request
             .flatMap { room in
                 return inviteUser(nil, to: room.id)
             }
-            
+    }
+    
+    static func createEmptyRoom() {
+        
     }
 
     static func inviteUser(_ userId: String?, to roomId: String) -> Single<Room> {
@@ -103,6 +105,10 @@ extension RoomManager {
     // MARK: - Settings
     static func updateRoomSettings(roomId: String, settings: Room.Settings) -> Single<Room> {
         return UpdateRoomSettingsResource(roomId: roomId, settings: settings).rx.request
+    }
+    
+    static func updateRoomSharedCollections(room: Room) -> Single<Room> {
+        return UpdateRoomSharedCollectionsResource(room: room).rx.request
     }
 
     static func latestMessageIn(rooms: [Room]) -> Observable<Room.MessageInRoom> {

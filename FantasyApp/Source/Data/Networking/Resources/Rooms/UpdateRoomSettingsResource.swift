@@ -32,3 +32,50 @@ struct UpdateRoomSettingsResource: AuthorizedAPIResource {
         return .requestJSONEncodable(settings)
     }
 }
+
+struct UpdateRoomSharedCollectionsResource: AuthorizedAPIResource {
+    
+    let room: Room
+    
+    typealias responseType = Room
+
+    var method: Moya.Method {
+        return .put
+    }
+
+    var path: String {
+        return "users/me/rooms/\(room.id)/settings/shared-collections"
+    }
+
+    var task: Task {
+        return .requestJSONEncodable(room.settings.sharedCollections)
+    }
+}
+
+struct RoomsSharedCollectionsResource: AuthorizedAPIResource {
+    
+    let room: Room
+    
+    struct Response: Codable {
+        let settings: Settings
+        
+        struct Settings: Codable {
+            let sharedCollectionsData: [Fantasy.Collection]
+        }
+        
+    }
+    
+    typealias responseType = Response
+
+    var method: Moya.Method {
+        return .get
+    }
+
+    var path: String {
+        return "users/me/rooms/\(room.id)"
+    }
+
+    var task: Task {
+        return .requestPlain
+    }
+}

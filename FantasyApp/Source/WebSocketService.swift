@@ -18,15 +18,27 @@ class WebSocketService {
     /////Interface
     /////----------
     
+    var didReceiveFantasyCards: Observable<[Fantasy.Card]> {
+        return manager.defaultSocket.rx.recieve(event: "room_mutual_fantasy")
+    }
+    
     var didReceiveMessage: Observable<Room.MessageInRoom> {
         return Observable.merge(messageProxy.skip(1).notNil(),
-                                manager.defaultSocket.rx.subscribe(onEvent: "message"))
-            .filter { $0.raw.type == .message }
+                                manager.defaultSocket.rx.recieve(event: "message"))
+            //.filter { $0.raw.type == .message }
     }
     
     func didReceiveMessage(in room: RoomIdentifier) -> Observable<Room.MessageInRoom> {
         return didReceiveMessage
             .filter { $0.roomId == room.id }
+    }
+    
+    var didReceiveRoomChange: Observable<RoomSlice> {
+        return manager.defaultSocket.rx.recieve(event: "room_created")
+    }
+    
+    var didReceiveRoomCollectionsChange: Observable<RoomCollectionSlice> {
+        return manager.defaultSocket.rx.recieve(event: "room_collections_updated")
     }
 
     func send(message: Room.MessageInRoom) -> Single<Room.MessageInRoom> {
@@ -138,7 +150,7 @@ extension SocketIOClient {
 
 extension Reactive where Base == SocketIOClient {
 
-    fileprivate func subscribe<T: Codable>(onEvent name: String) -> Observable<T> {
+    fileprivate func recieve<T: Codable>(event name: String) -> Observable<T> {
 
         return Observable.create { (subscriber) -> Disposable in
 

@@ -25,7 +25,7 @@ extension FantasyDetailsViewModel {
             .silentCatch(handler: router.owner)
             .asDriver(onErrorJustReturn: [])
             .map { collections in
-                return [AnimatableSectionModel(model: "", items: collections.filter { !$0.isPurchased })]
+                return [AnimatableSectionModel(model: "", items: collections)]
         }
     }
 

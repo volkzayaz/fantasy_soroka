@@ -26,7 +26,7 @@ struct TeleportRouter : MVVM_Router {
         let nav = R.storyboard.subscription.instantiateInitialViewController()!
         nav.modalPresentationStyle = .overFullScreen
         let vc = nav.viewControllers.first! as! SubscriptionViewController
-        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .teleport, completion: completion)
+        vc.viewModel = SubscriptionViewModel(router: .init(owner: vc), page: .changeActiveCity, purchaseInterestContext: .changeActiveCity, completion: completion)
         
         owner.present(nav, animated: true, completion: nil)
         

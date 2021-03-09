@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RoomDetailsTitlePhotoViewDelegate {
+protocol RoomDetailsTitlePhotoViewDelegate: class {
     func didSelectedInitiator()
     func didSelectedPeer()
 }
@@ -17,18 +17,40 @@ class RoomDetailsTitlePhotoView: UIView {
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
 
-    var delegate: RoomDetailsTitlePhotoViewDelegate?
+    weak var delegate: RoomDetailsTitlePhotoViewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         leftImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(initiatorTapped)))
         rightImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(peerTapped)))
+        
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .subscribe(onNext: { [weak self] _ in
+                self?.startAnimating()
+            })
+            .disposed(by: rx.disposeBag)
     }
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         leftImageView.addEllipsMask()
+    }
+    
+    func startAnimating() {
+        
+        guard rightImageView.image == R.image.roomLoader() else { return }
+        
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.rightImageView.layer.add(rotation, forKey: "rotationAnimation")
+    }
+
+    func stopAnimating() {
+         self.rightImageView.layer.removeAnimation(forKey: "rotationAnimation")
     }
 }
 
@@ -49,6 +71,11 @@ extension RoomDetailsTitlePhotoView {
             return
         }
 
+        if rightImageView.image == R.image.plus() {
+            rightImageView.image = R.image.roomLoader()
+            startAnimating()
+        }
+        
         d.didSelectedPeer()
     }
 }

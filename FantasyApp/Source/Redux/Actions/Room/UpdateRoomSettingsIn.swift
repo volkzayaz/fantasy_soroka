@@ -18,7 +18,7 @@ struct UpdateRoomSettingsIn: ActionCreator {
         return RoomManager.updateRoomSettings(roomId: room.id, settings: room.settings)
             .map { _ in
 
-                if self.room.isDraftRoom {
+                if self.room.status != .ready {
                     return initialState
                 }
                 
@@ -33,6 +33,53 @@ struct UpdateRoomSettingsIn: ActionCreator {
             }
             .catchErrorJustReturn(initialState)
             .asObservable()
+    }
+
+}
+
+struct UpdateRoomSharedCollections: ActionCreator {
+
+    let room: Room
+
+    func perform(initialState: AppState) -> Observable<AppState> {
+
+        return RoomManager.updateRoomSharedCollections(room: room)
+            .map { _ in
+                
+                guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.room.id }) else {
+                    return initialState
+                }
+                
+                var state = initialState
+                state.rooms?[i] = self.room
+                return state
+            }
+            .catchErrorJustReturn(initialState)
+            .asObservable()
+    }
+
+}
+
+
+struct UpdateRoom: Action {
+
+    let room: Room
+
+    func perform(initialState: AppState) -> AppState {
+
+        guard let i = initialState.rooms?.firstIndex(where: { $0.id == self.room.id }) else {
+            return initialState
+        }
+        
+        var copy = room
+        if room.unreadCount == nil {
+            copy.unreadCount = 0
+        }
+        
+        var state = initialState
+        state.rooms?[i] = copy
+        return state
+        
     }
 
 }

@@ -12,27 +12,6 @@ import RxSwift
 import RxCocoa
 import SwiftyStoreKit
 
-struct SubscriptionOffer {
-    let plan: SubscriptionPlan
-    let discount: String?
-    
-    init (plan: SubscriptionPlan, compare: NSDecimalNumber?) {
-        
-        self.plan = plan
-        
-        guard let x = compare else { self.discount = ""; return }
-        
-        let y = NSDecimalNumber(integerLiteral: 1)
-        let x1 = plan.dailyDecimal.dividing(by: x)
-        let x2 = y.subtracting(x1)
-        let x3 = x2.multiplying(by: 100)
-        let res = x3.int8Value
-        
-        discount = "\(res)%"
-        
-    }
-}
-
 extension Int {
     
     ///Method returns countable string based on amount of number for given noun
@@ -51,107 +30,101 @@ extension Int {
 
 struct SubscriptionPlan {
     
-    let price: String
-    let duration: String
-    let dailyDecimal: NSDecimalNumber
-    let dailyCharge: String
-    let productId: String
+    let productID: String
+    let type: SubscriptionPlanType
+    let title: String
+    let payment: String
+    let dailyPayment: String
+    let details: String
+    let baseProductDetails: String?
+    let description: String
+    let buttonTitle: String
+    let sticker: String?
+    let position: Int
+    let analyticsDescription: String
     
-    init(product: SKProduct) {
+    init?(configuration: SubscriptionPlanConfiguration, product: SKProduct, baseProduct: SKProduct?) {
+        guard let position = configuration.position else { return nil }
         
-        price = product.localizedPrice
-        productId = product.productIdentifier
+        productID = product.productIdentifier
+        type = configuration.type
+        title = configuration.title(product: product)
+        payment = configuration.payment(product: product)
+        dailyPayment = product.subscriptionDailyPayment
+        details = configuration.details(product: product, baseProduct: baseProduct)
+        baseProductDetails = baseProduct.map { configuration.productDetails(product: $0) }
+        description = configuration.description(product: product, baseProduct: baseProduct)
+        buttonTitle = configuration.localizedButtonTitle
+        sticker = configuration.sticker(product: product, baseProduct: baseProduct)
+        self.position = position
         
-        guard let p = product.subscriptionPeriod else {
-            duration = ""
-            dailyCharge = ""
-            dailyDecimal = 0
-            return
-        }
-        
-        switch p.unit {
-        case .day: duration = p.numberOfUnits.countableString(withSingularNoun: "day")
-        case .month: duration = p.numberOfUnits.countableString(withSingularNoun: "month")
-        case .week: duration = p.numberOfUnits.countableString(withSingularNoun: "week")
-        case .year: duration = p.numberOfUnits.countableString(withSingularNoun: "year")
-        }
-        
-        var divider: Int = p.numberOfUnits
-        
-        switch p.unit {
-        case .day: divider *= 1
-        case .month: divider *= 30
-        case .week: divider *= 7
-        case .year: divider *= 365
-        }
-        
-        dailyDecimal = product.price.dividing(by: NSDecimalNumber(integerLiteral: divider))
-        
-        let formatter = SKProduct.formatter
-        formatter.locale = product.priceLocale
-        
-        let dailyCharge = formatter.string(from: dailyDecimal) ?? ""
-        self.dailyCharge = R.string.localizable.subscriptionDailyCharge(dailyCharge)
+        analyticsDescription = "P\(position)_" + product.shortSubscriptionPeriodDuration + type.rawValue.capitalizingFirstLetter()
     }
-    
 }
 
 extension SubscriptionViewModel {
     
-    enum Page: Int {
-        case unlimRooms = 0
-        case fantasyX3
-        case teleport
-        case member
-        case subscriptionOffer
+    enum Page: Int, CaseIterable {
+        case x3NewProfilesDaily = 0
+        case globalMode
+        case changeActiveCity
+        case accessToAllDecks
+        case x3NewCardsDaily
+        case unlimitedRooms
+        case memberBadge
     }
 
-    var offers: Driver<[SubscriptionOffer]> {
-        
-        // Sometimes immutableNonPersistentState is nil at this moment
-        let ids = immutableNonPersistentState?.subscriptionProductIDs ?? premiumIds
-        
-        return SwiftyStoreKit.rx_productDetails(products: ids)
-            .retry(1)
-            .trackView(viewIndicator: indicator)
-            .map { x in
-            
-                guard x.count > 2 else {
-                    return []
-                }
-                
-                let res =
-                x.map(SubscriptionPlan.init)
-                    .sorted { (rhs, lhs) -> Bool in
-                        return rhs.dailyDecimal.compare(lhs.dailyDecimal) == .orderedDescending
-                    }
-                
-                let mostExpensive = res[0]
-                let middle = res[1]
-                let cheapest = res[2]
-                
-                return [ SubscriptionOffer(plan: cheapest, compare: mostExpensive.dailyDecimal),
-                         SubscriptionOffer(plan: mostExpensive, compare: nil),
-                         SubscriptionOffer(plan: middle, compare: mostExpensive.dailyDecimal)
-                ]
-            }
-            .asDriver(onErrorJustReturn: [])
-        
-    }
-    
+    var plans: Driver<[SubscriptionPlan]> { plansRelay.asDriver() }
+    var showAllPlans: Driver<Bool> { showAllPlansRelay.asDriver() }
 }
 
 class SubscriptionViewModel : MVVM_ViewModel {
     
     let startPage: Page
+    let screenTitle: String
+    let style: SubscriptionPlansStyle
+    
+    private let plansRelay = BehaviorRelay<[SubscriptionPlan]>(value: [])
+    private let showAllPlansRelay = BehaviorRelay<Bool>(value: false)
+    private let purchaseInterestContext: Analytics.Event.PurchaseInterest.Context
     private let completion: (() -> Void)?
     
-    init(router: SubscriptionRouter, page: Page, completion: ( () -> Void)? = nil ) {
+    init(router: SubscriptionRouter, page: Page, purchaseInterestContext: Analytics.Event.PurchaseInterest.Context, completion: ( () -> Void)? = nil ) {
         self.router = router
         startPage = page
+        self.purchaseInterestContext = purchaseInterestContext
         self.completion = completion
+        screenTitle = RemoteConfigManager.subscriptionPlansConfiguration.localizedScreenTitle
+        style = RemoteConfigManager.subscriptionPlansConfiguration.style
         
-        Analytics.report(Analytics.Event.PurchaseInterest(context: page))
+        let configurations = RemoteConfigManager.subscriptionPlansConfiguration.plans
+        let ids = configurations.reduce([]) { (result, configuration) -> Set<String> in
+            var newResult = result
+            newResult.insert(configuration.productId)
+            if let baseProductId = configuration.baseProductId {
+                newResult.insert(baseProductId)
+            }
+            
+            return newResult
+        }
+
+        SwiftyStoreKit.rx_productDetails(products: ids)
+            .retry(1)
+            .trackView(viewIndicator: indicator)
+            .map { products in
+                return configurations.compactMap { configuration -> SubscriptionPlan? in
+                    guard let product = products.first(where: { $0.productIdentifier == configuration.productId }) else { return nil }
+                    
+                    var baseProduct: SKProduct?
+                    if let baseProductId = configuration.baseProductId {
+                        baseProduct = products.first { $0.productIdentifier == baseProductId }
+                    }
+
+                    return SubscriptionPlan(configuration: configuration, product: product, baseProduct: baseProduct)
+                }.sorted { $0.position < $1.position }
+            }.asDriver(onErrorJustReturn: [])
+            .drive(plansRelay)
+            .disposed(by: bag)
         
         /////progress indicator
         
@@ -160,29 +133,57 @@ class SubscriptionViewModel : MVVM_ViewModel {
                 h?.setLoadingStatus(loading)
             })
             .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(UIApplication.willTerminateNotification)
+            .subscribe { [unowned self] _ in self.reportPurchaseInterest(paymentStatus: .terminate) }
+            .disposed(by: bag)
+        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
+            .subscribe { [unowned self] _ in
+                guard !isPurchaseInProgress else { return }
+                self.reportPurchaseInterest(paymentStatus: .resignActive)
+            }.disposed(by: bag)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .subscribe { [unowned self] _ in
+                guard !isPurchaseInProgress else { return }
+                self.timeSpentCounter.restart()
+            }.disposed(by: bag)
+        
+        timeSpentCounter.start()
     }
     
     let router: SubscriptionRouter
     fileprivate let indicator: ViewIndicator = ViewIndicator()
     fileprivate let bag = DisposeBag()
-    
+    private var timeSpentCounter = TimeSpentCounter()
+    private var isPurchaseInProgress = false
 }
 
 extension SubscriptionViewModel {
     
-    func subscribe(offer: SubscriptionOffer) {
+    func seeOtherPlans() {
+        showAllPlansRelay.accept(true)
+    }
+    
+    func subscribe(planIndex: Int) {
+        guard let plan = plansRelay.value[safe: planIndex] else { return }
         let copy = self.completion
         
-        PurchaseManager.purhcaseSubscription(with: offer.plan.productId)
+        isPurchaseInProgress = true
+        PurchaseManager.purhcaseSubscription(with: plan.productID)
             .trackView(viewIndicator: indicator)
-            .silentCatch(handler: router.owner)
-            .subscribe(onNext: { [unowned o = router.owner] _ in
+            .catchError { [unowned self] error in
+                self.reportPurchaseInterest(paymentStatus: .failed)
+                self.timeSpentCounter.restart()
+                throw error
+            }.silentCatch(handler: router.owner)
+            .subscribe(onNext: { [unowned self, o = router.owner] _ in
+                self.reportPurchaseInterest(paymentStatus: .success)
                 o.dismiss(animated: true, completion: {
                     copy?()
                 })
-            })
-            .disposed(by: self.bag)
-        
+            }, onCompleted: { [unowned self] in
+                self.isPurchaseInProgress = false
+            }).disposed(by: self.bag)
     }
     
     /** Reference any actions ViewModel can handle
@@ -195,5 +196,20 @@ extension SubscriptionViewModel {
      
      */
     
+    func willCancel() {
+        reportPurchaseInterest(paymentStatus: .cancel)
+    }
 }
 
+private extension SubscriptionViewModel {
+    
+    func reportPurchaseInterest(paymentStatus: Analytics.Event.PurchaseInterest.PaymentStatus) {
+        guard timeSpentCounter.isStarted else { return }
+        
+        Analytics.report(Analytics.Event.PurchaseInterest(context: purchaseInterestContext, content: purchaseInterestEventContent, type: .regular, paymentStatus: paymentStatus, spentTime: timeSpentCounter.finish()))
+    }
+    
+    var purchaseInterestEventContent: String {
+        plansRelay.value.map { $0.analyticsDescription }.joined(separator: " ") + " Style\(style.rawValue)" + " PlansVisible_\(showAllPlansRelay.value ? "Yes" : "No")"
+    }
+}
